@@ -2,10 +2,13 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 
-import aerialImg      from '../assets/arielview1.jpg'
-import outsideView2   from '../assets/outside-view2.jpeg'
-import upViewImg      from '../assets/up-view.JPEG'
-import outsideViewImg from '../assets/outside-view.jpg'
+// Import as high-quality WebP so the browser receives a format that scales without
+// blurring — WebP uses superior intra-prediction which preserves detail better than
+// JPEG when the browser upscales or CSS-transforms the image.
+import aerialImg      from '../assets/arielview1.jpg?format=webp&quality=98'
+import outsideView2   from '../assets/outside-view2.jpeg?format=webp&quality=98'
+import upViewImg      from '../assets/up-view.jpg?format=webp&quality=98'
+import outsideViewImg from '../assets/outside-view.jpg?format=webp&quality=98'
 
 const SLIDES = [
   { src: aerialImg,      zoom: 'in',  alt: 'Aerial view of Duma Suites Watamu' },
@@ -152,8 +155,23 @@ export default function HeroSection() {
           background-size: cover;
           background-position: center;
           will-change: opacity, transform;
+          /*
+           * GPU-compositing hints: force the slide onto its own layer so the
+           * browser uses its highest-quality texture sampler when scaling.
+           */
+          transform: translateZ(0);
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+          image-rendering: -webkit-optimize-contrast; /* Safari  */
+          image-rendering: smooth;                    /* Firefox */
+          image-rendering: high-quality;              /* Chrome / Edge */
         }
-        /* Ken Burns — both directions start at scale(1) = "full view" */
+        /*
+         * Ken Burns — both directions start at scale(1) = "full view".
+         * The first 25 % of the animation is a hold so the image is seen
+         * at its natural scale before the zoom begins (25 % of 6 s ≈ 1.5 s dwell).
+         * translateZ(0) stays on the class; only scale changes in the keyframes.
+         */
         .hero__slide--zoom-in {
           animation: heroZoomIn 6s ease forwards;
         }
@@ -161,12 +179,14 @@ export default function HeroSection() {
           animation: heroZoomOut 6s ease forwards;
         }
         @keyframes heroZoomIn {
-          from { transform: scale(1);    }
-          to   { transform: scale(1.12); }
+          0%   { transform: scale(1);    }
+          25%  { transform: scale(1);    }
+          100% { transform: scale(1.12); }
         }
         @keyframes heroZoomOut {
-          from { transform: scale(1);    }
-          to   { transform: scale(0.90); }
+          0%   { transform: scale(1);    }
+          25%  { transform: scale(1);    }
+          100% { transform: scale(0.90); }
         }
 
         /* Bottom gradient overlay */

@@ -18,37 +18,38 @@ const DUMA_LS  = '0.22em'
 // ── Irregular honeycomb background ───────────────────────────────────────────
 // Reference frame: 1440 × 900. SVG will be stretched to fill the viewport via
 // preserveAspectRatio="xMidYMid slice".
-const HEXAGONS = [
-  // Large corners — filled
-  { cx: 118,  cy: 124, r: 62, op: 0.07, fill: true  },
-  { cx: 1312, cy: 778, r: 58, op: 0.07, fill: true  },
-  // Large corners — outline
-  { cx: 64,   cy: 724, r: 76, op: 0.05, fill: false },
-  { cx: 1398, cy: 152, r: 68, op: 0.04, fill: false },
-  // Mid-edge — filled
-  { cx: 1184, cy: 858, r: 46, op: 0.06, fill: true  },
-  { cx: 622,  cy: 878, r: 38, op: 0.05, fill: true  },
-  { cx: 352,  cy: 820, r: 32, op: 0.06, fill: true  },
-  // Mid-edge — outline
-  { cx: 278,  cy: 62,  r: 42, op: 0.05, fill: false },
-  { cx: 724,  cy: 44,  r: 34, op: 0.04, fill: false },
-  { cx: 1054, cy: 74,  r: 24, op: 0.04, fill: false },
-  // Scattered interior
-  { cx: 1254, cy: 452, r: 28, op: 0.05, fill: true  },
-  { cx: 202,  cy: 402, r: 22, op: 0.04, fill: false },
-  { cx: 866,  cy: 272, r: 20, op: 0.05, fill: true  },
-  { cx: 650,  cy: 452, r: 16, op: 0.03, fill: false },
-  // Accent — slightly larger outline near edges
-  { cx: 1382, cy: 500, r: 54, op: 0.04, fill: false },
-  { cx: 80,   cy: 282, r: 44, op: 0.04, fill: false },
-]
-
-function hexPoints(cx, cy, r) {
+// Polygon points are pre-computed at module load so there is no per-render trig.
+function _hexPoints(cx, cy, r) {
   return Array.from({ length: 6 }, (_, i) => {
     const a = (Math.PI / 3) * i - Math.PI / 6  // pointy-top orientation
     return `${(cx + r * Math.cos(a)).toFixed(1)},${(cy + r * Math.sin(a)).toFixed(1)}`
   }).join(' ')
 }
+
+const HEXAGONS = [
+  // Large corners — filled
+  { points: _hexPoints(118,  124, 62), op: 0.07, fill: true  },
+  { points: _hexPoints(1312, 778, 58), op: 0.07, fill: true  },
+  // Large corners — outline
+  { points: _hexPoints(64,   724, 76), op: 0.05, fill: false },
+  { points: _hexPoints(1398, 152, 68), op: 0.04, fill: false },
+  // Mid-edge — filled
+  { points: _hexPoints(1184, 858, 46), op: 0.06, fill: true  },
+  { points: _hexPoints(622,  878, 38), op: 0.05, fill: true  },
+  { points: _hexPoints(352,  820, 32), op: 0.06, fill: true  },
+  // Mid-edge — outline
+  { points: _hexPoints(278,  62,  42), op: 0.05, fill: false },
+  { points: _hexPoints(724,  44,  34), op: 0.04, fill: false },
+  { points: _hexPoints(1054, 74,  24), op: 0.04, fill: false },
+  // Scattered interior
+  { points: _hexPoints(1254, 452, 28), op: 0.05, fill: true  },
+  { points: _hexPoints(202,  402, 22), op: 0.04, fill: false },
+  { points: _hexPoints(866,  272, 20), op: 0.05, fill: true  },
+  { points: _hexPoints(650,  452, 16), op: 0.03, fill: false },
+  // Accent — slightly larger outline near edges
+  { points: _hexPoints(1382, 500, 54), op: 0.04, fill: false },
+  { points: _hexPoints(80,   282, 44), op: 0.04, fill: false },
+]
 
 /**
  * Preload an array of image URLs into the browser cache.
@@ -131,7 +132,7 @@ export default function PreloadScreen({ onComplete, images = [] }) {
         {HEXAGONS.map((h, i) => (
           <polygon
             key={i}
-            points={hexPoints(h.cx, h.cy, h.r)}
+            points={h.points}
             fill={h.fill ? '#563311' : 'none'}
             stroke={h.fill ? 'none' : '#563311'}
             strokeWidth={h.fill ? 0 : 1.5}

@@ -10,13 +10,12 @@ import ReviewsSection from './components/ReviewsSection'
 import CTASection from './components/CTASection'
 import Footer from './components/Footer'
 
-// Hero images — imported so Vite resolves them to their final (optimised) URLs.
-// They are passed to PreloadScreen so every image is fetched at high priority
-// and fully cached BEFORE the hero slideshow becomes visible.
-import aerialImg      from './assets/arielview1.jpg'
-import outsideView2   from './assets/outside-view2.jpeg'
-import upViewImg      from './assets/up-view.JPEG'
-import outsideViewImg from './assets/outside-view.jpg'
+// Hero images — imported as high-quality WebP (matching HeroSection) so the preload
+// warms the exact same cache entries the slideshow will consume.
+import aerialImg      from './assets/arielview1.jpg?format=webp&quality=98'
+import outsideView2   from './assets/outside-view2.jpeg?format=webp&quality=98'
+import upViewImg      from './assets/up-view.jpg?format=webp&quality=98'
+import outsideViewImg from './assets/outside-view.jpg?format=webp&quality=98'
 import logoImg        from './assets/logo.jpeg'
 
 const PRELOAD_IMAGES = [aerialImg, outsideView2, upViewImg, outsideViewImg, logoImg]

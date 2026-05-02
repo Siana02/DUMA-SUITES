@@ -2,11 +2,15 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
+import { imagetools } from 'vite-imagetools'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    // Build-time format conversion with query-param directives (?format=webp&quality=98).
+    // Must run BEFORE ViteImageOptimizer so it sees the original files.
+    imagetools(),
     // Process every image asset at maximum quality before it ships to the browser.
     // JPEG/PNG use lossless or near-lossless settings; WebP/AVIF use fully lossless mode.
     ViteImageOptimizer({
@@ -30,14 +34,12 @@ export default defineConfig({
         compressionLevel: 1,
       },
       webp: {
-        // Fully lossless WebP
+        // Fully lossless WebP — quality is ignored when lossless is true
         lossless: true,
-        quality: 100,
       },
       avif: {
-        // Lossless AVIF
+        // Lossless AVIF — quality is ignored when losslessCompression is true
         losslessCompression: true,
-        quality: 100,
       },
       svg: {
         // Preserve all SVG details
