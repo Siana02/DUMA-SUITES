@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useSpring } from 'framer-motion'
+import logoImg from '../assets/logo.jpeg'
 
 // Timeline — Split Word Reveal:
 //   0.20 s  DUMA slides in from left                   (0.65 s)
@@ -52,22 +53,25 @@ const HEXAGONS = [
 ]
 
 /**
- * Preload an array of image URLs into the browser cache.
- * Returns a Promise that resolves once every image has loaded (or errored).
+ * Start loading an array of image URLs into the browser cache.
+ * Calls onProgress(fraction) after each image finishes (0 … 1).
+ * Calls onDone() once every image has loaded or errored.
  */
-function preloadImages(urls) {
-  return Promise.all(
-    urls.map(
-      (src) =>
-        new Promise((resolve) => {
-          const img = new Image()
-          img.fetchPriority = 'high'
-          img.onload = resolve
-          img.onerror = resolve  // resolve even on error so we never block forever
-          img.src = src
-        })
-    )
-  )
+function startPreloadImages(urls, onProgress, onDone) {
+  if (urls.length === 0) { onProgress(1); onDone(); return }
+  let loaded = 0
+  urls.forEach((src) => {
+    const img = new Image()
+    img.fetchPriority = 'high'
+    const handleSettle = () => {
+      loaded++
+      onProgress(loaded / urls.length)
+      if (loaded === urls.length) onDone()
+    }
+    img.onload  = handleSettle
+    img.onerror = handleSettle  // never block on a broken image
+    img.src = src
+  })
 }
 
 export default function PreloadScreen({ onComplete, images = [] }) {
@@ -85,6 +89,10 @@ export default function PreloadScreen({ onComplete, images = [] }) {
   const imagesDoneRef = useRef(false)
   const calledRef     = useRef(false)
 
+  // Real per-image progress → spring-smoothed value drives the progress bar.
+  const rawProgress    = useMotionValue(0)
+  const smoothProgress = useSpring(rawProgress, { stiffness: 55, damping: 20 })
+
   function tryComplete() {
     if (animDoneRef.current && imagesDoneRef.current && !calledRef.current) {
       calledRef.current = true
@@ -96,22 +104,27 @@ export default function PreloadScreen({ onComplete, images = [] }) {
   useEffect(() => {
     document.body.style.overflow = 'hidden'
 
-    // 1. Animation timer
+    // 1. Animation timer — minimum display duration
     const timer = setTimeout(() => {
       animDoneRef.current = true
       tryComplete()
     }, TOTAL_MS)
 
-    // 2. Eagerly load all images while the animation plays
-    preloadImages(imagesRef.current).then(() => {
-      imagesDoneRef.current = true
-      tryComplete()
-    })
+    // 2. Eagerly load all images while the animation plays; update progress bar
+    startPreloadImages(
+      imagesRef.current,
+      (fraction) => rawProgress.set(fraction),
+      () => {
+        imagesDoneRef.current = true
+        tryComplete()
+      }
+    )
 
     return () => {
       clearTimeout(timer)
       document.body.style.overflow = ''
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -146,6 +159,16 @@ export default function PreloadScreen({ onComplete, images = [] }) {
 
       {/* ── Brand lockup ── */}
       <div className="preload__brand">
+
+        {/* Logo mark */}
+        <motion.img
+          className="preload__logo"
+          src={logoImg}
+          alt="Duma Suites"
+          initial={{ opacity: 0, scale: 0.82 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.65, delay: 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
+        />
 
         {/* DUMA — slides in from left */}
         <motion.p
@@ -210,14 +233,11 @@ export default function PreloadScreen({ onComplete, images = [] }) {
         Preparing your stay
       </motion.span>
 
-      {/* ── Progress bar ── */}
+      {/* ── Progress bar — driven by real image-loading progress ── */}
       <div className="preload__progress-track" aria-hidden="true">
         <motion.div
           className="preload__progress-fill"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: TOTAL_S * 0.90, delay: 0.20, ease: 'easeInOut' }}
-          style={{ transformOrigin: 'left center' }}
+          style={{ scaleX: smoothProgress, transformOrigin: 'left center' }}
         />
       </div>
 
@@ -275,6 +295,17 @@ export default function PreloadScreen({ onComplete, images = [] }) {
           text-align: center;
           pointer-events: none;
           user-select: none;
+        }
+
+        /* ── Logo mark ── */
+        .preload__logo {
+          width: clamp(60px, 10vw, 88px);
+          height: clamp(60px, 10vw, 88px);
+          object-fit: contain;
+          border-radius: 50%;
+          margin-bottom: 0.35rem;
+          user-select: none;
+          pointer-events: none;
         }
 
         /* DUMA */
