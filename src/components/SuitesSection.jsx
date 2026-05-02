@@ -12,7 +12,7 @@ const SUITES = [
     size: '65 m²',
     view: 'Ocean View',
     feature: 'Private Terrace',
-    gradient: 'linear-gradient(160deg, #1e4d5e 0%, #2a7a8c 50%, #58b0c4 100%)',
+    gradient: 'linear-gradient(160deg, #0d0906 0%, #1e1208 50%, #3d2510 100%)',
   },
   {
     id: 'garden-suite',
@@ -45,7 +45,7 @@ const SUITES = [
     size: '90 m²',
     view: 'Ocean & Pool',
     feature: 'Living Area',
-    gradient: 'linear-gradient(160deg, #1a3a4a 0%, #2a5a6a 50%, #3d8fa0 100%)',
+    gradient: 'linear-gradient(160deg, #0f0a06 0%, #2a1a0c 50%, #4a2e14 100%)',
   },
 ]
 

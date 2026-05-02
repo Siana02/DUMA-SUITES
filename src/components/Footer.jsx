@@ -206,7 +206,7 @@ export default function Footer() {
         .footer__social-link:hover {
           border-color: var(--color-teal);
           color: var(--color-teal);
-          background-color: rgba(88, 176, 196, 0.1);
+          background-color: rgba(201, 169, 110, 0.1);
         }
         .footer__col-title {
           font-family: var(--font-nav);

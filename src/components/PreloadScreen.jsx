@@ -1,31 +1,118 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 // Timeline — Split Word Reveal:
-//   0.20 s  DUMA slides in from left          (0.65 s)
-//   0.55 s  SUITES row (+ rule lines) slides in from right (0.65 s)
-//   0.90 s  WATAMU slides in from below       (0.65 s)
-//   1.55 s  shimmer sweeps across             (0.75 s CSS anim)
+//   0.20 s  DUMA slides in from left                   (0.65 s)
+//   0.55 s  SUITES text slides in from right           (0.65 s)
+//   1.10 s  rule lines draw outward from SUITES        (0.80 s)
+//   0.90 s  WATAMU slides in from below                (0.65 s)
+//   1.55 s  shimmer sweeps across                      (0.75 s CSS anim)
 //   2.38 s  whole screen begins fading out
 //   3.40 s  component unmounts (onComplete)
 
-const TOTAL_MS   = 3400
-const TOTAL_S    = TOTAL_MS / 1000
-const SLIDE      = { ease: [0.25, 0.46, 0.45, 0.94], duration: 0.65 }
-const DUMA_LS    = '0.22em'   // letter-spacing for DUMA; also used as padding-right compensation
+const TOTAL_MS = 3400
+const TOTAL_S  = TOTAL_MS / 1000
+const SLIDE    = { ease: [0.25, 0.46, 0.45, 0.94], duration: 0.65 }
+const DUMA_LS  = '0.22em'
 
-export default function PreloadScreen({ onComplete }) {
+// ── Irregular honeycomb background ───────────────────────────────────────────
+// Reference frame: 1440 × 900. SVG will be stretched to fill the viewport via
+// preserveAspectRatio="xMidYMid slice".
+// Polygon points are pre-computed at module load so there is no per-render trig.
+function _hexPoints(cx, cy, r) {
+  return Array.from({ length: 6 }, (_, i) => {
+    const a = (Math.PI / 3) * i - Math.PI / 6  // pointy-top orientation
+    return `${(cx + r * Math.cos(a)).toFixed(1)},${(cy + r * Math.sin(a)).toFixed(1)}`
+  }).join(' ')
+}
+
+const HEXAGONS = [
+  // Large corners — filled
+  { points: _hexPoints(118,  124, 62), op: 0.07, fill: true  },
+  { points: _hexPoints(1312, 778, 58), op: 0.07, fill: true  },
+  // Large corners — outline
+  { points: _hexPoints(64,   724, 76), op: 0.05, fill: false },
+  { points: _hexPoints(1398, 152, 68), op: 0.04, fill: false },
+  // Mid-edge — filled
+  { points: _hexPoints(1184, 858, 46), op: 0.06, fill: true  },
+  { points: _hexPoints(622,  878, 38), op: 0.05, fill: true  },
+  { points: _hexPoints(352,  820, 32), op: 0.06, fill: true  },
+  // Mid-edge — outline
+  { points: _hexPoints(278,  62,  42), op: 0.05, fill: false },
+  { points: _hexPoints(724,  44,  34), op: 0.04, fill: false },
+  { points: _hexPoints(1054, 74,  24), op: 0.04, fill: false },
+  // Scattered interior
+  { points: _hexPoints(1254, 452, 28), op: 0.05, fill: true  },
+  { points: _hexPoints(202,  402, 22), op: 0.04, fill: false },
+  { points: _hexPoints(866,  272, 20), op: 0.05, fill: true  },
+  { points: _hexPoints(650,  452, 16), op: 0.03, fill: false },
+  // Accent — slightly larger outline near edges
+  { points: _hexPoints(1382, 500, 54), op: 0.04, fill: false },
+  { points: _hexPoints(80,   282, 44), op: 0.04, fill: false },
+]
+
+/**
+ * Preload an array of image URLs into the browser cache.
+ * Returns a Promise that resolves once every image has loaded (or errored).
+ */
+function preloadImages(urls) {
+  return Promise.all(
+    urls.map(
+      (src) =>
+        new Promise((resolve) => {
+          const img = new Image()
+          img.fetchPriority = 'high'
+          img.onload = resolve
+          img.onerror = resolve  // resolve even on error so we never block forever
+          img.src = src
+        })
+    )
+  )
+}
+
+export default function PreloadScreen({ onComplete, images = [] }) {
+  // Keep stable refs to props so the once-only effect never needs them in its deps.
+  const onCompleteRef = useRef(onComplete)
+  const imagesRef     = useRef(images)
+  useEffect(() => {
+    onCompleteRef.current = onComplete
+    imagesRef.current     = images
+  })
+
+  // Track whether the animation timer has elapsed and images have loaded.
+  // onComplete is only called once BOTH conditions are true.
+  const animDoneRef   = useRef(false)
+  const imagesDoneRef = useRef(false)
+  const calledRef     = useRef(false)
+
+  function tryComplete() {
+    if (animDoneRef.current && imagesDoneRef.current && !calledRef.current) {
+      calledRef.current = true
+      document.body.style.overflow = ''
+      onCompleteRef.current()
+    }
+  }
+
   useEffect(() => {
     document.body.style.overflow = 'hidden'
+
+    // 1. Animation timer
     const timer = setTimeout(() => {
-      document.body.style.overflow = ''
-      onComplete()
+      animDoneRef.current = true
+      tryComplete()
     }, TOTAL_MS)
+
+    // 2. Eagerly load all images while the animation plays
+    preloadImages(imagesRef.current).then(() => {
+      imagesDoneRef.current = true
+      tryComplete()
+    })
+
     return () => {
       clearTimeout(timer)
       document.body.style.overflow = ''
     }
-  }, [onComplete])
+  }, [])
 
   return (
     <motion.div
@@ -34,10 +121,30 @@ export default function PreloadScreen({ onComplete }) {
       animate={{ opacity: [1, 1, 0] }}
       transition={{ duration: TOTAL_S, times: [0, 0.70, 1], ease: 'easeInOut' }}
     >
-      {/* Shimmer stripe — sweeps left → right once at 1.55 s */}
+      {/* ── Irregular honeycomb background ── */}
+      <svg
+        className="preload__hex-bg"
+        viewBox="0 0 1440 900"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
+        focusable="false"
+      >
+        {HEXAGONS.map((h, i) => (
+          <polygon
+            key={i}
+            points={h.points}
+            fill={h.fill ? '#563311' : 'none'}
+            stroke={h.fill ? 'none' : '#563311'}
+            strokeWidth={h.fill ? 0 : 1.5}
+            opacity={h.op}
+          />
+        ))}
+      </svg>
+
+      {/* ── Shimmer stripe — sweeps left → right once at 1.55 s ── */}
       <div className="preload__shimmer" />
 
-      {/* Brand lockup */}
+      {/* ── Brand lockup ── */}
       <div className="preload__brand">
 
         {/* DUMA — slides in from left */}
@@ -50,17 +157,36 @@ export default function PreloadScreen({ onComplete }) {
           DUMA
         </motion.p>
 
-        {/* ——— SUITES ——— slides in from right; rule lines stay visible throughout */}
-        <motion.div
-          className="preload__suites-row"
-          initial={{ opacity: 0, x: 48 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ ...SLIDE, delay: 0.55 }}
-        >
-          <span className="preload__rule preload__rule--left" />
-          <span className="preload__suites">S U I T E S</span>
-          <span className="preload__rule preload__rule--right" />
-        </motion.div>
+        {/* SUITES row: text slides in; rules draw outward afterward */}
+        <div className="preload__suites-row">
+          {/* Left rule — draws leftward from text after SUITES is visible */}
+          <motion.span
+            className="preload__rule preload__rule--left"
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 0.80, delay: 1.10, ease: [0.4, 0, 0.2, 1] }}
+            style={{ transformOrigin: 'right center' }}
+          />
+
+          {/* SUITES text — slides in from right */}
+          <motion.span
+            className="preload__suites"
+            initial={{ opacity: 0, x: 48 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ ...SLIDE, delay: 0.55 }}
+          >
+            S U I T E S
+          </motion.span>
+
+          {/* Right rule — draws rightward from text after SUITES is visible */}
+          <motion.span
+            className="preload__rule preload__rule--right"
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 0.80, delay: 1.10, ease: [0.4, 0, 0.2, 1] }}
+            style={{ transformOrigin: 'left center' }}
+          />
+        </div>
 
         {/* WATAMU — slides in from below */}
         <motion.p
@@ -74,6 +200,27 @@ export default function PreloadScreen({ onComplete }) {
 
       </div>
 
+      {/* ── Loading label ── */}
+      <motion.span
+        className="preload__loading-label"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 0.55, 0.55, 0] }}
+        transition={{ duration: TOTAL_S, times: [0, 0.25, 0.80, 1], ease: 'easeInOut' }}
+      >
+        Preparing your stay
+      </motion.span>
+
+      {/* ── Progress bar ── */}
+      <div className="preload__progress-track" aria-hidden="true">
+        <motion.div
+          className="preload__progress-fill"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: TOTAL_S * 0.90, delay: 0.20, ease: 'easeInOut' }}
+          style={{ transformOrigin: 'left center' }}
+        />
+      </div>
+
       <style>{`
         .preload {
           position: fixed;
@@ -83,16 +230,27 @@ export default function PreloadScreen({ onComplete }) {
           align-items: center;
           justify-content: center;
           background-color: var(--color-bg-primary);
+          overflow: hidden;
         }
 
-        /* Shimmer — diagonal stripe sweeps across the screen once */
+        /* ── Honeycomb SVG ── */
+        .preload__hex-bg {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          z-index: 0;
+        }
+
+        /* ── Shimmer — diagonal stripe sweeps across the screen once ── */
         .preload__shimmer {
           position: absolute;
           inset: 0;
           background: linear-gradient(
             105deg,
             transparent 35%,
-            rgba(255, 255, 255, 0.26) 50%,
+            rgba(255, 255, 255, 0.28) 50%,
             transparent 65%
           );
           transform: translateX(-100%);
@@ -106,7 +264,7 @@ export default function PreloadScreen({ onComplete }) {
           to   { transform: translateX(100%); }
         }
 
-        /* Brand */
+        /* ── Brand lockup ── */
         .preload__brand {
           position: relative;
           z-index: 2;
@@ -119,7 +277,7 @@ export default function PreloadScreen({ onComplete }) {
           user-select: none;
         }
 
-        /* DUMA — reduced letter-spacing */
+        /* DUMA */
         .preload__duma {
           font-family: var(--font-title);
           font-size: clamp(2.6rem, 7vw, 5.5rem);
@@ -128,7 +286,7 @@ export default function PreloadScreen({ onComplete }) {
           text-transform: uppercase;
           color: var(--color-espresso);
           line-height: 1;
-          padding-right: ${DUMA_LS}; /* compensate trailing letter-spacing gap */
+          padding-right: ${DUMA_LS};
         }
 
         /* SUITES row */
@@ -144,7 +302,6 @@ export default function PreloadScreen({ onComplete }) {
           flex: 1;
           max-width: clamp(50px, 9vw, 130px);
           height: 1px;
-          opacity: 0.45;
         }
         .preload__rule--left {
           background: linear-gradient(to right, transparent, var(--color-espresso));
@@ -176,7 +333,46 @@ export default function PreloadScreen({ onComplete }) {
           line-height: 1;
           padding-right: 0.48em;
         }
+
+        /* ── Loading label ── */
+        .preload__loading-label {
+          position: absolute;
+          bottom: 36px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-family: var(--font-nav);
+          font-size: 0.52rem;
+          letter-spacing: 0.32em;
+          text-transform: uppercase;
+          color: var(--color-espresso);
+          white-space: nowrap;
+          pointer-events: none;
+          z-index: 2;
+        }
+
+        /* ── Progress track + fill ── */
+        .preload__progress-track {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: rgba(86, 51, 17, 0.10);
+          z-index: 3;
+          pointer-events: none;
+        }
+        .preload__progress-fill {
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            to right,
+            var(--color-espresso) 0%,
+            #c9a96e 60%,
+            #e8d5b0 100%
+          );
+        }
       `}</style>
     </motion.div>
   )
 }
+

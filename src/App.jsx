@@ -10,6 +10,16 @@ import ReviewsSection from './components/ReviewsSection'
 import CTASection from './components/CTASection'
 import Footer from './components/Footer'
 
+// Hero images — imported as high-quality WebP (matching HeroSection) so the preload
+// warms the exact same cache entries the slideshow will consume.
+import aerialImg      from './assets/arielview1.jpg?format=webp&quality=98'
+import outsideView2   from './assets/outside-view2.jpeg?format=webp&quality=98'
+import upViewImg      from './assets/up-view.jpg?format=webp&quality=98'
+import outsideViewImg from './assets/outside-view.jpg?format=webp&quality=98'
+import logoImg        from './assets/logo.jpeg'
+
+const PRELOAD_IMAGES = [aerialImg, outsideView2, upViewImg, outsideViewImg, logoImg]
+
 function App() {
   const [preloadDone, setPreloadDone] = useState(false)
 
@@ -24,7 +34,10 @@ function App() {
       </Helmet>
 
       {!preloadDone && (
-        <PreloadScreen onComplete={() => setPreloadDone(true)} />
+        <PreloadScreen
+          onComplete={() => setPreloadDone(true)}
+          images={PRELOAD_IMAGES}
+        />
       )}
 
       <Navbar />
