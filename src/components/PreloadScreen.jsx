@@ -1,16 +1,23 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 
-// Timeline:
-//   0.3 – 1.1 s  brand text fades in
-//   1.1 – 1.7 s  brand text holds
-//   1.8 s         curtain panels start sliding outward (1.4 s)
-//   1.8 – 3.2 s  brand text fades out while curtains open
-//   3.4 s         component unmounts (onComplete)
+// Timeline — Split Word Reveal:
+//   0.20 s  DUMA slides in from left          (0.65 s)
+//   0.55 s  SUITES row slides in from right   (0.65 s)
+//   0.90 s  WATAMU slides in from below       (0.65 s)
+//   1.55 s  shimmer sweeps across             (0.75 s CSS anim)
+//   1.50 s  rule lines begin fading out
+//   2.38 s  whole screen begins fading out
+//   3.40 s  component unmounts (onComplete)
 
-const PANEL_EASE   = [0.76, 0, 0.24, 1]
-const TOTAL_MS     = 3400
-const TOTAL_S      = TOTAL_MS / 1000
+const TOTAL_MS   = 3400
+const TOTAL_S    = TOTAL_MS / 1000
+const SLIDE      = { ease: [0.25, 0.46, 0.45, 0.94], duration: 0.65 }
+const DUMA_LS    = '0.22em'   // letter-spacing for DUMA; also used as padding-right compensation
+
+// Rule lines fade: hold at 0.45 opacity, then disappear before the overall fade-out
+const RULE_ANIM  = { opacity: [0.45, 0.45, 0] }
+const RULE_TRANS = { duration: TOTAL_S, times: [0, 0.44, 0.65], ease: 'easeOut' }
 
 export default function PreloadScreen({ onComplete }) {
   useEffect(() => {
@@ -26,43 +33,59 @@ export default function PreloadScreen({ onComplete }) {
   }, [onComplete])
 
   return (
-    <div className="preload" aria-hidden="true">
-      {/* Left curtain panel */}
-      <motion.div
-        className="preload__panel preload__panel--left"
-        initial={{ x: 0 }}
-        animate={{ x: '-100%' }}
-        transition={{ duration: 1.4, delay: 1.8, ease: PANEL_EASE }}
-      />
+    <motion.div
+      className="preload"
+      aria-hidden="true"
+      animate={{ opacity: [1, 1, 0] }}
+      transition={{ duration: TOTAL_S, times: [0, 0.70, 1], ease: 'easeInOut' }}
+    >
+      {/* Shimmer stripe — sweeps left → right once at 1.55 s */}
+      <div className="preload__shimmer" />
 
-      {/* Right curtain panel */}
-      <motion.div
-        className="preload__panel preload__panel--right"
-        initial={{ x: 0 }}
-        animate={{ x: '100%' }}
-        transition={{ duration: 1.4, delay: 1.8, ease: PANEL_EASE }}
-      />
+      {/* Brand lockup */}
+      <div className="preload__brand">
 
-      {/* Brand lockup — visible until curtains fully open */}
-      <motion.div
-        className="preload__brand"
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: [0, 1, 1, 0], y: [18, 0, 0, -10] }}
-        transition={{ duration: TOTAL_S, times: [0, 0.23, 0.60, 1], ease: 'easeInOut' }}
-      >
-        {/* Line 1 — D U M A (largest, wide letter-spacing) */}
-        <p className="preload__duma">D U M A</p>
+        {/* DUMA — slides in from left */}
+        <motion.p
+          className="preload__duma"
+          initial={{ opacity: 0, x: -48 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ ...SLIDE, delay: 0.20 }}
+        >
+          DUMA
+        </motion.p>
 
-        {/* Line 2 — ——— SUITES ——— (fading rule lines) */}
-        <div className="preload__suites-row">
-          <span className="preload__rule preload__rule--left" />
+        {/* ——— SUITES ——— slides in from right; rules fade out mid-sequence */}
+        <motion.div
+          className="preload__suites-row"
+          initial={{ opacity: 0, x: 48 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ ...SLIDE, delay: 0.55 }}
+        >
+          <motion.span
+            className="preload__rule preload__rule--left"
+            animate={RULE_ANIM}
+            transition={RULE_TRANS}
+          />
           <span className="preload__suites">S U I T E S</span>
-          <span className="preload__rule preload__rule--right" />
-        </div>
+          <motion.span
+            className="preload__rule preload__rule--right"
+            animate={RULE_ANIM}
+            transition={RULE_TRANS}
+          />
+        </motion.div>
 
-        {/* Line 3 — WATAMU (smallest) */}
-        <p className="preload__watamu">W A T A M U</p>
-      </motion.div>
+        {/* WATAMU — slides in from below */}
+        <motion.p
+          className="preload__watamu"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ...SLIDE, delay: 0.90 }}
+        >
+          W A T A M U
+        </motion.p>
+
+      </div>
 
       <style>{`
         .preload {
@@ -72,17 +95,29 @@ export default function PreloadScreen({ onComplete }) {
           display: flex;
           align-items: center;
           justify-content: center;
-        }
-
-        .preload__panel {
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          width: 51%;          /* slight overlap avoids hair-line gap */
           background-color: var(--color-bg-primary);
         }
-        .preload__panel--left  { left: 0; }
-        .preload__panel--right { right: 0; }
+
+        /* Shimmer — diagonal stripe sweeps across the screen once */
+        .preload__shimmer {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            105deg,
+            transparent 35%,
+            rgba(255, 255, 255, 0.26) 50%,
+            transparent 65%
+          );
+          transform: translateX(-100%);
+          animation: preload-shimmer 0.75s ease-in-out forwards;
+          animation-delay: 1.55s;
+          pointer-events: none;
+          z-index: 1;
+        }
+        @keyframes preload-shimmer {
+          from { transform: translateX(-100%); }
+          to   { transform: translateX(100%); }
+        }
 
         /* Brand */
         .preload__brand {
@@ -97,19 +132,19 @@ export default function PreloadScreen({ onComplete }) {
           user-select: none;
         }
 
-        /* Line 1 */
+        /* DUMA — reduced letter-spacing */
         .preload__duma {
           font-family: var(--font-title);
           font-size: clamp(2.6rem, 7vw, 5.5rem);
           font-weight: 300;
-          letter-spacing: 0.55em;
+          letter-spacing: ${DUMA_LS};
           text-transform: uppercase;
           color: var(--color-espresso);
           line-height: 1;
-          padding-right: 0.55em; /* compensate trailing letter-spacing */
+          padding-right: ${DUMA_LS}; /* compensate trailing letter-spacing gap */
         }
 
-        /* Line 2 */
+        /* SUITES row */
         .preload__suites-row {
           display: flex;
           align-items: center;
@@ -142,7 +177,7 @@ export default function PreloadScreen({ onComplete }) {
           padding-right: 0.42em;
         }
 
-        /* Line 3 */
+        /* WATAMU */
         .preload__watamu {
           font-family: var(--font-title);
           font-size: clamp(0.7rem, 1.8vw, 1.3rem);
@@ -155,6 +190,6 @@ export default function PreloadScreen({ onComplete }) {
           padding-right: 0.48em;
         }
       `}</style>
-    </div>
+    </motion.div>
   )
 }
