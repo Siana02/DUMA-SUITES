@@ -27,7 +27,7 @@
  *   ./realesrgan-ncnn-vulkan \
  *     -i src/assets/raw \
  *     -o src/assets/raw \
- *     -n realesrgan-x4plus-anime \
+ *     -n realesrgan-x4plus \
  *     -s 4
  *
  * Then run `npm run preprocess` as usual.  The AI-upscaled files in `raw/` will be
@@ -57,7 +57,9 @@ const IMAGE_EXTS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.tif'])
 const MAX_SIZE_BYTES = 2 * 1024 * 1024
 
 // Sharpening parameters — mild pass to recover JPEG softness without introducing halos.
-const SHARPEN_OPTS = { sigma: 1.0, m1: 0.5, m2: 0.5, x1: 2, y2: 10, y3: 20 }
+// sigma: radius of the Gaussian blur used to create the unsharp mask (1.0 = gentle).
+// m1/m2: flat/jagged area thresholds — keep both moderate to avoid over-sharpening.
+const SHARPEN_OPTS = { sigma: 1.0, m1: 0.5, m2: 0.5 }
 
 async function recompressToLimit(sharpInstance, ext, outputPath) {
   // Walk JPEG quality down in steps until the file fits inside MAX_SIZE_BYTES.

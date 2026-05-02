@@ -83,7 +83,7 @@ export default function HeroSection() {
                 className="hero__slide-img"
                 src={slide.large}
                 alt={slide.alt}
-                loading={index === 0 ? 'eager' : 'auto'}
+                loading={index === 0 ? 'eager' : 'lazy'}
                 fetchPriority={index === 0 ? 'high' : 'auto'}
                 draggable={false}
               />
