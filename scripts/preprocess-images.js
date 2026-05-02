@@ -56,11 +56,11 @@
  * ── SCALE GUIDE ──────────────────────────────────────────────────────────────
  *
  * Source (1 200 × 1 600) → after 4× → 4 800 × 6 400
- *                         → after 8× → 9 600 × 12 800 (then capped to 4 K)
+ *                         → after 8× → 9 600 × 12 800 (then capped to 4K)
  *
  * Both are then resized by this script to a max dimension of 3 840 px before
  * vite-imagetools further resizes them to 640 w and 1 920 w at build time.
- * The AI pass is valuable because the upscaled 4 K intermediate retains far
+ * The AI pass is valuable because the upscaled 4K intermediate retains far
  * more detail when downsampled than the original 1 200 px source would.
  */
 
@@ -134,7 +134,7 @@ function runRealESRGAN(binary, inputPath, outputPath, scale) {
       { timeout: 600_000, stdio: 'pipe' }
     )
   } else {
-    // ×8 = two ×4 passes
+    // ×8 = two consecutive ×4 passes (Real-ESRGAN natively supports ×2/×3/×4 only)
     const tmp = path.join(os.tmpdir(), `esrgan_pass1_${Date.now()}.png`)
     try {
       execSync(
@@ -142,7 +142,7 @@ function runRealESRGAN(binary, inputPath, outputPath, scale) {
         { timeout: 600_000, stdio: 'pipe' }
       )
       execSync(
-        `"${binary}" -i "${tmp}" -o "${outputPath}" -s ${scale / 4} -n ${model}`,
+        `"${binary}" -i "${tmp}" -o "${outputPath}" -s 4 -n ${model}`,
         { timeout: 600_000, stdio: 'pipe' }
       )
     } finally {
@@ -166,7 +166,7 @@ async function resizeAndSharpen(inputPath, outputPath) {
   if (maxDim > MAX_DIM) {
     pipeline = pipeline.resize({
       width:  meta.width  >= meta.height ? MAX_DIM : undefined,
-      height: meta.height >  meta.width  ? MAX_DIM : undefined,
+      height: meta.height >= meta.width  ? MAX_DIM : undefined,
       fit: 'inside',
       withoutEnlargement: false,
     })

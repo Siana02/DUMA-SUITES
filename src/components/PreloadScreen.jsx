@@ -3,7 +3,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion'
 
 // ── Timeline ─────────────────────────────────────────────────────────────────
 //   0.25 s  DUMA fades in + rises                       (1.0 s)
-//   1.40 s  gold shimmer sweeps through DUMA            (0.9 s CSS)
+//   1.40 s  gold shimmer sweeps through DUMA            (0.85 s CSS)
 //   1.10 s  "suites ● watamu" fades in + rises          (0.9 s)
 //   2.38 s  whole screen begins scaling up + fading out
 //   3.40 s  component unmounts (onComplete)

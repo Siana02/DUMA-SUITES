@@ -31,7 +31,6 @@ export default defineConfig({
       },
       png: {
         // Strongest lossless PNG compression — smallest file, zero detail loss.
-        quality: 90,
         compressionLevel: 9,
       },
       webp: {
