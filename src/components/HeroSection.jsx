@@ -13,7 +13,7 @@ import seqImg4 from '../assets/outside-view.jpg?w=1920&format=webp&quality=90'
 
 // Sequence order and zoom direction as specified
 const SEQUENCE = [
-  { src: seqImg1, zoom: 'in',  alt: 'Aerial view of Duma Suites – Watamu coastline' },
+  { src: seqImg1, zoom: 'in',  alt: 'Aerial view of Duma Suites - Watamu coastline' },
   { src: seqImg2, zoom: 'out', alt: 'Duma Suites exterior, Watamu' },
   { src: seqImg3, zoom: 'in',  alt: 'Duma Suites upward architectural view' },
   { src: seqImg4, zoom: 'out', alt: 'Duma Suites outdoor coastal view' },
@@ -345,8 +345,8 @@ export default function HeroSection({ ready = false }) {
 
         /* ─────────────────────────────────────────────
            DESKTOP  ≥ 1025px  — Split layout
-           Left 45 %: ambient blur + content
-           Right 55 %: cinematic image sequence
+           Left 45%: ambient blur + content
+           Right 55%: cinematic image sequence
         ───────────────────────────────────────────── */
         @media (min-width: 1025px) {
           .hero {
