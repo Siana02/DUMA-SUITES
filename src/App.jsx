@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
+import PreloadScreen from './components/PreloadScreen'
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
 import GMMessageSection from './components/GMMessageSection'
@@ -9,6 +11,8 @@ import CTASection from './components/CTASection'
 import Footer from './components/Footer'
 
 function App() {
+  const [preloadDone, setPreloadDone] = useState(false)
+
   return (
     <>
       <Helmet>
@@ -18,6 +22,10 @@ function App() {
           content="Duma Suites – Luxury Coastal Living in Watamu. Nestled in the heart of Watamu within the prestigious Ghepard Towers, offering an exceptional blend of modern elegance, comfort, and prime coastal living."
         />
       </Helmet>
+
+      {!preloadDone && (
+        <PreloadScreen onComplete={() => setPreloadDone(true)} />
+      )}
 
       <Navbar />
 

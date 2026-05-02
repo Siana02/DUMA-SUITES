@@ -35,6 +35,7 @@
   --font-title:   'Cormorant Garamond', 'Baskerville', 'Baskerville Old Face',
                   'Hoefler Text', Garamond, Georgia, serif;
   --font-review:  'Caveat', cursive;
+  --font-lora:    'Lora', Georgia, serif;
   --font-body:    system-ui, 'Segoe UI', Roboto, sans-serif;
 
   /* Shadows */
