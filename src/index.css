@@ -1,0 +1,290 @@
+/* ============================================================
+   DUMA SUITES – Global Design System
+   ============================================================ */
+
+/*
+  Google Fonts loaded in index.html:
+    Playfair Display  → eyebrow / accent titles
+    Parisienne        → General Manager's message
+    Cinzel            → nav links, CTAs, menu items
+    Cormorant Garamond→ main section headings (+ Baskerville fallback)
+    Caveat            → guest review text
+*/
+
+/* ── CSS Custom Properties ─────────────────────────────────── */
+:root {
+  /* Palette */
+  --color-bg-primary:     #f7f1e5;  /* Soft nude – main background   */
+  --color-bg-secondary:   #eeebe7;  /* Light stone – alt sections    */
+  --color-bg-tertiary:    #e9e6d8;  /* Muted beige – alternating     */
+  --color-bg-premium:     #d4c2a8;  /* Champagne beige – luxury spots*/
+
+  --color-teal:           #58b0c4;  /* Primary accent / CTA          */
+  --color-teal-dark:      #3a8a9d;  /* Primary CTA hover             */
+  --color-espresso:       #563311;  /* Secondary CTA / text accent   */
+  --color-espresso-light: #6f4420;  /* Secondary CTA hover           */
+
+  --color-text-body:      #1a1a1a;  /* Charcoal – body copy          */
+  --color-text-light:     #ffffff;  /* White – text on dark bg       */
+  --color-text-muted:     #7a7068;  /* Muted – captions / footnotes  */
+
+  /* Typography */
+  --font-eyebrow: 'Playfair Display', Georgia, serif;
+  --font-gm:      'Parisienne', cursive;
+  --font-nav:     'Cinzel', serif;
+  --font-title:   'Cormorant Garamond', 'Baskerville', 'Baskerville Old Face',
+                  'Hoefler Text', Garamond, Georgia, serif;
+  --font-review:  'Caveat', cursive;
+  --font-body:    system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  /* Shadows */
+  --shadow-soft:  0 4px 24px rgba(86, 51, 17, 0.07);
+  --shadow-card:  0 8px 40px rgba(86, 51, 17, 0.12);
+  --shadow-lift:  0 16px 60px rgba(86, 51, 17, 0.18);
+
+  /* Transitions */
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Section spacing */
+  --section-px: clamp(20px, 5vw, 80px);
+  --section-py: clamp(60px, 8vw, 120px);
+
+  /* Base typography */
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-text-body);
+  background-color: var(--color-bg-primary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Reset ────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100svh;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ── Headings ─────────────────────────────────────────────── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-title);
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--color-espresso);
+}
+
+/* ── Links ────────────────────────────────────────────────── */
+a {
+  color: var(--color-teal);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+a:hover {
+  color: var(--color-espresso);
+}
+
+/* ── Utility: Eyebrow label ───────────────────────────────── */
+.eyebrow {
+  display: block;
+  font-family: var(--font-eyebrow);
+  font-style: italic;
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-teal);
+  margin-bottom: 0.75rem;
+}
+
+/* ── Utility: Section title ───────────────────────────────── */
+.section-title {
+  font-family: var(--font-title);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  color: var(--color-espresso);
+  line-height: 1.15;
+}
+
+.section-title--light {
+  color: var(--color-text-light);
+}
+
+/* ── Utility: Section subtitle ────────────────────────────── */
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: var(--color-text-muted);
+  max-width: 540px;
+  line-height: 1.7;
+}
+
+/* ── Utility: Section wrapper ─────────────────────────────── */
+.section {
+  padding: var(--section-py) var(--section-px);
+}
+
+.section--secondary {
+  background-color: var(--color-bg-secondary);
+}
+
+.section--tertiary {
+  background-color: var(--color-bg-tertiary);
+}
+
+.section--premium {
+  background-color: var(--color-bg-premium);
+}
+
+.section--dark {
+  background-color: var(--color-espresso);
+  color: var(--color-text-light);
+}
+
+/* ── Utility: Container ───────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--section-px);
+}
+
+/* ── Utility: Flex center ─────────────────────────────────── */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Utility: Text center ─────────────────────────────────── */
+.text-center {
+  text-align: center;
+}
+
+/* ── Buttons ──────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-nav);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Primary – Teal */
+.btn-primary {
+  background-color: var(--color-teal);
+  color: var(--color-text-light);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-teal-dark);
+  color: var(--color-text-light);
+  box-shadow: 0 6px 20px rgba(88, 176, 196, 0.35);
+}
+
+/* Secondary – Espresso */
+.btn-secondary {
+  background-color: var(--color-espresso);
+  color: var(--color-text-light);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-espresso-light);
+  color: var(--color-text-light);
+  box-shadow: 0 6px 20px rgba(86, 51, 17, 0.3);
+}
+
+/* Inverse – White with teal outline */
+.btn-inverse {
+  background-color: transparent;
+  color: var(--color-teal);
+  border: 1.5px solid var(--color-teal);
+}
+
+.btn-inverse:hover {
+  background-color: var(--color-teal);
+  color: var(--color-text-light);
+  box-shadow: 0 6px 20px rgba(88, 176, 196, 0.35);
+}
+
+/* Inverse on dark background */
+.btn-inverse-light {
+  background-color: transparent;
+  color: var(--color-text-light);
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+}
+
+.btn-inverse-light:hover {
+  background-color: var(--color-text-light);
+  color: var(--color-espresso);
+  border-color: var(--color-text-light);
+}
+
+/* ── Divider ──────────────────────────────────────────────── */
+.divider {
+  width: 60px;
+  height: 2px;
+  background: var(--color-teal);
+  margin: 1.25rem 0;
+}
+
+.divider--center {
+  margin-inline: auto;
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.card {
+  background: var(--color-text-light);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: box-shadow var(--transition-slow), transform var(--transition-slow);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-4px);
+}
