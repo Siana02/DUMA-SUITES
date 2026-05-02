@@ -247,7 +247,7 @@ export default function Navbar() {
         .navbar--scrolled .navbar__link {
           color: var(--color-espresso);
         }
-        /* Underline slide-in from left */
+        /* Underline slide-in from left on hover */
         .navbar__link::after {
           content: '';
           position: absolute;
@@ -258,13 +258,58 @@ export default function Navbar() {
           background: var(--color-teal);
           transition: width 0.28s ease;
         }
-        .navbar__link:hover,
-        .navbar__link--active {
+        .navbar__link:hover {
           color: var(--color-teal);
         }
-        .navbar__link:hover::after,
-        .navbar__link--active::after {
+        .navbar__link:hover::after {
           width: 100%;
+        }
+
+        /* ── Desktop only: glassmorphic pill + active colour-inverse ── */
+        @media (min-width: 901px) {
+          .navbar__links {
+            background: rgba(255, 255, 255, 0.09);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 100px;
+            padding: 6px 20px;
+            transition:
+              background 0.4s ease,
+              border-color 0.4s ease,
+              backdrop-filter 0.4s ease;
+          }
+          .navbar--scrolled .navbar__links {
+            background: rgba(86, 51, 17, 0.05);
+            border-color: rgba(86, 51, 17, 0.09);
+          }
+
+          /*
+           * Active link — colour inverse using a ::before pill so there
+           * is no padding change (no layout shift when clicking).
+           */
+          .navbar__link--active {
+            color: #0e0b07;
+          }
+          .navbar--scrolled .navbar__link--active {
+            color: #ffffff;
+          }
+          .navbar__link--active::before {
+            content: '';
+            position: absolute;
+            inset: -5px -13px;
+            border-radius: 100px;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: -1;
+            transition: background 0.3s ease;
+          }
+          .navbar--scrolled .navbar__link--active::before {
+            background: var(--color-espresso);
+          }
+          /* Suppress underline for active link (pill is sufficient) */
+          .navbar__link--active::after {
+            display: none;
+          }
         }
 
         /* ── Right column ── */

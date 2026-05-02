@@ -10,14 +10,11 @@ import ReviewsSection from './components/ReviewsSection'
 import CTASection from './components/CTASection'
 import Footer from './components/Footer'
 
-// Hero images — imported at 1920 w WebP (the largest variant served to desktop) so
-// the preload step warms the exact same cache entries the hero slideshow will consume.
-import aerialImg      from './assets/arielview1.jpg?w=1920&format=webp&quality=90'
-import outsideView2   from './assets/outside-view2.jpeg?w=1920&format=webp&quality=90'
-import upViewImg      from './assets/up-view.jpg?w=1920&format=webp&quality=90'
-import outsideViewImg from './assets/outside-view.jpg?w=1920&format=webp&quality=90'
+// Hero image — imported at 1920 w WebP so the preload step warms the exact
+// same cache entry the hero section will consume on desktop/tablet.
+import heroImg from './assets/outside-view2.jpeg?w=1920&format=webp&quality=90'
 
-const PRELOAD_IMAGES = [aerialImg, outsideView2, upViewImg, outsideViewImg]
+const PRELOAD_IMAGES = [heroImg]
 
 function App() {
   const [preloadDone, setPreloadDone] = useState(false)
