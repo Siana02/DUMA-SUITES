@@ -3,10 +3,9 @@ import { motion } from 'framer-motion'
 
 // Timeline — Split Word Reveal:
 //   0.20 s  DUMA slides in from left          (0.65 s)
-//   0.55 s  SUITES row slides in from right   (0.65 s)
+//   0.55 s  SUITES row (+ rule lines) slides in from right (0.65 s)
 //   0.90 s  WATAMU slides in from below       (0.65 s)
 //   1.55 s  shimmer sweeps across             (0.75 s CSS anim)
-//   1.50 s  rule lines begin fading out
 //   2.38 s  whole screen begins fading out
 //   3.40 s  component unmounts (onComplete)
 
@@ -14,10 +13,6 @@ const TOTAL_MS   = 3400
 const TOTAL_S    = TOTAL_MS / 1000
 const SLIDE      = { ease: [0.25, 0.46, 0.45, 0.94], duration: 0.65 }
 const DUMA_LS    = '0.22em'   // letter-spacing for DUMA; also used as padding-right compensation
-
-// Rule lines fade: hold at 0.45 opacity, then disappear before the overall fade-out
-const RULE_ANIM  = { opacity: [0.45, 0.45, 0] }
-const RULE_TRANS = { duration: TOTAL_S, times: [0, 0.44, 0.65], ease: 'easeOut' }
 
 export default function PreloadScreen({ onComplete }) {
   useEffect(() => {
@@ -55,24 +50,16 @@ export default function PreloadScreen({ onComplete }) {
           DUMA
         </motion.p>
 
-        {/* ——— SUITES ——— slides in from right; rules fade out mid-sequence */}
+        {/* ——— SUITES ——— slides in from right; rule lines stay visible throughout */}
         <motion.div
           className="preload__suites-row"
           initial={{ opacity: 0, x: 48 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ ...SLIDE, delay: 0.55 }}
         >
-          <motion.span
-            className="preload__rule preload__rule--left"
-            animate={RULE_ANIM}
-            transition={RULE_TRANS}
-          />
+          <span className="preload__rule preload__rule--left" />
           <span className="preload__suites">S U I T E S</span>
-          <motion.span
-            className="preload__rule preload__rule--right"
-            animate={RULE_ANIM}
-            transition={RULE_TRANS}
-          />
+          <span className="preload__rule preload__rule--right" />
         </motion.div>
 
         {/* WATAMU — slides in from below */}
