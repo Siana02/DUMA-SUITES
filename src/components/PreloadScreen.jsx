@@ -101,7 +101,7 @@ export default function PreloadScreen({ onComplete, images = [] }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.0, delay: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          <p className="preload__duma">DUMA</p>
+          <p className="preload__duma">DUMA SUITES</p>
           {/*
             Phase 2 — Shimmer: gold light sweeps left → right through "DUMA".
             Implemented as an absolutely-positioned div inside the overflow:hidden
@@ -110,14 +110,14 @@ export default function PreloadScreen({ onComplete, images = [] }) {
           <div className="preload__duma-shimmer" aria-hidden="true" />
         </motion.div>
 
-        {/* Phase 3 — "suites ● watamu": fades in upward after DUMA */}
+        {/* Phase 3 — "~ WATAMU ~": fades in upward after DUMA SUITES */}
         <motion.p
           className="preload__sub"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 1.10, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          suites&nbsp;&#x25CF;&nbsp;watamu
+          ~ WATAMU ~
         </motion.p>
 
       </div>
@@ -165,10 +165,10 @@ export default function PreloadScreen({ onComplete, images = [] }) {
           padding: 0.08em 0;
         }
 
-        /* ── DUMA text ── */
+        /* ── DUMA SUITES text ── */
         .preload__duma {
           font-family: var(--font-title);
-          font-size: clamp(3.4rem, 10vw, 7.5rem);
+          font-size: clamp(2.8rem, 9vw, 6.5rem);
           font-weight: 300;
           letter-spacing: 0.28em;
           text-transform: uppercase;
@@ -207,17 +207,17 @@ export default function PreloadScreen({ onComplete, images = [] }) {
           to   { left: 120%; }
         }
 
-        /* ── "suites ● watamu" ── */
+        /* ── "~ WATAMU ~" ── */
         .preload__sub {
           font-family: var(--font-title);
-          font-size: clamp(0.72rem, 1.8vw, 1.1rem);
+          font-size: clamp(1rem, 2.4vw, 1.55rem);
           font-weight: 300;
-          letter-spacing: 0.40em;
+          letter-spacing: 0.32em;
           /* Shift right by half the letter-spacing to optically center */
-          padding-right: 0.40em;
-          text-transform: lowercase;
+          padding-right: 0.32em;
+          text-transform: uppercase;
           color: var(--color-espresso);
-          opacity: 0.65;
+          opacity: 0.80;
           line-height: 1;
           margin: 0;
         }
