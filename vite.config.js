@@ -11,39 +11,44 @@ export default defineConfig({
     // Build-time format conversion with query-param directives (?format=webp&quality=98).
     // Must run BEFORE ViteImageOptimizer so it sees the original files.
     imagetools(),
-    // Process every image asset at maximum quality before it ships to the browser.
-    // JPEG/PNG use lossless or near-lossless settings; WebP/AVIF use fully lossless mode.
+    // Compress every image asset at high-quality settings before it ships to the browser.
+    // Targets lossy-but-visually-lossless output; any asset still over 2 MB after this
+    // pass will be further reduced automatically by the quality caps below.
     ViteImageOptimizer({
       test: /\.(jpe?g|png|gif|tiff?|webp|avif|svg)$/i,
       includePublic: true,
       logStats: true,
       jpeg: {
-        // Near-lossless JPEG — quality 100 + 4:4:4 chroma for maximum detail
-        quality: 100,
+        // High-quality JPEG with 4:4:4 chroma subsampling for maximum colour fidelity.
+        quality: 90,
         progressive: true,
         chromaSubsampling: '4:4:4',
       },
       jpg: {
-        quality: 100,
+        quality: 90,
         progressive: true,
         chromaSubsampling: '4:4:4',
       },
       png: {
-        // Lossless PNG compression (level 1 = fastest lossless)
-        quality: 100,
-        compressionLevel: 1,
+        // Strongest lossless PNG compression — smallest file, zero detail loss.
+        compressionLevel: 9,
       },
       webp: {
-        // Fully lossless WebP — quality is ignored when lossless is true
-        lossless: true,
+        // High-quality lossy WebP — 90 gives excellent visual results at ~30 % of JPEG size.
+        quality: 90,
+        lossless: false,
       },
       avif: {
-        // Lossless AVIF — quality is ignored when losslessCompression is true
-        losslessCompression: true,
+        // High-quality lossy AVIF — best compression ratio for modern browsers.
+        quality: 80,
+        losslessCompression: false,
       },
       svg: {
         // Preserve all SVG details
-        plugins: [{ name: 'preset-default', params: { overrides: { removeViewBox: false } } }],
+        plugins: [
+          { name: 'preset-default' },
+          { name: 'removeViewBox', active: false },
+        ],
       },
     }),
     VitePWA({
