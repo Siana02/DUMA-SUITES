@@ -1,108 +1,120 @@
-import { useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
-import Tilt from 'react-parallax-tilt'
-import { gsap } from 'gsap'
-import { ChevronDown, ArrowRight } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronDown } from 'lucide-react'
+
+import aerialImg      from '../assets/arielview1.jpg'
+import outsideView2   from '../assets/outside-view2.jpeg'
+import upViewImg      from '../assets/up-view.JPEG'
+import outsideViewImg from '../assets/outside-view.jpg'
+
+const SLIDES = [
+  { src: aerialImg,      zoom: 'in',  alt: 'Aerial view of Duma Suites Watamu' },
+  { src: outsideView2,   zoom: 'out', alt: 'Duma Suites exterior — outside view' },
+  { src: upViewImg,      zoom: 'in',  alt: 'Architectural up-view of Duma Suites' },
+  { src: outsideViewImg, zoom: 'out', alt: 'Duma Suites outdoor living' },
+]
+
+const SLIDE_MS = 4000 // ms each slide is visible
+
+// Animation delays aligned to the preload curtain reveal (panels open at ~1.8s)
+const DELAYS = {
+  eyebrow:  2.3,
+  heading:  2.6,
+  subtitle: 3.0,
+  ctas:     3.3,
+  scroll:   3.9,
+}
 
 export default function HeroSection() {
-  const headingRef = useRef(null)
-  const subtitleRef = useRef(null)
-  const ctaRef = useRef(null)
-  const badgeRef = useRef(null)
+  const [index, setIndex]     = useState(0)
+  const [slideKey, setSlideKey] = useState(0) // increment to force fresh CSS animation
 
   useEffect(() => {
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-    tl.fromTo(
-      badgeRef.current,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.8, delay: 0.3 },
-    )
-      .fromTo(
-        headingRef.current,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 1 },
-        '-=0.4',
-      )
-      .fromTo(
-        subtitleRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.8 },
-        '-=0.5',
-      )
-      .fromTo(
-        ctaRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.7 },
-        '-=0.4',
-      )
+    const id = setInterval(() => {
+      setIndex(i => (i + 1) % SLIDES.length)
+      setSlideKey(k => k + 1)
+    }, SLIDE_MS)
+    return () => clearInterval(id)
   }, [])
 
+  const slide = SLIDES[index]
+
   return (
-    <section className="hero" id="hero">
-      {/* Background overlay */}
-      <div className="hero__bg" aria-hidden="true" />
+    <section className="hero" id="home">
+      {/* ── Cinematic image sequence ── */}
+      <div className="hero__images" aria-hidden="true">
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={slideKey}
+            className={`hero__slide hero__slide--zoom-${slide.zoom}`}
+            style={{ backgroundImage: `url(${slide.src})` }}
+            role="img"
+            aria-label={slide.alt}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5, ease: 'easeInOut' }}
+          />
+        </AnimatePresence>
 
-      <div className="hero__content">
-        {/* Eyebrow */}
-        <span ref={badgeRef} className="hero__eyebrow" style={{ opacity: 0 }}>
-          <span className="eyebrow-inner">Watamu · Indian Ocean</span>
-        </span>
-
-        {/* Main heading */}
-        <h1 ref={headingRef} className="hero__heading" style={{ opacity: 0 }}>
-          Where the Ocean
-          <br />
-          <em>Meets Elegance</em>
-        </h1>
-
-        {/* Subtitle */}
-        <p ref={subtitleRef} className="hero__subtitle" style={{ opacity: 0 }}>
-          Nestled within Ghepard Towers, just 50 metres from the white sands of
-          Watamu — Duma Suites redefines coastal luxury living.
-        </p>
-
-        {/* CTAs */}
-        <div ref={ctaRef} className="hero__ctas" style={{ opacity: 0 }}>
-          <a href="#booking" className="btn btn-primary hero__btn">
-            Reserve a Suite
-            <ArrowRight size={14} strokeWidth={2} />
-          </a>
-          <a href="#suites" className="btn btn-inverse-light hero__btn">
-            Explore Suites
-          </a>
-        </div>
+        {/* Bottom gradient for text legibility */}
+        <div className="hero__gradient" aria-hidden="true" />
       </div>
 
-      {/* Tilt card – floating badge, positioned relative to full hero */}
-      <Tilt
-        className="hero__tilt-card"
-        tiltMaxAngleX={8}
-        tiltMaxAngleY={8}
-        glareEnable
-        glareMaxOpacity={0.12}
-        glareColor="#ffffff"
-        glareBorderRadius="0"
-        transitionSpeed={1500}
-      >
-        <motion.div
-          className="hero__badge"
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1.2, duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+      {/* ── Hero content ── */}
+      <div className="hero__content">
+        <motion.span
+          className="hero__eyebrow"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: DELAYS.eyebrow }}
         >
-          <span className="hero__badge-number">50m</span>
-          <span className="hero__badge-label">From the Ocean</span>
-        </motion.div>
-      </Tilt>
+          Watamu · Indian Ocean
+        </motion.span>
 
-      {/* Scroll indicator */}
+        <motion.h1
+          className="hero__heading"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.0, delay: DELAYS.heading }}
+        >
+          Where Coastal Luxury Meets
+          <br />
+          <em>Timeless Serenity</em>
+        </motion.h1>
+
+        <motion.p
+          className="hero__subtitle"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: DELAYS.subtitle }}
+        >
+          Experience Watamu's most refined seaside escape.
+        </motion.p>
+
+        <motion.div
+          className="hero__ctas"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: DELAYS.ctas }}
+        >
+          <a href="#suites" className="btn hero__btn-primary">
+            Explore Suites
+          </a>
+          <a href="#gallery" className="btn hero__btn-outline">
+            View Gallery
+          </a>
+        </motion.div>
+      </div>
+
+      {/* ── Scroll indicator ── */}
       <motion.a
         href="#suites"
         className="hero__scroll"
         aria-label="Scroll to suites"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 0.6 }}
+        transition={{ delay: DELAYS.scroll, duration: 0.6 }}
       >
         <motion.span
           animate={{ y: [0, 8, 0] }}
@@ -113,143 +125,179 @@ export default function HeroSection() {
       </motion.a>
 
       <style>{`
+        /* ── Layout ── */
         .hero {
           position: relative;
           min-height: 100svh;
           display: flex;
           align-items: center;
-          justify-content: flex-start;
+          justify-content: center;
           overflow: hidden;
-          background: linear-gradient(
-            135deg,
-            #1a3a4a 0%,
-            #1e4d5e 30%,
-            #2a6b7c 55%,
-            #3d8fa0 75%,
-            #58b0c4 100%
-          );
-          padding: 120px var(--section-px) 80px;
         }
-        .hero__bg {
+
+        /* ── Images ── */
+        .hero__images {
           position: absolute;
           inset: 0;
-          background:
-            radial-gradient(ellipse at 70% 60%, rgba(88, 176, 196, 0.35) 0%, transparent 60%),
-            radial-gradient(ellipse at 10% 80%, rgba(86, 51, 17, 0.25) 0%, transparent 50%);
+          z-index: 0;
+        }
+        .hero__slide {
+          position: absolute;
+          inset: 0;
+          background-size: cover;
+          background-position: center;
+          will-change: opacity, transform;
+        }
+        /* Ken Burns — zoom IN (scale 1 → 1.08) */
+        .hero__slide--zoom-in {
+          animation: heroZoomIn 5s ease forwards;
+        }
+        /* Ken Burns — zoom OUT (scale 1.08 → 1) */
+        .hero__slide--zoom-out {
+          animation: heroZoomOut 5s ease forwards;
+        }
+        @keyframes heroZoomIn {
+          from { transform: scale(1); }
+          to   { transform: scale(1.08); }
+        }
+        @keyframes heroZoomOut {
+          from { transform: scale(1.08); }
+          to   { transform: scale(1); }
+        }
+
+        /* Bottom gradient overlay */
+        .hero__gradient {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to top,
+            rgba(86, 51, 17, 0.60) 0%,
+            rgba(86, 51, 17, 0.22) 38%,
+            transparent 68%
+          );
           pointer-events: none;
         }
+
+        /* ── Content ── */
         .hero__content {
           position: relative;
           z-index: 2;
-          max-width: 640px;
+          text-align: center;
+          padding: 160px var(--section-px) 120px;
+          max-width: 820px;
+          width: 100%;
         }
         .hero__eyebrow {
-          display: inline-flex;
-          align-items: center;
-          gap: 12px;
-          margin-bottom: 1.5rem;
-        }
-        .eyebrow-inner {
+          display: inline-block;
           font-family: var(--font-eyebrow);
           font-style: italic;
           font-size: 0.8rem;
-          letter-spacing: 0.2em;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: rgba(255, 255, 255, 0.75);
-        }
-        .eyebrow-inner::before {
-          content: '— ';
+          color: rgba(255, 255, 255, 0.78);
+          margin-bottom: 1.25rem;
         }
         .hero__heading {
           font-family: var(--font-title);
-          font-size: clamp(3rem, 7vw, 5.5rem);
+          font-size: clamp(2.6rem, 6.5vw, 5rem);
           font-weight: 300;
-          color: var(--color-text-light);
-          line-height: 1.1;
+          color: #ffffff;
+          line-height: 1.12;
           margin-bottom: 1.5rem;
         }
         .hero__heading em {
           font-style: italic;
-          color: #b8dde7;
+          color: rgba(255, 255, 255, 0.92);
         }
         .hero__subtitle {
-          font-family: var(--font-body);
-          font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-          color: rgba(255, 255, 255, 0.8);
+          font-family: var(--font-lora);
+          font-size: clamp(1rem, 1.6vw, 1.15rem);
+          color: rgba(255, 255, 255, 0.80);
           line-height: 1.75;
-          max-width: 480px;
+          max-width: 500px;
+          margin-inline: auto;
           margin-bottom: 2.5rem;
         }
+
+        /* ── CTAs ── */
         .hero__ctas {
           display: flex;
           gap: 1rem;
+          justify-content: center;
           flex-wrap: wrap;
         }
-        .hero__btn {
+        .hero__btn-primary {
+          background-color: var(--color-teal);
+          color: #fff;
+          border-radius: 8px;
           font-size: 0.7rem;
+          padding: 14px 38px;
+          transition:
+            background-color var(--transition-base),
+            transform var(--transition-base);
         }
-        .hero__tilt-card {
-          position: absolute;
-          right: clamp(60px, 10vw, 160px);
-          top: 50%;
-          transform: translateY(-50%);
-          z-index: 3;
+        .hero__btn-primary:hover {
+          background-color: var(--color-teal-dark);
+          color: #fff;
+          transform: scale(1.02) translateY(-1px);
         }
-        .hero__badge {
-          background: rgba(255, 255, 255, 0.1);
-          border: 1px solid rgba(255, 255, 255, 0.25);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          padding: 32px 40px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 6px;
-          min-width: 160px;
+        .hero__btn-outline {
+          background-color: transparent;
+          color: #fff;
+          border: 1.5px solid rgba(255, 255, 255, 0.72);
+          border-radius: 8px;
+          font-size: 0.7rem;
+          padding: 14px 38px;
+          transition:
+            background-color var(--transition-base),
+            color var(--transition-base),
+            border-color var(--transition-base),
+            transform var(--transition-base);
         }
-        .hero__badge-number {
-          font-family: var(--font-title);
-          font-size: 3.5rem;
-          font-weight: 300;
-          color: var(--color-text-light);
-          line-height: 1;
+        .hero__btn-outline:hover {
+          background-color: #fff;
+          color: var(--color-espresso);
+          border-color: #fff;
+          transform: scale(1.02) translateY(-1px);
         }
-        .hero__badge-label {
-          font-family: var(--font-eyebrow);
-          font-style: italic;
-          font-size: 0.72rem;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: rgba(255, 255, 255, 0.7);
-          text-align: center;
-        }
+
+        /* ── Scroll indicator ── */
         .hero__scroll {
           position: absolute;
           bottom: 32px;
           left: 50%;
           transform: translateX(-50%);
-          color: rgba(255, 255, 255, 0.6);
+          color: rgba(255, 255, 255, 0.60);
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 6px;
-          font-family: var(--font-eyebrow);
-          font-style: italic;
-          font-size: 0.65rem;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          transition: color var(--transition-base);
           z-index: 2;
+          transition: color var(--transition-base);
         }
         .hero__scroll:hover {
-          color: rgba(255, 255, 255, 0.9);
+          color: rgba(255, 255, 255, 0.92);
         }
-        @media (max-width: 900px) {
-          .hero__tilt-card {
-            display: none;
+
+        /* ── Mobile ── */
+        @media (max-width: 600px) {
+          .hero__ctas {
+            flex-direction: column;
+            align-items: center;
+          }
+          .hero__btn-primary,
+          .hero__btn-outline {
+            width: 100%;
+            max-width: 280px;
+            justify-content: center;
+          }
+          /* Slower zoom on mobile to avoid motion sickness */
+          .hero__slide--zoom-in,
+          .hero__slide--zoom-out {
+            animation-duration: 8s;
           }
         }
       `}</style>
     </section>
   )
 }
+
