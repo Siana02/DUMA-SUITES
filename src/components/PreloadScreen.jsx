@@ -118,7 +118,7 @@ export default function PreloadScreen({ onComplete, images = [] }) {
     <motion.div
       className="preload"
       aria-hidden="true"
-      animate={{ opacity: [1, 1, 0] }}
+      animate={{ opacity: [1, 1, 0], scale: [1, 1, 1.03] }}
       transition={{ duration: TOTAL_S, times: [0, 0.70, 1], ease: 'easeInOut' }}
     >
       {/* ── Irregular honeycomb background ── */}
@@ -147,11 +147,11 @@ export default function PreloadScreen({ onComplete, images = [] }) {
       {/* ── Brand lockup ── */}
       <div className="preload__brand">
 
-        {/* DUMA — slides in from left */}
+        {/* DUMA — fades in with slight upward motion */}
         <motion.p
           className="preload__duma"
-          initial={{ opacity: 0, x: -48 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ ...SLIDE, delay: 0.20 }}
         >
           DUMA

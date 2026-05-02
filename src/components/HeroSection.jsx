@@ -2,19 +2,31 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 
-// Import as high-quality WebP so the browser receives a format that scales without
-// blurring — WebP uses superior intra-prediction which preserves detail better than
-// JPEG when the browser upscales or CSS-transforms the image.
-import aerialImg      from '../assets/arielview1.jpg?format=webp&quality=98'
-import outsideView2   from '../assets/outside-view2.jpeg?format=webp&quality=98'
-import upViewImg      from '../assets/up-view.jpg?format=webp&quality=98'
-import outsideViewImg from '../assets/outside-view.jpg?format=webp&quality=98'
+// Each hero image is imported at two resolutions via vite-imagetools, which converts
+// the source JPEGs to WebP at build time.  The browser picks the appropriate size:
+//   640w  → mobile / narrow viewports
+//  1920w  → tablet and desktop
+//
+// NOTE: All four source images are portrait (1200 × 1600, 3∶4).
+// On desktop (landscape viewport) we use object-fit: contain so the entire image is
+// visible from the first frame — no crops.  Subtle side-fade gradients blend the dark
+// letterbox areas into the hero background for a cinematic look.
+// On mobile the portrait images naturally fill the phone screen (object-fit: cover).
+
+import aerial640    from '../assets/arielview1.jpg?w=640&format=webp&quality=92'
+import aerial1920   from '../assets/arielview1.jpg?w=1920&format=webp&quality=90'
+import outside2_640  from '../assets/outside-view2.jpeg?w=640&format=webp&quality=92'
+import outside2_1920 from '../assets/outside-view2.jpeg?w=1920&format=webp&quality=90'
+import upView640    from '../assets/up-view.jpg?w=640&format=webp&quality=92'
+import upView1920   from '../assets/up-view.jpg?w=1920&format=webp&quality=90'
+import outside640   from '../assets/outside-view.jpg?w=640&format=webp&quality=92'
+import outside1920  from '../assets/outside-view.jpg?w=1920&format=webp&quality=90'
 
 const SLIDES = [
-  { src: aerialImg,      zoom: 'in',  alt: 'Aerial view of Duma Suites Watamu' },
-  { src: outsideView2,   zoom: 'out', alt: 'Duma Suites exterior — outside view' },
-  { src: upViewImg,      zoom: 'in',  alt: 'Architectural up-view of Duma Suites' },
-  { src: outsideViewImg, zoom: 'out', alt: 'Duma Suites outdoor living' },
+  { small: aerial640,     large: aerial1920,    zoom: 'in',  alt: 'Aerial view of Duma Suites Watamu' },
+  { small: outside2_640,  large: outside2_1920, zoom: 'out', alt: 'Duma Suites exterior — outside view' },
+  { small: upView640,     large: upView1920,    zoom: 'in',  alt: 'Architectural up-view of Duma Suites' },
+  { small: outside640,    large: outside1920,   zoom: 'out', alt: 'Duma Suites outdoor living' },
 ]
 
 const SLIDE_MS = 4000 // ms each slide is visible
@@ -50,18 +62,39 @@ export default function HeroSection() {
           <motion.div
             key={slideKey}
             className={`hero__slide hero__slide--zoom-${slide.zoom}`}
-            style={{ backgroundImage: `url(${slide.src})` }}
-            role="img"
-            aria-label={slide.alt}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1.5, ease: 'easeInOut' }}
-          />
+          >
+            {/*
+              <picture> serves the right WebP size to each device.
+              object-fit: contain (desktop) → full portrait image visible, no crop.
+              object-fit: cover   (mobile)  → fills phone screen naturally.
+            */}
+            <picture>
+              <source
+                media="(max-width: 768px)"
+                srcSet={slide.small}
+                type="image/webp"
+              />
+              <source srcSet={slide.large} type="image/webp" />
+              <img
+                className="hero__slide-img"
+                src={slide.large}
+                alt={slide.alt}
+                loading={index === 0 ? 'eager' : 'auto'}
+                fetchPriority={index === 0 ? 'high' : 'auto'}
+                draggable={false}
+              />
+            </picture>
+          </motion.div>
         </AnimatePresence>
 
         {/* Bottom gradient for text legibility */}
         <div className="hero__gradient" aria-hidden="true" />
+        {/* Side fades: blend the dark letterbox bars into the background */}
+        <div className="hero__side-fades" aria-hidden="true" />
       </div>
 
       {/* ── Hero content ── */}
@@ -136,6 +169,11 @@ export default function HeroSection() {
           align-items: center;
           justify-content: center;
           overflow: hidden;
+          /*
+           * Near-black background colour that shows in the letterbox bars
+           * beside the portrait images on wide desktop screens.
+           */
+          background-color: #090704;
         }
 
         /* ── Images ── */
@@ -146,14 +184,7 @@ export default function HeroSection() {
         }
         .hero__slide {
           position: absolute;
-          /*
-           * Expand each slide 8 % beyond the viewport on every edge.
-           * This gives the zoom-out animation room to shrink without
-           * revealing empty space — 0.90 × 116 % ≈ 104 % still covers.
-           */
-          inset: -8%;
-          background-size: cover;
-          background-position: center;
+          inset: 0;
           will-change: opacity, transform;
           /*
            * GPU-compositing hints: force the slide onto its own layer so the
@@ -162,15 +193,43 @@ export default function HeroSection() {
           transform: translateZ(0);
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
-          image-rendering: -webkit-optimize-contrast; /* Safari  */
-          image-rendering: smooth;                    /* Firefox */
-          image-rendering: high-quality;              /* Chrome / Edge */
         }
         /*
+         * The <img> fills its parent slide div.
+         *
+         * Desktop (> 768 px): object-fit: contain
+         *   → The full portrait image is always visible.  Dark background colour
+         *     shows in the letterbox bars on the sides.
+         *
+         * Mobile (≤ 768 px): object-fit: cover (media query below)
+         *   → The portrait image fills the phone screen naturally.
+         */
+        .hero__slide-img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          object-position: center;
+          display: block;
+          /* Highest-quality scaling in every browser */
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: smooth;
+          image-rendering: high-quality;
+          -ms-interpolation-mode: bicubic;
+          user-select: none;
+          pointer-events: none;
+        }
+        @media (max-width: 768px) {
+          .hero__slide-img {
+            object-fit: cover;
+          }
+        }
+
+        /*
          * Ken Burns — both directions start at scale(1) = "full view".
-         * The first 25 % of the animation is a hold so the image is seen
-         * at its natural scale before the zoom begins (25 % of 6 s ≈ 1.5 s dwell).
-         * translateZ(0) stays on the class; only scale changes in the keyframes.
+         * The first 25 % is a static hold so the image is seen at its
+         * natural scale before the zoom begins.
+         * Scale is intentionally subtle (1.0 → 1.06 / 0.97) so the
+         * contain-mode image stays fully visible throughout.
          */
         .hero__slide--zoom-in {
           animation: heroZoomIn 6s ease forwards;
@@ -179,27 +238,42 @@ export default function HeroSection() {
           animation: heroZoomOut 6s ease forwards;
         }
         @keyframes heroZoomIn {
-          0%   { transform: scale(1);    }
-          25%  { transform: scale(1);    }
-          100% { transform: scale(1.12); }
+          0%,  25% { transform: scale(1.00); }
+          100%     { transform: scale(1.06); }
         }
         @keyframes heroZoomOut {
-          0%   { transform: scale(1);    }
-          25%  { transform: scale(1);    }
-          100% { transform: scale(0.90); }
+          0%,  25% { transform: scale(1.00); }
+          100%     { transform: scale(0.97); }
         }
 
-        /* Bottom gradient overlay */
+        /* Bottom gradient overlay for text legibility */
         .hero__gradient {
           position: absolute;
           inset: 0;
           background: linear-gradient(
             to top,
-            rgba(86, 51, 17, 0.60) 0%,
+            rgba(86, 51, 17, 0.65) 0%,
             rgba(86, 51, 17, 0.22) 38%,
             transparent 68%
           );
           pointer-events: none;
+        }
+
+        /*
+         * Side-fade overlays — fade the letterbox bars (visible on desktop when
+         * portrait images don't fill the full width) into the dark background.
+         * Hidden on mobile where cover mode fills the full viewport.
+         */
+        .hero__side-fades {
+          position: absolute;
+          inset: 0;
+          background:
+            linear-gradient(to right, #090704 0%, transparent 18%),
+            linear-gradient(to left,  #090704 0%, transparent 18%);
+          pointer-events: none;
+        }
+        @media (max-width: 768px) {
+          .hero__side-fades { display: none; }
         }
 
         /* ── Content ── */
