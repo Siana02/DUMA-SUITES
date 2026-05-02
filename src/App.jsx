@@ -10,6 +10,17 @@ import ReviewsSection from './components/ReviewsSection'
 import CTASection from './components/CTASection'
 import Footer from './components/Footer'
 
+// Hero images — imported so Vite resolves them to their final (optimised) URLs.
+// They are passed to PreloadScreen so every image is fetched at high priority
+// and fully cached BEFORE the hero slideshow becomes visible.
+import aerialImg      from './assets/arielview1.jpg'
+import outsideView2   from './assets/outside-view2.jpeg'
+import upViewImg      from './assets/up-view.JPEG'
+import outsideViewImg from './assets/outside-view.jpg'
+import logoImg        from './assets/logo.jpeg'
+
+const PRELOAD_IMAGES = [aerialImg, outsideView2, upViewImg, outsideViewImg, logoImg]
+
 function App() {
   const [preloadDone, setPreloadDone] = useState(false)
 
@@ -24,7 +35,10 @@ function App() {
       </Helmet>
 
       {!preloadDone && (
-        <PreloadScreen onComplete={() => setPreloadDone(true)} />
+        <PreloadScreen
+          onComplete={() => setPreloadDone(true)}
+          images={PRELOAD_IMAGES}
+        />
       )}
 
       <Navbar />

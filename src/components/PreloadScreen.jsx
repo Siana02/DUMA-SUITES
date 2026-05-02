@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 // Timeline — Split Word Reveal:
@@ -14,18 +14,68 @@ const TOTAL_S    = TOTAL_MS / 1000
 const SLIDE      = { ease: [0.25, 0.46, 0.45, 0.94], duration: 0.65 }
 const DUMA_LS    = '0.22em'   // letter-spacing for DUMA; also used as padding-right compensation
 
-export default function PreloadScreen({ onComplete }) {
+/**
+ * Preload an array of image URLs into the browser cache.
+ * Returns a Promise that resolves once every image has loaded (or errored).
+ */
+function preloadImages(urls) {
+  return Promise.all(
+    urls.map(
+      (src) =>
+        new Promise((resolve) => {
+          const img = new Image()
+          img.fetchPriority = 'high'
+          img.onload = resolve
+          img.onerror = resolve  // resolve even on error so we never block forever
+          img.src = src
+        })
+    )
+  )
+}
+
+export default function PreloadScreen({ onComplete, images = [] }) {
+  // Keep stable refs to props so the once-only effect never needs them in its deps.
+  const onCompleteRef = useRef(onComplete)
+  const imagesRef     = useRef(images)
+  useEffect(() => {
+    onCompleteRef.current = onComplete
+    imagesRef.current     = images
+  })
+
+  // Track whether the animation timer has elapsed and images have loaded.
+  // onComplete is only called once BOTH conditions are true.
+  const animDoneRef   = useRef(false)
+  const imagesDoneRef = useRef(false)
+  const calledRef     = useRef(false)
+
+  function tryComplete() {
+    if (animDoneRef.current && imagesDoneRef.current && !calledRef.current) {
+      calledRef.current = true
+      document.body.style.overflow = ''
+      onCompleteRef.current()
+    }
+  }
+
   useEffect(() => {
     document.body.style.overflow = 'hidden'
+
+    // 1. Animation timer
     const timer = setTimeout(() => {
-      document.body.style.overflow = ''
-      onComplete()
+      animDoneRef.current = true
+      tryComplete()
     }, TOTAL_MS)
+
+    // 2. Eagerly load all images while the animation plays
+    preloadImages(imagesRef.current).then(() => {
+      imagesDoneRef.current = true
+      tryComplete()
+    })
+
     return () => {
       clearTimeout(timer)
       document.body.style.overflow = ''
     }
-  }, [onComplete])
+  }, [])
 
   return (
     <motion.div

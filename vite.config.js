@@ -1,11 +1,49 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    // Process every image asset at maximum quality before it ships to the browser.
+    // JPEG/PNG use lossless or near-lossless settings; WebP/AVIF use fully lossless mode.
+    ViteImageOptimizer({
+      test: /\.(jpe?g|png|gif|tiff?|webp|avif|svg)$/i,
+      includePublic: true,
+      logStats: true,
+      jpeg: {
+        // Near-lossless JPEG — quality 100 + 4:4:4 chroma for maximum detail
+        quality: 100,
+        progressive: true,
+        chromaSubsampling: '4:4:4',
+      },
+      jpg: {
+        quality: 100,
+        progressive: true,
+        chromaSubsampling: '4:4:4',
+      },
+      png: {
+        // Lossless PNG compression (level 1 = fastest lossless)
+        quality: 100,
+        compressionLevel: 1,
+      },
+      webp: {
+        // Fully lossless WebP
+        lossless: true,
+        quality: 100,
+      },
+      avif: {
+        // Lossless AVIF
+        losslessCompression: true,
+        quality: 100,
+      },
+      svg: {
+        // Preserve all SVG details
+        plugins: [{ name: 'preset-default', params: { overrides: { removeViewBox: false } } }],
+      },
+    }),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],

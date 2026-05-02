@@ -84,6 +84,11 @@ img,
 video {
   display: block;
   max-width: 100%;
+  /* Use the highest-quality scaling algorithm in every browser */
+  image-rendering: -webkit-optimize-contrast; /* Safari / older WebKit  */
+  image-rendering: smooth;                    /* Firefox alias          */
+  image-rendering: high-quality;              /* Chrome 88 + / Edge 88+ */
+  -ms-interpolation-mode: bicubic;            /* IE / old Edge fallback  */
 }
 
 ul {
