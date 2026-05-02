@@ -3,6 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, MapPin } from 'lucide-react'
 import logoImg from '../assets/logo.jpeg'
 
+// Navbar appears as the preload curtains finish opening (~2.8 s)
+const NAVBAR_APPEAR_DELAY = 2.8
+
 const NAV_LINKS = [
   { label: 'Home',    href: '#home' },
   { label: 'Suites',  href: '#suites' },
@@ -35,7 +38,7 @@ export default function Navbar() {
         className={`navbar${scrolledClass}`}
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, delay: 2.8, ease: [0.4, 0, 0.2, 1] }}
+        transition={{ duration: 0.7, delay: NAVBAR_APPEAR_DELAY, ease: [0.4, 0, 0.2, 1] }}
       >
         <div className="navbar__inner">
           {/* ── Left: Logo ── */}

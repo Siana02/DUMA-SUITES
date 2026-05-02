@@ -8,8 +8,9 @@ import { motion } from 'framer-motion'
 //   1.8 – 3.2 s  brand text fades out while curtains open
 //   3.4 s         component unmounts (onComplete)
 
-const PANEL_EASE = [0.76, 0, 0.24, 1]
-const TOTAL_MS   = 3400
+const PANEL_EASE   = [0.76, 0, 0.24, 1]
+const TOTAL_MS     = 3400
+const TOTAL_S      = TOTAL_MS / 1000
 
 export default function PreloadScreen({ onComplete }) {
   useEffect(() => {
@@ -47,7 +48,7 @@ export default function PreloadScreen({ onComplete }) {
         className="preload__brand"
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: [0, 1, 1, 0], y: [18, 0, 0, -10] }}
-        transition={{ duration: 3.4, times: [0, 0.23, 0.60, 1], ease: 'easeInOut' }}
+        transition={{ duration: TOTAL_S, times: [0, 0.23, 0.60, 1], ease: 'easeInOut' }}
       >
         {/* Line 1 — D U M A (largest, wide letter-spacing) */}
         <p className="preload__duma">D U M A</p>

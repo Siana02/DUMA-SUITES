@@ -16,6 +16,15 @@ const SLIDES = [
 
 const SLIDE_MS = 4000 // ms each slide is visible
 
+// Animation delays aligned to the preload curtain reveal (panels open at ~1.8s)
+const DELAYS = {
+  eyebrow:  2.3,
+  heading:  2.6,
+  subtitle: 3.0,
+  ctas:     3.3,
+  scroll:   3.9,
+}
+
 export default function HeroSection() {
   const [index, setIndex]     = useState(0)
   const [slideKey, setSlideKey] = useState(0) // increment to force fresh CSS animation
@@ -58,7 +67,7 @@ export default function HeroSection() {
           className="hero__eyebrow"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 2.3 }}
+          transition={{ duration: 0.8, delay: DELAYS.eyebrow }}
         >
           Watamu · Indian Ocean
         </motion.span>
@@ -67,7 +76,7 @@ export default function HeroSection() {
           className="hero__heading"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.0, delay: 2.6 }}
+          transition={{ duration: 1.0, delay: DELAYS.heading }}
         >
           Where Coastal Luxury Meets
           <br />
@@ -78,16 +87,16 @@ export default function HeroSection() {
           className="hero__subtitle"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 3.0 }}
+          transition={{ duration: 0.8, delay: DELAYS.subtitle }}
         >
-          Experience Watamu&apos;s most refined seaside escape.
+          Experience Watamu's most refined seaside escape.
         </motion.p>
 
         <motion.div
           className="hero__ctas"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 3.3 }}
+          transition={{ duration: 0.7, delay: DELAYS.ctas }}
         >
           <a href="#suites" className="btn hero__btn-primary">
             Explore Suites
@@ -105,7 +114,7 @@ export default function HeroSection() {
         aria-label="Scroll to suites"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 3.9, duration: 0.6 }}
+        transition={{ delay: DELAYS.scroll, duration: 0.6 }}
       >
         <motion.span
           animate={{ y: [0, 8, 0] }}
