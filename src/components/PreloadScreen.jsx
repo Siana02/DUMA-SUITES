@@ -93,16 +93,16 @@ export default function PreloadScreen({ onComplete, images = [] }) {
   const rawProgress    = useMotionValue(0)
   const smoothProgress = useSpring(rawProgress, { stiffness: 55, damping: 20 })
 
-  function tryComplete() {
-    if (animDoneRef.current && imagesDoneRef.current && !calledRef.current) {
-      calledRef.current = true
-      document.body.style.overflow = ''
-      onCompleteRef.current()
-    }
-  }
-
   useEffect(() => {
     document.body.style.overflow = 'hidden'
+
+    function tryComplete() {
+      if (animDoneRef.current && imagesDoneRef.current && !calledRef.current) {
+        calledRef.current = true
+        document.body.style.overflow = ''
+        onCompleteRef.current()
+      }
+    }
 
     // 1. Animation timer — minimum display duration
     const timer = setTimeout(() => {
@@ -124,8 +124,7 @@ export default function PreloadScreen({ onComplete, images = [] }) {
       clearTimeout(timer)
       document.body.style.overflow = ''
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [rawProgress])
 
   return (
     <motion.div

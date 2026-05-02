@@ -104,7 +104,7 @@ export default function HeroSection({ ready = false }) {
               sizes="100vw"
               alt={slide.alt}
               draggable="false"
-              fetchPriority={slideKey === 0 ? 'high' : 'auto'}
+              fetchPriority={index === 0 ? 'high' : 'auto'}
             />
           </motion.div>
         </AnimatePresence>
