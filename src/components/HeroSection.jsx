@@ -31,7 +31,7 @@ const SLIDES = [
 
 const SLIDE_MS = 4000 // ms each slide is visible
 
-// Animation delays aligned to the preload curtain reveal (panels open at ~1.8s)
+// Animation delays aligned to the preload curtain reveal
 const DELAYS = {
   eyebrow:  2.3,
   heading:  2.6,
@@ -40,17 +40,20 @@ const DELAYS = {
   scroll:   3.9,
 }
 
-export default function HeroSection() {
-  const [index, setIndex]     = useState(0)
+export default function HeroSection({ ready = false }) {
+  const [index, setIndex]       = useState(0)
   const [slideKey, setSlideKey] = useState(0) // increment to force fresh CSS animation
 
+  // Don't start the slide rotation until the preloader has finished so that
+  // the very first image is presented at its natural (un-zoomed) scale.
   useEffect(() => {
+    if (!ready) return
     const id = setInterval(() => {
       setIndex(i => (i + 1) % SLIDES.length)
       setSlideKey(k => k + 1)
     }, SLIDE_MS)
     return () => clearInterval(id)
-  }, [])
+  }, [ready])
 
   const slide = SLIDES[index]
 
@@ -61,7 +64,10 @@ export default function HeroSection() {
         <AnimatePresence initial={false}>
           <motion.div
             key={slideKey}
-            className={`hero__slide hero__slide--zoom-${slide.zoom}`}
+            // hero__slide--running is added only after the preloader completes.
+            // The CSS animations start PAUSED so the first image holds at scale(1)
+            // while the preloader is visible; adding this class resumes them.
+            className={`hero__slide hero__slide--zoom-${slide.zoom}${ready ? ' hero__slide--running' : ''}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -125,7 +131,7 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: DELAYS.subtitle }}
         >
-          Experience Watamu's most refined seaside escape.
+          Experience Watamu&apos;s most refined seaside escape.
         </motion.p>
 
         <motion.div
@@ -170,8 +176,8 @@ export default function HeroSection() {
           justify-content: center;
           overflow: hidden;
           /*
-           * Near-black background colour that shows in the letterbox bars
-           * beside the portrait images on wide desktop screens.
+           * Near-black background that shows in the letterbox bars beside
+           * the portrait images on wide desktop screens.
            */
           background-color: #090704;
         }
@@ -186,10 +192,6 @@ export default function HeroSection() {
           position: absolute;
           inset: 0;
           will-change: opacity, transform;
-          /*
-           * GPU-compositing hints: force the slide onto its own layer so the
-           * browser uses its highest-quality texture sampler when scaling.
-           */
           transform: translateZ(0);
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
@@ -198,7 +200,7 @@ export default function HeroSection() {
          * The <img> fills its parent slide div.
          *
          * Desktop (> 768 px): object-fit: contain
-         *   → The full portrait image is always visible.  Dark background colour
+         *   → The full portrait image is always visible. Dark background colour
          *     shows in the letterbox bars on the sides.
          *
          * Mobile (≤ 768 px): object-fit: cover (media query below)
@@ -210,7 +212,6 @@ export default function HeroSection() {
           object-fit: contain;
           object-position: center;
           display: block;
-          /* Highest-quality scaling in every browser */
           image-rendering: -webkit-optimize-contrast;
           image-rendering: smooth;
           image-rendering: high-quality;
@@ -226,16 +227,23 @@ export default function HeroSection() {
 
         /*
          * Ken Burns — both directions start at scale(1) = "full view".
-         * The first 25 % is a static hold so the image is seen at its
-         * natural scale before the zoom begins.
-         * Scale is intentionally subtle (1.0 → 1.06 / 0.97) so the
-         * contain-mode image stays fully visible throughout.
+         * Animations start PAUSED so the first slide holds at scale(1) while the
+         * preloader is visible. Adding hero__slide--running (when ready=true)
+         * resumes them — because the animation was paused at its 0 % keyframe
+         * (scale 1), it always begins from the fully-framed starting position.
+         * Scale is intentionally subtle so contain-mode images stay fully visible.
          */
         .hero__slide--zoom-in {
           animation: heroZoomIn 6s ease forwards;
+          animation-play-state: paused;
         }
         .hero__slide--zoom-out {
           animation: heroZoomOut 6s ease forwards;
+          animation-play-state: paused;
+        }
+        .hero__slide--zoom-in.hero__slide--running,
+        .hero__slide--zoom-out.hero__slide--running {
+          animation-play-state: running;
         }
         @keyframes heroZoomIn {
           0%,  25% { transform: scale(1.00); }
@@ -398,4 +406,3 @@ export default function HeroSection() {
     </section>
   )
 }
-

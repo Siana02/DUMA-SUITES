@@ -16,9 +16,8 @@ import aerialImg      from './assets/arielview1.jpg?w=1920&format=webp&quality=9
 import outsideView2   from './assets/outside-view2.jpeg?w=1920&format=webp&quality=90'
 import upViewImg      from './assets/up-view.jpg?w=1920&format=webp&quality=90'
 import outsideViewImg from './assets/outside-view.jpg?w=1920&format=webp&quality=90'
-import logoImg        from './assets/logo.jpeg'
 
-const PRELOAD_IMAGES = [aerialImg, outsideView2, upViewImg, outsideViewImg, logoImg]
+const PRELOAD_IMAGES = [aerialImg, outsideView2, upViewImg, outsideViewImg]
 
 function App() {
   const [preloadDone, setPreloadDone] = useState(false)
@@ -43,7 +42,7 @@ function App() {
       <Navbar />
 
       <main id="main-content">
-        <HeroSection />
+        <HeroSection ready={preloadDone} />
         <GMMessageSection />
         <SuitesSection />
         <AmenitiesSection />
