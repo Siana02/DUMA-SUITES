@@ -51,7 +51,7 @@ export default defineConfig({
         name: 'Duma Suites',
         short_name: 'Duma Suites',
         description: 'Luxury Coastal Living in Watamu',
-        theme_color: '#58b0c4',
+        theme_color: '#c9a96e',
         background_color: '#f7f1e5',
         display: 'standalone',
         start_url: '/',

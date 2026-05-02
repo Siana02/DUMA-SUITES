@@ -19,8 +19,8 @@
   --color-bg-tertiary:    #e9e6d8;  /* Muted beige – alternating     */
   --color-bg-premium:     #d4c2a8;  /* Champagne beige – luxury spots*/
 
-  --color-teal:           #58b0c4;  /* Primary accent / CTA          */
-  --color-teal-dark:      #3a8a9d;  /* Primary CTA hover             */
+  --color-teal:           #c9a96e;  /* Primary accent / CTA — antique gold */
+  --color-teal-dark:      #a8835a;  /* Primary CTA hover — deep gold       */
   --color-espresso:       #563311;  /* Secondary CTA / text accent   */
   --color-espresso-light: #6f4420;  /* Secondary CTA hover           */
 
@@ -229,7 +229,7 @@ a:hover {
 .btn-primary:hover {
   background-color: var(--color-teal-dark);
   color: var(--color-text-light);
-  box-shadow: 0 6px 20px rgba(88, 176, 196, 0.35);
+  box-shadow: 0 6px 20px rgba(201, 169, 110, 0.35);
 }
 
 /* Secondary – Espresso */
@@ -254,7 +254,7 @@ a:hover {
 .btn-inverse:hover {
   background-color: var(--color-teal);
   color: var(--color-text-light);
-  box-shadow: 0 6px 20px rgba(88, 176, 196, 0.35);
+  box-shadow: 0 6px 20px rgba(201, 169, 110, 0.35);
 }
 
 /* Inverse on dark background */

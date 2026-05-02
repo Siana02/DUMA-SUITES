@@ -60,7 +60,7 @@ export default function CTASection() {
             135deg,
             var(--color-espresso) 0%,
             #3a1f08 40%,
-            #1e3a4a 100%
+            #0f0705 100%
           );
           position: relative;
           overflow: hidden;
@@ -80,7 +80,7 @@ export default function CTASection() {
           position: absolute;
           inset: 0;
           background:
-            radial-gradient(ellipse at 50% 0%, rgba(88, 176, 196, 0.25) 0%, transparent 60%),
+            radial-gradient(ellipse at 50% 0%, rgba(201, 169, 110, 0.20) 0%, transparent 60%),
             radial-gradient(ellipse at 0% 100%, rgba(255, 255, 255, 0.06) 0%, transparent 50%);
           pointer-events: none;
         }
@@ -94,7 +94,7 @@ export default function CTASection() {
         }
         .cta-section__heading em {
           font-style: italic;
-          color: #b8dde7;
+          color: #e8d5b0;
         }
         .cta-section__sub {
           font-family: var(--font-body);

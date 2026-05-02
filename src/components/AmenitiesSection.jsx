@@ -160,7 +160,7 @@ export default function AmenitiesSection() {
           display: flex;
           align-items: center;
           justify-content: center;
-          background-color: rgba(88, 176, 196, 0.1);
+          background-color: rgba(201, 169, 110, 0.1);
           color: var(--color-teal);
           transition: background-color var(--transition-base);
         }

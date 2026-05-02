@@ -143,26 +143,30 @@ export default function HeroSection() {
         }
         .hero__slide {
           position: absolute;
-          inset: 0;
+          /*
+           * Expand each slide 8 % beyond the viewport on every edge.
+           * This gives the zoom-out animation room to shrink without
+           * revealing empty space — 0.90 × 116 % ≈ 104 % still covers.
+           */
+          inset: -8%;
           background-size: cover;
           background-position: center;
           will-change: opacity, transform;
         }
-        /* Ken Burns — zoom IN (scale 1 → 1.08) */
+        /* Ken Burns — both directions start at scale(1) = "full view" */
         .hero__slide--zoom-in {
-          animation: heroZoomIn 5s ease forwards;
+          animation: heroZoomIn 6s ease forwards;
         }
-        /* Ken Burns — zoom OUT (scale 1.08 → 1) */
         .hero__slide--zoom-out {
-          animation: heroZoomOut 5s ease forwards;
+          animation: heroZoomOut 6s ease forwards;
         }
         @keyframes heroZoomIn {
-          from { transform: scale(1); }
-          to   { transform: scale(1.08); }
+          from { transform: scale(1);    }
+          to   { transform: scale(1.12); }
         }
         @keyframes heroZoomOut {
-          from { transform: scale(1.08); }
-          to   { transform: scale(1); }
+          from { transform: scale(1);    }
+          to   { transform: scale(0.90); }
         }
 
         /* Bottom gradient overlay */
