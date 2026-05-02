@@ -9,7 +9,6 @@ import heroLarge from '../assets/outside-view2.jpeg?w=1920&format=webp&quality=9
 const DELAYS = {
   eyebrow:  2.3,
   heading:  2.55,
-  sub:      2.75,
   subtitle: 3.05,
   cta:      3.3,
   scroll:   3.85,
