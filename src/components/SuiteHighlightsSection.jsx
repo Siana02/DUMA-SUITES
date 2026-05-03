@@ -483,6 +483,14 @@ export default function SuiteHighlightsSection() {
         }
 
         /* ══════════════════════════════════════════════
+           MOBILE  < 768px — spread points, tighten hint
+        ══════════════════════════════════════════════ */
+        @media (max-width: 767px) {
+          .sh-card__points { gap: 14px; }
+          .sh-card__hint   { margin-top: 10px; }
+        }
+
+        /* ══════════════════════════════════════════════
            TABLET  768–1199px
         ══════════════════════════════════════════════ */
         @media (min-width: 768px) {
