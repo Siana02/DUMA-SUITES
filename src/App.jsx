@@ -4,6 +4,7 @@ import PreloadScreen from './components/PreloadScreen'
 import Navbar from './components/Navbar'
 import HeroSection from './components/HeroSection'
 import GMMessageSection from './components/GMMessageSection'
+import SuiteHighlightsSection from './components/SuiteHighlightsSection'
 import SuitesSection from './components/SuitesSection'
 import AmenitiesSection from './components/AmenitiesSection'
 import ReviewsSection from './components/ReviewsSection'
@@ -43,6 +44,7 @@ function App() {
       <main id="main-content">
         <HeroSection ready={preloadDone} />
         <GMMessageSection />
+        <SuiteHighlightsSection />
         <SuitesSection />
         <AmenitiesSection />
         <ReviewsSection />
