@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
-import cheetahIcon from '../assets/cheetah-icon.svg'
+import mammalIcon from '../assets/mammal.png'
 
 // ── Timeline ─────────────────────────────────────────────────────────────────
 //   0.25 s  DUMA SUITES fades in + rises               (1.0 s)
@@ -127,7 +127,7 @@ export default function PreloadScreen({ onComplete, images = [] }) {
           />
           <img
             className="preload__cheetah"
-            src={cheetahIcon}
+            src={mammalIcon}
             alt=""
             aria-hidden="true"
             draggable={false}
@@ -229,7 +229,7 @@ export default function PreloadScreen({ onComplete, images = [] }) {
             rgba(201, 169, 110, 0.30) 60%,
             transparent               100%
           );
-          animation: dumaShimmer 0.85s ease-in-out 1.4s 1 forwards;
+          animation: dumaShimmer 0.85s ease-in-out 1.4s 2 forwards;
           pointer-events: none;
         }
         @keyframes dumaShimmer {
@@ -278,8 +278,8 @@ export default function PreloadScreen({ onComplete, images = [] }) {
 
         /* Cheetah silhouette icon */
         .preload__cheetah {
-          width: 1.75rem;
-          height: 1.75rem;
+          width: 2.25rem;
+          height: 2.25rem;
           object-fit: contain;
           flex-shrink: 0;
           display: block;

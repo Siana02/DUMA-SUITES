@@ -11,11 +11,11 @@ import seqImg2 from '../assets/outside-view2.jpeg?w=1920&format=webp&quality=90'
 import seqImg3 from '../assets/up-view.jpg?w=1920&format=webp&quality=90'
 import seqImg4 from '../assets/outside-view.jpg?w=1920&format=webp&quality=90'
 
-// Sequence order and zoom direction as specified
+// Sequence order — all zoom-out per design spec
 const SEQUENCE = [
-  { src: seqImg1, zoom: 'in',  alt: 'Aerial view of Duma Suites - Watamu coastline' },
+  { src: seqImg1, zoom: 'out', alt: 'Aerial view of Duma Suites - Watamu coastline' },
   { src: seqImg2, zoom: 'out', alt: 'Duma Suites exterior, Watamu' },
-  { src: seqImg3, zoom: 'in',  alt: 'Duma Suites upward architectural view' },
+  { src: seqImg3, zoom: 'out', alt: 'Duma Suites upward architectural view' },
   { src: seqImg4, zoom: 'out', alt: 'Duma Suites outdoor coastal view' },
 ]
 
@@ -25,9 +25,42 @@ const SLIDE_MS = 7000
 // Animation delays aligned to the preload curtain reveal
 const DELAYS = {
   heading:  2.55,
-  subtitle: 3.05,
-  cta:      3.3,
-  scroll:   3.85,
+  subtitle: 4.05,   // starts 0.5 s before the last title letter finishes
+  cta:      4.55,
+  scroll:   5.0,
+}
+
+// ── Framer Motion variants for letter-by-letter title reveal ─────────────────
+// Container staggerChildren drives all letter spans in both heading lines.
+const TITLE_CONTAINER = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.065,  // 65 ms between each letter → ~2 s total for 24 chars
+      delayChildren:   DELAYS.heading,
+    },
+  },
+}
+const LETTER_VARIANT = {
+  hidden:  { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+  },
+}
+
+/** Splits `text` into individual animated letter spans. */
+function AnimatedLetters({ text, keyPrefix }) {
+  return text.split('').map((char, i) => (
+    <motion.span
+      key={`${keyPrefix}-${i}`}
+      variants={LETTER_VARIANT}
+      style={{ display: 'inline-block' }}
+    >
+      {char === ' ' ? '\u00A0' : char}
+    </motion.span>
+  ))
 }
 
 export default function HeroSection({ ready = false }) {
@@ -113,22 +146,34 @@ export default function HeroSection({ ready = false }) {
       <div className="hero__content-panel">
         <div className="hero__content">
 
+          {/*
+            Letter-by-letter title reveal.
+            The motion.h1 acts as the stagger container; each motion.span is
+            one character. aria-label on the h1 preserves screen-reader access
+            while the aria-hidden spans handle the visual split.
+          */}
           <motion.h1
             className="hero__heading"
             aria-label="The Art of Coastal Luxury"
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.0, delay: DELAYS.heading }}
+            variants={TITLE_CONTAINER}
+            initial="hidden"
+            animate="visible"
           >
-            <span className="hero__heading-top" aria-hidden="true">THE ART OF</span>
-            <span className="hero__heading-main" aria-hidden="true"><em>COASTAL LUXURY</em></span>
+            <span className="hero__heading-top" aria-hidden="true">
+              <AnimatedLetters text="THE ART OF" keyPrefix="top" />
+            </span>
+            <span className="hero__heading-main" aria-hidden="true">
+              <em>
+                <AnimatedLetters text="COASTAL LUXURY" keyPrefix="main" />
+              </em>
+            </span>
           </motion.h1>
 
           <motion.p
             className="hero__subtitle"
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: DELAYS.subtitle }}
+            transition={{ duration: 1.0, delay: DELAYS.subtitle }}
           >
             Discover Watamu&apos;s most refined seaside retreat.
           </motion.p>
@@ -215,7 +260,7 @@ export default function HeroSection({ ready = false }) {
           (1.04) during the fade-in delay, avoiding a visible snap.
         */
 
-        /* ── Fill layer: cover + blur, sits behind main images, fills dark gaps ── */
+        /* ── Fill layer: hidden on all breakpoints; cover mode removes need for it ── */
         .hero__seq-fill {
           position: absolute;
           inset: 0;
@@ -223,7 +268,7 @@ export default function HeroSection({ ready = false }) {
           height: 100%;
           object-fit: cover;
           object-position: center;
-          display: none; /* hidden by default; desktop enables it */
+          display: none;
           pointer-events: none;
           user-select: none;
           opacity: 0;
@@ -248,29 +293,23 @@ export default function HeroSection({ ready = false }) {
           opacity: 0;
           transition: opacity 1.4s ease;
           will-change: transform, opacity;
-          animation-duration: 6.2s;
+          animation-duration: 14s;
           animation-delay: 0.8s;
           animation-timing-function: ease-in-out;
           animation-fill-mode: both;
           animation-name: none;
-          z-index: 1; /* above fill layer */
+          z-index: 1;
         }
         .hero__seq-img--active {
           opacity: 1;
         }
-        .hero__seq-img--active.hero__seq-img--zoom-in {
-          animation-name: seqZoomIn;
-        }
+        /* All active images use zoom-out — very slow, barely perceptible */
         .hero__seq-img--active.hero__seq-img--zoom-out {
           animation-name: seqZoomOut;
         }
-        /* Very slow, barely perceptible zoom — noticeable only on close attention */
-        @keyframes seqZoomIn {
-          from { transform: scale(1.00); }
-          to   { transform: scale(1.04); }
-        }
+        /* Very slow zoom-out — starts slightly larger, gently recedes */
         @keyframes seqZoomOut {
-          from { transform: scale(1.04); }
+          from { transform: scale(1.06); }
           to   { transform: scale(1.00); }
         }
 
@@ -386,8 +425,7 @@ export default function HeroSection({ ready = false }) {
            DESKTOP  ≥ 1025px  — Seamless one-canvas layout
            Base: full-hero ambient image (slight blur)
            Left  45%: frosted glass panel over image, warm + translucent
-           Right 55%: clear images (contain) + fill layer behind (cover)
-           Transition: soft warm gradient — no hard edge
+           Right 55%: images fill container fully (cover), zoom-out only
         ───────────────────────────────────────────── */
         @media (min-width: 1025px) {
           .hero {
@@ -413,31 +451,21 @@ export default function HeroSection({ ready = false }) {
             order: 2;
           }
 
-          /* Enable fill layer on desktop to fill dark gaps from portrait images */
-          .hero__seq-fill {
-            display: block;
+          /* Cover-fill on desktop: images fill the right panel with no gaps.
+             Slight cropping is acceptable per design spec. */
+          .hero__seq-img {
+            object-fit: cover;
+            object-position: center;
           }
 
-          /*
-            Blend gradient: warm frosted colour → transparent.
-            This dissolves the left edge of the image panel into the
-            frosted content panel — no hard line, no dark colour.
-          */
+          /* Fill layer stays hidden — cover mode eliminates dark-gap problem */
+          .hero__seq-fill {
+            display: none;
+          }
+
+          /* Blend gradient removed per design spec */
           .hero__image-blend {
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 40%;
-            height: 100%;
-            background: linear-gradient(
-              to right,
-              rgba(247, 241, 229, 0.55) 0%,
-              rgba(247, 241, 229, 0.25) 50%,
-              transparent 100%
-            );
-            z-index: 2;
-            pointer-events: none;
+            display: none;
           }
 
           /* Content panel — left column */
@@ -482,10 +510,9 @@ export default function HeroSection({ ready = false }) {
         }
 
         /* ─────────────────────────────────────────────
-           TABLET  641 – 1024px  — Layered full-width
-           Background: blurred ambient (full viewport)
-           Foreground: cinematic sequence (full viewport, contain)
-           Content: centred gradient overlay at bottom
+           TABLET  641 – 1024px  — Full-width cinematic
+           Full-viewport image (cover), centered text overlay at bottom.
+           No left/right split.
         ───────────────────────────────────────────── */
         @media (min-width: 641px) and (max-width: 1024px) {
           .hero {
@@ -497,11 +524,16 @@ export default function HeroSection({ ready = false }) {
           .hero__ambient-overlay {
             background: rgba(9, 7, 4, 0.50);
           }
-          /* Sequence fills the full viewport; contain keeps full images visible */
+          /* Sequence fills the full viewport */
           .hero__image-panel {
             position: absolute;
             inset: 0;
             z-index: 1;
+          }
+          /* Cover-fill: images fill the full width with no letterboxing */
+          .hero__seq-img {
+            object-fit: cover;
+            object-position: center;
           }
           /* Content sits at the bottom as a gradient overlay */
           .hero__content-panel {
