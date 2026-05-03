@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, MapPin } from 'lucide-react'
-import logoImg from '../assets/logo.jpeg'
+import mammalImg from '../assets/mammal.png'
 
 // Navbar appears as the preload curtains finish opening (~2.8 s)
 const NAVBAR_APPEAR_DELAY = 2.8
@@ -18,6 +18,9 @@ export default function Navbar() {
   const [scrolled, setScrolled]     = useState(false)
   const [menuOpen, setMenuOpen]     = useState(false)
   const [activeHref, setActiveHref] = useState('#home')
+  // Track which active key we're on so the underline animation re-fires each change
+  const [activeKey, setActiveKey]   = useState(0)
+  const activeHrefRef               = useRef(activeHref)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -25,8 +28,46 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Intersection Observer — auto-highlight the nav item whose section is in view
+  useEffect(() => {
+    // Map section IDs to nav hrefs (only sections that actually exist in the DOM)
+    const sectionMap = {
+      home:    '#home',
+      suites:  '#suites',
+      contact: '#contact',
+    }
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const href = sectionMap[entry.target.id]
+            if (href && href !== activeHrefRef.current) {
+              activeHrefRef.current = href
+              setActiveHref(href)
+              setActiveKey((k) => k + 1)
+            }
+          }
+        })
+      },
+      // Trigger when the section crosses the middle band of the viewport
+      { rootMargin: '-38% 0px -55% 0px', threshold: 0 },
+    )
+
+    Object.keys(sectionMap).forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) obs.observe(el)
+    })
+
+    return () => obs.disconnect()
+  }, [])
+
   const handleLinkClick = (href) => {
-    setActiveHref(href)
+    if (href !== activeHref) {
+      activeHrefRef.current = href
+      setActiveHref(href)
+      setActiveKey((k) => k + 1)
+    }
     setMenuOpen(false)
   }
 
@@ -44,7 +85,7 @@ export default function Navbar() {
           {/* ── Left: Logo ── */}
           <a href="#home" className="navbar__logo" aria-label="Duma Suites – Home">
             <img
-              src={logoImg}
+              src={mammalImg}
               alt=""
               className="navbar__logo-img"
               aria-hidden="true"
@@ -62,6 +103,8 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={`navbar__link${activeHref === link.href ? ' navbar__link--active' : ''}`}
+                // Re-mount the ::after pseudo-element animation when this link becomes active
+                data-active-key={activeHref === link.href ? activeKey : 0}
                 onClick={() => handleLinkClick(link.href)}
               >
                 {link.label}
@@ -184,10 +227,10 @@ export default function Navbar() {
           justify-self: start;
         }
         .navbar__logo-img {
-          width: 42px;
-          height: 42px;
+          width: 46px;
+          height: 46px;
           object-fit: contain;
-          border-radius: 4px;
+          border-radius: 0;
           transition: filter 0.4s ease;
           /* White version over hero */
           filter: brightness(0) invert(1);
@@ -306,9 +349,20 @@ export default function Navbar() {
           .navbar--scrolled .navbar__link--active::before {
             background: var(--color-espresso);
           }
-          /* Suppress underline for active link (pill is sufficient) */
+          /* Active underline — slides in from left when the section becomes active */
           .navbar__link--active::after {
-            display: none;
+            display: block;
+            width: 100%;
+            background: rgba(86, 51, 17, 0.50);
+            transform-origin: left center;
+            animation: navUnderlineIn 0.40s ease forwards;
+          }
+          .navbar--scrolled .navbar__link--active::after {
+            background: var(--color-teal);
+          }
+          @keyframes navUnderlineIn {
+            from { transform: scaleX(0); }
+            to   { transform: scaleX(1); }
           }
         }
 
