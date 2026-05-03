@@ -486,7 +486,8 @@ export default function SuiteHighlightsSection() {
            MOBILE  < 768px — spread points, tighten hint
         ══════════════════════════════════════════════ */
         @media (max-width: 767px) {
-          .sh-card__points { gap: 14px; }
+          .sh-card__points { gap: 14px; text-align: left; align-items: flex-start; }
+          .sh-card__point  { justify-content: flex-start; }
           .sh-card__hint   { margin-top: 10px; }
         }
 
