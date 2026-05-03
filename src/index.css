@@ -70,6 +70,10 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  /* Prevent mid-word character breaks; full words wrap to next line */
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
 }
 
 body {

@@ -229,7 +229,7 @@ export default function PreloadScreen({ onComplete, images = [] }) {
             rgba(201, 169, 110, 0.30) 60%,
             transparent               100%
           );
-          animation: dumaShimmer 0.85s ease-in-out 1.4s 1 forwards;
+          animation: dumaShimmer 0.85s ease-in-out 1.4s 2 forwards;
           pointer-events: none;
         }
         @keyframes dumaShimmer {

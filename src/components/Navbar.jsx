@@ -322,16 +322,26 @@ export default function Navbar() {
           }
 
           /*
-           * Active link — color-only scroll indicator.
-           * Teal over the dark hero; espresso when the navbar is scrolled.
-           * No pill, no underline (underline is hover-only).
+           * Active link — espresso pill on the individual link.
+           * White text over the dark espresso background.
+           * The underline (::after) is hover-only and hidden on active.
            */
           .navbar__link--active {
-            color: var(--color-teal);
+            color: #ffffff;
           }
-          .navbar--scrolled .navbar__link--active {
-            color: var(--color-espresso);
-            font-weight: 600;
+          .navbar__link--active::before {
+            content: '';
+            position: absolute;
+            inset: -5px -13px;
+            border-radius: 100px;
+            background: var(--color-espresso);
+            z-index: -1;
+            transition: background 0.3s ease;
+          }
+          /* Keep the hover underline hidden while a pill is showing */
+          .navbar__link--active::after,
+          .navbar__link--active:hover::after {
+            width: 0;
           }
         }
 
