@@ -437,12 +437,7 @@ export default function SuiteHighlightsSection() {
         .sh-card__overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(
-            to top,
-            rgba(86, 51, 17, 0.85) 0%,
-            rgba(86, 51, 17, 0.42) 50%,
-            rgba(0, 0, 0, 0.18) 100%
-          );
+          background: transparent;
           display: flex;
           flex-direction: column;
           align-items: center;
