@@ -115,12 +115,13 @@ export default function HeroSection({ ready = false }) {
 
           <motion.h1
             className="hero__heading"
+            aria-label="The Art of Coastal Luxury"
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, delay: DELAYS.heading }}
           >
-            <span className="hero__heading-top">THE ART OF</span>
-            <span className="hero__heading-main"><em>COASTAL LUXURY</em></span>
+            <span className="hero__heading-top" aria-hidden="true">THE ART OF</span>
+            <span className="hero__heading-main" aria-hidden="true"><em>COASTAL LUXURY</em></span>
           </motion.h1>
 
           <motion.p

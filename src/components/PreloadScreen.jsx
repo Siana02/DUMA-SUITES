@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
+import cheetahIcon from '../assets/cheetah-icon.svg'
 
 // ── Timeline ─────────────────────────────────────────────────────────────────
 //   0.25 s  DUMA SUITES fades in + rises               (1.0 s)
@@ -126,7 +127,7 @@ export default function PreloadScreen({ onComplete, images = [] }) {
           />
           <img
             className="preload__cheetah"
-            src="https://img.icons8.com/ios-filled/50/563311/leopard.png"
+            src={cheetahIcon}
             alt=""
             aria-hidden="true"
             draggable={false}
