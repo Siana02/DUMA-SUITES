@@ -123,7 +123,7 @@ function HighlightCard({ card, index }) {
           <h3 className="sh-card__title">{card.title}</h3>
           <ul className="sh-card__points">
             {card.points.map((pt, i) => (
-              <li key={i} className="sh-card__point">
+              <li key={`${card.id}-pt-${i}`} className="sh-card__point">
                 <span className="sh-card__bullet" aria-hidden="true">✦</span>
                 <span>{pt}</span>
               </li>
@@ -398,8 +398,17 @@ export default function SuiteHighlightsSection() {
           flex-shrink: 0;
         }
 
-        /* Mobile: max 3 bullets */
-        .sh-card__point:nth-child(n+4) { display: none; }
+        /* Mobile: visually hide bullets 4-5 (still readable by screen readers) */
+        .sh-card__point:nth-child(n+4) {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          overflow: hidden;
+          clip: rect(0,0,0,0);
+          white-space: nowrap;
+          border: 0;
+        }
 
         /* ── Tap hint (touch devices) ── */
         .sh-card__hint {
@@ -470,9 +479,25 @@ export default function SuiteHighlightsSection() {
           }
           .sh-card__icon-wrap { width: 64px; height: 64px; }
           .sh-card__icon      { width: 28px; height: 28px; }
-          /* Tablet: max 4 bullets */
-          .sh-card__point:nth-child(4)   { display: flex; }
-          .sh-card__point:nth-child(n+5) { display: none; }
+          /* Tablet: max 4 bullets visible */
+          .sh-card__point:nth-child(4) {
+            position: static;
+            width: auto;
+            height: auto;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+          }
+          .sh-card__point:nth-child(n+5) {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            white-space: nowrap;
+            border: 0;
+          }
         }
 
         /* ══════════════════════════════════════════════
@@ -488,7 +513,14 @@ export default function SuiteHighlightsSection() {
           .sh-card__icon-wrap { width: 72px; height: 72px; }
           .sh-card__icon      { width: 32px; height: 32px; }
           /* Desktop: all 5 bullets visible */
-          .sh-card__point:nth-child(n+4) { display: flex; }
+          .sh-card__point:nth-child(n+4) {
+            position: static;
+            width: auto;
+            height: auto;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+          }
           .sh-card__point { font-size: 0.84rem; }
           .sh-card__title { font-size: 0.82rem; }
         }
