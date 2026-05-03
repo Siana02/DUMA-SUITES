@@ -1,12 +1,13 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Waves, BedDouble, Leaf, Star } from 'lucide-react'
+import { useInView } from 'react-intersection-observer'
 
 import poolsImg   from '../assets/pools-of-serenity.JPEG'
 import swahiliImg from '../assets/swahili-elegance.JPEG'
 import natureImg  from '../assets/nature & security.JPEG'
 import luxuryImg  from '../assets/effortless-luxury.JPEG'
-import cheetahIcon from '../assets/cheetah-icon.svg'
+import cheetahIcon from '../assets/cheetah.png'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Card data
@@ -67,7 +68,6 @@ const CARDS = [
     points: [
       'Daily turndown & cleaning',
       'High-speed Wi-Fi throughout',
-      'Attentive personal service',
       'Seamless online booking',
       'Curated guest experiences',
     ],
@@ -95,11 +95,26 @@ function HighlightCard({ card, index }) {
   const [isFlipped, setIsFlipped] = useState(false)
   const { Icon } = card
 
+  const { ref: inViewRef, inView } = useInView({ threshold: 0.5, triggerOnce: true })
+
+  // Auto-flip tease on touch/no-hover devices when card enters viewport
+  useEffect(() => {
+    if (!inView) return
+    if (!window.matchMedia('(hover: none)').matches) return
+    let t2
+    const t1 = setTimeout(() => {
+      setIsFlipped(true)
+      t2 = setTimeout(() => setIsFlipped(false), 1500)
+    }, index * 120 + 350)
+    return () => { clearTimeout(t1); clearTimeout(t2) }
+  }, [inView, index])
+
   const handleToggle = () => setIsFlipped(f => !f)
   const handleKey    = e => (e.key === 'Enter' || e.key === ' ') && handleToggle()
 
   return (
     <motion.div
+      ref={inViewRef}
       initial={{ opacity: 0, y: 44 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
@@ -231,8 +246,8 @@ export default function SuiteHighlightsSection() {
           background: linear-gradient(to left,  transparent, var(--color-teal));
         }
         .sh-divider__cheetah {
-          width: 38px;
-          height: 38px;
+          width: 1rem;
+          height: 1rem;
           opacity: 0.72;
           color: var(--color-teal);
           flex-shrink: 0;
@@ -365,7 +380,7 @@ export default function SuiteHighlightsSection() {
         /* ── Card title (front) ── */
         .sh-card__title {
           font-family: var(--font-nav);
-          font-size: clamp(0.72rem, 1.3vw, 0.82rem);
+          font-size: clamp(0.78rem, 1.3vw, 0.82rem);
           letter-spacing: 0.16em;
           text-transform: uppercase;
           color: var(--color-espresso);
@@ -379,15 +394,17 @@ export default function SuiteHighlightsSection() {
           display: flex;
           flex-direction: column;
           gap: 5px;
-          text-align: left;
+          text-align: center;
           width: 100%;
+          align-items: center;
         }
         .sh-card__point {
           display: flex;
           align-items: flex-start;
+          justify-content: center;
           gap: 7px;
           font-family: var(--font-body);
-          font-size: clamp(0.76rem, 1.15vw, 0.84rem);
+          font-size: clamp(0.84rem, 1.3vw, 0.92rem);
           color: var(--color-text-body);
           line-height: 1.5;
         }
@@ -516,6 +533,9 @@ export default function SuiteHighlightsSection() {
             clip: auto;
             white-space: normal;
           }
+          /* Desktop: revert to left-aligned list */
+          .sh-card__points { text-align: left; align-items: flex-start; }
+          .sh-card__point  { justify-content: flex-start; }
           .sh-card__point { font-size: 0.84rem; }
           .sh-card__title { font-size: 0.82rem; }
         }
