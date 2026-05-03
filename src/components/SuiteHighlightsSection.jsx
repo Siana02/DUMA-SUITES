@@ -246,8 +246,8 @@ export default function SuiteHighlightsSection() {
           background: linear-gradient(to left,  transparent, var(--color-teal));
         }
         .sh-divider__cheetah {
-          width: 1rem;
-          height: 1rem;
+          width: 2.2rem;
+          height: 2.2rem;
           opacity: 0.72;
           color: var(--color-teal);
           flex-shrink: 0;
