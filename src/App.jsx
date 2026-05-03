@@ -1,15 +1,13 @@
 import { useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import PreloadScreen from './components/PreloadScreen'
 import Navbar from './components/Navbar'
-import HeroSection from './components/HeroSection'
-import GMMessageSection from './components/GMMessageSection'
-import SuiteHighlightsSection from './components/SuiteHighlightsSection'
-import SuitesSection from './components/SuitesSection'
-import AmenitiesSection from './components/AmenitiesSection'
-import ReviewsSection from './components/ReviewsSection'
-import CTASection from './components/CTASection'
 import Footer from './components/Footer'
+import HomePage from './pages/HomePage'
+import AllSuitesPage from './pages/AllSuitesPage'
+import CoastalHavenPage from './pages/CoastalHavenPage'
+import SerenityVillaPage from './pages/SerenityVillaPage'
 
 // Hero cinematic sequence images — preloaded so the slideshow is seamless
 import heroImg1 from './assets/arielview1.jpg?w=1920&format=webp&quality=90'
@@ -41,15 +39,12 @@ function App() {
 
       <Navbar />
 
-      <main id="main-content">
-        <HeroSection ready={preloadDone} />
-        <GMMessageSection />
-        <SuiteHighlightsSection />
-        <SuitesSection />
-        <AmenitiesSection />
-        <ReviewsSection />
-        <CTASection />
-      </main>
+      <Routes>
+        <Route path="/" element={<HomePage ready={preloadDone} />} />
+        <Route path="/suites" element={<AllSuitesPage />} />
+        <Route path="/suites/coastal-haven" element={<CoastalHavenPage />} />
+        <Route path="/suites/serenity-villa" element={<SerenityVillaPage />} />
+      </Routes>
 
       <Footer />
     </>

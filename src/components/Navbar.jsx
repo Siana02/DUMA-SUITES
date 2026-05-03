@@ -8,7 +8,7 @@ const NAVBAR_APPEAR_DELAY = 2.8
 
 const NAV_LINKS = [
   { label: 'Home',    href: '#home' },
-  { label: 'Suites',  href: '#suites' },
+  { label: 'Suites',  href: '/suites', isRoute: true },
   { label: 'Gallery', href: '#gallery' },
   { label: 'About',   href: '#about' },
   { label: 'Contact', href: '#contact' },
@@ -59,8 +59,8 @@ export default function Navbar() {
     return () => obs.disconnect()
   }, [])
 
-  const handleLinkClick = (href) => {
-    if (href !== activeHref) {
+  const handleLinkClick = (href, isRoute) => {
+    if (!isRoute && href !== activeHref) {
       activeHrefRef.current = href
       setActiveHref(href)
     }
@@ -99,7 +99,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={`navbar__link${activeHref === link.href ? ' navbar__link--active' : ''}`}
-                onClick={() => handleLinkClick(link.href)}
+                onClick={() => handleLinkClick(link.href, link.isRoute)}
               >
                 {link.label}
               </a>
@@ -155,7 +155,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={`navbar__drawer-link${activeHref === link.href ? ' navbar__drawer-link--active' : ''}`}
-                  onClick={() => handleLinkClick(link.href)}
+                  onClick={() => handleLinkClick(link.href, link.isRoute)}
                   initial={{ opacity: 0, x: 24 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.06 + 0.1 }}
