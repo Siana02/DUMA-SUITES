@@ -18,8 +18,6 @@ export default function Navbar() {
   const [scrolled, setScrolled]     = useState(false)
   const [menuOpen, setMenuOpen]     = useState(false)
   const [activeHref, setActiveHref] = useState('#home')
-  // Track which active key we're on so the underline animation re-fires each change
-  const [activeKey, setActiveKey]   = useState(0)
   const activeHrefRef               = useRef('#home')
 
   useEffect(() => {
@@ -45,7 +43,6 @@ export default function Navbar() {
             if (href && href !== activeHrefRef.current) {
               activeHrefRef.current = href
               setActiveHref(href)
-              setActiveKey((k) => k + 1)
             }
           }
         })
@@ -66,7 +63,6 @@ export default function Navbar() {
     if (href !== activeHref) {
       activeHrefRef.current = href
       setActiveHref(href)
-      setActiveKey((k) => k + 1)
     }
     setMenuOpen(false)
   }
@@ -103,8 +99,6 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={`navbar__link${activeHref === link.href ? ' navbar__link--active' : ''}`}
-                // Re-mount the ::after pseudo-element animation when this link becomes active
-                data-active-key={activeHref === link.href ? activeKey : 0}
                 onClick={() => handleLinkClick(link.href)}
               >
                 {link.label}
@@ -328,41 +322,16 @@ export default function Navbar() {
           }
 
           /*
-           * Active link — colour inverse using a ::before pill so there
-           * is no padding change (no layout shift when clicking).
+           * Active link — color-only scroll indicator.
+           * Teal over the dark hero; espresso when the navbar is scrolled.
+           * No pill, no underline (underline is hover-only).
            */
           .navbar__link--active {
-            color: #0e0b07;
+            color: var(--color-teal);
           }
           .navbar--scrolled .navbar__link--active {
-            color: #ffffff;
-          }
-          .navbar__link--active::before {
-            content: '';
-            position: absolute;
-            inset: -5px -13px;
-            border-radius: 100px;
-            background: rgba(255, 255, 255, 0.92);
-            z-index: -1;
-            transition: background 0.3s ease;
-          }
-          .navbar--scrolled .navbar__link--active::before {
-            background: var(--color-espresso);
-          }
-          /* Active underline — slides in from left when the section becomes active */
-          .navbar__link--active::after {
-            display: block;
-            width: 100%;
-            background: rgba(86, 51, 17, 0.50);
-            transform-origin: left center;
-            animation: navUnderlineIn 0.40s ease forwards;
-          }
-          .navbar--scrolled .navbar__link--active::after {
-            background: var(--color-teal);
-          }
-          @keyframes navUnderlineIn {
-            from { transform: scaleX(0); }
-            to   { transform: scaleX(1); }
+            color: var(--color-espresso);
+            font-weight: 600;
           }
         }
 
