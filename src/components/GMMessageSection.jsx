@@ -6,7 +6,6 @@ import gm2        from '../assets/General-managers2.jpg'
 import night      from '../assets/nighttime-ariel-view.jpg'
 import poolOcean  from '../assets/infinity-pool-ocean-view.jpg'
 import groundPool from '../assets/nighttime-groundfloor-poolview.jpg'
-import cheetahPng from '../assets/cheetah.png'
 
 // ── Animation helpers ────────────────────────────────────────────────────────
 const fadeUp = (delay = 0) => ({
@@ -123,13 +122,6 @@ export default function GMMessageSection() {
           <motion.div className="gm-attribution" {...fadeUp(0.60)}>
             {/* Name in Parisienne */}
             <p className="gm-name">Andrea Boemo</p>
-
-            {/* Cheetah icon + fading lines */}
-            <div className="gm-divider-row" aria-hidden="true">
-              <span className="gm-divider-line gm-divider-line--left" />
-              <img className="gm-cheetah" src={cheetahPng} alt="" draggable={false} />
-              <span className="gm-divider-line gm-divider-line--right" />
-            </div>
 
             {/* Title */}
             <p className="gm-title-label">General Manager, Duma Suites</p>
@@ -331,31 +323,6 @@ export default function GMMessageSection() {
           text-align: center;
         }
 
-        /* Cheetah + fading lines row */
-        .gm-divider-row {
-          display: flex;
-          align-items: center;
-          gap: 0.6rem;
-          width: min(260px, 70vw);
-        }
-        .gm-divider-line {
-          flex: 1;
-          height: 1px;
-        }
-        .gm-divider-line--left {
-          background: linear-gradient(to left, rgba(86, 51, 17, 0.55) 0%, transparent 100%);
-        }
-        .gm-divider-line--right {
-          background: linear-gradient(to right, rgba(86, 51, 17, 0.55) 0%, transparent 100%);
-        }
-        .gm-cheetah {
-          width: 1.55rem;
-          height: 1.55rem;
-          object-fit: contain;
-          flex-shrink: 0;
-          opacity: 0.72;
-        }
-
         .gm-title-label {
           font-family: var(--font-eyebrow);
           font-style: italic;
@@ -407,7 +374,7 @@ export default function GMMessageSection() {
           .gm-margin {
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 96px;
             padding-top: 3rem;
           }
           .gm-margin--left  { grid-area: left;  align-items: flex-end;   }
@@ -450,16 +417,16 @@ export default function GMMessageSection() {
             aspect-ratio: 1 / 1;
           }
 
-          /* Overlap — layer images for editorial depth */
+          /* No overlap on desktop — images spaced fully apart */
           .gm-photo--overlap-up {
-            margin-top: -48px;
+            margin-top: 0;
           }
 
           /* Static tilts for desktop margin images — rotation stored in CSS variable */
-          .gm-margin--left  .gm-photo--tilt-l { --base-rot: -2deg;   transform: rotate(var(--base-rot)); }
-          .gm-margin--left  .gm-photo--tilt-r { --base-rot:  1.5deg; transform: rotate(var(--base-rot)); }
-          .gm-margin--right .gm-photo--tilt-r { --base-rot:  2deg;   transform: rotate(var(--base-rot)); }
-          .gm-margin--right .gm-photo--tilt-l { --base-rot: -1deg;   transform: rotate(var(--base-rot)); }
+          .gm-margin--left  .gm-photo--tilt-l { --base-rot: -3deg;   transform: rotate(var(--base-rot)); }
+          .gm-margin--left  .gm-photo--tilt-r { --base-rot:  2.5deg; transform: rotate(var(--base-rot)); }
+          .gm-margin--right .gm-photo--tilt-r { --base-rot:  3deg;   transform: rotate(var(--base-rot)); }
+          .gm-margin--right .gm-photo--tilt-l { --base-rot: -2deg;   transform: rotate(var(--base-rot)); }
 
           /* Hover lift — preserves tilt via CSS variable, no !important needed */
           .gm-photo:hover {
