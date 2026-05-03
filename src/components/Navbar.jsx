@@ -321,12 +321,9 @@ export default function Navbar() {
             border-color: rgba(86, 51, 17, 0.09);
           }
 
-          /*
-           * Active link — espresso pill on the individual link.
-           * White text over the dark espresso background.
-           * The underline (::after) is hover-only and hidden on active.
-           */
-          .navbar__link--active {
+          /* Active link — espresso pill stays white in both transparent and scrolled states */
+          .navbar__link--active,
+          .navbar--scrolled .navbar__link--active {
             color: #ffffff;
           }
           .navbar__link--active::before {

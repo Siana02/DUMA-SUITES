@@ -4,13 +4,17 @@ import mammalIcon from '../assets/mammal.png'
 
 // ── Timeline ─────────────────────────────────────────────────────────────────
 //   0.25 s  DUMA SUITES fades in + rises               (1.0 s)
-//   1.40 s  gold shimmer sweeps through DUMA            (0.85 s CSS)
+//   1.40 s  gold shimmer sweeps through DUMA (×2)      (0.85 s × 2 = 1.70 s)
 //   1.20 s  cheetah icon + lines fade/expand in         (0.55 s)
 //   1.70 s  WATAMU fades in upward                      (0.7 s)
-//   2.66 s  whole screen begins scaling up + fading out
-//   3.80 s  component unmounts (onComplete)
+//   3.10 s  shimmer fully completes (1.4 + 0.85×2)
+//   3.30 s  whole screen begins scaling up + fading out (0.74 × 4500 = 3.33 s)
+//   4.50 s  component unmounts (onComplete)
+//
+//   Key constraint: fade-out must start AFTER shimmer ends at 3.10 s.
+//   With TOTAL_MS=4500 and times[1]=0.74, fade-start = 0.74×4.5 = 3.33 s ✓
 
-const TOTAL_MS = 3800
+const TOTAL_MS = 4500
 const TOTAL_S  = TOTAL_MS / 1000
 
 /**
@@ -91,7 +95,7 @@ export default function PreloadScreen({ onComplete, images = [] }) {
       className="preload"
       aria-hidden="true"
       animate={{ opacity: [1, 1, 0], scale: [1, 1, 1.04] }}
-      transition={{ duration: TOTAL_S, times: [0, 0.70, 1], ease: 'easeInOut' }}
+      transition={{ duration: TOTAL_S, times: [0, 0.74, 1], ease: 'easeInOut' }}
     >
       {/* ── Brand lockup ── */}
       <div className="preload__brand">
