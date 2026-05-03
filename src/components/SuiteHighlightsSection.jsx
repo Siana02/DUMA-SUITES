@@ -276,7 +276,7 @@ export default function SuiteHighlightsSection() {
         ══════════════════════════════════════════════ */
         .sh-card {
           perspective: 1200px;
-          height: clamp(300px, 40vw, 320px);
+          height: clamp(380px, 55vw, 420px);
           cursor: pointer;
           user-select: none;
           -webkit-tap-highlight-color: transparent;
@@ -364,6 +364,17 @@ export default function SuiteHighlightsSection() {
           transition: color 0.35s ease, transform 0.35s ease;
         }
 
+        /* ── Icon inverse when flipped — all devices ── */
+        .sh-card.is-flipped .sh-card__icon-wrap {
+          background: var(--color-teal);
+          border-color: var(--color-teal);
+          transform: scale(1.1);
+        }
+        .sh-card.is-flipped .sh-card__icon {
+          color: var(--color-bg-primary);
+          transform: scale(1.05);
+        }
+
         /* Icon inverse + scale on hover (pointer devices — front visible) */
         @media (hover: hover) {
           .sh-card:not(.is-flipped):hover .sh-card__icon-wrap {
@@ -415,18 +426,6 @@ export default function SuiteHighlightsSection() {
           flex-shrink: 0;
         }
 
-        /* Mobile: visually hide bullets 4-5 (still readable by screen readers) */
-        .sh-card__point:nth-child(n+4) {
-          position: absolute;
-          width: 1px;
-          height: 1px;
-          padding: 0;
-          overflow: hidden;
-          clip: rect(0,0,0,0);
-          white-space: nowrap;
-          border: 0;
-        }
-
         /* ── Tap hint (touch devices) ── */
         .sh-card__hint {
           font-family: var(--font-body);
@@ -454,7 +453,11 @@ export default function SuiteHighlightsSection() {
         .sh-card__overlay {
           position: absolute;
           inset: 0;
-          background: transparent;
+          background: linear-gradient(
+            to bottom,
+            transparent 40%,
+            rgba(10, 8, 5, 0.55) 100%
+          );
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -487,29 +490,10 @@ export default function SuiteHighlightsSection() {
             grid-template-columns: repeat(2, 1fr);
           }
           .sh-card {
-            height: 340px;
+            height: 420px;
           }
           .sh-card__icon-wrap { width: 64px; height: 64px; }
           .sh-card__icon      { width: 28px; height: 28px; }
-          /* Tablet: max 4 bullets visible */
-          .sh-card__point:nth-child(4) {
-            position: static;
-            width: auto;
-            height: auto;
-            overflow: visible;
-            clip: auto;
-            white-space: normal;
-          }
-          .sh-card__point:nth-child(n+5) {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            overflow: hidden;
-            clip: rect(0,0,0,0);
-            white-space: nowrap;
-            border: 0;
-          }
         }
 
         /* ══════════════════════════════════════════════
@@ -524,15 +508,6 @@ export default function SuiteHighlightsSection() {
           }
           .sh-card__icon-wrap { width: 72px; height: 72px; }
           .sh-card__icon      { width: 32px; height: 32px; }
-          /* Desktop: all 5 bullets visible */
-          .sh-card__point:nth-child(n+4) {
-            position: static;
-            width: auto;
-            height: auto;
-            overflow: visible;
-            clip: auto;
-            white-space: normal;
-          }
           /* Desktop: revert to left-aligned list */
           .sh-card__points { text-align: left; align-items: flex-start; }
           .sh-card__point  { justify-content: flex-start; }
