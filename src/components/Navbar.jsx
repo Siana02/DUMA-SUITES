@@ -321,10 +321,8 @@ export default function Navbar() {
             border-color: rgba(86, 51, 17, 0.09);
           }
 
-          /* Active link — espresso pill stays white even in scrolled state */
-          .navbar__link--active {
-            color: #ffffff;
-          }
+          /* Active link — espresso pill stays white in both transparent and scrolled states */
+          .navbar__link--active,
           .navbar--scrolled .navbar__link--active {
             color: #ffffff;
           }

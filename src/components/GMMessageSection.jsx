@@ -240,9 +240,7 @@ export default function GMMessageSection() {
           display: block;
         }
 
-        /* Tilt variants (desktop) */
-        .gm-photo--tilt-l { }
-        .gm-photo--tilt-r { }
+        /* Tilt variants applied inside desktop media query */
 
         /* ── Inline images (mobile + tablet only) ── */
         .gm-photo--inline {
