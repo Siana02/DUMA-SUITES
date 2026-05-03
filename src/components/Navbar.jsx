@@ -20,7 +20,7 @@ export default function Navbar() {
   const [activeHref, setActiveHref] = useState('#home')
   // Track which active key we're on so the underline animation re-fires each change
   const [activeKey, setActiveKey]   = useState(0)
-  const activeHrefRef               = useRef(activeHref)
+  const activeHrefRef               = useRef('#home')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)

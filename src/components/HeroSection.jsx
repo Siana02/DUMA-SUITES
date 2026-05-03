@@ -50,6 +50,19 @@ const LETTER_VARIANT = {
   },
 }
 
+/** Splits `text` into individual animated letter spans. */
+function AnimatedLetters({ text, keyPrefix }) {
+  return text.split('').map((char, i) => (
+    <motion.span
+      key={`${keyPrefix}-${i}`}
+      variants={LETTER_VARIANT}
+      style={{ display: 'inline-block' }}
+    >
+      {char === ' ' ? '\u00A0' : char}
+    </motion.span>
+  ))
+}
+
 export default function HeroSection({ ready = false }) {
   const [activeIdx, setActiveIdx] = useState(0)
 
@@ -147,27 +160,11 @@ export default function HeroSection({ ready = false }) {
             animate="visible"
           >
             <span className="hero__heading-top" aria-hidden="true">
-              {'THE ART OF'.split('').map((char, i) => (
-                <motion.span
-                  key={`top-${i}`}
-                  variants={LETTER_VARIANT}
-                  style={{ display: 'inline-block' }}
-                >
-                  {char === ' ' ? '\u00A0' : char}
-                </motion.span>
-              ))}
+              <AnimatedLetters text="THE ART OF" keyPrefix="top" />
             </span>
             <span className="hero__heading-main" aria-hidden="true">
               <em>
-                {'COASTAL LUXURY'.split('').map((char, i) => (
-                  <motion.span
-                    key={`main-${i}`}
-                    variants={LETTER_VARIANT}
-                    style={{ display: 'inline-block' }}
-                  >
-                    {char === ' ' ? '\u00A0' : char}
-                  </motion.span>
-                ))}
+                <AnimatedLetters text="COASTAL LUXURY" keyPrefix="main" />
               </em>
             </span>
           </motion.h1>
@@ -306,12 +303,8 @@ export default function HeroSection({ ready = false }) {
         .hero__seq-img--active {
           opacity: 1;
         }
-        /* All active images use zoom-out only — very slow, barely perceptible */
+        /* All active images use zoom-out — very slow, barely perceptible */
         .hero__seq-img--active.hero__seq-img--zoom-out {
-          animation-name: seqZoomOut;
-        }
-        /* Kept as fallback but should not be triggered (all sequence items are zoom-out) */
-        .hero__seq-img--active.hero__seq-img--zoom-in {
           animation-name: seqZoomOut;
         }
         /* Very slow zoom-out — starts slightly larger, gently recedes */
