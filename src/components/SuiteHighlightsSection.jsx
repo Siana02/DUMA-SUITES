@@ -38,7 +38,7 @@ const CARDS = [
       'King beds with premium linens',
       'Air conditioning & ceiling fans',
       'Private en-suite bathrooms',
-      'Daily housekeeping service',
+      'Full kitchen, lounge & balcony',
     ],
     image: swahiliImg,
     imageAlt: 'Swahili-inspired suite interior at Duma Suites',
@@ -66,7 +66,8 @@ const CARDS = [
     Icon: Star,
     title: 'Effortless Luxury',
     points: [
-      'Daily turndown & cleaning',
+      'Daily housekeeping & turndown',
+      'Laundry service',
       'High-speed Wi-Fi throughout',
       'Seamless online booking',
       'Curated guest experiences',
@@ -97,10 +98,9 @@ function HighlightCard({ card, index }) {
 
   const { ref: inViewRef, inView } = useInView({ threshold: 0.5, triggerOnce: true })
 
-  // Auto-flip tease on touch/no-hover devices when card enters viewport
+  // Auto-flip tease for all devices when card enters viewport
   useEffect(() => {
     if (!inView) return
-    if (!window.matchMedia('(hover: none)').matches) return
     let t2
     const t1 = setTimeout(() => {
       setIsFlipped(true)
@@ -144,7 +144,6 @@ function HighlightCard({ card, index }) {
               </li>
             ))}
           </ul>
-          <p className="sh-card__hint" aria-hidden="true">tap to reveal ↩</p>
         </div>
 
         {/* ── BACK ── */}
@@ -158,6 +157,7 @@ function HighlightCard({ card, index }) {
           <div className="sh-card__overlay">
             <h3 className="sh-card__overlay-title">{card.overlayTitle}</h3>
             <p  className="sh-card__overlay-text">{card.overlayText}</p>
+            <p className="sh-card__hint" aria-hidden="true">tap to see highlights ↩</p>
           </div>
         </div>
 
@@ -193,6 +193,11 @@ export default function SuiteHighlightsSection() {
           The Duma Experience
         </motion.h2>
 
+        {/* Subtitle / tap prompt */}
+        <motion.p className="sh-subtitle" {...fadeUp(0.32)}>
+          Tap a card to discover its highlights
+        </motion.p>
+
       </div>
 
       {/* ── Card grid ── */}
@@ -201,6 +206,20 @@ export default function SuiteHighlightsSection() {
           <HighlightCard key={card.id} card={card} index={i} />
         ))}
       </div>
+
+      {/* ── Find Your Suite CTA ── */}
+      <motion.div
+        className="sh-cta-wrap"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.7, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+      >
+        <a href="#suites" className="sh-cta">
+          Find Your Suite
+          <span className="sh-cta__arrow" aria-hidden="true">→</span>
+        </a>
+      </motion.div>
 
       <style>{`
         /* ══════════════════════════════════════════════
@@ -251,6 +270,16 @@ export default function SuiteHighlightsSection() {
           opacity: 0.72;
           color: var(--color-teal);
           flex-shrink: 0;
+        }
+
+        /* ── Subtitle / tap prompt ── */
+        .sh-subtitle {
+          font-family: var(--font-body);
+          font-size: clamp(0.82rem, 1.4vw, 0.94rem);
+          color: var(--color-text-body);
+          opacity: 0.72;
+          margin: 0.6rem 0 0;
+          letter-spacing: 0.04em;
         }
 
         /* ── Main title ── */
@@ -311,10 +340,6 @@ export default function SuiteHighlightsSection() {
             transform: rotateY(180deg);
             box-shadow: 0 24px 64px rgba(86, 51, 17, 0.28);
           }
-          /* Hide tap hint on pointer devices */
-          .sh-card__hint {
-            display: none;
-          }
         }
 
         /* ── Shared face ── */
@@ -328,7 +353,7 @@ export default function SuiteHighlightsSection() {
         }
 
         /* ══════════════════════════════════════════════
-           FRONT FACE
+           FRONT FACE  — shown on flip / hover
         ══════════════════════════════════════════════ */
         .sh-card__front {
           background-color: var(--color-bg-primary);
@@ -340,6 +365,7 @@ export default function SuiteHighlightsSection() {
           padding: clamp(18px, 3vw, 28px) clamp(16px, 2.5vw, 26px);
           gap: 10px;
           text-align: center;
+          transform: rotateY(180deg);
         }
 
         /* ── Icon circle ── */
@@ -426,21 +452,26 @@ export default function SuiteHighlightsSection() {
           flex-shrink: 0;
         }
 
-        /* ── Tap hint (touch devices) ── */
+        /* ── Tap hint (touch devices — shown on back/image face) ── */
         .sh-card__hint {
           font-family: var(--font-body);
           font-size: 0.68rem;
           letter-spacing: 0.08em;
-          color: var(--color-teal);
-          opacity: 0.6;
-          margin-top: auto;
+          color: rgba(255, 255, 255, 0.7);
+          margin-top: 8px;
+        }
+
+        /* Hide tap hint on pointer devices */
+        @media (hover: hover) {
+          .sh-card__hint {
+            display: none;
+          }
         }
 
         /* ══════════════════════════════════════════════
-           BACK FACE
+           BACK FACE  — default visible face (image)
         ══════════════════════════════════════════════ */
         .sh-card__back {
-          transform: rotateY(180deg);
         }
         .sh-card__bg-img {
           position: absolute;
@@ -522,6 +553,59 @@ export default function SuiteHighlightsSection() {
           .sh-card__point  { justify-content: flex-start; }
           .sh-card__point { font-size: 0.84rem; }
           .sh-card__title { font-size: 0.82rem; }
+        }
+        /* ══════════════════════════════════════════════
+           FIND YOUR SUITE CTA
+        ══════════════════════════════════════════════ */
+        .sh-cta-wrap {
+          margin-top: clamp(40px, 6vw, 64px);
+          text-align: center;
+        }
+        .sh-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          font-family: var(--font-nav);
+          font-size: 0.68rem;
+          font-weight: 600;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: var(--color-espresso);
+          text-decoration: none;
+          padding: 14px 36px;
+          border: 1.5px solid rgba(86, 51, 17, 0.4);
+          border-radius: 3px;
+          position: relative;
+          overflow: hidden;
+          isolation: isolate;
+          transition: border-color 0.3s ease, color 0.3s ease,
+                      transform 0.28s ease, box-shadow 0.3s ease;
+        }
+        .sh-cta::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: var(--color-teal);
+          transform: translateX(-110%) skewX(-20deg);
+          transition: transform 0.52s cubic-bezier(0.4, 0, 0.2, 1);
+          z-index: -1;
+        }
+        .sh-cta:hover::before {
+          transform: translateX(0%) skewX(-20deg);
+        }
+        .sh-cta:hover {
+          border-color: var(--color-teal);
+          color: #ffffff;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 28px rgba(88, 176, 196, 0.28);
+        }
+        .sh-cta__arrow {
+          display: inline-block;
+          transition: transform 0.25s ease;
+          font-style: normal;
+        }
+        .sh-cta:hover .sh-cta__arrow {
+          transform: translateX(5px);
         }
       `}</style>
     </section>
