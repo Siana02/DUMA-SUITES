@@ -1,10 +1,9 @@
 import { Mail, Phone, MapPin } from 'lucide-react'
 
 const SUITE_LINKS = [
-  { label: 'Ocean Suite', href: '#ocean-suite' },
-  { label: 'Garden Suite', href: '#garden-suite' },
-  { label: 'Penthouse Suite', href: '#penthouse' },
-  { label: 'Family Suite', href: '#family-suite' },
+  { label: 'Coastal Haven Suite', href: '/suites/coastal-haven' },
+  { label: 'Serenity Villa Suite', href: '/suites/serenity-villa' },
+  { label: 'All Suites', href: '/suites' },
 ]
 
 const EXPLORE_LINKS = [
