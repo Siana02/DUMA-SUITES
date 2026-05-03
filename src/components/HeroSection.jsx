@@ -72,6 +72,21 @@ export default function HeroSection({ ready = false }) {
         Mobile   → absolute, fills full 100vw × 100vh as background.
       */}
       <div className="hero__image-panel">
+        {/* Fill layer — same images, cover-fit, slight blur; fills dark gaps
+            that appear around portrait images (desktop only, z-index 0) */}
+        {SEQUENCE.map((item, idx) => (
+          <img
+            key={`fill-${idx}`}
+            className={[
+              'hero__seq-fill',
+              activeIdx === idx ? 'hero__seq-fill--active' : '',
+            ].filter(Boolean).join(' ')}
+            src={item.src}
+            alt=""
+            aria-hidden={true}
+            draggable={false}
+          />
+        ))}
         {SEQUENCE.map((item, idx) => (
           <img
             key={idx}
@@ -104,8 +119,8 @@ export default function HeroSection({ ready = false }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, delay: DELAYS.heading }}
           >
-            <span className="hero__heading-brand">DUMA</span>
-            <span className="hero__heading-sub">COASTAL LUXURY REDEFINED</span>
+            <span className="hero__heading-top">THE ART OF</span>
+            <span className="hero__heading-main"><em>COASTAL LUXURY</em></span>
           </motion.h1>
 
           <motion.p
@@ -114,7 +129,7 @@ export default function HeroSection({ ready = false }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: DELAYS.subtitle }}
           >
-            A refined escape along Watamu&apos;s coastline.
+            Discover Watamu&apos;s most refined seaside retreat.
           </motion.p>
 
           <motion.div
@@ -198,6 +213,27 @@ export default function HeroSection({ ready = false }) {
           fill-mode: both ensures zoom-out images sit at their "from" scale
           (1.04) during the fade-in delay, avoiding a visible snap.
         */
+
+        /* ── Fill layer: cover + blur, sits behind main images, fills dark gaps ── */
+        .hero__seq-fill {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          display: none; /* hidden by default; desktop enables it */
+          pointer-events: none;
+          user-select: none;
+          opacity: 0;
+          transition: opacity 1.4s ease;
+          filter: blur(14px);
+          transform: scale(1.10);
+          z-index: 0;
+        }
+        .hero__seq-fill--active {
+          opacity: 1;
+        }
         .hero__seq-img {
           position: absolute;
           inset: 0;
@@ -216,6 +252,7 @@ export default function HeroSection({ ready = false }) {
           animation-timing-function: ease-in-out;
           animation-fill-mode: both;
           animation-name: none;
+          z-index: 1; /* above fill layer */
         }
         .hero__seq-img--active {
           opacity: 1;
@@ -251,31 +288,32 @@ export default function HeroSection({ ready = false }) {
 
         /* ── Typography ── */
         .hero__heading {
-          font-family: var(--font-title);
+          font-family: var(--font-dm-serif);
           margin: 0 0 1.2rem;
-          line-height: 1;
+          line-height: 1.05;
         }
-        /* DUMA — reduced ~2 px from previous max */
-        .hero__heading-brand {
+        /* THE ART OF — upper line */
+        .hero__heading-top {
           display: block;
-          font-size: clamp(4.25rem, 8.5vw, 7.875rem);
-          font-weight: 700;
+          font-size: clamp(2.4rem, 4.8vw, 5rem);
+          font-weight: 400;
+          font-style: normal;
           color: #ffffff;
           letter-spacing: 0.04em;
-          line-height: 1;
+          line-height: 1.05;
           text-shadow: 0 2px 48px rgba(0, 0, 0, 0.25);
         }
-        /* COASTAL LUXURY REDEFINED — exactly matches DUMA, italic only difference */
-        .hero__heading-sub {
+        /* COASTAL LUXURY — lower line, italic */
+        .hero__heading-main {
           display: block;
-          font-size: clamp(4.25rem, 8.5vw, 7.875rem);
-          font-weight: 700;
+          font-size: clamp(2.4rem, 4.8vw, 5rem);
+          font-weight: 400;
+          line-height: 1.05;
+          text-shadow: 0 2px 48px rgba(0, 0, 0, 0.25);
+        }
+        .hero__heading-main em {
           font-style: italic;
           color: #ffffff;
-          letter-spacing: 0.04em;
-          margin-top: 0.08rem;
-          line-height: 1;
-          text-shadow: 0 2px 48px rgba(0, 0, 0, 0.25);
         }
         .hero__subtitle {
           font-family: var(--font-lora);
@@ -344,9 +382,11 @@ export default function HeroSection({ ready = false }) {
         }
 
         /* ─────────────────────────────────────────────
-           DESKTOP  ≥ 1025px  — Split layout
-           Left 45%: ambient blur + content
-           Right 55%: cinematic image sequence
+           DESKTOP  ≥ 1025px  — Seamless one-canvas layout
+           Base: full-hero ambient image (slight blur)
+           Left  45%: frosted glass panel over image, warm + translucent
+           Right 55%: clear images (contain) + fill layer behind (cover)
+           Transition: soft warm gradient — no hard edge
         ───────────────────────────────────────────── */
         @media (min-width: 1025px) {
           .hero {
@@ -354,43 +394,89 @@ export default function HeroSection({ ready = false }) {
             flex-direction: row;
             min-height: 100svh;
           }
+
+          /* Reduce ambient blur — image base should be visible, not fully opaque */
+          .hero__ambient-img {
+            filter: blur(10px);
+            transform: scale(1.06);
+          }
+          /* Remove dark overlay on desktop — frosted effect replaces it */
+          .hero__ambient-overlay {
+            background: transparent;
+          }
+
           /* Image panel — right column */
           .hero__image-panel {
             flex: 0 0 55%;
             z-index: 1;
             order: 2;
           }
+
+          /* Enable fill layer on desktop to fill dark gaps from portrait images */
+          .hero__seq-fill {
+            display: block;
+          }
+
           /*
-            Gradient blend dissolves the hard left edge of the image panel
-            into the dark ambient background of the content side.
+            Blend gradient: warm frosted colour → transparent.
+            This dissolves the left edge of the image panel into the
+            frosted content panel — no hard line, no dark colour.
           */
           .hero__image-blend {
             display: block;
             position: absolute;
             top: 0;
             left: 0;
-            width: 22%;
+            width: 40%;
             height: 100%;
             background: linear-gradient(
               to right,
-              rgba(9, 7, 4, 0.95) 0%,
-              rgba(9, 7, 4, 0.60) 40%,
+              rgba(247, 241, 229, 0.55) 0%,
+              rgba(247, 241, 229, 0.25) 50%,
               transparent 100%
             );
             z-index: 2;
             pointer-events: none;
           }
-          /* Content panel — left column, transparent so ambient shows through */
+
+          /* Content panel — left column */
           .hero__content-panel {
             flex: 0 0 45%;
             position: relative;
             z-index: 2;
             order: 1;
             align-items: center;
+            /* Frosted glass: warm translucent overlay + blur over the ambient image */
+            backdrop-filter: blur(16px) saturate(1.15);
+            -webkit-backdrop-filter: blur(16px) saturate(1.15);
+            background: rgba(247, 241, 229, 0.42);
           }
           .hero__content {
             padding: clamp(80px, 10vh, 130px) clamp(28px, 4.5vw, 72px) clamp(60px, 7vh, 100px);
             max-width: 540px;
+          }
+
+          /* On the frosted light panel, use dark (espresso) text */
+          .hero__heading-top,
+          .hero__heading-main em {
+            color: var(--color-espresso);
+            text-shadow: none;
+          }
+          .hero__subtitle {
+            color: rgba(86, 51, 17, 0.78);
+          }
+          .hero__cta {
+            color: var(--color-espresso);
+            border-color: rgba(86, 51, 17, 0.40);
+          }
+          .hero__cta:hover {
+            background-color: var(--color-espresso);
+            border-color: var(--color-espresso);
+            color: #ffffff;
+            box-shadow: 0 8px 28px rgba(86, 51, 17, 0.22);
+          }
+          .hero__cta:hover .hero__cta-arrow {
+            transform: translateX(4px);
           }
         }
 
@@ -440,9 +526,9 @@ export default function HeroSection({ ready = false }) {
             margin-inline: auto;
           }
           /* Scale heading down proportionally for tablet viewport */
-          .hero__heading-brand,
-          .hero__heading-sub {
-            font-size: clamp(3rem, 7vw, 5.5rem);
+          .hero__heading-top,
+          .hero__heading-main em {
+            font-size: clamp(2rem, 6vw, 4.5rem);
           }
         }
 
@@ -496,13 +582,13 @@ export default function HeroSection({ ready = false }) {
             text-align: center;
           }
           /* White text — now on a dark cinematic background */
-          .hero__heading-brand {
-            font-size: clamp(2.8rem, 11vw, 4rem);
+          .hero__heading-top {
+            font-size: clamp(1.8rem, 9vw, 3.2rem);
             color: #ffffff;
             text-shadow: 0 2px 32px rgba(0, 0, 0, 0.45);
           }
-          .hero__heading-sub {
-            font-size: clamp(2.8rem, 11vw, 4rem);
+          .hero__heading-main em {
+            font-size: clamp(1.8rem, 9vw, 3.2rem);
             color: #ffffff;
             text-shadow: 0 2px 32px rgba(0, 0, 0, 0.45);
           }

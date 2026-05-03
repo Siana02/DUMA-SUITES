@@ -2,13 +2,14 @@ import { useEffect, useRef } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 
 // ── Timeline ─────────────────────────────────────────────────────────────────
-//   0.25 s  DUMA fades in + rises                       (1.0 s)
+//   0.25 s  DUMA SUITES fades in + rises               (1.0 s)
 //   1.40 s  gold shimmer sweeps through DUMA            (0.85 s CSS)
-//   1.10 s  "suites ● watamu" fades in + rises          (0.9 s)
-//   2.38 s  whole screen begins scaling up + fading out
-//   3.40 s  component unmounts (onComplete)
+//   1.20 s  cheetah icon + lines fade/expand in         (0.55 s)
+//   1.70 s  WATAMU fades in upward                      (0.7 s)
+//   2.66 s  whole screen begins scaling up + fading out
+//   3.80 s  component unmounts (onComplete)
 
-const TOTAL_MS = 3400
+const TOTAL_MS = 3800
 const TOTAL_S  = TOTAL_MS / 1000
 
 /**
@@ -94,7 +95,7 @@ export default function PreloadScreen({ onComplete, images = [] }) {
       {/* ── Brand lockup ── */}
       <div className="preload__brand">
 
-        {/* Phase 1 — DUMA: fade in + upward motion */}
+        {/* Phase 1 — DUMA SUITES: fade in + upward motion */}
         <motion.div
           className="preload__duma-wrap"
           initial={{ opacity: 0, y: 24 }}
@@ -110,14 +111,42 @@ export default function PreloadScreen({ onComplete, images = [] }) {
           <div className="preload__duma-shimmer" aria-hidden="true" />
         </motion.div>
 
-        {/* Phase 3 — "~ WATAMU ~": fades in upward after DUMA SUITES */}
+        {/* Phase 2 — Cheetah icon with two lines expanding outward */}
+        <motion.div
+          className="preload__icon-row"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.55, delay: 1.2, ease: 'easeOut' }}
+        >
+          <motion.div
+            className="preload__line preload__line--left"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 1.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+          />
+          <img
+            className="preload__cheetah"
+            src="https://img.icons8.com/ios-filled/50/563311/leopard.png"
+            alt=""
+            aria-hidden="true"
+            draggable={false}
+          />
+          <motion.div
+            className="preload__line preload__line--right"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 1.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+          />
+        </motion.div>
+
+        {/* Phase 3 — WATAMU: fades in upward after icon row */}
         <motion.p
           className="preload__sub"
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.10, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: 0.7, delay: 1.70, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          ~ WATAMU ~
+          WATAMU
         </motion.p>
 
       </div>
@@ -150,7 +179,7 @@ export default function PreloadScreen({ onComplete, images = [] }) {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 1rem;
+          gap: 0.65rem;
           text-align: center;
           pointer-events: none;
           user-select: none;
@@ -168,14 +197,14 @@ export default function PreloadScreen({ onComplete, images = [] }) {
         /* ── DUMA SUITES text ── */
         .preload__duma {
           font-family: var(--font-title);
-          font-size: clamp(2.8rem, 9vw, 6.5rem);
+          font-size: clamp(1.55rem, 4.2vw, 3.2rem);
           font-weight: 300;
-          letter-spacing: 0.28em;
+          letter-spacing: 0.18em;
           text-transform: uppercase;
           color: var(--color-espresso);
           line-height: 1;
           /* Shift right by half the letter-spacing so the word is optically centered */
-          padding-right: 0.28em;
+          padding-right: 0.18em;
           margin: 0;
         }
 
@@ -207,10 +236,10 @@ export default function PreloadScreen({ onComplete, images = [] }) {
           to   { left: 120%; }
         }
 
-        /* ── "~ WATAMU ~" ── */
+        /* ── "WATAMU" ── */
         .preload__sub {
           font-family: var(--font-title);
-          font-size: clamp(1rem, 2.4vw, 1.55rem);
+          font-size: clamp(0.85rem, 2vw, 1.3rem);
           font-weight: 300;
           letter-spacing: 0.32em;
           /* Shift right by half the letter-spacing to optically center */
@@ -220,6 +249,40 @@ export default function PreloadScreen({ onComplete, images = [] }) {
           opacity: 0.80;
           line-height: 1;
           margin: 0;
+        }
+
+        /* ── Cheetah icon row ── */
+        .preload__icon-row {
+          display: flex;
+          align-items: center;
+          gap: 0.7rem;
+          width: min(280px, 72vw);
+          margin: 0 auto;
+        }
+
+        /* Decorative lines expanding outward from icon */
+        .preload__line {
+          flex: 1;
+          height: 1px;
+          opacity: 0.55;
+        }
+        .preload__line--left {
+          background: linear-gradient(to left, var(--color-espresso) 0%, rgba(86, 51, 17, 0.08) 100%);
+          transform-origin: right center;
+        }
+        .preload__line--right {
+          background: linear-gradient(to right, var(--color-espresso) 0%, rgba(86, 51, 17, 0.08) 100%);
+          transform-origin: left center;
+        }
+
+        /* Cheetah silhouette icon */
+        .preload__cheetah {
+          width: 1.75rem;
+          height: 1.75rem;
+          object-fit: contain;
+          flex-shrink: 0;
+          display: block;
+          opacity: 0.88;
         }
 
         /* ── Progress track + fill ── */
