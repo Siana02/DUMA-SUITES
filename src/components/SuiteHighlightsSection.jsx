@@ -38,7 +38,7 @@ const CARDS = [
       'King beds with premium linens',
       'Air conditioning & ceiling fans',
       'Private en-suite bathrooms',
-      'Daily housekeeping service',
+      'Full kitchen, lounge & balcony',
     ],
     image: swahiliImg,
     imageAlt: 'Swahili-inspired suite interior at Duma Suites',
@@ -66,7 +66,8 @@ const CARDS = [
     Icon: Star,
     title: 'Effortless Luxury',
     points: [
-      'Daily turndown & cleaning',
+      'Daily housekeeping & turndown',
+      'Laundry service',
       'High-speed Wi-Fi throughout',
       'Seamless online booking',
       'Curated guest experiences',
@@ -97,10 +98,9 @@ function HighlightCard({ card, index }) {
 
   const { ref: inViewRef, inView } = useInView({ threshold: 0.5, triggerOnce: true })
 
-  // Auto-flip tease on touch/no-hover devices when card enters viewport
+  // Auto-flip tease for all devices when card enters viewport
   useEffect(() => {
     if (!inView) return
-    if (!window.matchMedia('(hover: none)').matches) return
     let t2
     const t1 = setTimeout(() => {
       setIsFlipped(true)
@@ -144,7 +144,6 @@ function HighlightCard({ card, index }) {
               </li>
             ))}
           </ul>
-          <p className="sh-card__hint" aria-hidden="true">tap to reveal ↩</p>
         </div>
 
         {/* ── BACK ── */}
@@ -158,6 +157,7 @@ function HighlightCard({ card, index }) {
           <div className="sh-card__overlay">
             <h3 className="sh-card__overlay-title">{card.overlayTitle}</h3>
             <p  className="sh-card__overlay-text">{card.overlayText}</p>
+            <p className="sh-card__hint" aria-hidden="true">tap to see highlights ↩</p>
           </div>
         </div>
 
@@ -192,6 +192,11 @@ export default function SuiteHighlightsSection() {
         <motion.h2 className="section-title sh-title" {...fadeUp(0.22)}>
           The Duma Experience
         </motion.h2>
+
+        {/* Subtitle / tap prompt */}
+        <motion.p className="sh-subtitle" {...fadeUp(0.32)}>
+          Tap a card to discover its highlights
+        </motion.p>
 
       </div>
 
@@ -253,6 +258,16 @@ export default function SuiteHighlightsSection() {
           flex-shrink: 0;
         }
 
+        /* ── Subtitle / tap prompt ── */
+        .sh-subtitle {
+          font-family: var(--font-body);
+          font-size: clamp(0.82rem, 1.4vw, 0.94rem);
+          color: var(--color-text-body);
+          opacity: 0.72;
+          margin: 0.6rem 0 0;
+          letter-spacing: 0.04em;
+        }
+
         /* ── Main title ── */
         .sh-title {
           text-align: center;
@@ -311,10 +326,6 @@ export default function SuiteHighlightsSection() {
             transform: rotateY(180deg);
             box-shadow: 0 24px 64px rgba(86, 51, 17, 0.28);
           }
-          /* Hide tap hint on pointer devices */
-          .sh-card__hint {
-            display: none;
-          }
         }
 
         /* ── Shared face ── */
@@ -328,7 +339,7 @@ export default function SuiteHighlightsSection() {
         }
 
         /* ══════════════════════════════════════════════
-           FRONT FACE
+           FRONT FACE  — shown on flip / hover
         ══════════════════════════════════════════════ */
         .sh-card__front {
           background-color: var(--color-bg-primary);
@@ -340,6 +351,7 @@ export default function SuiteHighlightsSection() {
           padding: clamp(18px, 3vw, 28px) clamp(16px, 2.5vw, 26px);
           gap: 10px;
           text-align: center;
+          transform: rotateY(180deg);
         }
 
         /* ── Icon circle ── */
@@ -426,21 +438,26 @@ export default function SuiteHighlightsSection() {
           flex-shrink: 0;
         }
 
-        /* ── Tap hint (touch devices) ── */
+        /* ── Tap hint (touch devices — shown on back/image face) ── */
         .sh-card__hint {
           font-family: var(--font-body);
           font-size: 0.68rem;
           letter-spacing: 0.08em;
-          color: var(--color-teal);
-          opacity: 0.6;
-          margin-top: auto;
+          color: rgba(255, 255, 255, 0.7);
+          margin-top: 8px;
+        }
+
+        /* Hide tap hint on pointer devices */
+        @media (hover: hover) {
+          .sh-card__hint {
+            display: none;
+          }
         }
 
         /* ══════════════════════════════════════════════
-           BACK FACE
+           BACK FACE  — default visible face (image)
         ══════════════════════════════════════════════ */
         .sh-card__back {
-          transform: rotateY(180deg);
         }
         .sh-card__bg-img {
           position: absolute;
