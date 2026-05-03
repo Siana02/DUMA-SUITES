@@ -285,9 +285,9 @@ export default function GMMessageSection() {
           transform: translateY(-101%);
         }
 
-        /* Inline tilt for mobile/tablet floated images */
-        .gm-photo--inline.gm-photo--tilt-l { transform: rotate(-1.5deg); }
-        .gm-photo--inline.gm-photo--tilt-r { transform: rotate(1.5deg); }
+        /* Inline tilt for mobile/tablet floated images — store rotation in a CSS variable */
+        .gm-photo--inline.gm-photo--tilt-l { --base-rot: -1.5deg; transform: rotate(var(--base-rot)); }
+        .gm-photo--inline.gm-photo--tilt-r { --base-rot:  1.5deg; transform: rotate(var(--base-rot)); }
 
         /* ── Inline images (mobile + tablet only) ── */
         .gm-photo--inline {
@@ -455,15 +455,15 @@ export default function GMMessageSection() {
             margin-top: -48px;
           }
 
-          /* Static tilts for desktop margin images */
-          .gm-margin--left  .gm-photo--tilt-l { transform: rotate(-2deg);  }
-          .gm-margin--left  .gm-photo--tilt-r { transform: rotate(1.5deg); }
-          .gm-margin--right .gm-photo--tilt-r { transform: rotate(2deg);   }
-          .gm-margin--right .gm-photo--tilt-l { transform: rotate(-1deg);  }
+          /* Static tilts for desktop margin images — rotation stored in CSS variable */
+          .gm-margin--left  .gm-photo--tilt-l { --base-rot: -2deg;   transform: rotate(var(--base-rot)); }
+          .gm-margin--left  .gm-photo--tilt-r { --base-rot:  1.5deg; transform: rotate(var(--base-rot)); }
+          .gm-margin--right .gm-photo--tilt-r { --base-rot:  2deg;   transform: rotate(var(--base-rot)); }
+          .gm-margin--right .gm-photo--tilt-l { --base-rot: -1deg;   transform: rotate(var(--base-rot)); }
 
-          /* Hover lift — desktop only */
+          /* Hover lift — preserves tilt via CSS variable, no !important needed */
           .gm-photo:hover {
-            transform: translateY(-5px) !important;
+            transform: translateY(-5px) rotate(var(--base-rot, 0deg));
             box-shadow: 8px 14px 40px rgba(86, 51, 17, 0.30);
           }
         }
