@@ -225,10 +225,33 @@ a:hover {
   transform: translateY(-1px);
 }
 
-/* Primary – Teal */
+/* Primary – Teal with Diagonal Shutter Sweep */
 .btn-primary {
   background-color: var(--color-teal);
   color: var(--color-text-light);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+/* Shimmer shutter layer */
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.22) 40%,
+    rgba(255, 255, 255, 0.50) 50%,
+    rgba(255, 255, 255, 0.22) 60%,
+    transparent 100%
+  );
+  transform: translateX(-110%) skewX(-20deg);
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+.btn-primary:hover::before {
+  transform: translateX(110%) skewX(-20deg);
 }
 
 .btn-primary:hover {

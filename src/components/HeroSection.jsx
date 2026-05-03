@@ -342,6 +342,7 @@ export default function HeroSection({ ready = false }) {
           letter-spacing: 0.04em;
           line-height: 1.05;
           text-shadow: 0 2px 48px rgba(0, 0, 0, 0.25);
+          white-space: nowrap;
         }
         /* COASTAL LUXURY — lower line, italic */
         .hero__heading-main {
@@ -350,6 +351,7 @@ export default function HeroSection({ ready = false }) {
           font-weight: 400;
           line-height: 1.05;
           text-shadow: 0 2px 48px rgba(0, 0, 0, 0.25);
+          white-space: nowrap;
         }
         .hero__heading-main em {
           font-style: italic;
@@ -364,7 +366,7 @@ export default function HeroSection({ ready = false }) {
           letter-spacing: 0.02em;
         }
 
-        /* ── CTA ── */
+        /* ── CTA — Diagonal Shutter Sweep ── */
         .hero__cta {
           display: inline-flex;
           align-items: center;
@@ -379,15 +381,29 @@ export default function HeroSection({ ready = false }) {
           padding: 14px 32px;
           border: 1.5px solid rgba(255, 255, 255, 0.45);
           border-radius: 3px;
+          position: relative;
+          overflow: hidden;
+          isolation: isolate;
           transition:
-            background-color 0.3s ease,
             border-color 0.3s ease,
             color 0.3s ease,
             transform 0.28s ease,
             box-shadow 0.3s ease;
         }
+        /* Diagonal shutter: pseudo-element sweeps at 45° */
+        .hero__cta::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: var(--color-teal);
+          transform: translateX(-110%) skewX(-20deg);
+          transition: transform 0.52s cubic-bezier(0.4, 0, 0.2, 1);
+          z-index: -1;
+        }
+        .hero__cta:hover::before {
+          transform: translateX(0%) skewX(-20deg);
+        }
         .hero__cta:hover {
-          background-color: var(--color-teal);
           border-color: var(--color-teal);
           color: #ffffff;
           transform: translateY(-2px);
@@ -485,24 +501,24 @@ export default function HeroSection({ ready = false }) {
             max-width: 540px;
           }
 
-          /* On the frosted light panel, use dark (espresso) text */
+          /* On the frosted light panel, keep text white for legibility */
           .hero__heading-top,
           .hero__heading-main em {
-            color: var(--color-espresso);
-            text-shadow: none;
+            color: #ffffff;
+            text-shadow: 0 2px 40px rgba(0, 0, 0, 0.30);
           }
           .hero__subtitle {
-            color: rgba(86, 51, 17, 0.78);
+            color: rgba(255, 255, 255, 0.72);
           }
           .hero__cta {
-            color: var(--color-espresso);
-            border-color: rgba(86, 51, 17, 0.40);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.45);
           }
           .hero__cta:hover {
-            background-color: var(--color-espresso);
-            border-color: var(--color-espresso);
+            background-color: var(--color-teal);
+            border-color: var(--color-teal);
             color: #ffffff;
-            box-shadow: 0 8px 28px rgba(86, 51, 17, 0.22);
+            box-shadow: 0 8px 28px rgba(201, 169, 110, 0.28);
           }
           .hero__cta:hover .hero__cta-arrow {
             transform: translateX(4px);
