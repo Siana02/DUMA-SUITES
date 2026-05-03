@@ -207,6 +207,20 @@ export default function SuiteHighlightsSection() {
         ))}
       </div>
 
+      {/* ── Find Your Suite CTA ── */}
+      <motion.div
+        className="sh-cta-wrap"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.7, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+      >
+        <a href="#suites" className="sh-cta">
+          Find Your Suite
+          <span className="sh-cta__arrow" aria-hidden="true">→</span>
+        </a>
+      </motion.div>
+
       <style>{`
         /* ══════════════════════════════════════════════
            SECTION SHELL
@@ -539,6 +553,59 @@ export default function SuiteHighlightsSection() {
           .sh-card__point  { justify-content: flex-start; }
           .sh-card__point { font-size: 0.84rem; }
           .sh-card__title { font-size: 0.82rem; }
+        }
+        /* ══════════════════════════════════════════════
+           FIND YOUR SUITE CTA
+        ══════════════════════════════════════════════ */
+        .sh-cta-wrap {
+          margin-top: clamp(40px, 6vw, 64px);
+          text-align: center;
+        }
+        .sh-cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          font-family: var(--font-nav);
+          font-size: 0.68rem;
+          font-weight: 600;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: var(--color-espresso);
+          text-decoration: none;
+          padding: 14px 36px;
+          border: 1.5px solid rgba(86, 51, 17, 0.4);
+          border-radius: 3px;
+          position: relative;
+          overflow: hidden;
+          isolation: isolate;
+          transition: border-color 0.3s ease, color 0.3s ease,
+                      transform 0.28s ease, box-shadow 0.3s ease;
+        }
+        .sh-cta::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: var(--color-teal);
+          transform: translateX(-110%) skewX(-20deg);
+          transition: transform 0.52s cubic-bezier(0.4, 0, 0.2, 1);
+          z-index: -1;
+        }
+        .sh-cta:hover::before {
+          transform: translateX(0%) skewX(-20deg);
+        }
+        .sh-cta:hover {
+          border-color: var(--color-teal);
+          color: #ffffff;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 28px rgba(88, 176, 196, 0.28);
+        }
+        .sh-cta__arrow {
+          display: inline-block;
+          transition: transform 0.25s ease;
+          font-style: normal;
+        }
+        .sh-cta:hover .sh-cta__arrow {
+          transform: translateX(5px);
         }
       `}</style>
     </section>
