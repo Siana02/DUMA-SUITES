@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
@@ -100,35 +100,7 @@ function fadeUp(delay = 0) {
 
 export default function SerenityVillaPage() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
-  const galleryRef = useRef(null)
   const navigate = useNavigate()
-
-  // Auto-scroll gallery
-  useEffect(() => {
-    const el = galleryRef.current
-    if (!el) return
-    const step = 1.2
-    let paused = false
-    const onEnter = () => { paused = true }
-    const onLeave = () => { paused = false }
-    const onTouch = () => { paused = true }
-    const id = setInterval(() => {
-      if (paused) return
-      el.scrollLeft += step
-      if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 2) {
-        el.scrollLeft = 0
-      }
-    }, 16)
-    el.addEventListener('mouseenter', onEnter)
-    el.addEventListener('mouseleave', onLeave)
-    el.addEventListener('touchstart', onTouch, { passive: true })
-    return () => {
-      clearInterval(id)
-      el.removeEventListener('mouseenter', onEnter)
-      el.removeEventListener('mouseleave', onLeave)
-      el.removeEventListener('touchstart', onTouch)
-    }
-  }, [])
 
   return (
     <>
@@ -205,12 +177,14 @@ export default function SerenityVillaPage() {
               Inside the Villa
             </motion.h2>
           </div>
-          <motion.div className="sv-gallery__track" ref={galleryRef} {...fadeUp(0.2)}>
-            {GALLERY.map((img, i) => (
-              <div key={i} className="sv-gallery__item">
-                <img src={img} alt={GALLERY_LABELS[i]} className="sv-gallery__img" />
-              </div>
-            ))}
+          <motion.div className="sv-gallery__track" {...fadeUp(0.2)}>
+            <div className="sv-gallery__inner">
+              {[...GALLERY, ...GALLERY].map((img, i) => (
+                <div key={i} className="sv-gallery__item">
+                  <img src={img} alt={GALLERY_LABELS[i % GALLERY.length]} className="sv-gallery__img" />
+                </div>
+              ))}
+            </div>
           </motion.div>
           <div className="container sv-gallery__cta-wrap">
             <motion.a href="#inquire" className="btn btn-primary" {...fadeUp(0.1)}>
@@ -452,15 +426,22 @@ export default function SerenityVillaPage() {
           margin: 0.5rem 0 2rem;
         }
         .sv-gallery__track {
+          overflow: hidden;
+          padding: 0 0 16px;
+        }
+        .sv-gallery__inner {
           display: flex;
           gap: 12px;
-          overflow-x: auto;
-          padding: 0 var(--section-px) 16px;
-          scroll-behavior: smooth;
-          -ms-overflow-style: none;
-          scrollbar-width: none;
+          width: max-content;
+          animation: sv-gallery-scroll 125s linear infinite;
         }
-        .sv-gallery__track::-webkit-scrollbar { display: none; }
+        .sv-gallery__inner:hover {
+          animation-play-state: paused;
+        }
+        @keyframes sv-gallery-scroll {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
         .sv-gallery__item { flex-shrink: 0; }
         .sv-gallery__img {
           width: 340px;
@@ -628,10 +609,16 @@ export default function SerenityVillaPage() {
         .sv-more__card:hover .sv-more__img { transform: scale(1.04); }
         .sv-more__overlay {
           position: absolute;
-          bottom: 24px;
-          left: 24px;
-          background-color: rgba(247, 241, 229, 0.96);
-          padding: 14px 18px;
+          bottom: 0;
+          left: 0;
+          padding: 20px 24px;
+          max-width: 380px;
+          background: linear-gradient(
+            to right,
+            rgba(0,0,0,0.52) 0%,
+            rgba(0,0,0,0.18) 70%,
+            transparent 100%
+          );
         }
         .sv-more__tagline {
           font-family: var(--font-eyebrow);
@@ -639,15 +626,17 @@ export default function SerenityVillaPage() {
           font-size: 0.7rem;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: var(--color-teal);
+          color: rgba(255,255,255,0.85);
           margin: 0 0 5px;
+          text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
         .sv-more__name {
           font-family: var(--font-title);
           font-size: clamp(1.2rem, 2.5vw, 1.7rem);
           font-weight: 600;
-          color: var(--color-espresso);
+          color: #fff;
           margin: 0 0 8px;
+          text-shadow: 0 2px 8px rgba(0,0,0,0.4);
         }
         .sv-more__specs {
           display: flex;
@@ -660,9 +649,10 @@ export default function SerenityVillaPage() {
           gap: 5px;
           font-family: var(--font-body);
           font-size: 0.75rem;
-          color: var(--color-text-muted);
+          color: rgba(255,255,255,0.88);
+          text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
-        .sv-more__specs svg { color: var(--color-teal); }
+        .sv-more__specs svg { color: rgba(255,255,255,0.7); }
         .sv-more__footer {
           padding: 16px 0 0;
           display: flex;
@@ -675,7 +665,15 @@ export default function SerenityVillaPage() {
         @media (max-width: 639px) {
           .sv-hero { height: 85vh; }
           .sv-more__img { height: 260px; }
-          .sv-more__overlay { bottom: 12px; left: 12px; right: 12px; }
+          .sv-more__overlay {
+            max-width: 100%;
+            background: linear-gradient(
+              to top,
+              rgba(0,0,0,0.48) 0%,
+              rgba(0,0,0,0.12) 65%,
+              transparent 100%
+            );
+          }
         }
       `}</style>
     </>

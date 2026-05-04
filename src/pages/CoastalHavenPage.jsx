@@ -772,7 +772,15 @@ export default function CoastalHavenPage() {
         @media (max-width: 639px) {
           .ch-hero { height: 85vh; }
           .ch-more__img { height: 260px; }
-          .ch-more__overlay { max-width: 100%; }
+          .ch-more__overlay {
+            max-width: 100%;
+            background: linear-gradient(
+              to top,
+              rgba(0,0,0,0.48) 0%,
+              rgba(0,0,0,0.12) 65%,
+              transparent 100%
+            );
+          }
         }
       `}</style>
     </>

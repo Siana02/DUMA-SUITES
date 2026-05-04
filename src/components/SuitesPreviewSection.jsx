@@ -467,9 +467,14 @@ export default function SuitesPreviewSection() {
             object-fit: cover;
           }
 
-          /* Mobile overlay — bottom-left, transparent, no gradient background */
+          /* Mobile overlay — bottom gradient for text readability */
           .sp-slide__overlay {
-            background: none;
+            background: linear-gradient(
+              to top,
+              rgba(0,0,0,0.48) 0%,
+              rgba(0,0,0,0.12) 65%,
+              transparent 100%
+            );
             padding: 12px 16px;
             max-width: 100%;
           }

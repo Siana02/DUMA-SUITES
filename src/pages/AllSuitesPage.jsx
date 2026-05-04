@@ -316,7 +316,15 @@ export default function AllSuitesPage() {
 
         @media (max-width: 639px) {
           .as-card__img { height: 300px; }
-          .as-card__overlay { max-width: 100%; }
+          .as-card__overlay {
+            max-width: 100%;
+            background: linear-gradient(
+              to top,
+              rgba(0,0,0,0.48) 0%,
+              rgba(0,0,0,0.12) 65%,
+              transparent 100%
+            );
+          }
           .as-card__body { flex-direction: column; align-items: flex-start; }
         }
       `}</style>
