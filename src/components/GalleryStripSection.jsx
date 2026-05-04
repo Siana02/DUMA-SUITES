@@ -184,7 +184,7 @@ export default function GalleryStripSection() {
                   src={img.src}
                   alt={img.alt}
                   className="gs-img"
-                  loading={i < IMAGES.length ? 'eager' : 'lazy'}
+                  loading={i < 3 ? 'eager' : 'lazy'}
                   draggable="false"
                 />
               </div>

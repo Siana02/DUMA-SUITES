@@ -279,7 +279,7 @@ export default function CoastalHavenPage() {
                   <ul className="ch-highlights">
                     {HIGHLIGHTS.map((h) => (
                       <li key={h} className="ch-highlights__item">
-                        <Check size={14} strokeWidth={2.5} className="ch-highlights__icon" />
+                        <Check size={14} strokeWidth={1.75} className="ch-highlights__icon" />
                         <span>{h}</span>
                       </li>
                     ))}

@@ -44,7 +44,7 @@ export default function Navbar() {
   // Intersection Observer — auto-highlight the nav item whose section is in view
   // Only active on the home page
   useEffect(() => {
-    if (!location.pathname === '/') return
+    if (location.pathname !== '/') return
 
     // Map section IDs to nav hrefs (only sections that actually exist in the DOM)
     const sectionMap = {

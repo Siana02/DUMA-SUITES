@@ -228,7 +228,7 @@ export default function SerenityVillaPage() {
                   <ul className="sv-highlights">
                     {HIGHLIGHTS.map((h) => (
                       <li key={h} className="sv-highlights__item">
-                        <Check size={14} strokeWidth={2.5} className="sv-highlights__icon" />
+                        <Check size={14} strokeWidth={1.75} className="sv-highlights__icon" />
                         <span>{h}</span>
                       </li>
                     ))}
