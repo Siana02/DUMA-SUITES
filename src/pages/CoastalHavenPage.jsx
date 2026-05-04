@@ -5,59 +5,65 @@ import { motion } from 'framer-motion'
 import {
   Maximize2, BedDouble, Users, Check, Mail, Phone,
   Wifi, Wind, Tv, Coffee, Bath, Waves, Utensils, Calendar, Clock,
+  Home, Mountain, Star, Leaf, Shield, Heart,
 } from 'lucide-react'
 
-import heroImg from '../assets/coastal-haven-suite-outdoor-view.JPEG'
+import heroImg from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
 import serenityPreview from '../assets/serenity-villa-3bedroomsuite-preview.JPEG'
 
-// Gallery images
-import g1  from '../assets/coastal-haven-suite-bedroom-interior.JPEG'
-import g2  from '../assets/coastal-haven-suite-breakfast-counter.JPEG'
-import g3  from '../assets/coastal-haven-suite-closet-area.JPEG'
-import g4  from '../assets/coastal-haven-suite-entrance-from-inside-view.JPEG'
-import g5  from '../assets/coastal-haven-suite-kingsize-bed-sideview.JPEG'
-import g6  from '../assets/coastal-haven-suite-kingsize-bed-sideview2.JPEG'
-import g7  from '../assets/coastal-haven-suite-kingsize-bed.JPEG'
-import g8  from '../assets/coastal-haven-suite-kitchenette-lounge-area.JPEG'
-import g9  from '../assets/coastal-haven-suite-kitchenette.JPEG'
-import g10 from '../assets/coastal-haven-suite-lounge-couch-upclose.JPEG'
-import g11 from '../assets/coastal-haven-suite-lounge-couch.JPEG'
-import g12 from '../assets/coastal-haven-suite-lounge-tv-area-upclose.JPEG'
-import g13 from '../assets/coastal-haven-suite-lounge-tv-area.JPEG'
+// Gallery images — ordered: beds → kitchen/lounge → outdoor/views → entrance → closet → bathroom
+import g1  from '../assets/coastal-haven-suite-kingsize-bed.JPEG'
+import g2  from '../assets/coastal-haven-suite-kingsize-bed-sideview.JPEG'
+import g3  from '../assets/coastal-haven-suite-kingsize-bed-sideview2.JPEG'
+import g4  from '../assets/coastal-haven-suite-bedroom-interior.JPEG'
+import g5  from '../assets/coastal-haven-suite-breakfast-counter.JPEG'
+import g6  from '../assets/coastal-haven-suite-kitchenette.JPEG'
+import g7  from '../assets/coastal-haven-suite-kitchenette-lounge-area.JPEG'
+import g8  from '../assets/coastal-haven-suite-lounge-couch.JPEG'
+import g9  from '../assets/coastal-haven-suite-lounge-couch-upclose.JPEG'
+import g10 from '../assets/coastal-haven-suite-lounge-tv-area-upclose.JPEG'
+import g11 from '../assets/coastal-haven-suite-outdoor-view.JPEG'
+import g12 from '../assets/coastal-haven-outside-chair.JPEG'
+import g13 from '../assets/coastal-haven-suite-outside-room-view.JPEG'
 import g14 from '../assets/coastal-haven-suite-nighttime-poolview.JPEG'
-import g15 from '../assets/coastal-haven-suite-shower.JPEG'
-import g16 from '../assets/coastal-haven-suite-washroom.JPEG'
+import g15 from '../assets/coastal-haven-suite-entrance-from-inside-view.JPEG'
+import g16 from '../assets/coastal-haven-suite-kitchen-to-bedroom-door-view.JPEG'
+import g17 from '../assets/coastal-haven-suite-closet-area.JPEG'
+import g18 from '../assets/coastal-haven-suite-shower.JPEG'
+import g19 from '../assets/coastal-haven-suite-washroom.JPEG'
 
-const GALLERY = [g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,g11,g12,g13,g14,g15,g16]
+const GALLERY = [g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,g11,g12,g13,g14,g15,g16,g17,g18,g19]
 const GALLERY_LABELS = [
-  'Bedroom interior','Breakfast counter','Closet area','Entrance view',
-  'King bed side view','King bed side view 2','King bed','Kitchenette lounge',
-  'Kitchenette','Lounge couch close','Lounge couch','TV area close',
-  'TV area','Night pool view','Shower','Washroom',
+  'King bed','King bed side view','King bed side view 2','Bedroom interior',
+  'Breakfast counter','Kitchenette','Kitchenette lounge area',
+  'Lounge couch','Lounge couch close-up','TV area close-up',
+  'Outdoor view','Outside chair','Outside room view','Night pool view',
+  'Entrance from inside','Kitchen to bedroom door','Closet area',
+  'Shower','Washroom',
 ]
 
 const AMENITIES = [
-  { icon: BedDouble, label: 'King-size bed' },
-  { icon: Bath, label: 'En-suite bathroom' },
-  { icon: Coffee, label: 'Full kitchenette' },
-  { icon: Waves, label: 'Private lounge' },
-  { icon: Utensils, label: 'Balcony' },
-  { icon: Waves, label: 'Pool view' },
-  { icon: Wifi, label: 'High-speed Wi-Fi' },
-  { icon: Check, label: 'Daily housekeeping' },
-  { icon: Wind, label: 'Air conditioning' },
-  { icon: Tv, label: 'Smart TV' },
-  { icon: Utensils, label: 'In-suite dining' },
-  { icon: Check, label: 'Premium linens' },
+  { icon: BedDouble,  label: 'King-size bed' },
+  { icon: Bath,       label: 'En-suite bathroom' },
+  { icon: Coffee,     label: 'Full kitchenette' },
+  { icon: Home,       label: 'Private lounge' },
+  { icon: Mountain,   label: 'Balcony' },
+  { icon: Waves,      label: 'Pool view' },
+  { icon: Wifi,       label: 'High-speed Wi-Fi' },
+  { icon: Star,       label: 'Daily housekeeping' },
+  { icon: Wind,       label: 'Air conditioning' },
+  { icon: Tv,         label: 'Smart TV' },
+  { icon: Utensils,   label: 'In-suite dining' },
+  { icon: Leaf,       label: 'Premium linens' },
 ]
 
 const POLICIES = [
-  { icon: Clock, label: 'Check-in', value: '2:00 PM' },
-  { icon: Clock, label: 'Check-out', value: '11:00 AM' },
-  { icon: Calendar, label: 'Minimum stay', value: '2 nights' },
-  { icon: Check, label: 'Cancellation', value: '48h notice' },
-  { icon: Check, label: 'Pets', value: 'Not permitted' },
-  { icon: Check, label: 'Smoking', value: 'Outdoor areas only' },
+  { icon: Clock,    label: 'Check-in',      value: '2:00 PM' },
+  { icon: Clock,    label: 'Check-out',     value: '10:00 AM' },
+  { icon: Calendar, label: 'Minimum stay',  value: '2 nights' },
+  { icon: Shield,   label: 'Cancellation',  value: '1 month notice · 50% refund + 50% redeemable within 6 months' },
+  { icon: Heart,    label: 'Pets',          value: 'Small pets welcome' },
+  { icon: Wind,     label: 'Smoking',       value: 'Balcony & lobby only' },
 ]
 
 const HIGHLIGHTS = [
@@ -198,7 +204,34 @@ export default function CoastalHavenPage() {
           </div>
         </section>
 
-        {/* ── d) Amenities ── */}
+        {/* ── d) Room Tour Video ── */}
+        <section className="ch-tour section" id="room-tour">
+          <div className="container">
+            <motion.span className="eyebrow text-center" {...fadeUp(0)}>
+              Room Tour
+            </motion.span>
+            <motion.h2 className="section-title ch-tour__title" {...fadeUp(0.1)}>
+              Experience the Suite
+            </motion.h2>
+            <motion.p className="ch-tour__subtitle" {...fadeUp(0.18)}>
+              Take a cinematic walkthrough of your coastal retreat.
+            </motion.p>
+            <motion.div className="ch-tour__frame-wrap" {...fadeUp(0.26)}>
+              {/* Vertical 9:16 video — constrained width for portrait display */}
+              <div className="ch-tour__frame">
+                <iframe
+                  src="https://player.vimeo.com/video/1188952533?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  loading="lazy"
+                  title="coastal-haven-suite-room-tour"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </section>
         <section className="ch-amenities section" id="amenities">
           <div className="container">
             <motion.span className="eyebrow text-center ch-amenities__eyebrow" {...fadeUp(0)}>
@@ -207,14 +240,23 @@ export default function CoastalHavenPage() {
             <motion.h2 className="section-title ch-amenities__title" {...fadeUp(0.1)}>
               Suite Amenities
             </motion.h2>
-            <motion.div className="ch-amenities__grid" {...fadeUp(0.2)}>
-              {AMENITIES.map(({ icon: Icon, label }) => (
-                <div key={label} className="ch-amenity">
-                  <Icon size={22} strokeWidth={1.5} className="ch-amenity__icon" />
+            <div className="ch-amenities__grid">
+              {AMENITIES.map(({ icon: Icon, label }, i) => (
+                <motion.div
+                  key={label}
+                  className="ch-amenity"
+                  initial={{ opacity: 0, y: 22 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.5, delay: i * 0.07, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  <div className="ch-amenity__icon-wrap">
+                    <Icon size={22} strokeWidth={1.5} className="ch-amenity__icon" />
+                  </div>
                   <span className="ch-amenity__label">{label}</span>
-                </div>
+                </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -451,6 +493,43 @@ export default function CoastalHavenPage() {
           padding-top: 2rem;
         }
 
+        /* ── Room Tour Video ── */
+        .ch-tour__title {
+          text-align: center;
+          margin: 0.5rem 0 0.75rem;
+        }
+        .ch-tour__subtitle {
+          font-family: var(--font-body);
+          font-size: clamp(0.9rem, 1.4vw, 1rem);
+          color: var(--color-text-muted);
+          text-align: center;
+          margin: 0 auto 2.5rem;
+          max-width: 480px;
+          line-height: 1.7;
+        }
+        .ch-tour__frame-wrap {
+          display: flex;
+          justify-content: center;
+        }
+        /* Portrait 9:16 video — constrained to a comfortable width */
+        .ch-tour__frame {
+          position: relative;
+          width: 100%;
+          max-width: 420px;
+          padding-bottom: min(177.78%, 100vh);
+          background: #000;
+          border-radius: 4px;
+          overflow: hidden;
+          box-shadow: 0 12px 50px rgba(86, 51, 17, 0.2);
+        }
+        .ch-tour__frame iframe {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          border: none;
+        }
+
         /* ── Amenities ── */
         .ch-amenities__eyebrow,
         .ch-amenities__title {
@@ -467,16 +546,55 @@ export default function CoastalHavenPage() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 10px;
-          padding: 20px 16px;
+          gap: 12px;
+          padding: 24px 16px;
           background: var(--color-bg-secondary);
           text-align: center;
+          cursor: default;
+          border-radius: 3px;
+          transition:
+            background-color 0.32s ease,
+            transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+            box-shadow 0.32s ease;
         }
-        .ch-amenity__icon { color: var(--color-teal); }
+        .ch-amenity:hover {
+          background-color: var(--color-teal);
+          transform: scale(1.06);
+          box-shadow: 0 10px 30px rgba(201, 169, 110, 0.32);
+        }
+        .ch-amenity__icon-wrap {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 52px;
+          height: 52px;
+          border-radius: 50%;
+          background: rgba(201, 169, 110, 0.12);
+          border: 1px solid rgba(201, 169, 110, 0.28);
+          flex-shrink: 0;
+          transition:
+            background 0.32s ease,
+            border-color 0.32s ease;
+        }
+        .ch-amenity:hover .ch-amenity__icon-wrap {
+          background: rgba(255, 255, 255, 0.22);
+          border-color: rgba(255, 255, 255, 0.45);
+        }
+        .ch-amenity__icon {
+          color: var(--color-teal);
+          transition: color 0.32s ease;
+        }
+        .ch-amenity:hover .ch-amenity__icon {
+          color: #fff;
+        }
         .ch-amenity__label {
           font-family: var(--font-body);
           font-size: 0.82rem;
           color: var(--color-text-body);
+          transition: color 0.32s ease;
+        }
+        .ch-amenity:hover .ch-amenity__label {
+          color: #fff;
         }
 
         /* ── Policies ── */
@@ -488,9 +606,9 @@ export default function CoastalHavenPage() {
         .ch-policies__title { margin: 0.5rem 0 2rem; }
         .ch-policies__grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
           gap: 16px;
-          max-width: 900px;
+          max-width: 960px;
           margin-inline: auto;
         }
         .ch-policy {

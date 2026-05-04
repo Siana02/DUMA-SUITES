@@ -127,6 +127,25 @@ export default function GMMessageSection() {
             <p className="gm-title-label">General Manager, Duma Suites</p>
           </motion.div>
 
+          {/* ── Intro Video ── */}
+          <motion.div className="gm-video-wrap" {...fadeUp(0.72)}>
+            <div className="gm-video-label" aria-hidden="true">
+              <span className="gm-video-line" />
+              <span className="gm-video-tag">A Short Introduction</span>
+              <span className="gm-video-line" />
+            </div>
+            <div className="gm-video-frame">
+              <iframe
+                src="https://player.vimeo.com/video/1188952042?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                title="intro-video"
+              />
+            </div>
+          </motion.div>
+
         </article>
 
         {/* ── Right margin images (desktop only) ── */}
@@ -331,6 +350,48 @@ export default function GMMessageSection() {
           text-transform: uppercase;
           color: var(--color-teal);
           text-align: center;
+        }
+
+        /* ── Intro Video ── */
+        .gm-video-wrap {
+          margin-top: 2.5rem;
+          clear: both;
+        }
+        .gm-video-label {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 1.2rem;
+        }
+        .gm-video-line {
+          flex: 1;
+          height: 1px;
+          background: rgba(86, 51, 17, 0.2);
+        }
+        .gm-video-tag {
+          font-family: var(--font-eyebrow);
+          font-style: italic;
+          font-size: 0.68rem;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: var(--color-teal);
+          white-space: nowrap;
+        }
+        .gm-video-frame {
+          position: relative;
+          width: 100%;
+          padding-bottom: 56.6%;
+          border-radius: 3px;
+          overflow: hidden;
+          background: #000;
+          box-shadow: 0 8px 40px rgba(86, 51, 17, 0.18);
+        }
+        .gm-video-frame iframe {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          border: none;
         }
 
         /* ─────────────────────────────────────────────
