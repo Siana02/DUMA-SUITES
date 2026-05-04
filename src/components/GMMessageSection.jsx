@@ -94,7 +94,7 @@ export default function GMMessageSection() {
             Our team has dedicated itself to redefining what coastal luxury
             means&thinsp;—&thinsp;not through grandeur alone, but through the quiet confidence
             of perfection in every detail. From the linen on your bed to the
-            last note of your evening meal, nothing is left to chance.
+            last light of a Watamu sunset, nothing is left to chance.
           </motion.p>
 
           {/* Inline image 2 — mobile & tablet only (hidden on desktop) */}
@@ -115,7 +115,7 @@ export default function GMMessageSection() {
 
           {/* Closing line */}
           <motion.p className="gm-para gm-para--closing" {...fadeUp(0.52)}>
-            Welcome to our home.
+            Welcome to our home. Watch the short introduction below to see what awaits you.
           </motion.p>
 
           {/* ── Attribution ── */}
