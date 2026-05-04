@@ -1,0 +1,449 @@
+const en = {
+  nav: {
+    home: 'Home',
+    suites: 'Suites',
+    gallery: 'Gallery',
+    about: 'About',
+    contact: 'Contact',
+    houseRules: 'House Rules',
+    langSwitch: 'IT',
+  },
+  hero: {
+    eyebrow: 'Luxury Coastal Living',
+    heading: 'Where the Ocean Meets Elegance',
+    sub: 'Nestled within Ghepard Towers, Watamu — 50 metres from the white sands of the Indian Ocean.',
+    cta: 'Explore Suites',
+    ctaSub: 'View All Accommodations',
+    scroll: 'Scroll to discover',
+  },
+  about: {
+    eyebrow: 'Our Story',
+    title: 'About Duma Suites',
+    intro: 'Duma Suites is a collection of thoughtfully designed coastal residences within the prestigious Ghepard Towers in Watamu, Kenya. Here, timeless Swahili elegance meets contemporary comfort, just steps from the Indian Ocean.',
+    cta: 'Learn More About Us',
+    cards: [
+      { title: 'Coastal Living', desc: "Located within 50 metres of Watamu's pristine white-sand beaches, offering direct access to the turquoise waters of the Indian Ocean." },
+      { title: 'Thoughtful Interiors', desc: 'Every suite is crafted with Swahili-inspired design elements — hand-carved details, organic textures and carefully curated furnishings.' },
+      { title: 'Premium Amenities', desc: 'Rooftop infinity pool, ground-floor leisure pool, fully equipped kitchens, high-speed Wi-Fi and 24/7 concierge service.' },
+      { title: 'Unmatched Views', desc: "Wake up to panoramic vistas of the Indian Ocean and Watamu's lush coastline from your private balcony or terrace." },
+      { title: 'Safety & Security', desc: '24-hour on-site security, CCTV surveillance, night guards, and secure private parking for complete peace of mind.' },
+      { title: 'Sustainable Hospitality', desc: 'We embrace eco-conscious practices — responsible water use, towel reuse, energy conservation and support for local suppliers.' },
+      { title: 'Effortless Convenience', desc: 'Flexible check-in, dedicated housekeeping, concierge-arranged excursions and airport transfers available on request.' },
+    ],
+  },
+  gallery: {
+    eyebrow: 'Visual Journey',
+    title: 'Gallery',
+    sub: 'A curated collection of moments from Duma Suites and the Watamu coastline.',
+  },
+  faq: {
+    eyebrow: 'Have Questions?',
+    title: 'Frequently Asked Questions',
+    items: [
+      { q: 'Where is Duma Suites located?', a: 'Duma Suites is located within Ghepard Towers in Watamu, Kilifi County, Kenya — just 50 metres from the Indian Ocean and the pristine sands of Watamu Beach.' },
+      { q: 'What suite types are available?', a: 'We offer two suite categories: the intimate Coastal Haven Suite (1 bedroom, ideal for couples) and the spacious Serenity Villa Suite (3 bedrooms, perfect for families or groups of up to 6+).' },
+      { q: 'Is the beach nearby?', a: 'Yes — Watamu Beach is just a short 50-metre walk from Ghepard Towers. The beach is known for its crystal-clear waters, white sands and vibrant marine life.' },
+      { q: 'What are the check-in and check-out times?', a: 'Standard check-in is from 14:00 and check-out is by 11:00. Early check-in or late check-out may be arranged subject to availability — please contact us in advance.' },
+      { q: 'Are pets allowed?', a: 'We love animals, but for the comfort of all guests, pets are not permitted in the suites or common areas of Ghepard Towers.' },
+      { q: 'Is there a swimming pool?', a: 'Yes — we have two pools: a ground-floor leisure pool and a spectacular rooftop infinity pool with panoramic ocean views. Pool access is from 09:00 to 21:00.' },
+      { q: 'What excursions can you arrange?', a: 'Our concierge can arrange a wide range of activities including Gedi Ruins tours, elephant watching at Tsavo, sunset dhow cruises, snorkelling at Watamu Marine Park, Safari Blue, and local seafood tours.' },
+      { q: 'Is parking available?', a: 'Yes, secure private parking is available on-site at Ghepard Towers at no additional charge for guests.' },
+      { q: 'Are the suites suitable for families?', a: 'Absolutely. The Serenity Villa Suite with 3 bedrooms and a full kitchen is ideal for families. Children are welcome, and we can arrange extra bedding or baby equipment on request.' },
+      { q: 'How do I make a reservation?', a: 'You can contact us directly via the enquiry form on this website, email us at reservations@dumasuites.com, or call us. We will confirm availability and provide a personalised booking link.' },
+    ],
+  },
+  reviews: {
+    eyebrow: 'Guest Stories',
+    title: 'Words from Our Guests',
+  },
+  articles: {
+    eyebrow: 'Discover Watamu',
+    title: 'Stories & Guides',
+    readMore: 'Read More',
+    items: [
+      {
+        title: 'Top 5 Activities on the Watamu Coast',
+        excerpt: 'From the legendary Safari Blue full-day excursion and dolphin watching at Mida Creek to exploring the ancient Gedi Ruins, snorkelling in the Watamu Marine Park, and an unforgettable sunset dhow cruise — Watamu offers a wealth of extraordinary experiences for every type of traveller.',
+        category: 'Travel Guide',
+      },
+    ],
+  },
+  excursions: {
+    eyebrow: 'Curated Experiences',
+    title: 'Excursions & Activities',
+    note: 'Available for confirmed guests and bookings only',
+    cta: 'Plan This Activity',
+    items: [
+      {
+        title: 'Gedi Ruins',
+        desc: 'Explore one of the most remarkable archaeological sites on the East African coast. The ancient Swahili town of Gedi, hidden within a dense coastal forest, dates back to the 12th century. Discover crumbling mosques, palace ruins and the whisper of centuries-old stories — with resident monkeys as your guides.',
+        badge: 'Cultural Heritage',
+      },
+      {
+        title: 'Elephant Watching',
+        desc: "Embark on a journey to encounter East Africa's gentle giants in their natural habitat. A day trip to the iconic Tsavo elephant conservation areas offers close encounters with wild elephants, alongside giraffes, buffalo and a stunning savannah landscape — just a few hours from Watamu.",
+        badge: 'Wildlife',
+      },
+      {
+        title: 'Sunset Dhow Cruise',
+        desc: "Sail into the golden hour aboard a traditional wooden dhow along the Watamu coastline. As the sun dips below the Indian Ocean horizon, savour fresh seafood, cool drinks and the serene beauty of Kenya's most celebrated stretch of coast.",
+        badge: 'Ocean Experience',
+      },
+    ],
+  },
+  contact: {
+    eyebrow: 'Get in Touch',
+    title: 'Contact Us',
+    sub: 'We would love to hear from you. Send us a message and we will get back to you as soon as possible.',
+    formLabels: {
+      name: 'Full Name',
+      email: 'Email Address',
+      phone: 'Phone Number',
+      message: 'Your Message',
+      send: 'Send Message',
+    },
+    info: {
+      address: 'Ghepard Towers, Watamu, Kilifi County, Kenya',
+      phone: '+254 700 000 000',
+      email: 'reservations@dumasuites.com',
+    },
+  },
+  cta: {
+    eyebrow: 'Your Escape Awaits',
+    heading: 'Ready to Experience Duma Suites?',
+    sub: 'Book your coastal retreat today and discover why Watamu is East Africa\'s most captivating destination.',
+    btn1: 'Book Now',
+    btn2: 'Explore Suites',
+  },
+  footer: {
+    tagline: 'Watamu · Coastal Luxury',
+    desc: 'Nestled within Ghepard Towers, Watamu — just 50 metres from the white sands and turquoise waters of the Indian Ocean.',
+    colSuites: 'Suites',
+    colExplore: 'Explore',
+    colContact: 'Contact',
+    links: {
+      gallery: 'Gallery',
+      about: 'About',
+      faq: 'FAQ',
+      excursions: 'Excursions',
+    },
+    copy: `© ${new Date().getFullYear()} Duma Suites. All rights reserved.`,
+    privacy: 'Privacy Policy',
+    terms: 'Terms of Service',
+    houseRules: 'House Rules',
+  },
+  houseRules: {
+    title: 'House Rules',
+    subtitle: 'Ghepard Towers Residence — Regulations for Use of Apartments and Common Areas',
+    intro: 'Dear Guests and Residents, in order to ensure a peaceful and safe coexistence within Ghepard Towers Residence, we ask that you observe the following behavioural guidelines:',
+    sections: [
+      {
+        title: '1. Use of the Pool',
+        items: [
+          'Access to the pools is permitted from 09:00 to 21:00.',
+          'Running around the ground-floor pool and diving are strictly prohibited for safety reasons and out of respect for ground-floor units.',
+          'The rooftop pool requires the utmost care: minors are not permitted without a responsible adult.',
+          'No food, drinks or fragile objects (glasses, bottles, etc.) are permitted in or around the pool.',
+          'Inflatables, large pool toys or bulky floats are not permitted.',
+          'Important: Management accepts no liability for accidents or damage resulting from failure to comply with these rules. Use of the pools is at your own risk.',
+        ],
+      },
+      {
+        title: '2. Responsible Use of Energy & Resources',
+        items: [
+          'We encourage moderate use of electricity and air conditioning in respect for the environment.',
+          'Water is precious — please avoid waste and adopt responsible behaviour at all times.',
+          'We recommend reusing towels where possible to reduce environmental impact.',
+          'When leaving the apartment, even briefly, please switch off the water heater, air conditioning and all lights.',
+        ],
+      },
+      {
+        title: '3. Behaviour & Quiet Hours',
+        items: [
+          'Audio devices and equipment at high volume are not permitted in common areas or within individual units.',
+          'Shouting, rowdy behaviour or noise is prohibited, especially during afternoon rest (13:00–15:00) and night-time hours (22:00–08:00).',
+          'Open fires, BBQs, grills or gas appliances not provided or approved by the residence are strictly forbidden.',
+        ],
+      },
+      {
+        title: '4. Protection of Common Areas & Green Spaces',
+        items: [
+          'Walking on garden green areas is not permitted.',
+          'Please keep all common areas clean and treat shared spaces with care.',
+          'Bicycles, scooters and motorcycles are not permitted within the residence.',
+          'The use of sun loungers, chairs or furniture not provided by the residence in common areas is not permitted.',
+        ],
+      },
+      {
+        title: '5. Security & Apartment Management',
+        items: [
+          'Management accepts no liability for personal belongings, valuables or cash left unattended in apartments.',
+          'We recommend making use of the in-apartment safe where available.',
+          'The residence does not provide a key deposit service — always carry your apartment key.',
+          'For any issues relating to your apartment, please contact the owner or dedicated housekeeper.',
+          'Any damage caused within apartments or in common areas, whether intentional or through negligence, must be compensated to the unit owner or management company.',
+        ],
+      },
+      {
+        title: '6. Access, Security & Registration',
+        items: [
+          'Night security is active from 18:00 to 06:00. During remaining hours, reception staff are on duty.',
+          'For security reasons, registration of all guests is mandatory. Only registered guests are authorised to access the residence.',
+          'In case of security rule violations, Management reserves the right to contact the relevant authorities.',
+        ],
+      },
+      {
+        title: '7. Useful Numbers',
+        numbers: [
+          { label: 'Reception / Ghepard Towers Assistance', value: '' },
+          { label: 'Medical Emergency', value: '' },
+          { label: 'Police', value: '' },
+          { label: 'Fire Brigade', value: '' },
+          { label: 'Emergency Technical Repairs (24h)', value: '' },
+          { label: 'Local Taxi Service', value: '' },
+        ],
+      },
+    ],
+  },
+  videos: {
+    eyebrow: 'Life at Duma Suites',
+    title: 'Our World in Motion',
+    sub: 'Immerse yourself in the sights and sounds of Watamu.',
+    items: [
+      { label: 'Rooftop Pool View' },
+      { label: 'Infinity Rooftop Pool' },
+      { label: 'Safari Blue – Local Prawns' },
+      { label: 'Safari Blue – Sudi Island BBQ' },
+      { label: 'Sea Urchin on the Beach' },
+      { label: 'Watamu Shoreline' },
+      { label: 'Watamu White Sands Beach' },
+    ],
+  },
+}
+
+const it = {
+  nav: {
+    home: 'Home',
+    suites: 'Suite',
+    gallery: 'Galleria',
+    about: 'Chi Siamo',
+    contact: 'Contatti',
+    houseRules: 'Regolamento',
+    langSwitch: 'EN',
+  },
+  hero: {
+    eyebrow: 'Lusso Costiero',
+    heading: "Dove l'Oceano Incontra l'Eleganza",
+    sub: "All'interno delle Ghepard Towers, Watamu — a soli 50 metri dalle spiagge bianche dell'Oceano Indiano.",
+    cta: 'Scopri le Suite',
+    ctaSub: 'Tutti gli Alloggi',
+    scroll: 'Scorri per scoprire',
+  },
+  about: {
+    eyebrow: 'La Nostra Storia',
+    title: 'Chi Siamo – Duma Suites',
+    intro: 'Duma Suites è una collezione di residenze costiere progettate con cura, situate nelle prestigiose Ghepard Towers di Watamu, Kenya. Qui, la senza tempo eleganza swahili incontra il comfort contemporaneo, a pochi passi dall\'Oceano Indiano.',
+    cta: 'Scopri di Più',
+    cards: [
+      { title: 'Vita Costiera', desc: 'A soli 50 metri dalle candide spiagge di Watamu, con accesso diretto alle acque turchesi dell\'Oceano Indiano.' },
+      { title: 'Interni Curati', desc: 'Ogni suite è realizzata con elementi di design swahili — dettagli scolpiti a mano, texture organiche e arredi selezionati con cura.' },
+      { title: 'Servizi Premium', desc: 'Piscina infinity sul rooftop, piscina leisure al piano terra, cucine complete, Wi-Fi ad alta velocità e servizio di concierge 24/7.' },
+      { title: 'Viste Incomparabili', desc: 'Svegliatevi con viste panoramiche sull\'Oceano Indiano e sulla lussureggiante costa di Watamu dal vostro balcone privato.' },
+      { title: 'Sicurezza', desc: 'Sicurezza 24 ore su 24, videosorveglianza, guardie notturne e parcheggio privato sicuro per la massima tranquillità.' },
+      { title: 'Ospitalità Sostenibile', desc: 'Abbracciamo pratiche eco-consapevoli: uso responsabile dell\'acqua, riutilizzo degli asciugamani, risparmio energetico e supporto ai fornitori locali.' },
+      { title: 'Convenienza Totale', desc: 'Check-in flessibile, pulizie dedicate, escursioni organizzate dal concierge e trasferimenti aeroportuali disponibili su richiesta.' },
+    ],
+  },
+  gallery: {
+    eyebrow: 'Viaggio Visivo',
+    title: 'Galleria',
+    sub: 'Una raccolta curata di momenti da Duma Suites e dalla costa di Watamu.',
+  },
+  faq: {
+    eyebrow: 'Domande Frequenti',
+    title: 'Hai Domande?',
+    items: [
+      { q: 'Dove si trova Duma Suites?', a: 'Duma Suites si trova all\'interno delle Ghepard Towers a Watamu, Contea di Kilifi, Kenya — a soli 50 metri dall\'Oceano Indiano e dalle candide spiagge di Watamu.' },
+      { q: 'Quali tipologie di suite sono disponibili?', a: 'Offriamo due categorie di suite: la raffinata Coastal Haven Suite (1 camera, ideale per coppie) e la spaziosa Serenity Villa Suite (3 camere, perfetta per famiglie o gruppi fino a 6+ persone).' },
+      { q: 'La spiaggia è vicina?', a: 'Sì — la spiaggia di Watamu dista solo 50 metri a piedi dalle Ghepard Towers. La spiaggia è famosa per le sue acque cristalline, la sabbia bianca e la ricca vita marina.' },
+      { q: 'Quali sono gli orari di check-in e check-out?', a: 'Il check-in standard è dalle ore 14:00 e il check-out entro le ore 11:00. Il check-in anticipato o il check-out posticipato possono essere concordati in base alla disponibilità — si prega di contattarci in anticipo.' },
+      { q: 'Sono ammessi gli animali domestici?', a: 'Amiamo gli animali, ma per il comfort di tutti gli ospiti, non sono ammessi nelle suite o nelle aree comuni delle Ghepard Towers.' },
+      { q: 'C\'è una piscina?', a: 'Sì — disponiamo di due piscine: una leisure al piano terra e uno spettacolare infinity pool sul rooftop con vista panoramica sull\'oceano. Orario piscine: 09:00–21:00.' },
+      { q: 'Quali escursioni potete organizzare?', a: 'Il nostro concierge può organizzare: visite alle Rovine di Gedi, avvistamento elefanti al Tsavo, crociere al tramonto in dhow, snorkelling al Parco Marino di Watamu, Safari Blue e tour gastronomici locali.' },
+      { q: 'È disponibile il parcheggio?', a: 'Sì, è disponibile un parcheggio privato e sicuro all\'interno delle Ghepard Towers, senza costi aggiuntivi per gli ospiti.' },
+      { q: 'Le suite sono adatte alle famiglie?', a: 'Assolutamente sì. La Serenity Villa Suite con 3 camere e cucina completa è ideale per le famiglie. I bambini sono i benvenuti e su richiesta possiamo fornire letti aggiuntivi o attrezzatura per neonati.' },
+      { q: 'Come posso effettuare una prenotazione?', a: 'Potete contattarci direttamente tramite il modulo di contatto sul sito, via email a reservations@dumasuites.com, oppure telefonicamente. Confermeremo la disponibilità e forniremo un link di prenotazione personalizzato.' },
+    ],
+  },
+  reviews: {
+    eyebrow: 'Esperienze degli Ospiti',
+    title: 'Le Parole dei Nostri Ospiti',
+  },
+  articles: {
+    eyebrow: 'Scopri Watamu',
+    title: 'Storie e Guide',
+    readMore: 'Leggi di Più',
+    items: [
+      {
+        title: 'Le 5 Migliori Attività sulla Costa di Watamu',
+        excerpt: 'Dalla leggendaria escursione di un\'intera giornata con Safari Blue e l\'avvistamento dei delfini a Mida Creek, all\'esplorazione delle antiche Rovine di Gedi, allo snorkelling nel Parco Marino di Watamu e a un indimenticabile tramonto in dhow — Watamu offre esperienze straordinarie per ogni tipo di viaggiatore.',
+        category: 'Guida di Viaggio',
+      },
+    ],
+  },
+  excursions: {
+    eyebrow: 'Esperienze Curate',
+    title: 'Escursioni e Attività',
+    note: 'Disponibile solo per ospiti confermati e prenotazioni',
+    cta: 'Pianifica questa Attività',
+    items: [
+      {
+        title: 'Rovine di Gedi',
+        desc: 'Esplorate uno dei siti archeologici più straordinari della costa dell\'Africa orientale. L\'antica città swahili di Gedi, nascosta in una fitta foresta costiera, risale al XII secolo. Scoprite moschee in rovina, rovine di palazzi e storie di secoli fa — con le scimmie residenti come guide.',
+        badge: 'Patrimonio Culturale',
+      },
+      {
+        title: 'Avvistamento Elefanti',
+        desc: 'Partite alla scoperta dei gentili giganti dell\'Africa orientale nel loro habitat naturale. Una gita di un giorno nelle iconiche aree di conservazione degli elefanti di Tsavo offre incontri ravvicinati con elefanti selvatici, giraffe, bufali e un paesaggio di savana mozzafiato — a poche ore da Watamu.',
+        badge: 'Fauna Selvatica',
+      },
+      {
+        title: 'Crociera in Dhow al Tramonto',
+        desc: 'Salpa verso l\'ora dorata a bordo di un tradizionale dhow di legno lungo la costa di Watamu. Mentre il sole scende sull\'orizzonte dell\'Oceano Indiano, gustate frutti di mare freschi, bevande fresche e la serena bellezza del tratto di costa più celebrato del Kenya.',
+        badge: 'Esperienza Oceanica',
+      },
+    ],
+  },
+  contact: {
+    eyebrow: 'Contattaci',
+    title: 'Siamo a Tua Disposizione',
+    sub: 'Ci farebbe piacere sentirti. Inviaci un messaggio e ti risponderemo il prima possibile.',
+    formLabels: {
+      name: 'Nome Completo',
+      email: 'Indirizzo Email',
+      phone: 'Numero di Telefono',
+      message: 'Il Tuo Messaggio',
+      send: 'Invia Messaggio',
+    },
+    info: {
+      address: 'Ghepard Towers, Watamu, Contea di Kilifi, Kenya',
+      phone: '+254 700 000 000',
+      email: 'reservations@dumasuites.com',
+    },
+  },
+  cta: {
+    eyebrow: 'La Tua Fuga ti Aspetta',
+    heading: 'Pronto a Vivere Duma Suites?',
+    sub: 'Prenota il tuo rifugio costiero oggi e scopri perché Watamu è la destinazione più affascinante dell\'Africa orientale.',
+    btn1: 'Prenota Ora',
+    btn2: 'Scopri le Suite',
+  },
+  footer: {
+    tagline: 'Watamu · Lusso Costiero',
+    desc: "All'interno delle Ghepard Towers, Watamu — a soli 50 metri dalle spiagge bianche e dalle acque turchesi dell'Oceano Indiano.",
+    colSuites: 'Suite',
+    colExplore: 'Esplora',
+    colContact: 'Contatti',
+    links: {
+      gallery: 'Galleria',
+      about: 'Chi Siamo',
+      faq: 'FAQ',
+      excursions: 'Escursioni',
+    },
+    copy: `© ${new Date().getFullYear()} Duma Suites. Tutti i diritti riservati.`,
+    privacy: 'Privacy Policy',
+    terms: 'Termini di Servizio',
+    houseRules: 'Regolamento',
+  },
+  houseRules: {
+    title: 'Regolamento',
+    subtitle: 'Ghepard Towers Residence — Regolamento per l\'Uso degli Appartamenti e delle Aree Comuni',
+    intro: 'Gentili Ospiti e Residenti, al fine di garantire una serena e sicura convivenza all\'interno del Residence Ghepard Towers, si richiede il rispetto delle seguenti norme comportamentali:',
+    sections: [
+      {
+        title: '1. Uso della Piscina',
+        items: [
+          'L\'accesso alle piscine è consentito dalle ore 09:00 alle ore 21:00.',
+          'È severamente vietato correre attorno alla piscina al piano terra e tuffarsi, per motivi di sicurezza e per rispetto della quiete delle unità al piano terreno.',
+          'La piscina sul rooftop richiede la massima attenzione: l\'accesso non è consentito a minori non accompagnati da un adulto responsabile.',
+          'È vietato introdurre in piscina o nelle aree comuni cibi, bevande o oggetti frangibili (bicchieri, bottiglie di vetro, ecc.).',
+          'È vietato l\'uso di gommoni, materassini ingombranti o giocattoli voluminosi.',
+          'Importante: La Direzione declina ogni responsabilità per incidenti o danni derivanti dal mancato rispetto del presente regolamento. L\'uso delle piscine è a proprio rischio e pericolo.',
+        ],
+      },
+      {
+        title: '2. Uso Responsabile di Energia e Risorse',
+        items: [
+          'Si raccomanda un uso contenuto dell\'energia elettrica e dell\'aria condizionata, nel rispetto dell\'ambiente.',
+          'L\'acqua è un bene prezioso: si invita a non sprecarla e ad adottare comportamenti responsabili in ogni momento.',
+          'Si raccomanda il riutilizzo degli asciugamani, se possibile, per ridurre l\'impatto ambientale.',
+          'Quando si lascia l\'appartamento, anche per brevi periodi, si invita a spegnere sempre il boiler, l\'aria condizionata e le luci.',
+        ],
+      },
+      {
+        title: '3. Comportamento e Rispetto della Quiete',
+        items: [
+          'Non è consentito utilizzare apparecchi audio o dispositivi con volume elevato né nelle aree comuni né all\'interno delle singole unità.',
+          'Sono vietati urla, schiamazzi o comportamenti rumorosi, in particolare durante le ore di riposo pomeridiane (13:00–15:00) e notturne (22:00–08:00).',
+          'È vietato usare fiamme libere, barbecue, griglie o apparecchi a gas non forniti direttamente dal residence.',
+        ],
+      },
+      {
+        title: '4. Tutela degli Spazi Comuni e Aree Verdi',
+        items: [
+          'Non è consentito calpestare le aree verdi del giardino.',
+          'Si invitano tutti a mantenere puliti gli spazi comuni e a utilizzarli con cura.',
+          'Non sono ammessi all\'interno del residence biciclette, monopattini o motocicli.',
+          'È vietato utilizzare nelle aree comuni lettini, sedie o altri arredi non forniti dal residence.',
+        ],
+      },
+      {
+        title: '5. Sicurezza e Gestione degli Appartamenti',
+        items: [
+          'La Direzione declina ogni responsabilità per beni personali, oggetti di valore o denaro lasciati incustoditi all\'interno degli appartamenti.',
+          'Ove presente, si invita all\'uso della cassetta di sicurezza disponibile nell\'unità.',
+          'Il residence non fornisce servizio di deposito chiavi: si invita pertanto a portare sempre con sé la chiave dell\'appartamento.',
+          'Per qualsiasi necessità relativa all\'appartamento affittato, si invita a contattare il proprietario o l\'housekeeper di riferimento.',
+          'Eventuali danni causati all\'interno degli appartamenti o nelle aree comuni dovranno essere rimborsati al proprietario dell\'unità o alla società di gestione.',
+        ],
+      },
+      {
+        title: '6. Accessi, Vigilanza e Registrazione',
+        items: [
+          'Un servizio di vigilanza notturna è attivo dalle ore 18:00 alle ore 06:00. Durante le restanti ore, è garantita la presenza del personale di portineria.',
+          'Per motivi di sicurezza, è obbligatoria la registrazione di ogni ospite. Solo le persone regolarmente registrate sono autorizzate ad accedere al residence.',
+          'In caso di violazione delle regole di sicurezza, la Direzione si riserva il diritto di chiamare le forze dell\'ordine.',
+        ],
+      },
+      {
+        title: '7. Numeri Utili',
+        numbers: [
+          { label: 'Reception / Assistenza Ghepard Towers', value: '' },
+          { label: 'Emergenza Medica', value: '' },
+          { label: 'Polizia', value: '' },
+          { label: 'Vigili del Fuoco', value: '' },
+          { label: 'Pronto intervento guasti tecnici (24h)', value: '' },
+          { label: 'Servizio Taxi Locale', value: '' },
+        ],
+      },
+    ],
+  },
+  videos: {
+    eyebrow: 'La Vita a Duma Suites',
+    title: 'Il Nostro Mondo in Movimento',
+    sub: 'Immergetevi nelle immagini e nei suoni di Watamu.',
+    items: [
+      { label: 'Vista Piscina sul Rooftop' },
+      { label: 'Piscina Infinity sul Tetto' },
+      { label: 'Safari Blu – Gamberi Locali' },
+      { label: 'Safari Blu – BBQ Isola Sudi' },
+      { label: 'Ricci di Mare in Spiaggia' },
+      { label: 'Costa di Watamu' },
+      { label: 'Spiagge Bianche di Watamu' },
+    ],
+  },
+}
+
+export function getT(lang) {
+  return lang === 'it' ? it : en
+}

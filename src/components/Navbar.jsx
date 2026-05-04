@@ -1,37 +1,44 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, MapPin } from 'lucide-react'
-import { useLocation } from 'react-router-dom'
-import mammalImg from '../assets/mammal.png'
+import { useLocation, useNavigate } from 'react-router-dom'
+import logoImg from '../assets/logo.jpeg'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { getT } from '../i18n/translations.js'
 
 // Navbar appears as the preload curtains finish opening (~2.8 s)
 const NAVBAR_APPEAR_DELAY = 2.8
 
-const NAV_LINKS = [
-  { label: 'Home',    href: '#home' },
-  { label: 'Suites',  href: '/suites', isRoute: true },
-  { label: 'Gallery', href: '#gallery-strip' },
-  { label: 'About',   href: '#about' },
-  { label: 'Contact', href: '#contact' },
-]
-
 export default function Navbar() {
   const [scrolled, setScrolled]     = useState(false)
   const [menuOpen, setMenuOpen]     = useState(false)
-  const [activeHref, setActiveHref] = useState('#home')
-  const activeHrefRef               = useRef('#home')
+  const [activeHref, setActiveHref] = useState('/')
+  const activeHrefRef               = useRef('/')
 
   const location = useLocation()
+  const navigate = useNavigate()
+  const { lang, toggleLang } = useLanguage()
+  const t = getT(lang)
+
+  const NAV_LINKS = [
+    { label: t.nav.home,    href: '/',         isRoute: true },
+    { label: t.nav.suites,  href: '/suites',   isRoute: true },
+    { label: t.nav.gallery, href: '/gallery',  isRoute: true },
+    { label: t.nav.about,   href: '/#about',   isRoute: false },
+    { label: t.nav.contact, href: '/#contact', isRoute: false },
+  ]
 
   // If we are on a /suites/* route, mark the Suites link active immediately
   useEffect(() => {
     if (location.pathname.startsWith('/suites')) {
       activeHrefRef.current = '/suites'
       setActiveHref('/suites')
+    } else if (location.pathname === '/gallery') {
+      activeHrefRef.current = '/gallery'
+      setActiveHref('/gallery')
     } else if (location.pathname === '/') {
-      // Reset to home when navigating back to home page
-      activeHrefRef.current = '#home'
-      setActiveHref('#home')
+      activeHrefRef.current = '/'
+      setActiveHref('/')
     }
   }, [location.pathname])
 
@@ -48,10 +55,10 @@ export default function Navbar() {
 
     // Map section IDs to nav hrefs (only sections that actually exist in the DOM)
     const sectionMap = {
-      home:           '#home',
-      // suites-preview section → mark "Suites" nav active
+      home:             '/',
       'suites-preview': '/suites',
-      contact:        '#contact',
+      about:            '/#about',
+      contact:          '/#contact',
     }
 
     const obs = new IntersectionObserver(
@@ -78,13 +85,20 @@ export default function Navbar() {
   }, [location.pathname])
 
   const handleLinkClick = (href, isRoute) => {
-    if (!isRoute && href !== activeHref) {
-      activeHrefRef.current = href
-      setActiveHref(href)
-    }
     if (isRoute) {
       activeHrefRef.current = href
       setActiveHref(href)
+      navigate(href)
+    } else if (href.startsWith('/#')) {
+      const sectionId = href.slice(2)
+      if (location.pathname !== '/') {
+        navigate('/')
+        setTimeout(() => {
+          document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+        }, 100)
+      } else {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+      }
     }
     setMenuOpen(false)
   }
@@ -101,9 +115,9 @@ export default function Navbar() {
       >
         <div className="navbar__inner">
           {/* ── Left: Logo ── */}
-          <a href="#home" className="navbar__logo" aria-label="Duma Suites – Home">
+          <a href="/" className="navbar__logo" onClick={e => { e.preventDefault(); navigate('/') }} aria-label="Duma Suites – Home">
             <img
-              src={mammalImg}
+              src={logoImg}
               alt=""
               className="navbar__logo-img"
               aria-hidden="true"
@@ -121,19 +135,26 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={`navbar__link${activeHref === link.href ? ' navbar__link--active' : ''}`}
-                onClick={() => handleLinkClick(link.href, link.isRoute)}
+                onClick={e => { e.preventDefault(); handleLinkClick(link.href, link.isRoute) }}
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
-          {/* ── Right: Location + mobile toggle ── */}
+          {/* ── Right: Location + lang toggle + mobile toggle ── */}
           <div className="navbar__right">
             <span className="navbar__location">
               <MapPin size={13} strokeWidth={1.5} aria-hidden="true" />
               Watamu, KE
             </span>
+            <button
+              className="navbar__lang-toggle"
+              onClick={toggleLang}
+              aria-label="Switch language"
+            >
+              {lang === 'en' ? 'IT' : 'EN'}
+            </button>
             <button
               className="navbar__toggle"
               onClick={() => setMenuOpen((o) => !o)}
@@ -177,7 +198,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={`navbar__drawer-link${activeHref === link.href ? ' navbar__drawer-link--active' : ''}`}
-                  onClick={() => handleLinkClick(link.href, link.isRoute)}
+                  onClick={e => { e.preventDefault(); handleLinkClick(link.href, link.isRoute) }}
                   initial={{ opacity: 0, x: 24 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.06 + 0.1 }}
@@ -186,6 +207,11 @@ export default function Navbar() {
                 </motion.a>
               ))}
             </nav>
+
+            {/* Language toggle in drawer */}
+            <button className="navbar__lang-toggle navbar__lang-toggle--drawer" onClick={toggleLang} aria-label="Switch language">
+              {lang === 'en' ? '🇮🇹 Italiano' : '🇬🇧 English'}
+            </button>
 
             {/* Location in drawer */}
             <motion.span
@@ -370,6 +396,42 @@ export default function Navbar() {
           align-items: center;
           gap: 1rem;
           justify-self: end;
+        }
+        .navbar__lang-toggle {
+          font-family: var(--font-nav);
+          font-size: 0.62rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          background: none;
+          border: 1px solid rgba(255,255,255,0.5);
+          color: rgba(255,255,255,0.88);
+          padding: 3px 10px;
+          border-radius: 100px;
+          cursor: pointer;
+          transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+          white-space: nowrap;
+        }
+        .navbar--scrolled .navbar__lang-toggle {
+          border-color: rgba(86,51,17,0.4);
+          color: var(--color-espresso);
+        }
+        .navbar__lang-toggle:hover {
+          border-color: var(--color-teal);
+          color: var(--color-teal);
+        }
+        .navbar__lang-toggle--drawer {
+          font-family: var(--font-nav);
+          font-size: 0.78rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          background: none;
+          border: 1px solid rgba(86,51,17,0.3);
+          color: var(--color-espresso);
+          padding: 8px 16px;
+          border-radius: 4px;
+          cursor: pointer;
+          text-align: left;
+          width: fit-content;
         }
         .navbar__location {
           display: flex;
