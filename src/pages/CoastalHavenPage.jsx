@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import {
   Maximize2, BedDouble, Users, Check, Mail, Phone,
   Wifi, Wind, Tv, Coffee, Bath, Waves, Utensils, Calendar, Clock,
@@ -75,6 +76,11 @@ const HIGHLIGHTS = [
   'Daily housekeeping and turndown service',
 ]
 
+const TOUR_VIDEO_BASE =
+  'https://player.vimeo.com/video/1188952533' +
+  '?badge=0&autopause=0&player_id=0&app_id=58479' +
+  '&byline=0&title=0&portrait=0&muted=1'
+
 function fadeUp(delay = 0) {
   return {
     initial: { opacity: 0, y: 28 },
@@ -86,35 +92,30 @@ function fadeUp(delay = 0) {
 
 export default function CoastalHavenPage() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
-  const galleryRef = useRef(null)
   const navigate = useNavigate()
 
-  // Auto-scroll gallery
+  // Video pause-on-scroll logic
+  const tourIframeRef = useRef(null)
+  const tourHasPlayedRef = useRef(false)
+  const [tourVideoSrc, setTourVideoSrc] = useState(TOUR_VIDEO_BASE)
+  const { ref: tourRef, inView: tourInView } = useInView({ threshold: 0.4 })
+
   useEffect(() => {
-    const el = galleryRef.current
-    if (!el) return
-    const step = 1.2
-    let paused = false
-    const onEnter = () => { paused = true }
-    const onLeave = () => { paused = false }
-    const onTouch = () => { paused = true }
-    const id = setInterval(() => {
-      if (paused) return
-      el.scrollLeft += step
-      if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 2) {
-        el.scrollLeft = 0
+    const post = (method) =>
+      tourIframeRef.current?.contentWindow?.postMessage(
+        JSON.stringify({ method }), 'https://player.vimeo.com'
+      )
+    if (tourInView) {
+      if (!tourHasPlayedRef.current) {
+        tourHasPlayedRef.current = true
+        setTourVideoSrc(`${TOUR_VIDEO_BASE}&autoplay=1`)
+      } else {
+        post('play')
       }
-    }, 16)
-    el.addEventListener('mouseenter', onEnter)
-    el.addEventListener('mouseleave', onLeave)
-    el.addEventListener('touchstart', onTouch, { passive: true })
-    return () => {
-      clearInterval(id)
-      el.removeEventListener('mouseenter', onEnter)
-      el.removeEventListener('mouseleave', onLeave)
-      el.removeEventListener('touchstart', onTouch)
+    } else if (tourHasPlayedRef.current) {
+      post('pause')
     }
-  }, [])
+  }, [tourInView])
 
   return (
     <>
@@ -190,12 +191,14 @@ export default function CoastalHavenPage() {
               Inside the Suite
             </motion.h2>
           </div>
-          <motion.div className="ch-gallery__track" ref={galleryRef} {...fadeUp(0.2)}>
-            {GALLERY.map((img, i) => (
-              <div key={i} className="ch-gallery__item">
-                <img src={img} alt={GALLERY_LABELS[i]} className="ch-gallery__img" />
-              </div>
-            ))}
+          <motion.div className="ch-gallery__track" {...fadeUp(0.2)}>
+            <div className="ch-gallery__inner">
+              {[...GALLERY, ...GALLERY].map((img, i) => (
+                <div key={i} className="ch-gallery__item">
+                  <img src={img} alt={GALLERY_LABELS[i % GALLERY.length]} className="ch-gallery__img" />
+                </div>
+              ))}
+            </div>
           </motion.div>
           <div className="container ch-gallery__cta-wrap">
             <motion.a href="#inquire" className="btn btn-primary" {...fadeUp(0.1)}>
@@ -216,11 +219,12 @@ export default function CoastalHavenPage() {
             <motion.p className="ch-tour__subtitle" {...fadeUp(0.18)}>
               Take a cinematic walkthrough of your coastal retreat.
             </motion.p>
-            <motion.div className="ch-tour__frame-wrap" {...fadeUp(0.26)}>
+            <motion.div className="ch-tour__frame-wrap" {...fadeUp(0.26)} ref={tourRef}>
               {/* Vertical 9:16 video — constrained width for portrait display */}
               <div className="ch-tour__frame">
                 <iframe
-                  src="https://player.vimeo.com/video/1188952533?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1"
+                  ref={tourIframeRef}
+                  src={tourVideoSrc}
                   frameBorder="0"
                   allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
@@ -470,15 +474,22 @@ export default function CoastalHavenPage() {
           margin: 0.5rem 0 2rem;
         }
         .ch-gallery__track {
+          overflow: hidden;
+          padding: 0 0 16px;
+        }
+        .ch-gallery__inner {
           display: flex;
           gap: 12px;
-          overflow-x: auto;
-          padding: 0 var(--section-px) 16px;
-          scroll-behavior: smooth;
-          -ms-overflow-style: none;
-          scrollbar-width: none;
+          width: max-content;
+          animation: ch-gallery-scroll 90s linear infinite;
         }
-        .ch-gallery__track::-webkit-scrollbar { display: none; }
+        .ch-gallery__inner:hover {
+          animation-play-state: paused;
+        }
+        @keyframes ch-gallery-scroll {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
         .ch-gallery__item {
           flex-shrink: 0;
         }
@@ -528,6 +539,9 @@ export default function CoastalHavenPage() {
           width: 100%;
           height: 100%;
           border: none;
+        }
+        @media (min-width: 1024px) {
+          .ch-tour__frame { max-width: 560px; }
         }
 
         /* ── Amenities ── */
@@ -702,10 +716,16 @@ export default function CoastalHavenPage() {
         }
         .ch-more__overlay {
           position: absolute;
-          bottom: 24px;
-          left: 24px;
-          background-color: rgba(247, 241, 229, 0.96);
-          padding: 14px 18px;
+          bottom: 0;
+          left: 0;
+          padding: 20px 24px;
+          max-width: 380px;
+          background: linear-gradient(
+            to right,
+            rgba(0,0,0,0.52) 0%,
+            rgba(0,0,0,0.18) 70%,
+            transparent 100%
+          );
         }
         .ch-more__tagline {
           font-family: var(--font-eyebrow);
@@ -713,15 +733,17 @@ export default function CoastalHavenPage() {
           font-size: 0.7rem;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: var(--color-teal);
+          color: rgba(255,255,255,0.85);
           margin: 0 0 5px;
+          text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
         .ch-more__name {
           font-family: var(--font-title);
           font-size: clamp(1.2rem, 2.5vw, 1.7rem);
           font-weight: 600;
-          color: var(--color-espresso);
+          color: #fff;
           margin: 0 0 8px;
+          text-shadow: 0 2px 8px rgba(0,0,0,0.4);
         }
         .ch-more__specs {
           display: flex;
@@ -734,9 +756,10 @@ export default function CoastalHavenPage() {
           gap: 5px;
           font-family: var(--font-body);
           font-size: 0.75rem;
-          color: var(--color-text-muted);
+          color: rgba(255,255,255,0.88);
+          text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
-        .ch-more__specs svg { color: var(--color-teal); }
+        .ch-more__specs svg { color: rgba(255,255,255,0.7); }
         .ch-more__footer {
           padding: 16px 0 0;
           display: flex;
@@ -749,7 +772,7 @@ export default function CoastalHavenPage() {
         @media (max-width: 639px) {
           .ch-hero { height: 85vh; }
           .ch-more__img { height: 260px; }
-          .ch-more__overlay { bottom: 12px; left: 12px; right: 12px; }
+          .ch-more__overlay { max-width: 100%; }
         }
       `}</style>
     </>
