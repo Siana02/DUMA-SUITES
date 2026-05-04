@@ -264,10 +264,10 @@ export default function CoastalHavenPage() {
         <section className="ch-policies section section--secondary" id="policies">
           <div className="container">
             <motion.span className="eyebrow text-center ch-policies__eyebrow" {...fadeUp(0)}>
-              Know Before You Go
+              Policies &amp; Check-in
             </motion.span>
             <motion.h2 className="section-title ch-policies__title" {...fadeUp(0.1)}>
-              Policies &amp; Check-in
+              Know Before You Go
             </motion.h2>
             <motion.div className="ch-policies__grid" {...fadeUp(0.2)}>
               {POLICIES.map(({ icon: Icon, label, value }) => (

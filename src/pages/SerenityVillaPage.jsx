@@ -252,10 +252,10 @@ export default function SerenityVillaPage() {
         <section className="sv-policies section section--secondary" id="policies">
           <div className="container">
             <motion.span className="eyebrow text-center sv-policies__eyebrow" {...fadeUp(0)}>
-              Know Before You Go
+              Policies &amp; Check-in
             </motion.span>
             <motion.h2 className="section-title sv-policies__title" {...fadeUp(0.1)}>
-              Policies &amp; Check-in
+              Know Before You Go
             </motion.h2>
             <motion.div className="sv-policies__grid" {...fadeUp(0.2)}>
               {POLICIES.map(({ icon: Icon, label, value }) => (
