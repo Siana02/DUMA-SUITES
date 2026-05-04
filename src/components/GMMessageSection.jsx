@@ -30,8 +30,20 @@ function PeelingPhoto({ src, alt, className, delay = 0 }) {
   )
 }
 
+const VIDEO_BASE_SRC =
+  'https://player.vimeo.com/video/1188952042' +
+  '?badge=0&autopause=0&player_id=0&app_id=58479' +
+  '&byline=0&title=0&portrait=0&loop=1'
+
 export default function GMMessageSection() {
   const { ref } = useInView({ threshold: 0.1, triggerOnce: true })
+
+  // Autoplay only once the video frame is substantially in the viewport
+  const { ref: videoRef, inView: videoInView } = useInView({
+    threshold: 0.75,
+    triggerOnce: true,
+  })
+  const videoSrc = videoInView ? `${VIDEO_BASE_SRC}&autoplay=1` : VIDEO_BASE_SRC
 
   return (
     <section className="gm-section section section--premium" id="experience" ref={ref}>
@@ -128,7 +140,7 @@ export default function GMMessageSection() {
           </motion.div>
 
           {/* ── Intro Video ── */}
-          <motion.div className="gm-video-wrap" {...fadeUp(0.72)}>
+          <motion.div className="gm-video-wrap" {...fadeUp(0.72)} ref={videoRef}>
             <div className="gm-video-label" aria-hidden="true">
               <span className="gm-video-line" />
               <span className="gm-video-tag">A Short Introduction</span>
@@ -136,7 +148,7 @@ export default function GMMessageSection() {
             </div>
             <div className="gm-video-frame">
               <iframe
-                src="https://player.vimeo.com/video/1188952042?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;loop=1"
+                src={videoSrc}
                 frameBorder="0"
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
