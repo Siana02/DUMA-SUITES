@@ -15,6 +15,8 @@ import serenityPreview from '../assets/serenity-villa-3bedroomsuite-preview.JPEG
 import { FaUmbrellaBeach } from 'react-icons/fa'
 import { GiTowel } from 'react-icons/gi'
 import coastalAboutImg from '../assets/coastal-haven-suite-outdoor-view.JPEG'
+import cheetahIcon from '../assets/cheetah.png'
+import serenityPreviewImg from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
 
 // Gallery images — ordered: beds → kitchen/lounge → outdoor/views → entrance → closet → bathroom
 import g1  from '../assets/coastal-haven-suite-kingsize-bed.JPEG'
@@ -89,6 +91,11 @@ const TOUR_VIDEO_BASE =
   '?badge=0&autopause=0&player_id=0&app_id=58479' +
   '&byline=0&title=0&portrait=0&muted=1&dnt=1'
 
+const INTRO_VIDEO_BASE =
+  'https://player.vimeo.com/video/1189029033' +
+  '?badge=0&autopause=0&player_id=0&app_id=58479' +
+  '&byline=0&title=0&portrait=0&muted=1&dnt=1'
+
 function fadeUp(delay = 0) {
   return {
     initial: { opacity: 0, y: 28 },
@@ -110,6 +117,11 @@ export default function CoastalHavenPage() {
   // Lower threshold → pauses sooner when scrolled out of view
   const { ref: tourRef, inView: tourInView } = useInView({ threshold: 0.15 })
 
+  const introIframeRef = useRef(null)
+  const introHasPlayedRef = useRef(false)
+  const [introVideoSrc, setIntroVideoSrc] = useState(INTRO_VIDEO_BASE)
+  const { ref: introRef, inView: introInView } = useInView({ threshold: 0.15 })
+
   useEffect(() => {
     const post = (method, value) => {
       const msg = value !== undefined ? { method, value } : { method }
@@ -129,7 +141,24 @@ export default function CoastalHavenPage() {
     }
   }, [tourInView])
 
-  // When the video ends, reset to start so the "more from…" end screen never shows
+  useEffect(() => {
+    const post = (method, value) => {
+      const msg = value !== undefined ? { method, value } : { method }
+      introIframeRef.current?.contentWindow?.postMessage(JSON.stringify(msg), 'https://player.vimeo.com')
+    }
+    if (introInView) {
+      if (!introHasPlayedRef.current) {
+        introHasPlayedRef.current = true
+        setIntroVideoSrc(`${INTRO_VIDEO_BASE}&autoplay=1&loop=1`)
+      } else {
+        post('play')
+      }
+    } else if (introHasPlayedRef.current) {
+      post('pause')
+    }
+  }, [introInView])
+
+  // When the video ends
   useEffect(() => {
     const onMsg = (e) => {
       if (e.origin !== 'https://player.vimeo.com') return
@@ -156,6 +185,15 @@ export default function CoastalHavenPage() {
   const handleTourIframeLoad = () => {
     setTimeout(() => {
       tourIframeRef.current?.contentWindow?.postMessage(
+        JSON.stringify({ method: 'addEventListener', value: 'finish' }),
+        'https://player.vimeo.com'
+      )
+    }, 500)
+  }
+
+  const handleIntroIframeLoad = () => {
+    setTimeout(() => {
+      introIframeRef.current?.contentWindow?.postMessage(
         JSON.stringify({ method: 'addEventListener', value: 'finish' }),
         'https://player.vimeo.com'
       )
@@ -212,22 +250,69 @@ export default function CoastalHavenPage() {
         {/* ── a) Hero ── */}
         <section className="ch-hero">
           <img src={heroImg} alt="Coastal Haven Suite outdoor view" className="ch-hero__bg" />
-          <div className="ch-hero__overlay" />
           <div className="ch-hero__content">
-            <motion.span className="ch-hero__eyebrow" {...fadeUp(0.1)}>
+            <motion.span
+              className="ch-hero__eyebrow"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
+            >
               1-Bedroom Suite
             </motion.span>
-            <motion.h1 className="ch-hero__title" {...fadeUp(0.22)}>
+            <motion.h1
+              className="ch-hero__title"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+            >
               Coastal Haven Suite
             </motion.h1>
-            <motion.div className="ch-hero__specs" {...fadeUp(0.34)}>
-              <span><Maximize2 size={14} strokeWidth={1.5} />25 sq m</span>
-              <span><BedDouble size={14} strokeWidth={1.5} />1 King Bed</span>
-              <span><Users size={14} strokeWidth={1.5} />2+ Guests</span>
-            </motion.div>
-            <motion.div className="ch-hero__ctas" {...fadeUp(0.44)}>
+            <motion.p
+              className="ch-hero__tagline"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            >
+              Intimate coastal luxury with ocean and pool views
+            </motion.p>
+            <motion.div
+              className="ch-hero__ctas"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.42, ease: [0.4, 0, 0.2, 1] }}
+            >
               <a href="#inquire" className="btn btn-primary">Book a Stay</a>
               <a href="#gallery" className="btn btn-inverse-light">View Gallery</a>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ── NEW: Intro Video Section ── */}
+        <section className="ch-intro section" id="intro">
+          <div className="ch-intro__inner container">
+            <motion.span className="eyebrow ch-intro__eyebrow" {...fadeUp(0)}>
+              Experience Duma Suites
+            </motion.span>
+            <motion.h2 className="section-title ch-intro__title" {...fadeUp(0.1)}>
+              A Glimpse of What Awaits
+            </motion.h2>
+            <motion.p className="ch-intro__desc" {...fadeUp(0.18)}>
+              Discover the spirit of Duma Suites — where coastal luxury meets effortless serenity.
+            </motion.p>
+            <motion.div className="ch-intro__video-wrap" {...fadeUp(0.26)} ref={introRef}>
+              <div className="ch-intro__video-frame">
+                <iframe
+                  ref={introIframeRef}
+                  src={introVideoSrc}
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  loading="lazy"
+                  title="duma-suites-intro"
+                  onLoad={handleIntroIframeLoad}
+                />
+              </div>
             </motion.div>
           </div>
         </section>
@@ -446,41 +531,61 @@ export default function CoastalHavenPage() {
           </div>
         </section>
 
-        {/* ── g) More Suites ── */}
-        <section className="ch-more section section--secondary" id="more-suites">
+        {/* ── g) Suite Preview — all suites ── */}
+        <section className="ch-suites section section--secondary" id="all-suites">
           <div className="container">
-            <motion.span className="eyebrow text-center ch-more__eyebrow" {...fadeUp(0)}>
-              Continue Exploring
+            <motion.span className="eyebrow text-center ch-suites__eyebrow" {...fadeUp(0)}>
+              Our Suites
             </motion.span>
-            <motion.h2 className="section-title ch-more__title" {...fadeUp(0.1)}>
-              Explore More
+
+            {/* Cheetah icon divider */}
+            <motion.div className="ch-suites__divider" {...fadeUp(0.08)} aria-hidden="true">
+              <span className="ch-suites__divider-line ch-suites__divider-line--left" />
+              <img src={cheetahIcon} alt="" className="ch-suites__divider-icon" />
+              <span className="ch-suites__divider-line ch-suites__divider-line--right" />
+            </motion.div>
+
+            <motion.h2 className="section-title ch-suites__title" {...fadeUp(0.15)}>
+              Explore All Suites
             </motion.h2>
-            <motion.div
-              className="ch-more__card"
-              {...fadeUp(0.2)}
-              onClick={() => navigate('/suites/serenity-villa')}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && navigate('/suites/serenity-villa')}
-            >
-              <div className="ch-more__img-wrap">
-                <img src={serenityPreview} alt="Serenity Villa Suite" className="ch-more__img" />
-                <div className="ch-more__overlay">
-                  <p className="ch-more__tagline">3-Bedroom · Luxury Family Retreat</p>
-                  <h3 className="ch-more__name">Serenity Villa Suite</h3>
-                  <div className="ch-more__specs">
-                    <span><Maximize2 size={13} strokeWidth={1.5} />75 sq m</span>
-                    <span><BedDouble size={13} strokeWidth={1.5} />3 King Beds</span>
-                    <span><Users size={13} strokeWidth={1.5} />6+ Guests</span>
+
+            <div className="ch-suites__grid">
+              {/* Coastal Haven card */}
+              <motion.div className="ch-suite-card" {...fadeUp(0.22)} onClick={() => navigate('/suites/coastal-haven')} role="button" tabIndex={0} onKeyDown={e => e.key === 'Enter' && navigate('/suites/coastal-haven')}>
+                <div className="ch-suite-card__img-wrap">
+                  <img src={heroImg} alt="Coastal Haven Suite" className="ch-suite-card__img" />
+                  {/* Shutter overlay — 4 horizontal shutters */}
+                  <div className="ch-suite-card__shutters" aria-hidden="true">
+                    <span /><span /><span /><span />
+                  </div>
+                  <div className="ch-suite-card__badge">Current Suite</div>
+                </div>
+                <div className="ch-suite-card__body">
+                  <p className="ch-suite-card__tagline">1-Bedroom · Intimate Coastal Retreat</p>
+                  <h3 className="ch-suite-card__name">Coastal Haven Suite</h3>
+                  <a href="/suites/coastal-haven" className="btn btn-inverse ch-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/coastal-haven') }}>
+                    View Suite →
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* Serenity Villa card */}
+              <motion.div className="ch-suite-card" {...fadeUp(0.32)} onClick={() => navigate('/suites/serenity-villa')} role="button" tabIndex={0} onKeyDown={e => e.key === 'Enter' && navigate('/suites/serenity-villa')}>
+                <div className="ch-suite-card__img-wrap">
+                  <img src={serenityPreviewImg} alt="Serenity Villa Suite" className="ch-suite-card__img" />
+                  <div className="ch-suite-card__shutters" aria-hidden="true">
+                    <span /><span /><span /><span />
                   </div>
                 </div>
-              </div>
-              <div className="ch-more__footer">
-                <a href="/suites/serenity-villa" className="btn btn-inverse ch-more__btn">
-                  View Suite
-                </a>
-              </div>
-            </motion.div>
+                <div className="ch-suite-card__body">
+                  <p className="ch-suite-card__tagline">3-Bedroom · Luxury Family Retreat</p>
+                  <h3 className="ch-suite-card__name">Serenity Villa Suite</h3>
+                  <a href="/suites/serenity-villa" className="btn btn-inverse ch-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/serenity-villa') }}>
+                    View Suite →
+                  </a>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
 
@@ -490,11 +595,10 @@ export default function CoastalHavenPage() {
         /* ── Hero ── */
         .ch-hero {
           position: relative;
-          height: 90vh;
+          height: 88vh;
           min-height: 520px;
           display: flex;
-          align-items: center;
-          justify-content: center;
+          align-items: flex-end;
           overflow: hidden;
         }
         .ch-hero__bg {
@@ -503,57 +607,98 @@ export default function CoastalHavenPage() {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          transform-origin: center center;
+          animation: ch-hero-zoom 8s ease-out forwards;
         }
-        .ch-hero__overlay {
-          position: absolute;
-          inset: 0;
-          background: rgba(0,0,0,0.35);
+        @keyframes ch-hero-zoom {
+          from { transform: scale(1); }
+          to   { transform: scale(1.05); }
         }
         .ch-hero__content {
           position: relative;
           z-index: 1;
-          text-align: center;
-          padding: 0 var(--section-px);
+          background: rgba(22, 14, 6, 0.78);
+          backdrop-filter: blur(4px);
+          -webkit-backdrop-filter: blur(4px);
+          padding: clamp(14px, 2vw, 20px) clamp(18px, 2.5vw, 28px);
+          margin: 0 clamp(20px, 5vw, 80px) clamp(32px, 5vh, 64px);
+          max-width: 520px;
         }
         .ch-hero__eyebrow {
           display: block;
           font-family: var(--font-eyebrow);
           font-style: italic;
-          font-size: clamp(0.7rem, 1.2vw, 0.9rem);
-          letter-spacing: 0.2em;
+          font-size: clamp(0.65rem, 1.1vw, 0.82rem);
+          letter-spacing: 0.22em;
           text-transform: uppercase;
           color: var(--color-teal);
-          margin-bottom: 1rem;
+          margin-bottom: 0.6rem;
         }
         .ch-hero__title {
           font-family: var(--font-title);
-          font-size: clamp(2.5rem, 7vw, 5.5rem);
+          font-size: clamp(2rem, 5.5vw, 4.2rem);
           font-weight: 400;
           color: #fff;
           line-height: 1.05;
-          margin: 0 0 1.25rem;
+          margin: 0 0 0.65rem;
         }
-        .ch-hero__specs {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 12px 24px;
-          margin-bottom: 2rem;
-        }
-        .ch-hero__specs span {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
+        .ch-hero__tagline {
           font-family: var(--font-body);
-          font-size: 0.88rem;
-          color: rgba(255,255,255,0.88);
+          font-size: clamp(0.8rem, 1.3vw, 0.95rem);
+          color: rgba(255,255,255,0.78);
+          margin: 0 0 1.25rem;
+          line-height: 1.5;
         }
-        .ch-hero__specs svg { color: var(--color-teal); }
         .ch-hero__ctas {
           display: flex;
           flex-wrap: wrap;
-          justify-content: center;
-          gap: 12px;
+          gap: 10px;
+        }
+        @media (min-width: 768px) and (max-width: 1199px) {
+          .ch-hero { height: 76vh; }
+        }
+        @media (max-width: 767px) {
+          .ch-hero { height: 66vh; }
+          .ch-hero__content { max-width: 100%; margin: 0 16px 28px; }
+        }
+
+        /* ── Intro Video Section ── */
+        .ch-intro__inner {
+          max-width: 1100px;
+          text-align: center;
+        }
+        .ch-intro__eyebrow { display: block; }
+        .ch-intro__title { margin: 0.5rem 0 1rem; }
+        .ch-intro__desc {
+          font-family: var(--font-body);
+          font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+          color: var(--color-text-muted);
+          max-width: 65%;
+          margin: 0 auto 2.5rem;
+          line-height: 1.75;
+        }
+        .ch-intro__video-wrap {
+          max-width: 1000px;
+          margin-inline: auto;
+        }
+        .ch-intro__video-frame {
+          position: relative;
+          width: 100%;
+          padding-bottom: 56.25%;
+          border-radius: 4px;
+          overflow: hidden;
+          background: #000;
+          box-shadow: 0 16px 64px rgba(86, 51, 17, 0.2);
+        }
+        .ch-intro__video-frame iframe {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          border: none;
+        }
+        @media (max-width: 768px) {
+          .ch-intro__desc { max-width: 90%; }
         }
 
         /* ── About ── */
@@ -928,95 +1073,125 @@ export default function CoastalHavenPage() {
           gap: 14px;
         }
 
-        /* ── More Suites ── */
-        .ch-more__eyebrow,
-        .ch-more__title {
-          text-align: center;
-          display: block;
+        /* ── Suite Preview ── */
+        .ch-suites__eyebrow { display: block; }
+        .ch-suites__divider {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          max-width: 360px;
+          margin: 0.6rem auto 0.8rem;
         }
-        .ch-more__title { margin: 0.5rem 0 2rem; }
-        .ch-more__card {
-          max-width: 640px;
+        .ch-suites__divider-line {
+          flex: 1;
+          height: 1px;
+        }
+        .ch-suites__divider-line--left {
+          background: linear-gradient(to right, transparent, var(--color-teal));
+        }
+        .ch-suites__divider-line--right {
+          background: linear-gradient(to left, transparent, var(--color-teal));
+        }
+        .ch-suites__divider-icon {
+          width: 2rem;
+          height: 2rem;
+          opacity: 0.72;
+          flex-shrink: 0;
+        }
+        .ch-suites__title { text-align: center; margin: 0.5rem 0 2.5rem; }
+        .ch-suites__grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 32px;
+          max-width: 760px;
           margin-inline: auto;
-          cursor: pointer;
         }
-        .ch-more__img-wrap {
+        .ch-suite-card {
+          cursor: pointer;
+          background: var(--color-bg-primary);
+          border: 1px solid rgba(201,169,110,0.18);
+          border-radius: 3px;
+          overflow: hidden;
+          transition: box-shadow 0.35s ease, transform 0.35s cubic-bezier(0.4,0,0.2,1);
+        }
+        .ch-suite-card:hover {
+          box-shadow: 0 16px 48px rgba(86,51,17,0.18);
+          transform: translateY(-4px);
+        }
+        .ch-suite-card__img-wrap {
           position: relative;
           overflow: hidden;
+          aspect-ratio: 16/9;
         }
-        .ch-more__img {
+        .ch-suite-card__img {
           width: 100%;
-          height: 380px;
+          height: 100%;
           object-fit: cover;
           display: block;
-          transition: transform 600ms ease;
+          transition: transform 0.6s ease;
         }
-        .ch-more__card:hover .ch-more__img {
-          transform: scale(1.04);
+        .ch-suite-card:hover .ch-suite-card__img {
+          transform: scale(1.06);
         }
-        .ch-more__overlay {
+        .ch-suite-card__shutters {
           position: absolute;
-          bottom: 0;
-          left: 0;
-          padding: 20px 24px;
-          max-width: 380px;
-          background: linear-gradient(
-            to right,
-            rgba(0,0,0,0.52) 0%,
-            rgba(0,0,0,0.18) 70%,
-            transparent 100%
-          );
+          inset: 0;
+          display: flex;
+          flex-direction: column;
+          pointer-events: none;
+          z-index: 2;
         }
-        .ch-more__tagline {
+        .ch-suite-card__shutters span {
+          flex: 1;
+          background: var(--color-espresso);
+          transform: scaleX(1);
+          transform-origin: left center;
+          transition: transform 0.45s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .ch-suite-card__shutters span:nth-child(2) { transition-delay: 0.05s; }
+        .ch-suite-card__shutters span:nth-child(3) { transition-delay: 0.10s; }
+        .ch-suite-card__shutters span:nth-child(4) { transition-delay: 0.15s; }
+        .ch-suite-card:hover .ch-suite-card__shutters span {
+          transform: scaleX(0);
+        }
+        .ch-suite-card__badge {
+          position: absolute;
+          top: 12px;
+          left: 12px;
+          z-index: 3;
+          background: var(--color-teal);
+          color: #fff;
+          font-family: var(--font-nav);
+          font-size: 0.58rem;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          padding: 4px 10px;
+          border-radius: 2px;
+        }
+        .ch-suite-card__body {
+          padding: 20px 24px;
+          text-align: center;
+        }
+        .ch-suite-card__tagline {
           font-family: var(--font-eyebrow);
           font-style: italic;
           font-size: 0.7rem;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.85);
-          margin: 0 0 5px;
-          text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+          color: var(--color-teal);
+          margin: 0 0 6px;
         }
-        .ch-more__name {
+        .ch-suite-card__name {
           font-family: var(--font-title);
-          font-size: clamp(1.2rem, 2.5vw, 1.7rem);
-          font-weight: 600;
-          color: #fff;
-          margin: 0 0 8px;
-          text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+          font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+          font-weight: 400;
+          color: var(--color-espresso);
+          margin: 0 0 16px;
         }
-        .ch-more__specs {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px 14px;
-        }
-        .ch-more__specs span {
-          display: inline-flex;
-          align-items: center;
-          gap: 5px;
-          font-family: var(--font-body);
-          font-size: 0.75rem;
-          color: rgba(255,255,255,0.88);
-          text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-        }
-        .ch-more__specs svg { color: rgba(255,255,255,0.7); }
-        .ch-more__footer {
-          padding: 16px 0 0;
-          display: flex;
-          justify-content: center;
-        }
-
-        @media (max-width: 639px) {
-          .ch-hero { height: 85vh; }
-          .ch-more__img { height: 260px; }
-          .ch-more__overlay {
-            max-width: 100%;
-            background: linear-gradient(
-              to top,
-              rgba(0,0,0,0.48) 0%,
-              rgba(0,0,0,0.12) 65%,
-              transparent 100%
-            );
+        .ch-suite-card__btn { display: inline-block; }
+        @media (min-width: 760px) {
+          .ch-suites__grid {
+            grid-template-columns: 1fr 1fr;
           }
         }
       `}</style>
