@@ -246,10 +246,16 @@ export default function AllSuitesPage() {
         }
         .as-card__overlay {
           position: absolute;
-          bottom: 24px;
-          left: 24px;
-          background-color: rgba(247, 241, 229, 0.96);
-          padding: 14px 18px;
+          bottom: 0;
+          left: 0;
+          padding: 20px 24px;
+          max-width: 380px;
+          background: linear-gradient(
+            to right,
+            rgba(0,0,0,0.52) 0%,
+            rgba(0,0,0,0.18) 70%,
+            transparent 100%
+          );
         }
         .as-card__tagline {
           font-family: var(--font-eyebrow);
@@ -257,16 +263,18 @@ export default function AllSuitesPage() {
           font-size: 0.7rem;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: var(--color-teal);
+          color: rgba(255,255,255,0.85);
           margin: 0 0 5px;
+          text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
         .as-card__name {
           font-family: var(--font-title);
           font-size: clamp(1.3rem, 2.5vw, 1.9rem);
           font-weight: 600;
-          color: var(--color-espresso);
+          color: #fff;
           margin: 0 0 8px;
           line-height: 1.15;
+          text-shadow: 0 2px 8px rgba(0,0,0,0.4);
         }
         .as-card__specs {
           display: flex;
@@ -279,10 +287,11 @@ export default function AllSuitesPage() {
           gap: 5px;
           font-family: var(--font-body);
           font-size: 0.75rem;
-          color: var(--color-text-muted);
+          color: rgba(255,255,255,0.88);
+          text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
         .as-card__specs svg {
-          color: var(--color-teal);
+          color: rgba(255,255,255,0.7);
           flex-shrink: 0;
         }
         .as-card__body {
@@ -307,7 +316,15 @@ export default function AllSuitesPage() {
 
         @media (max-width: 639px) {
           .as-card__img { height: 300px; }
-          .as-card__overlay { bottom: 12px; left: 12px; right: 12px; }
+          .as-card__overlay {
+            max-width: 100%;
+            background: linear-gradient(
+              to top,
+              rgba(0,0,0,0.48) 0%,
+              rgba(0,0,0,0.12) 65%,
+              transparent 100%
+            );
+          }
           .as-card__body { flex-direction: column; align-items: flex-start; }
         }
       `}</style>

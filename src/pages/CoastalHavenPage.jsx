@@ -1,63 +1,70 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import {
   Maximize2, BedDouble, Users, Check, Mail, Phone,
   Wifi, Wind, Tv, Coffee, Bath, Waves, Utensils, Calendar, Clock,
+  Home, Mountain, Star, Leaf, Shield, Heart,
 } from 'lucide-react'
 
-import heroImg from '../assets/coastal-haven-suite-outdoor-view.JPEG'
+import heroImg from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
 import serenityPreview from '../assets/serenity-villa-3bedroomsuite-preview.JPEG'
 
-// Gallery images
-import g1  from '../assets/coastal-haven-suite-bedroom-interior.JPEG'
-import g2  from '../assets/coastal-haven-suite-breakfast-counter.JPEG'
-import g3  from '../assets/coastal-haven-suite-closet-area.JPEG'
-import g4  from '../assets/coastal-haven-suite-entrance-from-inside-view.JPEG'
-import g5  from '../assets/coastal-haven-suite-kingsize-bed-sideview.JPEG'
-import g6  from '../assets/coastal-haven-suite-kingsize-bed-sideview2.JPEG'
-import g7  from '../assets/coastal-haven-suite-kingsize-bed.JPEG'
-import g8  from '../assets/coastal-haven-suite-kitchenette-lounge-area.JPEG'
-import g9  from '../assets/coastal-haven-suite-kitchenette.JPEG'
-import g10 from '../assets/coastal-haven-suite-lounge-couch-upclose.JPEG'
-import g11 from '../assets/coastal-haven-suite-lounge-couch.JPEG'
-import g12 from '../assets/coastal-haven-suite-lounge-tv-area-upclose.JPEG'
-import g13 from '../assets/coastal-haven-suite-lounge-tv-area.JPEG'
+// Gallery images — ordered: beds → kitchen/lounge → outdoor/views → entrance → closet → bathroom
+import g1  from '../assets/coastal-haven-suite-kingsize-bed.JPEG'
+import g2  from '../assets/coastal-haven-suite-kingsize-bed-sideview.JPEG'
+import g3  from '../assets/coastal-haven-suite-kingsize-bed-sideview2.JPEG'
+import g4  from '../assets/coastal-haven-suite-bedroom-interior.JPEG'
+import g5  from '../assets/coastal-haven-suite-breakfast-counter.JPEG'
+import g6  from '../assets/coastal-haven-suite-kitchenette.JPEG'
+import g7  from '../assets/coastal-haven-suite-kitchenette-lounge-area.JPEG'
+import g8  from '../assets/coastal-haven-suite-lounge-couch.JPEG'
+import g9  from '../assets/coastal-haven-suite-lounge-couch-upclose.JPEG'
+import g10 from '../assets/coastal-haven-suite-lounge-tv-area-upclose.JPEG'
+import g11 from '../assets/coastal-haven-suite-outdoor-view.JPEG'
+import g12 from '../assets/coastal-haven-outside-chair.JPEG'
+import g13 from '../assets/coastal-haven-suite-outside-room-view.JPEG'
 import g14 from '../assets/coastal-haven-suite-nighttime-poolview.JPEG'
-import g15 from '../assets/coastal-haven-suite-shower.JPEG'
-import g16 from '../assets/coastal-haven-suite-washroom.JPEG'
+import g15 from '../assets/coastal-haven-suite-entrance-from-inside-view.JPEG'
+import g16 from '../assets/coastal-haven-suite-kitchen-to-bedroom-door-view.JPEG'
+import g17 from '../assets/coastal-haven-suite-closet-area.JPEG'
+import g18 from '../assets/coastal-haven-suite-shower.JPEG'
+import g19 from '../assets/coastal-haven-suite-washroom.JPEG'
 
-const GALLERY = [g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,g11,g12,g13,g14,g15,g16]
+const GALLERY = [g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,g11,g12,g13,g14,g15,g16,g17,g18,g19]
 const GALLERY_LABELS = [
-  'Bedroom interior','Breakfast counter','Closet area','Entrance view',
-  'King bed side view','King bed side view 2','King bed','Kitchenette lounge',
-  'Kitchenette','Lounge couch close','Lounge couch','TV area close',
-  'TV area','Night pool view','Shower','Washroom',
+  'King bed','King bed side view','King bed side view 2','Bedroom interior',
+  'Breakfast counter','Kitchenette','Kitchenette lounge area',
+  'Lounge couch','Lounge couch close-up','TV area close-up',
+  'Outdoor view','Outside chair','Outside room view','Night pool view',
+  'Entrance from inside','Kitchen to bedroom door','Closet area',
+  'Shower','Washroom',
 ]
 
 const AMENITIES = [
-  { icon: BedDouble, label: 'King-size bed' },
-  { icon: Bath, label: 'En-suite bathroom' },
-  { icon: Coffee, label: 'Full kitchenette' },
-  { icon: Waves, label: 'Private lounge' },
-  { icon: Utensils, label: 'Balcony' },
-  { icon: Waves, label: 'Pool view' },
-  { icon: Wifi, label: 'High-speed Wi-Fi' },
-  { icon: Check, label: 'Daily housekeeping' },
-  { icon: Wind, label: 'Air conditioning' },
-  { icon: Tv, label: 'Smart TV' },
-  { icon: Utensils, label: 'In-suite dining' },
-  { icon: Check, label: 'Premium linens' },
+  { icon: BedDouble,  label: 'King-size bed' },
+  { icon: Bath,       label: 'En-suite bathroom' },
+  { icon: Coffee,     label: 'Full kitchenette' },
+  { icon: Home,       label: 'Private lounge' },
+  { icon: Mountain,   label: 'Balcony' },
+  { icon: Waves,      label: 'Pool view' },
+  { icon: Wifi,       label: 'High-speed Wi-Fi' },
+  { icon: Star,       label: 'Daily housekeeping' },
+  { icon: Wind,       label: 'Air conditioning' },
+  { icon: Tv,         label: 'Smart TV' },
+  { icon: Utensils,   label: 'In-suite dining' },
+  { icon: Leaf,       label: 'Premium linens' },
 ]
 
 const POLICIES = [
-  { icon: Clock, label: 'Check-in', value: '2:00 PM' },
-  { icon: Clock, label: 'Check-out', value: '11:00 AM' },
-  { icon: Calendar, label: 'Minimum stay', value: '2 nights' },
-  { icon: Check, label: 'Cancellation', value: '48h notice' },
-  { icon: Check, label: 'Pets', value: 'Not permitted' },
-  { icon: Check, label: 'Smoking', value: 'Outdoor areas only' },
+  { icon: Clock,    label: 'Check-in',      value: '2:00 PM' },
+  { icon: Clock,    label: 'Check-out',     value: '10:00 AM' },
+  { icon: Calendar, label: 'Minimum stay',  value: '2 nights' },
+  { icon: Shield,   label: 'Cancellation',  value: '1 month notice · 50% refund + 50% redeemable within 6 months' },
+  { icon: Heart,    label: 'Pets',          value: 'Small pets welcome' },
+  { icon: Wind,     label: 'Smoking',       value: 'Balcony & lobby only' },
 ]
 
 const HIGHLIGHTS = [
@@ -68,6 +75,11 @@ const HIGHLIGHTS = [
   'Private lounge with smart TV',
   'Daily housekeeping and turndown service',
 ]
+
+const TOUR_VIDEO_BASE =
+  'https://player.vimeo.com/video/1188952533' +
+  '?badge=0&autopause=0&player_id=0&app_id=58479' +
+  '&byline=0&title=0&portrait=0&muted=1'
 
 function fadeUp(delay = 0) {
   return {
@@ -80,35 +92,30 @@ function fadeUp(delay = 0) {
 
 export default function CoastalHavenPage() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
-  const galleryRef = useRef(null)
   const navigate = useNavigate()
 
-  // Auto-scroll gallery
+  // Video pause-on-scroll logic
+  const tourIframeRef = useRef(null)
+  const tourHasPlayedRef = useRef(false)
+  const [tourVideoSrc, setTourVideoSrc] = useState(TOUR_VIDEO_BASE)
+  const { ref: tourRef, inView: tourInView } = useInView({ threshold: 0.4 })
+
   useEffect(() => {
-    const el = galleryRef.current
-    if (!el) return
-    const step = 1.2
-    let paused = false
-    const onEnter = () => { paused = true }
-    const onLeave = () => { paused = false }
-    const onTouch = () => { paused = true }
-    const id = setInterval(() => {
-      if (paused) return
-      el.scrollLeft += step
-      if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 2) {
-        el.scrollLeft = 0
+    const post = (method) =>
+      tourIframeRef.current?.contentWindow?.postMessage(
+        JSON.stringify({ method }), 'https://player.vimeo.com'
+      )
+    if (tourInView) {
+      if (!tourHasPlayedRef.current) {
+        tourHasPlayedRef.current = true
+        setTourVideoSrc(`${TOUR_VIDEO_BASE}&autoplay=1`)
+      } else {
+        post('play')
       }
-    }, 16)
-    el.addEventListener('mouseenter', onEnter)
-    el.addEventListener('mouseleave', onLeave)
-    el.addEventListener('touchstart', onTouch, { passive: true })
-    return () => {
-      clearInterval(id)
-      el.removeEventListener('mouseenter', onEnter)
-      el.removeEventListener('mouseleave', onLeave)
-      el.removeEventListener('touchstart', onTouch)
+    } else if (tourHasPlayedRef.current) {
+      post('pause')
     }
-  }, [])
+  }, [tourInView])
 
   return (
     <>
@@ -184,12 +191,14 @@ export default function CoastalHavenPage() {
               Inside the Suite
             </motion.h2>
           </div>
-          <motion.div className="ch-gallery__track" ref={galleryRef} {...fadeUp(0.2)}>
-            {GALLERY.map((img, i) => (
-              <div key={i} className="ch-gallery__item">
-                <img src={img} alt={GALLERY_LABELS[i]} className="ch-gallery__img" />
-              </div>
-            ))}
+          <motion.div className="ch-gallery__track" {...fadeUp(0.2)}>
+            <div className="ch-gallery__inner">
+              {[...GALLERY, ...GALLERY].map((img, i) => (
+                <div key={i} className="ch-gallery__item">
+                  <img src={img} alt={GALLERY_LABELS[i % GALLERY.length]} className="ch-gallery__img" />
+                </div>
+              ))}
+            </div>
           </motion.div>
           <div className="container ch-gallery__cta-wrap">
             <motion.a href="#inquire" className="btn btn-primary" {...fadeUp(0.1)}>
@@ -198,7 +207,35 @@ export default function CoastalHavenPage() {
           </div>
         </section>
 
-        {/* ── d) Amenities ── */}
+        {/* ── d) Room Tour Video ── */}
+        <section className="ch-tour section" id="room-tour">
+          <div className="container">
+            <motion.span className="eyebrow text-center" {...fadeUp(0)}>
+              Room Tour
+            </motion.span>
+            <motion.h2 className="section-title ch-tour__title" {...fadeUp(0.1)}>
+              Experience the Suite
+            </motion.h2>
+            <motion.p className="ch-tour__subtitle" {...fadeUp(0.18)}>
+              Take a cinematic walkthrough of your coastal retreat.
+            </motion.p>
+            <motion.div className="ch-tour__frame-wrap" {...fadeUp(0.26)} ref={tourRef}>
+              {/* Vertical 9:16 video — constrained width for portrait display */}
+              <div className="ch-tour__frame">
+                <iframe
+                  ref={tourIframeRef}
+                  src={tourVideoSrc}
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  loading="lazy"
+                  title="coastal-haven-suite-room-tour"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </section>
         <section className="ch-amenities section" id="amenities">
           <div className="container">
             <motion.span className="eyebrow text-center ch-amenities__eyebrow" {...fadeUp(0)}>
@@ -207,14 +244,23 @@ export default function CoastalHavenPage() {
             <motion.h2 className="section-title ch-amenities__title" {...fadeUp(0.1)}>
               Suite Amenities
             </motion.h2>
-            <motion.div className="ch-amenities__grid" {...fadeUp(0.2)}>
-              {AMENITIES.map(({ icon: Icon, label }) => (
-                <div key={label} className="ch-amenity">
-                  <Icon size={22} strokeWidth={1.5} className="ch-amenity__icon" />
+            <div className="ch-amenities__grid">
+              {AMENITIES.map(({ icon: Icon, label }, i) => (
+                <motion.div
+                  key={label}
+                  className="ch-amenity"
+                  initial={{ opacity: 0, y: 22 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.5, delay: i * 0.07, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  <div className="ch-amenity__icon-wrap">
+                    <Icon size={22} strokeWidth={1.5} className="ch-amenity__icon" />
+                  </div>
                   <span className="ch-amenity__label">{label}</span>
-                </div>
+                </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -222,10 +268,10 @@ export default function CoastalHavenPage() {
         <section className="ch-policies section section--secondary" id="policies">
           <div className="container">
             <motion.span className="eyebrow text-center ch-policies__eyebrow" {...fadeUp(0)}>
-              Know Before You Go
+              Policies &amp; Check-in
             </motion.span>
             <motion.h2 className="section-title ch-policies__title" {...fadeUp(0.1)}>
-              Policies &amp; Check-in
+              Know Before You Go
             </motion.h2>
             <motion.div className="ch-policies__grid" {...fadeUp(0.2)}>
               {POLICIES.map(({ icon: Icon, label, value }) => (
@@ -428,15 +474,22 @@ export default function CoastalHavenPage() {
           margin: 0.5rem 0 2rem;
         }
         .ch-gallery__track {
+          overflow: hidden;
+          padding: 0 0 16px;
+        }
+        .ch-gallery__inner {
           display: flex;
           gap: 12px;
-          overflow-x: auto;
-          padding: 0 var(--section-px) 16px;
-          scroll-behavior: smooth;
-          -ms-overflow-style: none;
-          scrollbar-width: none;
+          width: max-content;
+          animation: ch-gallery-scroll 90s linear infinite;
         }
-        .ch-gallery__track::-webkit-scrollbar { display: none; }
+        .ch-gallery__inner:hover {
+          animation-play-state: paused;
+        }
+        @keyframes ch-gallery-scroll {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
         .ch-gallery__item {
           flex-shrink: 0;
         }
@@ -449,6 +502,46 @@ export default function CoastalHavenPage() {
         .ch-gallery__cta-wrap {
           text-align: center;
           padding-top: 2rem;
+        }
+
+        /* ── Room Tour Video ── */
+        .ch-tour__title {
+          text-align: center;
+          margin: 0.5rem 0 0.75rem;
+        }
+        .ch-tour__subtitle {
+          font-family: var(--font-body);
+          font-size: clamp(0.9rem, 1.4vw, 1rem);
+          color: var(--color-text-muted);
+          text-align: center;
+          margin: 0 auto 2.5rem;
+          max-width: 480px;
+          line-height: 1.7;
+        }
+        .ch-tour__frame-wrap {
+          display: flex;
+          justify-content: center;
+        }
+        /* Portrait 9:16 video — constrained to a comfortable width */
+        .ch-tour__frame {
+          position: relative;
+          width: 100%;
+          max-width: 420px;
+          padding-bottom: min(177.78%, 100vh);
+          background: #000;
+          border-radius: 4px;
+          overflow: hidden;
+          box-shadow: 0 12px 50px rgba(86, 51, 17, 0.2);
+        }
+        .ch-tour__frame iframe {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          border: none;
+        }
+        @media (min-width: 1024px) {
+          .ch-tour__frame { max-width: 560px; }
         }
 
         /* ── Amenities ── */
@@ -467,16 +560,55 @@ export default function CoastalHavenPage() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 10px;
-          padding: 20px 16px;
+          gap: 12px;
+          padding: 24px 16px;
           background: var(--color-bg-secondary);
           text-align: center;
+          cursor: default;
+          border-radius: 3px;
+          transition:
+            background-color 0.32s ease,
+            transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+            box-shadow 0.32s ease;
         }
-        .ch-amenity__icon { color: var(--color-teal); }
+        .ch-amenity:hover {
+          background-color: var(--color-teal);
+          transform: scale(1.06);
+          box-shadow: 0 10px 30px rgba(201, 169, 110, 0.32);
+        }
+        .ch-amenity__icon-wrap {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 52px;
+          height: 52px;
+          border-radius: 50%;
+          background: rgba(201, 169, 110, 0.12);
+          border: 1px solid rgba(201, 169, 110, 0.28);
+          flex-shrink: 0;
+          transition:
+            background 0.32s ease,
+            border-color 0.32s ease;
+        }
+        .ch-amenity:hover .ch-amenity__icon-wrap {
+          background: rgba(255, 255, 255, 0.22);
+          border-color: rgba(255, 255, 255, 0.45);
+        }
+        .ch-amenity__icon {
+          color: var(--color-teal);
+          transition: color 0.32s ease;
+        }
+        .ch-amenity:hover .ch-amenity__icon {
+          color: #fff;
+        }
         .ch-amenity__label {
           font-family: var(--font-body);
           font-size: 0.82rem;
           color: var(--color-text-body);
+          transition: color 0.32s ease;
+        }
+        .ch-amenity:hover .ch-amenity__label {
+          color: #fff;
         }
 
         /* ── Policies ── */
@@ -488,9 +620,9 @@ export default function CoastalHavenPage() {
         .ch-policies__title { margin: 0.5rem 0 2rem; }
         .ch-policies__grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
           gap: 16px;
-          max-width: 900px;
+          max-width: 960px;
           margin-inline: auto;
         }
         .ch-policy {
@@ -584,10 +716,16 @@ export default function CoastalHavenPage() {
         }
         .ch-more__overlay {
           position: absolute;
-          bottom: 24px;
-          left: 24px;
-          background-color: rgba(247, 241, 229, 0.96);
-          padding: 14px 18px;
+          bottom: 0;
+          left: 0;
+          padding: 20px 24px;
+          max-width: 380px;
+          background: linear-gradient(
+            to right,
+            rgba(0,0,0,0.52) 0%,
+            rgba(0,0,0,0.18) 70%,
+            transparent 100%
+          );
         }
         .ch-more__tagline {
           font-family: var(--font-eyebrow);
@@ -595,15 +733,17 @@ export default function CoastalHavenPage() {
           font-size: 0.7rem;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: var(--color-teal);
+          color: rgba(255,255,255,0.85);
           margin: 0 0 5px;
+          text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
         .ch-more__name {
           font-family: var(--font-title);
           font-size: clamp(1.2rem, 2.5vw, 1.7rem);
           font-weight: 600;
-          color: var(--color-espresso);
+          color: #fff;
           margin: 0 0 8px;
+          text-shadow: 0 2px 8px rgba(0,0,0,0.4);
         }
         .ch-more__specs {
           display: flex;
@@ -616,9 +756,10 @@ export default function CoastalHavenPage() {
           gap: 5px;
           font-family: var(--font-body);
           font-size: 0.75rem;
-          color: var(--color-text-muted);
+          color: rgba(255,255,255,0.88);
+          text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
-        .ch-more__specs svg { color: var(--color-teal); }
+        .ch-more__specs svg { color: rgba(255,255,255,0.7); }
         .ch-more__footer {
           padding: 16px 0 0;
           display: flex;
@@ -631,7 +772,15 @@ export default function CoastalHavenPage() {
         @media (max-width: 639px) {
           .ch-hero { height: 85vh; }
           .ch-more__img { height: 260px; }
-          .ch-more__overlay { bottom: 12px; left: 12px; right: 12px; }
+          .ch-more__overlay {
+            max-width: 100%;
+            background: linear-gradient(
+              to top,
+              rgba(0,0,0,0.48) 0%,
+              rgba(0,0,0,0.12) 65%,
+              transparent 100%
+            );
+          }
         }
       `}</style>
     </>

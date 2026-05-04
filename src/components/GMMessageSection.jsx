@@ -1,3 +1,4 @@
+import { useRef, useState, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
 
@@ -30,8 +31,43 @@ function PeelingPhoto({ src, alt, className, delay = 0 }) {
   )
 }
 
+const VIDEO_BASE_SRC =
+  'https://player.vimeo.com/video/1188952042' +
+  '?badge=0&autopause=0&player_id=0&app_id=58479' +
+  '&byline=0&title=0&portrait=0'
+
 export default function GMMessageSection() {
   const { ref } = useInView({ threshold: 0.1, triggerOnce: true })
+
+  // Track when the video is in / out of the viewport (no triggerOnce — we need ongoing updates)
+  const iframeRef = useRef(null)
+  const hasAutoplayedRef = useRef(false)
+  const [videoSrc, setVideoSrc] = useState(VIDEO_BASE_SRC)
+
+  const { ref: videoRef, inView: videoInView } = useInView({ threshold: 0.5 })
+
+  // Play once on first entry; pause when scrolled out; resume on re-entry
+  useEffect(() => {
+    const post = (method) =>
+      iframeRef.current?.contentWindow?.postMessage(
+        JSON.stringify({ method }),
+        'https://player.vimeo.com'
+      )
+
+    if (videoInView) {
+      if (!hasAutoplayedRef.current) {
+        // First entry — reload the iframe src with autoplay=1 to start playback
+        hasAutoplayedRef.current = true
+        setVideoSrc(`${VIDEO_BASE_SRC}&autoplay=1`)
+      } else {
+        // Re-entry — resume from where the user left off
+        post('play')
+      }
+    } else if (hasAutoplayedRef.current) {
+      // Scrolled out — pause
+      post('pause')
+    }
+  }, [videoInView])
 
   return (
     <section className="gm-section section section--premium" id="experience" ref={ref}>
@@ -94,7 +130,7 @@ export default function GMMessageSection() {
             Our team has dedicated itself to redefining what coastal luxury
             means&thinsp;—&thinsp;not through grandeur alone, but through the quiet confidence
             of perfection in every detail. From the linen on your bed to the
-            last note of your evening meal, nothing is left to chance.
+            last light of a Watamu sunset, nothing is left to chance.
           </motion.p>
 
           {/* Inline image 2 — mobile & tablet only (hidden on desktop) */}
@@ -115,7 +151,7 @@ export default function GMMessageSection() {
 
           {/* Closing line */}
           <motion.p className="gm-para gm-para--closing" {...fadeUp(0.52)}>
-            Welcome to our home.
+            Welcome to our home. Watch the short introduction below to see what awaits you.
           </motion.p>
 
           {/* ── Attribution ── */}
@@ -125,6 +161,26 @@ export default function GMMessageSection() {
 
             {/* Title */}
             <p className="gm-title-label">General Manager, Duma Suites</p>
+          </motion.div>
+
+          {/* ── Intro Video ── */}
+          <motion.div className="gm-video-wrap" {...fadeUp(0.72)} ref={videoRef}>
+            <div className="gm-video-label" aria-hidden="true">
+              <span className="gm-video-line" />
+              <span className="gm-video-tag">A Short Introduction</span>
+              <span className="gm-video-line" />
+            </div>
+            <div className="gm-video-frame">
+              <iframe
+                ref={iframeRef}
+                src={videoSrc}
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+                title="intro-video"
+              />
+            </div>
           </motion.div>
 
         </article>
@@ -333,6 +389,48 @@ export default function GMMessageSection() {
           text-align: center;
         }
 
+        /* ── Intro Video ── */
+        .gm-video-wrap {
+          margin-top: 2.5rem;
+          clear: both;
+        }
+        .gm-video-label {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 1.2rem;
+        }
+        .gm-video-line {
+          flex: 1;
+          height: 1px;
+          background: rgba(86, 51, 17, 0.2);
+        }
+        .gm-video-tag {
+          font-family: var(--font-eyebrow);
+          font-style: italic;
+          font-size: 0.68rem;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: var(--color-teal);
+          white-space: nowrap;
+        }
+        .gm-video-frame {
+          position: relative;
+          width: 100%;
+          padding-bottom: 56.6%;
+          border-radius: 3px;
+          overflow: hidden;
+          background: #000;
+          box-shadow: 0 8px 40px rgba(86, 51, 17, 0.18);
+        }
+        .gm-video-frame iframe {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          border: none;
+        }
+
         /* ─────────────────────────────────────────────
            TABLET  768 – 1199px
            Overlay peels diagonally (up-right, 45°)
@@ -432,6 +530,11 @@ export default function GMMessageSection() {
           .gm-photo:hover {
             transform: translateY(-5px) rotate(var(--base-rot, 0deg));
             box-shadow: 8px 14px 40px rgba(86, 51, 17, 0.30);
+          }
+
+          /* Wider video on desktop — break out of the 60ch text column */
+          .gm-video-wrap {
+            margin-inline: -4rem;
           }
         }
       `}</style>

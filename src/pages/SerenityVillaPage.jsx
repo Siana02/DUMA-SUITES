@@ -1,78 +1,82 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import {
   Maximize2, BedDouble, Users, Check, Mail, Phone,
-  Wifi, Wind, Tv, Coffee, Bath, Waves, Utensils, Calendar, Clock, Home,
+  Wifi, Wind, Tv, Coffee, Bath, Waves, Utensils, Calendar, Clock,
+  Mountain, Star, Leaf, Shield, Heart,
 } from 'lucide-react'
 
 import heroImg from '../assets/serenity-villa-outdoor-terrace.JPEG'
 import coastalPreview from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
 
-// Gallery images
+// Gallery images — reordered: bedrooms → closet → lounge/dining → outdoor → kitchen → entrance → bathroom → 1stfloor-view (last)
 import g1  from '../assets/serenity-villa-1st-bedroom-view1.JPEG'
 import g2  from '../assets/serenity-villa-1st-bedroom-view2.JPEG'
-import g3  from '../assets/serenity-villa-1stfloor-view.JPEG'
-import g4  from '../assets/serenity-villa-2ndbedroom-view1.JPEG'
-import g5  from '../assets/serenity-villa-2ndbedroom-view2.JPEG'
-import g6  from '../assets/serenity-villa-2ndbedroom-view3.JPEG'
-import g7  from '../assets/serenity-villa-3rdbedroom-view1.JPEG'
-import g8  from '../assets/serenity-villa-3rdbedroom-view2.JPEG'
-import g9  from '../assets/serenity-villa-art-showcase.JPEG'
-import g10 from '../assets/serenity-villa-balcony-view1.JPEG'
-import g11 from '../assets/serenity-villa-closet-view1.JPEG'
-import g12 from '../assets/serenity-villa-dining-table-view1.JPEG'
-import g13 from '../assets/serenity-villa-dining-upclose.JPEG'
-import g14 from '../assets/serenity-villa-entrance-from-inside-with-tv-view.JPEG'
-import g15 from '../assets/serenity-villa-entrance-view-from-inside.JPEG'
-import g16 from '../assets/serenity-villa-entrance-view-from-outside.JPEG'
-import g17 from '../assets/serenity-villa-entrance-view-main.JPEG'
-import g18 from '../assets/serenity-villa-full-kitchen-view.JPEG'
-import g19 from '../assets/serenity-villa-indoor-lounge-area-upclose.JPEG'
+import g3  from '../assets/serenity-villa-2ndbedroom-view1.JPEG'
+import g4  from '../assets/serenity-villa-2ndbedroom-view2.JPEG'
+import g5  from '../assets/serenity-villa-2ndbedroom-view3.JPEG'
+import g6  from '../assets/serenity-villa-3rdbedroom-view1.JPEG'
+import g7  from '../assets/serenity-villa-3rdbedroom-view2.JPEG'
+import g8  from '../assets/serenity-villa-closet-view1.JPEG'
+import g9  from '../assets/serenity-villa-indoor-lounge-area-upclose.JPEG'
+import g10 from '../assets/serenity-villa-lounge-dining-area-view1.JPEG'
+import g11 from '../assets/serenity-villa-dining-table-view1.JPEG'
+import g12 from '../assets/serenity-villa-dining-upclose.JPEG'
+import g13 from '../assets/serenity-villa-art-showcase.JPEG'
+import g14 from '../assets/serenity-villa-outdoor-garden-view.JPEG'
+import g15 from '../assets/serenity-villa-outdoor-lounge-upclose.JPEG'
+import g16 from '../assets/serenity-villa-outdoor-seating-view1.JPEG'
+import g17 from '../assets/serenity-villa-balcony-view1.JPEG'
+import g18 from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
+import g19 from '../assets/serenity-villa-full-kitchen-view.JPEG'
 import g20 from '../assets/serenity-villa-kitchen-cupboard.JPEG'
-import g21 from '../assets/serenity-villa-lounge-dining-area-view1.JPEG'
-import g22 from '../assets/serenity-villa-outdoor-garden-view.JPEG'
-import g23 from '../assets/serenity-villa-outdoor-lounge-upclose.JPEG'
-import g24 from '../assets/serenity-villa-outdoor-seating-view1.JPEG'
+import g21 from '../assets/serenity-villa-entrance-view-main.JPEG'
+import g22 from '../assets/serenity-villa-entrance-view-from-outside.JPEG'
+import g23 from '../assets/serenity-villa-entrance-view-from-inside.JPEG'
+import g24 from '../assets/serenity-villa-entrance-from-inside-with-tv-view.JPEG'
 import g25 from '../assets/serenity-villa-private-shower1.JPEG'
-import g26 from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
-import g27 from '../assets/serenity-villa-washroom-view1.JPEG'
-import g28 from '../assets/serenity-villa-washroom2.JPEG'
+import g26 from '../assets/serenity-villa-washroom-view1.JPEG'
+import g27 from '../assets/serenity-villa-washroom2.JPEG'
+import g28 from '../assets/serenity-villa-1stfloor-view.JPEG'
 
 const GALLERY = [g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,g11,g12,g13,g14,g15,g16,g17,g18,g19,g20,g21,g22,g23,g24,g25,g26,g27,g28]
 const GALLERY_LABELS = [
-  '1st bedroom view 1','1st bedroom view 2','1st floor view','2nd bedroom view 1',
-  '2nd bedroom view 2','2nd bedroom view 3','3rd bedroom view 1','3rd bedroom view 2',
-  'Art showcase','Balcony view','Closet view','Dining table','Dining upclose',
-  'Entrance with TV','Entrance from inside','Entrance from outside','Entrance main',
-  'Full kitchen','Indoor lounge','Kitchen cupboard','Lounge dining area',
-  'Outdoor garden','Outdoor lounge','Outdoor seating','Private shower',
-  'TV and kitchen','Washroom','Washroom 2',
+  '1st bedroom view 1','1st bedroom view 2',
+  '2nd bedroom view 1','2nd bedroom view 2','2nd bedroom view 3',
+  '3rd bedroom view 1','3rd bedroom view 2',
+  'Closet view',
+  'Indoor lounge','Lounge dining area','Dining table','Dining upclose','Art showcase',
+  'Outdoor garden','Outdoor lounge','Outdoor seating','Balcony view',
+  'TV and kitchen overview','Full kitchen','Kitchen cupboard',
+  'Entrance main','Entrance from outside','Entrance from inside','Entrance with TV',
+  'Private shower','Washroom','Washroom 2',
+  '1st floor view',
 ]
 
 const AMENITIES = [
-  { icon: BedDouble, label: '3 King bedrooms' },
-  { icon: Bath, label: 'Multiple en-suites' },
-  { icon: Utensils, label: 'Full kitchen' },
-  { icon: Home, label: 'Outdoor terrace' },
-  { icon: Waves, label: 'Garden views' },
-  { icon: Coffee, label: 'Dining area' },
-  { icon: Home, label: 'Living room' },
-  { icon: Waves, label: 'Balcony' },
-  { icon: Wifi, label: 'High-speed Wi-Fi' },
-  { icon: Check, label: 'Daily housekeeping' },
-  { icon: Wind, label: 'Air conditioning' },
-  { icon: Tv, label: 'Smart TVs' },
+  { icon: BedDouble,  label: '3 King bedrooms' },
+  { icon: Bath,       label: 'Multiple en-suites' },
+  { icon: Utensils,   label: 'Full kitchen' },
+  { icon: Mountain,   label: 'Outdoor terrace' },
+  { icon: Leaf,       label: 'Garden views' },
+  { icon: Coffee,     label: 'Dining area' },
+  { icon: Users,      label: 'Living room' },
+  { icon: Waves,      label: 'Balcony' },
+  { icon: Wifi,       label: 'High-speed Wi-Fi' },
+  { icon: Star,       label: 'Daily housekeeping' },
+  { icon: Wind,       label: 'Air conditioning' },
+  { icon: Tv,         label: 'Smart TVs' },
 ]
 
 const POLICIES = [
-  { icon: Clock, label: 'Check-in', value: '2:00 PM' },
-  { icon: Clock, label: 'Check-out', value: '11:00 AM' },
-  { icon: Calendar, label: 'Minimum stay', value: '2 nights' },
-  { icon: Check, label: 'Cancellation', value: '48h notice' },
-  { icon: Check, label: 'Pets', value: 'Not permitted' },
-  { icon: Check, label: 'Smoking', value: 'Outdoor areas only' },
+  { icon: Clock,    label: 'Check-in',      value: '2:00 PM' },
+  { icon: Clock,    label: 'Check-out',     value: '10:00 AM' },
+  { icon: Calendar, label: 'Minimum stay',  value: '2 nights' },
+  { icon: Shield,   label: 'Cancellation',  value: '1 month notice · 50% refund + 50% redeemable within 6 months' },
+  { icon: Heart,    label: 'Pets',          value: 'Small pets welcome' },
+  { icon: Wind,     label: 'Smoking',       value: 'Balcony & lobby only' },
 ]
 
 const HIGHLIGHTS = [
@@ -96,35 +100,7 @@ function fadeUp(delay = 0) {
 
 export default function SerenityVillaPage() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
-  const galleryRef = useRef(null)
   const navigate = useNavigate()
-
-  // Auto-scroll gallery
-  useEffect(() => {
-    const el = galleryRef.current
-    if (!el) return
-    const step = 1.2
-    let paused = false
-    const onEnter = () => { paused = true }
-    const onLeave = () => { paused = false }
-    const onTouch = () => { paused = true }
-    const id = setInterval(() => {
-      if (paused) return
-      el.scrollLeft += step
-      if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 2) {
-        el.scrollLeft = 0
-      }
-    }, 16)
-    el.addEventListener('mouseenter', onEnter)
-    el.addEventListener('mouseleave', onLeave)
-    el.addEventListener('touchstart', onTouch, { passive: true })
-    return () => {
-      clearInterval(id)
-      el.removeEventListener('mouseenter', onEnter)
-      el.removeEventListener('mouseleave', onLeave)
-      el.removeEventListener('touchstart', onTouch)
-    }
-  }, [])
 
   return (
     <>
@@ -201,12 +177,14 @@ export default function SerenityVillaPage() {
               Inside the Villa
             </motion.h2>
           </div>
-          <motion.div className="sv-gallery__track" ref={galleryRef} {...fadeUp(0.2)}>
-            {GALLERY.map((img, i) => (
-              <div key={i} className="sv-gallery__item">
-                <img src={img} alt={GALLERY_LABELS[i]} className="sv-gallery__img" />
-              </div>
-            ))}
+          <motion.div className="sv-gallery__track" {...fadeUp(0.2)}>
+            <div className="sv-gallery__inner">
+              {[...GALLERY, ...GALLERY].map((img, i) => (
+                <div key={i} className="sv-gallery__item">
+                  <img src={img} alt={GALLERY_LABELS[i % GALLERY.length]} className="sv-gallery__img" />
+                </div>
+              ))}
+            </div>
           </motion.div>
           <div className="container sv-gallery__cta-wrap">
             <motion.a href="#inquire" className="btn btn-primary" {...fadeUp(0.1)}>
@@ -224,14 +202,23 @@ export default function SerenityVillaPage() {
             <motion.h2 className="section-title sv-amenities__title" {...fadeUp(0.1)}>
               Villa Amenities
             </motion.h2>
-            <motion.div className="sv-amenities__grid" {...fadeUp(0.2)}>
-              {AMENITIES.map(({ icon: Icon, label }) => (
-                <div key={label} className="sv-amenity">
-                  <Icon size={22} strokeWidth={1.5} className="sv-amenity__icon" />
+            <div className="sv-amenities__grid">
+              {AMENITIES.map(({ icon: Icon, label }, i) => (
+                <motion.div
+                  key={label}
+                  className="sv-amenity"
+                  initial={{ opacity: 0, y: 22 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.5, delay: i * 0.07, ease: [0.4, 0, 0.2, 1] }}
+                >
+                  <div className="sv-amenity__icon-wrap">
+                    <Icon size={22} strokeWidth={1.5} className="sv-amenity__icon" />
+                  </div>
                   <span className="sv-amenity__label">{label}</span>
-                </div>
+                </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -239,10 +226,10 @@ export default function SerenityVillaPage() {
         <section className="sv-policies section section--secondary" id="policies">
           <div className="container">
             <motion.span className="eyebrow text-center sv-policies__eyebrow" {...fadeUp(0)}>
-              Know Before You Go
+              Policies &amp; Check-in
             </motion.span>
             <motion.h2 className="section-title sv-policies__title" {...fadeUp(0.1)}>
-              Policies &amp; Check-in
+              Know Before You Go
             </motion.h2>
             <motion.div className="sv-policies__grid" {...fadeUp(0.2)}>
               {POLICIES.map(({ icon: Icon, label, value }) => (
@@ -439,15 +426,22 @@ export default function SerenityVillaPage() {
           margin: 0.5rem 0 2rem;
         }
         .sv-gallery__track {
+          overflow: hidden;
+          padding: 0 0 16px;
+        }
+        .sv-gallery__inner {
           display: flex;
           gap: 12px;
-          overflow-x: auto;
-          padding: 0 var(--section-px) 16px;
-          scroll-behavior: smooth;
-          -ms-overflow-style: none;
-          scrollbar-width: none;
+          width: max-content;
+          animation: sv-gallery-scroll 125s linear infinite;
         }
-        .sv-gallery__track::-webkit-scrollbar { display: none; }
+        .sv-gallery__inner:hover {
+          animation-play-state: paused;
+        }
+        @keyframes sv-gallery-scroll {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
         .sv-gallery__item { flex-shrink: 0; }
         .sv-gallery__img {
           width: 340px;
@@ -473,16 +467,55 @@ export default function SerenityVillaPage() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 10px;
-          padding: 20px 16px;
+          gap: 12px;
+          padding: 24px 16px;
           background: var(--color-bg-secondary);
           text-align: center;
+          cursor: default;
+          border-radius: 3px;
+          transition:
+            background-color 0.32s ease,
+            transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+            box-shadow 0.32s ease;
         }
-        .sv-amenity__icon { color: var(--color-teal); }
+        .sv-amenity:hover {
+          background-color: var(--color-teal);
+          transform: scale(1.06);
+          box-shadow: 0 10px 30px rgba(201, 169, 110, 0.32);
+        }
+        .sv-amenity__icon-wrap {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 52px;
+          height: 52px;
+          border-radius: 50%;
+          background: rgba(201, 169, 110, 0.12);
+          border: 1px solid rgba(201, 169, 110, 0.28);
+          flex-shrink: 0;
+          transition:
+            background 0.32s ease,
+            border-color 0.32s ease;
+        }
+        .sv-amenity:hover .sv-amenity__icon-wrap {
+          background: rgba(255, 255, 255, 0.22);
+          border-color: rgba(255, 255, 255, 0.45);
+        }
+        .sv-amenity__icon {
+          color: var(--color-teal);
+          transition: color 0.32s ease;
+        }
+        .sv-amenity:hover .sv-amenity__icon {
+          color: #fff;
+        }
         .sv-amenity__label {
           font-family: var(--font-body);
           font-size: 0.82rem;
           color: var(--color-text-body);
+          transition: color 0.32s ease;
+        }
+        .sv-amenity:hover .sv-amenity__label {
+          color: #fff;
         }
 
         /* ── Policies ── */
@@ -491,9 +524,9 @@ export default function SerenityVillaPage() {
         .sv-policies__title { margin: 0.5rem 0 2rem; }
         .sv-policies__grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
           gap: 16px;
-          max-width: 900px;
+          max-width: 960px;
           margin-inline: auto;
         }
         .sv-policy {
@@ -576,10 +609,16 @@ export default function SerenityVillaPage() {
         .sv-more__card:hover .sv-more__img { transform: scale(1.04); }
         .sv-more__overlay {
           position: absolute;
-          bottom: 24px;
-          left: 24px;
-          background-color: rgba(247, 241, 229, 0.96);
-          padding: 14px 18px;
+          bottom: 0;
+          left: 0;
+          padding: 20px 24px;
+          max-width: 380px;
+          background: linear-gradient(
+            to right,
+            rgba(0,0,0,0.52) 0%,
+            rgba(0,0,0,0.18) 70%,
+            transparent 100%
+          );
         }
         .sv-more__tagline {
           font-family: var(--font-eyebrow);
@@ -587,15 +626,17 @@ export default function SerenityVillaPage() {
           font-size: 0.7rem;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: var(--color-teal);
+          color: rgba(255,255,255,0.85);
           margin: 0 0 5px;
+          text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
         .sv-more__name {
           font-family: var(--font-title);
           font-size: clamp(1.2rem, 2.5vw, 1.7rem);
           font-weight: 600;
-          color: var(--color-espresso);
+          color: #fff;
           margin: 0 0 8px;
+          text-shadow: 0 2px 8px rgba(0,0,0,0.4);
         }
         .sv-more__specs {
           display: flex;
@@ -608,9 +649,10 @@ export default function SerenityVillaPage() {
           gap: 5px;
           font-family: var(--font-body);
           font-size: 0.75rem;
-          color: var(--color-text-muted);
+          color: rgba(255,255,255,0.88);
+          text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
-        .sv-more__specs svg { color: var(--color-teal); }
+        .sv-more__specs svg { color: rgba(255,255,255,0.7); }
         .sv-more__footer {
           padding: 16px 0 0;
           display: flex;
@@ -623,7 +665,15 @@ export default function SerenityVillaPage() {
         @media (max-width: 639px) {
           .sv-hero { height: 85vh; }
           .sv-more__img { height: 260px; }
-          .sv-more__overlay { bottom: 12px; left: 12px; right: 12px; }
+          .sv-more__overlay {
+            max-width: 100%;
+            background: linear-gradient(
+              to top,
+              rgba(0,0,0,0.48) 0%,
+              rgba(0,0,0,0.12) 65%,
+              transparent 100%
+            );
+          }
         }
       `}</style>
     </>
