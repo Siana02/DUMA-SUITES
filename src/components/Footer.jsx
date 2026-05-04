@@ -1,6 +1,7 @@
 import { Mail, Phone, MapPin } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import logoImg from '../assets/logo.jpeg'
+import mammalImg from '../assets/mammal.png'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
@@ -73,7 +74,10 @@ export default function Footer() {
         {/* Brand column */}
         <div className="footer__brand">
           <a href="/" onClick={e => { e.preventDefault(); navigate('/') }} className="footer__logo" aria-label="Duma Suites Home">
-            <img src={logoImg} alt="Duma Suites" className="footer__logo-img" />
+            {/* Mammal mark — larger */}
+            <img src={mammalImg} alt="" className="footer__logo-mammal" aria-hidden="true" />
+            {/* Original crest */}
+            <img src={logoImg} alt="Duma Suites crest" className="footer__logo-img" />
             <div>
               <span className="footer__logo-text">Duma Suites</span>
               <span className="footer__logo-tagline">{t.footer.tagline}</span>
@@ -179,16 +183,26 @@ export default function Footer() {
         .footer__logo {
           display: flex;
           align-items: center;
-          gap: 10px;
+          gap: 14px;
           text-decoration: none;
           margin-bottom: 16px;
+          flex-wrap: wrap;
+        }
+        .footer__logo-mammal {
+          width: 72px;
+          height: 72px;
+          object-fit: contain;
+          filter: brightness(0) invert(1);
+          opacity: 0.92;
+          flex-shrink: 0;
         }
         .footer__logo-img {
-          width: 48px;
-          height: 48px;
+          width: 62px;
+          height: 62px;
           object-fit: cover;
           border-radius: 50%;
           border: 2px solid rgba(255,255,255,0.2);
+          flex-shrink: 0;
         }
         .footer__logo-text {
           display: block;
