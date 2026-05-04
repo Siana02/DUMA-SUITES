@@ -96,6 +96,9 @@ const INTRO_VIDEO_BASE =
   '?badge=0&autopause=0&player_id=0&app_id=58479' +
   '&byline=0&title=0&portrait=0&muted=1&dnt=1'
 
+// Vimeo requires a brief delay after iframe load before it can receive postMessage listeners
+const VIMEO_IFRAME_READY_DELAY = 500
+
 function fadeUp(delay = 0) {
   return {
     initial: { opacity: 0, y: 28 },
@@ -188,7 +191,7 @@ export default function CoastalHavenPage() {
         JSON.stringify({ method: 'addEventListener', value: 'finish' }),
         'https://player.vimeo.com'
       )
-    }, 500)
+    }, VIMEO_IFRAME_READY_DELAY)
   }
 
   const handleIntroIframeLoad = () => {
@@ -197,7 +200,7 @@ export default function CoastalHavenPage() {
         JSON.stringify({ method: 'addEventListener', value: 'finish' }),
         'https://player.vimeo.com'
       )
-    }, 500)
+    }, VIMEO_IFRAME_READY_DELAY)
   }
 
   const galleryTrackRef    = useRef(null)
