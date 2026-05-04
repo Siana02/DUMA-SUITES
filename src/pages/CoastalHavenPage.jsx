@@ -38,6 +38,7 @@ import g18 from '../assets/coastal-haven-suite-shower.JPEG'
 import g19 from '../assets/coastal-haven-suite-washroom.JPEG'
 
 const GALLERY = [g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,g11,g12,g13,g14,g15,g16,g17,g18,g19]
+const DEFAULT_IMAGE_WIDTH = 352 // 340px image + 12px gap, used as scroll-step fallback
 const GALLERY_LABELS = [
   'King bed','King bed side view','King bed side view 2','Bedroom interior',
   'Breakfast counter','Kitchenette','Kitchenette lounge area',
@@ -187,14 +188,14 @@ export default function CoastalHavenPage() {
 
   const galleryScrollNext = useCallback(() => {
     const half = galleryHalfRef.current || 1
-    const step = galleryTrackRef.current ? galleryTrackRef.current.scrollWidth / 2 / GALLERY.length : 352
+    const step = galleryTrackRef.current ? galleryTrackRef.current.scrollWidth / 2 / GALLERY.length : DEFAULT_IMAGE_WIDTH
     galleryPosRef.current = (galleryPosRef.current + step) % half
     if (galleryTrackRef.current) galleryTrackRef.current.style.transform = `translateX(-${galleryPosRef.current}px)`
   }, [])
 
   const galleryScrollPrev = useCallback(() => {
     const half = galleryHalfRef.current || 1
-    const step = galleryTrackRef.current ? galleryTrackRef.current.scrollWidth / 2 / GALLERY.length : 352
+    const step = galleryTrackRef.current ? galleryTrackRef.current.scrollWidth / 2 / GALLERY.length : DEFAULT_IMAGE_WIDTH
     galleryPosRef.current = ((galleryPosRef.current - step) % half + half) % half
     if (galleryTrackRef.current) galleryTrackRef.current.style.transform = `translateX(-${galleryPosRef.current}px)`
   }, [])

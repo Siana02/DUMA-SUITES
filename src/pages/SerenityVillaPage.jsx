@@ -46,6 +46,7 @@ import g27 from '../assets/serenity-villa-washroom2.JPEG'
 import g28 from '../assets/serenity-villa-1stfloor-view.JPEG'
 
 const GALLERY = [g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,g11,g12,g13,g14,g15,g16,g17,g18,g19,g20,g21,g22,g23,g24,g25,g26,g27,g28]
+const DEFAULT_IMAGE_WIDTH = 352 // 340px image + 12px gap, used as scroll-step fallback
 const GALLERY_LABELS = [
   '1st bedroom view 1','1st bedroom view 2',
   '2nd bedroom view 1','2nd bedroom view 2','2nd bedroom view 3',
@@ -135,14 +136,14 @@ export default function SerenityVillaPage() {
 
   const galleryScrollNext = useCallback(() => {
     const half = galleryHalfRef.current || 1
-    const step = galleryTrackRef.current ? galleryTrackRef.current.scrollWidth / 2 / GALLERY.length : 352
+    const step = galleryTrackRef.current ? galleryTrackRef.current.scrollWidth / 2 / GALLERY.length : DEFAULT_IMAGE_WIDTH
     galleryPosRef.current = (galleryPosRef.current + step) % half
     if (galleryTrackRef.current) galleryTrackRef.current.style.transform = `translateX(-${galleryPosRef.current}px)`
   }, [])
 
   const galleryScrollPrev = useCallback(() => {
     const half = galleryHalfRef.current || 1
-    const step = galleryTrackRef.current ? galleryTrackRef.current.scrollWidth / 2 / GALLERY.length : 352
+    const step = galleryTrackRef.current ? galleryTrackRef.current.scrollWidth / 2 / GALLERY.length : DEFAULT_IMAGE_WIDTH
     galleryPosRef.current = ((galleryPosRef.current - step) % half + half) % half
     if (galleryTrackRef.current) galleryTrackRef.current.style.transform = `translateX(-${galleryPosRef.current}px)`
   }, [])
