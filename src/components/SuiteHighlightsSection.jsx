@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer'
 
 import poolsImg   from '../assets/pools-of-serenity.JPEG'
 import swahiliImg from '../assets/swahili-elegance.JPEG'
-import natureImg  from '../assets/nature & security.JPEG'
+import natureImg  from '../assets/gallery-image2.jpg'
 import luxuryImg  from '../assets/effortless-luxury.JPEG'
 import cheetahIcon from '../assets/cheetah.png'
 
