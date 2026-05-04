@@ -1,3 +1,4 @@
+import { useRef, useState, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
 
@@ -33,17 +34,40 @@ function PeelingPhoto({ src, alt, className, delay = 0 }) {
 const VIDEO_BASE_SRC =
   'https://player.vimeo.com/video/1188952042' +
   '?badge=0&autopause=0&player_id=0&app_id=58479' +
-  '&byline=0&title=0&portrait=0&loop=1'
+  '&byline=0&title=0&portrait=0'
 
 export default function GMMessageSection() {
   const { ref } = useInView({ threshold: 0.1, triggerOnce: true })
 
-  // Autoplay only once the video frame is substantially in the viewport
-  const { ref: videoRef, inView: videoInView } = useInView({
-    threshold: 0.75,
-    triggerOnce: true,
-  })
-  const videoSrc = videoInView ? `${VIDEO_BASE_SRC}&autoplay=1` : VIDEO_BASE_SRC
+  // Track when the video is in / out of the viewport (no triggerOnce — we need ongoing updates)
+  const iframeRef = useRef(null)
+  const hasAutoplayedRef = useRef(false)
+  const [videoSrc, setVideoSrc] = useState(VIDEO_BASE_SRC)
+
+  const { ref: videoRef, inView: videoInView } = useInView({ threshold: 0.5 })
+
+  // Play once on first entry; pause when scrolled out; resume on re-entry
+  useEffect(() => {
+    const post = (method) =>
+      iframeRef.current?.contentWindow?.postMessage(
+        JSON.stringify({ method }),
+        'https://player.vimeo.com'
+      )
+
+    if (videoInView) {
+      if (!hasAutoplayedRef.current) {
+        // First entry — reload the iframe src with autoplay=1 to start playback
+        hasAutoplayedRef.current = true
+        setVideoSrc(`${VIDEO_BASE_SRC}&autoplay=1`)
+      } else {
+        // Re-entry — resume from where the user left off
+        post('play')
+      }
+    } else if (hasAutoplayedRef.current) {
+      // Scrolled out — pause
+      post('pause')
+    }
+  }, [videoInView])
 
   return (
     <section className="gm-section section section--premium" id="experience" ref={ref}>
@@ -148,6 +172,7 @@ export default function GMMessageSection() {
             </div>
             <div className="gm-video-frame">
               <iframe
+                ref={iframeRef}
                 src={videoSrc}
                 frameBorder="0"
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
@@ -505,6 +530,11 @@ export default function GMMessageSection() {
           .gm-photo:hover {
             transform: translateY(-5px) rotate(var(--base-rot, 0deg));
             box-shadow: 8px 14px 40px rgba(86, 51, 17, 0.30);
+          }
+
+          /* Wider video on desktop — break out of the 60ch text column */
+          .gm-video-wrap {
+            margin-inline: -4rem;
           }
         }
       `}</style>
