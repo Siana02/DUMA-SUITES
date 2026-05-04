@@ -1,16 +1,20 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import {
   Maximize2, BedDouble, Users, Check, Mail, Phone,
-  Wifi, Wind, Tv, Coffee, Bath, Waves, Utensils, Calendar, Clock,
-  Home, Mountain, Star, Leaf, Shield, Heart,
+  Wifi, Tv, Bath, Waves, Utensils, Calendar, Clock,
+  Shield, AirVent, Sparkles, Sofa, Sunrise, UtensilsCrossed,
+  Shirt, Fan, PawPrint, Cigarette, ArrowLeft, ArrowRight,
 } from 'lucide-react'
 
 import heroImg from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
 import serenityPreview from '../assets/serenity-villa-3bedroomsuite-preview.JPEG'
+import { FaUmbrellaBeach } from 'react-icons/fa'
+import { GiTowel } from 'react-icons/gi'
+import coastalAboutImg from '../assets/coastal-haven-suite-outdoor-view.JPEG'
 
 // Gallery images — ordered: beds → kitchen/lounge → outdoor/views → entrance → closet → bathroom
 import g1  from '../assets/coastal-haven-suite-kingsize-bed.JPEG'
@@ -34,6 +38,7 @@ import g18 from '../assets/coastal-haven-suite-shower.JPEG'
 import g19 from '../assets/coastal-haven-suite-washroom.JPEG'
 
 const GALLERY = [g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,g11,g12,g13,g14,g15,g16,g17,g18,g19]
+const DEFAULT_IMAGE_WIDTH = 352 // 340px image + 12px gap, used as scroll-step fallback
 const GALLERY_LABELS = [
   'King bed','King bed side view','King bed side view 2','Bedroom interior',
   'Breakfast counter','Kitchenette','Kitchenette lounge area',
@@ -44,27 +49,30 @@ const GALLERY_LABELS = [
 ]
 
 const AMENITIES = [
-  { icon: BedDouble,  label: 'King-size bed' },
-  { icon: Bath,       label: 'En-suite bathroom' },
-  { icon: Coffee,     label: 'Full kitchenette' },
-  { icon: Home,       label: 'Private lounge' },
-  { icon: Mountain,   label: 'Balcony' },
-  { icon: Waves,      label: 'Pool view' },
-  { icon: Wifi,       label: 'High-speed Wi-Fi' },
-  { icon: Star,       label: 'Daily housekeeping' },
-  { icon: Wind,       label: 'Air conditioning' },
-  { icon: Tv,         label: 'Smart TV' },
-  { icon: Utensils,   label: 'In-suite dining' },
-  { icon: Leaf,       label: 'Premium linens' },
+  { icon: BedDouble,       label: 'King-size bed' },
+  { icon: Bath,            label: 'En-suite bathroom' },
+  { icon: UtensilsCrossed, label: 'Full kitchenette' },
+  { icon: Sofa,            label: 'Private lounge' },
+  { icon: Sunrise,         label: 'Balcony' },
+  { icon: Waves,           label: 'Pool view' },
+  { icon: Wifi,            label: 'High-speed Wi-Fi' },
+  { icon: Sparkles,        label: 'Daily housekeeping' },
+  { icon: AirVent,         label: 'Air conditioning' },
+  { icon: Tv,              label: 'Smart TV' },
+  { icon: Utensils,        label: 'In-suite dining' },
+  { icon: Shirt,           label: 'Premium linens' },
+  { icon: FaUmbrellaBeach, label: 'Sunbeds' },
+  { icon: GiTowel,         label: 'Towels provided' },
+  { icon: Fan,             label: 'Ceiling fans' },
 ]
 
 const POLICIES = [
-  { icon: Clock,    label: 'Check-in',      value: '2:00 PM' },
-  { icon: Clock,    label: 'Check-out',     value: '10:00 AM' },
-  { icon: Calendar, label: 'Minimum stay',  value: '2 nights' },
-  { icon: Shield,   label: 'Cancellation',  value: '1 month notice · 50% refund + 50% redeemable within 6 months' },
-  { icon: Heart,    label: 'Pets',          value: 'Small pets welcome' },
-  { icon: Wind,     label: 'Smoking',       value: 'Balcony & lobby only' },
+  { icon: Clock,     label: 'Check-in',      value: '2:00 PM' },
+  { icon: Clock,     label: 'Check-out',     value: '10:00 AM' },
+  { icon: Calendar,  label: 'Minimum stay',  value: '2 nights' },
+  { icon: Shield,    label: 'Cancellation',  value: '1 month notice · 50% refund + 50% redeemable within 6 months' },
+  { icon: PawPrint,  label: 'Pets',          value: 'Small pets welcome' },
+  { icon: Cigarette, label: 'Smoking',       value: 'Balcony & lobby only' },
 ]
 
 const HIGHLIGHTS = [
@@ -79,7 +87,7 @@ const HIGHLIGHTS = [
 const TOUR_VIDEO_BASE =
   'https://player.vimeo.com/video/1188952533' +
   '?badge=0&autopause=0&player_id=0&app_id=58479' +
-  '&byline=0&title=0&portrait=0&muted=1'
+  '&byline=0&title=0&portrait=0&muted=1&dnt=1'
 
 function fadeUp(delay = 0) {
   return {
@@ -98,13 +106,17 @@ export default function CoastalHavenPage() {
   const tourIframeRef = useRef(null)
   const tourHasPlayedRef = useRef(false)
   const [tourVideoSrc, setTourVideoSrc] = useState(TOUR_VIDEO_BASE)
-  const { ref: tourRef, inView: tourInView } = useInView({ threshold: 0.4 })
+
+  // Lower threshold → pauses sooner when scrolled out of view
+  const { ref: tourRef, inView: tourInView } = useInView({ threshold: 0.15 })
 
   useEffect(() => {
-    const post = (method) =>
+    const post = (method, value) => {
+      const msg = value !== undefined ? { method, value } : { method }
       tourIframeRef.current?.contentWindow?.postMessage(
-        JSON.stringify({ method }), 'https://player.vimeo.com'
+        JSON.stringify(msg), 'https://player.vimeo.com'
       )
+    }
     if (tourInView) {
       if (!tourHasPlayedRef.current) {
         tourHasPlayedRef.current = true
@@ -116,6 +128,77 @@ export default function CoastalHavenPage() {
       post('pause')
     }
   }, [tourInView])
+
+  // When the video ends, reset to start so the "more from…" end screen never shows
+  useEffect(() => {
+    const onMsg = (e) => {
+      if (e.origin !== 'https://player.vimeo.com') return
+      if (e.source !== tourIframeRef.current?.contentWindow) return
+      try {
+        const data = JSON.parse(e.data)
+        if (data.event === 'finish') {
+          const win = tourIframeRef.current?.contentWindow
+          if (!win) return
+          const post = (method, value) => {
+            const msg = value !== undefined ? { method, value } : { method }
+            win.postMessage(JSON.stringify(msg), 'https://player.vimeo.com')
+          }
+          post('pause')
+          post('setCurrentTime', 0)
+        }
+      } catch { /* ignore */ }
+    }
+    window.addEventListener('message', onMsg)
+    return () => window.removeEventListener('message', onMsg)
+  }, [])
+
+  // Subscribe to the finish event once the player is ready
+  const handleTourIframeLoad = () => {
+    setTimeout(() => {
+      tourIframeRef.current?.contentWindow?.postMessage(
+        JSON.stringify({ method: 'addEventListener', value: 'finish' }),
+        'https://player.vimeo.com'
+      )
+    }, 500)
+  }
+
+  const galleryTrackRef    = useRef(null)
+  const galleryPosRef      = useRef(0)
+  const galleryPausedRef   = useRef(false)
+  const galleryRafRef      = useRef(null)
+  const galleryHalfRef     = useRef(0)
+
+  useEffect(() => {
+    const track = galleryTrackRef.current
+    if (!track) return
+    const timer = setTimeout(() => {
+      galleryHalfRef.current = track.scrollWidth / 2
+      const step = () => {
+        if (!galleryPausedRef.current) {
+          galleryPosRef.current += 0.5
+          if (galleryPosRef.current >= galleryHalfRef.current) galleryPosRef.current -= galleryHalfRef.current
+          track.style.transform = `translateX(-${galleryPosRef.current}px)`
+        }
+        galleryRafRef.current = requestAnimationFrame(step)
+      }
+      galleryRafRef.current = requestAnimationFrame(step)
+    }, 100)
+    return () => { clearTimeout(timer); cancelAnimationFrame(galleryRafRef.current) }
+  }, [])
+
+  const galleryScrollNext = useCallback(() => {
+    const half = galleryHalfRef.current || 1
+    const step = galleryTrackRef.current ? galleryTrackRef.current.scrollWidth / 2 / GALLERY.length : DEFAULT_IMAGE_WIDTH
+    galleryPosRef.current = (galleryPosRef.current + step) % half
+    if (galleryTrackRef.current) galleryTrackRef.current.style.transform = `translateX(-${galleryPosRef.current}px)`
+  }, [])
+
+  const galleryScrollPrev = useCallback(() => {
+    const half = galleryHalfRef.current || 1
+    const step = galleryTrackRef.current ? galleryTrackRef.current.scrollWidth / 2 / GALLERY.length : DEFAULT_IMAGE_WIDTH
+    galleryPosRef.current = ((galleryPosRef.current - step) % half + half) % half
+    if (galleryTrackRef.current) galleryTrackRef.current.style.transform = `translateX(-${galleryPosRef.current}px)`
+  }, [])
 
   return (
     <>
@@ -151,33 +234,59 @@ export default function CoastalHavenPage() {
 
         {/* ── b) About ── */}
         <section className="ch-about section" id="about">
-          <div className="container ch-about__inner">
-            <motion.div className="ch-about__left" {...fadeUp(0)}>
-              <span className="eyebrow">About this Suite</span>
-              <h2 className="section-title ch-about__title">An Intimate Coastal Retreat</h2>
-              <p className="ch-about__text">
-                The Coastal Haven Suite is a beautifully appointed one-bedroom sanctuary nestled within Ghepard Towers,
-                offering sweeping views of the infinity pool and the Indian Ocean beyond. Crafted for couples and solo
-                travellers seeking a refined escape, every detail has been considered — from the plush king-size bed
-                to the fully equipped kitchenette and private lounge.
-              </p>
-              <p className="ch-about__text">
-                Wake to golden morning light filtering through floor-to-ceiling windows, and unwind evenings on your
-                private balcony as the ocean breeze rolls in. This is coastal luxury, distilled.
-              </p>
-              <a href="#inquire" className="btn btn-primary ch-about__cta">Check Availability</a>
+          <div className="container">
+            {/* At-a-glance stats strip */}
+            <motion.div className="ch-about__stats-strip" {...fadeUp(0)}>
+              <div className="ch-about__stat"><Maximize2 size={15} strokeWidth={1.5} /><span>25 sq m</span></div>
+              <div className="ch-about__stat-divider" aria-hidden="true" />
+              <div className="ch-about__stat"><BedDouble size={15} strokeWidth={1.5} /><span>1 King Bed</span></div>
+              <div className="ch-about__stat-divider" aria-hidden="true" />
+              <div className="ch-about__stat"><Users size={15} strokeWidth={1.5} /><span>2+ Guests</span></div>
+              <div className="ch-about__stat-divider" aria-hidden="true" />
+              <div className="ch-about__stat"><Calendar size={15} strokeWidth={1.5} /><span>2 Night Min</span></div>
             </motion.div>
-            <motion.div className="ch-about__right" {...fadeUp(0.15)}>
-              <h3 className="ch-about__highlights-title">Suite Highlights</h3>
-              <ul className="ch-highlights">
-                {HIGHLIGHTS.map((h) => (
-                  <li key={h} className="ch-highlights__item">
-                    <Check size={16} strokeWidth={2} className="ch-highlights__icon" />
-                    {h}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+
+            <div className="ch-about__inner">
+              {/* Left: text */}
+              <motion.div className="ch-about__left" {...fadeUp(0.08)}>
+                <span className="eyebrow">About this Suite</span>
+                <h2 className="section-title ch-about__title">An Intimate Coastal Retreat</h2>
+                <p className="ch-about__text">
+                  The Coastal Haven Suite is a beautifully appointed one-bedroom sanctuary nestled within Ghepard Towers,
+                  offering sweeping views of the infinity pool and the Indian Ocean beyond. Crafted for couples and solo
+                  travellers seeking a refined escape, every detail has been considered — from the plush king-size bed
+                  to the fully equipped kitchenette and private lounge.
+                </p>
+                <p className="ch-about__text">
+                  Wake to golden morning light filtering through floor-to-ceiling windows, and unwind evenings on your
+                  private balcony as the ocean breeze rolls in. This is coastal luxury, distilled.
+                </p>
+                <a href="#inquire" className="btn btn-primary ch-about__cta">Check Availability</a>
+              </motion.div>
+
+              {/* Center: atmospheric image */}
+              <motion.div className="ch-about__img-col" {...fadeUp(0.16)}>
+                <div className="ch-about__img-wrap">
+                  <img src={coastalAboutImg} alt="Coastal Haven outdoor view" className="ch-about__img" />
+                  <div className="ch-about__img-overlay" aria-hidden="true" />
+                </div>
+              </motion.div>
+
+              {/* Right: highlights card */}
+              <motion.div className="ch-about__right" {...fadeUp(0.22)}>
+                <div className="ch-about__highlights-card">
+                  <h3 className="ch-about__highlights-title">Suite Highlights</h3>
+                  <ul className="ch-highlights">
+                    {HIGHLIGHTS.map((h) => (
+                      <li key={h} className="ch-highlights__item">
+                        <Check size={14} strokeWidth={1.75} className="ch-highlights__icon" />
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
 
@@ -191,14 +300,38 @@ export default function CoastalHavenPage() {
               Inside the Suite
             </motion.h2>
           </div>
-          <motion.div className="ch-gallery__track" {...fadeUp(0.2)}>
-            <div className="ch-gallery__inner">
-              {[...GALLERY, ...GALLERY].map((img, i) => (
-                <div key={i} className="ch-gallery__item">
-                  <img src={img} alt={GALLERY_LABELS[i % GALLERY.length]} className="ch-gallery__img" />
-                </div>
-              ))}
+          <motion.div className="ch-gallery__strip-wrapper" {...fadeUp(0.2)}>
+            <button
+              className="ch-gallery__arrow ch-gallery__arrow--prev"
+              onClick={galleryScrollPrev}
+              aria-label="Previous photos"
+              onMouseEnter={() => { galleryPausedRef.current = true }}
+              onMouseLeave={() => { galleryPausedRef.current = false }}
+            >
+              <ArrowLeft size={18} strokeWidth={1.8} />
+            </button>
+            <div
+              className="ch-gallery__track-wrap"
+              onMouseEnter={() => { galleryPausedRef.current = true }}
+              onMouseLeave={() => { galleryPausedRef.current = false }}
+            >
+              <div className="ch-gallery__inner" ref={galleryTrackRef}>
+                {[...GALLERY, ...GALLERY].map((img, i) => (
+                  <div key={i} className="ch-gallery__item">
+                    <img src={img} alt={GALLERY_LABELS[i % GALLERY.length]} className="ch-gallery__img" loading="lazy" />
+                  </div>
+                ))}
+              </div>
             </div>
+            <button
+              className="ch-gallery__arrow ch-gallery__arrow--next"
+              onClick={galleryScrollNext}
+              aria-label="Next photos"
+              onMouseEnter={() => { galleryPausedRef.current = true }}
+              onMouseLeave={() => { galleryPausedRef.current = false }}
+            >
+              <ArrowRight size={18} strokeWidth={1.8} />
+            </button>
           </motion.div>
           <div className="container ch-gallery__cta-wrap">
             <motion.a href="#inquire" className="btn btn-primary" {...fadeUp(0.1)}>
@@ -231,6 +364,7 @@ export default function CoastalHavenPage() {
                   allowFullScreen
                   loading="lazy"
                   title="coastal-haven-suite-room-tour"
+                  onLoad={handleTourIframeLoad}
                 />
               </div>
             </motion.div>
@@ -423,15 +557,43 @@ export default function CoastalHavenPage() {
         }
 
         /* ── About ── */
+        .ch-about__stats-strip {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 0;
+          margin-bottom: clamp(28px, 4vw, 44px);
+          padding: 14px 24px;
+          background: rgba(201,169,110,0.08);
+          border: 1px solid rgba(201,169,110,0.22);
+          border-radius: 3px;
+        }
+        .ch-about__stat {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          font-family: var(--font-nav);
+          font-size: 0.64rem;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--color-espresso);
+          padding: 4px 20px;
+        }
+        .ch-about__stat svg { color: var(--color-teal); flex-shrink: 0; }
+        .ch-about__stat-divider {
+          width: 1px;
+          height: 18px;
+          background: rgba(86,51,17,0.2);
+          flex-shrink: 0;
+        }
         .ch-about__inner {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: clamp(32px, 6vw, 72px);
+          grid-template-columns: 1fr;
+          gap: clamp(28px, 4vw, 44px);
           align-items: start;
         }
-        .ch-about__title {
-          margin: 0.5rem 0 1.25rem;
-        }
+        .ch-about__title { margin: 0.5rem 0 1.25rem; }
         .ch-about__text {
           font-family: var(--font-body);
           font-size: clamp(0.92rem, 1.4vw, 1.05rem);
@@ -439,33 +601,80 @@ export default function CoastalHavenPage() {
           line-height: 1.8;
           margin-bottom: 1rem;
         }
-        .ch-about__cta { margin-top: 0.75rem; }
+        .ch-about__cta { margin-top: 0.75rem; display: inline-block; }
+        /* Center image column */
+        .ch-about__img-col { display: none; }
+        .ch-about__img-wrap {
+          position: relative;
+          overflow: hidden;
+          border-radius: 3px;
+          aspect-ratio: 3/4;
+        }
+        .ch-about__img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 600ms ease;
+        }
+        .ch-about__img-wrap:hover .ch-about__img { transform: scale(1.04); }
+        .ch-about__img-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(86,51,17,0.18) 0%, transparent 50%);
+          pointer-events: none;
+        }
+        /* Right: highlights card */
+        .ch-about__highlights-card {
+          background: var(--color-bg-secondary);
+          border: 1px solid rgba(201,169,110,0.18);
+          border-radius: 4px;
+          padding: clamp(20px, 3vw, 32px);
+        }
         .ch-about__highlights-title {
           font-family: var(--font-nav);
-          font-size: 0.72rem;
+          font-size: 0.68rem;
           letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--color-espresso);
           margin-bottom: 1.25rem;
+          padding-bottom: 0.75rem;
+          border-bottom: 1px solid rgba(86,51,17,0.12);
         }
-        .ch-highlights {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
+        .ch-highlights { display: flex; flex-direction: column; gap: 10px; }
         .ch-highlights__item {
           display: flex;
           align-items: flex-start;
           gap: 10px;
           font-family: var(--font-body);
-          font-size: 0.92rem;
+          font-size: 0.9rem;
           color: var(--color-text-body);
           line-height: 1.5;
+          padding: 8px 10px;
+          border-radius: 3px;
+          transition: background 0.2s ease;
         }
+        .ch-highlights__item:hover { background: rgba(201,169,110,0.08); }
         .ch-highlights__icon {
           color: var(--color-teal);
           flex-shrink: 0;
           margin-top: 2px;
+          background: rgba(201,169,110,0.12);
+          padding: 3px;
+          border-radius: 50%;
+          box-sizing: content-box;
+        }
+        @media (min-width: 900px) {
+          .ch-about__inner {
+            grid-template-columns: 1fr 1fr;
+          }
+          .ch-about__img-col { display: block; }
+        }
+        @media (min-width: 1100px) {
+          .ch-about__inner {
+            grid-template-columns: 1.1fr 0.7fr 1fr;
+          }
+          .ch-about__stat { padding: 4px 24px; }
         }
 
         /* ── Gallery ── */
@@ -473,32 +682,63 @@ export default function CoastalHavenPage() {
           text-align: center;
           margin: 0.5rem 0 2rem;
         }
-        .ch-gallery__track {
+        .ch-gallery__strip-wrapper {
+          position: relative;
+        }
+        .ch-gallery__track-wrap {
           overflow: hidden;
-          padding: 0 0 16px;
+          cursor: default;
         }
         .ch-gallery__inner {
           display: flex;
           gap: 12px;
-          width: max-content;
-          animation: ch-gallery-scroll 90s linear infinite;
-        }
-        .ch-gallery__inner:hover {
-          animation-play-state: paused;
-        }
-        @keyframes ch-gallery-scroll {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
+          will-change: transform;
         }
         .ch-gallery__item {
           flex-shrink: 0;
+          overflow: hidden;
+          border-radius: 2px;
         }
         .ch-gallery__img {
           width: 340px;
           height: 260px;
           object-fit: cover;
           display: block;
+          transition: transform 500ms ease;
+          pointer-events: none;
+          user-select: none;
         }
+        .ch-gallery__item:hover .ch-gallery__img {
+          transform: scale(1.07);
+        }
+        .ch-gallery__arrow {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 10;
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          border: 1.5px solid rgba(255,255,255,0.5);
+          background: rgba(255,255,255,0.2);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          color: var(--color-espresso);
+          transition: background var(--transition-base), border-color var(--transition-base), color var(--transition-base), transform 0.3s ease, box-shadow var(--transition-base);
+        }
+        .ch-gallery__arrow:hover {
+          background: var(--color-teal);
+          border-color: var(--color-teal);
+          color: #fff;
+          transform: translateY(-50%) scale(1.1);
+          box-shadow: 0 4px 20px rgba(201,169,110,0.45);
+        }
+        .ch-gallery__arrow--prev { left: clamp(8px, 2vw, 20px); }
+        .ch-gallery__arrow--next { right: clamp(8px, 2vw, 20px); }
         .ch-gallery__cta-wrap {
           text-align: center;
           padding-top: 2rem;
@@ -766,9 +1006,6 @@ export default function CoastalHavenPage() {
           justify-content: center;
         }
 
-        @media (max-width: 900px) {
-          .ch-about__inner { grid-template-columns: 1fr; }
-        }
         @media (max-width: 639px) {
           .ch-hero { height: 85vh; }
           .ch-more__img { height: 260px; }

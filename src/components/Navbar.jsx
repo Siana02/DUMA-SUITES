@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, MapPin } from 'lucide-react'
+import { useLocation } from 'react-router-dom'
 import mammalImg from '../assets/mammal.png'
 
 // Navbar appears as the preload curtains finish opening (~2.8 s)
@@ -9,7 +10,7 @@ const NAVBAR_APPEAR_DELAY = 2.8
 const NAV_LINKS = [
   { label: 'Home',    href: '#home' },
   { label: 'Suites',  href: '/suites', isRoute: true },
-  { label: 'Gallery', href: '#gallery' },
+  { label: 'Gallery', href: '#gallery-strip' },
   { label: 'About',   href: '#about' },
   { label: 'Contact', href: '#contact' },
 ]
@@ -20,6 +21,20 @@ export default function Navbar() {
   const [activeHref, setActiveHref] = useState('#home')
   const activeHrefRef               = useRef('#home')
 
+  const location = useLocation()
+
+  // If we are on a /suites/* route, mark the Suites link active immediately
+  useEffect(() => {
+    if (location.pathname.startsWith('/suites')) {
+      activeHrefRef.current = '/suites'
+      setActiveHref('/suites')
+    } else if (location.pathname === '/') {
+      // Reset to home when navigating back to home page
+      activeHrefRef.current = '#home'
+      setActiveHref('#home')
+    }
+  }, [location.pathname])
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', onScroll, { passive: true })
@@ -27,12 +42,16 @@ export default function Navbar() {
   }, [])
 
   // Intersection Observer — auto-highlight the nav item whose section is in view
+  // Only active on the home page
   useEffect(() => {
+    if (location.pathname !== '/') return
+
     // Map section IDs to nav hrefs (only sections that actually exist in the DOM)
     const sectionMap = {
-      home:    '#home',
-      suites:  '#suites',
-      contact: '#contact',
+      home:           '#home',
+      // suites-preview section → mark "Suites" nav active
+      'suites-preview': '/suites',
+      contact:        '#contact',
     }
 
     const obs = new IntersectionObserver(
@@ -47,8 +66,7 @@ export default function Navbar() {
           }
         })
       },
-      // Trigger when the section crosses the middle band of the viewport
-      { rootMargin: '-38% 0px -55% 0px', threshold: 0 },
+      { rootMargin: '-35% 0px -55% 0px', threshold: 0 },
     )
 
     Object.keys(sectionMap).forEach((id) => {
@@ -57,10 +75,14 @@ export default function Navbar() {
     })
 
     return () => obs.disconnect()
-  }, [])
+  }, [location.pathname])
 
   const handleLinkClick = (href, isRoute) => {
     if (!isRoute && href !== activeHref) {
+      activeHrefRef.current = href
+      setActiveHref(href)
+    }
+    if (isRoute) {
       activeHrefRef.current = href
       setActiveHref(href)
     }

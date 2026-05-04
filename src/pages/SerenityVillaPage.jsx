@@ -1,15 +1,19 @@
-import { useEffect } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import {
   Maximize2, BedDouble, Users, Check, Mail, Phone,
-  Wifi, Wind, Tv, Coffee, Bath, Waves, Utensils, Calendar, Clock,
-  Mountain, Star, Leaf, Shield, Heart,
+  Wifi, Tv, Bath, Utensils, Leaf, Calendar, Clock,
+  Shield, AirVent, Sparkles, Sofa, Sunrise, UtensilsCrossed,
+  Sun, Fan, PawPrint, Cigarette, ArrowLeft, ArrowRight,
 } from 'lucide-react'
 
 import heroImg from '../assets/serenity-villa-outdoor-terrace.JPEG'
 import coastalPreview from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
+import { FaUmbrellaBeach } from 'react-icons/fa'
+import { GiTowel } from 'react-icons/gi'
+import serenityAboutImg from '../assets/serenity-villa-outdoor-lounge-upclose.JPEG'
 
 // Gallery images — reordered: bedrooms → closet → lounge/dining → outdoor → kitchen → entrance → bathroom → 1stfloor-view (last)
 import g1  from '../assets/serenity-villa-1st-bedroom-view1.JPEG'
@@ -42,6 +46,7 @@ import g27 from '../assets/serenity-villa-washroom2.JPEG'
 import g28 from '../assets/serenity-villa-1stfloor-view.JPEG'
 
 const GALLERY = [g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,g11,g12,g13,g14,g15,g16,g17,g18,g19,g20,g21,g22,g23,g24,g25,g26,g27,g28]
+const DEFAULT_IMAGE_WIDTH = 352 // 340px image + 12px gap, used as scroll-step fallback
 const GALLERY_LABELS = [
   '1st bedroom view 1','1st bedroom view 2',
   '2nd bedroom view 1','2nd bedroom view 2','2nd bedroom view 3',
@@ -56,27 +61,30 @@ const GALLERY_LABELS = [
 ]
 
 const AMENITIES = [
-  { icon: BedDouble,  label: '3 King bedrooms' },
-  { icon: Bath,       label: 'Multiple en-suites' },
-  { icon: Utensils,   label: 'Full kitchen' },
-  { icon: Mountain,   label: 'Outdoor terrace' },
-  { icon: Leaf,       label: 'Garden views' },
-  { icon: Coffee,     label: 'Dining area' },
-  { icon: Users,      label: 'Living room' },
-  { icon: Waves,      label: 'Balcony' },
-  { icon: Wifi,       label: 'High-speed Wi-Fi' },
-  { icon: Star,       label: 'Daily housekeeping' },
-  { icon: Wind,       label: 'Air conditioning' },
-  { icon: Tv,         label: 'Smart TVs' },
+  { icon: BedDouble,       label: '3 King bedrooms' },
+  { icon: Bath,            label: 'Multiple en-suites' },
+  { icon: Utensils,        label: 'Full kitchen' },
+  { icon: Sun,             label: 'Outdoor terrace' },
+  { icon: Leaf,            label: 'Garden views' },
+  { icon: UtensilsCrossed, label: 'Formal dining area' },
+  { icon: Sofa,            label: 'Living room' },
+  { icon: Sunrise,         label: 'Spacious balcony' },
+  { icon: Wifi,            label: 'High-speed Wi-Fi' },
+  { icon: Sparkles,        label: 'Daily housekeeping' },
+  { icon: AirVent,         label: 'Air conditioning' },
+  { icon: Tv,              label: 'Smart TVs' },
+  { icon: FaUmbrellaBeach, label: 'Sunbeds' },
+  { icon: GiTowel,         label: 'Towels provided' },
+  { icon: Fan,             label: 'Ceiling fans' },
 ]
 
 const POLICIES = [
-  { icon: Clock,    label: 'Check-in',      value: '2:00 PM' },
-  { icon: Clock,    label: 'Check-out',     value: '10:00 AM' },
-  { icon: Calendar, label: 'Minimum stay',  value: '2 nights' },
-  { icon: Shield,   label: 'Cancellation',  value: '1 month notice · 50% refund + 50% redeemable within 6 months' },
-  { icon: Heart,    label: 'Pets',          value: 'Small pets welcome' },
-  { icon: Wind,     label: 'Smoking',       value: 'Balcony & lobby only' },
+  { icon: Clock,     label: 'Check-in',      value: '2:00 PM' },
+  { icon: Clock,     label: 'Check-out',     value: '10:00 AM' },
+  { icon: Calendar,  label: 'Minimum stay',  value: '2 nights' },
+  { icon: Shield,    label: 'Cancellation',  value: '1 month notice · 50% refund + 50% redeemable within 6 months' },
+  { icon: PawPrint,  label: 'Pets',          value: 'Small pets welcome' },
+  { icon: Cigarette, label: 'Smoking',       value: 'Balcony & lobby only' },
 ]
 
 const HIGHLIGHTS = [
@@ -101,6 +109,44 @@ function fadeUp(delay = 0) {
 export default function SerenityVillaPage() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
   const navigate = useNavigate()
+
+  const galleryTrackRef    = useRef(null)
+  const galleryPosRef      = useRef(0)
+  const galleryPausedRef   = useRef(false)
+  const galleryRafRef      = useRef(null)
+  const galleryHalfRef     = useRef(0)
+
+  useEffect(() => {
+    const track = galleryTrackRef.current
+    if (!track) return
+    const timer = setTimeout(() => {
+      galleryHalfRef.current = track.scrollWidth / 2
+      const step = () => {
+        if (!galleryPausedRef.current) {
+          galleryPosRef.current += 0.5
+          if (galleryPosRef.current >= galleryHalfRef.current) galleryPosRef.current -= galleryHalfRef.current
+          track.style.transform = `translateX(-${galleryPosRef.current}px)`
+        }
+        galleryRafRef.current = requestAnimationFrame(step)
+      }
+      galleryRafRef.current = requestAnimationFrame(step)
+    }, 100)
+    return () => { clearTimeout(timer); cancelAnimationFrame(galleryRafRef.current) }
+  }, [])
+
+  const galleryScrollNext = useCallback(() => {
+    const half = galleryHalfRef.current || 1
+    const step = galleryTrackRef.current ? galleryTrackRef.current.scrollWidth / 2 / GALLERY.length : DEFAULT_IMAGE_WIDTH
+    galleryPosRef.current = (galleryPosRef.current + step) % half
+    if (galleryTrackRef.current) galleryTrackRef.current.style.transform = `translateX(-${galleryPosRef.current}px)`
+  }, [])
+
+  const galleryScrollPrev = useCallback(() => {
+    const half = galleryHalfRef.current || 1
+    const step = galleryTrackRef.current ? galleryTrackRef.current.scrollWidth / 2 / GALLERY.length : DEFAULT_IMAGE_WIDTH
+    galleryPosRef.current = ((galleryPosRef.current - step) % half + half) % half
+    if (galleryTrackRef.current) galleryTrackRef.current.style.transform = `translateX(-${galleryPosRef.current}px)`
+  }, [])
 
   return (
     <>
@@ -136,34 +182,60 @@ export default function SerenityVillaPage() {
 
         {/* ── b) About ── */}
         <section className="sv-about section" id="about">
-          <div className="container sv-about__inner">
-            <motion.div className="sv-about__left" {...fadeUp(0)}>
-              <span className="eyebrow">About this Villa</span>
-              <h2 className="section-title sv-about__title">A Sprawling Family Retreat</h2>
-              <p className="sv-about__text">
-                The Serenity Villa Suite redefines space and comfort within Ghepard Towers. This expansive
-                three-bedroom villa is designed for families and groups who refuse to compromise on luxury —
-                offering a full kitchen, multiple en-suite bathrooms, a sweeping outdoor terrace, and lush
-                garden views at every turn.
-              </p>
-              <p className="sv-about__text">
-                Gather around the formal dining table, relax in the indoor lounge, or step out onto the
-                private terrace for a morning coffee surrounded by the sights and sounds of Watamu's
-                coastline. This is the full villa experience — refined, spacious, and unforgettable.
-              </p>
-              <a href="#inquire" className="btn btn-primary sv-about__cta">Check Availability</a>
+          <div className="container">
+            {/* At-a-glance stats strip */}
+            <motion.div className="sv-about__stats-strip" {...fadeUp(0)}>
+              <div className="sv-about__stat"><Maximize2 size={15} strokeWidth={1.5} /><span>75 sq m</span></div>
+              <div className="sv-about__stat-divider" aria-hidden="true" />
+              <div className="sv-about__stat"><BedDouble size={15} strokeWidth={1.5} /><span>3 King Beds</span></div>
+              <div className="sv-about__stat-divider" aria-hidden="true" />
+              <div className="sv-about__stat"><Users size={15} strokeWidth={1.5} /><span>6+ Guests</span></div>
+              <div className="sv-about__stat-divider" aria-hidden="true" />
+              <div className="sv-about__stat"><Calendar size={15} strokeWidth={1.5} /><span>2 Night Min</span></div>
             </motion.div>
-            <motion.div className="sv-about__right" {...fadeUp(0.15)}>
-              <h3 className="sv-about__highlights-title">Villa Highlights</h3>
-              <ul className="sv-highlights">
-                {HIGHLIGHTS.map((h) => (
-                  <li key={h} className="sv-highlights__item">
-                    <Check size={16} strokeWidth={2} className="sv-highlights__icon" />
-                    {h}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+
+            <div className="sv-about__inner">
+              {/* Left: text */}
+              <motion.div className="sv-about__left" {...fadeUp(0.08)}>
+                <span className="eyebrow">About this Villa</span>
+                <h2 className="section-title sv-about__title">A Sprawling Family Retreat</h2>
+                <p className="sv-about__text">
+                  The Serenity Villa Suite redefines space and comfort within Ghepard Towers. This expansive
+                  three-bedroom villa is designed for families and groups who refuse to compromise on luxury —
+                  offering a full kitchen, multiple en-suite bathrooms, a sweeping outdoor terrace, and lush
+                  garden views at every turn.
+                </p>
+                <p className="sv-about__text">
+                  Gather around the formal dining table, relax in the indoor lounge, or step out onto the
+                  private terrace for a morning coffee surrounded by the sights and sounds of Watamu's
+                  coastline. This is the full villa experience — refined, spacious, and unforgettable.
+                </p>
+                <a href="#inquire" className="btn btn-primary sv-about__cta">Check Availability</a>
+              </motion.div>
+
+              {/* Center: atmospheric image */}
+              <motion.div className="sv-about__img-col" {...fadeUp(0.16)}>
+                <div className="sv-about__img-wrap">
+                  <img src={serenityAboutImg} alt="Serenity Villa outdoor lounge" className="sv-about__img" />
+                  <div className="sv-about__img-overlay" aria-hidden="true" />
+                </div>
+              </motion.div>
+
+              {/* Right: highlights card */}
+              <motion.div className="sv-about__right" {...fadeUp(0.22)}>
+                <div className="sv-about__highlights-card">
+                  <h3 className="sv-about__highlights-title">Villa Highlights</h3>
+                  <ul className="sv-highlights">
+                    {HIGHLIGHTS.map((h) => (
+                      <li key={h} className="sv-highlights__item">
+                        <Check size={14} strokeWidth={1.75} className="sv-highlights__icon" />
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
 
@@ -177,14 +249,38 @@ export default function SerenityVillaPage() {
               Inside the Villa
             </motion.h2>
           </div>
-          <motion.div className="sv-gallery__track" {...fadeUp(0.2)}>
-            <div className="sv-gallery__inner">
-              {[...GALLERY, ...GALLERY].map((img, i) => (
-                <div key={i} className="sv-gallery__item">
-                  <img src={img} alt={GALLERY_LABELS[i % GALLERY.length]} className="sv-gallery__img" />
-                </div>
-              ))}
+          <motion.div className="sv-gallery__strip-wrapper" {...fadeUp(0.2)}>
+            <button
+              className="sv-gallery__arrow sv-gallery__arrow--prev"
+              onClick={galleryScrollPrev}
+              aria-label="Previous photos"
+              onMouseEnter={() => { galleryPausedRef.current = true }}
+              onMouseLeave={() => { galleryPausedRef.current = false }}
+            >
+              <ArrowLeft size={18} strokeWidth={1.8} />
+            </button>
+            <div
+              className="sv-gallery__track-wrap"
+              onMouseEnter={() => { galleryPausedRef.current = true }}
+              onMouseLeave={() => { galleryPausedRef.current = false }}
+            >
+              <div className="sv-gallery__inner" ref={galleryTrackRef}>
+                {[...GALLERY, ...GALLERY].map((img, i) => (
+                  <div key={i} className="sv-gallery__item">
+                    <img src={img} alt={GALLERY_LABELS[i % GALLERY.length]} className="sv-gallery__img" loading="lazy" />
+                  </div>
+                ))}
+              </div>
             </div>
+            <button
+              className="sv-gallery__arrow sv-gallery__arrow--next"
+              onClick={galleryScrollNext}
+              aria-label="Next photos"
+              onMouseEnter={() => { galleryPausedRef.current = true }}
+              onMouseLeave={() => { galleryPausedRef.current = false }}
+            >
+              <ArrowRight size={18} strokeWidth={1.8} />
+            </button>
           </motion.div>
           <div className="container sv-gallery__cta-wrap">
             <motion.a href="#inquire" className="btn btn-primary" {...fadeUp(0.1)}>
@@ -381,10 +477,40 @@ export default function SerenityVillaPage() {
         }
 
         /* ── About ── */
+        .sv-about__stats-strip {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-wrap: wrap;
+          gap: 0;
+          margin-bottom: clamp(28px, 4vw, 44px);
+          padding: 14px 24px;
+          background: rgba(201,169,110,0.08);
+          border: 1px solid rgba(201,169,110,0.22);
+          border-radius: 3px;
+        }
+        .sv-about__stat {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          font-family: var(--font-nav);
+          font-size: 0.64rem;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--color-espresso);
+          padding: 4px 20px;
+        }
+        .sv-about__stat svg { color: var(--color-teal); flex-shrink: 0; }
+        .sv-about__stat-divider {
+          width: 1px;
+          height: 18px;
+          background: rgba(86,51,17,0.2);
+          flex-shrink: 0;
+        }
         .sv-about__inner {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: clamp(32px, 6vw, 72px);
+          grid-template-columns: 1fr;
+          gap: clamp(28px, 4vw, 44px);
           align-items: start;
         }
         .sv-about__title { margin: 0.5rem 0 1.25rem; }
@@ -395,60 +521,144 @@ export default function SerenityVillaPage() {
           line-height: 1.8;
           margin-bottom: 1rem;
         }
-        .sv-about__cta { margin-top: 0.75rem; }
+        .sv-about__cta { margin-top: 0.75rem; display: inline-block; }
+        /* Center image column */
+        .sv-about__img-col { display: none; }
+        .sv-about__img-wrap {
+          position: relative;
+          overflow: hidden;
+          border-radius: 3px;
+          aspect-ratio: 3/4;
+        }
+        .sv-about__img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 600ms ease;
+        }
+        .sv-about__img-wrap:hover .sv-about__img { transform: scale(1.04); }
+        .sv-about__img-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(86,51,17,0.18) 0%, transparent 50%);
+          pointer-events: none;
+        }
+        /* Right: highlights card */
+        .sv-about__highlights-card {
+          background: var(--color-bg-secondary);
+          border: 1px solid rgba(201,169,110,0.18);
+          border-radius: 4px;
+          padding: clamp(20px, 3vw, 32px);
+        }
         .sv-about__highlights-title {
           font-family: var(--font-nav);
-          font-size: 0.72rem;
+          font-size: 0.68rem;
           letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--color-espresso);
           margin-bottom: 1.25rem;
+          padding-bottom: 0.75rem;
+          border-bottom: 1px solid rgba(86,51,17,0.12);
         }
-        .sv-highlights {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
+        .sv-highlights { display: flex; flex-direction: column; gap: 10px; }
         .sv-highlights__item {
           display: flex;
           align-items: flex-start;
           gap: 10px;
           font-family: var(--font-body);
-          font-size: 0.92rem;
+          font-size: 0.9rem;
           color: var(--color-text-body);
           line-height: 1.5;
+          padding: 8px 10px;
+          border-radius: 3px;
+          transition: background 0.2s ease;
         }
-        .sv-highlights__icon { color: var(--color-teal); flex-shrink: 0; margin-top: 2px; }
+        .sv-highlights__item:hover { background: rgba(201,169,110,0.08); }
+        .sv-highlights__icon {
+          color: var(--color-teal);
+          flex-shrink: 0;
+          margin-top: 2px;
+          background: rgba(201,169,110,0.12);
+          padding: 3px;
+          border-radius: 50%;
+          box-sizing: content-box;
+        }
+        @media (min-width: 900px) {
+          .sv-about__inner {
+            grid-template-columns: 1fr 1fr;
+          }
+          .sv-about__img-col { display: block; }
+        }
+        @media (min-width: 1100px) {
+          .sv-about__inner {
+            grid-template-columns: 1.1fr 0.7fr 1fr;
+          }
+          .sv-about__stat { padding: 4px 24px; }
+        }
 
         /* ── Gallery ── */
         .sv-gallery__title {
           text-align: center;
           margin: 0.5rem 0 2rem;
         }
-        .sv-gallery__track {
+        .sv-gallery__strip-wrapper {
+          position: relative;
+        }
+        .sv-gallery__track-wrap {
           overflow: hidden;
-          padding: 0 0 16px;
+          cursor: default;
         }
         .sv-gallery__inner {
           display: flex;
           gap: 12px;
-          width: max-content;
-          animation: sv-gallery-scroll 125s linear infinite;
+          will-change: transform;
         }
-        .sv-gallery__inner:hover {
-          animation-play-state: paused;
+        .sv-gallery__item {
+          flex-shrink: 0;
+          overflow: hidden;
+          border-radius: 2px;
         }
-        @keyframes sv-gallery-scroll {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-        .sv-gallery__item { flex-shrink: 0; }
         .sv-gallery__img {
           width: 340px;
           height: 260px;
           object-fit: cover;
           display: block;
+          transition: transform 500ms ease;
+          pointer-events: none;
+          user-select: none;
         }
+        .sv-gallery__item:hover .sv-gallery__img {
+          transform: scale(1.07);
+        }
+        .sv-gallery__arrow {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 10;
+          width: 46px;
+          height: 46px;
+          border-radius: 50%;
+          border: 1.5px solid rgba(255,255,255,0.5);
+          background: rgba(255,255,255,0.2);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          color: var(--color-espresso);
+          transition: background var(--transition-base), border-color var(--transition-base), color var(--transition-base), transform 0.3s ease, box-shadow var(--transition-base);
+        }
+        .sv-gallery__arrow:hover {
+          background: var(--color-teal);
+          border-color: var(--color-teal);
+          color: #fff;
+          transform: translateY(-50%) scale(1.1);
+          box-shadow: 0 4px 20px rgba(201,169,110,0.45);
+        }
+        .sv-gallery__arrow--prev { left: clamp(8px, 2vw, 20px); }
+        .sv-gallery__arrow--next { right: clamp(8px, 2vw, 20px); }
         .sv-gallery__cta-wrap {
           text-align: center;
           padding-top: 2rem;
@@ -659,9 +869,6 @@ export default function SerenityVillaPage() {
           justify-content: center;
         }
 
-        @media (max-width: 900px) {
-          .sv-about__inner { grid-template-columns: 1fr; }
-        }
         @media (max-width: 639px) {
           .sv-hero { height: 85vh; }
           .sv-more__img { height: 260px; }
