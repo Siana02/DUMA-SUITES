@@ -1,16 +1,13 @@
 import { Mail, Phone, MapPin } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import logoImg from '../assets/logo.jpeg'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { getT } from '../i18n/translations.js'
 
 const SUITE_LINKS = [
   { label: 'Coastal Haven Suite', href: '/suites/coastal-haven' },
   { label: 'Serenity Villa Suite', href: '/suites/serenity-villa' },
   { label: 'All Suites', href: '/suites' },
-]
-
-const EXPLORE_LINKS = [
-  { label: 'Amenities', href: '#amenities' },
-  { label: 'Experiences', href: '#experience' },
-  { label: 'Dining', href: '#amenities' },
-  { label: 'Wellness', href: '#amenities' },
 ]
 
 function InstagramIcon() {
@@ -46,19 +43,43 @@ const SOCIAL = [
 ]
 
 export default function Footer() {
+  const { lang } = useLanguage()
+  const t = getT(lang)
+  const navigate = useNavigate()
+
+  const EXPLORE_LINKS = [
+    { label: t.footer.links.gallery,    href: '/gallery',      isRoute: true },
+    { label: t.footer.links.about,      href: '/#about',       isRoute: false },
+    { label: t.footer.links.faq,        href: '/#faq',         isRoute: false },
+    { label: t.footer.links.excursions, href: '/#excursions',  isRoute: false },
+  ]
+
+  const handleExploreClick = (e, link) => {
+    e.preventDefault()
+    if (link.isRoute) {
+      navigate(link.href)
+    } else if (link.href.startsWith('/#')) {
+      const id = link.href.slice(2)
+      navigate('/')
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
+    }
+  }
+
   return (
-    <footer className="footer" id="contact">
+    <footer className="footer" id="footer">
       <div className="footer__inner container">
         {/* Brand column */}
         <div className="footer__brand">
-          <a href="#" className="footer__logo" aria-label="Duma Suites Home">
-            <span className="footer__logo-text">Duma Suites</span>
-            <span className="footer__logo-tagline">Watamu · Coastal Luxury</span>
+          <a href="/" onClick={e => { e.preventDefault(); navigate('/') }} className="footer__logo" aria-label="Duma Suites Home">
+            <img src={logoImg} alt="Duma Suites" className="footer__logo-img" />
+            <div>
+              <span className="footer__logo-text">Duma Suites</span>
+              <span className="footer__logo-tagline">{t.footer.tagline}</span>
+            </div>
           </a>
-          <p className="footer__brand-desc">
-            Nestled within Ghepard Towers, Watamu — just 50 metres from the
-            white sands and turquoise waters of the Indian Ocean.
-          </p>
+          <p className="footer__brand-desc">{t.footer.desc}</p>
           <div className="footer__social">
             {SOCIAL.map(({ Icon, href, label }) => (
               <a
@@ -77,11 +98,11 @@ export default function Footer() {
 
         {/* Suites column */}
         <div className="footer__col">
-          <h3 className="footer__col-title">Suites</h3>
+          <h3 className="footer__col-title">{t.footer.colSuites}</h3>
           <ul className="footer__list">
             {SUITE_LINKS.map(({ label, href }) => (
               <li key={href}>
-                <a href={href} className="footer__link">
+                <a href={href} onClick={e => { e.preventDefault(); navigate(href) }} className="footer__link">
                   {label}
                 </a>
               </li>
@@ -91,12 +112,12 @@ export default function Footer() {
 
         {/* Explore column */}
         <div className="footer__col">
-          <h3 className="footer__col-title">Explore</h3>
+          <h3 className="footer__col-title">{t.footer.colExplore}</h3>
           <ul className="footer__list">
-            {EXPLORE_LINKS.map(({ label, href }) => (
-              <li key={label}>
-                <a href={href} className="footer__link">
-                  {label}
+            {EXPLORE_LINKS.map((link) => (
+              <li key={link.label}>
+                <a href={link.href} onClick={e => handleExploreClick(e, link)} className="footer__link">
+                  {link.label}
                 </a>
               </li>
             ))}
@@ -105,22 +126,22 @@ export default function Footer() {
 
         {/* Contact column */}
         <div className="footer__col">
-          <h3 className="footer__col-title">Contact</h3>
+          <h3 className="footer__col-title">{t.footer.colContact}</h3>
           <ul className="footer__contact-list">
             <li>
               <MapPin size={14} strokeWidth={1.5} />
-              <span>Ghepard Towers, Watamu, Kilifi County, Kenya</span>
+              <span>{t.contact.info.address}</span>
             </li>
             <li>
               <Phone size={14} strokeWidth={1.5} />
-              <a href="tel:+254700000000" className="footer__link">
-                +254 700 000 000
+              <a href={`tel:${t.contact.info.phone.replace(/\s/g,'')}`} className="footer__link">
+                {t.contact.info.phone}
               </a>
             </li>
             <li>
               <Mail size={14} strokeWidth={1.5} />
-              <a href="mailto:reservations@dumasuites.com" className="footer__link">
-                reservations@dumasuites.com
+              <a href={`mailto:${t.contact.info.email}`} className="footer__link">
+                {t.contact.info.email}
               </a>
             </li>
           </ul>
@@ -130,15 +151,12 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="footer__bottom">
         <div className="container footer__bottom-inner">
-          <p className="footer__copy">
-            &copy; {new Date().getFullYear()} Duma Suites. All rights reserved.
-          </p>
+          <p className="footer__copy">{t.footer.copy}</p>
           <nav className="footer__legal" aria-label="Legal navigation">
-            <a href="#" className="footer__link">
-              Privacy Policy
-            </a>
-            <a href="#" className="footer__link">
-              Terms of Service
+            <a href="#" className="footer__link">{t.footer.privacy}</a>
+            <a href="#" className="footer__link">{t.footer.terms}</a>
+            <a href="/house-rules" onClick={e => { e.preventDefault(); navigate('/house-rules') }} className="footer__link">
+              {t.footer.houseRules}
             </a>
           </nav>
         </div>
@@ -160,14 +178,22 @@ export default function Footer() {
         }
         .footer__logo {
           display: flex;
-          flex-direction: column;
-          gap: 4px;
+          align-items: center;
+          gap: 10px;
           text-decoration: none;
           margin-bottom: 16px;
         }
+        .footer__logo-img {
+          width: 48px;
+          height: 48px;
+          object-fit: cover;
+          border-radius: 50%;
+          border: 2px solid rgba(255,255,255,0.2);
+        }
         .footer__logo-text {
+          display: block;
           font-family: var(--font-nav);
-          font-size: 1.3rem;
+          font-size: 1.1rem;
           font-weight: 700;
           letter-spacing: 0.08em;
           color: var(--color-text-light);
@@ -175,12 +201,14 @@ export default function Footer() {
           line-height: 1;
         }
         .footer__logo-tagline {
+          display: block;
           font-family: var(--font-eyebrow);
           font-style: italic;
-          font-size: 0.62rem;
+          font-size: 0.6rem;
           letter-spacing: 0.12em;
           color: var(--color-teal);
           text-transform: uppercase;
+          margin-top: 3px;
         }
         .footer__brand-desc {
           color: rgba(255, 255, 255, 0.6);
@@ -205,7 +233,7 @@ export default function Footer() {
         .footer__social-link:hover {
           border-color: var(--color-teal);
           color: var(--color-teal);
-          background-color: rgba(201, 169, 110, 0.1);
+          background-color: rgba(88, 176, 196, 0.1);
         }
         .footer__col-title {
           font-family: var(--font-nav);

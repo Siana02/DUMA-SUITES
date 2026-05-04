@@ -404,6 +404,24 @@ export default function SerenityVillaPage() {
           </div>
         </section>
 
+        {/* Room tour video */}
+        <section className="video-overview section">
+          <div className="container" style={{ maxWidth: 900, textAlign: 'center' }}>
+            <span className="eyebrow">Room Tour</span>
+            <h2 className="section-title">Serenity Villa – Virtual Tour</h2>
+            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 4, marginTop: 32 }}>
+              <iframe
+                src="https://player.vimeo.com/video/1189024643?autoplay=0&title=0&byline=0&portrait=0"
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title="Serenity Villa Room Tour"
+              />
+            </div>
+          </div>
+        </section>
+
       </main>
 
       <style>{`

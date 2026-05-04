@@ -3,9 +3,9 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 
-import cheetahIcon from '../assets/mammal.png'
+import cheetahIcon from '../assets/cheetah.png'
 
-// gallery-image1-10 are the preferred, freshest images — shown first
+// gallery-image1-18
 import gImg1  from '../assets/gallery-image1.JPEG'
 import gImg2  from '../assets/gallery-image2.jpg'
 import gImg3  from '../assets/gallery-image3.JPEG'
@@ -16,6 +16,14 @@ import gImg7  from '../assets/gallery-image7.jpg'
 import gImg8  from '../assets/gallery-image8.JPEG'
 import gImg9  from '../assets/gallery-image9.JPEG'
 import gImg10 from '../assets/gallery-image10.JPEG'
+import gImg11 from '../assets/gallery-image11.JPEG'
+import gImg12 from '../assets/gallery-image12.JPEG'
+import gImg13 from '../assets/gallery-image13.JPEG'
+import gImg14 from '../assets/gallery-image14.JPEG'
+import gImg15 from '../assets/gallery-image15.JPEG'
+import gImg16 from '../assets/gallery-image16.JPEG'
+import gImg17 from '../assets/gallery-image17.JPEG'
+import gImg18 from '../assets/gallery-image18.JPEG'
 
 // Additional outdoor / lounge / balcony / view images (not suite interiors)
 import poolDay       from '../assets/daytime-groundfloor-poolview.jpg'
@@ -42,6 +50,14 @@ const IMAGES = [
   { src: gImg8,          alt: 'Duma Suites – gallery view' },
   { src: gImg9,          alt: 'Duma Suites – gallery view' },
   { src: gImg10,         alt: 'Duma Suites – gallery view' },
+  { src: gImg11,         alt: 'Duma Suites – gallery view' },
+  { src: gImg12,         alt: 'Duma Suites – gallery view' },
+  { src: gImg13,         alt: 'Duma Suites – gallery view' },
+  { src: gImg14,         alt: 'Duma Suites – gallery view' },
+  { src: gImg15,         alt: 'Duma Suites – gallery view' },
+  { src: gImg16,         alt: 'Duma Suites – gallery view' },
+  { src: gImg17,         alt: 'Duma Suites – gallery view' },
+  { src: gImg18,         alt: 'Duma Suites – gallery view' },
   { src: poolDay,        alt: 'Ground-floor pool by day' },
   { src: poolDrinks,     alt: 'Infinity pool with ocean horizon' },
   { src: infinityOcean,  alt: 'Infinity pool overlooking the ocean' },
@@ -65,7 +81,12 @@ const fadeUp = (delay = 0) => ({
   transition:  { duration: 0.7, delay, ease: [0.4, 0, 0.2, 1] },
 })
 
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { getT } from '../i18n/translations.js'
+
 export default function GalleryStripSection() {
+  const { lang } = useLanguage()
+  const t = getT(lang)
   const trackRef    = useRef(null)
   const posRef      = useRef(0)
   const pausedRef   = useRef(false)
@@ -138,7 +159,7 @@ export default function GalleryStripSection() {
       <div className="container">
         <div className="gs-header">
           <motion.span className="eyebrow gs-eyebrow" {...fadeUp(0)}>
-            Photo Gallery
+            {t.gallery.eyebrow}
           </motion.span>
 
           <motion.div className="gs-divider" {...fadeUp(0.1)} aria-hidden="true">
@@ -148,11 +169,11 @@ export default function GalleryStripSection() {
           </motion.div>
 
           <motion.h2 className="section-title gs-title" {...fadeUp(0.18)}>
-            Moments at Duma
+            {t.gallery.title}
           </motion.h2>
 
           <motion.p className="gs-subtitle" {...fadeUp(0.26)}>
-            A glimpse into the beauty that awaits — from infinity-pool sunsets to lush garden retreats and Swahili-inspired living.
+            {t.gallery.sub}
           </motion.p>
         </div>
       </div>
@@ -207,7 +228,7 @@ export default function GalleryStripSection() {
       {/* ── View More CTA ── */}
       <motion.div className="gs-cta-wrap" {...fadeUp(0.44)}>
         <a href="/gallery" className="gs-cta-btn">
-          View Full Gallery
+          {t.gallery.viewFullCta || 'View Full Gallery'}
           <span className="gs-cta-btn__arrow" aria-hidden="true">→</span>
         </a>
       </motion.div>
