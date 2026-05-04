@@ -475,7 +475,7 @@ export default function SerenityVillaPage() {
 
             <div className="sv-suites__grid">
               {/* Coastal Haven card */}
-              <motion.div className="sv-suite-card" {...fadeUp(0.22)} onClick={() => navigate('/suites/coastal-haven')} role="button" tabIndex={0} onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && navigate('/suites/coastal-haven')}>
+              <motion.div className="sv-suite-card" {...fadeUp(0.22)} onClick={() => navigate('/suites/coastal-haven')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/coastal-haven') } }}>
                 <div className="sv-suite-card__img-wrap">
                   <img src={coastalPreview} alt="Coastal Haven Suite" className="sv-suite-card__img" />
                   <div className="sv-suite-card__shutters" aria-hidden="true">
@@ -492,7 +492,7 @@ export default function SerenityVillaPage() {
               </motion.div>
 
               {/* Serenity Villa card */}
-              <motion.div className="sv-suite-card" {...fadeUp(0.32)} onClick={() => navigate('/suites/serenity-villa')} role="button" tabIndex={0} onKeyDown={e => (e.key === 'Enter' || e.key === ' ') && navigate('/suites/serenity-villa')}>
+              <motion.div className="sv-suite-card" {...fadeUp(0.32)} onClick={() => navigate('/suites/serenity-villa')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/serenity-villa') } }}>
                 <div className="sv-suite-card__img-wrap">
                   <img src={serenityPreviewImg} alt="Serenity Villa Suite" className="sv-suite-card__img" />
                   <div className="sv-suite-card__shutters" aria-hidden="true">
