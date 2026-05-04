@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { ArrowRight, Info } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
@@ -16,56 +16,6 @@ const EXCURSION_IMAGES = [
   { main: elephantMain, overlay: elephantOverlay },
   { main: dhowMain,     overlay: dhowOverlay },
 ]
-
-function ExcursionCard({ item, images, index, inView }) {
-  const isLeft = index % 2 === 0
-
-  return (
-    <motion.div
-      className={`exc-card exc-card--${isLeft ? 'left' : 'right'}`}
-      initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.15, ease: [0.4, 0, 0.2, 1] }}
-    >
-      {/* Image side */}
-      <div className="exc-card__img-side">
-        <img
-          src={images.main}
-          alt={item.title}
-          className="exc-card__main-img"
-          loading="lazy"
-        />
-        <span className="exc-card__badge">{item.badge}</span>
-      </div>
-
-      {/* Text side — overlay on secondary image */}
-      <div className="exc-card__text-side">
-        <div className="exc-card__text-bg">
-          <img
-            src={images.overlay}
-            alt=""
-            className="exc-card__overlay-img"
-            aria-hidden="true"
-            loading="lazy"
-          />
-          <div className="exc-card__overlay-dark" aria-hidden="true" />
-        </div>
-        <div className="exc-card__content">
-          <h3 className="exc-card__title">{item.title}</h3>
-          <p className="exc-card__desc">{item.desc}</p>
-          <a
-            href="#contact"
-            className="exc-card__cta"
-            onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}
-          >
-            <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
-            <span>{getT('en').excursions.cta}</span>
-          </a>
-        </div>
-      </div>
-    </motion.div>
-  )
-}
 
 function ExcursionCardWithT({ item, images, index, inView, cta }) {
   const isLeft = index % 2 === 0

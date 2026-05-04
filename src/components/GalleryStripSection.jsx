@@ -228,7 +228,7 @@ export default function GalleryStripSection() {
       {/* ── View More CTA ── */}
       <motion.div className="gs-cta-wrap" {...fadeUp(0.44)}>
         <a href="/gallery" className="gs-cta-btn">
-          {t.gallery.eyebrow !== 'Photo Gallery' ? t.gallery.title : 'View Full Gallery'}
+          {t.gallery.viewFullCta || 'View Full Gallery'}
           <span className="gs-cta-btn__arrow" aria-hidden="true">→</span>
         </a>
       </motion.div>

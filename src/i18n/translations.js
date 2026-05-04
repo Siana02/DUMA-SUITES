@@ -35,6 +35,7 @@ const en = {
     eyebrow: 'Visual Journey',
     title: 'Gallery',
     sub: 'A curated collection of moments from Duma Suites and the Watamu coastline.',
+    viewFullCta: 'View Full Gallery',
   },
   faq: {
     eyebrow: 'Have Questions?',
@@ -258,6 +259,7 @@ const it = {
     eyebrow: 'Viaggio Visivo',
     title: 'Galleria',
     sub: 'Una raccolta curata di momenti da Duma Suites e dalla costa di Watamu.',
+    viewFullCta: 'Vedi Galleria Completa',
   },
   faq: {
     eyebrow: 'Domande Frequenti',
