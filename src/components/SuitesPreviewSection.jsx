@@ -194,7 +194,7 @@ export default function SuitesPreviewSection() {
 
       <style>{`
         .sp-section {
-          background-color: var(--color-bg-secondary);
+          background-color: var(--color-bg-tertiary);
           overflow: hidden;
         }
 

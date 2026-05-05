@@ -24,7 +24,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section className="contact-section section" id="contact">
+    <section className="contact-section section contact-section--bg" id="contact">
       <div className="container">
         <div
           ref={headerRef}
@@ -32,7 +32,6 @@ export default function ContactSection() {
         >
           <span className="eyebrow">{ct.eyebrow}</span>
           <h2 className="section-title">{ct.title}</h2>
-          <div className="divider" />
           <p className="contact-section__sub">{ct.sub}</p>
         </div>
 
@@ -81,8 +80,8 @@ export default function ContactSection() {
             {/* Embedded map */}
             <div className="contact-section__map-wrap">
               <iframe
-                src="https://maps.google.com/maps?q=Watamu,Kenya&output=embed"
-                title="Watamu, Kenya – Map"
+                src="https://maps.google.com/maps?q=Ghepard+Towers+Watamu+Kenya&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                title="Ghepard Towers, Watamu Kenya – Map"
                 className="contact-section__map"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -179,6 +178,9 @@ export default function ContactSection() {
       </div>
 
       <style>{`
+        .contact-section--bg {
+          background-color: #faf8f4;
+        }
         .contact-section__header {
           text-align: center;
           margin-bottom: clamp(40px, 6vw, 60px);

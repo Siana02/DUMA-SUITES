@@ -6,10 +6,18 @@ import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
 const SUITE_LINKS = [
-  { label: 'Coastal Haven Suite', href: '/suites/coastal-haven' },
-  { label: 'Serenity Villa Suite', href: '/suites/serenity-villa' },
+  { label: '1 Bedroom Suite', href: '/suites/coastal-haven' },
+  { label: '3 Bedroom Suite', href: '/suites/serenity-villa' },
   { label: 'All Suites', href: '/suites' },
 ]
+
+function TikTokIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.27 8.27 0 0 0 4.84 1.56V6.78a4.85 4.85 0 0 1-1.07-.09z" />
+    </svg>
+  )
+}
 
 function InstagramIcon() {
   return (
@@ -21,26 +29,18 @@ function InstagramIcon() {
   )
 }
 
-function FacebookIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-    </svg>
-  )
-}
-
-function XIcon() {
+function WhatsAppIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
     </svg>
   )
 }
 
 const SOCIAL = [
-  { Icon: InstagramIcon, href: 'https://instagram.com', label: 'Instagram' },
-  { Icon: FacebookIcon, href: 'https://facebook.com', label: 'Facebook' },
-  { Icon: XIcon, href: 'https://twitter.com', label: 'Twitter / X' },
+  { Icon: TikTokIcon,    href: 'https://www.tiktok.com/@duma.suites?_r=1&_t=ZS-96748d7EBBH',                      label: 'TikTok' },
+  { Icon: InstagramIcon, href: 'https://www.instagram.com/duma.suitess?igsh=MTZlNTVkZHdhcnoxMQ==',              label: 'Instagram' },
+  { Icon: WhatsAppIcon,  href: 'https://wa.me/254710933025',                                                     label: 'WhatsApp' },
 ]
 
 export default function Footer() {
@@ -55,9 +55,16 @@ export default function Footer() {
     { label: t.footer.links.excursions, href: '/#excursions',  isRoute: false },
   ]
 
+  const handleRouteClick = (e, href) => {
+    e.preventDefault()
+    window.scrollTo({ top: 0, behavior: 'instant' })
+    navigate(href)
+  }
+
   const handleExploreClick = (e, link) => {
     e.preventDefault()
     if (link.isRoute) {
+      window.scrollTo({ top: 0, behavior: 'instant' })
       navigate(link.href)
     } else if (link.href.startsWith('/#')) {
       const id = link.href.slice(2)
@@ -73,16 +80,26 @@ export default function Footer() {
       <div className="footer__inner container">
         {/* Brand column */}
         <div className="footer__brand">
-          <a href="/" onClick={e => { e.preventDefault(); navigate('/') }} className="footer__logo" aria-label="Duma Suites Home">
-            {/* Mammal mark — larger */}
-            <img src={mammalImg} alt="" className="footer__logo-mammal" aria-hidden="true" />
-            {/* Original crest */}
-            <img src={logoImg} alt="Duma Suites crest" className="footer__logo-img" />
-            <div>
-              <span className="footer__logo-text">Duma Suites</span>
-              <span className="footer__logo-tagline">{t.footer.tagline}</span>
+          {/* Top: mammal + wordmark */}
+          <div className="footer__wordmark">
+            <img src={mammalImg} alt="" className="footer__wordmark-mammal" aria-hidden="true" />
+            <div className="footer__wordmark-text">
+              <span className="footer__wordmark-name">Duma Suites</span>
+              <span className="footer__wordmark-tagline">{t.footer.tagline}</span>
             </div>
+          </div>
+
+          {/* Logo showcase box */}
+          <a
+            href="/"
+            onClick={e => handleRouteClick(e, '/')}
+            className="footer__logo-showcase"
+            aria-label="Duma Suites Home"
+          >
+            <img src={logoImg} alt="Duma Suites crest" className="footer__logo-showcase__img" />
+            <div className="footer__logo-showcase__overlay" aria-hidden="true" />
           </a>
+
           <p className="footer__brand-desc">{t.footer.desc}</p>
           <div className="footer__social">
             {SOCIAL.map(({ Icon, href, label }) => (
@@ -94,7 +111,7 @@ export default function Footer() {
                 className="footer__social-link"
                 aria-label={label}
               >
-                <Icon size={18} strokeWidth={1.5} />
+                <Icon />
               </a>
             ))}
           </div>
@@ -106,7 +123,7 @@ export default function Footer() {
           <ul className="footer__list">
             {SUITE_LINKS.map(({ label, href }) => (
               <li key={href}>
-                <a href={href} onClick={e => { e.preventDefault(); navigate(href) }} className="footer__link">
+                <a href={href} onClick={e => handleRouteClick(e, href)} className="footer__link">
                   {label}
                 </a>
               </li>
@@ -157,9 +174,9 @@ export default function Footer() {
         <div className="container footer__bottom-inner">
           <p className="footer__copy">{t.footer.copy}</p>
           <nav className="footer__legal" aria-label="Legal navigation">
-            <a href="#" className="footer__link">{t.footer.privacy}</a>
-            <a href="#" className="footer__link">{t.footer.terms}</a>
-            <a href="/house-rules" onClick={e => { e.preventDefault(); navigate('/house-rules') }} className="footer__link">
+            <a href="#" className="footer__link" onClick={e => e.preventDefault()}>{t.footer.privacy}</a>
+            <a href="#" className="footer__link" onClick={e => e.preventDefault()}>{t.footer.terms}</a>
+            <a href="/house-rules" onClick={e => handleRouteClick(e, '/house-rules')} className="footer__link">
               {t.footer.houseRules}
             </a>
           </nav>
@@ -168,8 +185,8 @@ export default function Footer() {
 
       <style>{`
         .footer {
-          background-color: var(--color-espresso);
-          color: rgba(255, 255, 255, 0.75);
+          background-color: #1c1c1c;
+          color: rgba(255, 255, 255, 0.72);
           font-family: var(--font-body);
           font-size: 0.88rem;
           line-height: 1.65;
@@ -180,83 +197,118 @@ export default function Footer() {
           gap: clamp(32px, 5vw, 64px);
           padding-block: clamp(48px, 6vw, 80px);
         }
-        .footer__logo {
+
+        /* ── Brand column ── */
+        .footer__brand {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        /* Wordmark row: mammal icon + text */
+        .footer__wordmark {
           display: flex;
           align-items: center;
           gap: 14px;
-          text-decoration: none;
-          margin-bottom: 16px;
-          flex-wrap: wrap;
         }
-        .footer__logo-mammal {
-          width: 72px;
-          height: 72px;
+        .footer__wordmark-mammal {
+          width: 56px;
+          height: 56px;
           object-fit: contain;
           filter: brightness(0) invert(1);
-          opacity: 0.92;
+          opacity: 0.88;
           flex-shrink: 0;
         }
-        .footer__logo-img {
-          width: 62px;
-          height: 62px;
-          object-fit: cover;
-          border-radius: 50%;
-          border: 2px solid rgba(255,255,255,0.2);
-          flex-shrink: 0;
+        .footer__wordmark-text {
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
         }
-        .footer__logo-text {
-          display: block;
+        .footer__wordmark-name {
           font-family: var(--font-nav);
-          font-size: 1.1rem;
+          font-size: 1.15rem;
           font-weight: 700;
-          letter-spacing: 0.08em;
-          color: var(--color-text-light);
+          letter-spacing: 0.09em;
+          color: #fff;
           text-transform: uppercase;
           line-height: 1;
         }
-        .footer__logo-tagline {
-          display: block;
+        .footer__wordmark-tagline {
           font-family: var(--font-eyebrow);
           font-style: italic;
-          font-size: 0.6rem;
-          letter-spacing: 0.12em;
+          font-size: 0.62rem;
+          letter-spacing: 0.14em;
           color: var(--color-teal);
           text-transform: uppercase;
-          margin-top: 3px;
         }
+
+        /* Logo showcase box */
+        .footer__logo-showcase {
+          display: block;
+          position: relative;
+          width: 160px;
+          height: 140px;
+          border-radius: 4px;
+          overflow: hidden;
+          border: 1px solid rgba(255,255,255,0.12);
+          box-shadow: 0 4px 24px rgba(0,0,0,0.45);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          flex-shrink: 0;
+        }
+        .footer__logo-showcase:hover {
+          transform: scale(1.03);
+          box-shadow: 0 8px 36px rgba(0,0,0,0.6);
+        }
+        .footer__logo-showcase__img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        .footer__logo-showcase__overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(0,0,0,0.22) 0%, transparent 60%);
+          pointer-events: none;
+        }
+
         .footer__brand-desc {
-          color: rgba(255, 255, 255, 0.6);
+          color: rgba(255, 255, 255, 0.52);
           font-size: 0.85rem;
           max-width: 280px;
-          margin-bottom: 20px;
         }
         .footer__social {
           display: flex;
-          gap: 12px;
+          gap: 10px;
         }
         .footer__social-link {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 36px;
-          height: 36px;
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          color: rgba(255, 255, 255, 0.6);
+          width: 38px;
+          height: 38px;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          border-radius: 2px;
+          color: rgba(255, 255, 255, 0.58);
           transition: border-color var(--transition-base), color var(--transition-base), background-color var(--transition-base);
         }
         .footer__social-link:hover {
           border-color: var(--color-teal);
           color: var(--color-teal);
-          background-color: rgba(88, 176, 196, 0.1);
+          background-color: rgba(201, 169, 110, 0.1);
         }
+
+        /* ── Columns ── */
         .footer__col-title {
           font-family: var(--font-nav);
-          font-size: 0.68rem;
+          font-size: 0.65rem;
           font-weight: 600;
-          letter-spacing: 0.14em;
+          letter-spacing: 0.16em;
           text-transform: uppercase;
-          color: var(--color-text-light);
+          color: rgba(255,255,255,0.9);
           margin-bottom: 20px;
+          padding-bottom: 10px;
+          border-bottom: 1px solid rgba(255,255,255,0.08);
         }
         .footer__list {
           display: flex;
@@ -264,7 +316,7 @@ export default function Footer() {
           gap: 10px;
         }
         .footer__link {
-          color: rgba(255, 255, 255, 0.6);
+          color: rgba(255, 255, 255, 0.55);
           text-decoration: none;
           font-size: 0.85rem;
           transition: color var(--transition-base);
@@ -281,7 +333,7 @@ export default function Footer() {
           display: flex;
           align-items: flex-start;
           gap: 10px;
-          color: rgba(255, 255, 255, 0.6);
+          color: rgba(255, 255, 255, 0.55);
           font-size: 0.85rem;
         }
         .footer__contact-list li svg {
@@ -289,8 +341,10 @@ export default function Footer() {
           color: var(--color-teal);
           margin-top: 3px;
         }
+
+        /* ── Bottom bar ── */
         .footer__bottom {
-          border-top: 1px solid rgba(255, 255, 255, 0.08);
+          border-top: 1px solid rgba(255, 255, 255, 0.07);
           padding-block: 20px;
         }
         .footer__bottom-inner {
@@ -303,7 +357,7 @@ export default function Footer() {
         }
         .footer__copy {
           font-size: 0.78rem;
-          color: rgba(255, 255, 255, 0.4);
+          color: rgba(255, 255, 255, 0.32);
         }
         .footer__legal {
           display: flex;
@@ -312,12 +366,21 @@ export default function Footer() {
         .footer__legal .footer__link {
           font-size: 0.78rem;
         }
+
         @media (max-width: 900px) {
           .footer__inner {
             grid-template-columns: 1fr 1fr;
           }
           .footer__brand {
             grid-column: span 2;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 28px;
+            align-items: flex-start;
+          }
+          .footer__brand > .footer__brand-desc,
+          .footer__brand > .footer__social {
+            width: 100%;
           }
         }
         @media (max-width: 560px) {
@@ -326,6 +389,7 @@ export default function Footer() {
           }
           .footer__brand {
             grid-column: span 1;
+            flex-direction: column;
           }
           .footer__bottom-inner {
             flex-direction: column;

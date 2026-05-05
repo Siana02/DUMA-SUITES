@@ -183,7 +183,7 @@ export default function HeroSection({ ready = false }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: DELAYS.cta }}
           >
-            <a href="#suites" className="hero__cta">
+            <a href="#suite-highlights" className="hero__cta">
               Explore Suites
               <span className="hero__cta-arrow" aria-hidden="true">→</span>
             </a>
@@ -194,7 +194,7 @@ export default function HeroSection({ ready = false }) {
 
       {/* ── Scroll indicator (hidden on mobile) ── */}
       <motion.a
-        href="#suites"
+        href="#suite-highlights"
         className="hero__scroll"
         aria-label="Scroll to suites"
         initial={{ opacity: 0 }}

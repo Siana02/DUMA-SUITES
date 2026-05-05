@@ -2,9 +2,12 @@ import { useEffect, useRef } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { gsap } from 'gsap'
 import { ArrowRight } from 'lucide-react'
+import cheetahIcon from '../assets/cheetah.png'
 
 export default function CTASection() {
   const { ref, inView } = useInView({ threshold: 0.3, triggerOnce: true })
+  const eyebrowRef = useRef(null)
+  const dividerRef = useRef(null)
   const headingRef = useRef(null)
   const subRef = useRef(null)
   const btnRef = useRef(null)
@@ -12,20 +15,29 @@ export default function CTASection() {
   useEffect(() => {
     if (!inView) return
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-    tl.fromTo(headingRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8 })
+    tl.fromTo(eyebrowRef.current, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6 })
+      .fromTo(dividerRef.current, { opacity: 0, scaleX: 0 }, { opacity: 1, scaleX: 1, duration: 0.7 }, '-=0.3')
+      .fromTo(headingRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8 }, '-=0.4')
       .fromTo(subRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
       .fromTo(btnRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.3')
   }, [inView])
 
   return (
     <section className="cta-section section" id="booking" ref={ref}>
-      <div className="cta-section__inner">
-        {/* Background accent line */}
-        <div className="cta-section__line" aria-hidden="true" />
+      {/* Decorative orbs */}
+      <div className="cta-section__orb cta-section__orb--top" aria-hidden="true" />
+      <div className="cta-section__orb cta-section__orb--bottom" aria-hidden="true" />
 
-        <span className="eyebrow" style={{ color: 'rgba(255,255,255,0.65)' }}>
+      <div className="cta-section__inner">
+        <span ref={eyebrowRef} className="cta-section__eyebrow" style={{ opacity: 0 }}>
           Watamu Awaits
         </span>
+
+        <div ref={dividerRef} className="cta-section__divider" aria-hidden="true" style={{ opacity: 0 }}>
+          <span className="cta-section__divider-line cta-section__divider-line--left" />
+          <img src={cheetahIcon} alt="" className="cta-section__divider-icon" />
+          <span className="cta-section__divider-line cta-section__divider-line--right" />
+        </div>
 
         <h2
           ref={headingRef}
@@ -44,11 +56,11 @@ export default function CTASection() {
         </p>
 
         <div ref={btnRef} className="cta-section__btns" style={{ opacity: 0 }}>
-          <a href="mailto:reservations@dumasuites.com" className="btn btn-primary cta-section__btn">
+          <a href="mailto:reservations@dumasuites.com" className="cta-section__btn cta-section__btn--primary">
             Make a Reservation
             <ArrowRight size={14} strokeWidth={2} />
           </a>
-          <a href="https://wa.me/254710933025" target="_blank" rel="noopener noreferrer" className="btn btn-inverse-light cta-section__btn">
+          <a href="https://wa.me/254710933025" target="_blank" rel="noopener noreferrer" className="cta-section__btn cta-section__btn--outline">
             WhatsApp Us
           </a>
         </div>
@@ -57,63 +69,170 @@ export default function CTASection() {
       <style>{`
         .cta-section {
           background: linear-gradient(
-            135deg,
-            var(--color-espresso) 0%,
-            #3a1f08 40%,
+            160deg,
+            #1a0d05 0%,
+            #2d1508 35%,
+            #1a0e06 65%,
             #0f0705 100%
           );
           position: relative;
           overflow: hidden;
           text-align: center;
         }
+
+        /* Decorative glowing orbs */
+        .cta-section__orb {
+          position: absolute;
+          border-radius: 50%;
+          pointer-events: none;
+        }
+        .cta-section__orb--top {
+          width: 600px;
+          height: 600px;
+          top: -250px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: radial-gradient(circle, rgba(201,169,110,0.18) 0%, transparent 70%);
+        }
+        .cta-section__orb--bottom {
+          width: 400px;
+          height: 400px;
+          bottom: -150px;
+          right: 10%;
+          background: radial-gradient(circle, rgba(88,176,196,0.10) 0%, transparent 70%);
+        }
+
         .cta-section__inner {
           position: relative;
           z-index: 2;
-          max-width: 680px;
+          max-width: 720px;
           margin-inline: auto;
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 1rem;
+          gap: 0;
         }
-        .cta-section__line {
-          position: absolute;
-          inset: 0;
-          background:
-            radial-gradient(ellipse at 50% 0%, rgba(201, 169, 110, 0.20) 0%, transparent 60%),
-            radial-gradient(ellipse at 0% 100%, rgba(255, 255, 255, 0.06) 0%, transparent 50%);
-          pointer-events: none;
+
+        .cta-section__eyebrow {
+          font-family: var(--font-eyebrow);
+          font-size: 0.75rem;
+          font-style: italic;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: var(--color-teal);
+          margin-bottom: 1.25rem;
         }
+
+        .cta-section__divider {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          width: 280px;
+          margin-bottom: 1.5rem;
+          transform-origin: center;
+        }
+        .cta-section__divider-line {
+          flex: 1;
+          height: 1px;
+        }
+        .cta-section__divider-line--left {
+          background: linear-gradient(to right, transparent, rgba(201,169,110,0.55));
+        }
+        .cta-section__divider-line--right {
+          background: linear-gradient(to left, transparent, rgba(201,169,110,0.55));
+        }
+        .cta-section__divider-icon {
+          width: 2rem;
+          height: 2rem;
+          opacity: 0.65;
+          filter: brightness(0) invert(1);
+          flex-shrink: 0;
+        }
+
         .cta-section__heading {
           font-family: var(--font-title);
-          font-size: clamp(2.5rem, 6vw, 4.5rem);
+          font-size: clamp(2.8rem, 6.5vw, 5rem);
           font-weight: 300;
           color: var(--color-text-light);
-          line-height: 1.1;
-          margin-top: 0.5rem;
+          line-height: 1.08;
+          margin-bottom: 1.5rem;
+          letter-spacing: -0.01em;
         }
         .cta-section__heading em {
           font-style: italic;
           color: #e8d5b0;
+          display: block;
         }
+
         .cta-section__sub {
           font-family: var(--font-body);
-          font-size: clamp(0.9rem, 1.5vw, 1.05rem);
-          color: rgba(255, 255, 255, 0.7);
-          line-height: 1.75;
-          max-width: 520px;
-          margin-top: 0.5rem;
-          margin-bottom: 0.5rem;
+          font-size: clamp(0.92rem, 1.5vw, 1.08rem);
+          color: rgba(255, 255, 255, 0.65);
+          line-height: 1.8;
+          max-width: 540px;
+          margin-bottom: 2.25rem;
+          padding: 0 1rem;
         }
+
         .cta-section__btns {
           display: flex;
           gap: 1rem;
           flex-wrap: wrap;
           justify-content: center;
-          margin-top: 0.5rem;
         }
+
+        /* Primary filled button */
         .cta-section__btn {
-          font-size: 0.7rem;
+          display: inline-flex;
+          align-items: center;
+          gap: 9px;
+          font-family: var(--font-nav);
+          font-size: 0.68rem;
+          font-weight: 600;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          text-decoration: none;
+          padding: 15px 36px;
+          border-radius: 2px;
+          position: relative;
+          overflow: hidden;
+          isolation: isolate;
+          transition: color 0.3s ease, border-color 0.3s ease,
+                      transform 0.28s ease, box-shadow 0.3s ease;
+        }
+        .cta-section__btn--primary {
+          background: var(--color-teal);
+          color: #fff;
+          border: 1.5px solid var(--color-teal);
+        }
+        .cta-section__btn--primary:hover {
+          background: var(--color-teal-dark);
+          border-color: var(--color-teal-dark);
+          transform: translateY(-2px);
+          box-shadow: 0 10px 32px rgba(201,169,110,0.38);
+        }
+        .cta-section__btn--outline {
+          background: transparent;
+          color: rgba(255,255,255,0.85);
+          border: 1.5px solid rgba(255,255,255,0.3);
+        }
+        .cta-section__btn--outline:hover {
+          background: rgba(255,255,255,0.08);
+          border-color: rgba(255,255,255,0.6);
+          color: #fff;
+          transform: translateY(-2px);
+        }
+
+        @media (max-width: 480px) {
+          .cta-section__btns {
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+          }
+          .cta-section__btn {
+            width: 100%;
+            justify-content: center;
+          }
         }
       `}</style>
     </section>

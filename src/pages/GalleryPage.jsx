@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
+import cheetahIcon from '../assets/cheetah.png'
 
 import gImg1  from '../assets/gallery-image1.JPEG'
 import gImg2  from '../assets/gallery-image2.jpg'
@@ -27,33 +28,97 @@ import watamu           from '../assets/watamu-island.JPEG'
 import gediRuins        from '../assets/gedi-ruins-excursion.JPEG'
 import elephantWatch    from '../assets/elephant-watching.JPEG'
 import sunsetDhow       from '../assets/sunset-dhow-cruise.JPEG'
+import sunsetView       from '../assets/sunset-view.JPEG'
+import dolphinWatch     from '../assets/dolphin-watching-watamu.jpg'
+import gediMonkey       from '../assets/gedi-ruins-monkey-excursion.JPEG'
+import upcElephant      from '../assets/upclose-elephant.JPEG'
+import poolDay          from '../assets/daytime-groundfloor-poolview.jpg'
+import poolDrinks       from '../assets/drinks-infinitypoolview.jpg'
+import infinityOcean    from '../assets/infinity-pool-ocean-view.jpg'
+import infinitySunset   from '../assets/infinity-pool-sunset-view.jpg'
+import nightAriel       from '../assets/nighttime-ariel-view.jpg'
+import nightPool        from '../assets/nighttime-groundfloor-poolview.jpg'
+import swahiliDecor     from '../assets/mirror-on-wall-swahili-decor.jpg'
+import serenityLounge   from '../assets/serenity-villa-outdoor-lounge-upclose.JPEG'
+import serenityBalcony  from '../assets/serenity-villa-balcony-view1.JPEG'
+import serenityTerrace  from '../assets/serenity-villa-outdoor-terrace.JPEG'
+import coastalOutdoor   from '../assets/coastal-haven-suite-outdoor-view.JPEG'
+import coastalNight     from '../assets/coastal-haven-suite-nighttime-poolview.JPEG'
+import coastal1Bed      from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
+import coastalBed       from '../assets/coastal-haven-suite-kingsize-bed.JPEG'
+import coastalBedSide   from '../assets/coastal-haven-suite-kingsize-bed-sideview.JPEG'
+import coastalKitchen   from '../assets/coastal-haven-suite-kitchenette.JPEG'
+import coastalLounge    from '../assets/coastal-haven-suite-lounge-tv-area.JPEG'
+import coastalShower    from '../assets/coastal-haven-suite-shower.JPEG'
+import coastalChair     from '../assets/coastal-haven-outside-chair.JPEG'
+import serenity3Bed     from '../assets/serenity-villa-3bedroomsuite-preview.JPEG'
+import serenityBed1     from '../assets/serenity-villa-1st-bedroom-view1.JPEG'
+import serenityBed2     from '../assets/serenity-villa-2ndbedroom-view1.JPEG'
+import serenityBed3     from '../assets/serenity-villa-3rdbedroom-view1.JPEG'
+import serenityDining   from '../assets/serenity-villa-dining-table-view1.JPEG'
+import serenityKitchen  from '../assets/serenity-villa-full-kitchen-view.JPEG'
+import serenityGarden   from '../assets/serenity-villa-outdoor-garden-view.JPEG'
+import serenityArt      from '../assets/serenity-villa-art-showcase.JPEG'
+import serenityFloor    from '../assets/serenity-villa-1stfloor-view.JPEG'
 
 const IMAGES = [
-  { src: gImg1,         alt: 'Duma Suites – gallery view 1' },
-  { src: gImg2,         alt: 'Duma Suites – gallery view 2' },
-  { src: gImg3,         alt: 'Duma Suites – gallery view 3' },
-  { src: gImg4,         alt: 'Duma Suites – gallery view 4' },
-  { src: gImg5,         alt: 'Duma Suites – gallery view 5' },
-  { src: gImg6,         alt: 'Duma Suites – gallery view 6' },
-  { src: gImg7,         alt: 'Duma Suites – gallery view 7' },
-  { src: gImg8,         alt: 'Duma Suites – gallery view 8' },
-  { src: gImg9,         alt: 'Duma Suites – gallery view 9' },
-  { src: gImg10,        alt: 'Duma Suites – gallery view 10' },
-  { src: gImg11,        alt: 'Duma Suites – gallery view 11' },
-  { src: gImg12,        alt: 'Duma Suites – gallery view 12' },
-  { src: gImg13,        alt: 'Duma Suites – gallery view 13' },
-  { src: gImg14,        alt: 'Duma Suites – gallery view 14' },
-  { src: gImg15,        alt: 'Duma Suites – gallery view 15' },
-  { src: gImg16,        alt: 'Duma Suites – gallery view 16' },
-  { src: gImg17,        alt: 'Duma Suites – gallery view 17' },
-  { src: gImg18,        alt: 'Duma Suites – gallery view 18' },
+  { src: gImg1,           alt: 'Duma Suites – gallery view 1' },
+  { src: gImg2,           alt: 'Duma Suites – gallery view 2' },
+  { src: gImg3,           alt: 'Duma Suites – gallery view 3' },
+  { src: gImg4,           alt: 'Duma Suites – gallery view 4' },
+  { src: gImg5,           alt: 'Duma Suites – gallery view 5' },
+  { src: gImg6,           alt: 'Duma Suites – gallery view 6' },
+  { src: gImg7,           alt: 'Duma Suites – gallery view 7' },
+  { src: gImg8,           alt: 'Duma Suites – gallery view 8' },
+  { src: gImg9,           alt: 'Duma Suites – gallery view 9' },
+  { src: gImg10,          alt: 'Duma Suites – gallery view 10' },
+  { src: gImg11,          alt: 'Duma Suites – gallery view 11' },
+  { src: gImg12,          alt: 'Duma Suites – gallery view 12' },
+  { src: gImg13,          alt: 'Duma Suites – gallery view 13' },
+  { src: gImg14,          alt: 'Duma Suites – gallery view 14' },
+  { src: gImg15,          alt: 'Duma Suites – gallery view 15' },
+  { src: gImg16,          alt: 'Duma Suites – gallery view 16' },
+  { src: gImg17,          alt: 'Duma Suites – gallery view 17' },
+  { src: gImg18,          alt: 'Duma Suites – gallery view 18' },
+  { src: poolDay,         alt: 'Ground-floor pool by day' },
+  { src: poolDrinks,      alt: 'Infinity pool with ocean horizon' },
+  { src: infinityOcean,   alt: 'Infinity pool overlooking the ocean' },
+  { src: infinitySunset,  alt: 'Infinity pool at golden hour' },
+  { src: nightAriel,      alt: 'Aerial night view' },
+  { src: nightPool,       alt: 'Pool illuminated at night' },
+  { src: swahiliDecor,    alt: 'Swahili-inspired interior detail' },
+  { src: serenityLounge,  alt: 'Outdoor lounge area' },
+  { src: serenityBalcony, alt: 'Balcony with garden views' },
+  { src: serenityTerrace, alt: 'Private outdoor terrace' },
+  { src: coastalOutdoor,  alt: 'Coastal Haven outdoor view' },
+  { src: coastalNight,    alt: 'Night-time pool view from suite' },
   { src: effortlessLuxury, alt: 'Effortless luxury at Duma Suites' },
   { src: poolsOfSerenity,  alt: 'Pools of serenity' },
   { src: swahiliElegance,  alt: 'Swahili elegance interior' },
   { src: watamu,           alt: 'Watamu Island' },
+  { src: sunsetView,       alt: 'Sunset view from Duma Suites' },
   { src: gediRuins,        alt: 'Gedi Ruins excursion' },
+  { src: gediMonkey,       alt: 'Gedi Ruins monkey excursion' },
   { src: elephantWatch,    alt: 'Elephant watching' },
+  { src: upcElephant,      alt: 'Up-close elephant encounter' },
   { src: sunsetDhow,       alt: 'Sunset dhow cruise' },
+  { src: dolphinWatch,     alt: 'Dolphin watching in Watamu' },
+  { src: coastal1Bed,      alt: 'Coastal Haven – 1 bedroom preview' },
+  { src: coastalBed,       alt: 'Coastal Haven – king-size bed' },
+  { src: coastalBedSide,   alt: 'Coastal Haven – king-size bed side view' },
+  { src: coastalKitchen,   alt: 'Coastal Haven – kitchenette' },
+  { src: coastalLounge,    alt: 'Coastal Haven – lounge & TV area' },
+  { src: coastalShower,    alt: 'Coastal Haven – rain shower' },
+  { src: coastalChair,     alt: 'Coastal Haven – outdoor chair' },
+  { src: serenity3Bed,     alt: 'Serenity Villa – 3-bedroom preview' },
+  { src: serenityBed1,     alt: 'Serenity Villa – first bedroom' },
+  { src: serenityBed2,     alt: 'Serenity Villa – second bedroom' },
+  { src: serenityBed3,     alt: 'Serenity Villa – third bedroom' },
+  { src: serenityDining,   alt: 'Serenity Villa – dining table' },
+  { src: serenityKitchen,  alt: 'Serenity Villa – full kitchen' },
+  { src: serenityGarden,   alt: 'Serenity Villa – outdoor garden' },
+  { src: serenityArt,      alt: 'Serenity Villa – art showcase' },
+  { src: serenityFloor,    alt: 'Serenity Villa – first floor view' },
 ]
 
 export default function GalleryPage() {
@@ -72,8 +137,14 @@ export default function GalleryPage() {
           <div className="container">
             <div className="gallery-page__header">
               <span className="eyebrow">{t.gallery.eyebrow}</span>
+
+              <div className="gallery-page__divider" aria-hidden="true">
+                <span className="gallery-page__divider-line gallery-page__divider-line--left" />
+                <img src={cheetahIcon} alt="" className="gallery-page__divider-icon" />
+                <span className="gallery-page__divider-line gallery-page__divider-line--right" />
+              </div>
+
               <h1 className="section-title">{t.gallery.title}</h1>
-              <div className="divider" />
               <p className="gallery-page__sub">{t.gallery.sub}</p>
             </div>
 
@@ -97,6 +168,25 @@ export default function GalleryPage() {
         .gallery-page__header {
           text-align: center;
           margin-bottom: clamp(32px, 5vw, 56px);
+        }
+        .gallery-page__divider {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          max-width: 320px;
+          margin: 0.75rem auto 1rem;
+        }
+        .gallery-page__divider-line {
+          flex: 1;
+          height: 1px;
+        }
+        .gallery-page__divider-line--left  { background: linear-gradient(to right, transparent, var(--color-teal)); }
+        .gallery-page__divider-line--right { background: linear-gradient(to left,  transparent, var(--color-teal)); }
+        .gallery-page__divider-icon {
+          width: 2rem;
+          height: 2rem;
+          opacity: 0.72;
+          flex-shrink: 0;
         }
         .gallery-page__sub {
           max-width: 560px;
