@@ -3,32 +3,17 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useInView } from 'react-intersection-observer'
 import { Maximize2, BedDouble, Users, ArrowLeft, ArrowRight } from 'lucide-react'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { getT } from '../i18n/translations.js'
 
 import cheetahIcon from '../assets/cheetah.png'
 import coastalPreview from '../assets/coastal-haven-suite-lounge-couch.JPEG'
 import serenityPreview from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
 
-const SUITES = [
-  {
-    id: 'coastal-haven',
-    name: 'One Bedroom Suite',
-    tagline: '1-Bedroom · Intimate Coastal Retreat',
-    size: '25 sq m',
-    beds: '1 King Bed',
-    guests: '2+ Guests',
-    href: '/suites/coastal-haven',
-    image: coastalPreview,
-  },
-  {
-    id: 'serenity-villa',
-    name: 'Three Bedroom Suite',
-    tagline: '3-Bedroom · Luxury Family Retreat',
-    size: '75 sq m',
-    beds: '3 King Beds',
-    guests: '6+ Guests',
-    href: '/suites/serenity-villa',
-    image: serenityPreview,
-  },
+// Static metadata: images & hrefs only
+const SUITE_META = [
+  { id: 'coastal-haven', href: '/suites/coastal-haven', image: coastalPreview },
+  { id: 'serenity-villa', href: '/suites/serenity-villa', image: serenityPreview },
 ]
 
 const AUTO_ADVANCE_MS = 7000
@@ -37,6 +22,11 @@ export default function SuitesPreviewSection() {
   const [current, setCurrent] = useState(0)
   const [direction, setDirection] = useState(1)
   const navigate = useNavigate()
+  const { lang } = useLanguage()
+  const sp = getT(lang).suitesPreview
+
+  // Merge static metadata with translated suite data
+  const suites = SUITE_META.map((meta, i) => ({ ...meta, ...sp.suites[i] }))
 
   const { ref: sectionRef, inView } = useInView({ threshold: 0.15, triggerOnce: true })
 
@@ -47,12 +37,12 @@ export default function SuitesPreviewSection() {
 
   const next = useCallback(() => {
     setDirection(1)
-    setCurrent((c) => (c + 1) % SUITES.length)
+    setCurrent((c) => (c + 1) % SUITE_META.length)
   }, [])
 
   const prev = useCallback(() => {
     setDirection(-1)
-    setCurrent((c) => (c - 1 + SUITES.length) % SUITES.length)
+    setCurrent((c) => (c - 1 + SUITE_META.length) % SUITE_META.length)
   }, [])
 
   useEffect(() => {
@@ -60,7 +50,7 @@ export default function SuitesPreviewSection() {
     return () => clearInterval(timer)
   }, [next])
 
-  const suite = SUITES[current]
+  const suite = suites[current]
 
   const fadeUp = (delay = 0) => ({
     initial: { opacity: 0, y: 28 },
@@ -80,7 +70,7 @@ export default function SuitesPreviewSection() {
         {/* Header */}
         <div className="sp-header">
           <motion.span className="eyebrow sp-eyebrow" {...fadeUp(0)}>
-            Suites Preview
+            {sp.eyebrow}
           </motion.span>
 
           <motion.div className="sp-divider" {...fadeUp(0.1)} aria-hidden="true">
@@ -90,11 +80,11 @@ export default function SuitesPreviewSection() {
           </motion.div>
 
           <motion.h2 className="section-title sp-title" {...fadeUp(0.18)}>
-            The Duma Suites
+            {sp.title}
           </motion.h2>
 
           <motion.p className="sp-intro" {...fadeUp(0.26)}>
-            Discover refined living spaces designed for coastal serenity.
+            {sp.intro}
           </motion.p>
         </div>
 
@@ -170,7 +160,7 @@ export default function SuitesPreviewSection() {
 
           {/* Dots */}
           <div className="sp-dots" role="tablist" aria-label="Suite slides">
-            {SUITES.map((s, i) => (
+            {suites.map((s, i) => (
               <button
                 key={s.id}
                 role="tab"
@@ -186,8 +176,8 @@ export default function SuitesPreviewSection() {
         {/* CTA */}
         <motion.div className="sp-cta-wrap" {...fadeUp(0.44)}>
           <a href="/suites" className="sp-cta-btn">
-            Explore All Suites
-            <span className="sp-cta-btn__arrow" aria-hidden="true">→</span>
+            {sp.viewAll}
+            <span className="sp-cta-btn__arrow" aria-hidden="true">&rarr;</span>
           </a>
         </motion.div>
       </div>

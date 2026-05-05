@@ -1,6 +1,8 @@
 import { useRef, useState, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { getT } from '../i18n/translations.js'
 
 import gm1        from '../assets/General-manager1.jpg'
 import gm2        from '../assets/General-managers2.jpg'
@@ -40,6 +42,8 @@ const VIDEO_BASE_SRC =
 
 export default function GMMessageSection() {
   const { ref } = useInView({ threshold: 0.1, triggerOnce: true })
+  const { lang } = useLanguage()
+  const t = getT(lang).gm
 
   // Track when the video is in / out of the viewport
   const iframeRef = useRef(null)
@@ -109,12 +113,12 @@ export default function GMMessageSection() {
 
       {/* ── Warm welcome intro ── */}
       <motion.p className="gm-welcome-intro" {...fadeUp(0)}>
-        A heartfelt welcome to Duma Suites
+        {t.welcome}
       </motion.p>
 
       {/* ── Section eyebrow ── */}
       <motion.span className="eyebrow gm-eyebrow" {...fadeUp(0.08)}>
-        A Word from the General Manager
+        {t.eyebrow}
       </motion.span>
 
       {/* ─────────────────────────────────────────────────────────────────────
@@ -163,10 +167,7 @@ export default function GMMessageSection() {
 
           {/* Paragraph 1 */}
           <motion.p className="gm-para gm-para--lead" {...fadeUp(0.2)}>
-            At Duma Suites, we do not merely offer accommodation&thinsp;—&thinsp;we craft
-            moments. Every sunrise over the Indian Ocean, every breeze that
-            carries the scent of the sea, is intentionally woven into the fabric
-            of your stay.
+            {t.para1}
           </motion.p>
 
           {/* Inline image 1 — mobile & tablet only (hidden on desktop) */}
@@ -180,10 +181,7 @@ export default function GMMessageSection() {
 
           {/* Paragraph 2 */}
           <motion.p className="gm-para" {...fadeUp(0.32)}>
-            Our team has dedicated itself to redefining what coastal luxury
-            means&thinsp;—&thinsp;not through grandeur alone, but through the quiet confidence
-            of perfection in every detail. From the linen on your bed to the
-            last light of a Watamu sunset, nothing is left to chance.
+            {t.para2}
           </motion.p>
 
           {/* Inline image 2 — mobile & tablet only (hidden on desktop) */}
@@ -197,21 +195,18 @@ export default function GMMessageSection() {
 
           {/* Paragraph 3 */}
           <motion.p className="gm-para" {...fadeUp(0.44)}>
-            Watamu is more than a destination; it is a state of mind. Whether
-            you arrive seeking adventure along the reef or simply the profound
-            peace of the horizon at dusk, Duma Suites will meet you exactly where
-            you are — and exceed every expectation you carry.
+            {t.para3}
           </motion.p>
 
           {/* Closing line */}
           <motion.p className="gm-para gm-para--closing" {...fadeUp(0.52)}>
-            Welcome to our home. Watch the short introduction below to see what awaits you.
+            {t.closing}
           </motion.p>
 
           {/* ── Attribution ── */}
           <motion.div className="gm-attribution" {...fadeUp(0.60)}>
-            <p className="gm-name">Andrea Boemo</p>
-            <p className="gm-title-label">General Manager, Duma Suites</p>
+            <p className="gm-name">{t.gmName}</p>
+            <p className="gm-title-label">{t.gmTitle}</p>
           </motion.div>
 
         </article>
@@ -251,7 +246,7 @@ export default function GMMessageSection() {
         <div className="gm-video-card">
           <div className="gm-video-label" aria-hidden="true">
             <span className="gm-video-line" />
-            <span className="gm-video-tag">A Short Introduction</span>
+            <span className="gm-video-tag">{t.videoLabel}</span>
             <span className="gm-video-line" />
           </div>
           <div className="gm-video-frame">

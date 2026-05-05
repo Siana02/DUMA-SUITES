@@ -3,16 +3,23 @@ import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Star, ThumbsUp, Anchor, Waves, Fish, Landmark, Binoculars, TreeDeciduous, Quote as QuoteIcon, Lightbulb } from 'lucide-react'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { getT } from '../i18n/translations.js'
 import heroImg      from '../assets/dolphin-watching-watamu.jpg'
 import cheetahIcon  from '../assets/cheetah.png'
 import gediImg      from '../assets/gedi-ruins-excursion.JPEG'
 import elephantImg  from '../assets/elephant-watching.JPEG'
 import swahiliImg   from '../assets/coastal-swahili-dishes.webp'
 
-const ACTIVITIES = [
-  {
-    number: '01',
-    title: 'Safari Blue — Full-Day Excursion',
+// Static per-activity metadata: icon and image (non-translatable)
+const ACTIVITY_META = [
+  { number: '01', icon: Anchor, image: heroImg, imageAlt: 'Dolphin watching on Safari Blue, Watamu coast' },
+  { number: '02', icon: Waves, image: null, imageAlt: '' },
+  { number: '03', icon: Fish, image: null, imageAlt: '' },
+  { number: '04', icon: Landmark, image: gediImg, imageAlt: 'Gedi Ruins ancient Swahili city near Watamu' },
+  { number: '05', icon: Binoculars, image: elephantImg, imageAlt: 'Elephants at Tsavo National Park near Watamu' },
+  { number: '06', icon: TreeDeciduous, image: null, imageAlt: '' },
+]
     pullQuote: "Spinner dolphins leap alongside the dhow as Watamu's legendary full-day marine adventure unfolds before you.",
     tags: ['Couples', 'Families', 'Adventurers'],
     badges: ['Full Day · 8 hrs', 'Dolphin Watching', 'Seafood Feast on Sudi Island', 'Snorkelling Included', 'Book 2 Days Ahead'],
@@ -88,49 +95,21 @@ function CheetahDivider() {
   )
 }
 
-const QUOTES = [
-  {
-    text: "Safari Blue was the most magical day of our entire trip — the dolphins, the reef, the feast on Sudi Island. Book it without hesitation.",
-    author: "Sarah M.",
-    origin: "London",
-    platform: "TripAdvisor",
-    variant: "teal",
-  },
-  {
-    text: "The Gedi Ruins tour arranged by Duma's concierge was utterly unforgettable. You feel 800 years of Swahili history standing in those courtyards.",
-    author: "Marco T.",
-    origin: "Rome",
-    platform: "Google",
-    variant: "espresso",
-  },
-  {
-    text: "Mida Creek at low tide with herons and fish eagles circling overhead — we had no idea Watamu held something this serene.",
-    author: "Claire & James B.",
-    origin: "Sydney",
-    platform: "Booking.com",
-    variant: "sand",
-  },
-]
-
-const INSIDER_TIPS = [
-  "Book Safari Blue at least 2 days ahead — it fills fast during high season (December–February).",
-  "Visit Gedi Ruins early morning: cooler, quieter, and the colobus monkeys are most active at sunrise.",
-  "Bring binoculars to Mida Creek — the boardwalk rewards patience, especially at low tide.",
-]
-
 export default function Article1Page() {
   const heroRef = useRef(null)
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
   const heroImgY = useTransform(scrollYProgress, [0, 1], ['0%', '10%'])
+  const { lang } = useLanguage()
+  const a1 = getT(lang).article1
+
+  // Merge static metadata (icons/images) with translated activity data
+  const activities = ACTIVITY_META.map((meta, i) => ({ ...meta, ...a1.activities[i] }))
 
   return (
     <>
       <Helmet>
-        <title>Top 5 Activities on the Watamu Coast | Duma Suites Stories</title>
-        <meta
-          name="description"
-          content="From Safari Blue full-day and half-day to Gedi Ruins, elephant watching and the Mida Creek boardwalk — discover the top activities on the Watamu coast, curated by Duma Suites."
-        />
+        <title>{a1.metaTitle}</title>
+        <meta name="description" content={a1.metaDesc} />
       </Helmet>
 
       <main style={{ paddingTop: 80 }}>
@@ -148,7 +127,7 @@ export default function Article1Page() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
             >
-              Travel Guide
+              {a1.heroEyebrow}
             </motion.span>
             <motion.h1
               className="art1-hero__title"
@@ -156,7 +135,7 @@ export default function Article1Page() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.22 }}
             >
-              Top Activities on the Watamu Coast
+              {a1.heroTitle}
             </motion.h1>
             <motion.p
               className="art1-hero__sub"
@@ -164,7 +143,7 @@ export default function Article1Page() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.36 }}
             >
-              Extraordinary experiences curated for Duma Suites guests
+              {a1.heroSub}
             </motion.p>
           </div>
         </div>
@@ -182,7 +161,7 @@ export default function Article1Page() {
               <Star size={24} className="art1-proof__icon" aria-hidden="true" />
               <div>
                 <span className="art1-proof__value">4.9 / 5</span>
-                <span className="art1-proof__label">TripAdvisor Rating</span>
+                <span className="art1-proof__label">{a1.proofRating}</span>
               </div>
             </motion.div>
             <motion.div
@@ -211,7 +190,7 @@ export default function Article1Page() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.65 }}
             >
-              Discover Watamu&apos;s Finest Experiences
+              {a1.introTitle}
             </motion.h2>
             <motion.p
               className="art1-intro__text"
@@ -220,10 +199,7 @@ export default function Article1Page() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.7 }}
             >
-              Watamu is one of East Africa's most captivating coastal destinations — and the activities
-              available here go far beyond simply relaxing on its legendary white-sand beaches. From
-              ancient ruins hidden within a sacred forest to legendary full-day marine adventures,
-              every experience here leaves a lasting impression.
+              {a1.introText}
             </motion.p>
             <motion.div
               className="art1-concierge-note"
@@ -232,10 +208,9 @@ export default function Article1Page() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.65, delay: 0.15 }}
             >
-              <span className="art1-concierge-note__label">From Our Concierge</span>
+              <span className="art1-concierge-note__label">{a1.conciergeLabel}</span>
               <p className="art1-concierge-note__text">
-                Our team personally curates and arranges every excursion below for guests staying at Duma Suites.
-                Speak to us at check-in and we'll tailor the perfect itinerary for your stay.
+                {a1.conciergeText}
               </p>
             </motion.div>
           </div>
@@ -244,9 +219,9 @@ export default function Article1Page() {
         {/* Guest voices */}
         <section className="art1-voices section">
           <div className="container art1-voices__inner">
-            <span className="art1-voices__eyebrow">What Our Guests Say</span>
+            <span className="art1-voices__eyebrow">{a1.voicesEyebrow}</span>
             <div className="art1-voices__grid">
-              {QUOTES.map((q, i) => (
+              {a1.quotes.map((q, i) => (
                 <motion.blockquote
                   key={i}
                   className={`art1-voice art1-voice--${q.variant}`}
@@ -271,7 +246,7 @@ export default function Article1Page() {
         {/* Activity cards */}
         <section className="art1-list section section--secondary">
           <div className="container art1-list__inner">
-            {ACTIVITIES.map((act, i) => (
+            {activities.map((act, i) => (
               <motion.div
                 key={i}
                 className={`art1-card${act.image ? (i % 2 === 1 ? ' art1-card--reverse' : '') : ' art1-card--text-only'}`}

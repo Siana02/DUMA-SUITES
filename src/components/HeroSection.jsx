@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { getT } from '../i18n/translations.js'
 
 // Cinematic image sequence (right panel, desktop)
 import seqImg1 from '../assets/arielview1.jpg?w=1920&format=webp&quality=90'
@@ -69,6 +71,8 @@ function AnimatedLetters({ text, keyPrefix }) {
 
 export default function HeroSection({ ready = false }) {
   const [activeIdx, setActiveIdx] = useState(0)
+  const { lang } = useLanguage()
+  const t = getT(lang)
 
   // Start cycling images only after the preload curtain has lifted
   useEffect(() => {
@@ -157,17 +161,17 @@ export default function HeroSection({ ready = false }) {
           */}
           <motion.h1
             className="hero__heading"
-            aria-label="The Art of Coastal Luxury"
+            aria-label={t.hero.ariaLabel}
             variants={TITLE_CONTAINER}
             initial="hidden"
             animate="visible"
           >
             <span className="hero__heading-top" aria-hidden="true">
-              <AnimatedLetters text="THE ART OF" keyPrefix="top" />
+              <AnimatedLetters text={t.hero.headingTop} keyPrefix="top" />
             </span>
             <span className="hero__heading-main" aria-hidden="true">
               <em>
-                <AnimatedLetters text="COASTAL LUXURY" keyPrefix="main" />
+                <AnimatedLetters text={t.hero.headingMain} keyPrefix="main" />
               </em>
             </span>
           </motion.h1>
@@ -178,7 +182,7 @@ export default function HeroSection({ ready = false }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.0, delay: DELAYS.subtitle }}
           >
-            Discover Watamu&apos;s most refined seaside retreat.
+            {t.hero.subtitle}
           </motion.p>
 
           <motion.div
@@ -187,8 +191,8 @@ export default function HeroSection({ ready = false }) {
             transition={{ duration: 0.7, delay: DELAYS.cta }}
           >
             <a href="#suite-highlights" className="hero__cta">
-              Explore Suites
-              <span className="hero__cta-arrow" aria-hidden="true">→</span>
+              {t.hero.cta}
+              <span className="hero__cta-arrow" aria-hidden="true">&rarr;</span>
             </a>
           </motion.div>
 
