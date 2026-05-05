@@ -209,30 +209,6 @@ export default function GMMessageSection() {
             <p className="gm-title-label">General Manager, Duma Suites</p>
           </motion.div>
 
-          {/* ── Intro Video ── */}
-          <motion.div className="gm-video-wrap" {...fadeUp(0.72)} ref={videoRef}>
-            <div className="gm-video-card">
-              <div className="gm-video-label" aria-hidden="true">
-                <span className="gm-video-line" />
-                <span className="gm-video-tag">A Short Introduction</span>
-                <span className="gm-video-line" />
-              </div>
-              <div className="gm-video-frame">
-                <iframe
-                  ref={iframeRef}
-                  src={videoSrc}
-                  frameBorder="0"
-                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                  loading="lazy"
-                  title="intro-video"
-                  onLoad={handleIframeLoad}
-                />
-              </div>
-            </div>
-          </motion.div>
-
         </article>
 
         {/* ── Right margin images (desktop only) ── */}
@@ -264,6 +240,30 @@ export default function GMMessageSection() {
         </aside>
 
       </div>
+
+      {/* ── Intro Video — lives outside the column grid so it can be truly wide ── */}
+      <motion.div className="gm-video-wrap" {...fadeUp(0.72)} ref={videoRef}>
+        <div className="gm-video-card">
+          <div className="gm-video-label" aria-hidden="true">
+            <span className="gm-video-line" />
+            <span className="gm-video-tag">A Short Introduction</span>
+            <span className="gm-video-line" />
+          </div>
+          <div className="gm-video-frame">
+            <iframe
+              ref={iframeRef}
+              src={videoSrc}
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              loading="lazy"
+              title="intro-video"
+              onLoad={handleIframeLoad}
+            />
+          </div>
+        </div>
+      </motion.div>
 
       <style>{`
         /* ── Section shell ── */
@@ -468,7 +468,7 @@ export default function GMMessageSection() {
         /* ── Intro Video — dark card ── */
         .gm-video-wrap {
           margin-top: clamp(2rem, 3.5vw, 3rem);
-          clear: both;
+          padding-inline: var(--section-px, clamp(16px, 5vw, 48px));
         }
         .gm-video-card {
           background: rgba(22, 16, 10, 0.88);
@@ -544,11 +544,20 @@ export default function GMMessageSection() {
           }
           .gm-margin--left  { grid-area: left;  align-items: flex-end;   }
           .gm-margin--right { grid-area: right; align-items: flex-start; }
+
+          /* ── Body: no card box — text flows freely with pictures ── */
           .gm-body {
             grid-area: body;
-            max-width: 62ch;
-            margin-inline: auto;
+            max-width: none;
+            width: 100%;
+            margin-inline: 0;
+            background: none;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            padding: clamp(1.5rem, 2.5vw, 3rem) clamp(8px, 1.5vw, 24px) 0;
           }
+
           .gm-photo--inline { display: none; }
           .gm-peel-overlay  { transition-duration: 1.15s; }
           .gm-photo.is-peeled .gm-peel-overlay {
@@ -556,17 +565,13 @@ export default function GMMessageSection() {
           }
 
           /* Sizes — varied for magazine collage effect */
-          /* Large hero: 400px emphasis */
-          .gm-photo--hero    { width: 100%; max-width: 400px; aspect-ratio: 3 / 4; }
-          /* Medium-large: 300–320px */
+          .gm-photo--hero      { width: 100%; max-width: 400px; aspect-ratio: 3 / 4; }
           .gm-photo--medium-lg { width: 100%; max-width: 310px; aspect-ratio: 4 / 5; }
-          /* Medium: 280–300px */
-          .gm-photo--medium  { width: 100%; max-width: 290px; aspect-ratio: 4 / 5; }
-          /* Small: 190–210px */
-          .gm-photo--small   { width: 100%; max-width: 200px; aspect-ratio: 1 / 1; }
+          .gm-photo--medium    { width: 100%; max-width: 290px; aspect-ratio: 4 / 5; }
+          .gm-photo--small     { width: 100%; max-width: 200px; aspect-ratio: 1 / 1; }
 
-          /* Offset helpers for asymmetric placement (overlap 10-20px) */
-          .gm-photo--offset-r { align-self: flex-end; margin-top: -16px; }
+          /* Offset helpers for asymmetric placement */
+          .gm-photo--offset-r { align-self: flex-end;   margin-top: -16px; }
           .gm-photo--offset-l { align-self: flex-start; margin-top: -16px; }
 
           /* Tilt angles — cutout editorial vibe */
@@ -581,8 +586,21 @@ export default function GMMessageSection() {
             box-shadow: 8px 14px 40px rgba(86, 51, 17, 0.30);
           }
 
-          /* Wider video on desktop */
-          .gm-video-wrap { margin-inline: -3rem; }
+          /* Attribution ornament bg must match the section background (no card behind it now) */
+          .gm-attribution::before {
+            background: var(--color-bg-premium);
+          }
+
+          /* ── Video: truly large, floating below the magazine columns ── */
+          .gm-video-wrap {
+            margin-top: clamp(3.5rem, 6vw, 6rem);
+            max-width: 1200px;
+            margin-inline: auto;
+            padding-inline: var(--section-px);
+          }
+          .gm-video-card {
+            padding: clamp(20px, 2vw, 32px);
+          }
         }
       `}</style>
     </section>
