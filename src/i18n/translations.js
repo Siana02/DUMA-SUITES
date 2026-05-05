@@ -68,6 +68,7 @@ const en = {
   articles: {
     eyebrow: 'Articles & Blogs',
     title: 'Discover Watamu',
+    subtitle: 'Stories, guides and inspiration from the Kenyan coastline.',
     readMore: 'Read More',
     blogCta: 'Stories & Guides',
     items: [
@@ -429,6 +430,7 @@ const it = {
   articles: {
     eyebrow: 'Articoli & Blog',
     title: 'Scopri Watamu',
+    subtitle: 'Storie, guide e ispirazioni dalla costa del Kenya.',
     readMore: 'Leggi di Più',
     blogCta: 'Storie & Guide',
     items: [

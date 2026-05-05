@@ -34,6 +34,9 @@ export default function ArticlesSection() {
           </div>
 
           <h2 className="section-title">{art.title}</h2>
+          {art.subtitle && (
+            <p className="articles-section__subtitle">{art.subtitle}</p>
+          )}
         </div>
 
         <div className="articles-section__grid" ref={gridRef}>
@@ -97,6 +100,14 @@ export default function ArticlesSection() {
         .articles-section__header.is-visible {
           opacity: 1;
           transform: translateY(0);
+        }
+        .articles-section__subtitle {
+          font-family: var(--font-body);
+          font-size: clamp(0.9rem, 1.4vw, 1rem);
+          color: var(--color-text-muted);
+          margin-top: 10px;
+          line-height: 1.65;
+          letter-spacing: 0.01em;
         }
         .art-cheetah-divider {
           display: flex;
