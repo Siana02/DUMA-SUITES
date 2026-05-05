@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
-
 import heroImg     from '../assets/watamu-island.JPEG'
 import gediImg     from '../assets/gedi-ruins-excursion.JPEG'
 import elephantImg from '../assets/upclose-elephant.JPEG'
@@ -126,14 +125,13 @@ export default function Article1Page() {
                 <div className="art1-card__text-side">
                   <h2 className="art1-card__title">{act.title}</h2>
                   <p className="art1-card__desc">{act.desc}</p>
-                  <a
-                    href="#contact"
+                  <Link
+                    to="/#contact"
                     className="art1-card__cta btn btn-primary"
-                    onClick={e => { e.preventDefault(); window.location.href = '/#contact' }}
                   >
                     Book This Experience
                     <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
-                  </a>
+                  </Link>
                 </div>
               </motion.div>
             ))}
