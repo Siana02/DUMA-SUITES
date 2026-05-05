@@ -425,7 +425,6 @@ export default function Article1Page() {
           position: static;
           color: var(--color-teal);
           background: none;
-          color: var(--color-teal);
           padding: 0;
           align-self: flex-start;
         }
