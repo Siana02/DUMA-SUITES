@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Waves, Sofa, Sparkles, Sunrise, Shield, Leaf, Star } from 'lucide-react'
@@ -15,35 +15,38 @@ const fadeUp = (delay = 0) => ({
   transition:  { duration: 0.65, delay, ease: [0.4, 0, 0.2, 1] },
 })
 
-/* One card row — handles its own inView for mobile activation */
-function ValueCard({ card, index, activeCard, setActiveCard, totalCards }) {
+function ValueCard({ card, index, activeCard, setActiveCard, totalCards, isPage }) {
   const Icon = CARD_ICONS[index % CARD_ICONS.length]
-  const isLeft = index % 2 === 0
+  const isLeft   = index % 2 === 0
   const isActive = activeCard === index
-  const isNext   = activeCard === index - 1
 
   const { ref: cardRef, inView: cardInView } = useInView({
     threshold: 0.55,
     triggerOnce: false,
   })
 
-  // On mobile/tablet: auto-activate when scrolled into view
+  // Mobile/tablet: auto-activate as card scrolls into view
   useEffect(() => {
     if (cardInView) setActiveCard(index)
   }, [cardInView, index, setActiveCard])
+
+  const displayDesc = isPage ? card.desc : card.shortDesc
 
   return (
     <div
       className={`as-row as-row--${isLeft ? 'left' : 'right'}`}
       ref={cardRef}
     >
-      {/* Spine node */}
+      {/* Spine node — desktop only (hidden on mobile via CSS) */}
       <div className={`as-node${isActive ? ' as-node--lit' : ''}`} aria-hidden="true">
         <span className="as-node__pulse" />
       </div>
 
-      {/* Horizontal connector */}
-      <div className={`as-connector as-connector--${isLeft ? 'left' : 'right'}${isActive ? ' as-connector--lit' : ''}`} aria-hidden="true" />
+      {/* Horizontal connector — desktop only, stops at card outer border */}
+      <div
+        className={`as-connector as-connector--${isLeft ? 'left' : 'right'}${isActive ? ' as-connector--lit' : ''}`}
+        aria-hidden="true"
+      />
 
       {/* Card */}
       <motion.div
@@ -54,20 +57,20 @@ function ValueCard({ card, index, activeCard, setActiveCard, totalCards }) {
         onFocus={() => setActiveCard(index)}
         onBlur={() => setActiveCard(null)}
       >
-        <div className="as-card__icon">
+        <div className={`as-card__icon${isActive ? ' as-card__icon--lit' : ''}`}>
           <Icon size={20} strokeWidth={1.5} aria-hidden="true" />
         </div>
         <div className="as-card__body">
           <h3 className="as-card__title">{card.title}</h3>
-          <p className="as-card__desc">{card.desc}</p>
+          <p className="as-card__desc">{displayDesc}</p>
         </div>
       </motion.div>
 
-      {/* Mobile-only progressive connector toward next card */}
-      {isActive && index < totalCards - 1 && (
-        <div className="as-mobile-connector" aria-hidden="true">
-          <span className="as-mobile-connector__line" />
-          <span className="as-mobile-connector__dot" />
+      {/* Mobile-only static connector toward next card — always visible */}
+      {index < totalCards - 1 && (
+        <div className={`as-mob-conn${isActive ? ' as-mob-conn--active' : ''}`} aria-hidden="true">
+          <span className="as-mob-conn__line" />
+          {isActive && <span className="as-mob-conn__dot" />}
         </div>
       )}
     </div>
@@ -120,6 +123,7 @@ export default function AboutSection({ isPage = false }) {
               activeCard={activeCard}
               setActiveCard={setActiveCard}
               totalCards={ab.cards.length}
+              isPage={isPage}
             />
           ))}
         </div>
@@ -192,7 +196,7 @@ export default function AboutSection({ isPage = false }) {
           line-height: 1.8;
         }
 
-        /* ── Bridge (cards eyebrow + transition line) ── */
+        /* ── Bridge ── */
         .as-bridge {
           text-align: center;
           margin-bottom: clamp(28px, 4vw, 44px);
@@ -220,7 +224,7 @@ export default function AboutSection({ isPage = false }) {
           padding-bottom: 16px;
         }
 
-        /* Vertical spine line */
+        /* Desktop vertical spine line */
         .as-spine {
           position: absolute;
           left: 50%;
@@ -237,7 +241,7 @@ export default function AboutSection({ isPage = false }) {
           pointer-events: none;
         }
 
-        /* ── Row (card + node + connector) ── */
+        /* ── Row ── */
         .as-row {
           position: relative;
           display: flex;
@@ -281,18 +285,35 @@ export default function AboutSection({ isPage = false }) {
           100% { transform: scale(1.6); opacity: 0; }
         }
 
-        /* ── Connector line (node → card) ── */
+        /*
+          Desktop horizontal connector
+          ─────────────────────────────
+          Cards are 44 % wide, flush to their respective edge (margin-right/left: auto).
+          Spine node centre = 50 %.
+          Node is 14 px wide → left edge ≈ 50% − 7px, right edge ≈ 50% + 7px.
+
+          Left-card gap:  card right-edge (44%) → node left-edge (50%−7px)
+          Right-card gap: node right-edge (50%+7px) → card left-edge (100%−44% = 56%)
+
+          We use left + right shorthand (no width) so the connector is
+          bounded precisely between the two elements, never overlapping the card.
+        */
         .as-connector {
           position: absolute;
           top: 50%;
           height: 1.5px;
-          width: calc(50% - 30px);
-          background: rgba(88,176,196,0.25);
+          background: rgba(88,176,196,0.28);
           transition: background 0.3s ease, box-shadow 0.3s ease;
           z-index: 1;
         }
-        .as-connector--left  { left: 30px; }
-        .as-connector--right { right: 30px; }
+        .as-connector--left {
+          left: 44%;
+          right: calc(50% + 7px);
+        }
+        .as-connector--right {
+          left: calc(50% + 7px);
+          right: 44%;
+        }
         .as-connector--lit {
           background: var(--color-teal);
           box-shadow: 0 0 6px rgba(88,176,196,0.35);
@@ -323,6 +344,8 @@ export default function AboutSection({ isPage = false }) {
           border-color: rgba(88,176,196,0.4);
           transform: translateY(-3px);
         }
+
+        /* Icon — lights up when card or node is active */
         .as-card__icon {
           flex-shrink: 0;
           width: 44px; height: 44px;
@@ -332,12 +355,16 @@ export default function AboutSection({ isPage = false }) {
           align-items: center;
           justify-content: center;
           color: var(--color-teal);
-          transition: background 0.3s ease;
+          transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
         }
+        .as-card__icon--lit,
         .as-card--active .as-card__icon,
         .as-card:hover   .as-card__icon {
-          background: rgba(88,176,196,0.2);
+          background: var(--color-teal);
+          color: #fff;
+          box-shadow: 0 0 14px rgba(88,176,196,0.5);
         }
+
         .as-card__title {
           font-family: var(--font-eyebrow);
           font-size: 0.82rem;
@@ -354,12 +381,12 @@ export default function AboutSection({ isPage = false }) {
           margin: 0;
         }
 
-        /* ── Mobile progressive connector (between stacked cards) ── */
-        .as-mobile-connector {
+        /* Mobile connector — hidden on desktop */
+        .as-mob-conn {
           display: none;
         }
 
-        /* ── Explore More block ── */
+        /* ── Explore More ── */
         .as-expand {
           text-align: center;
           margin-top: clamp(40px, 5vw, 60px);
@@ -410,68 +437,84 @@ export default function AboutSection({ isPage = false }) {
           background: rgba(88,176,196,0.06);
         }
 
-        /* ── Mobile / tablet (≤ 900px) ── */
+        /* ══════════════════════════════════════
+           Mobile / tablet  (≤ 900px)
+           ══════════════════════════════════════
+           • Desktop spine + node + connector hidden
+           • Cards stack full-width
+           • as-mob-conn shown as always-visible static
+             vertical fade-line with space between cards
+           • Active: pulsing dot travels down the line
+             and card icon lights up
+        */
         @media (max-width: 900px) {
-          /* Hide desktop spine, nodes, connectors */
-          .as-spine       { display: none; }
-          .as-node        { display: none; }
-          .as-connector   { display: none; }
+          .as-spine     { display: none; }
+          .as-node      { display: none; }
+          .as-connector { display: none; }
 
           .as-row {
             flex-direction: column;
             align-items: stretch;
             margin-bottom: 0;
-            padding-bottom: 0;
           }
 
           .as-card,
           .as-card--left,
           .as-card--right {
             width: 100%;
-            margin: 0 0 8px;
+            margin: 0;
           }
           .as-card--active {
             transform: scale(1.015);
             border-color: rgba(88,176,196,0.5);
-            box-shadow: 0 0 0 3px rgba(88,176,196,0.12), 0 8px 28px rgba(88,176,196,0.14);
+            box-shadow:
+              0 0 0 3px rgba(88,176,196,0.12),
+              0 8px 28px rgba(88,176,196,0.14);
           }
 
-          /* Progressive connector between cards on mobile */
-          .as-mobile-connector {
+          /* Static connector — always visible, creates breathing space */
+          .as-mob-conn {
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: 32px;
-            margin-bottom: 8px;
+            position: relative;
+            height: 44px;
             pointer-events: none;
+            overflow: visible;
           }
-          .as-mobile-connector__line {
-            flex: 1;
+          .as-mob-conn__line {
             width: 1.5px;
-            background: linear-gradient(to bottom, var(--color-teal), rgba(88,176,196,0.2));
-            animation: as-connector-grow 0.55s ease forwards;
-          }
-          .as-mobile-connector__dot {
-            width: 7px; height: 7px;
-            border-radius: 50%;
-            background: var(--color-teal);
-            opacity: 0.6;
-            animation: as-dot-pop 0.3s 0.45s ease both;
-          }
-          @keyframes as-connector-grow {
-            from { transform: scaleY(0); transform-origin: top; opacity: 0; }
-            to   { transform: scaleY(1); transform-origin: top; opacity: 1; }
-          }
-          @keyframes as-dot-pop {
-            from { transform: scale(0); opacity: 0; }
-            to   { transform: scale(1); opacity: 0.6; }
+            flex: 1;
+            background: linear-gradient(
+              to bottom,
+              rgba(88,176,196,0.35) 0%,
+              rgba(88,176,196,0.15) 100%
+            );
+            border-radius: 2px;
           }
 
-          .as-spine-wrap {
-            gap: 0;
+          /* Pulsing dot — only when active */
+          .as-mob-conn__dot {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--color-teal);
+            animation: as-dot-travel 1.3s ease-in-out infinite;
           }
+          @keyframes as-dot-travel {
+            0%   { top: 0;    opacity: 0;   transform: translateX(-50%) scale(0.6); }
+            15%  { opacity: 1;              transform: translateX(-50%) scale(1);   }
+            80%  { opacity: 1;              transform: translateX(-50%) scale(1);   }
+            100% { top: 100%; opacity: 0;   transform: translateX(-50%) scale(0.6); }
+          }
+
+          .as-spine-wrap { gap: 0; }
         }
       `}</style>
     </section>
   )
 }
+
