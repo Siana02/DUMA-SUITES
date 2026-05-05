@@ -2,41 +2,32 @@ import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
-import heroImg     from '../assets/watamu-island.JPEG'
-import gediImg     from '../assets/gedi-ruins-excursion.JPEG'
-import elephantImg from '../assets/upclose-elephant.JPEG'
-import dhowImg     from '../assets/sunset-dhow-cruise.JPEG'
-import poolImg     from '../assets/infinity-pool-ocean-view.jpg'
+import heroImg from '../assets/dolphin-watching-watamu.jpg'
 
 const ACTIVITIES = [
   {
     number: '01',
     title: 'Safari Blue Full-Day Excursion',
-    image: dhowImg,
     desc: `Safari Blue is Watamu's most iconic full-day marine adventure. Board a traditional wooden dhow and sail to the crystal-clear waters of Mida Creek and beyond. The day includes snorkelling over vibrant reefs, dolphin watching, island stops, fresh seafood cooked on the beach, and a sunset return. For many guests, Safari Blue becomes the highlight of their entire Kenyan coast experience.`,
   },
   {
     number: '02',
     title: 'Watamu Marine Park Snorkelling',
-    image: poolImg,
     desc: `One of Kenya's oldest and most protected marine national parks sits right on Watamu's doorstep. The coral gardens here are home to turtles, reef sharks, stingrays, vibrant tropical fish and an incredible diversity of corals. Whether you're a seasoned diver or a first-time snorkeller, the Marine Park offers an accessible and unforgettable underwater world.`,
   },
   {
     number: '03',
     title: 'Gedi Ruins — Ancient Swahili City',
-    image: gediImg,
     desc: `Tucked within a dense coastal forest just outside Watamu lies the Gedi Ruins — the haunting remains of a 12th-century Swahili trading town abandoned for reasons still debated by historians. Wander through crumbling mosques, royal palaces and merchant houses as resident colobus monkeys leap overhead. Guided tours bring the site's extraordinary history to vivid life.`,
   },
   {
     number: '04',
     title: 'Elephant Watching at Tsavo',
-    image: elephantImg,
     desc: `A few hours from Watamu, the vast Tsavo East and West national parks are home to Kenya's largest elephant herds. A full-day safari here offers close encounters with these gentle giants alongside lions, giraffes, buffalo, zebra and the famous "red elephants" of Tsavo — dusty-red from rolling in the iron-rich soil. An unmissable East African wildlife experience.`,
   },
   {
     number: '05',
     title: 'Dolphin Watching at Mida Creek',
-    image: heroImg,
     desc: `Mida Creek is a peaceful tidal inlet fringed by ancient mangrove forests, and home to a resident dolphin pod that can often be spotted early in the morning. Join a guided boat trip at dawn as spinner and bottlenose dolphins leap alongside your vessel. The creek itself is also a haven for birdwatchers, with over 100 species recorded including herons, flamingos and fish eagles.`,
   },
 ]
@@ -57,7 +48,7 @@ export default function Article1Page() {
         {/* Hero */}
         <div className="art1-hero">
           <div className="art1-hero__img-wrap">
-            <img src={heroImg} alt="Watamu Island coastline" className="art1-hero__img" />
+            <img src={heroImg} alt="Dolphins at Mida Creek, Watamu" className="art1-hero__img" />
             <div className="art1-hero__overlay" aria-hidden="true" />
           </div>
           <div className="art1-hero__content">
@@ -106,35 +97,32 @@ export default function Article1Page() {
           </div>
         </section>
 
-        {/* Activity cards */}
+        {/* Activity list */}
         <section className="art1-list section section--secondary">
-          <div className="container">
+          <div className="container" style={{ maxWidth: 760 }}>
             {ACTIVITIES.map((act, i) => (
               <motion.div
                 key={i}
-                className={`art1-card${i % 2 === 1 ? ' art1-card--reverse' : ''}`}
-                initial={{ opacity: 0, y: 36 }}
+                className="art1-item"
+                initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.7, delay: 0.05, ease: [0.4, 0, 0.2, 1] }}
+                transition={{ duration: 0.6, delay: i * 0.06, ease: [0.4, 0, 0.2, 1] }}
               >
-                <div className="art1-card__img-side">
-                  <img src={act.image} alt={act.title} className="art1-card__img" loading="lazy" />
-                  <span className="art1-card__number">{act.number}</span>
+                <div className="art1-item__head">
+                  <span className="art1-item__number">{act.number}</span>
+                  <h2 className="art1-item__title">{act.title}</h2>
                 </div>
-                <div className="art1-card__text-side">
-                  <h2 className="art1-card__title">{act.title}</h2>
-                  <p className="art1-card__desc">{act.desc}</p>
-                  <Link
-                    to="/#contact"
-                    className="art1-card__cta btn btn-primary"
-                  >
-                    Book This Experience
-                    <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
-                  </Link>
-                </div>
+                <p className="art1-item__desc">{act.desc}</p>
               </motion.div>
             ))}
+
+            <div className="art1-book-cta">
+              <Link to="/#contact" className="btn btn-primary art1-book-cta__btn">
+                Book an Experience
+                <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -143,7 +131,7 @@ export default function Article1Page() {
           <div className="container art1-nav__inner">
             <Link to="/blog" className="art1-nav__back">
               <ArrowLeft size={16} strokeWidth={1.5} aria-hidden="true" />
-              Back to Stories & Guides
+              Back to Stories &amp; Guides
             </Link>
             <Link to="/blog/coastal-swahili-dishes" className="art1-nav__next">
               Next: Coastal Swahili Dishes
@@ -216,69 +204,47 @@ export default function Article1Page() {
         .art1-list {
           padding-top: 0;
         }
-        .art1-card {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: clamp(24px, 4vw, 56px);
-          align-items: center;
-          padding: clamp(40px, 6vw, 72px) 0;
-          border-bottom: 1px solid rgba(86,51,17,0.08);
-        }
-        .art1-card:last-child {
-          border-bottom: none;
-        }
-        .art1-card--reverse {
-          direction: rtl;
-        }
-        .art1-card--reverse > * {
-          direction: ltr;
-        }
-        .art1-card__img-side {
-          position: relative;
-          overflow: hidden;
-          border-radius: 3px;
-          aspect-ratio: 4/3;
-        }
-        .art1-card__img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.5s ease;
-        }
-        .art1-card:hover .art1-card__img {
-          transform: scale(1.03);
-        }
-        .art1-card__number {
-          position: absolute;
-          top: 14px;
-          left: 14px;
-          font-family: var(--font-nav);
-          font-size: 0.65rem;
-          letter-spacing: 0.18em;
-          color: #fff;
-          background: var(--color-espresso);
-          padding: 4px 12px;
-          border-radius: 100px;
-        }
-        .art1-card__text-side {
+        .art1-item {
+          padding: clamp(28px, 4vw, 44px) 0;
+          border-bottom: 1px solid rgba(86,51,17,0.1);
           display: flex;
           flex-direction: column;
+          gap: 12px;
+        }
+        .art1-item:last-of-type {
+          border-bottom: none;
+        }
+        .art1-item__head {
+          display: flex;
+          align-items: baseline;
           gap: 16px;
         }
-        .art1-card__title {
+        .art1-item__number {
+          font-family: var(--font-nav);
+          font-size: 0.62rem;
+          letter-spacing: 0.18em;
+          color: var(--color-teal);
+          flex-shrink: 0;
+        }
+        .art1-item__title {
           font-family: var(--font-title);
-          font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+          font-size: clamp(1.2rem, 2.2vw, 1.65rem);
           font-weight: 600;
           color: var(--color-espresso);
           line-height: 1.2;
         }
-        .art1-card__desc {
-          font-size: 0.9rem;
+        .art1-item__desc {
+          font-size: 0.92rem;
           color: var(--color-text-muted);
-          line-height: 1.8;
+          line-height: 1.85;
+          padding-left: calc(0.62rem * 2 + 16px + 1ch);
         }
-        .art1-card__cta {
-          align-self: flex-start;
+        .art1-book-cta {
+          display: flex;
+          justify-content: center;
+          padding-top: clamp(36px, 5vw, 56px);
+        }
+        .art1-book-cta__btn {
           display: inline-flex;
           align-items: center;
           gap: 8px;
@@ -306,14 +272,6 @@ export default function Article1Page() {
         .art1-nav__back:hover,
         .art1-nav__next:hover {
           color: var(--color-teal);
-        }
-        @media (max-width: 768px) {
-          .art1-card {
-            grid-template-columns: 1fr;
-          }
-          .art1-card--reverse {
-            direction: ltr;
-          }
         }
       `}</style>
     </>

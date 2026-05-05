@@ -2,49 +2,37 @@ import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
-
-import heroImg    from '../assets/swahili-elegance.JPEG'
-import dhowImg    from '../assets/sunset-dhow-cruise.JPEG'
-import beachImg   from '../assets/watamu-island.JPEG'
-import poolImg    from '../assets/drinks-infinitypoolview.jpg'
-import galleryImg from '../assets/gallery-image2.jpg'
-import seaImg     from '../assets/coastal-haven-suite-nighttime-poolview.JPEG'
+import heroImg from '../assets/coastal-swahili-dishes.webp'
 
 const DISHES = [
   {
     number: '01',
     title: 'Pilau',
-    image: heroImg,
     desc: `Pilau is the soul of Swahili cuisine — fragrant basmati rice slow-cooked with a rich blend of whole spices including cardamom, cinnamon, cloves, cumin and black pepper. Often prepared with tender beef or chicken that has been marinated overnight, the result is an aromatic, deeply savoury rice dish that has been perfected on the Kenyan coast for centuries. No coastal celebration is complete without it.`,
   },
   {
     number: '02',
     title: 'Mchuzi wa Samaki',
-    image: dhowImg,
     desc: `Coastal Kenya's quintessential fish curry — mchuzi wa samaki is made with whatever the fishermen bring in that morning. Fresh snapper, kingfish or barracuda is simmered in a base of tomatoes, onions, garlic, ginger, turmeric and the essential ingredient: coconut milk. The result is a silky, golden curry with a gentle heat that is best enjoyed with white rice or fresh chapati, and ideally eaten with a view of the Indian Ocean.`,
   },
   {
     number: '03',
     title: 'Safari Blue Seafood Feast',
-    image: beachImg,
     desc: `If you join the legendary Safari Blue excursion, you will experience one of the Kenyan coast's most celebrated dining traditions — a fresh seafood feast cooked on a sandbank island. Lobster, calamari, octopus, prawns, crab and fresh fish are grilled over charcoal or cooked in coconut broth, accompanied by Swahili sides and cold drinks. Eating with your hands in the Indian Ocean breeze makes this a meal you will never forget.`,
   },
   {
     number: '04',
     title: 'Coconut Rice (Wali wa Nazi)',
-    image: poolImg,
     desc: `Wali wa nazi — rice cooked in fresh coconut milk — is the everyday companion to almost every Swahili coastal dish. The coconut milk is squeezed fresh from grated coconut flesh, giving the rice a subtle sweetness, creaminess and a perfume unlike anything you can achieve with ordinary water-cooked rice. Paired with grilled fish, a vegetable curry or simply with a spoonful of mango achaar, it is comfort food at its most elegant.`,
   },
   {
     number: '05',
     title: 'Biryani',
-    image: galleryImg,
     desc: `The Swahili coast biryani is distinct from its South Asian cousins — richer in spice, more intensely fragrant, with layers of saffron-coloured rice interlaced with slow-cooked spiced meat (usually goat or chicken), fried onions, raisins and a drizzle of ghee. Served on festive occasions and at weddings, a good coastal biryani is the benchmark by which local cooks measure their mastery.`,
   },
   {
     number: '06',
     title: 'Grilled Octopus (Pweza)',
-    image: seaImg,
     desc: `Along Watamu's shores, fishermen haul in octopus on their daily runs. Tenderised by hand on the rocks at low tide, the octopus is then marinated in lime, garlic, chilli, coconut milk and spices before being grilled directly on charcoal. The outside chars beautifully while the inside stays tender and juicy. Served with a squeeze of fresh lime and a simple tomato salsa, pweza wa kukaanga is a dish you will seek out at every opportunity.`,
   },
 ]
@@ -65,7 +53,7 @@ export default function Article2Page() {
         {/* Hero */}
         <div className="art2-hero">
           <div className="art2-hero__img-wrap">
-            <img src={heroImg} alt="Swahili coastal dining" className="art2-hero__img" />
+            <img src={heroImg} alt="Coastal Swahili dishes" className="art2-hero__img" />
             <div className="art2-hero__overlay" aria-hidden="true" />
           </div>
           <div className="art2-hero__content">
@@ -75,7 +63,7 @@ export default function Article2Page() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
             >
-              Food & Culture
+              Food &amp; Culture
             </motion.span>
             <motion.h1
               className="art2-hero__title"
@@ -115,26 +103,23 @@ export default function Article2Page() {
           </div>
         </section>
 
-        {/* Dish cards */}
+        {/* Dish list */}
         <section className="art2-list section section--secondary">
-          <div className="container">
+          <div className="container" style={{ maxWidth: 760 }}>
             {DISHES.map((dish, i) => (
               <motion.div
                 key={i}
-                className={`art2-card${i % 2 === 1 ? ' art2-card--reverse' : ''}`}
-                initial={{ opacity: 0, y: 36 }}
+                className="art2-item"
+                initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.7, delay: 0.05, ease: [0.4, 0, 0.2, 1] }}
+                transition={{ duration: 0.6, delay: i * 0.06, ease: [0.4, 0, 0.2, 1] }}
               >
-                <div className="art2-card__img-side">
-                  <img src={dish.image} alt={dish.title} className="art2-card__img" loading="lazy" />
-                  <span className="art2-card__number">{dish.number}</span>
+                <div className="art2-item__head">
+                  <span className="art2-item__number">{dish.number}</span>
+                  <h2 className="art2-item__title">{dish.title}</h2>
                 </div>
-                <div className="art2-card__text-side">
-                  <h2 className="art2-card__title">{dish.title}</h2>
-                  <p className="art2-card__desc">{dish.desc}</p>
-                </div>
+                <p className="art2-item__desc">{dish.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -175,7 +160,7 @@ export default function Article2Page() {
               Previous: Top 5 Activities
             </Link>
             <Link to="/blog" className="art2-nav__next">
-              All Stories & Guides
+              All Stories &amp; Guides
               <ArrowRight size={16} strokeWidth={1.5} aria-hidden="true" />
             </Link>
           </div>
@@ -245,66 +230,40 @@ export default function Article2Page() {
         .art2-list {
           padding-top: 0;
         }
-        .art2-card {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: clamp(24px, 4vw, 56px);
-          align-items: center;
-          padding: clamp(40px, 6vw, 72px) 0;
-          border-bottom: 1px solid rgba(86,51,17,0.08);
-        }
-        .art2-card:last-child {
-          border-bottom: none;
-        }
-        .art2-card--reverse {
-          direction: rtl;
-        }
-        .art2-card--reverse > * {
-          direction: ltr;
-        }
-        .art2-card__img-side {
-          position: relative;
-          overflow: hidden;
-          border-radius: 3px;
-          aspect-ratio: 4/3;
-        }
-        .art2-card__img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.5s ease;
-        }
-        .art2-card:hover .art2-card__img {
-          transform: scale(1.03);
-        }
-        .art2-card__number {
-          position: absolute;
-          top: 14px;
-          left: 14px;
-          font-family: var(--font-nav);
-          font-size: 0.65rem;
-          letter-spacing: 0.18em;
-          color: #fff;
-          background: var(--color-espresso);
-          padding: 4px 12px;
-          border-radius: 100px;
-        }
-        .art2-card__text-side {
+        .art2-item {
+          padding: clamp(28px, 4vw, 44px) 0;
+          border-bottom: 1px solid rgba(86,51,17,0.1);
           display: flex;
           flex-direction: column;
+          gap: 12px;
+        }
+        .art2-item:last-of-type {
+          border-bottom: none;
+        }
+        .art2-item__head {
+          display: flex;
+          align-items: baseline;
           gap: 16px;
         }
-        .art2-card__title {
+        .art2-item__number {
+          font-family: var(--font-nav);
+          font-size: 0.62rem;
+          letter-spacing: 0.18em;
+          color: var(--color-teal);
+          flex-shrink: 0;
+        }
+        .art2-item__title {
           font-family: var(--font-title);
-          font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+          font-size: clamp(1.2rem, 2.2vw, 1.65rem);
           font-weight: 600;
           color: var(--color-espresso);
           line-height: 1.2;
         }
-        .art2-card__desc {
-          font-size: 0.9rem;
+        .art2-item__desc {
+          font-size: 0.92rem;
           color: var(--color-text-muted);
-          line-height: 1.8;
+          line-height: 1.85;
+          padding-left: calc(0.62rem * 2 + 16px + 1ch);
         }
         .art2-closing__inner {
           text-align: center;
@@ -353,14 +312,6 @@ export default function Article2Page() {
         .art2-nav__back:hover,
         .art2-nav__next:hover {
           color: var(--color-teal);
-        }
-        @media (max-width: 768px) {
-          .art2-card {
-            grid-template-columns: 1fr;
-          }
-          .art2-card--reverse {
-            direction: ltr;
-          }
         }
       `}</style>
     </>

@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 import cheetahIcon from '../assets/cheetah.png'
-import watamuImg from '../assets/watamu-island.JPEG'
-import swahiliImg from '../assets/swahili-elegance.JPEG'
+import dolphinImg  from '../assets/dolphin-watching-watamu.jpg'
+import swahiliImg  from '../assets/coastal-swahili-dishes.webp'
 
-const ARTICLE_IMAGES = [watamuImg, swahiliImg]
+const ARTICLE_IMAGES = [dolphinImg, swahiliImg]
 
 export default function ArticlesSection() {
   const { lang } = useLanguage()
