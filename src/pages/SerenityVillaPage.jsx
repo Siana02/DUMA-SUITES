@@ -100,8 +100,8 @@ const HIGHLIGHTS = [
   'Daily housekeeping and turndown service',
 ]
 
-const INTRO_VIDEO_BASE =
-  'https://player.vimeo.com/video/1189029033' +
+const TOUR_VIDEO_BASE =
+  'https://player.vimeo.com/video/1189024643' +
   '?badge=0&autopause=0&player_id=0&app_id=58479' +
   '&byline=0&title=0&portrait=0&muted=1&dnt=1'
 
@@ -159,31 +159,54 @@ export default function SerenityVillaPage() {
     if (galleryTrackRef.current) galleryTrackRef.current.style.transform = `translateX(-${galleryPosRef.current}px)`
   }, [])
 
-  const introIframeRef = useRef(null)
-  const introHasPlayedRef = useRef(false)
-  const [introVideoSrc, setIntroVideoSrc] = useState(INTRO_VIDEO_BASE)
-  const { ref: introRef, inView: introInView } = useInView({ threshold: 0.15 })
+  const tourIframeRef = useRef(null)
+  const tourHasPlayedRef = useRef(false)
+  const [tourVideoSrc, setTourVideoSrc] = useState(TOUR_VIDEO_BASE)
+  const { ref: tourRef, inView: tourInView } = useInView({ threshold: 0.15 })
 
   useEffect(() => {
     const post = (method, value) => {
       const msg = value !== undefined ? { method, value } : { method }
-      introIframeRef.current?.contentWindow?.postMessage(JSON.stringify(msg), 'https://player.vimeo.com')
+      tourIframeRef.current?.contentWindow?.postMessage(JSON.stringify(msg), 'https://player.vimeo.com')
     }
-    if (introInView) {
-      if (!introHasPlayedRef.current) {
-        introHasPlayedRef.current = true
-        setIntroVideoSrc(`${INTRO_VIDEO_BASE}&autoplay=1&loop=1`)
+    if (tourInView) {
+      if (!tourHasPlayedRef.current) {
+        tourHasPlayedRef.current = true
+        setTourVideoSrc(`${TOUR_VIDEO_BASE}&autoplay=1`)
       } else {
         post('play')
       }
-    } else if (introHasPlayedRef.current) {
+    } else if (tourHasPlayedRef.current) {
       post('pause')
     }
-  }, [introInView])
+  }, [tourInView])
 
-  const handleIntroIframeLoad = () => {
+  // When the video ends
+  useEffect(() => {
+    const onMsg = (e) => {
+      if (e.origin !== 'https://player.vimeo.com') return
+      if (e.source !== tourIframeRef.current?.contentWindow) return
+      try {
+        const data = JSON.parse(e.data)
+        if (data.event === 'finish') {
+          const win = tourIframeRef.current?.contentWindow
+          if (!win) return
+          const post = (method, value) => {
+            const msg = value !== undefined ? { method, value } : { method }
+            win.postMessage(JSON.stringify(msg), 'https://player.vimeo.com')
+          }
+          post('pause')
+          post('setCurrentTime', 0)
+        }
+      } catch { /* ignore */ }
+    }
+    window.addEventListener('message', onMsg)
+    return () => window.removeEventListener('message', onMsg)
+  }, [])
+
+  const handleTourIframeLoad = () => {
     setTimeout(() => {
-      introIframeRef.current?.contentWindow?.postMessage(
+      tourIframeRef.current?.contentWindow?.postMessage(
         JSON.stringify({ method: 'addEventListener', value: 'finish' }),
         'https://player.vimeo.com'
       )
@@ -202,6 +225,7 @@ export default function SerenityVillaPage() {
         {/* ── a) Hero ── */}
         <section className="sv-hero">
           <img src={heroImg} alt="Serenity Villa outdoor terrace" className="sv-hero__bg" />
+          <div className="sv-hero__overlay" aria-hidden="true" />
           <div className="sv-hero__content">
             <motion.span
               className="sv-hero__eyebrow"
@@ -235,36 +259,6 @@ export default function SerenityVillaPage() {
             >
               <a href="#inquire" className="btn btn-primary">Book a Stay</a>
               <a href="#gallery" className="btn btn-inverse-light">View Gallery</a>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ── NEW: Intro Video Section ── */}
-        <section className="sv-intro section" id="intro">
-          <div className="sv-intro__inner container">
-            <motion.span className="eyebrow sv-intro__eyebrow" {...fadeUp(0)}>
-              Experience Duma Suites
-            </motion.span>
-            <motion.h2 className="section-title sv-intro__title" {...fadeUp(0.1)}>
-              A Glimpse of What Awaits
-            </motion.h2>
-            <motion.p className="sv-intro__desc" {...fadeUp(0.18)}>
-              Discover the spirit of Duma Suites — where coastal luxury meets effortless serenity.
-            </motion.p>
-            <motion.div className="sv-intro__video-wrap" {...fadeUp(0.26)} ref={introRef}>
-              <div className="sv-intro__video-frame">
-                <iframe
-                  ref={introIframeRef}
-                  src={introVideoSrc}
-                  frameBorder="0"
-                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                  loading="lazy"
-                  title="duma-suites-intro"
-                  onLoad={handleIntroIframeLoad}
-                />
-              </div>
             </motion.div>
           </div>
         </section>
@@ -378,7 +372,37 @@ export default function SerenityVillaPage() {
           </div>
         </section>
 
-        {/* ── d) Amenities ── */}
+        {/* ── d) Room Tour Video ── */}
+        <section className="sv-tour section section--secondary" id="room-tour">
+          <div className="container">
+            <motion.span className="eyebrow text-center" {...fadeUp(0)}>
+              Room Tour
+            </motion.span>
+            <motion.h2 className="section-title sv-tour__title" {...fadeUp(0.1)}>
+              Explore the Villa
+            </motion.h2>
+            <motion.p className="sv-tour__subtitle" {...fadeUp(0.18)}>
+              Take a cinematic walkthrough of your private villa retreat.
+            </motion.p>
+            <motion.div className="sv-tour__frame-wrap" {...fadeUp(0.26)} ref={tourRef}>
+              <div className="sv-tour__frame">
+                <iframe
+                  ref={tourIframeRef}
+                  src={tourVideoSrc}
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  loading="lazy"
+                  title="serenity-villa-room-tour"
+                  onLoad={handleTourIframeLoad}
+                />
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ── e) Amenities ── */}
         <section className="sv-amenities section" id="amenities">
           <div className="container">
             <motion.span className="eyebrow text-center sv-amenities__eyebrow" {...fadeUp(0)}>
@@ -407,7 +431,7 @@ export default function SerenityVillaPage() {
           </div>
         </section>
 
-        {/* ── e) Policies ── */}
+        {/* ── f) Policies ── */}
         <section className="sv-policies section section--secondary" id="policies">
           <div className="container">
             <motion.span className="eyebrow text-center sv-policies__eyebrow" {...fadeUp(0)}>
@@ -430,7 +454,7 @@ export default function SerenityVillaPage() {
           </div>
         </section>
 
-        {/* ── f) Inquire ── */}
+        {/* ── g) Inquire ── */}
         <section className="sv-inquire section section--dark" id="inquire">
           <div className="container sv-inquire__inner">
             <motion.span className="sv-inquire__eyebrow" {...fadeUp(0)}>
@@ -455,7 +479,7 @@ export default function SerenityVillaPage() {
           </div>
         </section>
 
-        {/* ── g) Suite Preview — all suites ── */}
+        {/* ── h) Suite Preview — all suites ── */}
         <section className="sv-suites section section--secondary" id="all-suites">
           <div className="container">
             <motion.span className="eyebrow text-center sv-suites__eyebrow" {...fadeUp(0)}>
@@ -512,34 +536,17 @@ export default function SerenityVillaPage() {
           </div>
         </section>
 
-        {/* Room tour video */}
-        <section className="video-overview section">
-          <div className="container" style={{ maxWidth: 900, textAlign: 'center' }}>
-            <span className="eyebrow">Room Tour</span>
-            <h2 className="section-title">Serenity Villa – Virtual Tour</h2>
-            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 4, marginTop: 32 }}>
-              <iframe
-                src="https://player.vimeo.com/video/1189024643?autoplay=0&title=0&byline=0&portrait=0"
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-                title="Serenity Villa Room Tour"
-              />
-            </div>
-          </div>
-        </section>
-
       </main>
 
       <style>{`
         /* ── Hero ── */
         .sv-hero {
           position: relative;
-          height: 88vh;
-          min-height: 520px;
+          height: 100vh;
+          min-height: 560px;
           display: flex;
-          align-items: flex-end;
+          align-items: center;
+          justify-content: center;
           overflow: hidden;
         }
         .sv-hero__bg {
@@ -555,91 +562,61 @@ export default function SerenityVillaPage() {
           from { transform: scale(1); }
           to   { transform: scale(1.05); }
         }
+        .sv-hero__overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.18) 0%,
+            rgba(0,0,0,0.52) 50%,
+            rgba(0,0,0,0.44) 100%
+          );
+        }
         .sv-hero__content {
           position: relative;
           z-index: 1;
-          background: rgba(22, 14, 6, 0.78);
-          backdrop-filter: blur(4px);
-          -webkit-backdrop-filter: blur(4px);
-          padding: clamp(14px, 2vw, 20px) clamp(18px, 2.5vw, 28px);
-          margin: 0 clamp(20px, 5vw, 80px) clamp(32px, 5vh, 64px);
-          max-width: 520px;
+          text-align: center;
+          padding: 0 var(--section-px);
+          max-width: 700px;
         }
         .sv-hero__eyebrow {
           display: block;
           font-family: var(--font-eyebrow);
           font-style: italic;
-          font-size: clamp(0.65rem, 1.1vw, 0.82rem);
+          font-size: clamp(0.7rem, 1.2vw, 0.9rem);
           letter-spacing: 0.22em;
           text-transform: uppercase;
           color: var(--color-teal);
-          margin-bottom: 0.6rem;
+          margin-bottom: 1rem;
         }
         .sv-hero__title {
           font-family: var(--font-title);
-          font-size: clamp(2rem, 5.5vw, 4.2rem);
+          font-size: clamp(3rem, 7.5vw, 6rem);
           font-weight: 400;
           color: #fff;
           line-height: 1.05;
-          margin: 0 0 0.65rem;
+          margin: 0 0 1rem;
         }
         .sv-hero__tagline {
           font-family: var(--font-body);
-          font-size: clamp(0.8rem, 1.3vw, 0.95rem);
-          color: rgba(255,255,255,0.78);
-          margin: 0 0 1.25rem;
-          line-height: 1.5;
+          font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+          color: rgba(255,255,255,0.82);
+          margin: 0 auto 2rem;
+          line-height: 1.6;
+          max-width: 500px;
         }
         .sv-hero__ctas {
           display: flex;
           flex-wrap: wrap;
-          gap: 10px;
+          gap: 12px;
+          justify-content: center;
         }
         @media (min-width: 768px) and (max-width: 1199px) {
-          .sv-hero { height: 76vh; }
+          .sv-hero { height: 90vh; }
         }
         @media (max-width: 767px) {
-          .sv-hero { height: 66vh; }
-          .sv-hero__content { max-width: 100%; margin: 0 16px 28px; }
-        }
-
-        /* ── Intro Video Section ── */
-        .sv-intro__inner {
-          max-width: 1100px;
-          text-align: center;
-        }
-        .sv-intro__eyebrow { display: block; }
-        .sv-intro__title { margin: 0.5rem 0 1rem; }
-        .sv-intro__desc {
-          font-family: var(--font-body);
-          font-size: clamp(0.92rem, 1.4vw, 1.05rem);
-          color: var(--color-text-muted);
-          max-width: 65%;
-          margin: 0 auto 2.5rem;
-          line-height: 1.75;
-        }
-        .sv-intro__video-wrap {
-          max-width: 1000px;
-          margin-inline: auto;
-        }
-        .sv-intro__video-frame {
-          position: relative;
-          width: 100%;
-          padding-bottom: 56.25%;
-          border-radius: 4px;
-          overflow: hidden;
-          background: #000;
-          box-shadow: 0 16px 64px rgba(86, 51, 17, 0.2);
-        }
-        .sv-intro__video-frame iframe {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          border: none;
-        }
-        @media (max-width: 768px) {
-          .sv-intro__desc { max-width: 90%; }
+          .sv-hero { height: 85vh; }
+          .sv-hero__title { font-size: clamp(2.4rem, 9vw, 3.8rem); }
         }
 
         /* ── About ── */
@@ -787,7 +764,7 @@ export default function SerenityVillaPage() {
         }
         .sv-gallery__img {
           width: 340px;
-          height: 260px;
+          height: 300px;
           object-fit: cover;
           display: block;
           transition: transform 500ms ease;
@@ -828,6 +805,41 @@ export default function SerenityVillaPage() {
         .sv-gallery__cta-wrap {
           text-align: center;
           padding-top: 2rem;
+        }
+
+        /* ── Room Tour Video ── */
+        .sv-tour__title {
+          text-align: center;
+          margin: 0.5rem 0 0.75rem;
+        }
+        .sv-tour__subtitle {
+          font-family: var(--font-body);
+          font-size: clamp(0.9rem, 1.4vw, 1rem);
+          color: var(--color-text-muted);
+          text-align: center;
+          margin: 0 auto 2.5rem;
+          max-width: 480px;
+          line-height: 1.7;
+        }
+        .sv-tour__frame-wrap {
+          max-width: 1000px;
+          margin-inline: auto;
+        }
+        .sv-tour__frame {
+          position: relative;
+          width: 100%;
+          padding-bottom: 56.25%;
+          background: #000;
+          border-radius: 4px;
+          overflow: hidden;
+          box-shadow: 0 12px 50px rgba(86, 51, 17, 0.2);
+        }
+        .sv-tour__frame iframe {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          border: none;
         }
 
         /* ── Amenities ── */

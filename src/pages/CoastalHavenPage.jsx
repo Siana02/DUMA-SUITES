@@ -91,11 +91,6 @@ const TOUR_VIDEO_BASE =
   '?badge=0&autopause=0&player_id=0&app_id=58479' +
   '&byline=0&title=0&portrait=0&muted=1&dnt=1'
 
-const INTRO_VIDEO_BASE =
-  'https://player.vimeo.com/video/1189029033' +
-  '?badge=0&autopause=0&player_id=0&app_id=58479' +
-  '&byline=0&title=0&portrait=0&muted=1&dnt=1'
-
 // Vimeo requires a brief delay after iframe load before it can receive postMessage listeners
 const VIMEO_IFRAME_READY_DELAY = 500
 
@@ -120,11 +115,6 @@ export default function CoastalHavenPage() {
   // Lower threshold → pauses sooner when scrolled out of view
   const { ref: tourRef, inView: tourInView } = useInView({ threshold: 0.15 })
 
-  const introIframeRef = useRef(null)
-  const introHasPlayedRef = useRef(false)
-  const [introVideoSrc, setIntroVideoSrc] = useState(INTRO_VIDEO_BASE)
-  const { ref: introRef, inView: introInView } = useInView({ threshold: 0.15 })
-
   useEffect(() => {
     const post = (method, value) => {
       const msg = value !== undefined ? { method, value } : { method }
@@ -143,23 +133,6 @@ export default function CoastalHavenPage() {
       post('pause')
     }
   }, [tourInView])
-
-  useEffect(() => {
-    const post = (method, value) => {
-      const msg = value !== undefined ? { method, value } : { method }
-      introIframeRef.current?.contentWindow?.postMessage(JSON.stringify(msg), 'https://player.vimeo.com')
-    }
-    if (introInView) {
-      if (!introHasPlayedRef.current) {
-        introHasPlayedRef.current = true
-        setIntroVideoSrc(`${INTRO_VIDEO_BASE}&autoplay=1&loop=1`)
-      } else {
-        post('play')
-      }
-    } else if (introHasPlayedRef.current) {
-      post('pause')
-    }
-  }, [introInView])
 
   // When the video ends
   useEffect(() => {
@@ -188,15 +161,6 @@ export default function CoastalHavenPage() {
   const handleTourIframeLoad = () => {
     setTimeout(() => {
       tourIframeRef.current?.contentWindow?.postMessage(
-        JSON.stringify({ method: 'addEventListener', value: 'finish' }),
-        'https://player.vimeo.com'
-      )
-    }, VIMEO_IFRAME_READY_DELAY)
-  }
-
-  const handleIntroIframeLoad = () => {
-    setTimeout(() => {
-      introIframeRef.current?.contentWindow?.postMessage(
         JSON.stringify({ method: 'addEventListener', value: 'finish' }),
         'https://player.vimeo.com'
       )
@@ -253,6 +217,7 @@ export default function CoastalHavenPage() {
         {/* ── a) Hero ── */}
         <section className="ch-hero">
           <img src={heroImg} alt="Coastal Haven Suite outdoor view" className="ch-hero__bg" />
+          <div className="ch-hero__overlay" aria-hidden="true" />
           <div className="ch-hero__content">
             <motion.span
               className="ch-hero__eyebrow"
@@ -286,36 +251,6 @@ export default function CoastalHavenPage() {
             >
               <a href="#inquire" className="btn btn-primary">Book a Stay</a>
               <a href="#gallery" className="btn btn-inverse-light">View Gallery</a>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ── NEW: Intro Video Section ── */}
-        <section className="ch-intro section" id="intro">
-          <div className="ch-intro__inner container">
-            <motion.span className="eyebrow ch-intro__eyebrow" {...fadeUp(0)}>
-              Experience Duma Suites
-            </motion.span>
-            <motion.h2 className="section-title ch-intro__title" {...fadeUp(0.1)}>
-              A Glimpse of What Awaits
-            </motion.h2>
-            <motion.p className="ch-intro__desc" {...fadeUp(0.18)}>
-              Discover the spirit of Duma Suites — where coastal luxury meets effortless serenity.
-            </motion.p>
-            <motion.div className="ch-intro__video-wrap" {...fadeUp(0.26)} ref={introRef}>
-              <div className="ch-intro__video-frame">
-                <iframe
-                  ref={introIframeRef}
-                  src={introVideoSrc}
-                  frameBorder="0"
-                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                  loading="lazy"
-                  title="duma-suites-intro"
-                  onLoad={handleIntroIframeLoad}
-                />
-              </div>
             </motion.div>
           </div>
         </section>
@@ -598,10 +533,11 @@ export default function CoastalHavenPage() {
         /* ── Hero ── */
         .ch-hero {
           position: relative;
-          height: 88vh;
-          min-height: 520px;
+          height: 100vh;
+          min-height: 560px;
           display: flex;
-          align-items: flex-end;
+          align-items: center;
+          justify-content: center;
           overflow: hidden;
         }
         .ch-hero__bg {
@@ -617,91 +553,63 @@ export default function CoastalHavenPage() {
           from { transform: scale(1); }
           to   { transform: scale(1.05); }
         }
+        .ch-hero__overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.18) 0%,
+            rgba(0,0,0,0.52) 50%,
+            rgba(0,0,0,0.44) 100%
+          );
+        }
         .ch-hero__content {
           position: relative;
           z-index: 1;
-          background: rgba(22, 14, 6, 0.78);
-          backdrop-filter: blur(4px);
-          -webkit-backdrop-filter: blur(4px);
-          padding: clamp(14px, 2vw, 20px) clamp(18px, 2.5vw, 28px);
-          margin: 0 clamp(20px, 5vw, 80px) clamp(32px, 5vh, 64px);
-          max-width: 520px;
+          text-align: center;
+          padding: 0 var(--section-px);
+          max-width: 700px;
         }
         .ch-hero__eyebrow {
           display: block;
           font-family: var(--font-eyebrow);
           font-style: italic;
-          font-size: clamp(0.65rem, 1.1vw, 0.82rem);
+          font-size: clamp(0.7rem, 1.2vw, 0.9rem);
           letter-spacing: 0.22em;
           text-transform: uppercase;
           color: var(--color-teal);
-          margin-bottom: 0.6rem;
+          margin-bottom: 1rem;
         }
         .ch-hero__title {
           font-family: var(--font-title);
-          font-size: clamp(2rem, 5.5vw, 4.2rem);
+          font-size: clamp(3rem, 7.5vw, 6rem);
           font-weight: 400;
           color: #fff;
           line-height: 1.05;
-          margin: 0 0 0.65rem;
+          margin: 0 0 1rem;
         }
         .ch-hero__tagline {
           font-family: var(--font-body);
-          font-size: clamp(0.8rem, 1.3vw, 0.95rem);
-          color: rgba(255,255,255,0.78);
-          margin: 0 0 1.25rem;
-          line-height: 1.5;
+          font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+          color: rgba(255,255,255,0.82);
+          margin: 0 0 2rem;
+          line-height: 1.6;
+          max-width: 500px;
+          margin-inline: auto;
+          margin-bottom: 2rem;
         }
         .ch-hero__ctas {
           display: flex;
           flex-wrap: wrap;
-          gap: 10px;
+          gap: 12px;
+          justify-content: center;
         }
         @media (min-width: 768px) and (max-width: 1199px) {
-          .ch-hero { height: 76vh; }
+          .ch-hero { height: 90vh; }
         }
         @media (max-width: 767px) {
-          .ch-hero { height: 66vh; }
-          .ch-hero__content { max-width: 100%; margin: 0 16px 28px; }
-        }
-
-        /* ── Intro Video Section ── */
-        .ch-intro__inner {
-          max-width: 1100px;
-          text-align: center;
-        }
-        .ch-intro__eyebrow { display: block; }
-        .ch-intro__title { margin: 0.5rem 0 1rem; }
-        .ch-intro__desc {
-          font-family: var(--font-body);
-          font-size: clamp(0.92rem, 1.4vw, 1.05rem);
-          color: var(--color-text-muted);
-          max-width: 65%;
-          margin: 0 auto 2.5rem;
-          line-height: 1.75;
-        }
-        .ch-intro__video-wrap {
-          max-width: 1000px;
-          margin-inline: auto;
-        }
-        .ch-intro__video-frame {
-          position: relative;
-          width: 100%;
-          padding-bottom: 56.25%;
-          border-radius: 4px;
-          overflow: hidden;
-          background: #000;
-          box-shadow: 0 16px 64px rgba(86, 51, 17, 0.2);
-        }
-        .ch-intro__video-frame iframe {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          border: none;
-        }
-        @media (max-width: 768px) {
-          .ch-intro__desc { max-width: 90%; }
+          .ch-hero { height: 85vh; }
+          .ch-hero__title { font-size: clamp(2.4rem, 9vw, 3.8rem); }
         }
 
         /* ── About ── */
@@ -849,7 +757,7 @@ export default function CoastalHavenPage() {
         }
         .ch-gallery__img {
           width: 340px;
-          height: 260px;
+          height: 300px;
           object-fit: cover;
           display: block;
           transition: transform 500ms ease;
