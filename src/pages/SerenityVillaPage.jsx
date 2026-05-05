@@ -4,16 +4,16 @@ import { useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import {
-  Maximize2, BedDouble, Users, Check, Mail, Phone,
+  Maximize2, BedDouble, Users, Check, Mail, MessageCircle,
   Wifi, Tv, Bath, Utensils, Leaf, Calendar, Clock,
   Shield, AirVent, Sparkles, Sofa, Sunrise, UtensilsCrossed,
   Sun, Fan, PawPrint, Cigarette, ArrowLeft, ArrowRight,
 } from 'lucide-react'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { getT } from '../i18n/translations.js'
 
 import heroImg from '../assets/serenity-villa-outdoor-terrace.JPEG'
 import coastalPreview from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
-import { FaUmbrellaBeach } from 'react-icons/fa'
-import { GiTowel } from 'react-icons/gi'
 import serenityAboutImg from '../assets/serenity-villa-outdoor-lounge-upclose.JPEG'
 import cheetahIcon from '../assets/cheetah.png'
 import serenityPreviewImg from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
@@ -63,45 +63,18 @@ const GALLERY_LABELS = [
   '1st floor view',
 ]
 
-const AMENITIES = [
-  { icon: BedDouble,       label: '3 King bedrooms' },
-  { icon: Bath,            label: 'Multiple en-suites' },
-  { icon: Utensils,        label: 'Full kitchen' },
-  { icon: Sun,             label: 'Outdoor terrace' },
-  { icon: Leaf,            label: 'Garden views' },
-  { icon: UtensilsCrossed, label: 'Formal dining area' },
-  { icon: Sofa,            label: 'Living room' },
-  { icon: Sunrise,         label: 'Spacious balcony' },
-  { icon: Wifi,            label: 'High-speed Wi-Fi' },
-  { icon: Sparkles,        label: 'Daily housekeeping' },
-  { icon: AirVent,         label: 'Air conditioning' },
-  { icon: Tv,              label: 'Smart TVs' },
-  { icon: FaUmbrellaBeach, label: 'Sunbeds' },
-  { icon: GiTowel,         label: 'Towels provided' },
-  { icon: Fan,             label: 'Ceiling fans' },
+const AMENITY_ICONS = [
+  BedDouble, Bath, Utensils, Sun, Leaf, UtensilsCrossed,
+  Sofa, Sunrise, Wifi, Sparkles, AirVent, Tv,
+  ({ size, strokeWidth, className }) => <span className={className} style={{ fontSize: size, lineHeight: 1 }}>⛱</span>,
+  ({ size, strokeWidth, className }) => <span className={className} style={{ fontSize: size, lineHeight: 1 }}>🏊</span>,
+  Fan,
 ]
 
-const POLICIES = [
-  { icon: Clock,     label: 'Check-in',      value: '2:00 PM' },
-  { icon: Clock,     label: 'Check-out',     value: '10:00 AM' },
-  { icon: Calendar,  label: 'Minimum stay',  value: '2 nights' },
-  { icon: Shield,    label: 'Cancellation',  value: '1 month notice · 50% refund + 50% redeemable within 6 months' },
-  { icon: PawPrint,  label: 'Pets',          value: 'Small pets welcome' },
-  { icon: Cigarette, label: 'Smoking',       value: 'Balcony & lobby only' },
-]
+const POLICY_ICONS = [Clock, Clock, Calendar, Shield, PawPrint, Cigarette]
 
-const HIGHLIGHTS = [
-  'Three spacious king bedrooms',
-  'Multiple en-suite bathrooms',
-  'Fully-equipped kitchen for self-catering',
-  'Private outdoor terrace with garden views',
-  'Multiple lounges and dining areas',
-  'Spacious balcony for sunset evenings',
-  'Daily housekeeping and turndown service',
-]
-
-const INTRO_VIDEO_BASE =
-  'https://player.vimeo.com/video/1189029033' +
+const TOUR_VIDEO_BASE =
+  'https://player.vimeo.com/video/1189024643' +
   '?badge=0&autopause=0&player_id=0&app_id=58479' +
   '&byline=0&title=0&portrait=0&muted=1&dnt=1'
 
@@ -120,6 +93,9 @@ function fadeUp(delay = 0) {
 export default function SerenityVillaPage() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
   const navigate = useNavigate()
+  const { lang } = useLanguage()
+  const t = getT(lang)
+  const ts = t.suites.serenity
 
   const galleryTrackRef    = useRef(null)
   const galleryPosRef      = useRef(0)
@@ -159,31 +135,54 @@ export default function SerenityVillaPage() {
     if (galleryTrackRef.current) galleryTrackRef.current.style.transform = `translateX(-${galleryPosRef.current}px)`
   }, [])
 
-  const introIframeRef = useRef(null)
-  const introHasPlayedRef = useRef(false)
-  const [introVideoSrc, setIntroVideoSrc] = useState(INTRO_VIDEO_BASE)
-  const { ref: introRef, inView: introInView } = useInView({ threshold: 0.15 })
+  const tourIframeRef = useRef(null)
+  const tourHasPlayedRef = useRef(false)
+  const [tourVideoSrc, setTourVideoSrc] = useState(TOUR_VIDEO_BASE)
+  const { ref: tourRef, inView: tourInView } = useInView({ threshold: 0.15 })
 
   useEffect(() => {
     const post = (method, value) => {
       const msg = value !== undefined ? { method, value } : { method }
-      introIframeRef.current?.contentWindow?.postMessage(JSON.stringify(msg), 'https://player.vimeo.com')
+      tourIframeRef.current?.contentWindow?.postMessage(JSON.stringify(msg), 'https://player.vimeo.com')
     }
-    if (introInView) {
-      if (!introHasPlayedRef.current) {
-        introHasPlayedRef.current = true
-        setIntroVideoSrc(`${INTRO_VIDEO_BASE}&autoplay=1&loop=1`)
+    if (tourInView) {
+      if (!tourHasPlayedRef.current) {
+        tourHasPlayedRef.current = true
+        setTourVideoSrc(`${TOUR_VIDEO_BASE}&autoplay=1`)
       } else {
         post('play')
       }
-    } else if (introHasPlayedRef.current) {
+    } else if (tourHasPlayedRef.current) {
       post('pause')
     }
-  }, [introInView])
+  }, [tourInView])
 
-  const handleIntroIframeLoad = () => {
+  // When the video ends
+  useEffect(() => {
+    const onMsg = (e) => {
+      if (e.origin !== 'https://player.vimeo.com') return
+      if (e.source !== tourIframeRef.current?.contentWindow) return
+      try {
+        const data = JSON.parse(e.data)
+        if (data.event === 'finish') {
+          const win = tourIframeRef.current?.contentWindow
+          if (!win) return
+          const post = (method, value) => {
+            const msg = value !== undefined ? { method, value } : { method }
+            win.postMessage(JSON.stringify(msg), 'https://player.vimeo.com')
+          }
+          post('pause')
+          post('setCurrentTime', 0)
+        }
+      } catch { /* ignore */ }
+    }
+    window.addEventListener('message', onMsg)
+    return () => window.removeEventListener('message', onMsg)
+  }, [])
+
+  const handleTourIframeLoad = () => {
     setTimeout(() => {
-      introIframeRef.current?.contentWindow?.postMessage(
+      tourIframeRef.current?.contentWindow?.postMessage(
         JSON.stringify({ method: 'addEventListener', value: 'finish' }),
         'https://player.vimeo.com'
       )
@@ -193,8 +192,8 @@ export default function SerenityVillaPage() {
   return (
     <>
       <Helmet>
-        <title>Serenity Villa Suite | Duma Suites Watamu</title>
-        <meta name="description" content="3-Bedroom Serenity Villa Suite at Duma Suites, Watamu. Spacious luxury villa with full kitchen, outdoor terrace and garden views." />
+        <title>{ts.metaTitle}</title>
+        <meta name="description" content={ts.metaDesc} />
       </Helmet>
 
       <main id="serenity-villa-page">
@@ -202,6 +201,7 @@ export default function SerenityVillaPage() {
         {/* ── a) Hero ── */}
         <section className="sv-hero">
           <img src={heroImg} alt="Serenity Villa outdoor terrace" className="sv-hero__bg" />
+          <div className="sv-hero__overlay" aria-hidden="true" />
           <div className="sv-hero__content">
             <motion.span
               className="sv-hero__eyebrow"
@@ -209,7 +209,7 @@ export default function SerenityVillaPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
             >
-              3-Bedroom Villa
+              {ts.heroEyebrow}
             </motion.span>
             <motion.h1
               className="sv-hero__title"
@@ -217,7 +217,7 @@ export default function SerenityVillaPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
             >
-              Serenity Villa Suite
+              {ts.heroTitle}
             </motion.h1>
             <motion.p
               className="sv-hero__tagline"
@@ -225,7 +225,7 @@ export default function SerenityVillaPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
             >
-              Spacious 3-bedroom luxury with outdoor terrace and garden views
+              {ts.heroTagline}
             </motion.p>
             <motion.div
               className="sv-hero__ctas"
@@ -233,38 +233,8 @@ export default function SerenityVillaPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.42, ease: [0.4, 0, 0.2, 1] }}
             >
-              <a href="#inquire" className="btn btn-primary">Book a Stay</a>
-              <a href="#gallery" className="btn btn-inverse-light">View Gallery</a>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ── NEW: Intro Video Section ── */}
-        <section className="sv-intro section" id="intro">
-          <div className="sv-intro__inner container">
-            <motion.span className="eyebrow sv-intro__eyebrow" {...fadeUp(0)}>
-              Experience Duma Suites
-            </motion.span>
-            <motion.h2 className="section-title sv-intro__title" {...fadeUp(0.1)}>
-              A Glimpse of What Awaits
-            </motion.h2>
-            <motion.p className="sv-intro__desc" {...fadeUp(0.18)}>
-              Discover the spirit of Duma Suites — where coastal luxury meets effortless serenity.
-            </motion.p>
-            <motion.div className="sv-intro__video-wrap" {...fadeUp(0.26)} ref={introRef}>
-              <div className="sv-intro__video-frame">
-                <iframe
-                  ref={introIframeRef}
-                  src={introVideoSrc}
-                  frameBorder="0"
-                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                  loading="lazy"
-                  title="duma-suites-intro"
-                  onLoad={handleIntroIframeLoad}
-                />
-              </div>
+              <a href="#inquire" className="btn btn-primary">{ts.heroCta1}</a>
+              <a href="#gallery" className="btn btn-inverse-light">{ts.heroCta2}</a>
             </motion.div>
           </div>
         </section>
@@ -272,56 +242,42 @@ export default function SerenityVillaPage() {
         {/* ── b) About ── */}
         <section className="sv-about section" id="about">
           <div className="container">
-            {/* At-a-glance stats strip */}
+            {/* At-a-glance stats strip: 2×2 on mobile, 1 row on desktop */}
             <motion.div className="sv-about__stats-strip" {...fadeUp(0)}>
-              <div className="sv-about__stat"><Maximize2 size={15} strokeWidth={1.5} /><span>75 sq m</span></div>
-              <div className="sv-about__stat-divider" aria-hidden="true" />
-              <div className="sv-about__stat"><BedDouble size={15} strokeWidth={1.5} /><span>3 King Beds</span></div>
-              <div className="sv-about__stat-divider" aria-hidden="true" />
-              <div className="sv-about__stat"><Users size={15} strokeWidth={1.5} /><span>6+ Guests</span></div>
-              <div className="sv-about__stat-divider" aria-hidden="true" />
-              <div className="sv-about__stat"><Calendar size={15} strokeWidth={1.5} /><span>2 Night Min</span></div>
+              <div className="sv-about__stat"><Maximize2 size={15} strokeWidth={1.5} /><span>{ts.sqm}</span></div>
+              <div className="sv-about__stat"><BedDouble size={15} strokeWidth={1.5} /><span>{ts.beds}</span></div>
+              <div className="sv-about__stat"><Users size={15} strokeWidth={1.5} /><span>{ts.guests}</span></div>
+              <div className="sv-about__stat"><Calendar size={15} strokeWidth={1.5} /><span>{ts.minStay}</span></div>
             </motion.div>
 
             <div className="sv-about__inner">
-              {/* Left: text */}
+              {/* Left: text + highlights */}
               <motion.div className="sv-about__left" {...fadeUp(0.08)}>
-                <span className="eyebrow">About this Villa</span>
-                <h2 className="section-title sv-about__title">A Sprawling Family Retreat</h2>
-                <p className="sv-about__text">
-                  The Serenity Villa Suite redefines space and comfort within Ghepard Towers. This expansive
-                  three-bedroom villa is designed for families and groups who refuse to compromise on luxury —
-                  offering a full kitchen, multiple en-suite bathrooms, a sweeping outdoor terrace, and lush
-                  garden views at every turn.
-                </p>
-                <p className="sv-about__text">
-                  Gather around the formal dining table, relax in the indoor lounge, or step out onto the
-                  private terrace for a morning coffee surrounded by the sights and sounds of Watamu's
-                  coastline. This is the full villa experience — refined, spacious, and unforgettable.
-                </p>
-                <a href="#inquire" className="btn btn-primary sv-about__cta">Check Availability</a>
-              </motion.div>
+                <span className="eyebrow">{ts.aboutEyebrow}</span>
+                <h2 className="section-title sv-about__title">{ts.aboutTitle}</h2>
+                <p className="sv-about__text">{ts.aboutText1}</p>
+                <p className="sv-about__text">{ts.aboutText2}</p>
+                <a href="#inquire" className="btn btn-primary sv-about__cta">{ts.aboutCta}</a>
 
-              {/* Center: atmospheric image */}
-              <motion.div className="sv-about__img-col" {...fadeUp(0.16)}>
-                <div className="sv-about__img-wrap">
-                  <img src={serenityAboutImg} alt="Serenity Villa outdoor lounge" className="sv-about__img" />
-                  <div className="sv-about__img-overlay" aria-hidden="true" />
-                </div>
-              </motion.div>
-
-              {/* Right: highlights card */}
-              <motion.div className="sv-about__right" {...fadeUp(0.22)}>
+                {/* Highlights card — moved into left column */}
                 <div className="sv-about__highlights-card">
-                  <h3 className="sv-about__highlights-title">Villa Highlights</h3>
+                  <h3 className="sv-about__highlights-title">{ts.highlightsTitle}</h3>
                   <ul className="sv-highlights">
-                    {HIGHLIGHTS.map((h) => (
+                    {ts.highlights.map((h) => (
                       <li key={h} className="sv-highlights__item">
                         <Check size={14} strokeWidth={1.75} className="sv-highlights__icon" />
                         <span>{h}</span>
                       </li>
                     ))}
                   </ul>
+                </div>
+              </motion.div>
+
+              {/* Right: atmospheric image */}
+              <motion.div className="sv-about__img-col" {...fadeUp(0.16)}>
+                <div className="sv-about__img-wrap">
+                  <img src={serenityAboutImg} alt="Serenity Villa outdoor lounge" className="sv-about__img" />
+                  <div className="sv-about__img-overlay" aria-hidden="true" />
                 </div>
               </motion.div>
             </div>
@@ -332,10 +288,10 @@ export default function SerenityVillaPage() {
         <section className="sv-gallery section section--secondary" id="gallery">
           <div className="container">
             <motion.span className="eyebrow text-center" {...fadeUp(0)}>
-              Photo Gallery
+              {ts.galleryEyebrow}
             </motion.span>
             <motion.h2 className="section-title sv-gallery__title" {...fadeUp(0.1)}>
-              Inside the Villa
+              {ts.galleryTitle}
             </motion.h2>
           </div>
           <motion.div className="sv-gallery__strip-wrapper" {...fadeUp(0.2)}>
@@ -373,93 +329,134 @@ export default function SerenityVillaPage() {
           </motion.div>
           <div className="container sv-gallery__cta-wrap">
             <motion.a href="#inquire" className="btn btn-primary" {...fadeUp(0.1)}>
-              Book a Stay
+              {ts.galleryCta}
             </motion.a>
           </div>
         </section>
 
-        {/* ── d) Amenities ── */}
+        {/* ── d) Room Tour Video ── */}
+        <section className="sv-tour section section--secondary" id="room-tour">
+          <div className="container">
+            <motion.span className="eyebrow text-center" {...fadeUp(0)}>
+              {ts.tourEyebrow}
+            </motion.span>
+            <motion.h2 className="section-title sv-tour__title" {...fadeUp(0.1)}>
+              {ts.tourTitle}
+            </motion.h2>
+            <motion.p className="sv-tour__subtitle" {...fadeUp(0.18)}>
+              {ts.tourSub}
+            </motion.p>
+            <motion.div className="sv-tour__frame-wrap" {...fadeUp(0.26)} ref={tourRef}>
+              {/* Portrait 9:16 video — matches coastal haven framing */}
+              <div className="sv-tour__frame">
+                <iframe
+                  ref={tourIframeRef}
+                  src={tourVideoSrc}
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  loading="lazy"
+                  title="serenity-villa-room-tour"
+                  onLoad={handleTourIframeLoad}
+                />
+              </div>
+            </motion.div>
+            {/* Post-tour CTA */}
+            <motion.div className="sv-tour__cta-wrap" {...fadeUp(0.34)}>
+              <a href="/contact" className="btn btn-primary">{ts.tourCta}</a>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* ── e) Amenities ── */}
         <section className="sv-amenities section" id="amenities">
           <div className="container">
             <motion.span className="eyebrow text-center sv-amenities__eyebrow" {...fadeUp(0)}>
-              What's Included
+              {ts.amenitiesEyebrow}
             </motion.span>
             <motion.h2 className="section-title sv-amenities__title" {...fadeUp(0.1)}>
-              Villa Amenities
+              {ts.amenitiesTitle}
             </motion.h2>
             <div className="sv-amenities__grid">
-              {AMENITIES.map(({ icon: Icon, label }, i) => (
-                <motion.div
-                  key={label}
-                  className="sv-amenity"
-                  initial={{ opacity: 0, y: 22 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.5, delay: i * 0.07, ease: [0.4, 0, 0.2, 1] }}
-                >
-                  <div className="sv-amenity__icon-wrap">
-                    <Icon size={22} strokeWidth={1.5} className="sv-amenity__icon" />
-                  </div>
-                  <span className="sv-amenity__label">{label}</span>
-                </motion.div>
-              ))}
+              {ts.amenities.map((label, i) => {
+                const Icon = AMENITY_ICONS[i] || Wifi
+                return (
+                  <motion.div
+                    key={label}
+                    className="sv-amenity"
+                    initial={{ opacity: 0, y: 22 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.15 }}
+                    transition={{ duration: 0.5, delay: i * 0.07, ease: [0.4, 0, 0.2, 1] }}
+                  >
+                    <div className="sv-amenity__icon-wrap">
+                      <Icon size={22} strokeWidth={1.5} className="sv-amenity__icon" />
+                    </div>
+                    <span className="sv-amenity__label">{label}</span>
+                  </motion.div>
+                )
+              })}
             </div>
           </div>
         </section>
 
-        {/* ── e) Policies ── */}
+        {/* ── f) Policies ── */}
         <section className="sv-policies section section--secondary" id="policies">
           <div className="container">
             <motion.span className="eyebrow text-center sv-policies__eyebrow" {...fadeUp(0)}>
-              Policies &amp; Check-in
+              {ts.policiesEyebrow}
             </motion.span>
             <motion.h2 className="section-title sv-policies__title" {...fadeUp(0.1)}>
-              Know Before You Go
+              {ts.policiesTitle}
             </motion.h2>
             <motion.div className="sv-policies__grid" {...fadeUp(0.2)}>
-              {POLICIES.map(({ icon: Icon, label, value }) => (
-                <div key={label} className="sv-policy">
-                  <Icon size={18} strokeWidth={1.5} className="sv-policy__icon" />
-                  <div>
-                    <span className="sv-policy__label">{label}</span>
-                    <span className="sv-policy__value">{value}</span>
+              {ts.policies.map(({ label, value }, idx) => {
+                const Icon = POLICY_ICONS[idx] || Clock
+                return (
+                  <div key={label} className="sv-policy">
+                    <Icon size={18} strokeWidth={1.5} className="sv-policy__icon" />
+                    <div>
+                      <span className="sv-policy__label">{label}</span>
+                      <span className="sv-policy__value">{value}</span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </motion.div>
           </div>
         </section>
 
-        {/* ── f) Inquire ── */}
+        {/* ── g) Inquire ── */}
         <section className="sv-inquire section section--dark" id="inquire">
           <div className="container sv-inquire__inner">
             <motion.span className="sv-inquire__eyebrow" {...fadeUp(0)}>
-              Reservations
+              {ts.inquireEyebrow}
             </motion.span>
             <motion.h2 className="sv-inquire__title" {...fadeUp(0.1)}>
-              Reserve Your Stay
+              {ts.inquireTitle}
             </motion.h2>
             <motion.p className="sv-inquire__subtitle" {...fadeUp(0.2)}>
-              Ready to experience coastal luxury? Contact us to check availability and rates.
+              {ts.inquireSub}
             </motion.p>
             <motion.div className="sv-inquire__ctas" {...fadeUp(0.3)}>
               <a href="mailto:reservations@dumasuites.com" className="btn btn-primary">
                 <Mail size={16} strokeWidth={1.5} />
-                Email Us
+                {ts.inquireEmail}
               </a>
-              <a href="tel:+254700000000" className="btn btn-inverse-light">
-                <Phone size={16} strokeWidth={1.5} />
-                Call / WhatsApp
+              <a href="https://wa.me/254710933025" target="_blank" rel="noopener noreferrer" className="btn btn-inverse-light">
+                <MessageCircle size={16} strokeWidth={1.5} />
+                {ts.inquireWhatsapp}
               </a>
             </motion.div>
           </div>
         </section>
 
-        {/* ── g) Suite Preview — all suites ── */}
+        {/* ── h) Suite Preview — all suites ── */}
         <section className="sv-suites section section--secondary" id="all-suites">
           <div className="container">
             <motion.span className="eyebrow text-center sv-suites__eyebrow" {...fadeUp(0)}>
-              Our Suites
+              {ts.suitesEyebrow}
             </motion.span>
 
             {/* Cheetah icon divider */}
@@ -470,23 +467,20 @@ export default function SerenityVillaPage() {
             </motion.div>
 
             <motion.h2 className="section-title sv-suites__title" {...fadeUp(0.15)}>
-              Explore All Suites
+              {ts.suitesTitle}
             </motion.h2>
 
             <div className="sv-suites__grid">
               {/* Coastal Haven card */}
               <motion.div className="sv-suite-card" {...fadeUp(0.22)} onClick={() => navigate('/suites/coastal-haven')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/coastal-haven') } }}>
                 <div className="sv-suite-card__img-wrap">
-                  <img src={coastalPreview} alt="Coastal Haven Suite" className="sv-suite-card__img" />
-                  <div className="sv-suite-card__shutters" aria-hidden="true">
-                    <span /><span /><span /><span />
-                  </div>
+                  <img src={coastalPreview} alt="Coastal Haven Suite" className="sv-suite-card__img" loading="eager" />
                 </div>
                 <div className="sv-suite-card__body">
-                  <p className="sv-suite-card__tagline">1-Bedroom · Intimate Coastal Retreat</p>
+                  <p className="sv-suite-card__tagline">{ts.coastalTagline}</p>
                   <h3 className="sv-suite-card__name">Coastal Haven Suite</h3>
                   <a href="/suites/coastal-haven" className="btn btn-inverse sv-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/coastal-haven') }}>
-                    View Suite →
+                    {ts.viewSuiteBtn}
                   </a>
                 </div>
               </motion.div>
@@ -494,38 +488,17 @@ export default function SerenityVillaPage() {
               {/* Serenity Villa card */}
               <motion.div className="sv-suite-card" {...fadeUp(0.32)} onClick={() => navigate('/suites/serenity-villa')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/serenity-villa') } }}>
                 <div className="sv-suite-card__img-wrap">
-                  <img src={serenityPreviewImg} alt="Serenity Villa Suite" className="sv-suite-card__img" />
-                  <div className="sv-suite-card__shutters" aria-hidden="true">
-                    <span /><span /><span /><span />
-                  </div>
-                  <div className="sv-suite-card__badge">Current Suite</div>
+                  <img src={serenityPreviewImg} alt="Serenity Villa Suite" className="sv-suite-card__img" loading="eager" />
+                  <div className="sv-suite-card__badge">{ts.badgeCurrent}</div>
                 </div>
                 <div className="sv-suite-card__body">
-                  <p className="sv-suite-card__tagline">3-Bedroom · Luxury Family Retreat</p>
+                  <p className="sv-suite-card__tagline">{ts.serenityTagline}</p>
                   <h3 className="sv-suite-card__name">Serenity Villa Suite</h3>
                   <a href="/suites/serenity-villa" className="btn btn-inverse sv-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/serenity-villa') }}>
-                    View Suite →
+                    {ts.viewSuiteBtn}
                   </a>
                 </div>
               </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Room tour video */}
-        <section className="video-overview section">
-          <div className="container" style={{ maxWidth: 900, textAlign: 'center' }}>
-            <span className="eyebrow">Room Tour</span>
-            <h2 className="section-title">Serenity Villa – Virtual Tour</h2>
-            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 4, marginTop: 32 }}>
-              <iframe
-                src="https://player.vimeo.com/video/1189024643?autoplay=0&title=0&byline=0&portrait=0"
-                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-                title="Serenity Villa Room Tour"
-              />
             </div>
           </div>
         </section>
@@ -536,10 +509,11 @@ export default function SerenityVillaPage() {
         /* ── Hero ── */
         .sv-hero {
           position: relative;
-          height: 88vh;
-          min-height: 520px;
+          height: 100vh;
+          min-height: 560px;
           display: flex;
-          align-items: flex-end;
+          align-items: center;
+          justify-content: center;
           overflow: hidden;
         }
         .sv-hero__bg {
@@ -555,99 +529,67 @@ export default function SerenityVillaPage() {
           from { transform: scale(1); }
           to   { transform: scale(1.05); }
         }
+        .sv-hero__overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.18) 0%,
+            rgba(0,0,0,0.52) 50%,
+            rgba(0,0,0,0.44) 100%
+          );
+        }
         .sv-hero__content {
           position: relative;
           z-index: 1;
-          background: rgba(22, 14, 6, 0.78);
-          backdrop-filter: blur(4px);
-          -webkit-backdrop-filter: blur(4px);
-          padding: clamp(14px, 2vw, 20px) clamp(18px, 2.5vw, 28px);
-          margin: 0 clamp(20px, 5vw, 80px) clamp(32px, 5vh, 64px);
-          max-width: 520px;
+          text-align: center;
+          padding: 0 var(--section-px);
+          max-width: 700px;
         }
         .sv-hero__eyebrow {
           display: block;
           font-family: var(--font-eyebrow);
           font-style: italic;
-          font-size: clamp(0.65rem, 1.1vw, 0.82rem);
+          font-size: clamp(0.7rem, 1.2vw, 0.9rem);
           letter-spacing: 0.22em;
           text-transform: uppercase;
           color: var(--color-teal);
-          margin-bottom: 0.6rem;
+          margin-bottom: 1rem;
         }
         .sv-hero__title {
           font-family: var(--font-title);
-          font-size: clamp(2rem, 5.5vw, 4.2rem);
+          font-size: clamp(3rem, 7.5vw, 6rem);
           font-weight: 400;
           color: #fff;
           line-height: 1.05;
-          margin: 0 0 0.65rem;
+          margin: 0 0 1rem;
         }
         .sv-hero__tagline {
           font-family: var(--font-body);
-          font-size: clamp(0.8rem, 1.3vw, 0.95rem);
-          color: rgba(255,255,255,0.78);
-          margin: 0 0 1.25rem;
-          line-height: 1.5;
+          font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+          color: rgba(255,255,255,0.82);
+          margin: 0 auto 2rem;
+          line-height: 1.6;
+          max-width: 500px;
         }
         .sv-hero__ctas {
           display: flex;
           flex-wrap: wrap;
-          gap: 10px;
+          gap: 12px;
+          justify-content: center;
         }
         @media (min-width: 768px) and (max-width: 1199px) {
-          .sv-hero { height: 76vh; }
+          .sv-hero { height: 90vh; }
         }
         @media (max-width: 767px) {
-          .sv-hero { height: 66vh; }
-          .sv-hero__content { max-width: 100%; margin: 0 16px 28px; }
-        }
-
-        /* ── Intro Video Section ── */
-        .sv-intro__inner {
-          max-width: 1100px;
-          text-align: center;
-        }
-        .sv-intro__eyebrow { display: block; }
-        .sv-intro__title { margin: 0.5rem 0 1rem; }
-        .sv-intro__desc {
-          font-family: var(--font-body);
-          font-size: clamp(0.92rem, 1.4vw, 1.05rem);
-          color: var(--color-text-muted);
-          max-width: 65%;
-          margin: 0 auto 2.5rem;
-          line-height: 1.75;
-        }
-        .sv-intro__video-wrap {
-          max-width: 1000px;
-          margin-inline: auto;
-        }
-        .sv-intro__video-frame {
-          position: relative;
-          width: 100%;
-          padding-bottom: 56.25%;
-          border-radius: 4px;
-          overflow: hidden;
-          background: #000;
-          box-shadow: 0 16px 64px rgba(86, 51, 17, 0.2);
-        }
-        .sv-intro__video-frame iframe {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          border: none;
-        }
-        @media (max-width: 768px) {
-          .sv-intro__desc { max-width: 90%; }
+          .sv-hero { height: 85vh; }
+          .sv-hero__title { font-size: clamp(2.4rem, 9vw, 3.8rem); }
         }
 
         /* ── About ── */
         .sv-about__stats-strip {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
           gap: 0;
           margin-bottom: clamp(28px, 4vw, 44px);
           padding: 14px 24px;
@@ -658,20 +600,35 @@ export default function SerenityVillaPage() {
         .sv-about__stat {
           display: flex;
           align-items: center;
+          justify-content: center;
           gap: 7px;
           font-family: var(--font-nav);
           font-size: 0.64rem;
           letter-spacing: 0.12em;
           text-transform: uppercase;
           color: var(--color-espresso);
-          padding: 4px 20px;
+          padding: 10px 12px;
         }
         .sv-about__stat svg { color: var(--color-teal); flex-shrink: 0; }
-        .sv-about__stat-divider {
-          width: 1px;
-          height: 18px;
-          background: rgba(86,51,17,0.2);
-          flex-shrink: 0;
+        .sv-about__stat-divider { display: none; }
+        @media (min-width: 640px) {
+          .sv-about__stats-strip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: nowrap;
+          }
+          .sv-about__stat { padding: 4px 20px; }
+          .sv-about__stat-divider {
+            display: block;
+            width: 1px;
+            height: 18px;
+            background: rgba(86,51,17,0.2);
+            flex-shrink: 0;
+          }
+        }
+        @media (min-width: 1100px) {
+          .sv-about__stat { padding: 4px 24px; }
         }
         .sv-about__inner {
           display: grid;
@@ -688,34 +645,13 @@ export default function SerenityVillaPage() {
           margin-bottom: 1rem;
         }
         .sv-about__cta { margin-top: 0.75rem; display: inline-block; }
-        /* Center image column */
-        .sv-about__img-col { display: none; }
-        .sv-about__img-wrap {
-          position: relative;
-          overflow: hidden;
-          border-radius: 3px;
-          aspect-ratio: 3/4;
-        }
-        .sv-about__img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-          transition: transform 600ms ease;
-        }
-        .sv-about__img-wrap:hover .sv-about__img { transform: scale(1.04); }
-        .sv-about__img-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to top, rgba(86,51,17,0.18) 0%, transparent 50%);
-          pointer-events: none;
-        }
-        /* Right: highlights card */
+        /* Highlights card inside left column */
         .sv-about__highlights-card {
           background: var(--color-bg-secondary);
           border: 1px solid rgba(201,169,110,0.18);
           border-radius: 4px;
           padding: clamp(20px, 3vw, 32px);
+          margin-top: 2rem;
         }
         .sv-about__highlights-title {
           font-family: var(--font-nav);
@@ -750,17 +686,35 @@ export default function SerenityVillaPage() {
           border-radius: 50%;
           box-sizing: content-box;
         }
+        /* Right image column */
+        .sv-about__img-col { display: none; }
+        .sv-about__img-wrap {
+          position: relative;
+          overflow: hidden;
+          border-radius: 3px;
+          height: 100%;
+          min-height: 400px;
+        }
+        .sv-about__img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 600ms ease;
+        }
+        .sv-about__img-wrap:hover .sv-about__img { transform: scale(1.04); }
+        .sv-about__img-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(86,51,17,0.18) 0%, transparent 50%);
+          pointer-events: none;
+        }
         @media (min-width: 900px) {
           .sv-about__inner {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.05fr 0.95fr;
+            align-items: stretch;
           }
           .sv-about__img-col { display: block; }
-        }
-        @media (min-width: 1100px) {
-          .sv-about__inner {
-            grid-template-columns: 1.1fr 0.7fr 1fr;
-          }
-          .sv-about__stat { padding: 4px 24px; }
         }
 
         /* ── Gallery ── */
@@ -787,7 +741,7 @@ export default function SerenityVillaPage() {
         }
         .sv-gallery__img {
           width: 340px;
-          height: 260px;
+          height: 300px;
           object-fit: cover;
           display: block;
           transition: transform 500ms ease;
@@ -828,6 +782,50 @@ export default function SerenityVillaPage() {
         .sv-gallery__cta-wrap {
           text-align: center;
           padding-top: 2rem;
+        }
+
+        /* ── Room Tour Video ── */
+        .sv-tour__title {
+          text-align: center;
+          margin: 0.5rem 0 0.75rem;
+        }
+        .sv-tour__subtitle {
+          font-family: var(--font-body);
+          font-size: clamp(0.9rem, 1.4vw, 1rem);
+          color: var(--color-text-muted);
+          text-align: center;
+          margin: 0 auto 2.5rem;
+          max-width: 480px;
+          line-height: 1.7;
+        }
+        .sv-tour__frame-wrap {
+          display: flex;
+          justify-content: center;
+        }
+        /* Portrait 9:16 video — same as coastal haven */
+        .sv-tour__frame {
+          position: relative;
+          width: 100%;
+          max-width: 420px;
+          padding-bottom: min(177.78%, 100vh);
+          background: #000;
+          border-radius: 4px;
+          overflow: hidden;
+          box-shadow: 0 12px 50px rgba(86, 51, 17, 0.2);
+        }
+        .sv-tour__frame iframe {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          border: none;
+        }
+        @media (min-width: 1024px) {
+          .sv-tour__frame { max-width: 560px; }
+        }
+        .sv-tour__cta-wrap {
+          text-align: center;
+          margin-top: 2.5rem;
         }
 
         /* ── Amenities ── */

@@ -4,39 +4,22 @@ import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Maximize2, BedDouble, Users } from 'lucide-react'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { getT } from '../i18n/translations.js'
 
 import outsideView2 from '../assets/outside-view2.jpeg'
 import coastalPreview from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
-import serenityPreview from '../assets/serenity-villa-3bedroomsuite-preview.JPEG'
+import serenityPreview from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
+import cheetahIcon from '../assets/cheetah.png'
 
-const SUITES = [
-  {
-    id: 'coastal-haven',
-    name: 'Coastal Haven Suite',
-    tagline: '1-Bedroom · Intimate Coastal Retreat',
-    size: '25 sq m',
-    beds: '1 King Bed',
-    guests: '2+ Guests',
-    href: '/suites/coastal-haven',
-    image: coastalPreview,
-    description: 'An intimate coastal retreat designed for couples seeking privacy and elegance, just steps from the Indian Ocean.',
-  },
-  {
-    id: 'serenity-villa',
-    name: 'Serenity Villa Suite',
-    tagline: '3-Bedroom · Luxury Family Retreat',
-    size: '75 sq m',
-    beds: '3 King Beds',
-    guests: '6+ Guests',
-    href: '/suites/serenity-villa',
-    image: serenityPreview,
-    description: 'A sprawling three-bedroom villa with full kitchen, outdoor terrace, and garden views — perfect for families or groups.',
-  },
-]
+const SUITE_IMAGES = [coastalPreview, serenityPreview]
+const SUITE_HREFS = ['/suites/coastal-haven', '/suites/serenity-villa']
 
-function SuiteCard({ suite, index }) {
+function SuiteCard({ suite, image, href, index }) {
   const { ref, inView } = useInView({ threshold: 0.15, triggerOnce: true })
   const navigate = useNavigate()
+  const { lang } = useLanguage()
+  const t = getT(lang)
 
   return (
     <motion.article
@@ -48,27 +31,27 @@ function SuiteCard({ suite, index }) {
     >
       <div
         className="as-card__img-wrap"
-        onClick={() => navigate(suite.href)}
+        onClick={() => navigate(href)}
         role="button"
         tabIndex={0}
         aria-label={`View ${suite.name}`}
-        onKeyDown={(e) => e.key === 'Enter' && navigate(suite.href)}
+        onKeyDown={(e) => e.key === 'Enter' && navigate(href)}
       >
-        <img src={suite.image} alt={suite.name} className="as-card__img" />
+        <img src={image} alt={suite.name} className="as-card__img" />
         <div className="as-card__overlay">
           <p className="as-card__tagline">{suite.tagline}</p>
           <h3 className="as-card__name">{suite.name}</h3>
           <div className="as-card__specs">
-            <span><Maximize2 size={13} strokeWidth={1.5} />{suite.size}</span>
-            <span><BedDouble size={13} strokeWidth={1.5} />{suite.beds}</span>
-            <span><Users size={13} strokeWidth={1.5} />{suite.guests}</span>
+            <span><Maximize2 size={13} strokeWidth={1.5} />{index === 0 ? '25 sq m' : '75 sq m'}</span>
+            <span><BedDouble size={13} strokeWidth={1.5} />{index === 0 ? '1 King Bed' : '3 King Beds'}</span>
+            <span><Users size={13} strokeWidth={1.5} />{index === 0 ? '2+ Guests' : '6+ Guests'}</span>
           </div>
         </div>
       </div>
       <div className="as-card__body">
-        <p className="as-card__desc">{suite.description}</p>
-        <a href={suite.href} className="btn btn-inverse as-card__btn">
-          View Suite
+        <p className="as-card__desc">{suite.desc}</p>
+        <a href={href} className="btn btn-inverse as-card__btn">
+          {t.suites.all.viewSuite}
         </a>
       </div>
     </motion.article>
@@ -77,15 +60,19 @@ function SuiteCard({ suite, index }) {
 
 export default function AllSuitesPage() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
+  const { lang } = useLanguage()
+  const t = getT(lang)
+  const ts = t.suites.all
 
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.2, triggerOnce: true })
   const { ref: introRef, inView: introInView } = useInView({ threshold: 0.2, triggerOnce: true })
+  const { ref: showcaseRef, inView: showcaseInView } = useInView({ threshold: 0.2, triggerOnce: true })
 
   return (
     <>
       <Helmet>
         <title>All Suites | Duma Suites Watamu</title>
-        <meta name="description" content="Explore all suites at Duma Suites — the Coastal Haven Suite and Serenity Villa Suite. Two exceptional retreats in Watamu, Kenya." />
+        <meta name="description" content="Explore the showcased suites at Duma Suites — the Coastal Haven Suite and Serenity Villa Suite. Exceptional retreats in Watamu, Kenya, with more options available." />
       </Helmet>
 
       <main id="suites-page">
@@ -100,7 +87,7 @@ export default function AllSuitesPage() {
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.1 }}
             >
-              Suites &amp; Villas
+              {ts.heroEyebrow}
             </motion.span>
             <motion.h1
               className="as-hero__title"
@@ -108,7 +95,7 @@ export default function AllSuitesPage() {
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.22 }}
             >
-              Stay Your Way
+              {ts.heroTitle}
             </motion.h1>
             <motion.p
               className="as-hero__subtitle"
@@ -116,7 +103,7 @@ export default function AllSuitesPage() {
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.36 }}
             >
-              Two exceptional retreats, one extraordinary destination.
+              {ts.heroSub}
             </motion.p>
           </div>
         </section>
@@ -124,35 +111,52 @@ export default function AllSuitesPage() {
         {/* Intro */}
         <section className="as-intro section" ref={introRef}>
           <div className="container">
+            <motion.span
+              className="as-intro__eyebrow eyebrow"
+              initial={{ opacity: 0, y: 20 }}
+              animate={introInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.05 }}
+            >
+              {ts.introEyebrow}
+            </motion.span>
+
+            {/* Cheetah divider */}
+            <motion.div
+              className="as-intro__cheetah-divider"
+              aria-hidden="true"
+              initial={{ opacity: 0 }}
+              animate={introInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.12 }}
+            >
+              <span className="as-intro__divider-line" />
+              <img src={cheetahIcon} alt="" className="as-intro__divider-icon" />
+              <span className="as-intro__divider-line" />
+            </motion.div>
+
+            <motion.h2
+              className="section-title as-intro__title"
+              initial={{ opacity: 0, y: 20 }}
+              animate={introInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.18 }}
+            >
+              {ts.introTitle}
+            </motion.h2>
             <motion.p
               className="as-intro__text"
               initial={{ opacity: 0, y: 24 }}
               animate={introInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.1 }}
+              transition={{ duration: 0.7, delay: 0.28 }}
             >
-              Whether you're seeking an intimate coastal escape or a sprawling villa for a family retreat,
-              The Duma Suites offers two distinctly curated living spaces — each designed to bring the very
-              best of Watamu's coastline into your daily rhythm.
+              {ts.introText}
             </motion.p>
           </div>
         </section>
 
-        {/* Suites showcase */}
-        <section className="as-showcase section section--secondary">
-          <div className="container">
-            <div className="as-showcase__grid">
-              {SUITES.map((suite, i) => (
-                <SuiteCard key={suite.id} suite={suite} index={i} />
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Resort overview video */}
-        <section className="video-overview section">
+        <section className="video-overview section section--secondary">
           <div className="container" style={{ maxWidth: 900, textAlign: 'center' }}>
-            <span className="eyebrow">Resort Overview</span>
-            <h2 className="section-title">Experience Duma Suites</h2>
+            <span className="eyebrow">{ts.videoEyebrow}</span>
+            <h2 className="section-title as-video__title">{ts.videoTitle}</h2>
             <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 4, marginTop: 32 }}>
               <iframe
                 src="https://player.vimeo.com/video/1189029033?autoplay=0&title=0&byline=0&portrait=0"
@@ -162,6 +166,56 @@ export default function AllSuitesPage() {
                 allowFullScreen
                 title="Duma Suites Resort Overview"
               />
+            </div>
+          </div>
+        </section>
+
+        {/* Suites showcase */}
+        <section className="as-showcase section" ref={showcaseRef}>
+          <div className="container">
+            {/* Showcase header */}
+            <motion.span
+              className="as-showcase__eyebrow eyebrow"
+              initial={{ opacity: 0, y: 20 }}
+              animate={showcaseInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.05 }}
+            >
+              {ts.showcaseEyebrow}
+            </motion.span>
+
+            <motion.div
+              className="as-showcase__divider"
+              aria-hidden="true"
+              initial={{ opacity: 0 }}
+              animate={showcaseInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.12 }}
+            >
+              <span className="as-showcase__divider-line" />
+              <img src={cheetahIcon} alt="" className="as-showcase__divider-icon" />
+              <span className="as-showcase__divider-line" />
+            </motion.div>
+
+            <motion.h2
+              className="section-title as-showcase__title"
+              initial={{ opacity: 0, y: 20 }}
+              animate={showcaseInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.18 }}
+            >
+              {ts.showcaseTitle}
+            </motion.h2>
+            <motion.p
+              className="as-showcase__intro"
+              initial={{ opacity: 0, y: 20 }}
+              animate={showcaseInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.26 }}
+            >
+              {ts.showcaseIntro}
+            </motion.p>
+
+            <div className="as-showcase__grid">
+              {ts.cards.map((suite, i) => (
+                <SuiteCard key={suite.name} suite={suite} image={SUITE_IMAGES[i]} href={SUITE_HREFS[i]} index={i} />
+              ))}
             </div>
           </div>
         </section>
@@ -227,6 +281,35 @@ export default function AllSuitesPage() {
         .as-intro {
           background-color: var(--color-bg-primary);
         }
+        .as-intro__eyebrow {
+          display: block;
+          text-align: center;
+          margin-bottom: 12px;
+        }
+        .as-intro__title {
+          text-align: center;
+          margin: 0 auto 1.5rem;
+        }
+        .as-intro__cheetah-divider {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          margin: 10px auto 14px;
+          max-width: 260px;
+        }
+        .as-intro__divider-line {
+          flex: 1;
+          height: 1px;
+          background: linear-gradient(to right, transparent, var(--color-teal), transparent);
+          opacity: 0.55;
+        }
+        .as-intro__divider-icon {
+          width: 26px;
+          height: 26px;
+          object-fit: contain;
+          opacity: 0.7;
+        }
         .as-intro__text {
           font-family: var(--font-body);
           font-size: clamp(1rem, 1.6vw, 1.15rem);
@@ -236,8 +319,52 @@ export default function AllSuitesPage() {
           margin-inline: auto;
           text-align: center;
         }
+        .as-video__title {
+          text-align: center;
+          margin-inline: auto;
+        }
 
-        /* ── Showcase ── */
+        /* ── Showcase header ── */
+        .as-showcase__eyebrow {
+          display: block;
+          text-align: center;
+          margin-bottom: 12px;
+        }
+        .as-showcase__divider {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          margin: 10px auto 14px;
+          max-width: 260px;
+        }
+        .as-showcase__divider-line {
+          flex: 1;
+          height: 1px;
+          background: linear-gradient(to right, transparent, var(--color-teal), transparent);
+          opacity: 0.55;
+        }
+        .as-showcase__divider-icon {
+          width: 26px;
+          height: 26px;
+          object-fit: contain;
+          opacity: 0.7;
+        }
+        .as-showcase__title {
+          text-align: center;
+          margin: 0 auto 0.75rem;
+        }
+        .as-showcase__intro {
+          font-family: var(--font-body);
+          font-size: clamp(0.9rem, 1.4vw, 1rem);
+          color: var(--color-text-muted);
+          line-height: 1.7;
+          max-width: 480px;
+          margin: 0 auto 2.5rem;
+          text-align: center;
+        }
+
+        /* ── Showcase grid ── */
         .as-showcase__grid {
           display: grid;
           grid-template-columns: 1fr;

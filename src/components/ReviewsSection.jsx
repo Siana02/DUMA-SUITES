@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Star, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Star, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
@@ -48,11 +48,13 @@ const REVIEWS = [
   },
 ]
 
+const AUTO_ADVANCE_MS = 9000
+
 function StarRating({ count }) {
   return (
     <div className="rv-stars" aria-label={`${count} out of 5 stars`}>
       {Array.from({ length: count }).map((_, i) => (
-        <Star key={i} size={14} fill="currentColor" strokeWidth={0} />
+        <Star key={i} size={16} fill="currentColor" strokeWidth={0} />
       ))}
     </div>
   )
@@ -87,26 +89,43 @@ export default function ReviewsSection() {
 
   const [index, setIndex] = useState(0)
   const [direction, setDirection] = useState(1)
+  const [paused, setPaused] = useState(false)
 
   const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.3, triggerOnce: true })
+  const { ref: sectionRef, inView: sectionInView } = useInView({ threshold: 0.2 })
 
   const go = (dir) => {
     setDirection(dir)
     setIndex(prev => (prev + dir + REVIEWS.length) % REVIEWS.length)
   }
 
+  // Auto-cycle
+  useEffect(() => {
+    if (!sectionInView || paused) return
+    const timer = setInterval(() => {
+      setDirection(1)
+      setIndex(prev => (prev + 1) % REVIEWS.length)
+    }, AUTO_ADVANCE_MS)
+    return () => clearInterval(timer)
+  }, [sectionInView, paused])
+
   const review = REVIEWS[index]
 
   return (
-    <section className="rv-section section section--tertiary" id="reviews">
-      <div className="container" style={{ maxWidth: 760 }}>
+    <section
+      className="rv-section section section--tertiary"
+      id="reviews"
+      ref={sectionRef}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div className="container" style={{ maxWidth: 820 }}>
         <div
           ref={headerRef}
           className={`rv-header${headerInView ? ' is-visible' : ''}`}
         >
           <span className="eyebrow">{t.reviews.eyebrow}</span>
           <h2 className="section-title">{t.reviews.title}</h2>
-          <div className="divider" style={{ marginInline: 'auto', marginTop: '1rem' }} />
         </div>
 
         <div className="rv-carousel">
@@ -130,7 +149,7 @@ export default function ReviewsSection() {
                 exit="exit"
                 transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
               >
-                <div className="rv-card__top">
+                <div className="rv-card__rating-row">
                   <StarRating count={review.rating} />
                   <SourceBadge source={review.source} />
                 </div>
@@ -166,6 +185,18 @@ export default function ReviewsSection() {
             />
           ))}
         </div>
+
+        {/* Leave a Review CTA */}
+        <div className="rv-leave-cta">
+          <a
+            href="#contact"
+            className="rv-leave-cta__btn btn btn-inverse"
+            onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}
+          >
+            {t.reviews.leaveReview}
+            <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
+          </a>
+        </div>
       </div>
 
       <style>{`
@@ -183,7 +214,7 @@ export default function ReviewsSection() {
         .rv-carousel {
           display: flex;
           align-items: center;
-          gap: 16px;
+          gap: 0;
         }
         .rv-slide-wrap {
           flex: 1;
@@ -191,6 +222,7 @@ export default function ReviewsSection() {
           min-height: 220px;
           display: flex;
           align-items: center;
+          padding: 0 12px;
         }
         .rv-card {
           width: 100%;
@@ -202,16 +234,17 @@ export default function ReviewsSection() {
           flex-direction: column;
           gap: 16px;
         }
-        .rv-card__top {
+        .rv-card__rating-row {
           display: flex;
+          flex-direction: column;
           align-items: center;
-          justify-content: space-between;
-          gap: 12px;
+          gap: 10px;
         }
         .rv-stars {
           display: flex;
-          gap: 3px;
+          gap: 4px;
           color: #c9a84c;
+          justify-content: center;
         }
         .rv-badge {
           font-family: var(--font-nav);
@@ -228,10 +261,12 @@ export default function ReviewsSection() {
           line-height: 1.7;
           color: var(--color-espresso);
           quotes: none;
+          text-align: center;
         }
         .rv-card__footer {
           display: flex;
           flex-direction: column;
+          align-items: center;
           gap: 2px;
           padding-top: 16px;
           border-top: 1px solid rgba(86,51,17,0.1);
@@ -286,13 +321,43 @@ export default function ReviewsSection() {
           background: var(--color-teal);
           transform: scale(1.3);
         }
-        @media (max-width: 560px) {
+        .rv-leave-cta {
+          display: flex;
+          justify-content: center;
+          margin-top: clamp(28px, 4vw, 40px);
+        }
+        .rv-leave-cta__btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+        }
+        @media (max-width: 768px) {
+          .rv-carousel {
+            gap: 0;
+          }
+          .rv-arrow {
+            width: 40px;
+            height: 40px;
+          }
+          .rv-slide-wrap {
+            padding: 0 8px;
+          }
+        }
+        @media (max-width: 480px) {
+          .rv-carousel {
+            margin: 0 -12px;
+          }
           .rv-arrow {
             width: 36px;
             height: 36px;
+            flex-shrink: 0;
+          }
+          .rv-slide-wrap {
+            padding: 0 4px;
           }
         }
       `}</style>
     </section>
   )
 }
+

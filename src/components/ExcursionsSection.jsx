@@ -4,6 +4,7 @@ import { ArrowRight, Info } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
+import cheetahIcon from '../assets/cheetah.png'
 import gediMain    from '../assets/gedi-ruins-excursion.JPEG'
 import gediOverlay from '../assets/gedi-ruins-monkey-excursion.JPEG'
 import elephantMain    from '../assets/upclose-elephant.JPEG'
@@ -70,8 +71,14 @@ export default function ExcursionsSection() {
           className={`exc-section__header${headerInView ? ' is-visible' : ''}`}
         >
           <span className="eyebrow">{exc.eyebrow}</span>
+
+          <div className="exc-cheetah-divider" aria-hidden="true">
+            <span className="exc-cheetah-divider__line" />
+            <img src={cheetahIcon} alt="" className="exc-cheetah-divider__icon" />
+            <span className="exc-cheetah-divider__line" />
+          </div>
+
           <h2 className="section-title">{exc.title}</h2>
-          <div className="divider" />
           <div className="exc-section__note">
             <Info size={14} strokeWidth={1.5} aria-hidden="true" />
             <span>{exc.note}</span>
@@ -103,6 +110,26 @@ export default function ExcursionsSection() {
         .exc-section__header.is-visible {
           opacity: 1;
           transform: translateY(0);
+        }
+        .exc-cheetah-divider {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          margin: 12px auto 16px;
+          max-width: 280px;
+        }
+        .exc-cheetah-divider__line {
+          flex: 1;
+          height: 1px;
+          background: linear-gradient(to right, transparent, var(--color-teal), transparent);
+          opacity: 0.6;
+        }
+        .exc-cheetah-divider__icon {
+          width: 28px;
+          height: 28px;
+          object-fit: contain;
+          opacity: 0.75;
         }
         .exc-section__note {
           display: inline-flex;

@@ -1,30 +1,39 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
+import cheetahIcon from '../assets/cheetah.png'
+
 import vid1 from '../assets/infinity-pool-rooftopview.MOV'
 import vid2 from '../assets/rooftop-infinity-pool-view.mp4'
-import vid3 from '../assets/safari-blue-seafood-local-prawns.MOV'
-import vid4 from '../assets/safari-blue-sudi-island-seafood-bbq.MOV'
 import vid5 from '../assets/sea-urchin-on-beach.MP4'
 import vid6 from '../assets/watamu-shoreline-video.MOV'
 import vid7 from '../assets/watamu-whitesands-beach.MP4'
+import vid3 from '../assets/safari-blue-seafood-local-prawns.MOV'
+import vid4 from '../assets/safari-blue-sudi-island-seafood-bbq.MOV'
 
-const VIDEOS = [vid1, vid2, vid3, vid4, vid5, vid6, vid7]
+// Safari Blue videos ordered last per design spec
+const VIDEOS = [vid1, vid2, vid5, vid6, vid7, vid3, vid4]
 
-function VideoCard({ src, label, index }) {
+function VideoCard({ src, label }) {
   const videoRef = useRef(null)
+  const [playing, setPlaying] = useState(false)
 
-  const handleMouseEnter = () => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {})
-    }
+  const play = () => {
+    videoRef.current?.play().catch(() => {})
+    setPlaying(true)
   }
-  const handleMouseLeave = () => {
-    if (videoRef.current) {
-      videoRef.current.pause()
-    }
+  const pause = () => {
+    videoRef.current?.pause()
+    setPlaying(false)
+  }
+
+  const handleMouseEnter = () => play()
+  const handleMouseLeave = () => pause()
+  const handleClick = () => {
+    if (!videoRef.current) return
+    if (videoRef.current.paused) { play() } else { pause() }
   }
 
   return (
@@ -32,6 +41,7 @@ function VideoCard({ src, label, index }) {
       className="vs-card"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
     >
       <div className="vs-card__video-wrap">
         <video
@@ -45,7 +55,7 @@ function VideoCard({ src, label, index }) {
           aria-label={label}
         />
         <div className="vs-card__overlay" aria-hidden="true" />
-        <div className="vs-card__play-icon" aria-hidden="true">▶</div>
+        <div className={`vs-card__play-icon${playing ? ' vs-card__play-icon--hidden' : ''}`} aria-hidden="true">▶</div>
       </div>
       <p className="vs-card__label">{label}</p>
     </div>
@@ -67,8 +77,14 @@ export default function VideoStripSection() {
           className={`video-strip__header${headerInView ? ' is-visible' : ''}`}
         >
           <span className="eyebrow">{vt.eyebrow}</span>
+
+          <div className="vs-cheetah-divider" aria-hidden="true">
+            <span className="vs-cheetah-divider__line" />
+            <img src={cheetahIcon} alt="" className="vs-cheetah-divider__icon" />
+            <span className="vs-cheetah-divider__line" />
+          </div>
+
           <h2 className="section-title">{vt.title}</h2>
-          <div className="divider" />
           <p className="video-strip__sub">{vt.sub}</p>
         </div>
       </div>
@@ -97,6 +113,26 @@ export default function VideoStripSection() {
         .video-strip__header.is-visible {
           opacity: 1;
           transform: translateY(0);
+        }
+        .vs-cheetah-divider {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          margin: 12px auto 16px;
+          max-width: 280px;
+        }
+        .vs-cheetah-divider__line {
+          flex: 1;
+          height: 1px;
+          background: linear-gradient(to right, transparent, var(--color-teal), transparent);
+          opacity: 0.6;
+        }
+        .vs-cheetah-divider__icon {
+          width: 28px;
+          height: 28px;
+          object-fit: contain;
+          opacity: 0.75;
         }
         .video-strip__sub {
           max-width: 500px;
@@ -139,26 +175,30 @@ export default function VideoStripSection() {
         .vs-card__video-wrap {
           position: relative;
           width: 100%;
-          padding-bottom: 56.25%;
-          background: #111;
+          height: 420px;
+          background: #0a0a0a;
           overflow: hidden;
           border-radius: 3px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .vs-card__video {
-          position: absolute;
-          inset: 0;
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain;
+          display: block;
+          transition: opacity 0.4s ease;
         }
         .vs-card__overlay {
           position: absolute;
           inset: 0;
-          background: rgba(0,0,0,0.25);
-          transition: background 0.3s ease;
+          background: rgba(0,0,0,0.3);
+          transition: background 0.4s ease, opacity 0.4s ease;
+          pointer-events: none;
         }
         .vs-card:hover .vs-card__overlay {
-          background: rgba(0,0,0,0.1);
+          background: rgba(0,0,0,0.05);
         }
         .vs-card__play-icon {
           position: absolute;
@@ -167,10 +207,12 @@ export default function VideoStripSection() {
           align-items: center;
           justify-content: center;
           font-size: 2rem;
-          color: rgba(255,255,255,0.8);
-          transition: opacity 0.3s ease;
+          color: rgba(255,255,255,0.85);
+          transition: opacity 0.35s ease;
+          pointer-events: none;
         }
-        .vs-card:hover .vs-card__play-icon {
+        .vs-card:hover .vs-card__play-icon,
+        .vs-card__play-icon--hidden {
           opacity: 0;
         }
         .vs-card__label {
@@ -184,6 +226,9 @@ export default function VideoStripSection() {
         @media (max-width: 560px) {
           .vs-card {
             width: 260px;
+          }
+          .vs-card__video-wrap {
+            height: 340px;
           }
         }
       `}</style>

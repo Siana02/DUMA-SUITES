@@ -48,8 +48,8 @@ export default function CTASection() {
             Make a Reservation
             <ArrowRight size={14} strokeWidth={2} />
           </a>
-          <a href="tel:+254700000000" className="btn btn-inverse-light cta-section__btn">
-            Call Us
+          <a href="https://wa.me/254710933025" target="_blank" rel="noopener noreferrer" className="btn btn-inverse-light cta-section__btn">
+            WhatsApp Us
           </a>
         </div>
       </div>
