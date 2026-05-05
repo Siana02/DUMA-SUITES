@@ -257,7 +257,7 @@ const en = {
     },
     coastal: {
       metaTitle: 'One Bedroom Suite | Duma Suites Watamu',
-      metaDesc: '1-Bedroom One Bedroom Suite at Duma Suites, Watamu. Intimate luxury with pool views, king bed, kitchenette and private lounge.',
+      metaDesc: 'One Bedroom Suite at Duma Suites, Watamu. Intimate luxury with pool views, king bed, kitchenette and private lounge.',
       heroEyebrow: '1-Bedroom Suite',
       heroTitle: 'One Bedroom Suite',
       heroTagline: 'Intimate coastal luxury with ocean and pool views',
@@ -308,7 +308,7 @@ const en = {
     },
     serenity: {
       metaTitle: 'Three Bedroom Suite | Duma Suites Watamu',
-      metaDesc: '3-Bedroom Three Bedroom Suite at Duma Suites, Watamu. Spacious luxury suite with full kitchen, outdoor terrace and garden views.',
+      metaDesc: 'Three Bedroom Suite at Duma Suites, Watamu. Spacious luxury suite with full kitchen, outdoor terrace and garden views.',
       heroEyebrow: '3-Bedroom Suite',
       heroTitle: 'Three Bedroom Suite',
       heroTagline: 'Spacious 3-bedroom luxury with outdoor terrace and garden views',
@@ -619,7 +619,7 @@ const it = {
     },
     coastal: {
       metaTitle: 'One Bedroom Suite | Duma Suites Watamu',
-      metaDesc: 'Suite One Bedroom da 1 camera a Duma Suites, Watamu. Lusso intimo con vista piscina, letto king, kitchenette e salotto privato.',
+      metaDesc: 'One Bedroom Suite a Duma Suites, Watamu. Lusso intimo con vista piscina, letto king, kitchenette e salotto privato.',
       heroEyebrow: 'Suite 1 Camera',
       heroTitle: 'One Bedroom Suite',
       heroTagline: 'Lusso costiero intimo con vista oceano e piscina',
@@ -670,7 +670,7 @@ const it = {
     },
     serenity: {
       metaTitle: 'Three Bedroom Suite | Duma Suites Watamu',
-      metaDesc: 'Suite Three Bedroom da 3 camere a Duma Suites, Watamu. Suite di lusso spaziosa con cucina completa, terrazza esterna e viste sul giardino.',
+      metaDesc: 'Three Bedroom Suite a Duma Suites, Watamu. Suite di lusso spaziosa con cucina completa, terrazza esterna e viste sul giardino.',
       heroEyebrow: 'Suite 3 Camere',
       heroTitle: 'Three Bedroom Suite',
       heroTagline: 'Suite da 3 camere con terrazza esterna e viste sul giardino',
