@@ -4,11 +4,8 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import heroImg      from '../assets/dolphin-watching-watamu.jpg'
 import cheetahIcon  from '../assets/cheetah.png'
-import dhowImg      from '../assets/sunset-dhow-cruise.JPEG'
-import marineImg    from '../assets/watamu-island.JPEG'
 import gediImg      from '../assets/gedi-ruins-excursion.JPEG'
 import elephantImg  from '../assets/elephant-watching.JPEG'
-import midaImg      from '../assets/infinity-pool-sunset-view.jpg'
 import swahiliImg   from '../assets/coastal-swahili-dishes.webp'
 
 const ACTIVITIES = [
@@ -26,8 +23,8 @@ const ACTIVITIES = [
     title: 'Safari Blue — Half-Day Option',
     pullQuote: 'A condensed introduction to the magic of the Watamu coastline — dolphin watching and coral reefs await.',
     tags: ['Couples', 'Short stays'],
-    image: dhowImg,
-    imageAlt: 'Traditional dhow at sunset, Watamu coast',
+    image: null,
+    imageAlt: '',
     desc: `For guests with limited time, the Safari Blue half-day excursion offers the core marine experience without the Sudi Island seafood stop. You'll enjoy dolphin watching and snorkelling over Watamu's coral gardens aboard a traditional dhow, returning in the early afternoon. A wonderful condensed introduction to the magic of the Watamu coastline.`,
   },
   {
@@ -35,8 +32,8 @@ const ACTIVITIES = [
     title: 'Watamu Marine Park Snorkelling',
     pullQuote: 'Turtles, reef sharks and a kaleidoscope of tropical fish — an accessible and unforgettable underwater world.',
     tags: ['Families', 'Snorkellers', 'First-timers'],
-    image: marineImg,
-    imageAlt: 'Watamu Marine Park and Indian Ocean coastline',
+    image: null,
+    imageAlt: '',
     desc: `One of Kenya's oldest and most protected marine national parks sits right on Watamu's doorstep. The coral gardens here are home to turtles, reef sharks, stingrays, vibrant tropical fish and an incredible diversity of corals. Whether you're a seasoned diver or a first-time snorkeller, the Marine Park offers an accessible and unforgettable underwater world.`,
   },
   {
@@ -62,8 +59,8 @@ const ACTIVITIES = [
     title: 'Mida Creek Mangrove Boardwalk',
     pullQuote: "A birdwatcher's paradise — over 100 species recorded in the ancient mangrove forests of Mida Creek.",
     tags: ['Nature lovers', 'Birdwatchers', 'Couples'],
-    image: midaImg,
-    imageAlt: 'Sunset view over the Indian Ocean near Watamu',
+    image: null,
+    imageAlt: '',
     desc: `Mida Creek is a protected tidal inlet fringed by ancient mangrove forests. The elevated boardwalk offers a tranquil walk through the ecosystem at low tide, with sweeping views across the creek and the Indian Ocean beyond. The creek is a birdwatcher's paradise — over 100 species have been recorded here, including herons, flamingos, fish eagles and kingfishers. A serene and restorative experience away from the beach.`,
   },
 ]
@@ -162,25 +159,31 @@ export default function Article1Page() {
             {ACTIVITIES.map((act, i) => (
               <motion.div
                 key={i}
-                className={`art1-card${i % 2 === 1 ? ' art1-card--reverse' : ''}`}
+                className={`art1-card${act.image ? (i % 2 === 1 ? ' art1-card--reverse' : '') : ' art1-card--text-only'}`}
                 initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.12 }}
                 transition={{ duration: 0.65, delay: i * 0.06, ease: [0.4, 0, 0.2, 1] }}
               >
-                {/* Image side */}
-                <div className="art1-card__img-wrap">
-                  <img
-                    src={act.image}
-                    alt={act.imageAlt}
-                    className="art1-card__img"
-                    loading="lazy"
-                  />
-                  <span className="art1-card__number">{act.number}</span>
-                </div>
+                {/* Image side — only rendered when an image is provided */}
+                {act.image && (
+                  <div className="art1-card__img-wrap">
+                    <img
+                      src={act.image}
+                      alt={act.imageAlt}
+                      className="art1-card__img"
+                      loading="lazy"
+                    />
+                    <span className="art1-card__number">{act.number}</span>
+                  </div>
+                )}
 
                 {/* Content side */}
                 <div className="art1-card__body">
+                  {/* Show number inline for text-only cards */}
+                  {!act.image && (
+                    <span className="art1-card__number art1-card__number--inline">{act.number}</span>
+                  )}
                   <h2 className="art1-card__title">{act.title}</h2>
                   <p className="art1-card__pull">&ldquo;{act.pullQuote}&rdquo;</p>
                   <p className="art1-card__desc">{act.desc}</p>
@@ -383,6 +386,9 @@ export default function Article1Page() {
           padding: clamp(28px, 4vw, 48px) 0;
           border-bottom: 1px solid rgba(86,51,17,0.08);
         }
+        .art1-card--text-only {
+          grid-template-columns: 1fr;
+        }
         .art1-card:last-of-type {
           border-bottom: none;
         }
@@ -414,6 +420,14 @@ export default function Article1Page() {
           background: var(--color-teal);
           padding: 4px 12px;
           border-radius: 100px;
+        }
+        .art1-card__number--inline {
+          position: static;
+          color: var(--color-teal);
+          background: none;
+          color: var(--color-teal);
+          padding: 0;
+          align-self: flex-start;
         }
         .art1-card__body {
           display: flex;
@@ -607,7 +621,7 @@ export default function Article1Page() {
 
         /* ── Desktop: horizontal activity cards ── */
         @media (min-width: 768px) {
-          .art1-card {
+          .art1-card:not(.art1-card--text-only) {
             grid-template-columns: 1fr 1fr;
             align-items: center;
           }

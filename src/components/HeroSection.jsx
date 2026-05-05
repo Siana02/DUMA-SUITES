@@ -501,10 +501,10 @@ export default function HeroSection({ ready = false }) {
             z-index: 2;
             order: 1;
             align-items: center;
-            /* Frosted glass: warm translucent overlay + blur over the ambient image */
-            backdrop-filter: blur(16px) saturate(1.15);
-            -webkit-backdrop-filter: blur(16px) saturate(1.15);
-            background: rgba(247, 241, 229, 0.42);
+            /* Light blur: softens the ambient background without a heavy frosted-glass effect */
+            backdrop-filter: blur(8px) saturate(1.05);
+            -webkit-backdrop-filter: blur(8px) saturate(1.05);
+            background: rgba(9, 7, 4, 0.22);
           }
           .hero__content {
             padding: clamp(80px, 10vh, 130px) clamp(28px, 4.5vw, 72px) clamp(60px, 7vh, 100px);
