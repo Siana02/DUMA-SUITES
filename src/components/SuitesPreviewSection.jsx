@@ -11,7 +11,7 @@ import serenityPreview from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
 const SUITES = [
   {
     id: 'coastal-haven',
-    name: 'Coastal Haven Suite',
+    name: 'One Bedroom Suite',
     tagline: '1-Bedroom · Intimate Coastal Retreat',
     size: '25 sq m',
     beds: '1 King Bed',
@@ -21,7 +21,7 @@ const SUITES = [
   },
   {
     id: 'serenity-villa',
-    name: 'Serenity Villa Suite',
+    name: 'Three Bedroom Suite',
     tagline: '3-Bedroom · Luxury Family Retreat',
     size: '75 sq m',
     beds: '3 King Beds',

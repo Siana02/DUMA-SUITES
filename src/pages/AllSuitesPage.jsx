@@ -72,7 +72,7 @@ export default function AllSuitesPage() {
     <>
       <Helmet>
         <title>All Suites | Duma Suites Watamu</title>
-        <meta name="description" content="Explore the showcased suites at Duma Suites — the Coastal Haven Suite and Serenity Villa Suite. Exceptional retreats in Watamu, Kenya, with more options available." />
+        <meta name="description" content="Explore the showcased suites at Duma Suites — the One Bedroom Suite and Three Bedroom Suite. Exceptional retreats in Watamu, Kenya, with more options available." />
       </Helmet>
 
       <main id="suites-page">
