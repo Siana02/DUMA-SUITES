@@ -264,7 +264,7 @@ export default function ReviewsSection() {
         {/* ── Leave a Review CTA ─────────────────────── */}
         <div className="rv-leave-cta">
           <a
-            href="https://g.page/r/review"
+            href="https://search.google.com/local/writereview?placeid=PLACE_ID"
             className="rv-leave-cta__btn btn btn-primary"
             target="_blank"
             rel="noopener noreferrer"
