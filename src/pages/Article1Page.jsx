@@ -20,70 +20,6 @@ const ACTIVITY_META = [
   { number: '05', icon: Binoculars, image: elephantImg, imageAlt: 'Elephants at Tsavo National Park near Watamu' },
   { number: '06', icon: TreeDeciduous, image: null, imageAlt: '' },
 ]
-    pullQuote: "Spinner dolphins leap alongside the dhow as Watamu's legendary full-day marine adventure unfolds before you.",
-    tags: ['Couples', 'Families', 'Adventurers'],
-    badges: ['Full Day · 8 hrs', 'Dolphin Watching', 'Seafood Feast on Sudi Island', 'Snorkelling Included', 'Book 2 Days Ahead'],
-    image: heroImg,
-    imageAlt: 'Dolphin watching on Safari Blue, Watamu coast',
-    icon: Anchor,
-    desc: `Safari Blue is Watamu's most iconic full-day marine adventure. Board a traditional wooden dhow and sail the crystal-clear waters off the Watamu and Mida Creek coast. The day begins with dolphin watching as spinner dolphins frequently leap alongside the dhow, followed by snorkelling over vibrant coral reefs at Watamu Marine Park. The highlight is a mid-day stop at Sudi Island for a fresh BBQ seafood feast on the beach — lobster, calamari, octopus and prawns grilled over charcoal. The full-day trip returns at sunset, leaving guests with one of the most complete and memorable days on the Kenyan coast.`,
-  },
-  {
-    number: '02',
-    title: 'Safari Blue — Half-Day Option',
-    pullQuote: 'A condensed introduction to the magic of the Watamu coastline — dolphin watching and coral reefs await.',
-    tags: ['Couples', 'Short stays'],
-    badges: ['Half Day · 4 hrs', 'Dolphin Watching', 'Coral Snorkelling', 'Morning Departure'],
-    image: null,
-    imageAlt: '',
-    icon: Waves,
-    desc: `For guests with limited time, the Safari Blue half-day excursion offers the core marine experience without the Sudi Island seafood stop. You'll enjoy dolphin watching and snorkelling over Watamu's coral gardens aboard a traditional dhow, returning in the early afternoon. A wonderful condensed introduction to the magic of the Watamu coastline.`,
-  },
-  {
-    number: '03',
-    title: 'Watamu Marine Park Snorkelling',
-    pullQuote: 'Turtles, reef sharks and a kaleidoscope of tropical fish — an accessible and unforgettable underwater world.',
-    tags: ['Families', 'Snorkellers', 'First-timers'],
-    badges: ['2–3 hrs', 'UNESCO Protected', 'Turtles & Reef Sharks', 'All Levels Welcome', 'Equipment Provided'],
-    image: null,
-    imageAlt: '',
-    icon: Fish,
-    desc: `One of Kenya's oldest and most protected marine national parks sits right on Watamu's doorstep. The coral gardens here are home to turtles, reef sharks, stingrays, vibrant tropical fish and an incredible diversity of corals. Whether you're a seasoned diver or a first-time snorkeller, the Marine Park offers an accessible and unforgettable underwater world.`,
-  },
-  {
-    number: '04',
-    title: 'Gedi Ruins — Ancient Swahili City',
-    pullQuote: 'The haunting remains of a 12th-century Swahili trading town, still debated by historians — and still spellbinding.',
-    tags: ['History lovers', 'Nature fans', 'Couples'],
-    badges: ['Half Day · 2–3 hrs', '12th Century', 'Guided Tours Available', 'Colobus Monkeys', 'Sacred Forest'],
-    image: gediImg,
-    imageAlt: 'Gedi Ruins ancient Swahili city near Watamu',
-    icon: Landmark,
-    desc: `Tucked within a dense coastal forest just outside Watamu lies the Gedi Ruins — the haunting remains of a 12th-century Swahili trading town abandoned for reasons still debated by historians. Wander through crumbling mosques, royal palaces and merchant houses as resident colobus monkeys leap overhead. Guided tours bring the site's extraordinary history to vivid life.`,
-  },
-  {
-    number: '05',
-    title: 'Elephant Watching at Tsavo',
-    pullQuote: "Kenya's largest elephant herds roam here — the famous red elephants of Tsavo, dusty with iron-rich soil.",
-    tags: ['Wildlife enthusiasts', 'Day-trippers', 'Families'],
-    badges: ['Full Day', 'Big Five Country', 'Red Elephants of Tsavo', 'Departs at Dawn', 'Game Drive Included'],
-    image: elephantImg,
-    imageAlt: 'Elephants at Tsavo National Park near Watamu',
-    icon: Binoculars,
-    desc: `A few hours from Watamu, the vast Tsavo East and West national parks are home to Kenya's largest elephant herds. A full-day safari here offers close encounters with these gentle giants alongside lions, giraffes, buffalo, zebra and the famous "red elephants" of Tsavo — dusty-red from rolling in the iron-rich soil. An unmissable East African wildlife experience.`,
-  },
-  {
-    number: '06',
-    title: 'Mida Creek Mangrove Boardwalk',
-    pullQuote: "A birdwatcher's paradise — over 100 species recorded in the ancient mangrove forests of Mida Creek.",
-    tags: ['Nature lovers', 'Birdwatchers', 'Couples'],
-    badges: ['1–2 hrs', '100+ Bird Species', 'Elevated Boardwalk', 'Best at Low Tide', 'Sunset Views'],
-    image: null,
-    imageAlt: '',
-    icon: TreeDeciduous,
-    desc: `Mida Creek is a protected tidal inlet fringed by ancient mangrove forests. The elevated boardwalk offers a tranquil walk through the ecosystem at low tide, with sweeping views across the creek and the Indian Ocean beyond. The creek is a birdwatcher's paradise — over 100 species have been recorded here, including herons, flamingos, fish eagles and kingfishers. A serene and restorative experience away from the beach.`,
-  },
-]
 
 function CheetahDivider() {
   return (
@@ -174,7 +110,7 @@ export default function Article1Page() {
               <ThumbsUp size={24} className="art1-proof__icon" aria-hidden="true" />
               <div>
                 <span className="art1-proof__value">98%</span>
-                <span className="art1-proof__label">Would Return</span>
+                <span className="art1-proof__label">{a1.proofReturn}</span>
               </div>
             </motion.div>
           </div>
@@ -287,7 +223,7 @@ export default function Article1Page() {
                   <p className="art1-card__pull">&ldquo;{act.pullQuote}&rdquo;</p>
                   <p className="art1-card__desc">{act.desc}</p>
                   <div className="art1-card__tags">
-                    <span className="art1-card__tags-label">Perfect for</span>
+                    <span className="art1-card__tags-label">{a1.perfectFor}</span>
                     {act.tags.map((tag) => (
                       <span key={tag} className="art1-card__tag">{tag}</span>
                     ))}
@@ -305,10 +241,10 @@ export default function Article1Page() {
               transition={{ duration: 0.65 }}
             >
               <span className="art1-tips__label">
-                <Lightbulb size={14} aria-hidden="true" /> Concierge Insider Tips
+                <Lightbulb size={14} aria-hidden="true" /> {a1.tipsLabel}
               </span>
               <ul className="art1-tips__list">
-                {INSIDER_TIPS.map((tip, i) => (
+                {a1.insiderTips.map((tip, i) => (
                   <li key={i} className="art1-tips__item">
                     <Lightbulb size={13} className="art1-tips__item-icon" aria-hidden="true" />
                     <span>{tip}</span>
@@ -322,10 +258,10 @@ export default function Article1Page() {
 
             <div className="art1-book-cta">
               <p className="art1-book-cta__sub">
-                Our concierge can arrange any of these experiences directly from Duma Suites.
+                {a1.bookCtaSub}
               </p>
               <Link to="/#contact" className="btn btn-primary art1-book-cta__btn">
-                Book an Experience
+                {a1.bookCtaBtn}
                 <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
               </Link>
             </div>
@@ -347,16 +283,16 @@ export default function Article1Page() {
                 <div className="art1-next-card__img-wrap">
                   <img src={swahiliImg} alt="Coastal Swahili dishes" className="art1-next-card__img" loading="lazy" />
                   <div className="art1-next-card__overlay" aria-hidden="true" />
-                  <span className="art1-next-card__category">Food &amp; Culture</span>
+                  <span className="art1-next-card__category">{a1.nextCategory}</span>
                 </div>
                 <div className="art1-next-card__body">
-                  <span className="art1-next-card__eyebrow">Read Next</span>
-                  <h3 className="art1-next-card__title">Coastal Swahili Dishes You Absolutely Need to Try</h3>
+                  <span className="art1-next-card__eyebrow">{a1.readNextEyebrow}</span>
+                  <h3 className="art1-next-card__title">{a1.readNextTitle}</h3>
                   <p className="art1-next-card__excerpt">
-                    Discover the extraordinary culinary traditions of the Kenyan Swahili coast — from fragrant pilau and coconut fish curry to the legendary Safari Blue seafood feast.
+                    {a1.readNextExcerpt}
                   </p>
                   <span className="art1-next-card__cta">
-                    Read the Guide <ArrowRight size={13} strokeWidth={1.5} aria-hidden="true" />
+                    {a1.readNextCta} <ArrowRight size={13} strokeWidth={1.5} aria-hidden="true" />
                   </span>
                 </div>
               </Link>
@@ -367,7 +303,7 @@ export default function Article1Page() {
         {/* Coming soon */}
         <section className="art1-coming-soon section section--secondary">
           <div className="container">
-            <span className="art1-cs__eyebrow">More From Duma Suites Stories</span>
+            <span className="art1-cs__eyebrow">{a1.moreFromEyebrow}</span>
             <div className="art1-cs__grid">
               <motion.div
                 className="art1-cs__card"
@@ -376,9 +312,9 @@ export default function Article1Page() {
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6 }}
               >
-                <span className="art1-cs__badge">Coming Soon</span>
-                <h4 className="art1-cs__title">A Guide to Watamu&apos;s Best Beaches</h4>
-                <p className="art1-cs__desc">The hidden coves, turtle nesting spots and sunset stretches of Watamu&apos;s coastline — mapped for you.</p>
+                <span className="art1-cs__badge">{a1.comingSoon}</span>
+                <h4 className="art1-cs__title">{a1.cs1Title}</h4>
+                <p className="art1-cs__desc">{a1.cs1Desc}</p>
                 <div className="art1-cs__pills">
                   <span className="art1-cs__pill art1-cs__pill--travel">Travel</span>
                   <span className="art1-cs__pill art1-cs__pill--nature">Beaches</span>
@@ -393,9 +329,9 @@ export default function Article1Page() {
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                <span className="art1-cs__badge">Coming Soon</span>
-                <h4 className="art1-cs__title">Snorkelling &amp; Diving in Watamu</h4>
-                <p className="art1-cs__desc">A complete guide to the reefs, dive sites and marine life of Watamu Marine Park.</p>
+                <span className="art1-cs__badge">{a1.comingSoon}</span>
+                <h4 className="art1-cs__title">{a1.cs2Title}</h4>
+                <p className="art1-cs__desc">{a1.cs2Desc}</p>
                 <div className="art1-cs__pills">
                   <span className="art1-cs__pill art1-cs__pill--marine">Marine</span>
                   <span className="art1-cs__pill art1-cs__pill--marine">Diving</span>
@@ -412,10 +348,10 @@ export default function Article1Page() {
           <div className="container art1-nav__inner">
             <Link to="/blog" className="art1-nav__back">
               <ArrowLeft size={16} strokeWidth={1.5} aria-hidden="true" />
-              Back to Stories &amp; Guides
+              {a1.backToStories}
             </Link>
             <Link to="/blog/coastal-swahili-dishes" className="art1-nav__next">
-              Next: Coastal Swahili Dishes
+              {a1.nextArticle}
               <ArrowRight size={16} strokeWidth={1.5} aria-hidden="true" />
             </Link>
           </div>
