@@ -166,7 +166,7 @@ export default function Article1Page() {
                 initial={{ opacity: 0, y: 32 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.12 }}
-                transition={{ duration: 0.65, delay: 0.05, ease: [0.4, 0, 0.2, 1] }}
+                transition={{ duration: 0.65, delay: i * 0.06, ease: [0.4, 0, 0.2, 1] }}
               >
                 {/* Image side */}
                 <div className="art1-card__img-wrap">

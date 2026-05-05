@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import heroImg     from '../assets/coastal-swahili-dishes.webp'
 import cheetahIcon from '../assets/cheetah.png'
-import activityImg from '../assets/dolphin-watching-watamu.jpg'
+import prevArticleImg from '../assets/dolphin-watching-watamu.jpg'
 
 const DISHES = [
   {
@@ -144,7 +144,7 @@ export default function Article2Page() {
                 initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.12 }}
-                transition={{ duration: 0.6, delay: 0.04, ease: [0.4, 0, 0.2, 1] }}
+                transition={{ duration: 0.6, delay: i * 0.06, ease: [0.4, 0, 0.2, 1] }}
               >
                 <div className="art2-item__head">
                   <span className="art2-item__number">{dish.number}</span>
@@ -199,7 +199,7 @@ export default function Article2Page() {
             >
               <Link to="/blog/top-5-activities-watamu" className="art2-prev-card">
                 <div className="art2-prev-card__img-wrap">
-                  <img src={activityImg} alt="Top activities on the Watamu coast" className="art2-prev-card__img" loading="lazy" />
+                  <img src={prevArticleImg} alt="Top activities on the Watamu coast" className="art2-prev-card__img" loading="lazy" />
                   <div className="art2-prev-card__overlay" aria-hidden="true" />
                   <span className="art2-prev-card__category">Travel Guide</span>
                 </div>
