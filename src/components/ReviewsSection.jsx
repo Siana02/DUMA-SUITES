@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Star, ChevronLeft, ChevronRight, PenLine } from 'lucide-react'
+import { Star, ArrowLeft, ArrowRight, PenLine } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
@@ -30,7 +30,7 @@ const REVIEWS = [
     id: 3,
     rating: 5,
     pullQuote: 'Duma Suites has raised the bar.',
-    text: 'From the freshly prepared Swahili breakfast to the evening by the pool, every touch was thoughtful. This is East Africa\'s coastal luxury at its finest — refined, soulful and deeply considered.',
+    text: 'From the morning light on the terrace to the evening by the pool, every touch was thoughtful. This is East Africa\'s coastal luxury at its finest — refined, soulful and deeply considered.',
     author: 'David M.',
     origin: 'Nairobi, Kenya',
     initials: 'DM',
@@ -60,7 +60,7 @@ const REVIEWS = [
     id: 6,
     rating: 5,
     pullQuote: 'Pure serenity from the first breath.',
-    text: 'We celebrated our anniversary here and every moment exceeded our expectations. The suite was immaculate, the food was exceptional and the staff went quietly above and beyond in ways we still talk about.',
+    text: 'We celebrated our anniversary here and every moment exceeded our expectations. The suite was immaculate, the setting was exceptional and the staff went quietly above and beyond in ways we still talk about.',
     author: 'Céleste & Henri D.',
     origin: 'Paris, France',
     initials: 'CH',
@@ -206,15 +206,6 @@ export default function ReviewsSection() {
         {/* ── Carousel ─────────────────────────────────── */}
         <div className="rv-carousel">
 
-          {/* Prev arrow */}
-          <button
-            className="rv-arrow rv-arrow--prev"
-            onClick={() => go(-1)}
-            aria-label="Previous review"
-          >
-            <ChevronLeft size={20} strokeWidth={1.5} />
-          </button>
-
           {/* Slide viewport */}
           <div className="rv-slide-wrap">
             <AnimatePresence custom={direction} mode="wait">
@@ -258,14 +249,6 @@ export default function ReviewsSection() {
             </AnimatePresence>
           </div>
 
-          {/* Next arrow */}
-          <button
-            className="rv-arrow rv-arrow--next"
-            onClick={() => go(1)}
-            aria-label="Next review"
-          >
-            <ChevronRight size={20} strokeWidth={1.5} />
-          </button>
         </div>
 
         {/* ── Dot navigation ─────────────────────────── */}
@@ -279,6 +262,24 @@ export default function ReviewsSection() {
               aria-current={i === index ? 'true' : undefined}
             />
           ))}
+        </div>
+
+        {/* ── Arrow navigation ───────────────────────── */}
+        <div className="rv-arrow-row">
+          <button
+            className="rv-arrow rv-arrow--prev"
+            onClick={() => go(-1)}
+            aria-label="Previous review"
+          >
+            <ArrowLeft size={18} strokeWidth={1.5} />
+          </button>
+          <button
+            className="rv-arrow rv-arrow--next"
+            onClick={() => go(1)}
+            aria-label="Next review"
+          >
+            <ArrowRight size={18} strokeWidth={1.5} />
+          </button>
         </div>
 
         {/* ── Leave a Review CTA ─────────────────────── */}
@@ -355,19 +356,16 @@ export default function ReviewsSection() {
 
         /* ── Carousel wrapper ───────────────────────────── */
         .rv-carousel {
-          display: flex;
-          align-items: center;
-          gap: 0;
+          display: block;
         }
 
         /* ── Slide viewport ─────────────────────────────── */
         .rv-slide-wrap {
-          flex: 1;
+          width: 100%;
           overflow: hidden;
           min-height: 340px;
           display: flex;
           align-items: center;
-          padding: 0 14px;
         }
 
         /* ── Card ───────────────────────────────────────── */
@@ -502,10 +500,15 @@ export default function ReviewsSection() {
         }
 
         /* ── Navigation arrows ──────────────────────────── */
+        .rv-arrow-row {
+          display: flex;
+          justify-content: center;
+          gap: 12px;
+          margin-top: 20px;
+        }
         .rv-arrow {
-          flex-shrink: 0;
-          width: 46px;
-          height: 46px;
+          width: 44px;
+          height: 44px;
           border-radius: 50%;
           border: 1.5px solid rgba(201,169,110,0.4);
           background: var(--color-bg-primary);
@@ -562,13 +565,10 @@ export default function ReviewsSection() {
 
         /* ── Responsive ─────────────────────────────────── */
         @media (max-width: 768px) {
-          .rv-arrow { width: 40px; height: 40px; }
-          .rv-slide-wrap { padding: 0 8px; min-height: 300px; }
+          .rv-slide-wrap { min-height: 300px; }
         }
         @media (max-width: 480px) {
-          .rv-arrow { width: 36px; height: 36px; }
-          .rv-slide-wrap { padding: 0 4px; }
-          .rv-carousel { margin: 0 -8px; }
+          .rv-arrow { width: 40px; height: 40px; }
           .rv-card__pull-quote { font-size: clamp(1.25rem, 5vw, 1.55rem); }
         }
       `}</style>
