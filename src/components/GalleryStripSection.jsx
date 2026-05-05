@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
@@ -72,7 +72,8 @@ const IMAGES = [
   { src: coastalNight,   alt: 'Night-time pool view from suite' },
 ]
 
-const SCROLL_SPEED = 0.55 // px per 60 fps frame
+const SCROLL_SPEED = 0.45 // px per 60 fps frame
+const AUTO_RESUME_MS = 2500 // ms before auto-scroll resumes after manual nav
 
 const fadeUp = (delay = 0) => ({
   initial:     { opacity: 0, y: 24 },
@@ -87,15 +88,21 @@ import { getT } from '../i18n/translations.js'
 export default function GalleryStripSection() {
   const { lang } = useLanguage()
   const t = getT(lang)
-  const trackRef    = useRef(null)
-  const posRef      = useRef(0)
-  const pausedRef   = useRef(false)
-  const rafRef      = useRef(null)
-  const halfWidthRef = useRef(0)
+
+  const trackRef       = useRef(null)
+  const posRef         = useRef(0)
+  const pausedRef      = useRef(false)
+  const rafRef         = useRef(null)
+  const halfWidthRef   = useRef(0)
+  const resumeTimerRef = useRef(null)
+
+  // Single index state — drives re-renders on navigation
+  const [activeIdx, setActiveIdx] = useState(0)
+  const N = IMAGES.length
 
   const { ref: sectionRef, inView: sectionVisible } = useInView({ threshold: 0.05, triggerOnce: true })
 
-  // Start rAF animation after layout is settled
+  // ── Continuous auto-scroll via rAF ──────────────────────────────────────────
   useEffect(() => {
     const track = trackRef.current
     if (!track) return
@@ -119,37 +126,60 @@ export default function GalleryStripSection() {
     }
 
     const timer = setTimeout(init, 80)
-
     return () => {
       clearTimeout(timer)
       cancelAnimationFrame(frameId)
     }
   }, [])
 
-  // Step by roughly one image width
-  const getStep = useCallback(() => {
-    const track = trackRef.current
-    if (!track || halfWidthRef.current === 0) return 400
-    return track.scrollWidth / 2 / IMAGES.length
+  // Cleanup resume timer on unmount
+  useEffect(() => () => {
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current)
   }, [])
 
-  const scrollNext = useCallback(() => {
-    const half = halfWidthRef.current || 1
-    posRef.current = (posRef.current + getStep()) % half
-    if (trackRef.current) {
-      trackRef.current.style.transform = `translateX(-${posRef.current}px)`
-    }
-  }, [getStep])
+  // Average step width — total first-half / number of images
+  const getStep = useCallback(() => {
+    const half = halfWidthRef.current
+    return half > 0 ? half / N : 400
+  }, [N])
 
-  const scrollPrev = useCallback(() => {
+  // ── Navigation — pause auto-scroll, animate, then resume ───────────────────
+  const navigate = useCallback((direction /* +1 or -1 */) => {
+    const step = getStep()
     const half = halfWidthRef.current || 1
-    posRef.current = ((posRef.current - getStep()) % half + half) % half
-    if (trackRef.current) {
-      trackRef.current.style.transform = `translateX(-${posRef.current}px)`
-    }
-  }, [getStep])
 
-  const handleMouseEnter = () => { pausedRef.current = true }
+    // Pause auto-scroll so rAF doesn't overwrite our transition
+    pausedRef.current = true
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current)
+
+    // Update logical index with infinite wrapping
+    setActiveIdx(prev => ((prev + direction) % N + N) % N)
+
+    // Shift scroll position by one image width (wraps around correctly)
+    posRef.current = ((posRef.current + direction * step) % half + half) % half
+
+    // Apply position with a short CSS transition for a smooth "click feel"
+    const track = trackRef.current
+    if (track) {
+      track.style.transition = 'transform 380ms cubic-bezier(0.4,0,0.2,1)'
+      track.style.transform  = `translateX(-${posRef.current}px)`
+      // Remove transition so rAF takes over smoothly when auto-scroll resumes
+      setTimeout(() => { if (trackRef.current) trackRef.current.style.transition = '' }, 400)
+    }
+
+    // Resume auto-scroll after delay
+    resumeTimerRef.current = setTimeout(() => {
+      pausedRef.current = false
+    }, AUTO_RESUME_MS)
+  }, [getStep, N])
+
+  const scrollNext = useCallback(() => navigate(+1), [navigate])
+  const scrollPrev = useCallback(() => navigate(-1), [navigate])
+
+  const handleMouseEnter = () => {
+    pausedRef.current = true
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current)
+  }
   const handleMouseLeave = () => { pausedRef.current = false }
 
   return (
@@ -200,7 +230,9 @@ export default function GalleryStripSection() {
         >
           <div className="gs-track" ref={trackRef}>
             {[...IMAGES, ...IMAGES].map((img, i) => (
-              <div key={i} className="gs-item">
+              <div key={i} className="gs-item" style={{ '--bg-src': `url(${img.src})` }}>
+                {/* Blurred background — same image, fills dead space without cropping */}
+                <div className="gs-item__blur" aria-hidden="true" />
                 <img
                   src={img.src}
                   alt={img.alt}
@@ -317,23 +349,42 @@ export default function GalleryStripSection() {
           will-change: transform;
         }
 
-        /* ── Image item ── */
+        /* ── Image item — fixed-height, auto-width film-strip card ── */
         .gs-item {
           flex-shrink: 0;
           overflow: hidden;
-          border-radius: 2px;
+          border-radius: 4px;
+          position: relative;
+          border: 1px solid rgba(212, 194, 168, 0.35);
+          box-shadow: 0 4px 20px rgba(86, 51, 17, 0.14);
+          /* Height is fixed per breakpoint; width flows from the image aspect ratio */
         }
+
+        /* Blurred backdrop — extends only top/bottom to cover any vertical gap.
+           Flush left/right so it never bleeds into neighbouring cards. */
+        .gs-item__blur {
+          position: absolute;
+          inset: -16px 0;         /* overscan top/bottom only */
+          background-image: var(--bg-src, none);
+          background-size: cover;
+          background-position: center;
+          filter: blur(20px) brightness(0.65) saturate(1.1);
+          z-index: 0;
+          pointer-events: none;
+        }
+
         .gs-img {
           display: block;
-          object-fit: cover;
-          width: 480px;
-          height: 320px;
+          position: relative;
+          z-index: 1;
+          height: 100%;           /* fills the fixed card height */
+          width: auto;            /* naturally proportional — no cropping, no dead space */
           transition: transform 550ms ease;
           user-select: none;
           pointer-events: none;
         }
         .gs-item:hover .gs-img {
-          transform: scale(1.06);
+          transform: scale(1.05);
         }
 
         /* ── Arrow buttons — frosted glass circles ── */
@@ -421,12 +472,9 @@ export default function GalleryStripSection() {
         }
         .gs-cta-btn:hover .gs-cta-btn__arrow { transform: translateX(5px); }
 
-        /* ── Mobile ≤639px: one image dominates ── */
+        /* ── Mobile ≤639px ── */
         @media (max-width: 639px) {
-          .gs-img {
-            width: calc(83vw);
-            height: calc(83vw * 0.68);
-          }
+          .gs-item { height: 240px; }
           .gs-arrow {
             width: 40px;
             height: 40px;
@@ -435,22 +483,14 @@ export default function GalleryStripSection() {
           .gs-arrow--next { right: 8px; }
         }
 
-        /* ── Tablet 640–1023px: main + sneak peek ── */
+        /* ── Tablet 640–1023px ── */
         @media (min-width: 640px) and (max-width: 1023px) {
-          .gs-img {
-            width: 64vw;
-            height: calc(64vw * 0.66);
-          }
+          .gs-item { height: 300px; }
         }
 
-        /* ── Laptop ≥1024px: spacious sneak peek ── */
+        /* ── Laptop ≥1024px ── */
         @media (min-width: 1024px) {
-          .gs-img {
-            width: 52vw;
-            height: calc(52vw * 0.62);
-            max-width: 700px;
-            max-height: 460px;
-          }
+          .gs-item { height: 360px; }
         }
       `}</style>
     </section>

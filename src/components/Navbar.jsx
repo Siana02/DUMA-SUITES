@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, MapPin } from 'lucide-react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import logoImg from '../assets/logo.jpeg'
+import logoImg from '../assets/mammal.png'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
