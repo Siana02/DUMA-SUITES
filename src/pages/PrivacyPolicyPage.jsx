@@ -48,7 +48,7 @@ export default function PrivacyPolicyPage() {
               transition={{ duration: 0.5 }}
             >
               <ArrowLeft size={14} strokeWidth={1.5} />
-              Home
+              {pp.backToHome}
             </motion.button>
             <motion.span
               className="pp-hero__eyebrow"
@@ -91,17 +91,17 @@ export default function PrivacyPolicyPage() {
           <div className="container pp-trust-strip__inner">
             <div className="pp-trust-badge">
               <CheckCircle size={14} strokeWidth={1.5} />
-              <span>Your data is safe with us</span>
+              <span>{pp.trustSafe}</span>
             </div>
             <span className="pp-trust-divider" aria-hidden="true" />
             <div className="pp-trust-badge">
               <Shield size={14} strokeWidth={1.5} />
-              <span>SSL Secured</span>
+              <span>{pp.trustSsl}</span>
             </div>
             <span className="pp-trust-divider" aria-hidden="true" />
             <div className="pp-trust-badge">
               <Lock size={14} strokeWidth={1.5} />
-              <span>PCI Compliant</span>
+              <span>{pp.trustPci}</span>
             </div>
           </div>
         </div>

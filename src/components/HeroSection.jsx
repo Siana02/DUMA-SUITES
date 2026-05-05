@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
@@ -73,6 +74,7 @@ export default function HeroSection({ ready = false }) {
   const [activeIdx, setActiveIdx] = useState(0)
   const { lang } = useLanguage()
   const t = getT(lang)
+  const navigate = useNavigate()
 
   // Start cycling images only after the preload curtain has lifted
   useEffect(() => {
@@ -190,7 +192,11 @@ export default function HeroSection({ ready = false }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: DELAYS.cta }}
           >
-            <a href="#suite-highlights" className="hero__cta">
+            <a
+              href="/suites"
+              className="hero__cta"
+              onClick={e => { e.preventDefault(); navigate('/suites') }}
+            >
               {t.hero.cta}
               <span className="hero__cta-arrow" aria-hidden="true">&rarr;</span>
             </a>
@@ -200,10 +206,10 @@ export default function HeroSection({ ready = false }) {
       </div>
 
       {/* ── Scroll indicator (hidden on mobile) ── */}
-      <motion.a
-        href="#suite-highlights"
+      <motion.button
         className="hero__scroll"
-        aria-label="Scroll to suites"
+        aria-label={t.hero.scroll}
+        onClick={() => document.getElementById('suite-highlights')?.scrollIntoView({ behavior: 'smooth' })}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: DELAYS.scroll, duration: 0.6 }}
@@ -214,7 +220,7 @@ export default function HeroSection({ ready = false }) {
         >
           ↓
         </motion.span>
-      </motion.a>
+      </motion.button>
 
       <style>{`
         /* ─────────────────────────────────────────────

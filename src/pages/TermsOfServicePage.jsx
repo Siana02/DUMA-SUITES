@@ -48,7 +48,7 @@ export default function TermsOfServicePage() {
               transition={{ duration: 0.5 }}
             >
               <ArrowLeft size={14} strokeWidth={1.5} />
-              Home
+              {tos.backToHome}
             </motion.button>
             <motion.span
               className="tos-hero__eyebrow"

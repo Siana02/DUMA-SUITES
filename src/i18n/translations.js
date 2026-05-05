@@ -694,6 +694,10 @@ const en = {
     heroTitle: 'Privacy Policy',
     heroSub: 'How we collect, use, and protect your personal information.',
     lastUpdated: 'Last updated: January 2025',
+    backToHome: 'Home',
+    trustSafe: 'Your data is safe with us',
+    trustSsl: 'SSL Secured',
+    trustPci: 'PCI Compliant',
     sections: [
       {
         title: '1. Information We Collect',
@@ -782,6 +786,7 @@ const en = {
     heroTitle: 'Terms of Service',
     heroSub: 'Please read these terms carefully before booking your stay with us.',
     lastUpdated: 'Last updated: January 2025',
+    backToHome: 'Home',
     introBanner: 'These terms form a binding agreement between you and Duma Suites. By completing a booking, you acknowledge that you have read and understood these terms.',
     sections: [
       {
@@ -1552,6 +1557,10 @@ const it = {
     heroTitle: 'Privacy Policy',
     heroSub: 'Come raccogliamo, utilizziamo e proteggiamo le vostre informazioni personali.',
     lastUpdated: 'Ultimo aggiornamento: Gennaio 2025',
+    backToHome: 'Home',
+    trustSafe: 'I vostri dati sono al sicuro',
+    trustSsl: 'SSL Protetto',
+    trustPci: 'Conforme PCI',
     sections: [
       {
         title: '1. Informazioni che Raccogliamo',
@@ -1640,6 +1649,7 @@ const it = {
     heroTitle: 'Termini di Servizio',
     heroSub: 'Vi preghiamo di leggere attentamente questi termini prima di prenotare il vostro soggiorno.',
     lastUpdated: 'Ultimo aggiornamento: Gennaio 2025',
+    backToHome: 'Home',
     introBanner: 'Questi termini costituiscono un accordo vincolante tra voi e Duma Suites. Completando una prenotazione, riconoscete di aver letto e compreso questi termini.',
     sections: [
       {

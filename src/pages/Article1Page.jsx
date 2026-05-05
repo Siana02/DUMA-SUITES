@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Star, ThumbsUp, Anchor, Waves, Fish, Landmark, Binoculars, TreeDeciduous, Quote as QuoteIcon, Lightbulb } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
@@ -37,6 +37,7 @@ export default function Article1Page() {
   const heroImgY = useTransform(scrollYProgress, [0, 1], ['0%', '10%'])
   const { lang } = useLanguage()
   const a1 = getT(lang).article1
+  const navigate = useNavigate()
 
   // Merge static metadata (icons/images) with translated activity data
   const activities = ACTIVITY_META.map((meta, i) => ({ ...meta, ...a1.activities[i] }))
@@ -260,10 +261,14 @@ export default function Article1Page() {
               <p className="art1-book-cta__sub">
                 {a1.bookCtaSub}
               </p>
-              <Link to="/#contact" className="btn btn-primary art1-book-cta__btn">
+              <a
+                href="/contact"
+                className="btn btn-primary art1-book-cta__btn"
+                onClick={e => { e.preventDefault(); navigate('/contact') }}
+              >
                 {a1.bookCtaBtn}
                 <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
-              </Link>
+              </a>
             </div>
           </div>
         </section>

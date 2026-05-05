@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Star, ThumbsUp, Flame, Fish, Anchor, Wheat, ChefHat, UtensilsCrossed, Quote as QuoteIcon, Lightbulb } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
@@ -29,6 +29,7 @@ export default function Article2Page() {
   const heroImgY = useTransform(scrollYProgress, [0, 1], ['0%', '10%'])
   const { lang } = useLanguage()
   const a2 = getT(lang).article2
+  const navigate = useNavigate()
 
   // Merge static icons/numbers with translated dish data
   const dishes = a2.dishes.map((dish, i) => ({
@@ -241,8 +242,9 @@ export default function Article2Page() {
                 {a2.closingText}
               </p>
               <a
-                href="/#contact"
+                href="/contact"
                 className="art2-closing__cta btn btn-primary"
+                onClick={e => { e.preventDefault(); navigate('/contact') }}
               >
                 {a2.closingCta}
                 <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />

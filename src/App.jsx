@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import PreloadScreen from './components/PreloadScreen'
 import Navbar from './components/Navbar'
@@ -15,6 +15,16 @@ import BlogPage from './pages/BlogPage'
 import Article1Page from './pages/Article1Page'
 import Article2Page from './pages/Article2Page'
 import ContactPage from './pages/ContactPage'
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
+import TermsOfServicePage from './pages/TermsOfServicePage'
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [pathname])
+  return null
+}
 
 // Hero cinematic sequence images — preloaded so the slideshow is seamless
 import heroImg1 from './assets/arielview1.jpg?w=1920&format=webp&quality=90'
@@ -44,6 +54,7 @@ function App() {
         />
       )}
 
+      <ScrollToTop />
       <Navbar />
 
       <Routes>
@@ -58,6 +69,8 @@ function App() {
         <Route path="/blog/top-5-activities-watamu" element={<Article1Page />} />
         <Route path="/blog/coastal-swahili-dishes" element={<Article2Page />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms-of-service" element={<TermsOfServicePage />} />
       </Routes>
 
       <Footer />

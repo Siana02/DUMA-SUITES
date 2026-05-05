@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, Clock, MapPin, BookOpen, Star, CheckCircle } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
@@ -22,6 +22,7 @@ export default function BlogPage() {
   const t = getT(lang)
   const art = t.articles
   const blog = t.blog
+  const navigate = useNavigate()
 
   const featured = art.items[0]
   const rest = art.items.slice(1)
@@ -247,10 +248,14 @@ export default function BlogPage() {
               </div>
               <span className="blog-concierge__label">{blog.conciergeLabel}</span>
               <p className="blog-concierge__text">{blog.conciergeText}</p>
-              <Link to="/#contact" className="blog-concierge__cta btn btn-primary">
+              <a
+                href="/contact"
+                className="blog-concierge__cta btn btn-primary"
+                onClick={e => { e.preventDefault(); navigate('/contact') }}
+              >
                 {blog.conciergeCta}
                 <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
-              </Link>
+              </a>
             </motion.div>
           </div>
         </section>
