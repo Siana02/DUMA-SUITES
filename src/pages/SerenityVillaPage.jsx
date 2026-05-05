@@ -200,7 +200,7 @@ export default function SerenityVillaPage() {
 
         {/* ── a) Hero ── */}
         <section className="sv-hero">
-          <img src={heroImg} alt="Serenity Villa outdoor terrace" className="sv-hero__bg" />
+          <img src={heroImg} alt="Three Bedroom Suite outdoor terrace" className="sv-hero__bg" />
           <div className="sv-hero__overlay" aria-hidden="true" />
           <div className="sv-hero__content">
             <motion.span
@@ -276,7 +276,7 @@ export default function SerenityVillaPage() {
               {/* Right: atmospheric image */}
               <motion.div className="sv-about__img-col" {...fadeUp(0.16)}>
                 <div className="sv-about__img-wrap">
-                  <img src={serenityAboutImg} alt="Serenity Villa outdoor lounge" className="sv-about__img" />
+                  <img src={serenityAboutImg} alt="Three Bedroom Suite outdoor lounge" className="sv-about__img" />
                   <div className="sv-about__img-overlay" aria-hidden="true" />
                 </div>
               </motion.div>
@@ -474,11 +474,11 @@ export default function SerenityVillaPage() {
               {/* Coastal Haven card */}
               <motion.div className="sv-suite-card" {...fadeUp(0.22)} onClick={() => navigate('/suites/coastal-haven')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/coastal-haven') } }}>
                 <div className="sv-suite-card__img-wrap">
-                  <img src={coastalPreview} alt="Coastal Haven Suite" className="sv-suite-card__img" loading="eager" />
+                  <img src={coastalPreview} alt="One Bedroom Suite" className="sv-suite-card__img" loading="eager" />
                 </div>
                 <div className="sv-suite-card__body">
                   <p className="sv-suite-card__tagline">{ts.coastalTagline}</p>
-                  <h3 className="sv-suite-card__name">Coastal Haven Suite</h3>
+                  <h3 className="sv-suite-card__name">One Bedroom Suite</h3>
                   <a href="/suites/coastal-haven" className="btn btn-inverse sv-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/coastal-haven') }}>
                     {ts.viewSuiteBtn}
                   </a>
@@ -488,12 +488,12 @@ export default function SerenityVillaPage() {
               {/* Serenity Villa card */}
               <motion.div className="sv-suite-card" {...fadeUp(0.32)} onClick={() => navigate('/suites/serenity-villa')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/serenity-villa') } }}>
                 <div className="sv-suite-card__img-wrap">
-                  <img src={serenityPreviewImg} alt="Serenity Villa Suite" className="sv-suite-card__img" loading="eager" />
+                  <img src={serenityPreviewImg} alt="Three Bedroom Suite" className="sv-suite-card__img" loading="eager" />
                   <div className="sv-suite-card__badge">{ts.badgeCurrent}</div>
                 </div>
                 <div className="sv-suite-card__body">
                   <p className="sv-suite-card__tagline">{ts.serenityTagline}</p>
-                  <h3 className="sv-suite-card__name">Serenity Villa Suite</h3>
+                  <h3 className="sv-suite-card__name">Three Bedroom Suite</h3>
                   <a href="/suites/serenity-villa" className="btn btn-inverse sv-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/serenity-villa') }}>
                     {ts.viewSuiteBtn}
                   </a>
