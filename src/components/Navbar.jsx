@@ -106,13 +106,9 @@ export default function Navbar() {
     setMenuOpen(false)
   }
 
-  const scrolledClass = scrolled ? ' navbar--scrolled' : ''
-
-  // On non-home pages, always show the solid/scrolled navbar so text is legible
-  // Also force solid when mobile menu is open
   const isHomePage = location.pathname === '/'
   const forceScrolled = !isHomePage || menuOpen
-  const navbarClass = `navbar${scrolledClass}${forceScrolled ? ' navbar--scrolled' : ''}`
+  const navbarClass = `navbar${scrolled || forceScrolled ? ' navbar--scrolled' : ''}`
 
   return (
     <>

@@ -289,7 +289,7 @@ export default function ContactSection() {
                   </p>
                   <button
                     className="btn btn-outline-espresso"
-                    onClick={() => { window.scrollTo({ top: 0, behavior: 'instant' }); navigate('/contact') }}
+                    onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); navigate('/contact') }}
                   >
                     {lang === 'it' ? 'Visita la Pagina Contatti →' : 'Visit Full Contact Page →'}
                   </button>
