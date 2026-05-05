@@ -41,7 +41,7 @@ const en = {
     viewFullCta: 'View Full Gallery',
   },
   faq: {
-    eyebrow: 'Questions and Answers',
+    eyebrow: 'Questions & Answers',
     title: 'What you may wish to know',
     ctaIntro: 'Have any more questions?',
     cta: 'Contact Us',

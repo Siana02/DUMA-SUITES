@@ -126,7 +126,6 @@ export default function ReviewsSection() {
         >
           <span className="eyebrow">{t.reviews.eyebrow}</span>
           <h2 className="section-title">{t.reviews.title}</h2>
-          <div className="divider" style={{ marginInline: 'auto', marginTop: '1rem' }} />
         </div>
 
         <div className="rv-carousel">

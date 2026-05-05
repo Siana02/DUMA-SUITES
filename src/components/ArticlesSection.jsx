@@ -34,7 +34,6 @@ export default function ArticlesSection() {
           </div>
 
           <h2 className="section-title">{art.title}</h2>
-          <div className="divider" />
         </div>
 
         <div className="articles-section__grid" ref={gridRef}>

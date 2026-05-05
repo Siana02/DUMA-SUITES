@@ -24,7 +24,6 @@ export default function FAQSection() {
         >
           <span className="eyebrow">{faq.eyebrow}</span>
           <h2 className="section-title">{faq.title}</h2>
-          <div className="divider" />
         </div>
 
         <div className="faq-section__list" role="list">

@@ -79,7 +79,6 @@ export default function ExcursionsSection() {
           </div>
 
           <h2 className="section-title">{exc.title}</h2>
-          <div className="divider" />
           <div className="exc-section__note">
             <Info size={14} strokeWidth={1.5} aria-hidden="true" />
             <span>{exc.note}</span>

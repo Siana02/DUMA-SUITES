@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
@@ -18,16 +18,22 @@ const VIDEOS = [vid1, vid2, vid5, vid6, vid7, vid3, vid4]
 
 function VideoCard({ src, label }) {
   const videoRef = useRef(null)
+  const [playing, setPlaying] = useState(false)
 
-  const handleMouseEnter = () => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {})
-    }
+  const play = () => {
+    videoRef.current?.play().catch(() => {})
+    setPlaying(true)
   }
-  const handleMouseLeave = () => {
-    if (videoRef.current) {
-      videoRef.current.pause()
-    }
+  const pause = () => {
+    videoRef.current?.pause()
+    setPlaying(false)
+  }
+
+  const handleMouseEnter = () => play()
+  const handleMouseLeave = () => pause()
+  const handleClick = () => {
+    if (!videoRef.current) return
+    if (videoRef.current.paused) { play() } else { pause() }
   }
 
   return (
@@ -35,6 +41,7 @@ function VideoCard({ src, label }) {
       className="vs-card"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
     >
       <div className="vs-card__video-wrap">
         <video
@@ -48,7 +55,7 @@ function VideoCard({ src, label }) {
           aria-label={label}
         />
         <div className="vs-card__overlay" aria-hidden="true" />
-        <div className="vs-card__play-icon" aria-hidden="true">▶</div>
+        <div className={`vs-card__play-icon${playing ? ' vs-card__play-icon--hidden' : ''}`} aria-hidden="true">▶</div>
       </div>
       <p className="vs-card__label">{label}</p>
     </div>
@@ -78,7 +85,6 @@ export default function VideoStripSection() {
           </div>
 
           <h2 className="section-title">{vt.title}</h2>
-          <div className="divider" />
           <p className="video-strip__sub">{vt.sub}</p>
         </div>
       </div>
@@ -205,7 +211,8 @@ export default function VideoStripSection() {
           transition: opacity 0.35s ease;
           pointer-events: none;
         }
-        .vs-card:hover .vs-card__play-icon {
+        .vs-card:hover .vs-card__play-icon,
+        .vs-card__play-icon--hidden {
           opacity: 0;
         }
         .vs-card__label {

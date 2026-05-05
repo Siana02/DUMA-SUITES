@@ -7,7 +7,8 @@ import { Maximize2, BedDouble, Users } from 'lucide-react'
 
 import outsideView2 from '../assets/outside-view2.jpeg'
 import coastalPreview from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
-import serenityPreview from '../assets/serenity-villa-3bedroomsuite-preview.JPEG'
+import serenityPreview from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
+import cheetahIcon from '../assets/cheetah.png'
 
 const SUITES = [
   {
@@ -85,7 +86,7 @@ export default function AllSuitesPage() {
     <>
       <Helmet>
         <title>All Suites | Duma Suites Watamu</title>
-        <meta name="description" content="Explore all suites at Duma Suites — the Coastal Haven Suite and Serenity Villa Suite. Two exceptional retreats in Watamu, Kenya." />
+        <meta name="description" content="Explore the showcased suites at Duma Suites — the Coastal Haven Suite and Serenity Villa Suite. Exceptional retreats in Watamu, Kenya, with more options available." />
       </Helmet>
 
       <main id="suites-page">
@@ -116,7 +117,7 @@ export default function AllSuitesPage() {
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.36 }}
             >
-              Two exceptional retreats, one extraordinary destination.
+              From intimate suites to a sprawling villa — an exceptional collection for every kind of traveller.
             </motion.p>
           </div>
         </section>
@@ -124,35 +125,54 @@ export default function AllSuitesPage() {
         {/* Intro */}
         <section className="as-intro section" ref={introRef}>
           <div className="container">
+            <motion.span
+              className="as-intro__eyebrow eyebrow"
+              initial={{ opacity: 0, y: 20 }}
+              animate={introInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.05 }}
+            >
+              Suites &amp; Villas
+            </motion.span>
+
+            {/* Cheetah divider */}
+            <motion.div
+              className="as-intro__cheetah-divider"
+              aria-hidden="true"
+              initial={{ opacity: 0 }}
+              animate={introInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.12 }}
+            >
+              <span className="as-intro__divider-line" />
+              <img src={cheetahIcon} alt="" className="as-intro__divider-icon" />
+              <span className="as-intro__divider-line" />
+            </motion.div>
+
+            <motion.h2
+              className="section-title as-intro__title"
+              initial={{ opacity: 0, y: 20 }}
+              animate={introInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.18 }}
+            >
+              Choose Your Retreat
+            </motion.h2>
             <motion.p
               className="as-intro__text"
               initial={{ opacity: 0, y: 24 }}
               animate={introInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.1 }}
+              transition={{ duration: 0.7, delay: 0.28 }}
             >
-              Whether you're seeking an intimate coastal escape or a sprawling villa for a family retreat,
-              The Duma Suites offers two distinctly curated living spaces — each designed to bring the very
-              best of Watamu's coastline into your daily rhythm.
+              Duma Suites offers a curated range of living spaces — from intimate 1-bedroom coastal
+              retreats to sprawling 3-bedroom villas with full kitchens and garden terraces. Currently
+              showcasing two of our signature properties; more suites are available upon enquiry.
             </motion.p>
           </div>
         </section>
 
-        {/* Suites showcase */}
-        <section className="as-showcase section section--secondary">
-          <div className="container">
-            <div className="as-showcase__grid">
-              {SUITES.map((suite, i) => (
-                <SuiteCard key={suite.id} suite={suite} index={i} />
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Resort overview video */}
-        <section className="video-overview section">
+        <section className="video-overview section section--secondary">
           <div className="container" style={{ maxWidth: 900, textAlign: 'center' }}>
             <span className="eyebrow">Resort Overview</span>
-            <h2 className="section-title">Experience Duma Suites</h2>
+            <h2 className="section-title as-video__title">Experience Duma Suites</h2>
             <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 4, marginTop: 32 }}>
               <iframe
                 src="https://player.vimeo.com/video/1189029033?autoplay=0&title=0&byline=0&portrait=0"
@@ -162,6 +182,17 @@ export default function AllSuitesPage() {
                 allowFullScreen
                 title="Duma Suites Resort Overview"
               />
+            </div>
+          </div>
+        </section>
+
+        {/* Suites showcase */}
+        <section className="as-showcase section">
+          <div className="container">
+            <div className="as-showcase__grid">
+              {SUITES.map((suite, i) => (
+                <SuiteCard key={suite.id} suite={suite} index={i} />
+              ))}
             </div>
           </div>
         </section>
@@ -227,6 +258,35 @@ export default function AllSuitesPage() {
         .as-intro {
           background-color: var(--color-bg-primary);
         }
+        .as-intro__eyebrow {
+          display: block;
+          text-align: center;
+          margin-bottom: 12px;
+        }
+        .as-intro__title {
+          text-align: center;
+          margin: 0 auto 1.5rem;
+        }
+        .as-intro__cheetah-divider {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          margin: 10px auto 14px;
+          max-width: 260px;
+        }
+        .as-intro__divider-line {
+          flex: 1;
+          height: 1px;
+          background: linear-gradient(to right, transparent, var(--color-teal), transparent);
+          opacity: 0.55;
+        }
+        .as-intro__divider-icon {
+          width: 26px;
+          height: 26px;
+          object-fit: contain;
+          opacity: 0.7;
+        }
         .as-intro__text {
           font-family: var(--font-body);
           font-size: clamp(1rem, 1.6vw, 1.15rem);
@@ -235,6 +295,10 @@ export default function AllSuitesPage() {
           max-width: 600px;
           margin-inline: auto;
           text-align: center;
+        }
+        .as-video__title {
+          text-align: center;
+          margin-inline: auto;
         }
 
         /* ── Showcase ── */

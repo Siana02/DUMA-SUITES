@@ -7,28 +7,33 @@ import heroImg from '../assets/dolphin-watching-watamu.jpg'
 const ACTIVITIES = [
   {
     number: '01',
-    title: 'Safari Blue Full-Day Excursion',
-    desc: `Safari Blue is Watamu's most iconic full-day marine adventure. Board a traditional wooden dhow and sail to the crystal-clear waters of Mida Creek and beyond. The day includes snorkelling over vibrant reefs, dolphin watching, island stops, fresh seafood cooked on the beach, and a sunset return. For many guests, Safari Blue becomes the highlight of their entire Kenyan coast experience.`,
+    title: 'Safari Blue — Full-Day Excursion',
+    desc: `Safari Blue is Watamu's most iconic full-day marine adventure. Board a traditional wooden dhow and sail the crystal-clear waters off the Watamu and Mida Creek coast. The day begins with dolphin watching as spinner dolphins frequently leap alongside the dhow, followed by snorkelling over vibrant coral reefs at Watamu Marine Park. The highlight is a mid-day stop at Sudi Island for a fresh BBQ seafood feast on the beach — lobster, calamari, octopus and prawns grilled over charcoal. The full-day trip returns at sunset, leaving guests with one of the most complete and memorable days on the Kenyan coast.`,
   },
   {
     number: '02',
+    title: 'Safari Blue — Half-Day Option',
+    desc: `For guests with limited time, the Safari Blue half-day excursion offers the core marine experience without the Sudi Island seafood stop. You'll enjoy dolphin watching and snorkelling over Watamu's coral gardens aboard a traditional dhow, returning in the early afternoon. A wonderful condensed introduction to the magic of the Watamu coastline.`,
+  },
+  {
+    number: '03',
     title: 'Watamu Marine Park Snorkelling',
     desc: `One of Kenya's oldest and most protected marine national parks sits right on Watamu's doorstep. The coral gardens here are home to turtles, reef sharks, stingrays, vibrant tropical fish and an incredible diversity of corals. Whether you're a seasoned diver or a first-time snorkeller, the Marine Park offers an accessible and unforgettable underwater world.`,
   },
   {
-    number: '03',
+    number: '04',
     title: 'Gedi Ruins — Ancient Swahili City',
     desc: `Tucked within a dense coastal forest just outside Watamu lies the Gedi Ruins — the haunting remains of a 12th-century Swahili trading town abandoned for reasons still debated by historians. Wander through crumbling mosques, royal palaces and merchant houses as resident colobus monkeys leap overhead. Guided tours bring the site's extraordinary history to vivid life.`,
   },
   {
-    number: '04',
+    number: '05',
     title: 'Elephant Watching at Tsavo',
     desc: `A few hours from Watamu, the vast Tsavo East and West national parks are home to Kenya's largest elephant herds. A full-day safari here offers close encounters with these gentle giants alongside lions, giraffes, buffalo, zebra and the famous "red elephants" of Tsavo — dusty-red from rolling in the iron-rich soil. An unmissable East African wildlife experience.`,
   },
   {
-    number: '05',
-    title: 'Dolphin Watching at Mida Creek',
-    desc: `Mida Creek is a peaceful tidal inlet fringed by ancient mangrove forests, and home to a resident dolphin pod that can often be spotted early in the morning. Join a guided boat trip at dawn as spinner and bottlenose dolphins leap alongside your vessel. The creek itself is also a haven for birdwatchers, with over 100 species recorded including herons, flamingos and fish eagles.`,
+    number: '06',
+    title: 'Mida Creek Mangrove Boardwalk',
+    desc: `Mida Creek is a protected tidal inlet fringed by ancient mangrove forests. The elevated boardwalk offers a tranquil walk through the ecosystem at low tide, with sweeping views across the creek and the Indian Ocean beyond. The creek is a birdwatcher's paradise — over 100 species have been recorded here, including herons, flamingos, fish eagles and kingfishers. A serene and restorative experience away from the beach.`,
   },
 ]
 
@@ -39,7 +44,7 @@ export default function Article1Page() {
         <title>Top 5 Activities on the Watamu Coast | Duma Suites Stories</title>
         <meta
           name="description"
-          content="From Safari Blue to Gedi Ruins, elephant watching to snorkelling — discover the top 5 extraordinary activities available on the Watamu coast, curated by Duma Suites."
+          content="From Safari Blue full-day and half-day to Gedi Ruins, elephant watching and the Mida Creek boardwalk — discover the top activities on the Watamu coast, curated by Duma Suites."
         />
       </Helmet>
 
@@ -48,7 +53,7 @@ export default function Article1Page() {
         {/* Hero */}
         <div className="art1-hero">
           <div className="art1-hero__img-wrap">
-            <img src={heroImg} alt="Dolphins at Mida Creek, Watamu" className="art1-hero__img" />
+            <img src={heroImg} alt="Dolphin watching on Safari Blue, Watamu coast" className="art1-hero__img" />
             <div className="art1-hero__overlay" aria-hidden="true" />
           </div>
           <div className="art1-hero__content">
@@ -66,7 +71,7 @@ export default function Article1Page() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.22 }}
             >
-              Top 5 Activities on the Watamu Coast
+              Top Activities on the Watamu Coast
             </motion.h1>
             <motion.p
               className="art1-hero__sub"
