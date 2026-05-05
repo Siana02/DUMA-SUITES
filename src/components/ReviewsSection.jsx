@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Star, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react'
+import { Star, ChevronLeft, ChevronRight, PenLine } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
@@ -9,97 +9,147 @@ const REVIEWS = [
   {
     id: 1,
     rating: 5,
-    text: 'Waking up to the sound of the ocean every morning was nothing short of magical. The staff remembered our names from day one — it felt like coming home.',
+    pullQuote: 'It felt like coming home.',
+    text: 'Waking up to the sound of the ocean every morning was nothing short of magical. The staff remembered our names from day one — every detail was thoughtful, warm and wonderfully personal.',
     author: 'Sarah & James O.',
     origin: 'London, UK',
-    source: 'TripAdvisor',
+    initials: 'SJ',
+    source: 'Google',
   },
   {
     id: 2,
     rating: 5,
-    text: 'The suite was beyond anything we had imagined. Watching the sunset from our private terrace with a glass of Kenyan wine — absolutely unforgettable.',
+    pullQuote: 'Absolutely unforgettable.',
+    text: 'The suite was beyond anything we had imagined. Watching the sunset from our private terrace with a glass of Kenyan wine, the horizon glowing amber — a memory I will carry for years.',
     author: 'Aiko T.',
     origin: 'Tokyo, Japan',
+    initials: 'AT',
     source: 'Google',
   },
   {
     id: 3,
     rating: 5,
-    text: 'From the freshly prepared Swahili breakfast to the evening by the pool, every touch was thoughtful. Duma Suites has raised the bar for coastal luxury in East Africa.',
+    pullQuote: 'Duma Suites has raised the bar.',
+    text: 'From the freshly prepared Swahili breakfast to the evening by the pool, every touch was thoughtful. This is East Africa\'s coastal luxury at its finest — refined, soulful and deeply considered.',
     author: 'David M.',
     origin: 'Nairobi, Kenya',
+    initials: 'DM',
     source: 'Google',
   },
   {
     id: 4,
     rating: 5,
-    text: 'The concierge arranged a private snorkelling tour and a sunset dhow cruise — both extraordinary. This is a place that understands what true hospitality means.',
+    pullQuote: 'True hospitality, redefined.',
+    text: 'The concierge arranged a private snorkelling tour and a sunset dhow cruise — both extraordinary. This is a place that genuinely understands what hospitality means. We left already planning our return.',
     author: 'Priya & Rajan K.',
     origin: 'Dubai, UAE',
+    initials: 'PR',
     source: 'TripAdvisor',
   },
   {
     id: 5,
     rating: 5,
-    text: 'A hidden gem on the Kenyan coast. The infinity pool views at sunrise are unlike anything I have experienced. Will absolutely return.',
+    pullQuote: 'A hidden gem on the Kenyan coast.',
+    text: 'The infinity pool views at sunrise are unlike anything I have experienced anywhere in the world. The silence, the light, the attentive service — it all adds up to something truly rare. Will absolutely return.',
     author: 'Marco B.',
-    origin: 'Milan, Italy',
-    source: 'Instagram',
+    origin: 'Rome, Italy',
+    initials: 'MB',
+    source: 'TripAdvisor',
+  },
+  {
+    id: 6,
+    rating: 5,
+    pullQuote: 'Pure serenity from the first breath.',
+    text: 'We celebrated our anniversary here and every moment exceeded our expectations. The suite was immaculate, the food was exceptional and the staff went quietly above and beyond in ways we still talk about.',
+    author: 'Céleste & Henri D.',
+    origin: 'Paris, France',
+    initials: 'CH',
+    source: 'Google',
   },
 ]
 
 const AUTO_ADVANCE_MS = 9000
 
+/* ── Star rating ─────────────────────────────────────────── */
 function StarRating({ count }) {
   return (
     <div className="rv-stars" aria-label={`${count} out of 5 stars`}>
       {Array.from({ length: count }).map((_, i) => (
-        <Star key={i} size={16} fill="currentColor" strokeWidth={0} />
+        <Star key={i} size={22} fill="currentColor" strokeWidth={0} />
       ))}
     </div>
   )
 }
 
-function SourceBadge({ source }) {
-  const colours = {
-    TripAdvisor: { bg: '#00af87', color: '#fff' },
-    Google:      { bg: '#4285F4', color: '#fff' },
-    Instagram:   { bg: '#E4405F', color: '#fff' },
-  }
-  const style = colours[source] || { bg: 'var(--color-teal)', color: '#fff' }
+/* ── Guest initials avatar ───────────────────────────────── */
+function Avatar({ initials }) {
   return (
-    <span
-      className="rv-badge"
-      style={{ background: style.bg, color: style.color }}
-    >
-      {source}
+    <div className="rv-avatar" aria-hidden="true">
+      <span className="rv-avatar__initials">{initials}</span>
+    </div>
+  )
+}
+
+/* ── Platform badge ──────────────────────────────────────── */
+function SourceBadge({ source }) {
+  const map = {
+    TripAdvisor: { dot: '#00af87', label: 'TripAdvisor' },
+    Google:      { dot: '#4285F4', label: 'Google Reviews' },
+  }
+  const item = map[source] || { dot: 'var(--color-teal)', label: source }
+  return (
+    <span className="rv-source-badge">
+      <span className="rv-source-badge__dot" style={{ background: item.dot }} />
+      {item.label}
     </span>
   )
 }
 
+/* ── Card animation variants ─────────────────────────────── */
 const variants = {
-  enter: (dir) => ({ opacity: 0, x: dir > 0 ? 60 : -60 }),
+  enter: (dir) => ({ opacity: 0, x: dir > 0 ? 70 : -70 }),
   center: { opacity: 1, x: 0 },
-  exit: (dir) => ({ opacity: 0, x: dir > 0 ? -60 : 60 }),
+  exit:  (dir) => ({ opacity: 0, x: dir > 0 ? -70 : 70 }),
 }
 
+/* ── Credibility bar (Google + TripAdvisor) ──────────────── */
+function CredibilityBar() {
+  return (
+    <div className="rv-cred-bar" aria-label="Verified review platforms">
+      <span className="rv-cred-item">
+        <span className="rv-cred-dot" style={{ background: '#4285F4' }} />
+        <span className="rv-cred-label">Google Reviews</span>
+        <span className="rv-cred-score">5.0 ★</span>
+      </span>
+      <span className="rv-cred-divider" aria-hidden="true" />
+      <span className="rv-cred-item">
+        <span className="rv-cred-dot" style={{ background: '#00af87' }} />
+        <span className="rv-cred-label">TripAdvisor</span>
+        <span className="rv-cred-score">5.0 ★</span>
+      </span>
+    </div>
+  )
+}
+
+/* ════════════════════════════════════════════════════════════
+   Main component
+   ════════════════════════════════════════════════════════════ */
 export default function ReviewsSection() {
   const { lang } = useLanguage()
   const t = getT(lang)
 
-  const [index, setIndex] = useState(0)
+  const [index, setIndex]       = useState(0)
   const [direction, setDirection] = useState(1)
-  const [paused, setPaused] = useState(false)
+  const [paused, setPaused]     = useState(false)
 
   const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.3, triggerOnce: true })
-  const { ref: sectionRef, inView: sectionInView } = useInView({ threshold: 0.2 })
+  const { ref: sectionRef, inView: sectionInView } = useInView({ threshold: 0.15 })
 
   const go = (dir) => {
     setDirection(dir)
     setIndex(prev => (prev + dir + REVIEWS.length) % REVIEWS.length)
   }
 
-  // Auto-cycle
   useEffect(() => {
     if (!sectionInView || paused) return
     const timer = setInterval(() => {
@@ -119,7 +169,9 @@ export default function ReviewsSection() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="container" style={{ maxWidth: 820 }}>
+      <div className="container rv-container">
+
+        {/* ── Header ───────────────────────────────────────── */}
         <div
           ref={headerRef}
           className={`rv-header${headerInView ? ' is-visible' : ''}`}
@@ -128,15 +180,22 @@ export default function ReviewsSection() {
           <h2 className="section-title">{t.reviews.title}</h2>
         </div>
 
+        {/* ── Platform credibility bar ──────────────────── */}
+        <CredibilityBar />
+
+        {/* ── Carousel ─────────────────────────────────── */}
         <div className="rv-carousel">
+
+          {/* Prev arrow */}
           <button
             className="rv-arrow rv-arrow--prev"
             onClick={() => go(-1)}
             aria-label="Previous review"
           >
-            <ChevronLeft size={22} strokeWidth={1.5} />
+            <ChevronLeft size={20} strokeWidth={1.5} />
           </button>
 
+          {/* Slide viewport */}
           <div className="rv-slide-wrap">
             <AnimatePresence custom={direction} mode="wait">
               <motion.article
@@ -147,15 +206,30 @@ export default function ReviewsSection() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
               >
-                <div className="rv-card__rating-row">
-                  <StarRating count={review.rating} />
-                  <SourceBadge source={review.source} />
+                {/* Avatar */}
+                <div className="rv-card__avatar-row">
+                  <Avatar initials={review.initials} />
                 </div>
-                <blockquote className="rv-card__text">
-                  &ldquo;{review.text}&rdquo;
+
+                {/* Source badge + stars */}
+                <div className="rv-card__meta">
+                  <SourceBadge source={review.source} />
+                  <StarRating count={review.rating} />
+                </div>
+
+                {/* Pull-quote highlight */}
+                <blockquote className="rv-card__pull-quote">
+                  <span className="rv-card__opening-mark">&ldquo;</span>
+                  {review.pullQuote}
+                  <span className="rv-card__closing-mark">&rdquo;</span>
                 </blockquote>
+
+                {/* Full testimonial */}
+                <p className="rv-card__full-text">{review.text}</p>
+
+                {/* Guest identity */}
                 <footer className="rv-card__footer">
                   <span className="rv-card__author">{review.author}</span>
                   <span className="rv-card__origin">{review.origin}</span>
@@ -164,16 +238,17 @@ export default function ReviewsSection() {
             </AnimatePresence>
           </div>
 
+          {/* Next arrow */}
           <button
             className="rv-arrow rv-arrow--next"
             onClick={() => go(1)}
             aria-label="Next review"
           >
-            <ChevronRight size={22} strokeWidth={1.5} />
+            <ChevronRight size={20} strokeWidth={1.5} />
           </button>
         </div>
 
-        {/* Dots */}
+        {/* ── Dot navigation ─────────────────────────── */}
         <div className="rv-dots" aria-label="Review navigation">
           {REVIEWS.map((_, i) => (
             <button
@@ -186,175 +261,295 @@ export default function ReviewsSection() {
           ))}
         </div>
 
-        {/* Leave a Review CTA */}
+        {/* ── Leave a Review CTA ─────────────────────── */}
         <div className="rv-leave-cta">
           <a
-            href="#contact"
-            className="rv-leave-cta__btn btn btn-inverse"
-            onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}
+            href="https://g.page/r/review"
+            className="rv-leave-cta__btn btn btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
           >
+            <PenLine size={15} strokeWidth={1.5} aria-hidden="true" />
             {t.reviews.leaveReview}
-            <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
           </a>
         </div>
       </div>
 
       <style>{`
+        /* ── Container ──────────────────────────────────── */
+        .rv-container {
+          max-width: 780px;
+        }
+
+        /* ── Header ─────────────────────────────────────── */
         .rv-header {
           text-align: center;
-          margin-bottom: clamp(40px, 6vw, 56px);
+          margin-bottom: clamp(28px, 4vw, 40px);
           opacity: 0;
-          transform: translateY(20px);
-          transition: opacity 0.7s ease, transform 0.7s ease;
+          transform: translateY(22px);
+          transition: opacity 0.75s ease, transform 0.75s ease;
         }
         .rv-header.is-visible {
           opacity: 1;
           transform: translateY(0);
         }
+
+        /* ── Credibility bar ────────────────────────────── */
+        .rv-cred-bar {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 20px;
+          margin-bottom: clamp(32px, 5vw, 48px);
+          flex-wrap: wrap;
+        }
+        .rv-cred-item {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+        }
+        .rv-cred-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          flex-shrink: 0;
+        }
+        .rv-cred-label {
+          font-family: var(--font-nav);
+          font-size: 0.6rem;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: var(--color-text-muted);
+        }
+        .rv-cred-score {
+          font-family: var(--font-nav);
+          font-size: 0.6rem;
+          letter-spacing: 0.08em;
+          color: var(--color-teal);
+        }
+        .rv-cred-divider {
+          width: 1px;
+          height: 16px;
+          background: rgba(86,51,17,0.18);
+        }
+
+        /* ── Carousel wrapper ───────────────────────────── */
         .rv-carousel {
           display: flex;
           align-items: center;
           gap: 0;
         }
+
+        /* ── Slide viewport ─────────────────────────────── */
         .rv-slide-wrap {
           flex: 1;
           overflow: hidden;
-          min-height: 220px;
+          min-height: 340px;
           display: flex;
           align-items: center;
-          padding: 0 12px;
+          padding: 0 14px;
         }
+
+        /* ── Card ───────────────────────────────────────── */
         .rv-card {
           width: 100%;
           background: var(--color-bg-primary);
-          padding: clamp(24px, 4vw, 40px);
-          box-shadow: 0 4px 24px rgba(86,51,17,0.08);
-          border-radius: 3px;
+          padding: clamp(28px, 5vw, 52px) clamp(24px, 4vw, 44px);
+          box-shadow: 0 6px 40px rgba(86,51,17,0.09), 0 1px 0 rgba(201,169,110,0.25);
+          border-radius: 4px;
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          align-items: center;
+          gap: 0;
+          border-top: 2px solid var(--color-teal);
         }
-        .rv-card__rating-row {
+
+        /* ── Avatar row ─────────────────────────────────── */
+        .rv-card__avatar-row {
+          margin-bottom: 20px;
+        }
+        .rv-avatar {
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-espresso) 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 16px rgba(201,169,110,0.35);
+        }
+        .rv-avatar__initials {
+          font-family: var(--font-nav);
+          font-size: 0.75rem;
+          letter-spacing: 0.12em;
+          color: #fff;
+          text-transform: uppercase;
+          line-height: 1;
+        }
+
+        /* ── Meta row (badge + stars) ───────────────────── */
+        .rv-card__meta {
           display: flex;
           flex-direction: column;
           align-items: center;
           gap: 10px;
+          margin-bottom: 24px;
+        }
+        .rv-source-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-family: var(--font-nav);
+          font-size: 0.55rem;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--color-text-muted);
+        }
+        .rv-source-badge__dot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          flex-shrink: 0;
         }
         .rv-stars {
           display: flex;
-          gap: 4px;
-          color: #c9a84c;
+          gap: 5px;
+          color: var(--color-teal);
           justify-content: center;
         }
-        .rv-badge {
-          font-family: var(--font-nav);
-          font-size: 0.58rem;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          padding: 3px 10px;
-          border-radius: 100px;
-          flex-shrink: 0;
-        }
-        .rv-card__text {
-          font-family: var(--font-review);
-          font-size: clamp(1.05rem, 1.8vw, 1.3rem);
-          line-height: 1.7;
+
+        /* ── Pull-quote ─────────────────────────────────── */
+        .rv-card__pull-quote {
+          font-family: var(--font-title);
+          font-size: clamp(1.45rem, 3.2vw, 2rem);
+          font-weight: 400;
+          font-style: italic;
+          line-height: 1.35;
           color: var(--color-espresso);
-          quotes: none;
           text-align: center;
+          quotes: none;
+          position: relative;
+          margin-bottom: 18px;
+          padding: 0 4px;
         }
+        .rv-card__opening-mark,
+        .rv-card__closing-mark {
+          font-family: var(--font-title);
+          font-size: 1.6em;
+          line-height: 0;
+          vertical-align: -0.3em;
+          color: var(--color-teal);
+          opacity: 0.7;
+          font-style: normal;
+        }
+        .rv-card__opening-mark { margin-right: 3px; }
+        .rv-card__closing-mark { margin-left: 3px; }
+
+        /* ── Full testimonial ───────────────────────────── */
+        .rv-card__full-text {
+          font-family: var(--font-review);
+          font-size: clamp(0.92rem, 1.5vw, 1.05rem);
+          line-height: 1.75;
+          color: var(--color-text-muted);
+          text-align: center;
+          max-width: 540px;
+          margin-bottom: 24px;
+        }
+
+        /* ── Footer ─────────────────────────────────────── */
         .rv-card__footer {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 2px;
-          padding-top: 16px;
-          border-top: 1px solid rgba(86,51,17,0.1);
+          gap: 3px;
+          padding-top: 20px;
+          border-top: 1px solid rgba(201,169,110,0.25);
+          width: 100%;
         }
         .rv-card__author {
           font-family: var(--font-eyebrow);
           font-style: italic;
-          font-size: 0.85rem;
+          font-size: 0.88rem;
           color: var(--color-espresso);
+          letter-spacing: 0.02em;
         }
         .rv-card__origin {
-          font-size: 0.75rem;
+          font-family: var(--font-nav);
+          font-size: 0.58rem;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
           color: var(--color-text-muted);
-          letter-spacing: 0.04em;
         }
+
+        /* ── Navigation arrows ──────────────────────────── */
         .rv-arrow {
           flex-shrink: 0;
-          width: 44px;
-          height: 44px;
+          width: 46px;
+          height: 46px;
           border-radius: 50%;
-          border: 1.5px solid rgba(86,51,17,0.2);
-          background: none;
+          border: 1.5px solid rgba(201,169,110,0.4);
+          background: var(--color-bg-primary);
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
           color: var(--color-espresso);
-          transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+          transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+          box-shadow: 0 2px 10px rgba(86,51,17,0.07);
         }
         .rv-arrow:hover {
           border-color: var(--color-teal);
           background: var(--color-teal);
           color: #fff;
+          box-shadow: 0 4px 16px rgba(201,169,110,0.3);
         }
+
+        /* ── Dot indicators ─────────────────────────────── */
         .rv-dots {
           display: flex;
           justify-content: center;
           gap: 8px;
-          margin-top: 24px;
+          margin-top: 28px;
         }
         .rv-dot {
-          width: 8px;
-          height: 8px;
+          width: 6px;
+          height: 6px;
           border-radius: 50%;
           border: none;
-          background: rgba(86,51,17,0.2);
+          background: rgba(86,51,17,0.18);
           cursor: pointer;
-          transition: background 0.25s ease, transform 0.25s ease;
+          transition: background 0.3s ease, transform 0.3s ease, width 0.3s ease;
           padding: 0;
         }
         .rv-dot--active {
           background: var(--color-teal);
-          transform: scale(1.3);
+          transform: scale(1.4);
+          width: 20px;
+          border-radius: 3px;
         }
+
+        /* ── Leave a Review CTA ─────────────────────────── */
         .rv-leave-cta {
           display: flex;
           justify-content: center;
-          margin-top: clamp(28px, 4vw, 40px);
+          margin-top: clamp(32px, 5vw, 48px);
         }
         .rv-leave-cta__btn {
           display: inline-flex;
           align-items: center;
-          gap: 8px;
+          gap: 9px;
         }
+
+        /* ── Responsive ─────────────────────────────────── */
         @media (max-width: 768px) {
-          .rv-carousel {
-            gap: 0;
-          }
-          .rv-arrow {
-            width: 40px;
-            height: 40px;
-          }
-          .rv-slide-wrap {
-            padding: 0 8px;
-          }
+          .rv-arrow { width: 40px; height: 40px; }
+          .rv-slide-wrap { padding: 0 8px; min-height: 300px; }
         }
         @media (max-width: 480px) {
-          .rv-carousel {
-            margin: 0 -12px;
-          }
-          .rv-arrow {
-            width: 36px;
-            height: 36px;
-            flex-shrink: 0;
-          }
-          .rv-slide-wrap {
-            padding: 0 4px;
-          }
+          .rv-arrow { width: 36px; height: 36px; }
+          .rv-slide-wrap { padding: 0 4px; }
+          .rv-carousel { margin: 0 -8px; }
+          .rv-card__pull-quote { font-size: clamp(1.25rem, 5vw, 1.55rem); }
         }
       `}</style>
     </section>
