@@ -188,7 +188,7 @@ export default function SuiteHighlightsSection() {
         transition={{ duration: 0.7, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
       >
         <a href="#suites" className="sh-cta">
-          {sh.viewAll || 'Find Your Suite'}
+          {sh.viewAll}
           <span className="sh-cta__arrow" aria-hidden="true">&rarr;</span>
         </a>
       </motion.div>

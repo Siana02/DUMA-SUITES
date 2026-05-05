@@ -37,13 +37,13 @@ export default function SuitesPreviewSection() {
 
   const next = useCallback(() => {
     setDirection(1)
-    setCurrent((c) => (c + 1) % SUITE_META.length)
-  }, [])
+    setCurrent((c) => (c + 1) % suites.length)
+  }, [suites.length])
 
   const prev = useCallback(() => {
     setDirection(-1)
-    setCurrent((c) => (c - 1 + SUITE_META.length) % SUITE_META.length)
-  }, [])
+    setCurrent((c) => (c - 1 + suites.length) % suites.length)
+  }, [suites.length])
 
   useEffect(() => {
     const timer = setInterval(next, AUTO_ADVANCE_MS)
