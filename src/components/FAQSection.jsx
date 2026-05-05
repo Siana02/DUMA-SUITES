@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, ArrowRight } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
@@ -77,6 +77,19 @@ export default function FAQSection() {
             )
           })}
         </div>
+
+        {/* CTA */}
+        <div className="faq-section__cta-wrap">
+          <p className="faq-section__cta-intro">{faq.ctaIntro}</p>
+          <a
+            href="#contact"
+            className="faq-section__cta btn btn-primary"
+            onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}
+          >
+            {faq.cta}
+            <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
+          </a>
+        </div>
       </div>
 
       <style>{`
@@ -134,9 +147,27 @@ export default function FAQSection() {
           font-size: 0.93rem;
           color: var(--color-text-muted);
           line-height: 1.75;
-          padding-left: 4px;
-          border-left: 3px solid var(--color-teal);
           padding-left: 16px;
+          border-left: 3px solid var(--color-teal);
+        }
+        .faq-section__cta-wrap {
+          margin-top: clamp(40px, 6vw, 56px);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+          text-align: center;
+        }
+        .faq-section__cta-intro {
+          font-family: var(--font-title);
+          font-size: clamp(1rem, 1.8vw, 1.2rem);
+          color: var(--color-espresso);
+          opacity: 0.82;
+        }
+        .faq-section__cta {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
         }
       `}</style>
     </section>
