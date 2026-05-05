@@ -39,7 +39,6 @@ export default function PrivacyPolicyPage() {
 
         {/* ── Hero ── */}
         <div className="pp-hero">
-          <div className="pp-hero__overlay" aria-hidden="true" />
           <div className="pp-hero__content">
             <motion.button
               className="pp-breadcrumb"
@@ -183,9 +182,6 @@ export default function PrivacyPolicyPage() {
           inset: 0;
           background: radial-gradient(ellipse at 70% 40%, rgba(88,176,196,0.15) 0%, transparent 60%);
           pointer-events: none;
-        }
-        .pp-hero__overlay {
-          display: none;
         }
         .pp-hero__content {
           position: relative;
