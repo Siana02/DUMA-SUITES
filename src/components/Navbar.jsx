@@ -36,6 +36,9 @@ export default function Navbar() {
     } else if (location.pathname === '/gallery') {
       activeHrefRef.current = '/gallery'
       setActiveHref('/gallery')
+    } else if (location.pathname === '/contact') {
+      activeHrefRef.current = '/#contact'
+      setActiveHref('/#contact')
     } else if (location.pathname === '/') {
       activeHrefRef.current = '/'
       setActiveHref('/')
@@ -103,12 +106,14 @@ export default function Navbar() {
     setMenuOpen(false)
   }
 
-  const scrolledClass = scrolled ? ' navbar--scrolled' : ''
+  const isHomePage = location.pathname === '/'
+  const forceScrolled = !isHomePage || menuOpen
+  const navbarClass = `navbar${scrolled || forceScrolled ? ' navbar--scrolled' : ''}`
 
   return (
     <>
       <motion.header
-        className={`navbar${scrolledClass}`}
+        className={navbarClass}
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, delay: NAVBAR_APPEAR_DELAY, ease: [0.4, 0, 0.2, 1] }}
