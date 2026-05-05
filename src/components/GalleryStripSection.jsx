@@ -319,7 +319,7 @@ export default function GalleryStripSection() {
           will-change: transform;
         }
 
-        /* ── Image item — uniform card with blurred backdrop ── */
+        /* ── Image item — fixed-height, auto-width film-strip card ── */
         .gs-item {
           flex-shrink: 0;
           overflow: hidden;
@@ -327,19 +327,19 @@ export default function GalleryStripSection() {
           position: relative;
           border: 1px solid rgba(212, 194, 168, 0.35);
           box-shadow: 0 4px 20px rgba(86, 51, 17, 0.14);
-          /* Width/height set per breakpoint below */
+          /* Height is fixed per breakpoint; width flows from the image aspect ratio */
         }
 
-        /* Blurred background — same image scaled to fill dead space */
+        /* Blurred backdrop — extends only top/bottom to cover any vertical gap.
+           Flush left/right so it never bleeds into neighbouring cards. */
         .gs-item__blur {
           position: absolute;
-          inset: -24px;          /* overscan so blur edge doesn't show */
+          inset: -16px 0;         /* overscan top/bottom only */
           background-image: var(--bg-src, none);
           background-size: cover;
           background-position: center;
-          filter: blur(22px) brightness(0.65) saturate(1.15);
+          filter: blur(20px) brightness(0.65) saturate(1.1);
           z-index: 0;
-          transform: scale(1.08); /* absorbs the extra inset */
           pointer-events: none;
         }
 
@@ -347,11 +347,8 @@ export default function GalleryStripSection() {
           display: block;
           position: relative;
           z-index: 1;
-          object-fit: contain;    /* show full image — no cropping */
-          width: 100%;
-          height: 100%;
-          padding: 10px;          /* slight breathing room inside card */
-          box-sizing: border-box;
+          height: 100%;           /* fills the fixed card height */
+          width: auto;            /* naturally proportional — no cropping, no dead space */
           transition: transform 550ms ease;
           user-select: none;
           pointer-events: none;
@@ -445,12 +442,9 @@ export default function GalleryStripSection() {
         }
         .gs-cta-btn:hover .gs-cta-btn__arrow { transform: translateX(5px); }
 
-        /* ── Mobile ≤639px: one image dominates ── */
+        /* ── Mobile ≤639px ── */
         @media (max-width: 639px) {
-          .gs-item {
-            width: calc(83vw);
-            height: calc(83vw * 0.68);
-          }
+          .gs-item { height: 240px; }
           .gs-arrow {
             width: 40px;
             height: 40px;
@@ -459,22 +453,14 @@ export default function GalleryStripSection() {
           .gs-arrow--next { right: 8px; }
         }
 
-        /* ── Tablet 640–1023px: main + sneak peek ── */
+        /* ── Tablet 640–1023px ── */
         @media (min-width: 640px) and (max-width: 1023px) {
-          .gs-item {
-            width: 64vw;
-            height: calc(64vw * 0.66);
-          }
+          .gs-item { height: 300px; }
         }
 
-        /* ── Laptop ≥1024px: spacious sneak peek ── */
+        /* ── Laptop ≥1024px ── */
         @media (min-width: 1024px) {
-          .gs-item {
-            width: 52vw;
-            height: calc(52vw * 0.62);
-            max-width: 700px;
-            max-height: 460px;
-          }
+          .gs-item { height: 360px; }
         }
       `}</style>
     </section>
