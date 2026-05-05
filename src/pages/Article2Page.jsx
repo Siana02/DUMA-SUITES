@@ -1,62 +1,17 @@
 import { useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Star, ThumbsUp, Flame, Fish, Anchor, Wheat, ChefHat, UtensilsCrossed, Quote as QuoteIcon, Lightbulb } from 'lucide-react'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { getT } from '../i18n/translations.js'
 import heroImg     from '../assets/coastal-swahili-dishes.webp'
 import cheetahIcon from '../assets/cheetah.png'
 import prevArticleImg from '../assets/dolphin-watching-watamu.jpg'
 
-const DISHES = [
-  {
-    number: '01',
-    title: 'Pilau',
-    pullQuote: 'No coastal celebration is complete without it — fragrant basmati rice perfected on the Kenyan coast for centuries.',
-    badges: ['Swahili Classic', 'Slow Cooked', 'Aromatic Spices', 'Festive Dish', 'Must Try'],
-    icon: Flame,
-    desc: `Pilau is the soul of Swahili cuisine — fragrant basmati rice slow-cooked with a rich blend of whole spices including cardamom, cinnamon, cloves, cumin and black pepper. Often prepared with tender beef or chicken that has been marinated overnight, the result is an aromatic, deeply savoury rice dish that has been perfected on the Kenyan coast for centuries. No coastal celebration is complete without it.`,
-  },
-  {
-    number: '02',
-    title: 'Mchuzi wa Samaki',
-    pullQuote: 'A silky, golden curry best enjoyed with white rice — and ideally eaten with a view of the Indian Ocean.',
-    badges: ['Coconut Fish Curry', 'Fresh Daily Catch', 'Indian Ocean Fresh', 'Mild–Medium Heat', 'Swahili Coast'],
-    icon: Fish,
-    desc: `Coastal Kenya's quintessential fish curry — mchuzi wa samaki is made with whatever the fishermen bring in that morning. Fresh snapper, kingfish or barracuda is simmered in a base of tomatoes, onions, garlic, ginger, turmeric and the essential ingredient: coconut milk. The result is a silky, golden curry with a gentle heat that is best enjoyed with white rice or fresh chapati, and ideally eaten with a view of the Indian Ocean.`,
-  },
-  {
-    number: '03',
-    title: 'Safari Blue Seafood Feast',
-    pullQuote: 'Eating with your hands in the Indian Ocean breeze makes this a meal you will never forget.',
-    badges: ['Beachside Dining', 'Charcoal Grilled', 'Lobster & Octopus', 'Sandbank Island', 'Group Experience'],
-    icon: Anchor,
-    desc: `If you join the legendary Safari Blue excursion, you will experience one of the Kenyan coast's most celebrated dining traditions — a fresh seafood feast cooked on a sandbank island. Lobster, calamari, octopus, prawns, crab and fresh fish are grilled over charcoal or cooked in coconut broth, accompanied by Swahili sides and cold drinks. Eating with your hands in the Indian Ocean breeze makes this a meal you will never forget.`,
-  },
-  {
-    number: '04',
-    title: 'Coconut Rice (Wali wa Nazi)',
-    pullQuote: 'Paired with grilled fish or a spoonful of mango achaar — comfort food at its most elegant.',
-    badges: ['Everyday Staple', 'Fresh Coconut Milk', 'Vegan Friendly', 'Comfort Food', 'Side Dish'],
-    icon: Wheat,
-    desc: `Wali wa nazi — rice cooked in fresh coconut milk — is the everyday companion to almost every Swahili coastal dish. The coconut milk is squeezed fresh from grated coconut flesh, giving the rice a subtle sweetness, creaminess and a perfume unlike anything you can achieve with ordinary water-cooked rice. Paired with grilled fish, a vegetable curry or simply with a spoonful of mango achaar, it is comfort food at its most elegant.`,
-  },
-  {
-    number: '05',
-    title: 'Biryani',
-    pullQuote: 'A benchmark by which local cooks measure their mastery — the Swahili coast biryani is in a class of its own.',
-    badges: ['Celebration Dish', 'Layered Saffron Rice', 'Slow Cooked', 'Arab & Indian Influence', 'Festive'],
-    icon: ChefHat,
-    desc: `The Swahili coast biryani is distinct from its South Asian cousins — richer in spice, more intensely fragrant, with layers of saffron-coloured rice interlaced with slow-cooked spiced meat (usually goat or chicken), fried onions, raisins and a drizzle of ghee. Served on festive occasions and at weddings, a good coastal biryani is the benchmark by which local cooks measure their mastery.`,
-  },
-  {
-    number: '06',
-    title: 'Grilled Octopus (Pweza)',
-    pullQuote: 'The outside chars beautifully while the inside stays tender — a dish you will seek out at every opportunity.',
-    badges: ['Charcoal Grilled', 'Fresh Daily', 'Lime & Coconut', 'Street Food Icon', 'Local Favourite'],
-    icon: UtensilsCrossed,
-    desc: `Along Watamu's shores, fishermen haul in octopus on their daily runs. Tenderised by hand on the rocks at low tide, the octopus is then marinated in lime, garlic, chilli, coconut milk and spices before being grilled directly on charcoal. The outside chars beautifully while the inside stays tender and juicy. Served with a squeeze of fresh lime and a simple tomato salsa, pweza wa kukaanga is a dish you will seek out at every opportunity.`,
-  },
-]
+// Static per-dish icons (non-translatable)
+const DISH_ICONS = [Flame, Fish, Anchor, Wheat, ChefHat, UtensilsCrossed]
+const DISH_NUMBERS = ['01', '02', '03', '04', '05', '06']
 
 function CheetahDivider() {
   return (
@@ -68,49 +23,26 @@ function CheetahDivider() {
   )
 }
 
-const QUOTES = [
-  {
-    text: "The pilau at the restaurant recommended by Duma's team was unlike anything I'd ever tasted. Pure coastal magic — we went back three evenings in a row.",
-    author: "Aarav K.",
-    origin: "Mumbai",
-    platform: "TripAdvisor",
-    variant: "teal",
-  },
-  {
-    text: "Safari Blue's octopus on the sandbank — charcoal-grilled, fresh from the ocean, eaten with our hands. We still talk about it two years later.",
-    author: "Emma L.",
-    origin: "Paris",
-    platform: "Google",
-    variant: "espresso",
-  },
-  {
-    text: "Wali wa nazi alongside a coconut fish curry, looking out at the Indian Ocean. I have been trying to recreate it at home ever since.",
-    author: "Tom & Nina R.",
-    origin: "Cape Town",
-    platform: "Booking.com",
-    variant: "sand",
-  },
-]
-
-const FOOD_TIPS = [
-  "Ask the Duma Suites team for their current favourite local restaurant — recommendations change with the season.",
-  "The freshest pilau in Watamu is found at small family-run eateries, not tourist-facing restaurants.",
-  "Fresh coconut milk for wali wa nazi should always be squeezed the same day — tinned coconut simply cannot match it.",
-]
-
 export default function Article2Page() {
   const heroRef = useRef(null)
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
   const heroImgY = useTransform(scrollYProgress, [0, 1], ['0%', '10%'])
+  const { lang } = useLanguage()
+  const a2 = getT(lang).article2
+  const navigate = useNavigate()
+
+  // Merge static icons/numbers with translated dish data
+  const dishes = a2.dishes.map((dish, i) => ({
+    ...dish,
+    number: DISH_NUMBERS[i],
+    icon: DISH_ICONS[i],
+  }))
 
   return (
     <>
       <Helmet>
-        <title>Coastal Swahili Dishes You Absolutely Need to Try | Duma Suites Stories</title>
-        <meta
-          name="description"
-          content="Discover the extraordinary culinary traditions of the Kenyan Swahili coast — from fragrant pilau and coconut fish curry to the legendary Safari Blue seafood feast."
-        />
+        <title>{a2.metaTitle}</title>
+        <meta name="description" content={a2.metaDesc} />
       </Helmet>
 
       <main style={{ paddingTop: 80 }}>
@@ -128,7 +60,7 @@ export default function Article2Page() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
             >
-              Food &amp; Culture
+              {a2.heroEyebrow}
             </motion.span>
             <motion.h1
               className="art2-hero__title"
@@ -136,7 +68,7 @@ export default function Article2Page() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.22 }}
             >
-              Coastal Swahili Dishes You Absolutely Need to Try
+              {a2.heroTitle}
             </motion.h1>
             <motion.p
               className="art2-hero__sub"
@@ -144,7 +76,7 @@ export default function Article2Page() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.36 }}
             >
-              A culinary journey along the Kenyan coast — curated by Duma Suites
+              {a2.heroSub}
             </motion.p>
           </div>
         </div>
@@ -162,7 +94,7 @@ export default function Article2Page() {
               <Star size={24} className="art2-proof__icon" aria-hidden="true" />
               <div>
                 <span className="art2-proof__value">4.9 / 5</span>
-                <span className="art2-proof__label">TripAdvisor Rating</span>
+                <span className="art2-proof__label">{a2.proofRating}</span>
               </div>
             </motion.div>
             <motion.div
@@ -175,7 +107,7 @@ export default function Article2Page() {
               <ThumbsUp size={24} className="art2-proof__icon" aria-hidden="true" />
               <div>
                 <span className="art2-proof__value">98%</span>
-                <span className="art2-proof__label">Would Return</span>
+                <span className="art2-proof__label">{a2.proofReturn}</span>
               </div>
             </motion.div>
           </div>
@@ -191,7 +123,7 @@ export default function Article2Page() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.65 }}
             >
-              The Flavours of the Swahili Coast
+              {a2.introTitle}
             </motion.h2>
             <motion.p
               className="art2-intro__text"
@@ -200,11 +132,7 @@ export default function Article2Page() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.7 }}
             >
-              The Kenyan coast carries within it one of the world's most distinctive culinary traditions.
-              Born from centuries of Indian Ocean trade, the Swahili kitchen blends Arab spice routes,
-              Indian aromatics, Persian rice techniques and African coastal ingredients into a cuisine
-              that is at once deeply rooted and endlessly surprising. Here are six dishes you must seek
-              out during your stay in Watamu.
+              {a2.introText}
             </motion.p>
             <motion.div
               className="art2-concierge-note"
@@ -213,10 +141,9 @@ export default function Article2Page() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.65, delay: 0.15 }}
             >
-              <span className="art2-concierge-note__label">From Our Concierge</span>
+              <span className="art2-concierge-note__label">{a2.conciergeLabel}</span>
               <p className="art2-concierge-note__text">
-                Our team can recommend the best local restaurants in Watamu and arrange transport to the most
-                authentic spots. For the Safari Blue seafood feast, speak to us at check-in.
+                {a2.conciergeText}
               </p>
             </motion.div>
           </div>
@@ -225,9 +152,9 @@ export default function Article2Page() {
         {/* Guest voices */}
         <section className="art2-voices section">
           <div className="container art2-voices__inner">
-            <span className="art2-voices__eyebrow">What Our Guests Say</span>
+            <span className="art2-voices__eyebrow">{a2.voicesEyebrow}</span>
             <div className="art2-voices__grid">
-              {QUOTES.map((q, i) => (
+              {a2.quotes.map((q, i) => (
                 <motion.blockquote
                   key={i}
                   className={`art2-voice art2-voice--${q.variant}`}
@@ -252,7 +179,7 @@ export default function Article2Page() {
         {/* Dish list */}
         <section className="art2-list section section--secondary">
           <div className="container art2-list__inner">
-            {DISHES.map((dish, i) => (
+            {dishes.map((dish, i) => (
               <motion.div
                 key={i}
                 className="art2-item"
@@ -286,10 +213,10 @@ export default function Article2Page() {
               transition={{ duration: 0.65 }}
             >
               <span className="art2-tips__label">
-                <Lightbulb size={14} aria-hidden="true" /> Concierge Food Tips
+                <Lightbulb size={14} aria-hidden="true" /> {a2.tipsLabel}
               </span>
               <ul className="art2-tips__list">
-                {FOOD_TIPS.map((tip, i) => (
+                {a2.foodTips.map((tip, i) => (
                   <li key={i} className="art2-tips__item">
                     <Lightbulb size={13} className="art2-tips__item-icon" aria-hidden="true" />
                     <span>{tip}</span>
@@ -310,17 +237,16 @@ export default function Article2Page() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.7 }}
             >
-              <h3 className="art2-closing__title">Taste the Coast</h3>
+              <h3 className="art2-closing__title">{a2.closingTitle}</h3>
               <p className="art2-closing__text">
-                Our concierge team can recommend the best local restaurants in Watamu and arrange
-                transport to the most authentic spots. For the full Safari Blue experience and its
-                unforgettable seafood feast, speak to us when you book your stay.
+                {a2.closingText}
               </p>
               <a
-                href="/#contact"
+                href="/contact"
                 className="art2-closing__cta btn btn-primary"
+                onClick={e => { e.preventDefault(); navigate('/contact') }}
               >
-                Plan Your Stay
+                {a2.closingCta}
                 <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
               </a>
             </motion.div>
@@ -342,16 +268,16 @@ export default function Article2Page() {
                 <div className="art2-prev-card__img-wrap">
                   <img src={prevArticleImg} alt="Top activities on the Watamu coast" className="art2-prev-card__img" loading="lazy" />
                   <div className="art2-prev-card__overlay" aria-hidden="true" />
-                  <span className="art2-prev-card__category">Travel Guide</span>
+                  <span className="art2-prev-card__category">{a2.prevCategory}</span>
                 </div>
                 <div className="art2-prev-card__body">
-                  <span className="art2-prev-card__eyebrow">Also in Stories &amp; Guides</span>
-                  <h3 className="art2-prev-card__title">Top Activities on the Watamu Coast</h3>
+                  <span className="art2-prev-card__eyebrow">{a2.prevEyebrow}</span>
+                  <h3 className="art2-prev-card__title">{a2.prevTitle}</h3>
                   <p className="art2-prev-card__excerpt">
-                    From the legendary Safari Blue full-day excursion and dolphin watching to the ancient Gedi Ruins and the Mida Creek mangrove boardwalk — Watamu's finest experiences, curated for you.
+                    {a2.prevExcerpt}
                   </p>
                   <span className="art2-prev-card__cta">
-                    Read the Guide <ArrowRight size={13} strokeWidth={1.5} aria-hidden="true" />
+                    {a2.prevCta} <ArrowRight size={13} strokeWidth={1.5} aria-hidden="true" />
                   </span>
                 </div>
               </Link>
@@ -362,7 +288,7 @@ export default function Article2Page() {
         {/* Coming soon */}
         <section className="art2-coming-soon section section--secondary">
           <div className="container">
-            <span className="art2-cs__eyebrow">More From Duma Suites Stories</span>
+            <span className="art2-cs__eyebrow">{a2.moreFromEyebrow}</span>
             <div className="art2-cs__grid">
               <motion.div
                 className="art2-cs__card"
@@ -371,9 +297,9 @@ export default function Article2Page() {
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6 }}
               >
-                <span className="art2-cs__badge">Coming Soon</span>
-                <h4 className="art2-cs__title">Watamu&apos;s Best Restaurants: A Local Guide</h4>
-                <p className="art2-cs__desc">From hidden family kitchens to the best sunset seafood terrace — our concierge&apos;s hand-picked list.</p>
+                <span className="art2-cs__badge">{a2.comingSoon}</span>
+                <h4 className="art2-cs__title">{a2.cs1Title}</h4>
+                <p className="art2-cs__desc">{a2.cs1Desc}</p>
                 <div className="art2-cs__pills">
                   <span className="art2-cs__pill art2-cs__pill--food">Food</span>
                   <span className="art2-cs__pill art2-cs__pill--local">Local Picks</span>
@@ -387,9 +313,9 @@ export default function Article2Page() {
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                <span className="art2-cs__badge">Coming Soon</span>
-                <h4 className="art2-cs__title">A Morning at the Malindi Fish Market</h4>
-                <p className="art2-cs__desc">The sights, smells and stories of the most vibrant fish market on the Kenyan coast — a must for food lovers.</p>
+                <span className="art2-cs__badge">{a2.comingSoon}</span>
+                <h4 className="art2-cs__title">{a2.cs2Title}</h4>
+                <p className="art2-cs__desc">{a2.cs2Desc}</p>
                 <div className="art2-cs__pills">
                   <span className="art2-cs__pill art2-cs__pill--food">Seafood</span>
                   <span className="art2-cs__pill art2-cs__pill--travel">Travel</span>
@@ -405,10 +331,10 @@ export default function Article2Page() {
           <div className="container art2-nav__inner">
             <Link to="/blog/top-5-activities-watamu" className="art2-nav__back">
               <ArrowLeft size={16} strokeWidth={1.5} aria-hidden="true" />
-              Previous: Top 5 Activities
+              {a2.prevArticle}
             </Link>
             <Link to="/blog" className="art2-nav__next">
-              All Stories &amp; Guides
+              {a2.backToStories}
               <ArrowRight size={16} strokeWidth={1.5} aria-hidden="true" />
             </Link>
           </div>

@@ -3,9 +3,13 @@ import { useInView } from 'react-intersection-observer'
 import { gsap } from 'gsap'
 import { ArrowRight } from 'lucide-react'
 import cheetahIcon from '../assets/cheetah.png'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { getT } from '../i18n/translations.js'
 
 export default function CTASection() {
   const { ref, inView } = useInView({ threshold: 0.3, triggerOnce: true })
+  const { lang } = useLanguage()
+  const t = getT(lang).cta
   const eyebrowRef = useRef(null)
   const dividerRef = useRef(null)
   const headingRef = useRef(null)
@@ -30,7 +34,7 @@ export default function CTASection() {
 
       <div className="cta-section__inner">
         <span ref={eyebrowRef} className="cta-section__eyebrow" style={{ opacity: 0 }}>
-          Watamu Awaits
+          {t.eyebrow}
         </span>
 
         <div ref={dividerRef} className="cta-section__divider" aria-hidden="true" style={{ opacity: 0 }}>
@@ -44,24 +48,22 @@ export default function CTASection() {
           className="cta-section__heading"
           style={{ opacity: 0 }}
         >
-          Begin Your
+          {t.headingLine1}
           <br />
-          <em>Coastal Story</em>
+          <em>{t.headingLine2}</em>
         </h2>
 
         <p ref={subRef} className="cta-section__sub" style={{ opacity: 0 }}>
-          Every journey to Duma Suites is unique. Let us craft yours — from
-          suite selection to bespoke experiences. Reach out and our team will
-          respond within 24 hours.
+          {t.sub}
         </p>
 
         <div ref={btnRef} className="cta-section__btns" style={{ opacity: 0 }}>
           <a href="mailto:reservations@dumasuites.com" className="cta-section__btn cta-section__btn--primary">
-            Make a Reservation
+            {t.btn1}
             <ArrowRight size={14} strokeWidth={2} />
           </a>
           <a href="https://wa.me/254710933025" target="_blank" rel="noopener noreferrer" className="cta-section__btn cta-section__btn--outline">
-            WhatsApp Us
+            {t.btn2}
           </a>
         </div>
       </div>

@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Waves, BedDouble, Leaf, Star } from 'lucide-react'
 import { useInView } from 'react-intersection-observer'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { getT } from '../i18n/translations.js'
 
 import poolsImg   from '../assets/pools-of-serenity.JPEG'
 import swahiliImg from '../assets/swahili-elegance.JPEG'
@@ -10,72 +12,32 @@ import luxuryImg  from '../assets/effortless-luxury.JPEG'
 import cheetahIcon from '../assets/cheetah.png'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Card data
+// Static card metadata (images & icons — non-translatable)
 // ─────────────────────────────────────────────────────────────────────────────
-const CARDS = [
+const CARD_META = [
   {
     id: 'pools',
     Icon: Waves,
-    title: 'Pools of Serenity',
-    points: [
-      'Infinity rooftop pool',
-      'Ground floor leisure pool',
-      'Outdoor showers',
-      'Ocean-facing poolside deck',
-      'Evening illuminated pool area',
-    ],
     image: poolsImg,
     imageAlt: 'Infinity pool at Duma Suites',
-    overlayTitle: 'Pools of Serenity',
-    overlayText: 'Dive into tranquillity above the Indian Ocean.',
   },
   {
     id: 'swahili',
     Icon: BedDouble,
-    title: 'Swahili Elegance',
-    points: [
-      'Authentic Swahili-inspired interiors',
-      'King beds with premium linens',
-      'Air conditioning & ceiling fans',
-      'Private en-suite bathrooms',
-      'Full kitchen, lounge & balcony',
-    ],
     image: swahiliImg,
     imageAlt: 'Swahili-inspired suite interior at Duma Suites',
-    overlayTitle: 'Swahili Elegance',
-    overlayText: 'Coastal craftsmanship in every detail.',
   },
   {
     id: 'nature',
     Icon: Leaf,
-    title: 'Nature & Security',
-    points: [
-      'Steps from the beach',
-      'Lush tropical gardens',
-      '24/7 on-site security',
-      'Private parking',
-      'Serene natural surroundings',
-    ],
     image: natureImg,
     imageAlt: 'Tropical gardens and beach proximity at Duma Suites',
-    overlayTitle: 'Nature & Security',
-    overlayText: 'Peace of mind, naturally.',
   },
   {
     id: 'luxury',
     Icon: Star,
-    title: 'Effortless Luxury',
-    points: [
-      'Daily housekeeping & turndown',
-      'Laundry service',
-      'High-speed Wi-Fi throughout',
-      'Seamless online booking',
-      'Curated guest experiences',
-    ],
     image: luxuryImg,
     imageAlt: 'Effortless luxury experience at Duma Suites',
-    overlayTitle: 'Effortless Luxury',
-    overlayText: 'Where every need is anticipated.',
   },
 ]
 
@@ -157,7 +119,7 @@ function HighlightCard({ card, index }) {
           <div className="sh-card__overlay">
             <h3 className="sh-card__overlay-title">{card.overlayTitle}</h3>
             <p  className="sh-card__overlay-text">{card.overlayText}</p>
-            <p className="sh-card__hint" aria-hidden="true">tap to see highlights ↩</p>
+            <p className="sh-card__hint" aria-hidden="true">{card.tapHint}</p>
           </div>
         </div>
 
@@ -170,6 +132,16 @@ function HighlightCard({ card, index }) {
 // Section
 // ─────────────────────────────────────────────────────────────────────────────
 export default function SuiteHighlightsSection() {
+  const { lang } = useLanguage()
+  const sh = getT(lang).suiteHighlights
+
+  // Merge static metadata (images/icons) with translated text
+  const cards = CARD_META.map((meta, i) => ({
+    ...meta,
+    ...sh.cards[i],
+    tapHint: sh.tapHint,
+  }))
+
   return (
     <section className="sh-section section section--secondary" id="suite-highlights">
 
@@ -178,7 +150,7 @@ export default function SuiteHighlightsSection() {
 
         {/* Eyebrow */}
         <motion.span className="eyebrow sh-eyebrow" {...fadeUp(0)}>
-          Suite Highlights
+          {sh.eyebrow}
         </motion.span>
 
         {/* Cheetah icon + fading lines */}
@@ -190,19 +162,19 @@ export default function SuiteHighlightsSection() {
 
         {/* Main title */}
         <motion.h2 className="section-title sh-title" {...fadeUp(0.22)}>
-          The Duma Experience
+          {sh.title}
         </motion.h2>
 
         {/* Subtitle / tap prompt */}
         <motion.p className="sh-subtitle" {...fadeUp(0.32)}>
-          Tap a card to discover its highlights
+          {sh.subtitle}
         </motion.p>
 
       </div>
 
       {/* ── Card grid ── */}
       <div className="sh-grid">
-        {CARDS.map((card, i) => (
+        {cards.map((card, i) => (
           <HighlightCard key={card.id} card={card} index={i} />
         ))}
       </div>
@@ -216,8 +188,8 @@ export default function SuiteHighlightsSection() {
         transition={{ duration: 0.7, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
       >
         <a href="#suites" className="sh-cta">
-          Find Your Suite
-          <span className="sh-cta__arrow" aria-hidden="true">→</span>
+          {sh.viewAll}
+          <span className="sh-cta__arrow" aria-hidden="true">&rarr;</span>
         </a>
       </motion.div>
 

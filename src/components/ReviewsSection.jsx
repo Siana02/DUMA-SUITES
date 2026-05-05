@@ -5,89 +5,6 @@ import { Star, ArrowLeft, ArrowRight, PenLine } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
-const REVIEWS = [
-  {
-    id: 1,
-    rating: 5,
-    pullQuote: 'It felt like coming home.',
-    text: 'Opening the terrace doors each morning to the sight and scent of the Indian Ocean was nothing short of magical. The staff remembered our names from day one — every detail was thoughtful, warm and wonderfully personal.',
-    author: 'Sarah & James O.',
-    origin: 'London, UK',
-    initials: 'SJ',
-    source: 'Google',
-  },
-  {
-    id: 2,
-    rating: 5,
-    pullQuote: 'Absolutely unforgettable.',
-    text: 'The suite was beyond anything we had imagined. Watching the sunset from our private terrace with a glass of Kenyan wine, the horizon glowing amber — a memory I will carry for years.',
-    author: 'Aiko T.',
-    origin: 'Tokyo, Japan',
-    initials: 'AT',
-    source: 'Google',
-  },
-  {
-    id: 3,
-    rating: 5,
-    pullQuote: 'Duma Suites has raised the bar.',
-    text: 'From the morning light on the terrace to the evening by the pool, every touch was thoughtful. This is East Africa\'s coastal luxury at its finest — refined, soulful and deeply considered.',
-    author: 'David M.',
-    origin: 'Nairobi, Kenya',
-    initials: 'DM',
-    source: 'Google',
-  },
-  {
-    id: 4,
-    rating: 5,
-    pullQuote: 'True hospitality, redefined.',
-    text: 'The concierge arranged a private snorkelling tour and a sunset dhow cruise — both extraordinary. This is a place that genuinely understands what hospitality means. We left already planning our return.',
-    author: 'Priya & Rajan K.',
-    origin: 'Dubai, UAE',
-    initials: 'PR',
-    source: 'TripAdvisor',
-  },
-  {
-    id: 5,
-    rating: 5,
-    pullQuote: 'A hidden gem on the Kenyan coast.',
-    text: 'The infinity pool views at sunrise are unlike anything I have experienced anywhere in the world. The silence, the light, the attentive service — it all adds up to something truly rare. Will absolutely return.',
-    author: 'Marco B.',
-    origin: 'Rome, Italy',
-    initials: 'MB',
-    source: 'TripAdvisor',
-  },
-  {
-    id: 6,
-    rating: 5,
-    pullQuote: 'Pure serenity from the first breath.',
-    text: 'We celebrated our anniversary here and every moment exceeded our expectations. The suite was immaculate, the setting was exceptional and the staff went quietly above and beyond in ways we still talk about.',
-    author: 'Céleste & Henri D.',
-    origin: 'Paris, France',
-    initials: 'CH',
-    source: 'Google',
-  },
-  {
-    id: 7,
-    rating: 5,
-    pullQuote: 'Beautiful, new and well-built.',
-    text: 'Beautiful, new and well-built residence. Well located with excellent access to everything Watamu has to offer. An excellent experience from start to finish.',
-    author: 'Renzo S.',
-    origin: 'Italy',
-    initials: 'RS',
-    source: 'Google',
-  },
-  {
-    id: 8,
-    rating: 5,
-    pullQuote: 'Top level.',
-    text: 'Top level. Everything about the stay — the suite, the service, the location — was exceptional. Exactly what you hope for and more.',
-    author: 'Gianpietro C.',
-    origin: 'Italy',
-    initials: 'GC',
-    source: 'Google',
-  },
-]
-
 const AUTO_ADVANCE_MS = 9000
 
 /* ── Star rating ─────────────────────────────────────────── */
@@ -157,6 +74,7 @@ function CredibilityBar() {
 export default function ReviewsSection() {
   const { lang } = useLanguage()
   const t = getT(lang)
+  const reviews = t.reviews.items
 
   const [index, setIndex]       = useState(0)
   const [direction, setDirection] = useState(1)
@@ -167,19 +85,19 @@ export default function ReviewsSection() {
 
   const go = (dir) => {
     setDirection(dir)
-    setIndex(prev => (prev + dir + REVIEWS.length) % REVIEWS.length)
+    setIndex(prev => (prev + dir + reviews.length) % reviews.length)
   }
 
   useEffect(() => {
     if (!sectionInView || paused) return
     const timer = setInterval(() => {
       setDirection(1)
-      setIndex(prev => (prev + 1) % REVIEWS.length)
+      setIndex(prev => (prev + 1) % reviews.length)
     }, AUTO_ADVANCE_MS)
     return () => clearInterval(timer)
-  }, [sectionInView, paused])
+  }, [sectionInView, paused, reviews.length])
 
-  const review = REVIEWS[index]
+  const review = reviews[index]
 
   return (
     <section
@@ -253,7 +171,7 @@ export default function ReviewsSection() {
 
         {/* ── Dot navigation ─────────────────────────── */}
         <div className="rv-dots" aria-label="Review navigation">
-          {REVIEWS.map((_, i) => (
+          {reviews.map((_, i) => (
             <button
               key={i}
               className={`rv-dot${i === index ? ' rv-dot--active' : ''}`}

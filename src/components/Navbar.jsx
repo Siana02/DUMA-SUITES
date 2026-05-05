@@ -24,6 +24,7 @@ export default function Navbar() {
     { label: t.nav.home,    href: '/',         isRoute: true },
     { label: t.nav.suites,  href: '/suites',   isRoute: true },
     { label: t.nav.gallery, href: '/gallery',  isRoute: true },
+    { label: t.nav.blog,    href: '/blog',     isRoute: true },
     { label: t.nav.about,   href: '/#about',   isRoute: false },
     { label: t.nav.contact, href: '/#contact', isRoute: false },
   ]
@@ -36,6 +37,9 @@ export default function Navbar() {
     } else if (location.pathname === '/gallery') {
       activeHrefRef.current = '/gallery'
       setActiveHref('/gallery')
+    } else if (location.pathname.startsWith('/blog')) {
+      activeHrefRef.current = '/blog'
+      setActiveHref('/blog')
     } else if (location.pathname === '/contact') {
       activeHrefRef.current = '/#contact'
       setActiveHref('/#contact')

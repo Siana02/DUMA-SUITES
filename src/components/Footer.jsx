@@ -5,12 +5,6 @@ import mammalImg from '../assets/mammal.png'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
-const SUITE_LINKS = [
-  { label: '1 Bedroom Suite', href: '/suites/coastal-haven' },
-  { label: '3 Bedroom Suite', href: '/suites/serenity-villa' },
-  { label: 'All Suites', href: '/suites' },
-]
-
 function TikTokIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
@@ -47,12 +41,14 @@ export default function Footer() {
   const { lang } = useLanguage()
   const t = getT(lang)
   const navigate = useNavigate()
+  const suiteLinks = t.footer.suitesLinks
 
   const EXPLORE_LINKS = [
     { label: t.footer.links.gallery,    href: '/gallery',      isRoute: true },
     { label: t.footer.links.about,      href: '/#about',       isRoute: false },
     { label: t.footer.links.faq,        href: '/#faq',         isRoute: false },
     { label: t.footer.links.excursions, href: '/#excursions',  isRoute: false },
+    { label: t.footer.links.blog,       href: '/blog',         isRoute: true },
   ]
 
   const handleRouteClick = (e, href) => {
@@ -121,7 +117,7 @@ export default function Footer() {
         <div className="footer__col">
           <h3 className="footer__col-title">{t.footer.colSuites}</h3>
           <ul className="footer__list">
-            {SUITE_LINKS.map(({ label, href }) => (
+            {suiteLinks.map(({ label, href }) => (
               <li key={href}>
                 <a href={href} onClick={e => handleRouteClick(e, href)} className="footer__link">
                   {label}
@@ -174,8 +170,8 @@ export default function Footer() {
         <div className="container footer__bottom-inner">
           <p className="footer__copy">{t.footer.copy}</p>
           <nav className="footer__legal" aria-label="Legal navigation">
-            <a href="#" className="footer__link" onClick={e => e.preventDefault()}>{t.footer.privacy}</a>
-            <a href="#" className="footer__link" onClick={e => e.preventDefault()}>{t.footer.terms}</a>
+            <a href="/privacy-policy" onClick={e => handleRouteClick(e, '/privacy-policy')} className="footer__link">{t.footer.privacy}</a>
+            <a href="/terms-of-service" onClick={e => handleRouteClick(e, '/terms-of-service')} className="footer__link">{t.footer.terms}</a>
             <a href="/house-rules" onClick={e => handleRouteClick(e, '/house-rules')} className="footer__link">
               {t.footer.houseRules}
             </a>

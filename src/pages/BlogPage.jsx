@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Clock, MapPin, BookOpen, Star, CheckCircle } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
@@ -12,10 +12,17 @@ import heroImg      from '../assets/infinity-pool-ocean-view.jpg'
 
 const ARTICLE_IMAGES = [dolphinImg, swahiliImg]
 
+const ARTICLE_META = [
+  { readTime: '8', tags: ['Travel', 'Adventure', 'Marine', 'Culture'] },
+  { readTime: '6', tags: ['Food', 'Culture', 'Swahili', 'Local'] },
+]
+
 export default function BlogPage() {
   const { lang } = useLanguage()
   const t = getT(lang)
   const art = t.articles
+  const blog = t.blog
+  const navigate = useNavigate()
 
   const featured = art.items[0]
   const rest = art.items.slice(1)
@@ -23,11 +30,8 @@ export default function BlogPage() {
   return (
     <>
       <Helmet>
-        <title>Stories & Guides | Duma Suites – Watamu</title>
-        <meta
-          name="description"
-          content="Explore travel guides, coastal culture, food stories and insider tips from the shores of Watamu — curated by the Duma Suites team."
-        />
+        <title>{blog.metaTitle}</title>
+        <meta name="description" content={blog.metaDesc} />
       </Helmet>
 
       <main style={{ paddingTop: 80 }}>
@@ -61,8 +65,42 @@ export default function BlogPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.36 }}
             >
-              Travel guides, coastal culture and insider stories from Watamu's most beloved address.
+              {blog.heroSub}
             </motion.p>
+          </div>
+        </div>
+
+        {/* Stats bar */}
+        <div className="blog-stats-bar">
+          <div className="container blog-stats-bar__inner">
+            <div className="blog-stat">
+              <BookOpen size={16} strokeWidth={1.5} />
+              <span className="blog-stat__num">2</span>
+              <span className="blog-stat__label">Guides Published</span>
+            </div>
+            <span className="blog-stat__divider" aria-hidden="true" />
+            <div className="blog-stat">
+              <MapPin size={16} strokeWidth={1.5} />
+              <span className="blog-stat__num">100%</span>
+              <span className="blog-stat__label">{blog.trustBadge1}</span>
+            </div>
+            <span className="blog-stat__divider" aria-hidden="true" />
+            <div className="blog-stat">
+              <Star size={16} strokeWidth={1.5} />
+              <span className="blog-stat__label">{blog.trustBadge3}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Trust badges row */}
+        <div className="blog-trust-row">
+          <div className="container blog-trust-row__inner">
+            {[blog.trustBadge1, blog.trustBadge2, blog.trustBadge3].map((badge, i) => (
+              <div key={i} className="blog-trust-badge">
+                <CheckCircle size={14} strokeWidth={1.5} />
+                <span>{badge}</span>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -92,11 +130,20 @@ export default function BlogPage() {
                 <div className="blog-featured-card__gradient" aria-hidden="true" />
                 <span className="blog-featured-card__badge">Featured</span>
                 <span className="blog-featured-card__category">{featured.category}</span>
+                <span className="blog-featured-card__read-time">
+                  <Clock size={11} strokeWidth={1.5} />
+                  {ARTICLE_META[0].readTime} {blog.readTimeMin}
+                </span>
               </div>
               <div className="blog-featured-card__body">
-                <span className="blog-featured-card__eyebrow">Editor's Pick</span>
+                <span className="blog-featured-card__eyebrow">{blog.editorsPick}</span>
                 <h2 className="blog-featured-card__title">{featured.title}</h2>
                 <p className="blog-featured-card__excerpt">{featured.excerpt}</p>
+                <div className="blog-featured-card__tags">
+                  {ARTICLE_META[0].tags.map(tag => (
+                    <span key={tag} className="blog-tag">{tag}</span>
+                  ))}
+                </div>
                 <Link
                   to={`/blog/${featured.slug}`}
                   className="btn btn-primary blog-featured-card__cta"
@@ -115,7 +162,7 @@ export default function BlogPage() {
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.65, delay: 0.1 }}
             >
-              &ldquo;Watamu offers a wealth of extraordinary experiences for every type of traveller.&rdquo;
+              {blog.pullQuote}
             </motion.blockquote>
           </div>
         </section>
@@ -130,7 +177,7 @@ export default function BlogPage() {
                   <img src={cheetahIcon} alt="" className="blog-cheetah-divider__icon" />
                   <span className="blog-cheetah-divider__line" />
                 </div>
-                <h2 className="blog-grid-header__title">More Stories &amp; Guides</h2>
+                <h2 className="blog-grid-header__title">{blog.moreStoriesTitle}</h2>
               </div>
 
               <div className="blog-grid">
@@ -152,9 +199,22 @@ export default function BlogPage() {
                       />
                       <div className="blog-card__gradient" aria-hidden="true" />
                       <span className="blog-card__category">{article.category}</span>
+                      {ARTICLE_META[i + 1] && (
+                        <span className="blog-card__read-time">
+                          <Clock size={10} strokeWidth={1.5} />
+                          {ARTICLE_META[i + 1].readTime} {blog.readTimeMin}
+                        </span>
+                      )}
                       <div className="blog-card__overlay-body">
                         <h2 className="blog-card__title">{article.title}</h2>
                         <p className="blog-card__excerpt">{article.excerpt}</p>
+                        {ARTICLE_META[i + 1] && (
+                          <div className="blog-card__tags">
+                            {ARTICLE_META[i + 1].tags.map(tag => (
+                              <span key={tag} className="blog-tag blog-tag--dark">{tag}</span>
+                            ))}
+                          </div>
+                        )}
                         <div className="blog-card__cta-wrap">
                           <Link
                             to={`/blog/${article.slug}`}
@@ -183,15 +243,19 @@ export default function BlogPage() {
               viewport={{ once: true, amount: 0.35 }}
               transition={{ duration: 0.65 }}
             >
-              <span className="blog-concierge__label">From Our Concierge</span>
-              <p className="blog-concierge__text">
-                Our team personally curates these experiences and stories for guests staying at Duma Suites.
-                Every guide you read here is drawn from local knowledge and lived experience on the Watamu coast.
-              </p>
-              <Link to="/#contact" className="blog-concierge__cta btn btn-primary">
-                Plan Your Stay
+              <div className="blog-concierge__icon-wrap" aria-hidden="true">
+                <img src={cheetahIcon} alt="" className="blog-concierge__icon" />
+              </div>
+              <span className="blog-concierge__label">{blog.conciergeLabel}</span>
+              <p className="blog-concierge__text">{blog.conciergeText}</p>
+              <a
+                href="/contact"
+                className="blog-concierge__cta btn btn-primary"
+                onClick={e => { e.preventDefault(); navigate('/contact') }}
+              >
+                {blog.conciergeCta}
                 <ArrowRight size={14} strokeWidth={1.5} aria-hidden="true" />
-              </Link>
+              </a>
             </motion.div>
           </div>
         </section>
@@ -253,6 +317,98 @@ export default function BlogPage() {
           line-height: 1.7;
           max-width: 520px;
           margin-inline: auto;
+        }
+
+        /* ── Stats bar ── */
+        .blog-stats-bar {
+          background: var(--color-espresso);
+          padding: 14px 0;
+        }
+        .blog-stats-bar__inner {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0;
+          flex-wrap: wrap;
+        }
+        .blog-stat {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          color: rgba(255,255,255,0.85);
+          padding: 4px 28px;
+        }
+        .blog-stat svg {
+          color: var(--color-teal);
+          flex-shrink: 0;
+        }
+        .blog-stat__num {
+          font-family: var(--font-nav);
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: #fff;
+        }
+        .blog-stat__label {
+          font-family: var(--font-body);
+          font-size: 0.78rem;
+          color: rgba(255,255,255,0.72);
+        }
+        .blog-stat__divider {
+          width: 1px;
+          height: 28px;
+          background: rgba(255,255,255,0.18);
+          flex-shrink: 0;
+        }
+
+        /* ── Trust badges row ── */
+        .blog-trust-row {
+          background: rgba(88,176,196,0.06);
+          border-bottom: 1px solid rgba(88,176,196,0.15);
+          padding: 10px 0;
+        }
+        .blog-trust-row__inner {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+          flex-wrap: wrap;
+        }
+        .blog-trust-badge {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-family: var(--font-nav);
+          font-size: 0.6rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: var(--color-teal);
+        }
+        .blog-trust-badge svg {
+          flex-shrink: 0;
+        }
+
+        /* ── Tags ── */
+        .blog-tag {
+          display: inline-block;
+          font-family: var(--font-nav);
+          font-size: 0.52rem;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--color-espresso);
+          background: rgba(86,51,17,0.1);
+          border: 1px solid rgba(86,51,17,0.18);
+          padding: 3px 10px;
+          border-radius: 100px;
+        }
+        .blog-tag--dark {
+          color: rgba(255,255,255,0.85);
+          background: rgba(255,255,255,0.12);
+          border-color: rgba(255,255,255,0.2);
+        }
+        .blog-featured-card__tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
         }
 
         /* ── Cheetah divider ── */
@@ -340,6 +496,22 @@ export default function BlogPage() {
           background: var(--color-teal);
           padding: 4px 12px;
           border-radius: 100px;
+        }
+        .blog-featured-card__read-time {
+          position: absolute;
+          bottom: 14px;
+          right: 14px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          font-family: var(--font-nav);
+          font-size: 0.55rem;
+          letter-spacing: 0.1em;
+          color: rgba(255,255,255,0.88);
+          background: rgba(0,0,0,0.45);
+          padding: 4px 10px;
+          border-radius: 100px;
+          backdrop-filter: blur(4px);
         }
         .blog-featured-card__body {
           background: var(--color-bg-primary);
@@ -470,6 +642,23 @@ export default function BlogPage() {
           border-radius: 100px;
           z-index: 2;
         }
+        .blog-card__read-time {
+          position: absolute;
+          top: 14px;
+          right: 14px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          font-family: var(--font-nav);
+          font-size: 0.52rem;
+          letter-spacing: 0.1em;
+          color: rgba(255,255,255,0.88);
+          background: rgba(0,0,0,0.45);
+          padding: 3px 10px;
+          border-radius: 100px;
+          z-index: 2;
+          backdrop-filter: blur(4px);
+        }
         .blog-card__overlay-body {
           position: relative;
           z-index: 2;
@@ -494,6 +683,11 @@ export default function BlogPage() {
           -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
           overflow: hidden;
+        }
+        .blog-card__tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 5px;
         }
         .blog-card__cta-wrap {
           display: flex;
@@ -532,6 +726,22 @@ export default function BlogPage() {
           border-radius: 4px;
           padding: clamp(24px, 3.5vw, 44px) clamp(20px, 4vw, 52px);
         }
+        .blog-concierge__icon-wrap {
+          width: 48px;
+          height: 48px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(88,176,196,0.1);
+          border-radius: 50%;
+          border: 1px solid rgba(88,176,196,0.3);
+        }
+        .blog-concierge__icon {
+          width: 28px;
+          height: 28px;
+          object-fit: contain;
+          opacity: 0.8;
+        }
         .blog-concierge__label {
           font-family: var(--font-nav);
           font-size: 0.58rem;
@@ -566,6 +776,12 @@ export default function BlogPage() {
           }
           .blog-card__img-wrap {
             height: clamp(300px, 70vw, 380px);
+          }
+          .blog-stats-bar__inner {
+            gap: 0;
+          }
+          .blog-stat {
+            padding: 4px 14px;
           }
         }
       `}</style>
