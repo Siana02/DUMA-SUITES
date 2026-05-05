@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
-// Ambient blurred background — served at two resolutions via vite-imagetools (WebP).
-import ambientSmall from '../assets/outside-view2.jpeg?w=640&format=webp&quality=92'
-import ambientLarge from '../assets/outside-view2.jpeg?w=1920&format=webp&quality=90'
-
 // Cinematic image sequence (right panel, desktop)
 import seqImg1 from '../assets/arielview1.jpg?w=1920&format=webp&quality=90'
 import seqImg2 from '../assets/outside-view2.jpeg?w=1920&format=webp&quality=90'
 import seqImg3 from '../assets/up-view.jpg?w=1920&format=webp&quality=90'
 import seqImg4 from '../assets/outside-view.jpg?w=1920&format=webp&quality=90'
+
+// Ambient blurred background — one per sequence image so the left panel syncs with the right
+import ambientImg1 from '../assets/arielview1.jpg?w=1280&format=webp&quality=80'
+import ambientImg2 from '../assets/outside-view2.jpeg?w=1280&format=webp&quality=80'
+import ambientImg3 from '../assets/up-view.jpg?w=1280&format=webp&quality=80'
+import ambientImg4 from '../assets/outside-view.jpg?w=1280&format=webp&quality=80'
+
+const AMBIENT_IMAGES = [ambientImg1, ambientImg2, ambientImg3, ambientImg4]
 
 // Sequence order — all zoom-out per design spec
 const SEQUENCE = [
@@ -85,16 +89,15 @@ export default function HeroSection({ ready = false }) {
         Mobile   → sits at z-index 0 behind the cover-fill cinematic images (not visible).
       */}
       <div className="hero__ambient" aria-hidden="true">
-        <picture>
-          <source media="(max-width: 640px)" srcSet={ambientSmall} type="image/webp" />
-          <source srcSet={ambientLarge} type="image/webp" />
+        {AMBIENT_IMAGES.map((src, idx) => (
           <img
-            className="hero__ambient-img"
-            src={ambientLarge}
+            key={idx}
+            className={`hero__ambient-img${activeIdx === idx ? ' hero__ambient-img--active' : ''}`}
+            src={src}
             alt=""
             draggable={false}
           />
-        </picture>
+        ))}
         <div className="hero__ambient-overlay" />
       </div>
 
@@ -227,6 +230,8 @@ export default function HeroSection({ ready = false }) {
           overflow: hidden;
         }
         .hero__ambient-img {
+          position: absolute;
+          inset: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
@@ -235,6 +240,11 @@ export default function HeroSection({ ready = false }) {
           image-rendering: auto;
           pointer-events: none;
           user-select: none;
+          opacity: 0;
+          transition: opacity 1.4s ease;
+        }
+        .hero__ambient-img--active {
+          opacity: 1;
         }
         .hero__ambient-overlay {
           position: absolute;

@@ -14,6 +14,7 @@ import AboutPage from './pages/AboutPage'
 import BlogPage from './pages/BlogPage'
 import Article1Page from './pages/Article1Page'
 import Article2Page from './pages/Article2Page'
+import ContactPage from './pages/ContactPage'
 
 // Hero cinematic sequence images — preloaded so the slideshow is seamless
 import heroImg1 from './assets/arielview1.jpg?w=1920&format=webp&quality=90'
@@ -56,6 +57,7 @@ function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/top-5-activities-watamu" element={<Article1Page />} />
         <Route path="/blog/coastal-swahili-dishes" element={<Article2Page />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
 
       <Footer />

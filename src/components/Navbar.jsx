@@ -36,6 +36,9 @@ export default function Navbar() {
     } else if (location.pathname === '/gallery') {
       activeHrefRef.current = '/gallery'
       setActiveHref('/gallery')
+    } else if (location.pathname === '/contact') {
+      activeHrefRef.current = '/#contact'
+      setActiveHref('/#contact')
     } else if (location.pathname === '/') {
       activeHrefRef.current = '/'
       setActiveHref('/')
@@ -105,10 +108,16 @@ export default function Navbar() {
 
   const scrolledClass = scrolled ? ' navbar--scrolled' : ''
 
+  // On non-home pages, always show the solid/scrolled navbar so text is legible
+  // Also force solid when mobile menu is open
+  const isHomePage = location.pathname === '/'
+  const forceScrolled = !isHomePage || menuOpen
+  const navbarClass = `navbar${scrolledClass}${forceScrolled ? ' navbar--scrolled' : ''}`
+
   return (
     <>
       <motion.header
-        className={`navbar${scrolledClass}`}
+        className={navbarClass}
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, delay: NAVBAR_APPEAR_DELAY, ease: [0.4, 0, 0.2, 1] }}
