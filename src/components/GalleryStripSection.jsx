@@ -197,6 +197,7 @@ export default function GalleryStripSection() {
     return () => {
       clearTimeout(timer)
       cancelAnimationFrame(frameId)
+      rafRef.current = null
     }
   }, [sectionVisible])
 
