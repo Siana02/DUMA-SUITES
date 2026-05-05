@@ -32,9 +32,9 @@ const en = {
     ],
   },
   gallery: {
-    eyebrow: 'Visual Journey',
-    title: 'Gallery',
-    sub: 'A curated collection of moments from Duma Suites and the Watamu coastline.',
+    eyebrow: 'GLIMPSES & MOMENTS',
+    title: 'Moments by the Coast',
+    sub: 'A curated collection of moments from the luxurious Duma suites and Watamu coastline.',
     viewFullCta: 'View Full Gallery',
   },
   faq: {

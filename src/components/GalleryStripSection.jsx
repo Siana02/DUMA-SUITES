@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
@@ -72,7 +72,8 @@ const IMAGES = [
   { src: coastalNight,   alt: 'Night-time pool view from suite' },
 ]
 
-const SCROLL_SPEED = 0.55 // px per 60 fps frame
+const SCROLL_SPEED = 0.45 // px per 60 fps frame
+const AUTO_RESUME_MS = 2500 // ms before auto-scroll resumes after manual nav
 
 const fadeUp = (delay = 0) => ({
   initial:     { opacity: 0, y: 24 },
@@ -87,15 +88,21 @@ import { getT } from '../i18n/translations.js'
 export default function GalleryStripSection() {
   const { lang } = useLanguage()
   const t = getT(lang)
-  const trackRef    = useRef(null)
-  const posRef      = useRef(0)
-  const pausedRef   = useRef(false)
-  const rafRef      = useRef(null)
-  const halfWidthRef = useRef(0)
+
+  const trackRef       = useRef(null)
+  const posRef         = useRef(0)
+  const pausedRef      = useRef(false)
+  const rafRef         = useRef(null)
+  const halfWidthRef   = useRef(0)
+  const resumeTimerRef = useRef(null)
+
+  // Single index state — drives re-renders on navigation
+  const [activeIdx, setActiveIdx] = useState(0)
+  const N = IMAGES.length
 
   const { ref: sectionRef, inView: sectionVisible } = useInView({ threshold: 0.05, triggerOnce: true })
 
-  // Start rAF animation after layout is settled
+  // ── Continuous auto-scroll via rAF ──────────────────────────────────────────
   useEffect(() => {
     const track = trackRef.current
     if (!track) return
@@ -119,37 +126,60 @@ export default function GalleryStripSection() {
     }
 
     const timer = setTimeout(init, 80)
-
     return () => {
       clearTimeout(timer)
       cancelAnimationFrame(frameId)
     }
   }, [])
 
-  // Step by roughly one image width
-  const getStep = useCallback(() => {
-    const track = trackRef.current
-    if (!track || halfWidthRef.current === 0) return 400
-    return track.scrollWidth / 2 / IMAGES.length
+  // Cleanup resume timer on unmount
+  useEffect(() => () => {
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current)
   }, [])
 
-  const scrollNext = useCallback(() => {
-    const half = halfWidthRef.current || 1
-    posRef.current = (posRef.current + getStep()) % half
-    if (trackRef.current) {
-      trackRef.current.style.transform = `translateX(-${posRef.current}px)`
-    }
-  }, [getStep])
+  // Average step width — total first-half / number of images
+  const getStep = useCallback(() => {
+    const half = halfWidthRef.current
+    return half > 0 ? half / N : 400
+  }, [N])
 
-  const scrollPrev = useCallback(() => {
+  // ── Navigation — pause auto-scroll, animate, then resume ───────────────────
+  const navigate = useCallback((direction /* +1 or -1 */) => {
+    const step = getStep()
     const half = halfWidthRef.current || 1
-    posRef.current = ((posRef.current - getStep()) % half + half) % half
-    if (trackRef.current) {
-      trackRef.current.style.transform = `translateX(-${posRef.current}px)`
-    }
-  }, [getStep])
 
-  const handleMouseEnter = () => { pausedRef.current = true }
+    // Pause auto-scroll so rAF doesn't overwrite our transition
+    pausedRef.current = true
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current)
+
+    // Update logical index with infinite wrapping
+    setActiveIdx(prev => ((prev + direction) % N + N) % N)
+
+    // Shift scroll position by one image width (wraps around correctly)
+    posRef.current = ((posRef.current + direction * step) % half + half) % half
+
+    // Apply position with a short CSS transition for a smooth "click feel"
+    const track = trackRef.current
+    if (track) {
+      track.style.transition = 'transform 380ms cubic-bezier(0.4,0,0.2,1)'
+      track.style.transform  = `translateX(-${posRef.current}px)`
+      // Remove transition so rAF takes over smoothly when auto-scroll resumes
+      setTimeout(() => { if (trackRef.current) trackRef.current.style.transition = '' }, 400)
+    }
+
+    // Resume auto-scroll after delay
+    resumeTimerRef.current = setTimeout(() => {
+      pausedRef.current = false
+    }, AUTO_RESUME_MS)
+  }, [getStep, N])
+
+  const scrollNext = useCallback(() => navigate(+1), [navigate])
+  const scrollPrev = useCallback(() => navigate(-1), [navigate])
+
+  const handleMouseEnter = () => {
+    pausedRef.current = true
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current)
+  }
   const handleMouseLeave = () => { pausedRef.current = false }
 
   return (
