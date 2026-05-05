@@ -107,8 +107,13 @@ export default function GMMessageSection() {
   return (
     <section className="gm-section section section--premium" id="experience" ref={ref}>
 
+      {/* ── Warm welcome intro ── */}
+      <motion.p className="gm-welcome-intro" {...fadeUp(0)}>
+        A heartfelt welcome to Duma Suites
+      </motion.p>
+
       {/* ── Section eyebrow ── */}
-      <motion.span className="eyebrow gm-eyebrow" {...fadeUp(0)}>
+      <motion.span className="eyebrow gm-eyebrow" {...fadeUp(0.08)}>
         A Word from the General Manager
       </motion.span>
 
@@ -282,6 +287,17 @@ export default function GMMessageSection() {
             transparent 70%
           );
           pointer-events: none;
+        }
+
+        /* ── Warm welcome intro ── */
+        .gm-welcome-intro {
+          text-align: center;
+          font-family: var(--font-gm);
+          font-size: clamp(1.25rem, 2.8vw, 2rem);
+          color: var(--color-teal);
+          margin-bottom: 0.5rem;
+          letter-spacing: 0.02em;
+          line-height: 1.4;
         }
 
         /* ── Eyebrow ── */
