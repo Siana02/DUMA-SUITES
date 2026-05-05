@@ -200,7 +200,9 @@ export default function GalleryStripSection() {
         >
           <div className="gs-track" ref={trackRef}>
             {[...IMAGES, ...IMAGES].map((img, i) => (
-              <div key={i} className="gs-item">
+              <div key={i} className="gs-item" style={{ '--bg-src': `url(${img.src})` }}>
+                {/* Blurred background — same image, fills dead space without cropping */}
+                <div className="gs-item__blur" aria-hidden="true" />
                 <img
                   src={img.src}
                   alt={img.alt}
@@ -317,23 +319,45 @@ export default function GalleryStripSection() {
           will-change: transform;
         }
 
-        /* ── Image item ── */
+        /* ── Image item — uniform card with blurred backdrop ── */
         .gs-item {
           flex-shrink: 0;
           overflow: hidden;
-          border-radius: 2px;
+          border-radius: 4px;
+          position: relative;
+          border: 1px solid rgba(212, 194, 168, 0.35);
+          box-shadow: 0 4px 20px rgba(86, 51, 17, 0.14);
+          /* Width/height set per breakpoint below */
         }
+
+        /* Blurred background — same image scaled to fill dead space */
+        .gs-item__blur {
+          position: absolute;
+          inset: -24px;          /* overscan so blur edge doesn't show */
+          background-image: var(--bg-src, none);
+          background-size: cover;
+          background-position: center;
+          filter: blur(22px) brightness(0.65) saturate(1.15);
+          z-index: 0;
+          transform: scale(1.08); /* absorbs the extra inset */
+          pointer-events: none;
+        }
+
         .gs-img {
           display: block;
-          object-fit: cover;
-          width: 480px;
-          height: 320px;
+          position: relative;
+          z-index: 1;
+          object-fit: contain;    /* show full image — no cropping */
+          width: 100%;
+          height: 100%;
+          padding: 10px;          /* slight breathing room inside card */
+          box-sizing: border-box;
           transition: transform 550ms ease;
           user-select: none;
           pointer-events: none;
         }
         .gs-item:hover .gs-img {
-          transform: scale(1.06);
+          transform: scale(1.05);
         }
 
         /* ── Arrow buttons — frosted glass circles ── */
@@ -423,7 +447,7 @@ export default function GalleryStripSection() {
 
         /* ── Mobile ≤639px: one image dominates ── */
         @media (max-width: 639px) {
-          .gs-img {
+          .gs-item {
             width: calc(83vw);
             height: calc(83vw * 0.68);
           }
@@ -437,7 +461,7 @@ export default function GalleryStripSection() {
 
         /* ── Tablet 640–1023px: main + sneak peek ── */
         @media (min-width: 640px) and (max-width: 1023px) {
-          .gs-img {
+          .gs-item {
             width: 64vw;
             height: calc(64vw * 0.66);
           }
@@ -445,7 +469,7 @@ export default function GalleryStripSection() {
 
         /* ── Laptop ≥1024px: spacious sneak peek ── */
         @media (min-width: 1024px) {
-          .gs-img {
+          .gs-item {
             width: 52vw;
             height: calc(52vw * 0.62);
             max-width: 700px;
