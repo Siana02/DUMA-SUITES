@@ -806,13 +806,15 @@ export default function CoastalHavenPage() {
         }
         .ch-tour__frame-wrap {
           display: flex;
-          justify-content: center;
+          justify-content: stretch;
+          width: 100%;
         }
         /* Portrait 9:16 video — constrained to a comfortable width */
         .ch-tour__frame {
           position: relative;
-          width: 100%;
-          max-width: 420px;
+          width: 100vw;
+          height: 100%;
+          aspect-ratio: 9/16;
           padding-bottom: min(177.78%, 100vh);
           background: #000;
           border-radius: 4px;
@@ -824,10 +826,13 @@ export default function CoastalHavenPage() {
           inset: 0;
           width: 100%;
           height: 100%;
+          object-fit: cover;
           border: none;
         }
         @media (min-width: 1024px) {
-          .ch-tour__frame { max-width: 560px; }
+          .ch-tour__frame { 
+          width: 100;
+          max-width: none; }
         }
         .ch-tour__cta-wrap {
           text-align: center;
