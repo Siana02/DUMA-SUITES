@@ -175,6 +175,7 @@ export default function Footer() {
             <a href="/house-rules" onClick={e => handleRouteClick(e, '/house-rules')} className="footer__link">
               {t.footer.houseRules}
             </a>
+            <a href="/cookies" onClick={e => handleRouteClick(e, '/cookies')} className="footer__link">{t.footer.cookies}</a>
           </nav>
         </div>
       </div>

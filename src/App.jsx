@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async'
 import PreloadScreen from './components/PreloadScreen'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import CookieBanner from './components/CookieBanner'
 import HomePage from './pages/HomePage'
 import AllSuitesPage from './pages/AllSuitesPage'
 import CoastalHavenPage from './pages/CoastalHavenPage'
@@ -17,6 +18,7 @@ import Article2Page from './pages/Article2Page'
 import ContactPage from './pages/ContactPage'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import TermsOfServicePage from './pages/TermsOfServicePage'
+import CookiesPage from './pages/CookiesPage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -71,9 +73,11 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+        <Route path="/cookies" element={<CookiesPage />} />
       </Routes>
 
       <Footer />
+      <CookieBanner preloadDone={preloadDone} />
     </>
   )
 }
