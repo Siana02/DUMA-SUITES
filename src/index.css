@@ -205,6 +205,7 @@ a:hover {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  line-height: 1;
   font-family: var(--font-nav);
   font-size: 0.7rem;
   font-weight: 600;
@@ -219,6 +220,12 @@ a:hover {
     color var(--transition-base),
     box-shadow var(--transition-base),
     transform var(--transition-base);
+}
+
+/* Ensure SVG icons inside buttons are vertically centred and never shrink */
+.btn svg {
+  display: block;
+  flex-shrink: 0;
 }
 
 .btn:hover {

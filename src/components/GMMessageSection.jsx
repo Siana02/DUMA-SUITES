@@ -136,7 +136,7 @@ export default function GMMessageSection() {
           {/* Hero large — 400px, peels rightward */}
           <PeelingPhoto
             src={gm1}
-            alt="General Manager Andrea Boemo"
+            alt="Duma Suites coastal property"
             className="gm-photo--hero gm-photo--tilt-l"
             delay={0.15}
             peel="right"
@@ -173,7 +173,7 @@ export default function GMMessageSection() {
           {/* Inline image 1 — mobile & tablet only (hidden on desktop) */}
           <PeelingPhoto
             src={gm1}
-            alt="General Manager Andrea Boemo"
+            alt="Duma Suites coastal property"
             className="gm-photo--inline gm-photo--tilt-l"
             delay={0.28}
             peel="right"
