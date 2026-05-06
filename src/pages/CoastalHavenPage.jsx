@@ -826,13 +826,17 @@ export default function CoastalHavenPage() {
           inset: 0;
           width: 100%;
           height: 100%;
-          object-fit: contain;
+          object-fit: cover;
           border: none;
         }
         @media (min-width: 1024px) {
           .ch-tour__frame { 
           width: 100;
-          max-width: none; }
+          max-width: none;
+          }
+          .ch-tour__frame iframe {
+          object-fit: contain;
+          }
         }
         .ch-tour__cta-wrap {
           text-align: center;
