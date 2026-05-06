@@ -818,7 +818,7 @@ export default function SerenityVillaPage() {
           position: relative;
           width: 100%;
           max-width: 420px;
-          padding-bottom: min(177.78%, 100vh);
+          aspect-ratio: 16/9;
           background: #000;
           border-radius: 4px;
           overflow: hidden;
@@ -834,6 +834,13 @@ export default function SerenityVillaPage() {
         @media (min-width: 1024px) {
           .sv-tour__frame { max-width: 560px; }
         }
+        @media (max-width: 640px) {
+  .sv-tour__frame {
+    max-width: 100%;
+    aspect-ratio: 16/9;
+  }
+}
+
         .sv-tour__cta-wrap {
           text-align: center;
           margin-top: 2.5rem;
