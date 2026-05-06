@@ -1,12 +1,11 @@
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 import {
   Shield, Database, Settings, Share2, Lock, Cookie,
-  UserCheck, Mail, Phone, MapPin, ArrowLeft, CheckCircle,
+  UserCheck, Mail, Phone, MapPin, CheckCircle,
 } from 'lucide-react'
 
 const ICON_MAP = {
@@ -26,7 +25,6 @@ export default function PrivacyPolicyPage() {
   const { lang } = useLanguage()
   const t = getT(lang)
   const pp = t.privacyPolicy
-  const navigate = useNavigate()
 
   return (
     <>
@@ -40,16 +38,6 @@ export default function PrivacyPolicyPage() {
         {/* ── Hero ── */}
         <div className="pp-hero">
           <div className="pp-hero__content">
-            <motion.button
-              className="pp-breadcrumb"
-              onClick={() => navigate('/')}
-              initial={{ opacity: 0, x: -12 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <ArrowLeft size={14} strokeWidth={1.5} />
-              {pp.backToHome}
-            </motion.button>
             <motion.span
               className="pp-hero__eyebrow"
               initial={{ opacity: 0, y: 14 }}

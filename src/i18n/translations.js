@@ -687,6 +687,9 @@ const en = {
     trustBadge2: 'Curated by Our Concierge',
     trustBadge3: 'Updated Seasonally',
     readTimeMin: 'min read',
+    articlesIntroEyebrow: 'From the Field',
+    articlesIntroTitle: 'Stories & Guides from Watamu',
+    articlesIntroDesc: 'Dive into carefully crafted travel guides, local recipes and insider stories from Duma Suites — written to inspire your next stay on the Kenyan coast.',
   },
   privacyPolicy: {
     metaTitle: 'Privacy Policy | Duma Suites Watamu',
@@ -1550,6 +1553,9 @@ const it = {
     trustBadge2: 'Curato dal Nostro Concierge',
     trustBadge3: 'Aggiornato Stagionalmente',
     readTimeMin: 'min di lettura',
+    articlesIntroEyebrow: 'Dal Campo',
+    articlesIntroTitle: 'Storie & Guide da Watamu',
+    articlesIntroDesc: 'Scopri guide di viaggio, ricette locali e storie dall\'interno di Duma Suites — scritte per ispirare il vostro prossimo soggiorno sulla costa keniota.',
   },
   privacyPolicy: {
     metaTitle: 'Privacy Policy | Duma Suites Watamu',

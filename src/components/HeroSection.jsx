@@ -198,7 +198,14 @@ export default function HeroSection({ ready = false }) {
               onClick={e => { e.preventDefault(); navigate('/suites') }}
             >
               {t.hero.cta}
-              <span className="hero__cta-arrow" aria-hidden="true">&rarr;</span>
+              <motion.span
+                className="hero__cta-arrow"
+                aria-hidden="true"
+                animate={{ scale: [1, 1.35, 1] }}
+                transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+              >
+                &rarr;
+              </motion.span>
             </a>
           </motion.div>
 
@@ -399,11 +406,12 @@ export default function HeroSection({ ready = false }) {
           color: #ffffff;
           text-decoration: none;
           padding: 14px 32px;
-          border: 1.5px solid rgba(255, 255, 255, 0.45);
+          border: 1.5px solid rgba(255, 255, 255, 0.72);
           border-radius: 3px;
           position: relative;
           overflow: hidden;
           isolation: isolate;
+          box-shadow: 0 0 18px rgba(255, 255, 255, 0.10);
           transition:
             border-color 0.3s ease,
             color 0.3s ease,
@@ -431,11 +439,14 @@ export default function HeroSection({ ready = false }) {
         }
         .hero__cta-arrow {
           display: inline-block;
-          transition: transform 0.25s ease;
           font-style: normal;
+          transform-origin: center;
         }
+        /* On hover pause the scale pulse and slide right instead */
         .hero__cta:hover .hero__cta-arrow {
-          transform: translateX(4px);
+          animation: none;
+          transform: translateX(5px) scale(1) !important;
+          transition: transform 0.25s ease;
         }
 
         /* ── Scroll indicator ── */
@@ -444,6 +455,10 @@ export default function HeroSection({ ready = false }) {
           bottom: 28px;
           left: 50%;
           transform: translateX(-50%);
+          background: none;
+          border: none;
+          padding: 0;
+          cursor: pointer;
           color: rgba(255, 255, 255, 0.48);
           display: flex;
           flex-direction: column;
@@ -499,22 +514,49 @@ export default function HeroSection({ ready = false }) {
             display: none;
           }
 
-          /* Blend gradient removed per design spec */
+          /* Soft gradient dissolve — wide mist zone that covers the left edge of the
+             image panel consistently across every slide, regardless of image tone.
+             Starts opaque enough at the seam to absorb any harsh backdrop-filter
+             boundary or bright image edge, then melts away over 44% of the panel. */
           .hero__image-blend {
-            display: none;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 44%;
+            background: linear-gradient(
+              to right,
+              rgba(9, 7, 4, 0.52) 0%,
+              rgba(9, 7, 4, 0.30) 28%,
+              rgba(9, 7, 4, 0.12) 58%,
+              rgba(9, 7, 4, 0.03) 82%,
+              transparent 100%
+            );
+            z-index: 3;
+            pointer-events: none;
           }
 
           /* Content panel — left column */
           .hero__content-panel {
-            flex: 0 0 45%;
+            flex: 0 0 48%;
             position: relative;
             z-index: 2;
             order: 1;
             align-items: center;
-            /* Light blur: softens the ambient background without a heavy frosted-glass effect */
             backdrop-filter: blur(8px) saturate(1.05);
             -webkit-backdrop-filter: blur(8px) saturate(1.05);
-            background: rgba(9, 7, 4, 0.22);
+            /* Gradient: strong dark on the text side for readability, dissolves
+               toward the right so the panel edge blends into the mist zone above. */
+            background: linear-gradient(
+              to right,
+              rgba(9, 7, 4, 0.52) 0%,
+              rgba(9, 7, 4, 0.44) 55%,
+              rgba(9, 7, 4, 0.18) 80%,
+              rgba(9, 7, 4, 0.04) 95%,
+              transparent 100%
+            );
+            /* No mask-image — masks hard-clip backdrop-filter, exposing the seam */
           }
           .hero__content {
             padding: clamp(80px, 10vh, 130px) clamp(28px, 4.5vw, 72px) clamp(60px, 7vh, 100px);
