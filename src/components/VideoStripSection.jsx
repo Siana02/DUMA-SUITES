@@ -231,7 +231,7 @@ export default function VideoStripSection() {
         .vs-card__video {
           width: 100%;
           height: 100%;
-          object-fit: contain;
+          object-fit: cover;
           display: block;
           transition: opacity 0.4s ease;
         }
@@ -268,12 +268,13 @@ export default function VideoStripSection() {
           color: var(--color-espresso);
           text-align: center;
         }
-        @media (max-width: 560px) {
+        @media (max-width: 640px) {
           .vs-card {
             width: 260px;
           }
           .vs-card__video-wrap {
-            height: 340px;
+            height: auto;
+            aspect-ratio: 16/9;
           }
         }
       `}</style>
