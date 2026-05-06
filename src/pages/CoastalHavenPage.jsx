@@ -226,8 +226,14 @@ export default function CoastalHavenPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.42, ease: [0.4, 0, 0.2, 1] }}
             >
-              <a href="#inquire" className="btn btn-primary">{tc.heroCta1}</a>
-              <a href="#gallery" className="btn btn-inverse-light">{tc.heroCta2}</a>
+              <a href="#inquire" className="btn btn-primary">
+                <Calendar size={14} strokeWidth={1.8} aria-hidden="true" />
+                {tc.heroCta1}
+              </a>
+              <a href="#gallery" className="btn btn-inverse-light">
+                {tc.heroCta2}
+                <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
+              </a>
             </motion.div>
           </div>
         </section>
@@ -250,7 +256,10 @@ export default function CoastalHavenPage() {
                 <h2 className="section-title ch-about__title">{tc.aboutTitle}</h2>
                 <p className="ch-about__text">{tc.aboutText1}</p>
                 <p className="ch-about__text">{tc.aboutText2}</p>
-                <a href="#inquire" className="btn btn-primary ch-about__cta">{tc.aboutCta}</a>
+                <a href="#inquire" className="btn btn-primary ch-about__cta">
+                  <Calendar size={14} strokeWidth={1.8} aria-hidden="true" />
+                  {tc.aboutCta}
+                </a>
 
                 {/* Highlights card — moved into left column */}
                 <div className="ch-about__highlights-card">

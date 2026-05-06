@@ -233,8 +233,14 @@ export default function SerenityVillaPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.42, ease: [0.4, 0, 0.2, 1] }}
             >
-              <a href="#inquire" className="btn btn-primary">{ts.heroCta1}</a>
-              <a href="#gallery" className="btn btn-inverse-light">{ts.heroCta2}</a>
+              <a href="#inquire" className="btn btn-primary">
+                <Calendar size={14} strokeWidth={1.8} aria-hidden="true" />
+                {ts.heroCta1}
+              </a>
+              <a href="#gallery" className="btn btn-inverse-light">
+                {ts.heroCta2}
+                <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
+              </a>
             </motion.div>
           </div>
         </section>
@@ -257,7 +263,10 @@ export default function SerenityVillaPage() {
                 <h2 className="section-title sv-about__title">{ts.aboutTitle}</h2>
                 <p className="sv-about__text">{ts.aboutText1}</p>
                 <p className="sv-about__text">{ts.aboutText2}</p>
-                <a href="#inquire" className="btn btn-primary sv-about__cta">{ts.aboutCta}</a>
+                <a href="#inquire" className="btn btn-primary sv-about__cta">
+                  <Calendar size={14} strokeWidth={1.8} aria-hidden="true" />
+                  {ts.aboutCta}
+                </a>
 
                 {/* Highlights card — moved into left column */}
                 <div className="sv-about__highlights-card">
