@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
@@ -44,7 +44,7 @@ function SuiteCard({ suite, image, href, index }) {
           <div className="as-card__specs">
             <span><Maximize2 size={13} strokeWidth={1.5} />{index === 0 ? '25 sq m' : '75 sq m'}</span>
             <span><BedDouble size={13} strokeWidth={1.5} />{index === 0 ? '1 King Bed' : '3 King Beds'}</span>
-            <span><Users size={13} strokeWidth={1.5} />{index === 0 ? '2+ Guests' : '6+ Guests'}</span>
+            <span><Users size={13} strokeWidth={1.5} />{index === 0 ? '2 Guests' : '3 Guests'}</span>
           </div>
         </div>
       </div>
@@ -68,6 +68,40 @@ export default function AllSuitesPage() {
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.2, triggerOnce: true })
   const { ref: introRef, inView: introInView } = useInView({ threshold: 0.2, triggerOnce: true })
   const { ref: showcaseRef, inView: showcaseInView } = useInView({ threshold: 0.2, triggerOnce: true })
+
+  // Resort overview video — listen for finish and reset to prevent Vimeo end-screen
+  const overviewIframeRef = useRef(null)
+
+  useEffect(() => {
+    const onMsg = (e) => {
+      if (e.origin !== 'https://player.vimeo.com') return
+      if (e.source !== overviewIframeRef.current?.contentWindow) return
+      try {
+        const data = JSON.parse(e.data)
+        if (data.event === 'finish') {
+          const win = overviewIframeRef.current?.contentWindow
+          if (!win) return
+          const post = (method, value) => {
+            const msg = value !== undefined ? { method, value } : { method }
+            win.postMessage(JSON.stringify(msg), 'https://player.vimeo.com')
+          }
+          post('pause')
+          post('setCurrentTime', 0)
+        }
+      } catch { /* ignore */ }
+    }
+    window.addEventListener('message', onMsg)
+    return () => window.removeEventListener('message', onMsg)
+  }, [])
+
+  const handleOverviewIframeLoad = () => {
+    setTimeout(() => {
+      overviewIframeRef.current?.contentWindow?.postMessage(
+        JSON.stringify({ method: 'addEventListener', value: 'finish' }),
+        'https://player.vimeo.com'
+      )
+    }, 500)
+  }
 
   return (
     <>
@@ -155,17 +189,19 @@ export default function AllSuitesPage() {
 
         {/* Resort overview video */}
         <section className="video-overview section section--secondary">
-          <div className="container" style={{ maxWidth: 900, textAlign: 'center' }}>
+          <div className="container as-video__container">
             <span className="eyebrow">{ts.videoEyebrow}</span>
             <h2 className="section-title as-video__title">{ts.videoTitle}</h2>
-            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 4, marginTop: 32 }}>
+            <div className="as-video__frame-wrap">
               <iframe
-                src="https://player.vimeo.com/video/1189029033?autoplay=0&title=0&byline=0&portrait=0"
+                ref={overviewIframeRef}
+                src="https://player.vimeo.com/video/1189029033?autoplay=0&title=0&byline=0&portrait=0&dnt=1"
                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
                 frameBorder="0"
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
                 title="Duma Suites Resort Overview"
+                onLoad={handleOverviewIframeLoad}
               />
             </div>
           </div>
@@ -223,6 +259,30 @@ export default function AllSuitesPage() {
       </main>
 
       <style>{`
+        /* ── Resort overview video ── */
+        .as-video__container {
+          max-width: 900px;
+          text-align: center;
+        }
+        .as-video__frame-wrap {
+          position: relative;
+          padding-bottom: 56.25%;
+          height: 0;
+          overflow: hidden;
+          border-radius: 4px;
+          margin-top: 32px;
+        }
+        @media (max-width: 640px) {
+          .as-video__container {
+            max-width: 100%;
+            padding-inline: 0;
+          }
+          .as-video__frame-wrap {
+            border-radius: 0;
+            margin-top: 24px;
+          }
+        }
+
         /* ── Hero ── */
         .as-hero {
           position: relative;

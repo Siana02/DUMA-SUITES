@@ -32,18 +32,18 @@ function VideoCard({ src, label }) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         const ratio = entry.intersectionRatio
-        if (ratio >= 0.5) {
+        if (ratio >= 0.25) {
           // Entered view sufficiently — auto-play
           video.play().catch(() => {})
           setPlaying(true)
-        } else if (ratio < 0.3 && lastRatioRef.current >= 0.5) {
+        } else if (ratio < 0.1 && lastRatioRef.current >= 0.25) {
           // Scrolled out of view — auto-pause
           video.pause()
           setPlaying(false)
         }
         lastRatioRef.current = ratio
       },
-      { threshold: [0, 0.3, 0.5, 0.75, 1.0] }
+      { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1.0] }
     )
     observer.observe(video)
     return () => observer.disconnect()
@@ -89,7 +89,7 @@ function VideoCard({ src, label }) {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           aria-label={label}
           title={label}
           disablePictureInPicture
