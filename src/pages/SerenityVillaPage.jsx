@@ -811,13 +811,15 @@ export default function SerenityVillaPage() {
         }
         .sv-tour__frame-wrap {
           display: flex;
-          justify-content: center;
+          justify-content: stretch;
+          width: 100%;
         }
         /* Portrait 9:16 video — same as coastal haven */
         .sv-tour__frame {
           position: relative;
-          width: 100%;
-          aspect-ratio: 16/9; 
+          width: 100vw;
+          height: 100%;
+          aspect-ratio: 9/16; 
           background: #000;
           border-radius: 4px;
           overflow: hidden;
@@ -832,12 +834,14 @@ export default function SerenityVillaPage() {
           border: none;
         }
         @media (min-width: 1024px) {
-          .sv-tour__frame { max-width: none; }
+          .sv-tour__frame {
+          width: 100%;
+          max-width: none; }
         }
         @media (max-width: 640px) {
   .sv-tour__frame {
     max-width: 100%;
-    aspect-ratio: 16/9;
+    aspect-ratio: 9/16;
   }
 }
 
