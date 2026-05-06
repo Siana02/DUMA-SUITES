@@ -812,6 +812,7 @@ export default function SerenityVillaPage() {
      .sv-tour__frame-wrap {
   display: flex;
   width: 100%;
+  justify-content: center;
 }
 
 /* Portrait 9:16 video — same as coastal haven */
