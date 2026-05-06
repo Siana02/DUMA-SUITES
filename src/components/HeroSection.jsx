@@ -198,7 +198,14 @@ export default function HeroSection({ ready = false }) {
               onClick={e => { e.preventDefault(); navigate('/suites') }}
             >
               {t.hero.cta}
-              <span className="hero__cta-arrow" aria-hidden="true">&rarr;</span>
+              <motion.span
+                className="hero__cta-arrow"
+                aria-hidden="true"
+                animate={{ scale: [1, 1.35, 1] }}
+                transition={{ repeat: Infinity, duration: 1.6, ease: 'easeInOut' }}
+              >
+                &rarr;
+              </motion.span>
             </a>
           </motion.div>
 
@@ -399,11 +406,12 @@ export default function HeroSection({ ready = false }) {
           color: #ffffff;
           text-decoration: none;
           padding: 14px 32px;
-          border: 1.5px solid rgba(255, 255, 255, 0.45);
+          border: 1.5px solid rgba(255, 255, 255, 0.72);
           border-radius: 3px;
           position: relative;
           overflow: hidden;
           isolation: isolate;
+          box-shadow: 0 0 18px rgba(255, 255, 255, 0.10);
           transition:
             border-color 0.3s ease,
             color 0.3s ease,
@@ -431,11 +439,14 @@ export default function HeroSection({ ready = false }) {
         }
         .hero__cta-arrow {
           display: inline-block;
-          transition: transform 0.25s ease;
           font-style: normal;
+          transform-origin: center;
         }
+        /* On hover pause the scale pulse and slide right instead */
         .hero__cta:hover .hero__cta-arrow {
-          transform: translateX(4px);
+          animation: none;
+          transform: translateX(5px) scale(1) !important;
+          transition: transform 0.25s ease;
         }
 
         /* ── Scroll indicator ── */
