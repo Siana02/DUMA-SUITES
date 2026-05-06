@@ -804,39 +804,50 @@ export default function CoastalHavenPage() {
           max-width: 480px;
           line-height: 1.7;
         }
-        .ch-tour__frame-wrap {
-          display: flex;
-          justify-content: stretch;
-          width: 100%;
-        }
-        /* Portrait 9:16 video — constrained to a comfortable width */
-        .ch-tour__frame {
-          position: relative;
-          width: 100vw;
-          height: 100%;
-          aspect-ratio: 9/16;
-          background: #000;
-          border-radius: 4px;
-          overflow: hidden;
-          box-shadow: 0 12px 50px rgba(86, 51, 17, 0.2);
-        }
-        .ch-tour__frame iframe {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border: none;
-        }
-        @media (min-width: 1024px) {
-          .ch-tour__frame { 
-          width: 100%;
-          max-width: none;
-          }
-          .ch-tour__frame iframe {
-          object-fit: contain;
-          }
-        }
+       .ch-tour__frame-wrap {
+  display: flex;
+  width: 100%;
+}
+
+/* Portrait 9:16 video — constrained to a comfortable width */
+.ch-tour__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9/16;   /* match phone portrait ratio */
+  background: #000;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 12px 50px rgba(86, 51, 17, 0.2);
+}
+
+.ch-tour__frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    /* default for mobile */
+  border: none;
+}
+
+/* Desktop & laptops — show full video without cropping */
+@media (min-width: 1024px) {
+  .ch-tour__frame {
+    width: 100%;
+    max-width: 560px;   /* constrain width so it’s comfortable */
+  }
+  .ch-tour__frame iframe {
+    object-fit: contain; /* show entire video top-to-bottom */
+  }
+}
+
+/* Mobile — keep full width and cover */
+@media (max-width: 640px) {
+  .ch-tour__frame {
+    max-width: 100%;
+    aspect-ratio: 9/16;
+  }
+}
+
         .ch-tour__cta-wrap {
           text-align: center;
           margin-top: 2.5rem;
