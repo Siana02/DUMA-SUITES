@@ -837,6 +837,9 @@ export default function SerenityVillaPage() {
           .sv-tour__frame {
           width: 100%;
           max-width: none; }
+          .ch-tour__frame iframe {
+    object-fit: contain; /* show full video without cropping */
+  }
         }
         @media (max-width: 640px) {
   .sv-tour__frame {
