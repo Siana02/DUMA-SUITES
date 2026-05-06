@@ -7,7 +7,7 @@ import {
   Maximize2, BedDouble, Users, Check, Mail, MessageCircle,
   Wifi, Tv, Bath, Waves, Utensils, Calendar, Clock,
   Shield, AirVent, Sparkles, Sofa, Sunrise, UtensilsCrossed,
-  Shirt, Fan, PawPrint, Cigarette, ArrowLeft, ArrowRight,
+  Shirt, Fan, PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack,
 } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
@@ -54,7 +54,7 @@ const AMENITY_ICONS = [
   BedDouble, Bath, UtensilsCrossed, Sofa, Sunrise, Waves,
   Wifi, Sparkles, AirVent, Tv, Utensils, Shirt,
   ({ size, strokeWidth, className }) => <span className={className} style={{ fontSize: size, lineHeight: 1 }}>⛱</span>,
-  ({ size, strokeWidth, className }) => <span className={className} style={{ fontSize: size, lineHeight: 1 }}>🏊</span>,
+  TowelRack,
   Fan,
 ]
 
