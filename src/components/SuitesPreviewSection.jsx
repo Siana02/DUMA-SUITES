@@ -262,10 +262,10 @@ export default function SuitesPreviewSection() {
           height: 480px;
           object-fit: cover;
           display: block;
-          transition: transform 600ms ease;
+          transition: transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
         }
         .sp-slide:hover .sp-slide__img {
-          transform: scale(1.05);
+          transform: scale(1.04);
         }
 
         /* ── Overlay — transparent, white text, bottom-left ── */
@@ -397,19 +397,19 @@ export default function SuitesPreviewSection() {
           gap: 10px;
           font-family: var(--font-nav);
           font-size: 0.68rem;
-          font-weight: 600;
+          font-weight: 700;
           letter-spacing: 0.16em;
           text-transform: uppercase;
           color: var(--color-espresso);
           text-decoration: none;
-          padding: 14px 36px;
-          border: 1.5px solid rgba(86, 51, 17, 0.4);
+          padding: 15px 36px;
+          border: 1.5px solid rgba(86, 51, 17, 0.45);
           border-radius: 3px;
           position: relative;
           overflow: hidden;
           isolation: isolate;
-          transition: border-color 0.3s ease, color 0.3s ease,
-                      transform 0.28s ease, box-shadow 0.3s ease;
+          transition: border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                      transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .sp-cta-btn::before {
           content: '';
@@ -417,7 +417,7 @@ export default function SuitesPreviewSection() {
           inset: 0;
           background: var(--color-teal);
           transform: translateX(-110%) skewX(-20deg);
-          transition: transform 0.52s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
           z-index: -1;
         }
         .sp-cta-btn:hover::before {
@@ -426,8 +426,8 @@ export default function SuitesPreviewSection() {
         .sp-cta-btn:hover {
           border-color: var(--color-teal);
           color: #ffffff;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 28px rgba(201, 169, 110, 0.28);
+          transform: translateY(-2px) scale(1.015);
+          box-shadow: 0 10px 32px rgba(201, 169, 110, 0.32);
         }
         .sp-cta-btn__arrow {
           display: inline-block;

@@ -295,8 +295,8 @@ export default function SuiteHighlightsSection() {
           width: 100%;
           height: 100%;
           transform-style: preserve-3d;
-          transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1),
-                      box-shadow 0.4s ease;
+          transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1),
+                      box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
           border-radius: 4px;
         }
 
@@ -539,19 +539,19 @@ export default function SuiteHighlightsSection() {
           gap: 10px;
           font-family: var(--font-nav);
           font-size: 0.68rem;
-          font-weight: 600;
+          font-weight: 700;
           letter-spacing: 0.16em;
           text-transform: uppercase;
           color: var(--color-espresso);
           text-decoration: none;
-          padding: 14px 36px;
-          border: 1.5px solid rgba(86, 51, 17, 0.4);
+          padding: 15px 36px;
+          border: 1.5px solid rgba(86, 51, 17, 0.45);
           border-radius: 3px;
           position: relative;
           overflow: hidden;
           isolation: isolate;
-          transition: border-color 0.3s ease, color 0.3s ease,
-                      transform 0.28s ease, box-shadow 0.3s ease;
+          transition: border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                      transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .sh-cta::before {
           content: '';
@@ -559,7 +559,7 @@ export default function SuiteHighlightsSection() {
           inset: 0;
           background: var(--color-teal);
           transform: translateX(-110%) skewX(-20deg);
-          transition: transform 0.52s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
           z-index: -1;
         }
         .sh-cta:hover::before {
@@ -568,8 +568,8 @@ export default function SuiteHighlightsSection() {
         .sh-cta:hover {
           border-color: var(--color-teal);
           color: #ffffff;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 28px rgba(88, 176, 196, 0.28);
+          transform: translateY(-2px) scale(1.015);
+          box-shadow: 0 10px 32px rgba(201, 169, 110, 0.32);
         }
         .sh-cta__arrow {
           display: inline-block;

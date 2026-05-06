@@ -44,9 +44,9 @@ function SourceBadge({ source }) {
 
 /* ── Card animation variants ─────────────────────────────── */
 const variants = {
-  enter: (dir) => ({ opacity: 0, x: dir > 0 ? 70 : -70 }),
+  enter: (dir) => ({ opacity: 0, x: dir > 0 ? 60 : -60 }),
   center: { opacity: 1, x: 0 },
-  exit:  (dir) => ({ opacity: 0, x: dir > 0 ? -70 : 70 }),
+  exit:  (dir) => ({ opacity: 0, x: dir > 0 ? -60 : 60 }),
 }
 
 /* ── Credibility bar (Google + TripAdvisor) ──────────────── */
@@ -135,7 +135,7 @@ export default function ReviewsSection() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
+                transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
               >
                 {/* Avatar */}
                 <div className="rv-card__avatar-row">
@@ -290,7 +290,7 @@ export default function ReviewsSection() {
         .rv-card {
           width: 100%;
           background: var(--color-bg-primary);
-          padding: clamp(28px, 5vw, 52px) clamp(24px, 4vw, 44px);
+          padding: clamp(32px, 5vw, 56px) clamp(28px, 4vw, 48px);
           box-shadow: 0 6px 40px rgba(86,51,17,0.09), 0 1px 0 rgba(201,169,110,0.25);
           border-radius: 4px;
           display: flex;
@@ -428,21 +428,22 @@ export default function ReviewsSection() {
           width: 44px;
           height: 44px;
           border-radius: 50%;
-          border: 1.5px solid rgba(201,169,110,0.4);
+          border: 1.5px solid rgba(201,169,110,0.45);
           background: var(--color-bg-primary);
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
           color: var(--color-espresso);
-          transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+          transition: border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
           box-shadow: 0 2px 10px rgba(86,51,17,0.07);
         }
         .rv-arrow:hover {
           border-color: var(--color-teal);
           background: var(--color-teal);
           color: #fff;
-          box-shadow: 0 4px 16px rgba(201,169,110,0.3);
+          box-shadow: 0 6px 20px rgba(201,169,110,0.35);
+          transform: scale(1.08);
         }
 
         /* ── Dot indicators ─────────────────────────────── */

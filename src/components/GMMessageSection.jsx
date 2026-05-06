@@ -391,8 +391,8 @@ export default function GMMessageSection() {
           outline-offset: -2px;
           flex-shrink: 0;
           transition:
-            transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
-            box-shadow 0.45s ease;
+            transform 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+            box-shadow 0.55s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .gm-photo img {
           width: 100%;

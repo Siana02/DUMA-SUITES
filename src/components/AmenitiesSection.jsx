@@ -146,31 +146,32 @@ export default function AmenitiesSection() {
           flex-direction: column;
           align-items: flex-start;
           gap: 12px;
-          padding: 28px;
+          padding: 32px;
           background-color: var(--color-bg-primary);
           transition: box-shadow var(--transition-slow), transform var(--transition-slow);
         }
         .amenity-item:hover {
           box-shadow: var(--shadow-card);
-          transform: translateY(-4px);
+          transform: translateY(-5px) scale(1.01);
         }
         .amenity-item__icon-wrap {
-          width: 48px;
-          height: 48px;
+          width: 52px;
+          height: 52px;
           display: flex;
           align-items: center;
           justify-content: center;
-          background-color: rgba(201, 169, 110, 0.1);
+          background-color: rgba(201, 169, 110, 0.12);
           color: var(--color-teal);
-          transition: background-color var(--transition-base);
+          transition: background-color var(--transition-base), transform var(--transition-base);
         }
         .amenity-item:hover .amenity-item__icon-wrap {
           background-color: var(--color-teal);
           color: var(--color-text-light);
+          transform: scale(1.08);
         }
         .amenity-item__title {
           font-family: var(--font-title);
-          font-size: 1.15rem;
+          font-size: 1.2rem;
           font-weight: 500;
           color: var(--color-espresso);
           margin: 0;

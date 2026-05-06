@@ -170,7 +170,7 @@ export default function ExcursionsSection() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.5s ease;
+          transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
         }
         .exc-card:hover .exc-card__main-img {
           transform: scale(1.04);
@@ -234,19 +234,22 @@ export default function ExcursionsSection() {
           gap: 8px;
           font-family: var(--font-nav);
           font-size: 0.65rem;
+          font-weight: 700;
           letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--color-teal);
           text-decoration: none;
-          border: 1px solid var(--color-teal);
-          padding: 10px 20px;
+          border: 1.5px solid var(--color-teal);
+          padding: 10px 22px;
           border-radius: 3px;
           width: fit-content;
-          transition: background 0.25s ease, color 0.25s ease;
+          transition: background 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .exc-card__cta:hover {
           background: var(--color-teal);
           color: #fff;
+          transform: translateY(-1px) scale(1.02);
+          box-shadow: 0 6px 20px rgba(201,169,110,0.35);
         }
         @media (max-width: 768px) {
           .exc-card {

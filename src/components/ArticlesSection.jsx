@@ -138,12 +138,12 @@ export default function ArticlesSection() {
           border-radius: 3px;
           overflow: hidden;
           box-shadow: 0 4px 24px rgba(86,51,17,0.07);
-          transition: box-shadow 0.3s ease, transform 0.3s ease;
+          transition: box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
           position: relative;
         }
         .article-card:hover {
-          box-shadow: 0 8px 40px rgba(88,176,196,0.18);
-          transform: translateY(-3px);
+          box-shadow: 0 10px 44px rgba(88,176,196,0.2);
+          transform: translateY(-4px) scale(1.01);
         }
         .article-card__img-wrap {
           position: relative;
@@ -160,7 +160,7 @@ export default function ArticlesSection() {
           height: 100%;
           object-fit: cover;
           object-position: center;
-          transition: transform 0.55s ease;
+          transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
         }
         .article-card:hover .article-card__img {
           transform: scale(1.04);
@@ -233,10 +233,10 @@ export default function ArticlesSection() {
           text-transform: uppercase;
           color: var(--color-teal);
           text-decoration: none;
-          transition: gap 0.25s ease, color 0.25s ease;
+          transition: gap 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .article-card__cta:hover {
-          gap: 10px;
+          gap: 11px;
           color: #fff;
         }
         .articles-section__blog-cta {

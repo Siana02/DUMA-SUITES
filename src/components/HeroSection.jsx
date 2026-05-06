@@ -253,13 +253,13 @@ export default function HeroSection({ ready = false }) {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          filter: blur(28px);
-          transform: scale(1.12);
+          filter: blur(20px);
+          transform: scale(1.10);
           image-rendering: auto;
           pointer-events: none;
           user-select: none;
           opacity: 0;
-          transition: opacity 1.4s ease;
+          transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .hero__ambient-img--active {
           opacity: 1;
@@ -319,9 +319,9 @@ export default function HeroSection({ ready = false }) {
           pointer-events: none;
           user-select: none;
           opacity: 0;
-          transition: opacity 1.4s ease;
+          transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1);
           will-change: transform, opacity;
-          animation-duration: 14s;
+          animation-duration: 16s;
           animation-delay: 0.8s;
           animation-timing-function: ease-in-out;
           animation-fill-mode: both;
@@ -364,7 +364,7 @@ export default function HeroSection({ ready = false }) {
         .hero__heading-top {
           display: block;
           font-size: clamp(2.4rem, 4.8vw, 5rem);
-          font-weight: 400;
+          font-weight: 500;
           font-style: normal;
           color: #ffffff;
           letter-spacing: 0.04em;
@@ -376,7 +376,7 @@ export default function HeroSection({ ready = false }) {
         .hero__heading-main {
           display: block;
           font-size: clamp(2.4rem, 4.8vw, 5rem);
-          font-weight: 400;
+          font-weight: 500;
           line-height: 1.05;
           text-shadow: 0 2px 48px rgba(0, 0, 0, 0.25);
           white-space: nowrap;
@@ -401,23 +401,23 @@ export default function HeroSection({ ready = false }) {
           gap: 10px;
           font-family: var(--font-nav);
           font-size: 0.68rem;
-          font-weight: 600;
+          font-weight: 700;
           letter-spacing: 0.16em;
           text-transform: uppercase;
           color: #ffffff;
           text-decoration: none;
-          padding: 14px 32px;
-          border: 1.5px solid rgba(255, 255, 255, 0.72);
+          padding: 15px 34px;
+          border: 1.5px solid rgba(255, 255, 255, 0.75);
           border-radius: 3px;
           position: relative;
           overflow: hidden;
           isolation: isolate;
-          box-shadow: 0 0 18px rgba(255, 255, 255, 0.10);
+          box-shadow: 0 0 22px rgba(255, 255, 255, 0.12);
           transition:
-            border-color 0.3s ease,
-            color 0.3s ease,
-            transform 0.28s ease,
-            box-shadow 0.3s ease;
+            border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+            color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+            transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+            box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
         /* Diagonal shutter: pseudo-element sweeps at 45° */
         .hero__cta::before {
@@ -426,7 +426,7 @@ export default function HeroSection({ ready = false }) {
           inset: 0;
           background: var(--color-teal);
           transform: translateX(-110%) skewX(-20deg);
-          transition: transform 0.52s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
           z-index: -1;
         }
         .hero__cta:hover::before {
@@ -435,8 +435,8 @@ export default function HeroSection({ ready = false }) {
         .hero__cta:hover {
           border-color: var(--color-teal);
           color: #ffffff;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 28px rgba(201, 169, 110, 0.30);
+          transform: translateY(-2px) scale(1.015);
+          box-shadow: 0 10px 32px rgba(201, 169, 110, 0.36);
         }
         .hero__cta-arrow {
           display: inline-block;
@@ -523,8 +523,8 @@ export default function HeroSection({ ready = false }) {
 
           /* Reduce ambient blur — image base should be visible, not fully opaque */
           .hero__ambient-img {
-            filter: blur(10px);
-            transform: scale(1.06);
+            filter: blur(8px);
+            transform: scale(1.04);
           }
           /* Remove dark overlay on desktop — frosted effect replaces it */
           .hero__ambient-overlay {
@@ -580,8 +580,8 @@ export default function HeroSection({ ready = false }) {
             z-index: 2;
             order: 1;
             align-items: center;
-            backdrop-filter: blur(8px) saturate(1.05);
-            -webkit-backdrop-filter: blur(8px) saturate(1.05);
+            backdrop-filter: blur(6px) saturate(1.08);
+            -webkit-backdrop-filter: blur(6px) saturate(1.08);
             /* Gradient: strong dark on the text side for readability, dissolves
                toward the right so the panel edge blends into the mist zone above. */
             background: linear-gradient(

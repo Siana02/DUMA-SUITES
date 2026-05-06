@@ -327,14 +327,14 @@ export default function AboutSection({ isPage = false }) {
           background: #fff;
           border: 1px solid rgba(86,51,17,0.08);
           border-radius: 6px;
-          padding: clamp(18px, 2.5vw, 26px);
+          padding: clamp(20px, 2.5vw, 30px);
           width: 44%;
           box-shadow: 0 4px 20px rgba(86,51,17,0.06);
           cursor: default;
           transition:
-            box-shadow 0.3s ease,
-            transform 0.3s ease,
-            border-color 0.3s ease;
+            box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+            transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+            border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .as-card--left  { margin-right: auto; }
         .as-card--right { margin-left: auto;  }
@@ -342,7 +342,7 @@ export default function AboutSection({ isPage = false }) {
         .as-card:hover {
           box-shadow: 0 8px 32px rgba(88,176,196,0.18);
           border-color: rgba(88,176,196,0.4);
-          transform: translateY(-3px);
+          transform: translateY(-4px) scale(1.01);
         }
 
         /* Icon — lights up when card or node is active */
@@ -367,7 +367,7 @@ export default function AboutSection({ isPage = false }) {
 
         .as-card__title {
           font-family: var(--font-eyebrow);
-          font-size: 0.82rem;
+          font-size: 0.85rem;
           font-weight: 700;
           letter-spacing: 0.07em;
           text-transform: uppercase;

@@ -427,7 +427,7 @@ export default function GalleryStripSection() {
           background-image: var(--bg-src, none);
           background-size: cover;
           background-position: center;
-          filter: blur(20px) brightness(0.65) saturate(1.1);
+          filter: blur(14px) brightness(0.68) saturate(1.1);
           z-index: 0;
           pointer-events: none;
         }
@@ -438,12 +438,12 @@ export default function GalleryStripSection() {
           z-index: 1;
           height: 100%;
           width: auto;
-          transition: transform 550ms ease;
+          transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
           user-select: none;
           pointer-events: none;
         }
         .gs-item:hover .gs-img {
-          transform: scale(1.05);
+          transform: scale(1.04);
         }
 
         /* ── Arrow buttons ── */
@@ -455,10 +455,10 @@ export default function GalleryStripSection() {
           width: 52px;
           height: 52px;
           border-radius: 50%;
-          border: 1.5px solid rgba(255,255,255,0.5);
+          border: 1.5px solid rgba(255,255,255,0.55);
           background: rgba(255,255,255,0.22);
-          backdrop-filter: blur(14px);
-          -webkit-backdrop-filter: blur(14px);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -468,7 +468,7 @@ export default function GalleryStripSection() {
             background var(--transition-base),
             border-color var(--transition-base),
             color var(--transition-base),
-            transform 0.3s ease,
+            transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
             box-shadow var(--transition-base);
         }
         .gs-arrow:hover {
@@ -476,7 +476,7 @@ export default function GalleryStripSection() {
           border-color: var(--color-teal);
           color: #fff;
           transform: translateY(-50%) scale(1.1);
-          box-shadow: 0 6px 24px rgba(201,169,110,0.45);
+          box-shadow: 0 8px 28px rgba(201,169,110,0.48);
         }
         .gs-arrow--prev { left: clamp(12px, 3vw, 28px); }
         .gs-arrow--next { right: clamp(12px, 3vw, 28px); }
@@ -492,22 +492,22 @@ export default function GalleryStripSection() {
           gap: 10px;
           font-family: var(--font-nav);
           font-size: 0.68rem;
-          font-weight: 600;
+          font-weight: 700;
           letter-spacing: 0.16em;
           text-transform: uppercase;
           color: var(--color-espresso);
           text-decoration: none;
-          padding: 14px 36px;
-          border: 1.5px solid rgba(86, 51, 17, 0.4);
+          padding: 15px 36px;
+          border: 1.5px solid rgba(86, 51, 17, 0.45);
           border-radius: 3px;
           position: relative;
           overflow: hidden;
           isolation: isolate;
           transition:
-            border-color 0.3s ease,
-            color 0.3s ease,
-            transform 0.28s ease,
-            box-shadow 0.3s ease;
+            border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+            color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+            transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+            box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .gs-cta-btn::before {
           content: '';
@@ -515,15 +515,15 @@ export default function GalleryStripSection() {
           inset: 0;
           background: var(--color-teal);
           transform: translateX(-110%) skewX(-20deg);
-          transition: transform 0.52s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
           z-index: -1;
         }
         .gs-cta-btn:hover::before { transform: translateX(0%) skewX(-20deg); }
         .gs-cta-btn:hover {
           border-color: var(--color-teal);
           color: #ffffff;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 28px rgba(201,169,110,0.28);
+          transform: translateY(-2px) scale(1.015);
+          box-shadow: 0 10px 32px rgba(201,169,110,0.32);
         }
         .gs-cta-btn__arrow {
           display: inline-block;

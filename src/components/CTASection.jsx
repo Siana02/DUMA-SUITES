@@ -164,7 +164,7 @@ export default function CTASection() {
         .cta-section__heading {
           font-family: var(--font-title);
           font-size: clamp(2.8rem, 6.5vw, 5rem);
-          font-weight: 300;
+          font-weight: 400;
           color: var(--color-text-light);
           line-height: 1.08;
           margin-bottom: 1.5rem;
@@ -200,7 +200,7 @@ export default function CTASection() {
           gap: 9px;
           font-family: var(--font-nav);
           font-size: 0.68rem;
-          font-weight: 600;
+          font-weight: 700;
           letter-spacing: 0.16em;
           text-transform: uppercase;
           text-decoration: none;
@@ -209,8 +209,8 @@ export default function CTASection() {
           position: relative;
           overflow: hidden;
           isolation: isolate;
-          transition: color 0.3s ease, border-color 0.3s ease,
-                      transform 0.28s ease, box-shadow 0.3s ease;
+          transition: color 0.35s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                      transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .cta-section__btn--primary {
           background: var(--color-teal);
@@ -220,19 +220,19 @@ export default function CTASection() {
         .cta-section__btn--primary:hover {
           background: var(--color-teal-dark);
           border-color: var(--color-teal-dark);
-          transform: translateY(-2px);
-          box-shadow: 0 10px 32px rgba(201,169,110,0.38);
+          transform: translateY(-2px) scale(1.015);
+          box-shadow: 0 12px 36px rgba(201,169,110,0.45);
         }
         .cta-section__btn--outline {
           background: transparent;
-          color: rgba(255,255,255,0.85);
-          border: 1.5px solid rgba(255,255,255,0.3);
+          color: rgba(255,255,255,0.9);
+          border: 1.5px solid rgba(255,255,255,0.35);
         }
         .cta-section__btn--outline:hover {
-          background: rgba(255,255,255,0.08);
-          border-color: rgba(255,255,255,0.6);
+          background: rgba(255,255,255,0.10);
+          border-color: rgba(255,255,255,0.65);
           color: #fff;
-          transform: translateY(-2px);
+          transform: translateY(-2px) scale(1.015);
         }
 
         @media (max-width: 480px) {
