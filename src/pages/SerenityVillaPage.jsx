@@ -340,6 +340,7 @@ export default function SerenityVillaPage() {
           <div className="container sv-gallery__cta-wrap">
             <motion.a href="#inquire" className="btn btn-primary" {...fadeUp(0.1)}>
               {ts.galleryCta}
+              <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
             </motion.a>
           </div>
         </section>
@@ -654,7 +655,7 @@ export default function SerenityVillaPage() {
           line-height: 1.8;
           margin-bottom: 1rem;
         }
-        .sv-about__cta { margin-top: 0.75rem; display: inline-block; }
+        .sv-about__cta { margin-top: 0.75rem; display: inline-flex; align-items: center; }
         /* Highlights card inside left column */
         .sv-about__highlights-card {
           background: var(--color-bg-secondary);

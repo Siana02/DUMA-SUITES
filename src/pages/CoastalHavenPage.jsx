@@ -333,6 +333,7 @@ export default function CoastalHavenPage() {
           <div className="container ch-gallery__cta-wrap">
             <motion.a href="#inquire" className="btn btn-primary" {...fadeUp(0.1)}>
               {tc.galleryCta}
+              <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
             </motion.a>
           </div>
         </section>
@@ -649,7 +650,7 @@ export default function CoastalHavenPage() {
           line-height: 1.8;
           margin-bottom: 1rem;
         }
-        .ch-about__cta { margin-top: 0.75rem; display: inline-block; }
+        .ch-about__cta { margin-top: 0.75rem; display: inline-flex; align-items: center; }
         /* Highlights card inside left column */
         .ch-about__highlights-card {
           background: var(--color-bg-secondary);

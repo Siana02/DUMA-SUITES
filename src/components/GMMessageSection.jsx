@@ -272,10 +272,6 @@ export default function GMMessageSection() {
           <BedDouble size={14} strokeWidth={1.8} aria-hidden="true" />
           {t.videoCta}
         </a>
-        <a href="/contact" className="btn btn-inverse">
-          {t.videoCtaSub}
-          <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
-        </a>
       </motion.div>
 
       <style>{`

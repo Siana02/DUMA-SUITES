@@ -188,6 +188,7 @@ export default function HeroSection({ ready = false }) {
           </motion.p>
 
           <motion.div
+            className="hero__cta-outer"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: DELAYS.cta }}
@@ -382,7 +383,7 @@ export default function HeroSection({ ready = false }) {
         }
         .hero__heading-main em {
           font-style: italic;
-          color: #ffffff;
+          color: #c9a96e;
         }
         .hero__subtitle {
           font-family: var(--font-lora);
@@ -447,6 +448,41 @@ export default function HeroSection({ ready = false }) {
           animation: none;
           transform: translateX(5px) scale(1) !important;
           transition: transform 0.25s ease;
+        }
+
+        /* ── Pulsating beam ring around the CTA ── */
+        .hero__cta-outer {
+          display: inline-block;
+          position: relative;
+          border-radius: 5px;
+        }
+        /* The ring sits just outside the button and pulses independently */
+        .hero__cta-outer::after {
+          content: '';
+          position: absolute;
+          inset: -5px;
+          border-radius: 5px;
+          border: 1px solid rgba(201, 169, 110, 0);
+          box-shadow: 0 0 0 0 rgba(201, 169, 110, 0), 0 0 10px rgba(201, 169, 110, 0);
+          animation: hero-cta-beam 2.8s ease-in-out infinite;
+          pointer-events: none;
+        }
+        @keyframes hero-cta-beam {
+          0%   {
+            border-color: rgba(201, 169, 110, 0);
+            box-shadow: 0 0 0 0   rgba(201, 169, 110, 0),
+                        0 0 10px  rgba(201, 169, 110, 0);
+          }
+          45%  {
+            border-color: rgba(201, 169, 110, 0.62);
+            box-shadow: 0 0 0 8px  rgba(201, 169, 110, 0.14),
+                        0 0 28px   rgba(201, 169, 110, 0.24);
+          }
+          100% {
+            border-color: rgba(201, 169, 110, 0);
+            box-shadow: 0 0 0 0   rgba(201, 169, 110, 0),
+                        0 0 10px  rgba(201, 169, 110, 0);
+          }
         }
 
         /* ── Scroll indicator ── */
