@@ -813,7 +813,7 @@ export default function CoastalHavenPage() {
         .ch-tour__frame {
           position: relative;
           width: 100vw;
-          height: 100%;
+          height: 100vh;
           aspect-ratio: 9/16;
           padding-bottom: min(177.78%, 100vh);
           background: #000;
@@ -826,7 +826,7 @@ export default function CoastalHavenPage() {
           inset: 0;
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain;
           border: none;
         }
         @media (min-width: 1024px) {
