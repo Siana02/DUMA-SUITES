@@ -444,6 +444,10 @@ export default function HeroSection({ ready = false }) {
           bottom: 28px;
           left: 50%;
           transform: translateX(-50%);
+          background: none;
+          border: none;
+          padding: 0;
+          cursor: pointer;
           color: rgba(255, 255, 255, 0.48);
           display: flex;
           flex-direction: column;
