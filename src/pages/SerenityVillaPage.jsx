@@ -96,6 +96,7 @@ export default function SerenityVillaPage() {
   const { lang } = useLanguage()
   const t = getT(lang)
   const ts = t.suites.serenity
+  const tc = t.suites.coastal
 
   const galleryTrackRef    = useRef(null)
   const galleryPosRef      = useRef(0)
@@ -483,11 +484,11 @@ export default function SerenityVillaPage() {
               {/* Coastal Haven card */}
               <motion.div className="sv-suite-card" {...fadeUp(0.22)} onClick={() => navigate('/suites/coastal-haven')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/coastal-haven') } }}>
                 <div className="sv-suite-card__img-wrap">
-                  <img src={coastalPreview} alt="One Bedroom Suite" className="sv-suite-card__img" loading="eager" />
+                  <img src={coastalPreview} alt={tc.heroTitle} className="sv-suite-card__img" loading="eager" />
                 </div>
                 <div className="sv-suite-card__body">
                   <p className="sv-suite-card__tagline">{ts.coastalTagline}</p>
-                  <h3 className="sv-suite-card__name">One Bedroom Suite</h3>
+                  <h3 className="sv-suite-card__name">{tc.heroTitle}</h3>
                   <a href="/suites/coastal-haven" className="btn btn-inverse sv-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/coastal-haven') }}>
                     {ts.viewSuiteBtn}
                   </a>
@@ -497,12 +498,12 @@ export default function SerenityVillaPage() {
               {/* Serenity Villa card */}
               <motion.div className="sv-suite-card" {...fadeUp(0.32)} onClick={() => navigate('/suites/serenity-villa')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/serenity-villa') } }}>
                 <div className="sv-suite-card__img-wrap">
-                  <img src={serenityPreviewImg} alt="Three Bedroom Suite" className="sv-suite-card__img" loading="eager" />
+                  <img src={serenityPreviewImg} alt={ts.heroTitle} className="sv-suite-card__img" loading="eager" />
                   <div className="sv-suite-card__badge">{ts.badgeCurrent}</div>
                 </div>
                 <div className="sv-suite-card__body">
                   <p className="sv-suite-card__tagline">{ts.serenityTagline}</p>
-                  <h3 className="sv-suite-card__name">Three Bedroom Suite</h3>
+                  <h3 className="sv-suite-card__name">{ts.heroTitle}</h3>
                   <a href="/suites/serenity-villa" className="btn btn-inverse sv-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/serenity-villa') }}>
                     {ts.viewSuiteBtn}
                   </a>
@@ -559,10 +560,10 @@ export default function SerenityVillaPage() {
           display: block;
           font-family: var(--font-eyebrow);
           font-style: italic;
-          font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+          font-size: clamp(0.75rem, 1.3vw, 0.9rem);
           letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: var(--color-teal);
+          color: #c9a96e;
           margin-bottom: 1rem;
         }
         .sv-hero__title {
@@ -941,10 +942,10 @@ export default function SerenityVillaPage() {
           display: block;
           font-family: var(--font-eyebrow);
           font-style: italic;
-          font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+          font-size: clamp(0.75rem, 1.3vw, 0.9rem);
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: var(--color-teal);
+          color: #c9a96e;
           margin-bottom: 1rem;
         }
         .sv-inquire__title {

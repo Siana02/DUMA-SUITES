@@ -26,7 +26,8 @@ function VideoCard({ src, label }) {
     const video = videoRef.current
     if (!video) return
 
-    let entryThreshold = 0
+    // Use ref to persist the last-seen ratio across observer callbacks
+    const lastRatioRef = { current: 0 }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -35,12 +36,12 @@ function VideoCard({ src, label }) {
           // Entered view sufficiently — auto-play
           video.play().catch(() => {})
           setPlaying(true)
-        } else if (ratio < 0.3 && entryThreshold >= 0.5) {
+        } else if (ratio < 0.3 && lastRatioRef.current >= 0.5) {
           // Scrolled out of view — auto-pause
           video.pause()
           setPlaying(false)
         }
-        entryThreshold = ratio
+        lastRatioRef.current = ratio
       },
       { threshold: [0, 0.3, 0.5, 0.75, 1.0] }
     )

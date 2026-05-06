@@ -413,7 +413,7 @@ export default function ContactPage() {
           text-align: center;
         }
         .cp-hero__eyebrow {
-          color: var(--color-teal);
+          color: #c9a96e;
           margin-bottom: 0.5rem;
           display: block;
         }

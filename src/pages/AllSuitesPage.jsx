@@ -255,10 +255,10 @@ export default function AllSuitesPage() {
           display: block;
           font-family: var(--font-eyebrow);
           font-style: italic;
-          font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+          font-size: clamp(0.75rem, 1.3vw, 0.9rem);
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: var(--color-teal);
+          color: #c9a96e;
           margin-bottom: 1rem;
         }
         .as-hero__title {

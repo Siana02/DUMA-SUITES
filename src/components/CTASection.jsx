@@ -127,11 +127,11 @@ export default function CTASection() {
 
         .cta-section__eyebrow {
           font-family: var(--font-eyebrow);
-          font-size: 0.75rem;
+          font-size: clamp(0.75rem, 1.3vw, 0.9rem);
           font-style: italic;
           letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: var(--color-teal);
+          color: #c9a96e;
           margin-bottom: 1.25rem;
         }
 
