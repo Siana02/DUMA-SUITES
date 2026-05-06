@@ -24,8 +24,8 @@ export default function Navbar() {
     { label: t.nav.home,    href: '/',         isRoute: true },
     { label: t.nav.suites,  href: '/suites',   isRoute: true },
     { label: t.nav.gallery, href: '/gallery',  isRoute: true },
-    { label: t.nav.blog,    href: '/blog',     isRoute: true },
     { label: t.nav.about,   href: '/#about',   isRoute: false },
+    { label: t.nav.blog,    href: '/blog',     isRoute: true },
     { label: t.nav.contact, href: '/#contact', isRoute: false },
   ]
 

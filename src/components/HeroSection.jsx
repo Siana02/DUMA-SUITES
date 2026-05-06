@@ -503,15 +503,25 @@ export default function HeroSection({ ready = false }) {
             display: none;
           }
 
-          /* Soft gradient dissolve — fades the left edge of the image panel into the content panel */
+          /* Soft gradient dissolve — wide mist zone that covers the left edge of the
+             image panel consistently across every slide, regardless of image tone.
+             Starts opaque enough at the seam to absorb any harsh backdrop-filter
+             boundary or bright image edge, then melts away over 44% of the panel. */
           .hero__image-blend {
             display: block;
             position: absolute;
             top: 0;
             left: 0;
             bottom: 0;
-            width: 22%;
-            background: linear-gradient(to right, rgba(9, 7, 4, 0.28), transparent);
+            width: 44%;
+            background: linear-gradient(
+              to right,
+              rgba(9, 7, 4, 0.52) 0%,
+              rgba(9, 7, 4, 0.30) 28%,
+              rgba(9, 7, 4, 0.12) 58%,
+              rgba(9, 7, 4, 0.03) 82%,
+              transparent 100%
+            );
             z-index: 3;
             pointer-events: none;
           }
@@ -523,17 +533,19 @@ export default function HeroSection({ ready = false }) {
             z-index: 2;
             order: 1;
             align-items: center;
-            /* Light blur: softens the ambient background without a heavy frosted-glass effect */
             backdrop-filter: blur(8px) saturate(1.05);
             -webkit-backdrop-filter: blur(8px) saturate(1.05);
-            background: rgba(9, 7, 4, 0.22);
-            /* Soft mask: background fades to transparent toward the right edge */
-            -webkit-mask-image: linear-gradient(to right, black 78%, transparent 100%);
-            mask-image: linear-gradient(to right, black 78%, transparent 100%);
-            -webkit-mask-repeat: no-repeat;
-            mask-repeat: no-repeat;
-            -webkit-mask-size: 100% 100%;
-            mask-size: 100% 100%;
+            /* Gradient: strong dark on the text side for readability, dissolves
+               toward the right so the panel edge blends into the mist zone above. */
+            background: linear-gradient(
+              to right,
+              rgba(9, 7, 4, 0.52) 0%,
+              rgba(9, 7, 4, 0.44) 55%,
+              rgba(9, 7, 4, 0.18) 80%,
+              rgba(9, 7, 4, 0.04) 95%,
+              transparent 100%
+            );
+            /* No mask-image — masks hard-clip backdrop-filter, exposing the seam */
           }
           .hero__content {
             padding: clamp(80px, 10vh, 130px) clamp(28px, 4.5vw, 72px) clamp(60px, 7vh, 100px);
