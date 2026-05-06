@@ -119,9 +119,12 @@ export default function CookieBanner({ preloadDone }) {
             .ckb-overlay {
               position: fixed;
               bottom: clamp(16px, 3vw, 32px);
-              left: 50%;
-              transform: translateX(-50%);
-              width: min(96vw, 760px);
+              left: 0;
+              right: 0;
+              transform: none;
+              width: 100%;
+              max-width: 760px;
+              margin: 0 auto;
               z-index: 9999;
               background: rgba(13, 10, 6, 0.96);
               backdrop-filter: blur(18px) saturate(1.2);
@@ -268,7 +271,15 @@ export default function CookieBanner({ preloadDone }) {
             .ckb-learn:hover { color: #c9a96e; }
 
             /* ── Mobile ── */
-            @media (max-width: 560px) {
+            @media (max-width: 640px) {
+            .ckb-overlay {
+  border-radius: 0;       /* avoid clipped corners */
+  bottom: 0;              /* stick to bottom edge */
+  width: 100%;            /* full width on mobile */
+  max-width: 100%;        /* no horizontal clipping */
+  padding: 14px 16px;     /* tighter padding for small screens */
+}
+
               .ckb-inner { flex-direction: column; gap: 16px; }
               .ckb-actions { width: 100%; justify-content: flex-start; }
               .ckb-lead { flex: 1 1 auto; }
