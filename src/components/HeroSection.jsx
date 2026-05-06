@@ -602,7 +602,7 @@ export default function HeroSection({ ready = false }) {
           /* On the frosted light panel, keep text white for legibility */
           .hero__heading-top,
           .hero__heading-main em {
-            color: #ffffff;
+            color: #c9a96e;
             text-shadow: 0 2px 40px rgba(0, 0, 0, 0.30);
           }
           .hero__subtitle {
@@ -736,7 +736,7 @@ export default function HeroSection({ ready = false }) {
           }
           .hero__heading-main em {
             font-size: clamp(1.8rem, 9vw, 3.2rem);
-            color: #ffffff;
+            color: #c9a96e;
             text-shadow: 0 2px 32px rgba(0, 0, 0, 0.45);
           }
           .hero__subtitle {
