@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
+import { ArrowRight, BedDouble } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
@@ -136,7 +137,7 @@ export default function GMMessageSection() {
           {/* Hero large — 400px, peels rightward */}
           <PeelingPhoto
             src={gm1}
-            alt="General Manager Andrea Boemo"
+            alt="Duma Suites coastal property"
             className="gm-photo--hero gm-photo--tilt-l"
             delay={0.15}
             peel="right"
@@ -173,7 +174,7 @@ export default function GMMessageSection() {
           {/* Inline image 1 — mobile & tablet only (hidden on desktop) */}
           <PeelingPhoto
             src={gm1}
-            alt="General Manager Andrea Boemo"
+            alt="Duma Suites coastal property"
             className="gm-photo--inline gm-photo--tilt-l"
             delay={0.28}
             peel="right"
@@ -216,7 +217,7 @@ export default function GMMessageSection() {
           {/* Medium-large portrait, peels left */}
           <PeelingPhoto
             src={gm2}
-            alt="General Manager Andrea Boemo portrait"
+            alt="Duma Suites Watamu"
             className="gm-photo--medium-lg gm-photo--tilt-r"
             delay={0.25}
             peel="left"
@@ -263,6 +264,18 @@ export default function GMMessageSection() {
             />
           </div>
         </div>
+      </motion.div>
+
+      {/* ── Post-video CTA ── */}
+      <motion.div className="gm-video-cta" {...fadeUp(0.82)}>
+        <a href="/suites" className="btn btn-primary">
+          <BedDouble size={14} strokeWidth={1.8} aria-hidden="true" />
+          {t.videoCta}
+        </a>
+        <a href="/contact" className="btn btn-inverse">
+          {t.videoCtaSub}
+          <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
+        </a>
       </motion.div>
 
       <style>{`
@@ -521,6 +534,30 @@ export default function GMMessageSection() {
           width: 100%;
           height: 100%;
           border: none;
+        }
+
+        /* ── Post-video CTA ── */
+        .gm-video-cta {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          justify-content: center;
+          margin-top: clamp(1.5rem, 3vw, 2.5rem);
+          padding-inline: var(--section-px, clamp(16px, 5vw, 48px));
+        }
+
+        /* Mobile: video fills nearly full width for maximum impact */
+        @media (max-width: 767px) {
+          .gm-video-wrap {
+            padding-inline: 0;
+          }
+          .gm-video-card {
+            border-radius: 0;
+          }
+          .gm-video-frame {
+            padding-bottom: 62%;
+            border-radius: 0;
+          }
         }
 
         /* ─────────────────────────────────────────────

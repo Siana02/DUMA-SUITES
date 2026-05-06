@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Maximize2, BedDouble, Users } from 'lucide-react'
+import { Maximize2, BedDouble, Users, ArrowRight } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
@@ -52,6 +52,7 @@ function SuiteCard({ suite, image, href, index }) {
         <p className="as-card__desc">{suite.desc}</p>
         <a href={href} className="btn btn-inverse as-card__btn">
           {t.suites.all.viewSuite}
+          <ArrowRight size={13} strokeWidth={1.6} aria-hidden="true" />
         </a>
       </div>
     </motion.article>
@@ -254,10 +255,10 @@ export default function AllSuitesPage() {
           display: block;
           font-family: var(--font-eyebrow);
           font-style: italic;
-          font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+          font-size: clamp(0.75rem, 1.3vw, 0.9rem);
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: var(--color-teal);
+          color: #c9a96e;
           margin-bottom: 1rem;
         }
         .as-hero__title {

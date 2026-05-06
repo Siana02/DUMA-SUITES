@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async'
+import { motion } from 'framer-motion'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 import cheetahIcon from '../assets/cheetah.png'
@@ -136,28 +137,62 @@ export default function GalleryPage() {
         <section className="section gallery-page" id="gallery">
           <div className="container">
             <div className="gallery-page__header">
-              <span className="eyebrow">{t.gallery.eyebrow}</span>
+              <motion.span
+                className="eyebrow"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
+                {t.gallery.eyebrow}
+              </motion.span>
 
-              <div className="gallery-page__divider" aria-hidden="true">
+              <motion.div
+                className="gallery-page__divider"
+                aria-hidden="true"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
                 <span className="gallery-page__divider-line gallery-page__divider-line--left" />
                 <img src={cheetahIcon} alt="" className="gallery-page__divider-icon" />
                 <span className="gallery-page__divider-line gallery-page__divider-line--right" />
-              </div>
+              </motion.div>
 
-              <h1 className="section-title">{t.gallery.title}</h1>
-              <p className="gallery-page__sub">{t.gallery.sub}</p>
+              <motion.h1
+                className="section-title"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.28 }}
+              >
+                {t.gallery.title}
+              </motion.h1>
+              <motion.p
+                className="gallery-page__sub"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.65, delay: 0.38 }}
+              >
+                {t.gallery.sub}
+              </motion.p>
             </div>
 
             <div className="gallery-page__grid">
               {IMAGES.map((img, i) => (
-                <figure key={i} className="gallery-page__figure">
+                <motion.figure
+                  key={i}
+                  className="gallery-page__figure"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.55, delay: (i % 6) * 0.05 /* stagger within each row of 6 */ }}
+                >
                   <img
                     src={img.src}
                     alt={img.alt}
                     className="gallery-page__img"
                     loading={i < 6 ? 'eager' : 'lazy'}
                   />
-                </figure>
+                </motion.figure>
               ))}
             </div>
           </div>

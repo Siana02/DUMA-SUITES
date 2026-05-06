@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
@@ -19,18 +19,57 @@ const VIDEOS = [vid1, vid2, vid5, vid6, vid7, vid3, vid4]
 function VideoCard({ src, label }) {
   const videoRef = useRef(null)
   const [playing, setPlaying] = useState(false)
+  const isHoveredRef = useRef(false)
 
-  const play = () => {
+  // IntersectionObserver: auto-play when ≥50% visible, auto-pause when <30% visible
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    // Use ref to persist the last-seen ratio across observer callbacks
+    const lastRatioRef = { current: 0 }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const ratio = entry.intersectionRatio
+        if (ratio >= 0.5) {
+          // Entered view sufficiently — auto-play
+          video.play().catch(() => {})
+          setPlaying(true)
+        } else if (ratio < 0.3 && lastRatioRef.current >= 0.5) {
+          // Scrolled out of view — auto-pause
+          video.pause()
+          setPlaying(false)
+        }
+        lastRatioRef.current = ratio
+      },
+      { threshold: [0, 0.3, 0.5, 0.75, 1.0] }
+    )
+    observer.observe(video)
+    return () => observer.disconnect()
+  }, [])
+
+  const play = useCallback(() => {
     videoRef.current?.play().catch(() => {})
     setPlaying(true)
-  }
-  const pause = () => {
+  }, [])
+
+  const pause = useCallback(() => {
     videoRef.current?.pause()
     setPlaying(false)
+  }, [])
+
+  // Desktop: play on hover, pause on mouse-leave (unless in-view auto is playing)
+  const handleMouseEnter = () => {
+    isHoveredRef.current = true
+    play()
+  }
+  const handleMouseLeave = () => {
+    isHoveredRef.current = false
+    pause()
   }
 
-  const handleMouseEnter = () => play()
-  const handleMouseLeave = () => pause()
+  // Click / tap to toggle
   const handleClick = () => {
     if (!videoRef.current) return
     if (videoRef.current.paused) { play() } else { pause() }
@@ -46,14 +85,20 @@ function VideoCard({ src, label }) {
       <div className="vs-card__video-wrap">
         <video
           ref={videoRef}
-          src={src}
           className="vs-card__video"
           muted
           loop
           playsInline
           preload="metadata"
           aria-label={label}
-        />
+          title={label}
+          disablePictureInPicture
+          controlsList="nodownload nofullscreen noremoteplayback"
+        >
+          {/* Explicit type forces browsers (especially Android) to attempt H.264
+              decoding for .MOV containers which otherwise fail MIME-type sniffing */}
+          <source src={src} type="video/mp4" />
+        </video>
         <div className="vs-card__overlay" aria-hidden="true" />
         <div className={`vs-card__play-icon${playing ? ' vs-card__play-icon--hidden' : ''}`} aria-hidden="true">▶</div>
       </div>

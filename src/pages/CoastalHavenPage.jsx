@@ -83,6 +83,7 @@ export default function CoastalHavenPage() {
   const { lang } = useLanguage()
   const t = getT(lang)
   const tc = t.suites.coastal
+  const ts = t.suites.serenity
 
   // Video pause-on-scroll logic
   const tourIframeRef = useRef(null)
@@ -226,8 +227,14 @@ export default function CoastalHavenPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.42, ease: [0.4, 0, 0.2, 1] }}
             >
-              <a href="#inquire" className="btn btn-primary">{tc.heroCta1}</a>
-              <a href="#gallery" className="btn btn-inverse-light">{tc.heroCta2}</a>
+              <a href="#inquire" className="btn btn-primary">
+                <Calendar size={14} strokeWidth={1.8} aria-hidden="true" />
+                {tc.heroCta1}
+              </a>
+              <a href="#gallery" className="btn btn-inverse-light">
+                {tc.heroCta2}
+                <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
+              </a>
             </motion.div>
           </div>
         </section>
@@ -250,7 +257,10 @@ export default function CoastalHavenPage() {
                 <h2 className="section-title ch-about__title">{tc.aboutTitle}</h2>
                 <p className="ch-about__text">{tc.aboutText1}</p>
                 <p className="ch-about__text">{tc.aboutText2}</p>
-                <a href="#inquire" className="btn btn-primary ch-about__cta">{tc.aboutCta}</a>
+                <a href="#inquire" className="btn btn-primary ch-about__cta">
+                  <Calendar size={14} strokeWidth={1.8} aria-hidden="true" />
+                  {tc.aboutCta}
+                </a>
 
                 {/* Highlights card — moved into left column */}
                 <div className="ch-about__highlights-card">
@@ -465,12 +475,12 @@ export default function CoastalHavenPage() {
               {/* Coastal Haven card */}
               <motion.div className="ch-suite-card" {...fadeUp(0.22)} onClick={() => navigate('/suites/coastal-haven')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/coastal-haven') } }}>
                 <div className="ch-suite-card__img-wrap">
-                  <img src={heroImg} alt="One Bedroom Suite" className="ch-suite-card__img" loading="eager" />
+                  <img src={heroImg} alt={tc.heroTitle} className="ch-suite-card__img" loading="eager" />
                   <div className="ch-suite-card__badge">{tc.badgeCurrent}</div>
                 </div>
                 <div className="ch-suite-card__body">
                   <p className="ch-suite-card__tagline">{tc.coastalTagline}</p>
-                  <h3 className="ch-suite-card__name">One Bedroom Suite</h3>
+                  <h3 className="ch-suite-card__name">{tc.heroTitle}</h3>
                   <a href="/suites/coastal-haven" className="btn btn-inverse ch-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/coastal-haven') }}>
                     {tc.viewSuiteBtn}
                   </a>
@@ -480,11 +490,11 @@ export default function CoastalHavenPage() {
               {/* Serenity Villa card */}
               <motion.div className="ch-suite-card" {...fadeUp(0.32)} onClick={() => navigate('/suites/serenity-villa')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/serenity-villa') } }}>
                 <div className="ch-suite-card__img-wrap">
-                  <img src={serenityPreviewImg} alt="Three Bedroom Suite" className="ch-suite-card__img" loading="eager" />
+                  <img src={serenityPreviewImg} alt={ts.heroTitle} className="ch-suite-card__img" loading="eager" />
                 </div>
                 <div className="ch-suite-card__body">
                   <p className="ch-suite-card__tagline">{tc.serenityTagline}</p>
-                  <h3 className="ch-suite-card__name">Three Bedroom Suite</h3>
+                  <h3 className="ch-suite-card__name">{ts.heroTitle}</h3>
                   <a href="/suites/serenity-villa" className="btn btn-inverse ch-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/serenity-villa') }}>
                     {tc.viewSuiteBtn}
                   </a>
@@ -541,10 +551,10 @@ export default function CoastalHavenPage() {
           display: block;
           font-family: var(--font-eyebrow);
           font-style: italic;
-          font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+          font-size: clamp(0.75rem, 1.3vw, 0.9rem);
           letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: var(--color-teal);
+          color: #c9a96e;
           margin-bottom: 1rem;
         }
         .ch-hero__title {
@@ -939,10 +949,10 @@ export default function CoastalHavenPage() {
           display: block;
           font-family: var(--font-eyebrow);
           font-style: italic;
-          font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+          font-size: clamp(0.75rem, 1.3vw, 0.9rem);
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: var(--color-teal);
+          color: #c9a96e;
           margin-bottom: 1rem;
         }
         .ch-inquire__title {
