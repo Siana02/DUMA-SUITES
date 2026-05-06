@@ -813,9 +813,8 @@ export default function CoastalHavenPage() {
         .ch-tour__frame {
           position: relative;
           width: 100vw;
-          height: 100vh;
+          height: 100%;
           aspect-ratio: 9/16;
-          padding-bottom: min(177.78%, 100vh);
           background: #000;
           border-radius: 4px;
           overflow: hidden;
@@ -831,7 +830,7 @@ export default function CoastalHavenPage() {
         }
         @media (min-width: 1024px) {
           .ch-tour__frame { 
-          width: 100;
+          width: 100%;
           max-width: none;
           }
           .ch-tour__frame iframe {
