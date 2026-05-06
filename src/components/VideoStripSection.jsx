@@ -220,16 +220,14 @@ export default function VideoStripSection() {
         .vs-card__video-wrap {
           position: relative;
           width: 100%;
-          height: 100vh;
-          height: 100dvh;
+          aspect-ratio: 9 / 16;
           background: #0a0a0a;
           overflow: hidden;
           border-radius: 3px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
         }
         .vs-card__video {
+          position: absolute;
+          inset: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
@@ -271,7 +269,7 @@ export default function VideoStripSection() {
         }
         @media (max-width: 640px) {
           .vs-card {
-            width: clamp(200px, 56dvh, 320px);
+            width: 260px;
           }
         }
       `}</style>
