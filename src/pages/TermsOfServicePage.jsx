@@ -1,12 +1,11 @@
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 import {
   CheckCircle, Calendar, XCircle, Clock, Users,
-  Shield, Scale, Mail, ArrowLeft, FileText,
+  Shield, Scale, Mail, FileText,
 } from 'lucide-react'
 
 const ICON_MAP = {
@@ -26,7 +25,6 @@ export default function TermsOfServicePage() {
   const { lang } = useLanguage()
   const t = getT(lang)
   const tos = t.termsOfService
-  const navigate = useNavigate()
 
   return (
     <>
@@ -40,16 +38,6 @@ export default function TermsOfServicePage() {
         {/* ── Hero ── */}
         <div className="tos-hero">
           <div className="tos-hero__content">
-            <motion.button
-              className="tos-breadcrumb"
-              onClick={() => navigate('/')}
-              initial={{ opacity: 0, x: -12 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <ArrowLeft size={14} strokeWidth={1.5} />
-              {tos.backToHome}
-            </motion.button>
             <motion.span
               className="tos-hero__eyebrow"
               initial={{ opacity: 0, y: 14 }}

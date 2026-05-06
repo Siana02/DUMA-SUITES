@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowRight, Clock, MapPin, BookOpen, Star, CheckCircle } from 'lucide-react'
+import { ArrowRight, Clock } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
@@ -70,39 +70,38 @@ export default function BlogPage() {
           </div>
         </div>
 
-        {/* Stats bar */}
-        <div className="blog-stats-bar">
-          <div className="container blog-stats-bar__inner">
-            <div className="blog-stat">
-              <BookOpen size={16} strokeWidth={1.5} />
-              <span className="blog-stat__num">2</span>
-              <span className="blog-stat__label">Guides Published</span>
-            </div>
-            <span className="blog-stat__divider" aria-hidden="true" />
-            <div className="blog-stat">
-              <MapPin size={16} strokeWidth={1.5} />
-              <span className="blog-stat__num">100%</span>
-              <span className="blog-stat__label">{blog.trustBadge1}</span>
-            </div>
-            <span className="blog-stat__divider" aria-hidden="true" />
-            <div className="blog-stat">
-              <Star size={16} strokeWidth={1.5} />
-              <span className="blog-stat__label">{blog.trustBadge3}</span>
-            </div>
+        {/* Articles intro */}
+        <section className="blog-intro section">
+          <div className="container blog-intro__inner">
+            <motion.span
+              className="blog-intro__eyebrow eyebrow"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.6 }}
+            >
+              {blog.articlesIntroEyebrow}
+            </motion.span>
+            <motion.h2
+              className="blog-intro__title"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ duration: 0.65, delay: 0.1 }}
+            >
+              {blog.articlesIntroTitle}
+            </motion.h2>
+            <motion.p
+              className="blog-intro__desc"
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              {blog.articlesIntroDesc}
+            </motion.p>
           </div>
-        </div>
-
-        {/* Trust badges row */}
-        <div className="blog-trust-row">
-          <div className="container blog-trust-row__inner">
-            {[blog.trustBadge1, blog.trustBadge2, blog.trustBadge3].map((badge, i) => (
-              <div key={i} className="blog-trust-badge">
-                <CheckCircle size={14} strokeWidth={1.5} />
-                <span>{badge}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        </section>
 
         {/* Featured article */}
         <section className="blog-featured-section section">
@@ -319,72 +318,40 @@ export default function BlogPage() {
           margin-inline: auto;
         }
 
-        /* ── Stats bar ── */
-        .blog-stats-bar {
-          background: var(--color-espresso);
-          padding: 14px 0;
+        /* ── Articles intro ── */
+        .blog-intro {
+          padding-block: clamp(48px, 7vw, 80px);
+          background: var(--color-bg-primary);
         }
-        .blog-stats-bar__inner {
+        .blog-intro__inner {
+          max-width: 680px;
+          margin-inline: auto;
+          text-align: center;
           display: flex;
+          flex-direction: column;
           align-items: center;
-          justify-content: center;
-          gap: 0;
-          flex-wrap: wrap;
+          gap: 16px;
         }
-        .blog-stat {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          color: rgba(255,255,255,0.85);
-          padding: 4px 28px;
-        }
-        .blog-stat svg {
+        .blog-intro__eyebrow {
           color: var(--color-teal);
-          flex-shrink: 0;
+          letter-spacing: 0.22em;
         }
-        .blog-stat__num {
-          font-family: var(--font-nav);
-          font-size: 0.85rem;
-          font-weight: 700;
-          color: #fff;
+        .blog-intro__title {
+          font-family: var(--font-title);
+          font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+          font-weight: 300;
+          letter-spacing: 0.03em;
+          color: var(--color-espresso);
+          line-height: 1.2;
+          margin: 0;
         }
-        .blog-stat__label {
+        .blog-intro__desc {
           font-family: var(--font-body);
-          font-size: 0.78rem;
-          color: rgba(255,255,255,0.72);
-        }
-        .blog-stat__divider {
-          width: 1px;
-          height: 28px;
-          background: rgba(255,255,255,0.18);
-          flex-shrink: 0;
-        }
-
-        /* ── Trust badges row ── */
-        .blog-trust-row {
-          background: rgba(88,176,196,0.06);
-          border-bottom: 1px solid rgba(88,176,196,0.15);
-          padding: 10px 0;
-        }
-        .blog-trust-row__inner {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 24px;
-          flex-wrap: wrap;
-        }
-        .blog-trust-badge {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          font-family: var(--font-nav);
-          font-size: 0.6rem;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: var(--color-teal);
-        }
-        .blog-trust-badge svg {
-          flex-shrink: 0;
+          font-size: clamp(0.9rem, 1.4vw, 1rem);
+          color: var(--color-text-muted);
+          line-height: 1.8;
+          max-width: 560px;
+          margin: 0;
         }
 
         /* ── Tags ── */

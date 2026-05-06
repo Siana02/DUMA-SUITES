@@ -64,6 +64,8 @@ export default function Navbar() {
     const sectionMap = {
       home:             '/',
       'suites-preview': '/suites',
+      'gallery-strip':  '/gallery',
+      articles:         '/blog',
       about:            '/#about',
       contact:          '/#contact',
     }
