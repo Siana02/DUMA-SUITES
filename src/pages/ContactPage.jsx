@@ -215,6 +215,11 @@ export default function ContactPage() {
               <h2 className="cp-form-col__heading">
                 {lang === 'it' ? 'Inviaci un Messaggio' : 'Send Us a Message'}
               </h2>
+              <p className="cp-form-col__intro">
+                {lang === 'it'
+                  ? 'Condividi la tua richiesta e un membro del nostro team ti risponderà personalmente entro 24 ore.'
+                  : 'Share your enquiry and a member of our team will personally get back to you within 24 hours.'}
+              </p>
 
               {submitted ? (
                 <div className="cp-success">
