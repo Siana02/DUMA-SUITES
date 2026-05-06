@@ -807,6 +807,7 @@ export default function CoastalHavenPage() {
        .ch-tour__frame-wrap {
   display: flex;
   width: 100%;
+  justify-content: center;
 }
 
 /* Portrait 9:16 video — constrained to a comfortable width */
