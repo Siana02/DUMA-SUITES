@@ -85,7 +85,6 @@ function VideoCard({ src, label }) {
       <div className="vs-card__video-wrap">
         <video
           ref={videoRef}
-          src={src}
           className="vs-card__video"
           muted
           loop
@@ -95,7 +94,11 @@ function VideoCard({ src, label }) {
           title={label}
           disablePictureInPicture
           controlsList="nodownload nofullscreen noremoteplayback"
-        />
+        >
+          {/* Explicit type forces browsers (especially Android) to attempt H.264
+              decoding for .MOV containers which otherwise fail MIME-type sniffing */}
+          <source src={src} type="video/mp4" />
+        </video>
         <div className="vs-card__overlay" aria-hidden="true" />
         <div className={`vs-card__play-icon${playing ? ' vs-card__play-icon--hidden' : ''}`} aria-hidden="true">▶</div>
       </div>

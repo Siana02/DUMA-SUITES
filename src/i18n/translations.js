@@ -393,6 +393,8 @@ const en = {
     gmName: 'Andrea Boemo',
     gmTitle: 'General Manager, Duma Suites',
     videoLabel: 'A Short Introduction',
+    videoCta: 'Explore Our Suites',
+    videoCtaSub: 'Get in Touch',
   },
   suiteHighlights: {
     eyebrow: 'Suite Highlights',
@@ -1259,6 +1261,8 @@ const it = {
     gmName: 'Andrea Boemo',
     gmTitle: 'General Manager, Duma Suites',
     videoLabel: 'Una Breve Introduzione',
+    videoCta: 'Esplora le Nostre Suite',
+    videoCtaSub: 'Contattaci',
   },
   suiteHighlights: {
     eyebrow: 'Punti Salienti',
