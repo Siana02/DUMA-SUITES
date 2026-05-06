@@ -5,13 +5,13 @@ import { getT } from '../i18n/translations.js'
 
 import cheetahIcon from '../assets/cheetah.png'
 
-import vid1 from '../assets/infinity-pool-rooftopview.MOV'
+import vid1 from '../assets/infinity-pool-rooftopview.mp4'
 import vid2 from '../assets/rooftop-infinity-pool-view.mp4'
 import vid5 from '../assets/sea-urchin-on-beach.MP4'
 import vid6 from '../assets/watamu-shoreline-video.MOV'
 import vid7 from '../assets/watamu-whitesands-beach.MP4'
-import vid3 from '../assets/safari-blue-seafood-local-prawns.MOV'
-import vid4 from '../assets/safari-blue-sudi-island-seafood-bbq.MOV'
+import vid3 from '../assets/safari-blue-seafood-local-prawns.mp4'
+import vid4 from '../assets/safari-blue-sudi-island-seafood-bbq.mp4'
 
 // Safari Blue videos ordered last per design spec
 const VIDEOS = [vid1, vid2, vid5, vid6, vid7, vid3, vid4]
