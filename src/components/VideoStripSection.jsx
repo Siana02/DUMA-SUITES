@@ -220,7 +220,8 @@ export default function VideoStripSection() {
         .vs-card__video-wrap {
           position: relative;
           width: 100%;
-          height: 420px;
+          height: 100vh;
+          height: 100dvh;
           background: #0a0a0a;
           overflow: hidden;
           border-radius: 3px;
@@ -270,11 +271,7 @@ export default function VideoStripSection() {
         }
         @media (max-width: 640px) {
           .vs-card {
-            width: 260px;
-          }
-          .vs-card__video-wrap {
-            height: auto;
-            aspect-ratio: 16/9;
+            width: clamp(200px, 56dvh, 320px);
           }
         }
       `}</style>
