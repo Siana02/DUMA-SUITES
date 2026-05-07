@@ -276,29 +276,31 @@ export default function PenthouseSuiteSofiaPage() {
                   <img src={aboutImg} alt="Penthouse Suite Sofia indoor stairs view" className="ph-about__img" />
                   <div className="ph-about__img-overlay" aria-hidden="true" />
                 </div>
-                <div className="ph-about__highlights-row">
-                  <div className="ph-about__highlights-img-wrap">
-                    <img
-                      src={g26}
-                      alt="Penthouse Suite Sofia aerial pool view at nighttime"
-                      className="ph-about__highlights-img"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="ph-about__highlights-card">
-                    <h3 className="ph-about__highlights-title">{pt.highlightsTitle}</h3>
-                    <ul className="ph-highlights">
-                      {pt.highlights.map((h) => (
-                        <li key={h} className="ph-highlights__item">
-                          <Check size={14} strokeWidth={1.75} className="ph-highlights__icon" />
-                          <span>{h}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
               </motion.div>
             </div>
+            <motion.div className="ph-about__highlights-row" {...fadeUp(0.2)}>
+              <div className="ph-about__image-card">
+                <div className="ph-about__highlights-img-wrap">
+                  <img
+                    src={g26}
+                    alt="Penthouse Suite Sofia aerial pool view at nighttime"
+                    className="ph-about__highlights-img"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div className="ph-about__highlights-card">
+                <h3 className="ph-about__highlights-title">{pt.highlightsTitle}</h3>
+                <ul className="ph-highlights">
+                  {pt.highlights.map((h) => (
+                    <li key={h} className="ph-highlights__item">
+                      <Check size={14} strokeWidth={1.75} className="ph-highlights__icon" />
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
           </div>
         </section>
 
@@ -599,26 +601,34 @@ export default function PenthouseSuiteSofiaPage() {
         .ph-about__img-col {
           display: flex;
           flex-direction: column;
-          gap: clamp(16px, 2.5vw, 22px);
+          gap: 0;
         }
         .ph-about__highlights-row {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 14px;
+          gap: 16px;
+          margin-top: clamp(16px, 2.4vw, 24px);
         }
-        @media (min-width: 720px) {
+        @media (min-width: 900px) {
           .ph-about__highlights-row {
             grid-template-columns: 0.9fr 1.1fr;
             align-items: stretch;
-            gap: 16px;
+            gap: 18px;
           }
+        }
+        .ph-about__image-card {
+          padding: 12px;
+          background: var(--color-surface, #faf9f7);
+          border-radius: 14px;
+          border: 1px solid var(--color-border, #e8e3dc);
+          box-shadow: 0 8px 28px rgba(0,0,0,0.06);
         }
         .ph-about__highlights-img-wrap {
           border-radius: 14px;
           overflow: hidden;
           border: 1px solid var(--color-border, #e8e3dc);
           box-shadow: 0 10px 24px rgba(0,0,0,0.12);
-          min-height: 220px;
+          min-height: 230px;
         }
         .ph-about__highlights-img {
           width: 100%;
@@ -677,6 +687,7 @@ export default function PenthouseSuiteSofiaPage() {
         }
         @media (max-width: 559px) {
           .ph-about__stats-strip { padding: 18px; }
+          .ph-about__image-card { padding: 10px; }
           .ph-about__highlights-card { padding: 18px; }
           .ph-about__highlights-img-wrap { min-height: 190px; }
         }
