@@ -37,7 +37,7 @@ function WhatsAppIcon() {
 const SOCIAL = [
   { Icon: TikTokIcon,    href: 'https://www.tiktok.com/@duma.suites?_r=1&_t=ZS-96748d7EBBH',             label: 'TikTok',    handle: '@duma.suites' },
   { Icon: InstagramIcon, href: 'https://www.instagram.com/duma.suitess?igsh=MTZlNTVkZHdhcnoxMQ==',       label: 'Instagram', handle: '@duma.suitess' },
-  { Icon: WhatsAppIcon,  href: 'https://wa.me/254713713663',                                              label: 'WhatsApp',  handle: '+254 713 713663' },
+  { Icon: WhatsAppIcon,  href: 'https://wa.me/254710933025',                                              label: 'WhatsApp',  handle: '+254 710 933 025' },
 ]
 
 const fadeUp = {
@@ -360,7 +360,7 @@ export default function ContactPage() {
                     : "Ready to book? Our concierge is just a message away on WhatsApp to craft your perfect coastal escape."}
                 </p>
                 <a
-                  href="https://wa.me/254713713663"
+                  href="https://wa.me/254710933025"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-primary cp-book-cta__btn"

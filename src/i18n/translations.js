@@ -137,7 +137,7 @@ const en = {
     },
     info: {
       address: 'Ghepard Towers, Watamu, Kilifi County, Kenya',
-      phone: '+254 713 713663',
+      phone: '+254 710 933 025',
       email: 'reservations@dumasuites.com',
     },
   },
@@ -784,7 +784,7 @@ const en = {
         contact: {
           email: 'reservations@dumasuites.com',
           address: 'Ghepard Towers, Watamu, Kilifi County, Kenya',
-          phone: '+254 713 713663',
+          phone: '+254 710 933 025',
         },
       },
     ],
@@ -863,7 +863,7 @@ const en = {
         contact: {
           email: 'reservations@dumasuites.com',
           address: 'Ghepard Towers, Watamu, Kilifi County, Kenya',
-          phone: '+254 713 713663',
+          phone: '+254 710 933 025',
         },
       },
     ],
@@ -955,7 +955,7 @@ const en = {
         contact: {
           email: 'reservations@dumasuites.com',
           address: 'Ghepard Towers, Watamu, Kilifi County, Kenya',
-          phone: '+254 713 713663',
+          phone: '+254 710 933 025',
         },
       },
     ],
@@ -1101,7 +1101,7 @@ const it = {
     },
     info: {
       address: 'Ghepard Towers, Watamu, Contea di Kilifi, Kenya',
-      phone: '+254 713 713663',
+      phone: '+254 710 933 025',
       email: 'reservations@dumasuites.com',
     },
   },
@@ -1748,7 +1748,7 @@ const it = {
         contact: {
           email: 'reservations@dumasuites.com',
           address: 'Ghepard Towers, Watamu, Contea di Kilifi, Kenya',
-          phone: '+254 713 713663',
+          phone: '+254 710 933 025',
         },
       },
     ],
@@ -1827,7 +1827,7 @@ const it = {
         contact: {
           email: 'reservations@dumasuites.com',
           address: 'Ghepard Towers, Watamu, Contea di Kilifi, Kenya',
-          phone: '+254 713 713663',
+          phone: '+254 710 933 025',
         },
       },
     ],
@@ -1919,7 +1919,7 @@ const it = {
         contact: {
           email: 'reservations@dumasuites.com',
           address: 'Ghepard Towers, Watamu, Contea di Kilifi, Kenya',
-          phone: '+254 713 713663',
+          phone: '+254 710 933 025',
         },
       },
     ],

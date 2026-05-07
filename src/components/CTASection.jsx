@@ -71,7 +71,7 @@ export default function CTASection() {
             {t.btn1}
             <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
           </a>
-          <a href="https://wa.me/254713713663" target="_blank" rel="noopener noreferrer" className="cta-section__btn cta-section__btn--outline">
+          <a href="https://wa.me/254710933025" target="_blank" rel="noopener noreferrer" className="cta-section__btn cta-section__btn--outline">
             <WhatsAppIcon />
             {t.btn2}
           </a>

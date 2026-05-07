@@ -34,7 +34,7 @@ function WhatsAppIcon() {
 const SOCIAL = [
   { Icon: TikTokIcon,    href: 'https://www.tiktok.com/@duma.suites?_r=1&_t=ZS-96748d7EBBH',                      label: 'TikTok' },
   { Icon: InstagramIcon, href: 'https://www.instagram.com/duma.suitess?igsh=MTZlNTVkZHdhcnoxMQ==',              label: 'Instagram' },
-  { Icon: WhatsAppIcon,  href: 'https://wa.me/254713713663',                                                     label: 'WhatsApp' },
+  { Icon: WhatsAppIcon,  href: 'https://wa.me/254710933025',                                                     label: 'WhatsApp' },
 ]
 
 export default function Footer() {

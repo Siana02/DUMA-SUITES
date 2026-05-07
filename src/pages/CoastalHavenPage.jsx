@@ -446,7 +446,7 @@ export default function CoastalHavenPage() {
                 <Mail size={16} strokeWidth={1.5} />
                 {tc.inquireEmail}
               </a>
-              <a href="https://wa.me/254713713663" target="_blank" rel="noopener noreferrer" className="btn btn-inverse-light">
+              <a href="https://wa.me/254710933025" target="_blank" rel="noopener noreferrer" className="btn btn-inverse-light">
                 <MessageCircle size={16} strokeWidth={1.5} />
                 {tc.inquireWhatsapp}
               </a>
