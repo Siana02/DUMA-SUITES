@@ -1332,6 +1332,7 @@ const it = {
       galleryCta: 'Prenota un Soggiorno',
       tourEyebrow: 'Tour della Suite',
       tourTitle: 'Scopri la Suite',
+      tourSub: 'Un walkthrough cinematografico del vostro rifugio costiero.',
       tourCta: 'Richiedi Informazioni sulla Suite',
       amenitiesEyebrow: 'Cosa è Incluso',
       amenitiesTitle: 'Servizi della Suite',
