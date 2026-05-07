@@ -783,7 +783,6 @@ export default function SerenityVillaPage() {
           box-sizing: content-box;
         }
         /* Right image column — visible on all breakpoints */
-        .sv-about__img-col { }
         .sv-about__img-wrap {
           position: relative;
           overflow: hidden;

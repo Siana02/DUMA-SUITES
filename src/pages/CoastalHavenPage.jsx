@@ -755,7 +755,6 @@ export default function CoastalHavenPage() {
           border-bottom: 1px solid rgba(86,51,17,0.12);
         }
         /* Right image column — visible on all breakpoints */
-        .ch-about__img-col { }
         .ch-about__img-wrap {
           position: relative;
           overflow: hidden;
