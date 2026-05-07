@@ -10,10 +10,11 @@ import { getT } from '../i18n/translations.js'
 import outsideView2 from '../assets/outside-view2.jpeg'
 import coastalPreview from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
 import serenityPreview from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
+import penthousePreview from '../assets/infinity-pool-sunset-view.jpg'
 import cheetahIcon from '../assets/cheetah.png'
 
-const SUITE_IMAGES = [coastalPreview, serenityPreview]
-const SUITE_HREFS = ['/suites/coastal-haven', '/suites/serenity-villa']
+const SUITE_IMAGES = [coastalPreview, serenityPreview, penthousePreview]
+const SUITE_HREFS = ['/suites/coastal-haven', '/suites/serenity-villa', '/suites/penthouse-suite-1-sofia']
 
 function SuiteCard({ suite, image, href, index }) {
   const { ref, inView } = useInView({ threshold: 0.15, triggerOnce: true })
@@ -42,9 +43,9 @@ function SuiteCard({ suite, image, href, index }) {
           <p className="as-card__tagline">{suite.tagline}</p>
           <h3 className="as-card__name">{suite.name}</h3>
           <div className="as-card__specs">
-            <span><Maximize2 size={13} strokeWidth={1.5} />{index === 0 ? '25 sq m' : '75 sq m'}</span>
-            <span><BedDouble size={13} strokeWidth={1.5} />{index === 0 ? '1 King Bed' : '3 King Beds'}</span>
-            <span><Users size={13} strokeWidth={1.5} />{index === 0 ? '2 Guests' : '3 Guests'}</span>
+            <span><Maximize2 size={13} strokeWidth={1.5} />{suite.size}</span>
+            <span><BedDouble size={13} strokeWidth={1.5} />{suite.beds}</span>
+            <span><Users size={13} strokeWidth={1.5} />{suite.guests}</span>
           </div>
         </div>
       </div>

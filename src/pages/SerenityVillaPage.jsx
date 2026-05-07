@@ -17,6 +17,7 @@ import coastalPreview from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
 import serenityAboutImg from '../assets/serenity-villa-outdoor-lounge-upclose.JPEG'
 import cheetahIcon from '../assets/cheetah.png'
 import serenityPreviewImg from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
+import penthousePreviewImg from '../assets/infinity-pool-sunset-view.jpg'
 
 // Gallery images — reordered: bedrooms → closet → lounge/dining → outdoor → kitchen → entrance → bathroom → 1stfloor-view (last)
 import g1  from '../assets/serenity-villa-1st-bedroom-view1.JPEG'
@@ -201,7 +202,7 @@ export default function SerenityVillaPage() {
 
         {/* ── a) Hero ── */}
         <section className="sv-hero">
-          <img src={heroImg} alt="Three Bedroom Suite outdoor terrace" className="sv-hero__bg" />
+          <img src={heroImg} alt="Duma Suite Alice outdoor terrace" className="sv-hero__bg" />
           <div className="sv-hero__overlay" aria-hidden="true" />
           <div className="sv-hero__content">
             <motion.span
@@ -506,6 +507,18 @@ export default function SerenityVillaPage() {
                   <p className="sv-suite-card__tagline">{ts.serenityTagline}</p>
                   <h3 className="sv-suite-card__name">{ts.heroTitle}</h3>
                   <a href="/suites/serenity-villa" className="btn btn-inverse sv-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/serenity-villa') }}>
+                    {ts.viewSuiteBtn}
+                  </a>
+                </div>
+              </motion.div>
+              <motion.div className="sv-suite-card" {...fadeUp(0.42)} onClick={() => navigate('/suites/penthouse-suite-1-sofia')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/penthouse-suite-1-sofia') } }}>
+                <div className="sv-suite-card__img-wrap">
+                  <img src={penthousePreviewImg} alt="Penthouse Suite Sofia" className="sv-suite-card__img" loading="eager" />
+                </div>
+                <div className="sv-suite-card__body">
+                  <p className="sv-suite-card__tagline">{ts.penthouseTagline}</p>
+                  <h3 className="sv-suite-card__name">Penthouse Suite Sofia</h3>
+                  <a href="/suites/penthouse-suite-1-sofia" className="btn btn-inverse sv-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/penthouse-suite-1-sofia') }}>
                     {ts.viewSuiteBtn}
                   </a>
                 </div>

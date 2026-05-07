@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage'
 import AllSuitesPage from './pages/AllSuitesPage'
 import CoastalHavenPage from './pages/CoastalHavenPage'
 import SerenityVillaPage from './pages/SerenityVillaPage'
+import PenthouseSuiteSofiaPage from './pages/PenthouseSuiteSofia'
 import GalleryPage from './pages/GalleryPage'
 import HouseRulesPage from './pages/HouseRulesPage'
 import AboutPage from './pages/AboutPage'
@@ -64,6 +65,7 @@ function App() {
         <Route path="/suites" element={<AllSuitesPage />} />
         <Route path="/suites/coastal-haven" element={<CoastalHavenPage />} />
         <Route path="/suites/serenity-villa" element={<SerenityVillaPage />} />
+        <Route path="/suites/penthouse-suite-1-sofia" element={<PenthouseSuiteSofiaPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/house-rules" element={<HouseRulesPage />} />
         <Route path="/about" element={<AboutPage />} />
