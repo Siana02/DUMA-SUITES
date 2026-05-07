@@ -276,16 +276,26 @@ export default function PenthouseSuiteSofiaPage() {
                   <img src={aboutImg} alt="Penthouse Suite Sofia indoor stairs view" className="ph-about__img" />
                   <div className="ph-about__img-overlay" aria-hidden="true" />
                 </div>
-                <div className="ph-about__highlights-card">
-                  <h3 className="ph-about__highlights-title">{pt.highlightsTitle}</h3>
-                  <ul className="ph-highlights">
-                    {pt.highlights.map((h) => (
-                      <li key={h} className="ph-highlights__item">
-                        <Check size={14} strokeWidth={1.75} className="ph-highlights__icon" />
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="ph-about__highlights-row">
+                  <div className="ph-about__highlights-img-wrap">
+                    <img
+                      src={g26}
+                      alt="Penthouse Suite Sofia aerial pool view at nighttime"
+                      className="ph-about__highlights-img"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="ph-about__highlights-card">
+                    <h3 className="ph-about__highlights-title">{pt.highlightsTitle}</h3>
+                    <ul className="ph-highlights">
+                      {pt.highlights.map((h) => (
+                        <li key={h} className="ph-highlights__item">
+                          <Check size={14} strokeWidth={1.75} className="ph-highlights__icon" />
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -551,7 +561,7 @@ export default function PenthouseSuiteSofiaPage() {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           gap: 12px;
-          margin-bottom: 48px;
+          margin-bottom: clamp(30px, 4vw, 48px);
           padding: 24px;
           background: var(--color-surface, #faf9f7);
           border-radius: 12px;
@@ -569,7 +579,7 @@ export default function PenthouseSuiteSofiaPage() {
         }
         .ph-about__inner {
           display: grid;
-          gap: 34px;
+          gap: clamp(24px, 3.5vw, 38px);
         }
         @media (min-width: 900px) {
           .ph-about__inner { grid-template-columns: 1.05fr 0.95fr; align-items: start; }
@@ -589,7 +599,32 @@ export default function PenthouseSuiteSofiaPage() {
         .ph-about__img-col {
           display: flex;
           flex-direction: column;
-          gap: 20px;
+          gap: clamp(16px, 2.5vw, 22px);
+        }
+        .ph-about__highlights-row {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 14px;
+        }
+        @media (min-width: 720px) {
+          .ph-about__highlights-row {
+            grid-template-columns: 0.9fr 1.1fr;
+            align-items: stretch;
+            gap: 16px;
+          }
+        }
+        .ph-about__highlights-img-wrap {
+          border-radius: 14px;
+          overflow: hidden;
+          border: 1px solid var(--color-border, #e8e3dc);
+          box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+          min-height: 220px;
+        }
+        .ph-about__highlights-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
         }
         .ph-about__highlights-card {
           margin-top: 0;
@@ -608,7 +643,7 @@ export default function PenthouseSuiteSofiaPage() {
           margin: 0 0 16px;
         }
         .ph-highlights { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-        @media (min-width: 560px) {
+        @media (min-width: 980px) {
           .ph-highlights { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
         .ph-highlights__item {
@@ -630,12 +665,20 @@ export default function PenthouseSuiteSofiaPage() {
           aspect-ratio: 4/5;
           box-shadow: 0 14px 36px rgba(0,0,0,0.18);
         }
+        @media (max-width: 899px) {
+          .ph-about__img-wrap { aspect-ratio: 16/10; }
+        }
         .ph-about__img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
         .ph-about__img-wrap:hover .ph-about__img { transform: scale(1.04); }
         .ph-about__img-overlay {
           position: absolute;
           inset: 0;
           background: linear-gradient(to top, rgba(0,0,0,0.18) 0%, transparent 60%);
+        }
+        @media (max-width: 559px) {
+          .ph-about__stats-strip { padding: 18px; }
+          .ph-about__highlights-card { padding: 18px; }
+          .ph-about__highlights-img-wrap { min-height: 190px; }
         }
 
         /* ── Gallery ── */
