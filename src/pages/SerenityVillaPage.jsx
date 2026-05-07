@@ -14,7 +14,7 @@ import { getT } from '../i18n/translations.js'
 
 import heroImg from '../assets/serenity-villa-outdoor-terrace.JPEG'
 import coastalPreview from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
-import serenityAboutImg from '../assets/serenity-villa-outdoor-lounge-upclose.JPEG'
+import nightArielImg from '../assets/nighttime-ariel-view.jpg'
 import cheetahIcon from '../assets/cheetah.png'
 import serenityPreviewImg from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
 import penthousePreviewImg from '../assets/penthouse-suite-view-from-outside.jpg'
@@ -259,7 +259,7 @@ export default function SerenityVillaPage() {
             </motion.div>
 
             <div className="sv-about__inner">
-              {/* Left: text + highlights */}
+              {/* Left: text content */}
               <motion.div className="sv-about__left" {...fadeUp(0.08)}>
                 <span className="eyebrow">{ts.aboutEyebrow}</span>
                 <h2 className="section-title sv-about__title">{ts.aboutTitle}</h2>
@@ -269,29 +269,49 @@ export default function SerenityVillaPage() {
                   <Calendar size={14} strokeWidth={1.8} aria-hidden="true" />
                   {ts.aboutCta}
                 </a>
-
-                {/* Highlights card — moved into left column */}
-                <div className="sv-about__highlights-card">
-                  <h3 className="sv-about__highlights-title">{ts.highlightsTitle}</h3>
-                  <ul className="sv-highlights">
-                    {ts.highlights.map((h) => (
-                      <li key={h} className="sv-highlights__item">
-                        <Check size={14} strokeWidth={1.75} className="sv-highlights__icon" />
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </motion.div>
 
               {/* Right: atmospheric image */}
               <motion.div className="sv-about__img-col" {...fadeUp(0.16)}>
                 <div className="sv-about__img-wrap">
-                  <img src={serenityAboutImg} alt="Three Bedroom Suite outdoor lounge" className="sv-about__img" />
+                  <img src={g1} alt="Duma Suite Alice bedroom view" className="sv-about__img" />
                   <div className="sv-about__img-overlay" aria-hidden="true" />
                 </div>
               </motion.div>
             </div>
+
+            {/* Highlights row — below the two-column section on all screens */}
+            <motion.div className="sv-about__highlights-row" {...fadeUp(0.2)}>
+              <div className="sv-about__image-card">
+                <div className="sv-about__highlights-img-wrap">
+                  <img
+                    src={nightArielImg}
+                    alt="Duma Suite Alice nighttime aerial view"
+                    className="sv-about__highlights-img"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div className="sv-about__highlights-card">
+                <h3 className="sv-about__highlights-title">{ts.highlightsTitle}</h3>
+                <ul className="sv-highlights">
+                  {ts.highlights.map((h) => (
+                    <li key={h} className="sv-highlights__item">
+                      <Check size={14} strokeWidth={1.75} className="sv-highlights__icon" />
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+
+            {/* Mobile/tablet-only booking CTA */}
+            <motion.div className="sv-about__mobile-cta" {...fadeUp(0.28)}>
+              <a href="#inquire" className="btn btn-primary">
+                <Calendar size={14} strokeWidth={1.8} aria-hidden="true" />
+                {ts.aboutBookCta}
+              </a>
+            </motion.div>
           </div>
         </section>
 
@@ -672,13 +692,62 @@ export default function SerenityVillaPage() {
           margin-bottom: 1rem;
         }
         .sv-about__cta { margin-top: 0.75rem; display: inline-flex; align-items: center; }
-        /* Highlights card inside left column */
+        @media (max-width: 899px) {
+          .sv-about__cta { display: none; }
+        }
+        /* Highlights row — below about__inner on all breakpoints */
+        .sv-about__highlights-row {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 16px;
+          margin-top: clamp(16px, 2.4vw, 24px);
+        }
+        @media (min-width: 900px) {
+          .sv-about__highlights-row {
+            grid-template-columns: 0.9fr 1.1fr;
+            align-items: stretch;
+            gap: 18px;
+          }
+        }
+        @media (max-width: 899px) {
+          .sv-about__image-card { order: 2; }
+          .sv-about__highlights-card { order: 1; }
+        }
+        .sv-about__image-card {
+          padding: 12px;
+          background: var(--color-surface, #faf9f7);
+          border-radius: 14px;
+          border: 1px solid var(--color-border, #e8e3dc);
+          box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+        }
+        .sv-about__highlights-img-wrap {
+          border-radius: 10px;
+          overflow: hidden;
+          border: 1px solid var(--color-border, #e8e3dc);
+          box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+          min-height: 230px;
+        }
+        .sv-about__highlights-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        /* Highlights card — now inside highlights-row */
         .sv-about__highlights-card {
           background: var(--color-bg-secondary);
           border: 1px solid rgba(201,169,110,0.18);
           border-radius: 4px;
           padding: clamp(20px, 3vw, 32px);
-          margin-top: 2rem;
+          margin-top: 0;
+        }
+        .sv-about__mobile-cta {
+          display: flex;
+          justify-content: center;
+          margin-top: 28px;
+        }
+        @media (min-width: 900px) {
+          .sv-about__mobile-cta { display: none; }
         }
         .sv-about__highlights-title {
           font-family: var(--font-nav);
@@ -713,14 +782,12 @@ export default function SerenityVillaPage() {
           border-radius: 50%;
           box-sizing: content-box;
         }
-        /* Right image column */
-        .sv-about__img-col { display: none; }
+        /* Right image column — visible on all breakpoints */
         .sv-about__img-wrap {
           position: relative;
           overflow: hidden;
           border-radius: 3px;
-          height: 100%;
-          min-height: 400px;
+          aspect-ratio: 16/10;
         }
         .sv-about__img {
           width: 100%;
@@ -741,7 +808,11 @@ export default function SerenityVillaPage() {
             grid-template-columns: 1.05fr 0.95fr;
             align-items: stretch;
           }
-          .sv-about__img-col { display: block; }
+          .sv-about__img-wrap {
+            aspect-ratio: unset;
+            height: 100%;
+            min-height: 400px;
+          }
         }
 
         /* ── Gallery ── */

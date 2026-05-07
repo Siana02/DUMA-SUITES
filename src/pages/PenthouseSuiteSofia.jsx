@@ -301,6 +301,13 @@ export default function PenthouseSuiteSofiaPage() {
                 </ul>
               </div>
             </motion.div>
+            {/* Mobile/tablet-only booking CTA */}
+            <motion.div className="ph-about__mobile-cta" {...fadeUp(0.28)}>
+              <a href="#inquire" className="btn btn-primary">
+                <Calendar size={14} strokeWidth={1.8} aria-hidden="true" />
+                {pt.aboutBookCta}
+              </a>
+            </motion.div>
           </div>
         </section>
 
@@ -598,6 +605,11 @@ export default function PenthouseSuiteSofiaPage() {
           margin-bottom: 16px;
         }
         .ph-about__cta { margin-top: 8px; }
+        @media (max-width: 899px) {
+          .ph-about__cta { display: none; }
+          .ph-about__image-card { order: 2; }
+          .ph-about__highlights-card { order: 1; }
+        }
         .ph-about__img-col {
           display: flex;
           flex-direction: column;
@@ -690,6 +702,14 @@ export default function PenthouseSuiteSofiaPage() {
           .ph-about__image-card { padding: 10px; }
           .ph-about__highlights-card { padding: 18px; }
           .ph-about__highlights-img-wrap { min-height: 190px; }
+        }
+        .ph-about__mobile-cta {
+          display: flex;
+          justify-content: center;
+          margin-top: 28px;
+        }
+        @media (min-width: 900px) {
+          .ph-about__mobile-cta { display: none; }
         }
 
         /* ── Gallery ── */

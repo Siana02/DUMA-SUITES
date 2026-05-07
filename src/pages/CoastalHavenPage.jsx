@@ -14,7 +14,7 @@ import { getT } from '../i18n/translations.js'
 
 import heroImg from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
 import serenityPreview from '../assets/serenity-villa-3bedroomsuite-preview.JPEG'
-import coastalAboutImg from '../assets/coastal-haven-suite-outdoor-view.JPEG'
+import gm2Img from '../assets/General-managers2.jpg'
 import cheetahIcon from '../assets/cheetah.png'
 import serenityPreviewImg from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
 import penthousePreviewImg from '../assets/penthouse-suite-view-from-outside.jpg'
@@ -252,7 +252,7 @@ export default function CoastalHavenPage() {
             </motion.div>
 
             <div className="ch-about__inner">
-              {/* Left: text + highlights */}
+              {/* Left: text content */}
               <motion.div className="ch-about__left" {...fadeUp(0.08)}>
                 <span className="eyebrow">{tc.aboutEyebrow}</span>
                 <h2 className="section-title ch-about__title">{tc.aboutTitle}</h2>
@@ -262,29 +262,49 @@ export default function CoastalHavenPage() {
                   <Calendar size={14} strokeWidth={1.8} aria-hidden="true" />
                   {tc.aboutCta}
                 </a>
-
-                {/* Highlights card — moved into left column */}
-                <div className="ch-about__highlights-card">
-                  <h3 className="ch-about__highlights-title">{tc.highlightsTitle}</h3>
-                  <ul className="ch-highlights">
-                    {tc.highlights.map((h) => (
-                      <li key={h} className="ch-highlights__item">
-                        <Check size={14} strokeWidth={1.75} className="ch-highlights__icon" />
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </motion.div>
 
               {/* Right: atmospheric image */}
               <motion.div className="ch-about__img-col" {...fadeUp(0.16)}>
                 <div className="ch-about__img-wrap">
-                  <img src={coastalAboutImg} alt="Coastal Haven outdoor view" className="ch-about__img" />
+                  <img src={gm2Img} alt="Duma Suite Anna room" className="ch-about__img" />
                   <div className="ch-about__img-overlay" aria-hidden="true" />
                 </div>
               </motion.div>
             </div>
+
+            {/* Highlights row — below the two-column section on all screens */}
+            <motion.div className="ch-about__highlights-row" {...fadeUp(0.2)}>
+              <div className="ch-about__image-card">
+                <div className="ch-about__highlights-img-wrap">
+                  <img
+                    src={g14}
+                    alt="Duma Suite Anna nighttime pool view"
+                    className="ch-about__highlights-img"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div className="ch-about__highlights-card">
+                <h3 className="ch-about__highlights-title">{tc.highlightsTitle}</h3>
+                <ul className="ch-highlights">
+                  {tc.highlights.map((h) => (
+                    <li key={h} className="ch-highlights__item">
+                      <Check size={14} strokeWidth={1.75} className="ch-highlights__icon" />
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+
+            {/* Mobile/tablet-only booking CTA */}
+            <motion.div className="ch-about__mobile-cta" {...fadeUp(0.28)}>
+              <a href="#inquire" className="btn btn-primary">
+                <Calendar size={14} strokeWidth={1.8} aria-hidden="true" />
+                {tc.aboutBookCta}
+              </a>
+            </motion.div>
           </div>
         </section>
 
@@ -667,13 +687,62 @@ export default function CoastalHavenPage() {
           margin-bottom: 1rem;
         }
         .ch-about__cta { margin-top: 0.75rem; display: inline-flex; align-items: center; }
-        /* Highlights card inside left column */
+        @media (max-width: 899px) {
+          .ch-about__cta { display: none; }
+        }
+        /* Highlights row — below about__inner on all breakpoints */
+        .ch-about__highlights-row {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 16px;
+          margin-top: clamp(16px, 2.4vw, 24px);
+        }
+        @media (min-width: 900px) {
+          .ch-about__highlights-row {
+            grid-template-columns: 0.9fr 1.1fr;
+            align-items: stretch;
+            gap: 18px;
+          }
+        }
+        @media (max-width: 899px) {
+          .ch-about__image-card { order: 2; }
+          .ch-about__highlights-card { order: 1; }
+        }
+        .ch-about__image-card {
+          padding: 12px;
+          background: var(--color-surface, #faf9f7);
+          border-radius: 14px;
+          border: 1px solid var(--color-border, #e8e3dc);
+          box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+        }
+        .ch-about__highlights-img-wrap {
+          border-radius: 10px;
+          overflow: hidden;
+          border: 1px solid var(--color-border, #e8e3dc);
+          box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+          min-height: 230px;
+        }
+        .ch-about__highlights-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        /* Highlights card — now inside highlights-row */
         .ch-about__highlights-card {
           background: var(--color-bg-secondary);
           border: 1px solid rgba(201,169,110,0.18);
           border-radius: 4px;
           padding: clamp(20px, 3vw, 32px);
-          margin-top: 2rem;
+          margin-top: 0;
+        }
+        .ch-about__mobile-cta {
+          display: flex;
+          justify-content: center;
+          margin-top: 28px;
+        }
+        @media (min-width: 900px) {
+          .ch-about__mobile-cta { display: none; }
         }
         .ch-about__highlights-title {
           font-family: var(--font-nav);
@@ -685,14 +754,12 @@ export default function CoastalHavenPage() {
           padding-bottom: 0.75rem;
           border-bottom: 1px solid rgba(86,51,17,0.12);
         }
-        /* Right image column */
-        .ch-about__img-col { display: none; }
+        /* Right image column — visible on all breakpoints */
         .ch-about__img-wrap {
           position: relative;
           overflow: hidden;
           border-radius: 3px;
-          height: 100%;
-          min-height: 400px;
+          aspect-ratio: 16/10;
         }
         .ch-about__img {
           width: 100%;
@@ -713,7 +780,11 @@ export default function CoastalHavenPage() {
             grid-template-columns: 1.05fr 0.95fr;
             align-items: stretch;
           }
-          .ch-about__img-col { display: block; }
+          .ch-about__img-wrap {
+            aspect-ratio: unset;
+            height: 100%;
+            min-height: 400px;
+          }
         }
         .ch-highlights { display: flex; flex-direction: column; gap: 10px; }
         .ch-highlights__item {
