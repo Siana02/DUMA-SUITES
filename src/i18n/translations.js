@@ -809,7 +809,6 @@ const en = {
         content: 'All reservations are subject to availability and confirmation by Duma Suites. A reservation is confirmed only upon receipt of a deposit payment and written confirmation from our team.',
         bullets: [
           'Payment terms: 50% at booking and 50% on arrival',
-          'A deposit is required to secure your reservation',
           'Reservations are non-transferable without prior written consent',
           'We reserve the right to decline reservations at our discretion',
         ],
@@ -1773,7 +1772,6 @@ const it = {
         content: 'Tutte le prenotazioni sono soggette a disponibilità e conferma da parte di Duma Suites. Una prenotazione è confermata solo al ricevimento di un acconto e della conferma scritta da parte del nostro team.',
         bullets: [
           'Condizioni di pagamento: 50% alla prenotazione e 50% all’arrivo',
-          'È richiesto un deposito per garantire la prenotazione',
           'Le prenotazioni non sono trasferibili senza previo consenso scritto',
           'Ci riserviamo il diritto di rifiutare prenotazioni a nostra discrezione',
         ],
