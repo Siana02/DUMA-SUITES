@@ -17,7 +17,7 @@ import serenityPreview from '../assets/serenity-villa-3bedroomsuite-preview.JPEG
 import coastalAboutImg from '../assets/coastal-haven-suite-outdoor-view.JPEG'
 import cheetahIcon from '../assets/cheetah.png'
 import serenityPreviewImg from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
-import penthousePreviewImg from '../assets/penthouse-suite-view-of-rooftop-pool-and-ocean.jpg'
+import penthousePreviewImg from '../assets/penthouse-suite-view-from-outside.jpg'
 
 // Gallery images — ordered: beds → kitchen/lounge → outdoor/views → entrance → closet → bathroom
 import g1  from '../assets/coastal-haven-suite-kingsize-bed.JPEG'
@@ -575,12 +575,13 @@ export default function CoastalHavenPage() {
           margin-bottom: 1rem;
         }
         .ch-hero__title {
-          font-family: var(--font-title);
-          font-size: clamp(3rem, 7.5vw, 6rem);
+          font-family: var(--font-serif, Georgia, serif);
+          font-size: clamp(2.2rem, 5.5vw, 3.8rem);
           font-weight: 400;
           color: #fff;
-          line-height: 1.05;
-          margin: 0 0 1rem;
+          line-height: 1.08;
+          letter-spacing: -0.01em;
+          margin: 0 0 16px;
         }
         .ch-hero__tagline {
           font-family: var(--font-body);
@@ -603,7 +604,6 @@ export default function CoastalHavenPage() {
         }
         @media (max-width: 767px) {
           .ch-hero { height: 85vh; }
-          .ch-hero__title { font-size: clamp(2.4rem, 9vw, 3.8rem); }
         }
 
         /* ── About ── */

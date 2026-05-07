@@ -17,7 +17,7 @@ import coastalPreview from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
 import serenityAboutImg from '../assets/serenity-villa-outdoor-lounge-upclose.JPEG'
 import cheetahIcon from '../assets/cheetah.png'
 import serenityPreviewImg from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
-import penthousePreviewImg from '../assets/penthouse-suite-view-of-rooftop-pool-and-ocean.jpg'
+import penthousePreviewImg from '../assets/penthouse-suite-view-from-outside.jpg'
 
 // Gallery images — reordered: bedrooms → closet → lounge/dining → outdoor → kitchen → entrance → bathroom → 1stfloor-view (last)
 import g1  from '../assets/serenity-villa-1st-bedroom-view1.JPEG'
@@ -584,12 +584,13 @@ export default function SerenityVillaPage() {
           margin-bottom: 1rem;
         }
         .sv-hero__title {
-          font-family: var(--font-title);
-          font-size: clamp(3rem, 7.5vw, 6rem);
+          font-family: var(--font-serif, Georgia, serif);
+          font-size: clamp(2.2rem, 5.5vw, 3.8rem);
           font-weight: 400;
           color: #fff;
-          line-height: 1.05;
-          margin: 0 0 1rem;
+          line-height: 1.08;
+          letter-spacing: -0.01em;
+          margin: 0 0 16px;
         }
         .sv-hero__tagline {
           font-family: var(--font-body);
@@ -610,7 +611,6 @@ export default function SerenityVillaPage() {
         }
         @media (max-width: 767px) {
           .sv-hero { height: 85vh; }
-          .sv-hero__title { font-size: clamp(2.4rem, 9vw, 3.8rem); }
         }
 
         /* ── About ── */
