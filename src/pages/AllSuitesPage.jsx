@@ -13,7 +13,8 @@ import serenityPreview from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
 import cheetahIcon from '../assets/cheetah.png'
 
 const SUITE_IMAGES = [coastalPreview, serenityPreview]
-const SUITE_HREFS = [null, null]
+const UNAVAILABLE_SUITE_HREF = null
+const SUITE_HREFS = [UNAVAILABLE_SUITE_HREF, UNAVAILABLE_SUITE_HREF]
 
 function SuiteCard({ suite, image, href, index }) {
   const { ref, inView } = useInView({ threshold: 0.15, triggerOnce: true })
@@ -44,9 +45,9 @@ function SuiteCard({ suite, image, href, index }) {
           <p className="as-card__tagline">{suite.tagline}</p>
           <h3 className="as-card__name">{suite.name}</h3>
           <div className="as-card__specs">
-            <span><Maximize2 size={13} strokeWidth={1.5} />{suite.size || (index === 0 ? '70 sq m' : '135 sq m')}</span>
-            <span><BedDouble size={13} strokeWidth={1.5} />{suite.beds || (index === 0 ? '1 King Bed' : '2 King Beds + 1 French Bed')}</span>
-            <span><Users size={13} strokeWidth={1.5} />{suite.guests || (index === 0 ? '2 Guests' : '6 Guests')}</span>
+            <span><Maximize2 size={13} strokeWidth={1.5} />{suite.size}</span>
+            <span><BedDouble size={13} strokeWidth={1.5} />{suite.beds}</span>
+            <span><Users size={13} strokeWidth={1.5} />{suite.guests}</span>
           </div>
         </div>
       </div>
