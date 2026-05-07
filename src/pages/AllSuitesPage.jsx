@@ -10,7 +10,7 @@ import { getT } from '../i18n/translations.js'
 import outsideView2 from '../assets/outside-view2.jpeg'
 import coastalPreview from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
 import serenityPreview from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
-import penthousePreview from '../assets/penthouse-suite-view-of-rooftop-pool-and-ocean.jpg'
+import penthousePreview from '../assets/penthouse-suite-outside-balcony-dinining-table-area.jpg'
 import cheetahIcon from '../assets/cheetah.png'
 
 const SUITE_IMAGES = [coastalPreview, serenityPreview, penthousePreview]

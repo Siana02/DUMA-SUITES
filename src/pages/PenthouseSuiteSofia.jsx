@@ -11,57 +11,102 @@ import {
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
-import heroImg from '../assets/penthouse-suite-view-of-rooftop-pool-and-ocean.jpg'
-import aboutImg from '../assets/penthouse-suite-lounge-living-room-area.jpg'
+import heroImg from '../assets/penthouse-suite-balcony-dining-lights-decor-view.jpg'
+import aboutImg from '../assets/penthouse-suite-indoor-stairs-view.jpg'
 import coastalPreviewImg from '../assets/coastal-haven-suite-lounge-couch.JPEG'
 import serenityPreviewImg from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
 
-import g1  from '../assets/penthouse-suite-bedroom-kingsizebed-view1.jpg'
-import g2  from '../assets/penthouse-suite-bedroom-kingsize-bed-view2.jpg'
-import g3  from '../assets/penthouse-suite-bedroom-kingsize-bed-view3.jpg'
-import g4  from '../assets/penthouse-suite-bedroom-kingsize-bed-view4.jpg'
-import g5  from '../assets/penthouse-suite-bedroom-kingsize-bed-view5.jpg'
-import g6  from '../assets/penthouse-suite-bedroom-kingsize-bed-view6.jpg'
-import g7  from '../assets/penthouse-suite-bedroom-kingsize-bed-sunset-view.jpg'
-import g8  from '../assets/penthouse-suite-lounge-living-room-area.jpg'
-import g9  from '../assets/penthouse-suite-lounge-tv-area.jpg'
-import g10 from '../assets/penthouse-suite-lounge-recliners-view1.jpg'
-import g11 from '../assets/penthouse-suite-lounge-recliners-view2.jpg'
-import g12 from '../assets/penthouse-suite-lounge-recliners-view3.jpg'
-import g13 from '../assets/penthouse-suite-lounge-recliners-terrace-view.jpg'
-import g14 from '../assets/penthouse-suite-dining-table-upclose.jpg'
-import g15 from '../assets/penthouse-suite-outside-balcony-dinining-table-area.jpg'
-import g16 from '../assets/penthouse-suite-balcony-swing-and-dining-area.jpg'
-import g17 from '../assets/penthouse-suite-swing-view.jpg'
-import g18 from '../assets/penthouse-suite-sunbeds-view1.jpg'
-import g19 from '../assets/penthouse-suite-balcony-lounge-chair.jpg'
-import g20 from '../assets/penthouse-suite-balcony-dining-lights-decor-view.jpg'
-import g21 from '../assets/penthouse-suite-balcony-view.jpg'
-import g22 from '../assets/penthouse-suite-view-of-rooftop-pool-and-ocean.jpg'
-import g23 from '../assets/penthouse-suite-ariel-view-of-pool-from-penthouse.jpg'
-import g24 from '../assets/penthouse-suite-ariel-view-of-pool-from-penthouse-nighttime.jpg'
-import g25 from '../assets/penthouse-suite-sunset-view-from-terrace.jpg'
-import g26 from '../assets/penthouse-suite-sunset-view-from-terrace-upclose.jpg'
-import g27 from '../assets/penthouse-suite-indoor-stairs-view.jpg'
-import g28 from '../assets/penthouse-suite-2-floors-overview.jpg'
+import g1  from '../assets/penthouse-suite-2-floors-overview.jpg'
+import g2  from '../assets/penthouse-suite-outside-balcony-dinining-table-area.jpg'
+import g3  from '../assets/penthouse-suite-balcony-dining-lights-decor-view.jpg'
+import g4  from '../assets/penthouse-suite-indoor-stairs-view.jpg'
+import g5  from '../assets/penthouse-suite-bedroom-kingsizebed-view1.jpg'
+import g6  from '../assets/penthouse-suite-bedroom-kingsize-bed-view2.jpg'
+import g7  from '../assets/penthouse-suite-bedroom-kingsize-bed-view3.jpg'
+import g8  from '../assets/penthouse-suite-bedroom-kingsize-bed-view4.jpg'
+import g9  from '../assets/penthouse-suite-bedroom-kingsize-bed-view5.jpg'
+import g10 from '../assets/penthouse-suite-bedroom-kingsize-bed-view6.jpg'
+import g11 from '../assets/penthouse-suite-bedroom-kingsize-bed-sunset-view.jpg'
+import g12 from '../assets/penthouse-suite-lounge-living-room-area.jpg'
+import g13 from '../assets/penthouse-suite-lounge-tv-area.jpg'
+import g14 from '../assets/penthouse-suite-lounge-recliners-view1.jpg'
+import g15 from '../assets/penthouse-suite-lounge-recliners-view2.jpg'
+import g16 from '../assets/penthouse-suite-lounge-recliners-view3.jpg'
+import g17 from '../assets/penthouse-suite-lounge-recliners-terrace-view.jpg'
+import g18 from '../assets/penthouse-suite-dining-table-upclose.jpg'
+import g19 from '../assets/penthouse-suite-balcony-swing-and-dining-area.jpg'
+import g20 from '../assets/penthouse-suite-swing-view.jpg'
+import g21 from '../assets/penthouse-suite-sunbeds-view1.jpg'
+import g22 from '../assets/penthouse-suite-balcony-lounge-chair.jpg'
+import g23 from '../assets/penthouse-suite-balcony-view.jpg'
+import g24 from '../assets/penthouse-suite-view-of-rooftop-pool-and-ocean.jpg'
+import g25 from '../assets/penthouse-suite-ariel-view-of-pool-from-penthouse.jpg'
+import g26 from '../assets/penthouse-suite-ariel-view-of-pool-from-penthouse-nighttime.jpg'
+import g27 from '../assets/penthouse-suite-ariel-view-of-groundfloor-pool-from-penthouse-nighttime.jpg'
+import g28 from '../assets/penthouse-suite-sunset-view-from-terrace.jpg'
+import g29 from '../assets/penthouse-suite-sunset-view-from-terrace-upclose.jpg'
+import g30 from '../assets/penthouse-suite-sunset-view-of-garden-dcor.jpg'
+import g31 from '../assets/penthouse-suite-sunset-view-of-garden-decor-closeup.jpg'
+import g32 from '../assets/penthouse-suite-view-of-resort-at-sunset-time-from-terrace.jpg'
+import g33 from '../assets/penthouse-suite-beach-view-from-balcony.jpg'
+import g34 from '../assets/penthouse-suite-view-from-outside.jpg'
+import g35 from '../assets/penthouse-suite-view-outside-at-night.jpg'
+import g36 from '../assets/penthouse-suite-moon-view.jpg'
+import g37 from '../assets/penthouse-suite-terrace-lounge-chairs-mooon-view.jpg'
+import g38 from '../assets/penthouse-suite-view-of-the-ocean.jpg'
+import g39 from '../assets/penthouse-suite-closet-and-door-dressing-room-view.jpg'
+import g40 from '../assets/penthouse-suite-indoor-closet-and-desk-art-view.jpg'
+import g41 from '../assets/penthouse-bacony-view.jpg'
+import g42 from '../assets/penthouse-view-of-sun-settin.jpg'
 
-const GALLERY = [g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,g11,g12,g13,g14,g15,g16,g17,g18,g19,g20,g21,g22,g23,g24,g25,g26,g27,g28]
+const GALLERY = [
+  g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,g11,g12,g13,g14,g15,g16,g17,g18,g19,g20,g21,
+  g22,g23,g24,g25,g26,g27,g28,g29,g30,g31,g32,g33,g34,g35,g36,g37,g38,g39,g40,g41,g42,
+]
 const DEFAULT_IMAGE_WIDTH = 352
 const GALLERY_LABELS = [
-  'Penthouse Suite Sofia king bedroom','Penthouse Suite Sofia bedroom view 2','Penthouse Suite Sofia bedroom view 3',
-  'Penthouse Suite Sofia bedroom view 4','Penthouse Suite Sofia bedroom view 5','Penthouse Suite Sofia bedroom view 6',
+  'Penthouse Suite Sofia two floors overview',
+  'Penthouse Suite Sofia outdoor balcony dining area',
+  'Penthouse Suite Sofia balcony dining lights decor',
+  'Penthouse Suite Sofia indoor stairs two floors',
+  'Penthouse Suite Sofia king bedroom',
+  'Penthouse Suite Sofia bedroom view 2',
+  'Penthouse Suite Sofia bedroom view 3',
+  'Penthouse Suite Sofia bedroom view 4',
+  'Penthouse Suite Sofia bedroom view 5',
+  'Penthouse Suite Sofia bedroom view 6',
   'Penthouse Suite Sofia bedroom sunset view',
-  'Penthouse Suite Sofia lounge living room','Penthouse Suite Sofia lounge TV area',
-  'Penthouse Suite Sofia recliner chairs view 1','Penthouse Suite Sofia recliner chairs view 2','Penthouse Suite Sofia recliner chairs view 3',
+  'Penthouse Suite Sofia lounge living room',
+  'Penthouse Suite Sofia lounge TV area',
+  'Penthouse Suite Sofia recliner chairs view 1',
+  'Penthouse Suite Sofia recliner chairs view 2',
+  'Penthouse Suite Sofia recliner chairs view 3',
   'Penthouse Suite Sofia recliner chairs terrace view',
-  'Penthouse Suite Sofia indoor dining table','Penthouse Suite Sofia outdoor balcony dining area',
-  'Penthouse Suite Sofia balcony swing and dining area','Penthouse Suite Sofia swing view',
-  'Penthouse Suite Sofia sunbeds','Penthouse Suite Sofia balcony lounge chair',
-  'Penthouse Suite Sofia balcony dining lights decor','Penthouse Suite Sofia balcony view',
-  'Penthouse Suite Sofia rooftop pool and ocean view','Penthouse Suite Sofia aerial pool view',
+  'Penthouse Suite Sofia indoor dining table',
+  'Penthouse Suite Sofia balcony swing and dining area',
+  'Penthouse Suite Sofia swing view',
+  'Penthouse Suite Sofia sunbeds',
+  'Penthouse Suite Sofia balcony lounge chair',
+  'Penthouse Suite Sofia balcony view',
+  'Penthouse Suite Sofia rooftop pool and ocean view',
+  'Penthouse Suite Sofia aerial pool view',
   'Penthouse Suite Sofia aerial pool nighttime view',
-  'Penthouse Suite Sofia sunset view from terrace','Penthouse Suite Sofia sunset terrace close-up',
-  'Penthouse Suite Sofia indoor stairs two floors','Penthouse Suite Sofia two floors overview',
+  'Penthouse Suite Sofia aerial ground floor pool nighttime view',
+  'Penthouse Suite Sofia sunset view from terrace',
+  'Penthouse Suite Sofia sunset terrace close-up',
+  'Penthouse Suite Sofia sunset garden decor',
+  'Penthouse Suite Sofia sunset garden decor close-up',
+  'Penthouse Suite Sofia resort view at sunset from terrace',
+  'Penthouse Suite Sofia beach view from balcony',
+  'Penthouse Suite Sofia exterior view',
+  'Penthouse Suite Sofia exterior night view',
+  'Penthouse Suite Sofia moon view',
+  'Penthouse Suite Sofia terrace lounge chairs moon view',
+  'Penthouse Suite Sofia ocean view',
+  'Penthouse Suite Sofia closet and dressing room',
+  'Penthouse Suite Sofia indoor closet and desk art view',
+  'Penthouse Suite Sofia balcony view',
+  'Penthouse Suite Sofia sunset view',
 ]
 
 const AMENITY_ICONS = [
@@ -144,7 +189,7 @@ export default function PenthouseSuiteSofiaPage() {
 
         {/* ── a) Hero ── */}
         <section className="ph-hero">
-          <img src={heroImg} alt="Penthouse Suite Sofia rooftop pool and ocean view" className="ph-hero__bg" />
+          <img src={heroImg} alt="Penthouse Suite Sofia balcony dining lights decor view" className="ph-hero__bg" />
           <div className="ph-hero__overlay" aria-hidden="true" />
           <div className="ph-hero__content">
             <motion.span
@@ -225,7 +270,7 @@ export default function PenthouseSuiteSofiaPage() {
 
               <motion.div className="ph-about__img-col" {...fadeUp(0.16)}>
                 <div className="ph-about__img-wrap">
-                  <img src={aboutImg} alt="Penthouse Suite Sofia lounge living area" className="ph-about__img" />
+                  <img src={aboutImg} alt="Penthouse Suite Sofia indoor stairs view" className="ph-about__img" />
                   <div className="ph-about__img-overlay" aria-hidden="true" />
                 </div>
               </motion.div>
