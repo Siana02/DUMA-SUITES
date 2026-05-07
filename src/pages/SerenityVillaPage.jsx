@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import {
   Maximize2, BedDouble, Users, Check, Mail, MessageCircle,
-  Wifi, Tv, Bath, Utensils, Leaf, Calendar, Clock,
+  Wifi, Tv, Bath, Utensils, Leaf, Calendar, Clock, CreditCard,
   Shield, AirVent, Sparkles, Sofa, Sunrise, UtensilsCrossed,
   Sun, Fan, PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack,
 } from 'lucide-react'
@@ -17,7 +17,7 @@ import coastalPreview from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
 import serenityAboutImg from '../assets/serenity-villa-outdoor-lounge-upclose.JPEG'
 import cheetahIcon from '../assets/cheetah.png'
 import serenityPreviewImg from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
-import penthousePreviewImg from '../assets/penthouse-suite-view-of-rooftop-pool-and-ocean.jpg'
+import penthousePreviewImg from '../assets/penthouse-suite-view-from-outside.jpg'
 
 // Gallery images — reordered: bedrooms → closet → lounge/dining → outdoor → kitchen → entrance → bathroom → 1stfloor-view (last)
 import g1  from '../assets/serenity-villa-1st-bedroom-view1.JPEG'
@@ -72,7 +72,7 @@ const AMENITY_ICONS = [
   Fan,
 ]
 
-const POLICY_ICONS = [Clock, Clock, Calendar, Shield, PawPrint, Cigarette]
+const POLICY_ICONS = [Clock, Clock, Calendar, CreditCard, Shield, PawPrint, Cigarette]
 
 const TOUR_VIDEO_BASE =
   'https://player.vimeo.com/video/1189024643' +
@@ -304,6 +304,9 @@ export default function SerenityVillaPage() {
             <motion.h2 className="section-title sv-gallery__title" {...fadeUp(0.1)}>
               {ts.galleryTitle}
             </motion.h2>
+            <motion.p className="sv-gallery__desc" {...fadeUp(0.18)}>
+              {ts.galleryDesc}
+            </motion.p>
           </div>
           <motion.div className="sv-gallery__strip-wrapper" {...fadeUp(0.2)}>
             <button
@@ -581,12 +584,13 @@ export default function SerenityVillaPage() {
           margin-bottom: 1rem;
         }
         .sv-hero__title {
-          font-family: var(--font-title);
-          font-size: clamp(3rem, 7.5vw, 6rem);
+          font-family: var(--font-serif, Georgia, serif);
+          font-size: clamp(2.2rem, 5.5vw, 3.8rem);
           font-weight: 400;
           color: #fff;
-          line-height: 1.05;
-          margin: 0 0 1rem;
+          line-height: 1.08;
+          letter-spacing: -0.01em;
+          margin: 0 0 16px;
         }
         .sv-hero__tagline {
           font-family: var(--font-body);
@@ -607,7 +611,6 @@ export default function SerenityVillaPage() {
         }
         @media (max-width: 767px) {
           .sv-hero { height: 85vh; }
-          .sv-hero__title { font-size: clamp(2.4rem, 9vw, 3.8rem); }
         }
 
         /* ── About ── */
@@ -744,7 +747,17 @@ export default function SerenityVillaPage() {
         /* ── Gallery ── */
         .sv-gallery__title {
           text-align: center;
-          margin: 0.5rem 0 2rem;
+          margin: 0.5rem 0 0.75rem;
+        }
+        .sv-gallery__desc {
+          font-family: var(--font-body);
+          font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+          color: var(--color-text-muted);
+          line-height: 1.75;
+          max-width: 560px;
+          margin: 0 auto 2rem;
+          text-align: center;
+          font-style: italic;
         }
         .sv-gallery__strip-wrapper {
           position: relative;

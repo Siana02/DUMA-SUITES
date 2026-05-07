@@ -9,13 +9,13 @@ import { getT } from '../i18n/translations.js'
 import cheetahIcon from '../assets/cheetah.png'
 import coastalPreview from '../assets/coastal-haven-suite-lounge-couch.JPEG'
 import serenityPreview from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
-import penthousePreview from '../assets/penthouse-suite-view-of-rooftop-pool-and-ocean.jpg'
+import penthousePreview from '../assets/penthouse-suite-view-from-outside.jpg'
 
 // Static metadata: images & hrefs only
 const SUITE_META = [
+  { id: 'penthouse-suite-1-sofia', href: '/suites/penthouse-suite-1-sofia', image: penthousePreview },
   { id: 'coastal-haven', href: '/suites/coastal-haven', image: coastalPreview },
   { id: 'serenity-villa', href: '/suites/serenity-villa', image: serenityPreview },
-  { id: 'penthouse-suite-1-sofia', href: '/suites/penthouse-suite-1-sofia', image: penthousePreview },
 ]
 
 const AUTO_ADVANCE_MS = 7000

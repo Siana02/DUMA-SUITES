@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import {
   Maximize2, BedDouble, Users, Check, Mail, MessageCircle,
-  Wifi, Tv, Bath, Waves, Utensils, Calendar, Clock,
+  Wifi, Tv, Bath, Waves, Utensils, Calendar, Clock, CreditCard,
   Shield, AirVent, Sparkles, Sofa, Sunrise, UtensilsCrossed,
   Shirt, Fan, PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack,
 } from 'lucide-react'
@@ -17,7 +17,7 @@ import serenityPreview from '../assets/serenity-villa-3bedroomsuite-preview.JPEG
 import coastalAboutImg from '../assets/coastal-haven-suite-outdoor-view.JPEG'
 import cheetahIcon from '../assets/cheetah.png'
 import serenityPreviewImg from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
-import penthousePreviewImg from '../assets/penthouse-suite-view-of-rooftop-pool-and-ocean.jpg'
+import penthousePreviewImg from '../assets/penthouse-suite-view-from-outside.jpg'
 
 // Gallery images — ordered: beds → kitchen/lounge → outdoor/views → entrance → closet → bathroom
 import g1  from '../assets/coastal-haven-suite-kingsize-bed.JPEG'
@@ -59,7 +59,7 @@ const AMENITY_ICONS = [
   Fan,
 ]
 
-const POLICY_ICONS = [Clock, Clock, Calendar, Shield, PawPrint, Cigarette]
+const POLICY_ICONS = [Clock, Clock, Calendar, CreditCard, Shield, PawPrint, Cigarette]
 
 const TOUR_VIDEO_BASE =
   'https://player.vimeo.com/video/1188952533' +
@@ -297,6 +297,9 @@ export default function CoastalHavenPage() {
             <motion.h2 className="section-title ch-gallery__title" {...fadeUp(0.1)}>
               {tc.galleryTitle}
             </motion.h2>
+            <motion.p className="ch-gallery__desc" {...fadeUp(0.18)}>
+              {tc.galleryDesc}
+            </motion.p>
           </div>
           <motion.div className="ch-gallery__strip-wrapper" {...fadeUp(0.2)}>
             <button
@@ -572,12 +575,13 @@ export default function CoastalHavenPage() {
           margin-bottom: 1rem;
         }
         .ch-hero__title {
-          font-family: var(--font-title);
-          font-size: clamp(3rem, 7.5vw, 6rem);
+          font-family: var(--font-serif, Georgia, serif);
+          font-size: clamp(2.2rem, 5.5vw, 3.8rem);
           font-weight: 400;
           color: #fff;
-          line-height: 1.05;
-          margin: 0 0 1rem;
+          line-height: 1.08;
+          letter-spacing: -0.01em;
+          margin: 0 0 16px;
         }
         .ch-hero__tagline {
           font-family: var(--font-body);
@@ -600,7 +604,6 @@ export default function CoastalHavenPage() {
         }
         @media (max-width: 767px) {
           .ch-hero { height: 85vh; }
-          .ch-hero__title { font-size: clamp(2.4rem, 9vw, 3.8rem); }
         }
 
         /* ── About ── */
@@ -739,7 +742,17 @@ export default function CoastalHavenPage() {
         /* ── Gallery ── */
         .ch-gallery__title {
           text-align: center;
-          margin: 0.5rem 0 2rem;
+          margin: 0.5rem 0 0.75rem;
+        }
+        .ch-gallery__desc {
+          font-family: var(--font-body);
+          font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+          color: var(--color-text-muted);
+          line-height: 1.75;
+          max-width: 560px;
+          margin: 0 auto 2rem;
+          text-align: center;
+          font-style: italic;
         }
         .ch-gallery__strip-wrapper {
           position: relative;
