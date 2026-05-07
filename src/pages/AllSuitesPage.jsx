@@ -13,8 +13,8 @@ import serenityPreview from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
 import penthousePreview from '../assets/penthouse-suite-outside-balcony-dinining-table-area.jpg'
 import cheetahIcon from '../assets/cheetah.png'
 
-const SUITE_IMAGES = [coastalPreview, serenityPreview, penthousePreview]
-const SUITE_HREFS = ['/suites/coastal-haven', '/suites/serenity-villa', '/suites/penthouse-suite-1-sofia']
+const SUITE_IMAGES = [penthousePreview, coastalPreview, serenityPreview]
+const SUITE_HREFS = ['/suites/penthouse-suite-1-sofia', '/suites/coastal-haven', '/suites/serenity-villa']
 
 function SuiteCard({ suite, image, href, index }) {
   const { ref, inView } = useInView({ threshold: 0.15, triggerOnce: true })

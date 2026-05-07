@@ -13,9 +13,9 @@ import penthousePreview from '../assets/penthouse-suite-2-floors-overview.jpg'
 
 // Static metadata: images & hrefs only
 const SUITE_META = [
+  { id: 'penthouse-suite-1-sofia', href: '/suites/penthouse-suite-1-sofia', image: penthousePreview },
   { id: 'coastal-haven', href: '/suites/coastal-haven', image: coastalPreview },
   { id: 'serenity-villa', href: '/suites/serenity-villa', image: serenityPreview },
-  { id: 'penthouse-suite-1-sofia', href: '/suites/penthouse-suite-1-sofia', image: penthousePreview },
 ]
 
 const AUTO_ADVANCE_MS = 7000

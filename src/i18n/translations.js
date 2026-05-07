@@ -278,9 +278,9 @@ const en = {
       showcaseIntro: 'Three distinct escapes, each crafted for a different way of experiencing Watamu.',
       viewSuite: 'View Suite',
       cards: [
+        { name: 'Penthouse Suite Sofia', tagline: 'Penthouse · Rooftop Luxury Retreat', desc: 'A spectacular two-floor penthouse with rooftop sunset terrace, 3 king bedrooms, and sweeping sea views — the ultimate Watamu retreat.', size: '150 sq m', beds: '3 King Size Beds', guests: '6 Guests' },
         { name: 'Duma Suite Anna', tagline: '1-Bedroom · Intimate Coastal Retreat', desc: 'An intimate coastal retreat designed for couples seeking privacy and elegance, just steps from the Indian Ocean.', size: '70 sq m', beds: '1 King Bed', guests: '2 Guests' },
         { name: 'Duma Suite Alice', tagline: '3-Bedroom · Luxury Family Retreat', desc: 'A spacious three-bedroom suite with full kitchen, outdoor terrace, and garden views — perfect for families or groups.', size: '135 sq m', beds: '2 King Size Beds, 1 French Bed', guests: '6 Guests' },
-        { name: 'Penthouse Suite Sofia', tagline: 'Penthouse · Rooftop Luxury Retreat', desc: 'A spectacular two-floor penthouse with rooftop sunset terrace, 3 king bedrooms, and sweeping sea views — the ultimate Watamu retreat.', size: '150 sq m', beds: '3 King Size Beds', guests: '6 Guests' },
       ],
     },
     coastal: {
@@ -514,6 +514,13 @@ const en = {
     viewAll: 'View All Suites',
     suites: [
       {
+        name: 'Penthouse Suite Sofia',
+        tagline: 'Penthouse \u00b7 Rooftop Luxury Retreat',
+        size: '150 sq m',
+        beds: '3 King Size Beds',
+        guests: '6 Guests',
+      },
+      {
         name: 'Duma Suite Anna',
         tagline: '1-Bedroom \u00b7 Intimate Coastal Retreat',
         size: '70 sq m',
@@ -525,13 +532,6 @@ const en = {
         tagline: '3-Bedroom \u00b7 Luxury Family Retreat',
         size: '135 sq m',
         beds: '2 King Size Beds, 1 French Bed',
-        guests: '6 Guests',
-      },
-      {
-        name: 'Penthouse Suite Sofia',
-        tagline: 'Penthouse \u00b7 Rooftop Luxury Retreat',
-        size: '150 sq m',
-        beds: '3 King Size Beds',
         guests: '6 Guests',
       },
     ],
@@ -1299,9 +1299,9 @@ const it = {
       showcaseIntro: 'Tre rifugi distinti, ognuno pensato per un modo diverso di vivere Watamu.',
       viewSuite: 'Scopri la Suite',
       cards: [
+        { name: 'Penthouse Suite Sofia', tagline: 'Penthouse · Rifugio di Lusso sul Tetto', desc: 'Un magnifico penthouse su due piani con terrazza al tramonto sul tetto, 3 camere king e viste panoramiche sul mare — il massimo del lusso a Watamu.', size: '150 mq', beds: '3 Letti King', guests: '6 Ospiti' },
         { name: 'Duma Suite Anna', tagline: '1 Camera · Rifugio Costiero Intimo', desc: "Un rifugio costiero intimo per coppie in cerca di privacy ed eleganza, a pochi passi dall'Oceano Indiano.", size: '70 mq', beds: '1 Letto King', guests: '2 Ospiti' },
         { name: 'Duma Suite Alice', tagline: '3 Camere · Rifugio di Lusso per Famiglie', desc: 'Una spaziosa suite da tre camere con cucina completa, terrazza esterna e viste sul giardino — perfetta per famiglie o gruppi.', size: '135 mq', beds: '2 Letti King, 1 Letto Francese', guests: '6 Ospiti' },
-        { name: 'Penthouse Suite Sofia', tagline: 'Penthouse · Rifugio di Lusso sul Tetto', desc: 'Un magnifico penthouse su due piani con terrazza al tramonto sul tetto, 3 camere king e viste panoramiche sul mare — il massimo del lusso a Watamu.', size: '150 mq', beds: '3 Letti King', guests: '6 Ospiti' },
       ],
     },
     coastal: {
@@ -1536,6 +1536,13 @@ const it = {
     viewAll: 'Vedi Tutte le Suite',
     suites: [
       {
+        name: 'Penthouse Suite Sofia',
+        tagline: 'Penthouse \u00b7 Rifugio di Lusso sul Tetto',
+        size: '150 mq',
+        beds: '3 Letti King',
+        guests: '6 Ospiti',
+      },
+      {
         name: 'Duma Suite Anna',
         tagline: '1 Camera \u00b7 Rifugio Costiero Intimo',
         size: '70 mq',
@@ -1547,13 +1554,6 @@ const it = {
         tagline: '3 Camere \u00b7 Rifugio di Lusso per Famiglie',
         size: '135 mq',
         beds: '2 Letti King, 1 Letto Francese',
-        guests: '6 Ospiti',
-      },
-      {
-        name: 'Penthouse Suite Sofia',
-        tagline: 'Penthouse \u00b7 Rifugio di Lusso sul Tetto',
-        size: '150 mq',
-        beds: '3 Letti King',
         guests: '6 Ospiti',
       },
     ],
