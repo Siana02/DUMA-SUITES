@@ -304,6 +304,9 @@ export default function SerenityVillaPage() {
             <motion.h2 className="section-title sv-gallery__title" {...fadeUp(0.1)}>
               {ts.galleryTitle}
             </motion.h2>
+            <motion.p className="sv-gallery__desc" {...fadeUp(0.18)}>
+              {ts.galleryDesc}
+            </motion.p>
           </div>
           <motion.div className="sv-gallery__strip-wrapper" {...fadeUp(0.2)}>
             <button
@@ -744,7 +747,17 @@ export default function SerenityVillaPage() {
         /* ── Gallery ── */
         .sv-gallery__title {
           text-align: center;
-          margin: 0.5rem 0 2rem;
+          margin: 0.5rem 0 0.75rem;
+        }
+        .sv-gallery__desc {
+          font-family: var(--font-body);
+          font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+          color: var(--color-text-muted);
+          line-height: 1.75;
+          max-width: 560px;
+          margin: 0 auto 2rem;
+          text-align: center;
+          font-style: italic;
         }
         .sv-gallery__strip-wrapper {
           position: relative;

@@ -297,6 +297,9 @@ export default function CoastalHavenPage() {
             <motion.h2 className="section-title ch-gallery__title" {...fadeUp(0.1)}>
               {tc.galleryTitle}
             </motion.h2>
+            <motion.p className="ch-gallery__desc" {...fadeUp(0.18)}>
+              {tc.galleryDesc}
+            </motion.p>
           </div>
           <motion.div className="ch-gallery__strip-wrapper" {...fadeUp(0.2)}>
             <button
@@ -739,7 +742,17 @@ export default function CoastalHavenPage() {
         /* ── Gallery ── */
         .ch-gallery__title {
           text-align: center;
-          margin: 0.5rem 0 2rem;
+          margin: 0.5rem 0 0.75rem;
+        }
+        .ch-gallery__desc {
+          font-family: var(--font-body);
+          font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+          color: var(--color-text-muted);
+          line-height: 1.75;
+          max-width: 560px;
+          margin: 0 auto 2rem;
+          text-align: center;
+          font-style: italic;
         }
         .ch-gallery__strip-wrapper {
           position: relative;

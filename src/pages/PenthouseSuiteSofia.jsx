@@ -287,6 +287,9 @@ export default function PenthouseSuiteSofiaPage() {
             <motion.h2 className="section-title ph-gallery__title" {...fadeUp(0.1)}>
               {pt.galleryTitle}
             </motion.h2>
+            <motion.p className="ph-gallery__desc" {...fadeUp(0.18)}>
+              {pt.galleryDesc}
+            </motion.p>
           </div>
           <motion.div className="ph-gallery__strip-wrapper" {...fadeUp(0.2)}>
             <button
@@ -514,6 +517,7 @@ export default function PenthouseSuiteSofiaPage() {
           line-height: 1.08;
           letter-spacing: -0.01em;
           margin: 0 0 16px;
+          color: #fff;
         }
         .ph-hero__tagline {
           font-size: clamp(0.9rem, 2vw, 1.1rem);
@@ -592,7 +596,17 @@ export default function PenthouseSuiteSofiaPage() {
         }
 
         /* ── Gallery ── */
-        .ph-gallery__title { text-align: center; margin-bottom: 32px; }
+        .ph-gallery__title { text-align: center; margin-bottom: 12px; }
+        .ph-gallery__desc {
+          font-family: var(--font-body);
+          font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+          color: var(--color-text-muted);
+          line-height: 1.75;
+          max-width: 560px;
+          margin: 0 auto 32px;
+          text-align: center;
+          font-style: italic;
+        }
         .ph-gallery__strip-wrapper {
           position: relative;
           width: 100%;
