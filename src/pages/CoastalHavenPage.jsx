@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import {
   Maximize2, BedDouble, Users, Check, Mail, MessageCircle,
-  Wifi, Tv, Bath, Waves, Utensils, Calendar, Clock,
+  Wifi, Tv, Bath, Waves, Utensils, Calendar, Clock, CreditCard,
   Shield, AirVent, Sparkles, Sofa, Sunrise, UtensilsCrossed,
   Shirt, Fan, PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack,
 } from 'lucide-react'
@@ -59,7 +59,7 @@ const AMENITY_ICONS = [
   Fan,
 ]
 
-const POLICY_ICONS = [Clock, Clock, Calendar, Shield, PawPrint, Cigarette]
+const POLICY_ICONS = [Clock, Clock, Calendar, CreditCard, Shield, PawPrint, Cigarette]
 
 const TOUR_VIDEO_BASE =
   'https://player.vimeo.com/video/1188952533' +

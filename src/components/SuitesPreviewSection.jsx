@@ -9,7 +9,7 @@ import { getT } from '../i18n/translations.js'
 import cheetahIcon from '../assets/cheetah.png'
 import coastalPreview from '../assets/coastal-haven-suite-lounge-couch.JPEG'
 import serenityPreview from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
-import penthousePreview from '../assets/penthouse-suite-2-floors-overview.jpg'
+import penthousePreview from '../assets/penthouse-suite-view-from-outside.jpg'
 
 // Static metadata: images & hrefs only
 const SUITE_META = [

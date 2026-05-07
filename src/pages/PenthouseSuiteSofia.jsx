@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import {
   Maximize2, BedDouble, Users, Check, Mail, MessageCircle,
-  Wifi, Tv, Bath, Utensils, Calendar, Clock,
+  Wifi, Tv, Bath, Utensils, Calendar, Clock, CreditCard,
   Shield, AirVent, Sparkles, Sofa, Sunrise, UtensilsCrossed,
   PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack, Star,
   Building2, DoorOpen, Armchair, Fan, WavesLadder, TreePalm, Leaf, Sun, ForkKnife, Wind,
@@ -135,7 +135,7 @@ const AMENITY_ICONS = [
   Leaf,         // Garden View
 ]
 
-const POLICY_ICONS = [Clock, Clock, Calendar, Shield, PawPrint, Cigarette]
+const POLICY_ICONS = [Clock, Clock, Calendar, CreditCard, Shield, PawPrint, Cigarette]
 
 function fadeUp(delay = 0) {
   return {
@@ -269,7 +269,13 @@ export default function PenthouseSuiteSofiaPage() {
                   <Calendar size={14} strokeWidth={1.8} aria-hidden="true" />
                   {pt.aboutCta}
                 </a>
+              </motion.div>
 
+              <motion.div className="ph-about__img-col" {...fadeUp(0.16)}>
+                <div className="ph-about__img-wrap">
+                  <img src={aboutImg} alt="Penthouse Suite Sofia indoor stairs view" className="ph-about__img" />
+                  <div className="ph-about__img-overlay" aria-hidden="true" />
+                </div>
                 <div className="ph-about__highlights-card">
                   <h3 className="ph-about__highlights-title">{pt.highlightsTitle}</h3>
                   <ul className="ph-highlights">
@@ -280,13 +286,6 @@ export default function PenthouseSuiteSofiaPage() {
                       </li>
                     ))}
                   </ul>
-                </div>
-              </motion.div>
-
-              <motion.div className="ph-about__img-col" {...fadeUp(0.16)}>
-                <div className="ph-about__img-wrap">
-                  <img src={aboutImg} alt="Penthouse Suite Sofia indoor stairs view" className="ph-about__img" />
-                  <div className="ph-about__img-overlay" aria-hidden="true" />
                 </div>
               </motion.div>
             </div>
@@ -570,10 +569,14 @@ export default function PenthouseSuiteSofiaPage() {
         }
         .ph-about__inner {
           display: grid;
-          gap: 48px;
+          gap: 34px;
         }
         @media (min-width: 900px) {
-          .ph-about__inner { grid-template-columns: 1fr 1fr; align-items: start; }
+          .ph-about__inner { grid-template-columns: 1.05fr 0.95fr; align-items: start; }
+        }
+        .ph-about__left {
+          display: flex;
+          flex-direction: column;
         }
         .ph-about__title { margin-bottom: 20px; }
         .ph-about__text {
@@ -583,12 +586,18 @@ export default function PenthouseSuiteSofiaPage() {
           margin-bottom: 16px;
         }
         .ph-about__cta { margin-top: 8px; }
+        .ph-about__img-col {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
         .ph-about__highlights-card {
-          margin-top: 32px;
-          padding: 24px;
+          margin-top: 0;
+          padding: 22px;
           background: var(--color-surface, #faf9f7);
-          border-radius: 12px;
+          border-radius: 14px;
           border: 1px solid var(--color-border, #e8e3dc);
+          box-shadow: 0 8px 28px rgba(0,0,0,0.06);
         }
         .ph-about__highlights-title {
           font-size: 0.8rem;
@@ -598,12 +607,31 @@ export default function PenthouseSuiteSofiaPage() {
           color: var(--color-text-muted, #7a7065);
           margin: 0 0 16px;
         }
-        .ph-highlights { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
-        .ph-highlights__item { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; line-height: 1.5; color: var(--color-text-body, #4a453f); }
+        .ph-highlights { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+        @media (min-width: 560px) {
+          .ph-highlights { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        .ph-highlights__item {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          font-size: 0.88rem;
+          line-height: 1.5;
+          color: var(--color-text-body, #4a453f);
+          padding: 8px 10px;
+          border-radius: 10px;
+          background: rgba(201, 169, 110, 0.08);
+        }
         .ph-highlights__icon { color: var(--color-accent, #c9a96e); flex-shrink: 0; margin-top: 2px; }
-        .ph-about__img-col {}
-        .ph-about__img-wrap { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 4/5; }
-        .ph-about__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .ph-about__img-wrap {
+          position: relative;
+          border-radius: 14px;
+          overflow: hidden;
+          aspect-ratio: 4/5;
+          box-shadow: 0 14px 36px rgba(0,0,0,0.18);
+        }
+        .ph-about__img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+        .ph-about__img-wrap:hover .ph-about__img { transform: scale(1.04); }
         .ph-about__img-overlay {
           position: absolute;
           inset: 0;
@@ -643,7 +671,8 @@ export default function PenthouseSuiteSofiaPage() {
           border-radius: 10px;
           overflow: hidden;
         }
-        .ph-gallery__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .ph-gallery__img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.45s ease; }
+        .ph-gallery__item:hover .ph-gallery__img { transform: scale(1.06); }
         .ph-gallery__arrow {
           position: absolute;
           z-index: 4;
@@ -683,6 +712,7 @@ export default function PenthouseSuiteSofiaPage() {
           border: 1px solid var(--color-border, #e8e3dc);
           border-radius: 12px;
           text-align: center;
+          transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
         }
         .ph-amenity__icon-wrap {
           width: 44px;
@@ -692,8 +722,23 @@ export default function PenthouseSuiteSofiaPage() {
           display: flex;
           align-items: center;
           justify-content: center;
+          transition: transform 0.28s ease, background 0.28s ease, box-shadow 0.28s ease;
         }
-        .ph-amenity__icon { color: var(--color-accent, #c9a96e); }
+        .ph-amenity__icon { color: var(--color-accent, #c9a96e); transition: transform 0.28s ease, color 0.28s ease; }
+        .ph-amenity:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+          border-color: rgba(201, 169, 110, 0.55);
+        }
+        .ph-amenity:hover .ph-amenity__icon-wrap {
+          transform: scale(1.08);
+          background: var(--color-accent, #c9a96e);
+          box-shadow: 0 8px 18px rgba(201, 169, 110, 0.35);
+        }
+        .ph-amenity:hover .ph-amenity__icon {
+          transform: scale(1.08);
+          color: #fff;
+        }
         .ph-amenity__label { font-size: 0.8rem; font-weight: 500; color: var(--color-text-body, #4a453f); line-height: 1.3; }
 
         /* ── Policies ── */
