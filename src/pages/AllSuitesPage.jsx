@@ -13,13 +13,15 @@ import serenityPreview from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
 import cheetahIcon from '../assets/cheetah.png'
 
 const SUITE_IMAGES = [coastalPreview, serenityPreview]
-const SUITE_HREFS = ['/suites/coastal-haven', '/suites/serenity-villa']
+const SUITE_HREFS = [null, null]
 
 function SuiteCard({ suite, image, href, index }) {
   const { ref, inView } = useInView({ threshold: 0.15, triggerOnce: true })
   const navigate = useNavigate()
   const { lang } = useLanguage()
   const t = getT(lang)
+  const isAvailable = Boolean(href)
+  const ctaLabel = suite.cta || t.suites.all.viewSuite
 
   return (
     <motion.article
@@ -31,29 +33,35 @@ function SuiteCard({ suite, image, href, index }) {
     >
       <div
         className="as-card__img-wrap"
-        onClick={() => navigate(href)}
+        onClick={() => { if (isAvailable) navigate(href) }}
         role="button"
         tabIndex={0}
-        aria-label={`View ${suite.name}`}
-        onKeyDown={(e) => e.key === 'Enter' && navigate(href)}
+        aria-label={isAvailable ? `View ${suite.name}` : `${suite.name} coming soon`}
+        onKeyDown={(e) => e.key === 'Enter' && isAvailable && navigate(href)}
       >
         <img src={image} alt={suite.name} className="as-card__img" />
         <div className="as-card__overlay">
           <p className="as-card__tagline">{suite.tagline}</p>
           <h3 className="as-card__name">{suite.name}</h3>
           <div className="as-card__specs">
-            <span><Maximize2 size={13} strokeWidth={1.5} />{index === 0 ? '25 sq m' : '75 sq m'}</span>
-            <span><BedDouble size={13} strokeWidth={1.5} />{index === 0 ? '1 King Bed' : '3 King Beds'}</span>
-            <span><Users size={13} strokeWidth={1.5} />{index === 0 ? '2 Guests' : '3 Guests'}</span>
+            <span><Maximize2 size={13} strokeWidth={1.5} />{suite.size || (index === 0 ? '70 sq m' : '135 sq m')}</span>
+            <span><BedDouble size={13} strokeWidth={1.5} />{suite.beds || (index === 0 ? '1 King Bed' : '2 King Beds + 1 French Bed')}</span>
+            <span><Users size={13} strokeWidth={1.5} />{suite.guests || (index === 0 ? '2 Guests' : '6 Guests')}</span>
           </div>
         </div>
       </div>
       <div className="as-card__body">
         <p className="as-card__desc">{suite.desc}</p>
-        <a href={href} className="btn btn-inverse as-card__btn">
-          {t.suites.all.viewSuite}
-          <ArrowRight size={13} strokeWidth={1.6} aria-hidden="true" />
-        </a>
+        {isAvailable ? (
+          <a href={href} className="btn btn-inverse as-card__btn">
+            {ctaLabel}
+            <ArrowRight size={13} strokeWidth={1.6} aria-hidden="true" />
+          </a>
+        ) : (
+          <span className="btn btn-inverse as-card__btn" aria-disabled="true">
+            {ctaLabel}
+          </span>
+        )}
       </div>
     </motion.article>
   )
@@ -107,7 +115,7 @@ export default function AllSuitesPage() {
     <>
       <Helmet>
         <title>All Suites | Duma Suites Watamu</title>
-        <meta name="description" content="Explore the showcased suites at Duma Suites — the One Bedroom Suite and Three Bedroom Suite. Exceptional retreats in Watamu, Kenya, with more options available." />
+        <meta name="description" content="Explore Duma Suites collection updates in Watamu, including upcoming Penthouse and Two-Bedroom listings." />
       </Helmet>
 
       <main id="suites-page">
