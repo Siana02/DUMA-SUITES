@@ -1300,7 +1300,7 @@ const it = {
       cards: [
         { name: 'Duma Suite Anna', tagline: '1 Camera · Rifugio Costiero Intimo', desc: "Un rifugio costiero intimo per coppie in cerca di privacy ed eleganza, a pochi passi dall'Oceano Indiano.", size: '70 mq', beds: '1 Letto King', guests: '2 Ospiti' },
         { name: 'Duma Suite Alice', tagline: '3 Camere · Rifugio di Lusso per Famiglie', desc: 'Una spaziosa suite da tre camere con cucina completa, terrazza esterna e viste sul giardino — perfetta per famiglie o gruppi.', size: '135 mq', beds: '2 Letti King, 1 Letto Francese', guests: '6 Ospiti' },
-        { name: 'Penthouse Suite Sofia', tagline: 'Penthouse · Rifugio di Lusso sul Tetto', desc: 'Un magnifico penthouse su due piani con terrazza al tramonto sul tetto, 3 camere king e viste panoramiche sul mare — il massimo della lussuria a Watamu.', size: '150 mq', beds: '3 Letti King', guests: '6 Ospiti' },
+        { name: 'Penthouse Suite Sofia', tagline: 'Penthouse · Rifugio di Lusso sul Tetto', desc: 'Un magnifico penthouse su due piani con terrazza al tramonto sul tetto, 3 camere king e viste panoramiche sul mare — il massimo del lusso a Watamu.', size: '150 mq', beds: '3 Letti King', guests: '6 Ospiti' },
       ],
     },
     coastal: {

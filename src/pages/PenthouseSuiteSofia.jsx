@@ -41,7 +41,7 @@ const GALLERY_LABELS = [
 
 const AMENITY_ICONS = [
   BedDouble, Bath, Maximize2, Star, UtensilsCrossed, Sofa,
-  ({ size, strokeWidth, className }) => <span className={className} style={{ fontSize: size, lineHeight: 1 }}>🛋️</span>,
+  Sofa,
   Sunrise,
   ({ size, strokeWidth, className }) => <span className={className} style={{ fontSize: size, lineHeight: 1 }}>🌅</span>,
   Sunrise,
