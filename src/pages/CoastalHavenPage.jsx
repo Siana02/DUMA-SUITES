@@ -17,6 +17,7 @@ import serenityPreview from '../assets/serenity-villa-3bedroomsuite-preview.JPEG
 import coastalAboutImg from '../assets/coastal-haven-suite-outdoor-view.JPEG'
 import cheetahIcon from '../assets/cheetah.png'
 import serenityPreviewImg from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
+import penthousePreviewImg from '../assets/penthouse-suite-view-of-rooftop-pool-and-ocean.jpg'
 
 // Gallery images — ordered: beds → kitchen/lounge → outdoor/views → entrance → closet → bathroom
 import g1  from '../assets/coastal-haven-suite-kingsize-bed.JPEG'
@@ -194,7 +195,7 @@ export default function CoastalHavenPage() {
 
         {/* ── a) Hero ── */}
         <section className="ch-hero">
-          <img src={heroImg} alt="One Bedroom Suite outdoor view" className="ch-hero__bg" />
+          <img src={heroImg} alt="Duma Suite Anna outdoor view" className="ch-hero__bg" />
           <div className="ch-hero__overlay" aria-hidden="true" />
           <div className="ch-hero__content">
             <motion.span
@@ -497,6 +498,18 @@ export default function CoastalHavenPage() {
                   <p className="ch-suite-card__tagline">{tc.serenityTagline}</p>
                   <h3 className="ch-suite-card__name">{ts.heroTitle}</h3>
                   <a href="/suites/serenity-villa" className="btn btn-inverse ch-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/serenity-villa') }}>
+                    {tc.viewSuiteBtn}
+                  </a>
+                </div>
+              </motion.div>
+              <motion.div className="ch-suite-card" {...fadeUp(0.42)} onClick={() => navigate('/suites/penthouse-suite-1-sofia')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/penthouse-suite-1-sofia') } }}>
+                <div className="ch-suite-card__img-wrap">
+                  <img src={penthousePreviewImg} alt="Penthouse Suite Sofia" className="ch-suite-card__img" loading="eager" />
+                </div>
+                <div className="ch-suite-card__body">
+                  <p className="ch-suite-card__tagline">{tc.penthouseTagline}</p>
+                  <h3 className="ch-suite-card__name">Penthouse Suite Sofia</h3>
+                  <a href="/suites/penthouse-suite-1-sofia" className="btn btn-inverse ch-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/penthouse-suite-1-sofia') }}>
                     {tc.viewSuiteBtn}
                   </a>
                 </div>
