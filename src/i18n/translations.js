@@ -412,7 +412,7 @@ const en = {
       galleryCta: 'Book a Stay',
       amenitiesEyebrow: "What's Included",
       amenitiesTitle: 'Penthouse Amenities',
-      amenities: ['3 King Size Beds', 'Multiple en-suites', '2 Floors', 'Master Bedroom on Top Floor', 'Fully Equipped Kitchenette', 'Outdoor Sunbeds', 'Lounge Chairs', 'Recliner Chairs', 'Huge Balconies', 'Rooftop Sunset Terrace', 'Indoor Dining Table', 'Outdoor 8-Seater Dining Table', 'Swing with Sea & Sunset Views', 'High-speed Wi-Fi', 'Daily Housekeeping', 'Air conditioning', 'Smart TV', 'Towels provided'],
+      amenities: ['3 King Size Beds', 'Multiple en-suites', '2 Floors', 'Master Bedroom on Top Floor', 'Fully Equipped Kitchenette', 'Outdoor Sunbeds', 'Lounge Chairs', 'Recliner Chairs', 'Huge Balconies', 'Rooftop Sunset Terrace', 'Indoor Dining Table', 'Outdoor 8-Seater Dining Table', 'Swing with Sea & Sunset Views', 'High-speed Wi-Fi', 'Daily Housekeeping', 'Air conditioning', 'Smart TV', 'Towels provided', 'Ceiling Fans', 'Pool Access', 'Beach Views', 'Garden View'],
       policiesEyebrow: 'Policies & Check-in',
       policiesTitle: 'Know Before You Go',
       policies: [
@@ -1434,7 +1434,7 @@ const it = {
       galleryCta: 'Prenota un Soggiorno',
       amenitiesEyebrow: "Cosa è Incluso",
       amenitiesTitle: 'Servizi del Penthouse',
-      amenities: ['3 Letti King', 'Più bagni en-suite', '2 Piani', 'Camera Master al Piano Superiore', 'Kitchenette Completamente Attrezzata', 'Lettini da Sole Esterni', 'Sedie Lounge', 'Sedie Reclinabili', 'Grandi Balconi', 'Terrazza al Tramonto sul Tetto', 'Tavolo da Pranzo Interno', 'Tavolo da Pranzo Esterno 8 Posti', 'Swing con Vista Mare e Tramonto', 'Wi-Fi ad Alta Velocità', 'Pulizie Giornaliere', 'Aria Condizionata', 'Smart TV', 'Asciugamani Forniti'],
+      amenities: ['3 Letti King', 'Più bagni en-suite', '2 Piani', 'Camera Master al Piano Superiore', 'Kitchenette Completamente Attrezzata', 'Lettini da Sole Esterni', 'Sedie Lounge', 'Sedie Reclinabili', 'Grandi Balconi', 'Terrazza al Tramonto sul Tetto', 'Tavolo da Pranzo Interno', 'Tavolo da Pranzo Esterno 8 Posti', 'Swing con Vista Mare e Tramonto', 'Wi-Fi ad Alta Velocità', 'Pulizie Giornaliere', 'Aria Condizionata', 'Smart TV', 'Asciugamani Forniti', 'Ventilatori a Soffitto', 'Accesso alla Piscina', 'Vista Mare', 'Vista Giardino'],
       policiesEyebrow: 'Politiche e Check-in',
       policiesTitle: 'Prima del Vostro Arrivo',
       policies: [

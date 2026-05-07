@@ -7,6 +7,7 @@ import {
   Wifi, Tv, Bath, Utensils, Calendar, Clock,
   Shield, AirVent, Sparkles, Sofa, Sunrise, UtensilsCrossed,
   PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack, Star,
+  Building2, DoorOpen, Armchair, Fan, WavesLadder, TreePalm, Leaf, Sun, ForkKnife, Wind,
 } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
@@ -110,14 +111,28 @@ const GALLERY_LABELS = [
 ]
 
 const AMENITY_ICONS = [
-  BedDouble, Bath, Maximize2, Star, UtensilsCrossed, Sofa,
-  Sofa,
-  Sunrise,
-  ({ size, className }) => <span className={className} style={{ fontSize: size, lineHeight: 1 }}>🌅</span>,
-  Sunrise,
-  Utensils, UtensilsCrossed,
-  ({ size, className }) => <span className={className} style={{ fontSize: size, lineHeight: 1 }}>🪟</span>,
-  Wifi, Sparkles, AirVent, Tv, TowelRack,
+  BedDouble,    // 3 King Size Beds
+  Bath,         // Multiple en-suites
+  Building2,    // 2 Floors
+  Star,         // Master Bedroom on Top Floor
+  UtensilsCrossed, // Fully Equipped Kitchenette
+  Sun,          // Outdoor Sunbeds
+  Armchair,     // Lounge Chairs
+  Sofa,         // Recliner Chairs
+  DoorOpen,     // Huge Balconies
+  Sunrise,      // Rooftop Sunset Terrace
+  Utensils,     // Indoor Dining Table
+  ForkKnife,    // Outdoor 8-Seater Dining Table
+  Wind,         // Swing with Sea & Sunset Views
+  Wifi,         // High-speed Wi-Fi
+  Sparkles,     // Daily Housekeeping
+  AirVent,      // Air conditioning
+  Tv,           // Smart TV
+  TowelRack,    // Towels provided
+  Fan,          // Ceiling Fans
+  WavesLadder,  // Pool Access
+  TreePalm,     // Beach Views
+  Leaf,         // Garden View
 ]
 
 const POLICY_ICONS = [Clock, Clock, Calendar, Shield, PawPrint, Cigarette]
