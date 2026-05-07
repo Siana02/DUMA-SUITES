@@ -17,7 +17,7 @@ import serenityPreview from '../assets/serenity-villa-3bedroomsuite-preview.JPEG
 import coastalAboutImg from '../assets/coastal-haven-suite-outdoor-view.JPEG'
 import cheetahIcon from '../assets/cheetah.png'
 import serenityPreviewImg from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
-import penthousePreviewImg from '../assets/infinity-pool-sunset-view.jpg'
+import penthousePreviewImg from '../assets/penthouse-suite-view-of-rooftop-pool-and-ocean.jpg'
 
 // Gallery images — ordered: beds → kitchen/lounge → outdoor/views → entrance → closet → bathroom
 import g1  from '../assets/coastal-haven-suite-kingsize-bed.JPEG'
