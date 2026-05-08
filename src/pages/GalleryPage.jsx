@@ -65,7 +65,7 @@ import serenityFloor    from '../assets/serenity-villa-1stfloor-view.JPEG'
 // Penthouse suite view images
 import phNightPool   from '../assets/penthouse-suite-ariel-view-of-pool-from-penthouse-nighttime.jpg'
 import phNightGround from '../assets/penthouse-suite-ariel-view-of-groundfloor-pool-from-penthouse-nighttime.jpg'
-import phArielDay    from '../assets/penthouse-suite-ariel-view-of-pool-from-penthouse.jpg'
+import phAerialDay   from '../assets/penthouse-suite-ariel-view-of-pool-from-penthouse.jpg'
 import phBalconyView from '../assets/penthouse-suite-balcony-view.jpg'
 import phBeachView   from '../assets/penthouse-suite-beach-view-from-balcony.jpg'
 import phSunsetTerrace from '../assets/penthouse-suite-sunset-view-from-terrace.jpg'
@@ -141,7 +141,7 @@ const IMAGES = [
   // Penthouse suite views
   { src: phNightPool,       alt: 'Aerial night view of penthouse pool' },
   { src: phNightGround,     alt: 'Aerial night view of ground-floor pool from penthouse' },
-  { src: phArielDay,        alt: 'Aerial view of penthouse pool by day' },
+  { src: phAerialDay,       alt: 'Aerial view of penthouse pool by day' },
   { src: phBalconyView,     alt: 'Penthouse suite balcony view' },
   { src: phBeachView,       alt: 'Beach view from penthouse balcony' },
   { src: phSunsetTerrace,   alt: 'Sunset view from penthouse terrace' },
