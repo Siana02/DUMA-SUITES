@@ -64,7 +64,7 @@ const POLICY_ICONS = [Clock, Clock, Calendar, CreditCard, Shield, PawPrint, Ciga
 const TOUR_VIDEO_BASE =
   'https://player.vimeo.com/video/1190451724' +
   '?badge=0&autopause=0&player_id=0&app_id=58479' +
-  '&byline=0&title=0&portrait=0&dnt=1'
+  '&byline=0&title=0&portrait=0&dnt=1&playsinline=1'
 
 // Vimeo requires a brief delay after iframe load before it can receive postMessage listeners
 const VIMEO_IFRAME_READY_DELAY = 500
@@ -963,6 +963,23 @@ export default function CoastalHavenPage() {
   width: 100%;
   height: 100%;
   border: none;
+  object-fit: contain;
+}
+
+/* Mobile — natural portrait layout */
+@media (max-width: 767px) {
+  .ch-tour__frame-wrap {
+    width: 100%;
+    margin-left: 0;
+    height: auto;
+  }
+  .ch-tour__frame {
+    height: auto;
+    aspect-ratio: 9/16;
+  }
+  .ch-tour__frame iframe {
+    object-fit: cover;
+  }
 }
 
         .ch-tour__cta-wrap {
