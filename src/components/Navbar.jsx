@@ -17,8 +17,11 @@ export default function Navbar() {
 
   const location = useLocation()
   const navigate = useNavigate()
-  const { lang, toggleLang } = useLanguage()
+  const { lang, toggleLang, languages } = useLanguage()
   const t = getT(lang)
+  const currentLangLabel = t?.nav?.languages?.[lang] || lang.toUpperCase()
+  const nextLangCode = languages[(languages.indexOf(lang) + 1) % languages.length]
+  const nextLangLabel = t?.nav?.languages?.[nextLangCode] || nextLangCode.toUpperCase()
 
   const NAV_LINKS = [
     { label: t.nav.home,    href: '/',         isRoute: true },
@@ -126,7 +129,7 @@ export default function Navbar() {
       >
         <div className="navbar__inner">
           {/* ── Left: Logo ── */}
-          <a href="/" className="navbar__logo" onClick={e => { e.preventDefault(); navigate('/') }} aria-label="Duma Suites – Home">
+          <a href="/" className="navbar__logo" onClick={e => { e.preventDefault(); navigate('/') }} aria-label={t.nav.logoAria}>
             <img
               src={logoImg}
               alt=""
@@ -134,13 +137,13 @@ export default function Navbar() {
               aria-hidden="true"
             />
             <div className="navbar__logo-text-group">
-              <span className="navbar__logo-name">Duma Suites</span>
-              <span className="navbar__logo-tagline">Watamu · Coastal Luxury</span>
+              <span className="navbar__logo-name">{t.nav.logoName}</span>
+              <span className="navbar__logo-tagline">{t.footer.tagline}</span>
             </div>
           </a>
 
           {/* ── Center: Desktop nav ── */}
-          <nav className="navbar__links" aria-label="Primary navigation">
+          <nav className="navbar__links" aria-label={t.nav.primaryNavigationAria}>
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
@@ -157,19 +160,19 @@ export default function Navbar() {
           <div className="navbar__right">
             <span className="navbar__location">
               <MapPin size={13} strokeWidth={1.5} aria-hidden="true" />
-              Watamu, KE
+              {t.nav.locationShort}
             </span>
             <button
               className="navbar__lang-toggle"
               onClick={toggleLang}
-              aria-label="Switch language"
+              aria-label={t.nav.switchLanguageAria}
             >
-              {lang === 'en' ? 'IT' : 'EN'}
+              {nextLangCode.toUpperCase()}
             </button>
             <button
               className="navbar__toggle"
               onClick={() => setMenuOpen((o) => !o)}
-              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-label={menuOpen ? t.nav.closeMenuAria : t.nav.openMenuAria}
               aria-expanded={menuOpen}
             >
               {menuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -203,7 +206,7 @@ export default function Navbar() {
             exit={{ x: '100%', opacity: 0.6 }}
             transition={{ duration: 0.38, ease: [0.4, 0, 0.2, 1] }}
           >
-            <nav aria-label="Mobile navigation">
+            <nav aria-label={t.nav.mobileNavigationAria}>
               {NAV_LINKS.map((link, i) => (
                 <motion.a
                   key={link.href}
@@ -220,8 +223,8 @@ export default function Navbar() {
             </nav>
 
             {/* Language toggle in drawer */}
-            <button className="navbar__lang-toggle navbar__lang-toggle--drawer" onClick={toggleLang} aria-label="Switch language">
-              {lang === 'en' ? '🇮🇹 Italiano' : '🇬🇧 English'}
+            <button className="navbar__lang-toggle navbar__lang-toggle--drawer" onClick={toggleLang} aria-label={t.nav.switchLanguageAria}>
+              {`${currentLangLabel} → ${nextLangLabel}`}
             </button>
 
             {/* Location in drawer */}
@@ -232,7 +235,7 @@ export default function Navbar() {
               transition={{ delay: NAV_LINKS.length * 0.06 + 0.18 }}
             >
               <MapPin size={13} strokeWidth={1.5} aria-hidden="true" />
-              Watamu, Kenya
+              {t.nav.locationFull}
             </motion.span>
           </motion.div>
         )}

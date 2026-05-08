@@ -1,0 +1,1512 @@
+{
+  "nav": {
+    "home": "Home",
+    "suites": "Suites",
+    "gallery": "Gallery",
+    "about": "About",
+    "contact": "Contact",
+    "houseRules": "House Rules",
+    "blog": "Blog",
+    "langSwitch": "IT",
+    "switchLanguageAria": "Switch language",
+    "openMenuAria": "Open menu",
+    "closeMenuAria": "Close menu",
+    "logoAria": "Duma Suites – Home",
+    "logoName": "Duma Suites",
+    "locationShort": "Watamu, KE",
+    "locationFull": "Watamu, Kenya",
+    "languages": {
+      "en": "English",
+      "it": "Italiano",
+      "de": "Deutsch",
+      "fr": "Français",
+      "es": "Español"
+    },
+    "primaryNavigationAria": "Primary navigation",
+    "mobileNavigationAria": "Mobile navigation"
+  },
+  "hero": {
+    "eyebrow": "Luxury Coastal Living",
+    "heading": "Where the Ocean Meets Elegance",
+    "sub": "Nestled within Ghepard Towers, Watamu — 50 metres from the white sands of the Indian Ocean.",
+    "cta": "Explore Suites",
+    "ctaSub": "View All Accommodations",
+    "scroll": "Scroll to discover",
+    "headingTop": "THE ART OF",
+    "headingMain": "COASTAL LUXURY",
+    "ariaLabel": "The Art of Coastal Luxury",
+    "subtitle": "Discover Watamu's most refined seaside retreat."
+  },
+  "about": {
+    "eyebrow": "OUR STORY & VALUES",
+    "title": "Living the Duma Way",
+    "intro": "Duma Suites is a collection of thoughtfully designed coastal residences within the prestigious Ghepard Towers in Watamu, Kenya. Here, timeless Swahili elegance meets contemporary comfort, just steps from the Indian Ocean.",
+    "cardsEyebrow": "What Defines Us",
+    "transitionLine": "Beyond the stay, every detail is intentional.",
+    "expandText": "For a complete understanding of your stay experience, explore our house guidelines.",
+    "cta": "Learn More About Us",
+    "cards": [
+      {
+        "title": "Immersive Coastal Access",
+        "shortDesc": "50 metres from Watamu's pristine beaches, directly on the Indian Ocean.",
+        "desc": "Positioned within 50 metres of Watamu's pristine white-sand beaches — the ocean is not a backdrop, it is part of your daily life here."
+      },
+      {
+        "title": "Artisan Craftsmanship",
+        "shortDesc": "Swahili-inspired design with hand-carved details and organic textures throughout.",
+        "desc": "Every suite is shaped by Swahili-inspired design — hand-carved details, organic textures and purposefully chosen furnishings that honour the coast."
+      },
+      {
+        "title": "Elevated Comfort",
+        "shortDesc": "Infinity pool, full kitchens and 24/7 concierge — comfort as a standard.",
+        "desc": "Rooftop infinity pool, ground-floor leisure pool, fully equipped kitchens, high-speed Wi-Fi and 24/7 concierge — comfort as a standard, not an upgrade."
+      },
+      {
+        "title": "Living With Nature",
+        "shortDesc": "Panoramic ocean views from every private balcony and terrace.",
+        "desc": "Wake up to panoramic vistas of the Indian Ocean and Watamu's lush coastline from your private balcony or terrace. Nature frames every moment."
+      },
+      {
+        "title": "Trust & Peace of Mind",
+        "shortDesc": "24-hour security, CCTV and private parking for complete peace of mind.",
+        "desc": "24-hour on-site security, CCTV surveillance, night guards and secure private parking — so you can rest, explore and return with complete confidence."
+      },
+      {
+        "title": "Responsible Luxury",
+        "shortDesc": "Eco-conscious hosting — local sourcing, responsible practices, community care.",
+        "desc": "We believe luxury should leave a lighter footprint. Eco-conscious practices, local sourcing and community support are woven into how we host."
+      },
+      {
+        "title": "Graceful Ease",
+        "shortDesc": "Flexible arrivals, housekeeping and concierge transfers — handled for you.",
+        "desc": "Flexible arrivals, dedicated housekeeping, concierge-arranged excursions and airport transfers — every logistic handled so your stay flows effortlessly."
+      }
+    ]
+  },
+  "gallery": {
+    "eyebrow": "GLIMPSES & MOMENTS",
+    "title": "Moments by the Coast",
+    "sub": "A curated collection of moments from the luxurious Duma suites and Watamu coastline.",
+    "viewFullCta": "View Full Gallery"
+  },
+  "faq": {
+    "eyebrow": "Questions & Answers",
+    "title": "What you may wish to know",
+    "ctaIntro": "Have any more questions?",
+    "cta": "Contact Us",
+    "items": [
+      {
+        "q": "📍 Where is Duma Suites located?",
+        "a": "Duma Suites is located within Ghepard Towers in Watamu, Kilifi County, Kenya — just 50 metres from the Indian Ocean and the pristine sands of Watamu Beach."
+      },
+      {
+        "q": "🛏️ What suite types are available?",
+        "a": "We offer a curated range of six distinctive suites: the intimate Duma Suite Anna (1-bedroom, ideal for couples), 2-bedroom Suites Lucia and Roma (perfect for small families or friends), the spacious 3-bedroom Duma Suite Alice (ideal for larger groups of up to 6), and our spectacular two-floor Penthouse Suites Sofia and Chiara — the pinnacle of Watamu luxury. All suites are available upon enquiry."
+      },
+      {
+        "q": "🏖️ Is the beach nearby?",
+        "a": "Yes — Watamu Beach is just a short 50-metre walk from Ghepard Towers. The beach is known for its crystal-clear waters, white sands and vibrant marine life."
+      },
+      {
+        "q": "⏰ What are the check-in and check-out times?",
+        "a": "Standard check-in is from 14:00 and check-out is by 10:00. Early check-in or late check-out may be arranged subject to availability — please contact us in advance."
+      },
+      {
+        "q": "🐾 Are pets allowed?",
+        "a": "We are fond of welcoming small, well-behaved pets to ensure a comfortable stay for everyone. We kindly ask that you inform us in advance so we can make the necessary arrangements and ensure all guests enjoy a harmonious experience."
+      },
+      {
+        "q": "🏊 Is there a swimming pool?",
+        "a": "Yes — we have two pools: a ground-floor leisure pool and a spectacular rooftop infinity pool complete with sunbeds and towels. Both offer stunning views and are accessible daily from 09:00 to 21:00."
+      },
+      {
+        "q": "💳 What is the payment and cancellation policy?",
+        "a": "We accept major credit cards, bank transfer and select mobile payment methods. Payment terms are simple: 50% at booking and 50% on check-in. Cancellation before 30 days is fully refundable. Cancellation within 30 days is non-refundable."
+      },
+      {
+        "q": "📅 What is the minimum and maximum stay?",
+        "a": "Our minimum stay is 2 nights, allowing you to truly settle in and experience everything Watamu has to offer. For extended stays, we welcome guests for up to 6 months, making Duma Suites an ideal home-away-from-home for long-term visitors."
+      },
+      {
+        "q": "🧭 What excursions can you arrange?",
+        "a": "Our concierge can arrange a wide range of activities including Gedi Ruins tours, elephant watching at Tsavo, sunset dhow cruises, snorkelling at Watamu Marine Park, Safari Blue, and local seafood tours."
+      },
+      {
+        "q": "🚗 Is parking available?",
+        "a": "Yes, secure private parking is available on-site at Ghepard Towers at no additional charge for guests."
+      },
+      {
+        "q": "👨‍👩‍👧 Are the suites suitable for families?",
+        "a": "Absolutely. Our 2-bedroom and 3-bedroom suites with full kitchens are ideal for families. Children are welcome, and we can arrange extra bedding or baby equipment on request."
+      },
+      {
+        "q": "📩 How do I make a reservation?",
+        "a": "You can contact us directly via the enquiry form on this website, email us at reservations@dumasuites.com, or call us. We will confirm availability and provide a personalised booking link."
+      }
+    ]
+  },
+  "reviews": {
+    "eyebrow": "Experiences & Stories",
+    "title": "What our guests loved most",
+    "leaveReview": "Leave a Review",
+    "items": [
+      {
+        "id": 1,
+        "rating": 5,
+        "pullQuote": "It felt like coming home.",
+        "text": "Opening the terrace doors each morning to the sight and scent of the Indian Ocean was nothing short of magical. The staff remembered our names from day one — every detail was thoughtful, warm and wonderfully personal.",
+        "author": "Sarah & James O.",
+        "origin": "London, UK",
+        "initials": "SJ",
+        "source": "Google"
+      },
+      {
+        "id": 2,
+        "rating": 5,
+        "pullQuote": "Absolutely unforgettable.",
+        "text": "The suite was beyond anything we had imagined. Watching the sunset from our private terrace with a glass of Kenyan wine, the horizon glowing amber — a memory I will carry for years.",
+        "author": "Aiko T.",
+        "origin": "Tokyo, Japan",
+        "initials": "AT",
+        "source": "Google"
+      },
+      {
+        "id": 3,
+        "rating": 5,
+        "pullQuote": "Duma Suites has raised the bar.",
+        "text": "From the morning light on the terrace to the evening by the pool, every touch was thoughtful. This is East Africa's coastal luxury at its finest — refined, soulful and deeply considered.",
+        "author": "David M.",
+        "origin": "Nairobi, Kenya",
+        "initials": "DM",
+        "source": "Google"
+      },
+      {
+        "id": 4,
+        "rating": 5,
+        "pullQuote": "True hospitality, redefined.",
+        "text": "The concierge arranged a private snorkelling tour and a sunset dhow cruise — both extraordinary. This is a place that genuinely understands what hospitality means. We left already planning our return.",
+        "author": "Priya & Rajan K.",
+        "origin": "Dubai, UAE",
+        "initials": "PR",
+        "source": "TripAdvisor"
+      },
+      {
+        "id": 5,
+        "rating": 5,
+        "pullQuote": "A hidden gem on the Kenyan coast.",
+        "text": "The infinity pool views at sunrise are unlike anything I have experienced anywhere in the world. The silence, the light, the attentive service — it all adds up to something truly rare. Will absolutely return.",
+        "author": "Marco B.",
+        "origin": "Rome, Italy",
+        "initials": "MB",
+        "source": "TripAdvisor"
+      },
+      {
+        "id": 6,
+        "rating": 5,
+        "pullQuote": "Pure serenity from the first breath.",
+        "text": "We celebrated our anniversary here and every moment exceeded our expectations. The suite was immaculate, the setting was exceptional and the staff went quietly above and beyond in ways we still talk about.",
+        "author": "Céleste & Henri D.",
+        "origin": "Paris, France",
+        "initials": "CH",
+        "source": "Google"
+      },
+      {
+        "id": 7,
+        "rating": 5,
+        "pullQuote": "Beautiful, new and well-built.",
+        "text": "Beautiful, new and well-built residence. Well located with excellent access to everything Watamu has to offer. An excellent experience from start to finish.",
+        "author": "Renzo S.",
+        "origin": "Italy",
+        "initials": "RS",
+        "source": "Google"
+      },
+      {
+        "id": 8,
+        "rating": 5,
+        "pullQuote": "Top level.",
+        "text": "Top level. Everything about the stay — the suite, the service, the location — was exceptional. Exactly what you hope for and more.",
+        "author": "Gianpietro C.",
+        "origin": "Italy",
+        "initials": "GC",
+        "source": "Google"
+      }
+    ]
+  },
+  "articles": {
+    "eyebrow": "Articles & Blogs",
+    "title": "Discover Watamu",
+    "subtitle": "Stories, guides and inspiration from the Kenyan coastline.",
+    "readMore": "Read More",
+    "blogCta": "Stories & Guides",
+    "items": [
+      {
+        "title": "Top 5 Activities on the Watamu Coast",
+        "excerpt": "From the legendary Safari Blue full-day excursion and dolphin watching at Mida Creek to exploring the ancient Gedi Ruins, snorkelling in the Watamu Marine Park, and an unforgettable sunset dhow cruise — Watamu offers a wealth of extraordinary experiences for every type of traveller.",
+        "category": "Travel Guide",
+        "slug": "top-5-activities-watamu"
+      },
+      {
+        "title": "Coastal Swahili Dishes You Absolutely Need to Try",
+        "excerpt": "The Kenyan coast is home to one of Africa's most distinctive culinary traditions. From fragrant pilau rice and slow-cooked biryani to fresh grilled octopus, coconut-laced mchuzi wa samaki and the iconic Safari Blue seafood feast — these are the dishes that define the Swahili coast experience.",
+        "category": "Food & Culture",
+        "slug": "coastal-swahili-dishes"
+      }
+    ]
+  },
+  "excursions": {
+    "eyebrow": "SAFARIS & EXCURSION",
+    "title": "CRAFTED EXPERIENCES",
+    "note": "Available for confirmed guests and bookings only",
+    "cta": "Plan This Activity",
+    "items": [
+      {
+        "title": "Gedi Ruins",
+        "desc": "Explore one of the most remarkable archaeological sites on the East African coast. The ancient Swahili town of Gedi, hidden within a dense coastal forest, dates back to the 12th century. Discover crumbling mosques, palace ruins and the whisper of centuries-old stories — with resident monkeys as your guides.",
+        "badge": "Cultural Heritage"
+      },
+      {
+        "title": "Elephant Watching",
+        "desc": "Embark on a journey to encounter East Africa's gentle giants in their natural habitat. A day trip to the iconic Tsavo elephant conservation areas offers close encounters with wild elephants, alongside giraffes, buffalo and a stunning savannah landscape — just a few hours from Watamu.",
+        "badge": "Wildlife"
+      },
+      {
+        "title": "Sunset Dhow Cruise",
+        "desc": "Sail into the golden hour aboard a traditional wooden dhow along the Watamu coastline. As the sun dips below the Indian Ocean horizon, savour fresh seafood, cool drinks and the serene beauty of Kenya's most celebrated stretch of coast.",
+        "badge": "Ocean Experience"
+      },
+      {
+        "title": "Marafa Hell's Kitchen",
+        "desc": "Journey inland to one of Kenya's most breathtaking natural wonders — the Marafa Depression, known locally as 'Nyari', meaning 'the place broken by itself'. Sculpted over millennia by wind and rain, these dramatic ochre and terracotta ravines glow with an otherworldly fire at sunrise and sunset, earning their poetic name: Hell's Kitchen. A landscape unlike any other on the Kenyan coast — raw, ancient and utterly unforgettable.",
+        "badge": "Natural Wonder"
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Get in Touch",
+    "title": "Contact Us",
+    "sub": "We would love to hear from you. Send us a message and we will get back to you as soon as possible.",
+    "formLabels": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "message": "Your Message",
+      "send": "Send Message"
+    },
+    "info": {
+      "address": "Ghepard Towers, Watamu, Kilifi County, Kenya",
+      "phone": "+254 710 933 025",
+      "receptionPhone": "+254 713 713663",
+      "receptionLabel": "Reception · James Ghepard Towers",
+      "email": "reservations@dumasuites.com"
+    }
+  },
+  "cta": {
+    "eyebrow": "Watamu Awaits",
+    "headingLine1": "Begin Your",
+    "headingLine2": "Coastal Story",
+    "sub": "Every journey to Duma Suites is unique. Let us craft yours — from suite selection to bespoke experiences. Reach out and our team will respond within 24 hours.",
+    "btn1": "Make a Reservation",
+    "btn2": "WhatsApp Us"
+  },
+  "footer": {
+    "tagline": "Watamu · Coastal Luxury",
+    "desc": "Nestled within Ghepard Towers, Watamu — just 50 metres from the white sands and turquoise waters of the Indian Ocean.",
+    "colSuites": "Suites",
+    "colExplore": "Explore",
+    "colContact": "Contact",
+    "links": {
+      "gallery": "Gallery",
+      "about": "About",
+      "faq": "FAQ",
+      "excursions": "Excursions",
+      "blog": "Blog",
+      "houseRules": "House Rules",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    },
+    "suitesLinks": [
+      {
+        "label": "Duma Suite Anna",
+        "href": "/suites/coastal-haven"
+      },
+      {
+        "label": "Duma Suite Alice",
+        "href": "/suites/serenity-villa"
+      },
+      {
+        "label": "Penthouse Suite Sofia",
+        "href": "/suites/penthouse-suite-1-sofia"
+      },
+      {
+        "label": "All Suites",
+        "href": "/suites"
+      }
+    ],
+    "copy": "© 2026 Duma Suites. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "houseRules": "House Rules",
+    "cookies": "Cookie Policy"
+  },
+  "houseRules": {
+    "title": "House Rules",
+    "subtitle": "Ghepard Towers Residence — Regulations for Use of Apartments and Common Areas",
+    "intro": "Dear Guests and Residents, in order to ensure a peaceful and safe coexistence within Ghepard Towers Residence, we ask that you observe the following behavioural guidelines:",
+    "sections": [
+      {
+        "title": "1. Use of the Pool",
+        "items": [
+          "Access to the pools is permitted from 09:00 to 21:00.",
+          "Running around the ground-floor pool and diving are strictly prohibited for safety reasons and out of respect for ground-floor units.",
+          "The rooftop pool requires the utmost care: minors are not permitted without a responsible adult.",
+          "No food, drinks or fragile objects (glasses, bottles, etc.) are permitted in or around the pool.",
+          "Inflatables, large pool toys or bulky floats are not permitted.",
+          "Important: Management accepts no liability for accidents or damage resulting from failure to comply with these rules. Use of the pools is at your own risk."
+        ]
+      },
+      {
+        "title": "2. Responsible Use of Energy & Resources",
+        "items": [
+          "We encourage moderate use of electricity and air conditioning in respect for the environment.",
+          "Water is precious — please avoid waste and adopt responsible behaviour at all times.",
+          "We recommend reusing towels where possible to reduce environmental impact.",
+          "When leaving the apartment, even briefly, please switch off the water heater, air conditioning and all lights."
+        ]
+      },
+      {
+        "title": "3. Behaviour & Quiet Hours",
+        "items": [
+          "Audio devices and equipment at high volume are not permitted in common areas or within individual units.",
+          "Shouting, rowdy behaviour or noise is prohibited, especially during afternoon rest (13:00–15:00) and night-time hours (22:00–08:00).",
+          "Open fires, BBQs, grills or gas appliances not provided or approved by the residence are strictly forbidden."
+        ]
+      },
+      {
+        "title": "4. Protection of Common Areas & Green Spaces",
+        "items": [
+          "Walking on garden green areas is not permitted.",
+          "Please keep all common areas clean and treat shared spaces with care.",
+          "Bicycles, scooters and motorcycles are not permitted within the residence.",
+          "The use of sun loungers, chairs or furniture not provided by the residence in common areas is not permitted."
+        ]
+      },
+      {
+        "title": "5. Security & Apartment Management",
+        "items": [
+          "Management accepts no liability for personal belongings, valuables or cash left unattended in apartments.",
+          "We recommend making use of the in-apartment safe where available.",
+          "The residence does not provide a key deposit service — always carry your apartment key.",
+          "For any issues relating to your apartment, please contact the owner or dedicated housekeeper.",
+          "Any damage caused within apartments or in common areas, whether intentional or through negligence, must be compensated to the unit owner or management company."
+        ]
+      },
+      {
+        "title": "6. Access, Security & Registration",
+        "items": [
+          "Night security is active from 18:00 to 06:00. During remaining hours, reception staff are on duty.",
+          "For security reasons, registration of all guests is mandatory. Only registered guests are authorised to access the residence.",
+          "In case of security rule violations, Management reserves the right to contact the relevant authorities."
+        ]
+      },
+      {
+        "title": "7. Emergency Contacts",
+        "numbers": [
+          {
+            "label": "Police",
+            "value": "999 · +254(0)412311401 · 0736350114 · 0729614264"
+          },
+          {
+            "label": "Ambulance",
+            "value": "0736241499"
+          },
+          {
+            "label": "Fire",
+            "value": "0733550990 · 073065955"
+          },
+          {
+            "label": "Hospital",
+            "value": "0702744917 · 0722474165"
+          },
+          {
+            "label": "Security",
+            "value": "0719088105 · 0794265943 · 0732100105"
+          },
+          {
+            "label": "Reception",
+            "value": "+254 713 713663 · James Ghepard Towers"
+          }
+        ]
+      }
+    ]
+  },
+  "videos": {
+    "eyebrow": "Life at Duma Suites",
+    "title": "World in Motion",
+    "sub": "Immerse yourself in the sights and sounds of Watamu.",
+    "items": [
+      {
+        "label": "Rooftop Pool View"
+      },
+      {
+        "label": "Infinity Rooftop Pool"
+      },
+      {
+        "label": "Sea Urchin on the Beach"
+      },
+      {
+        "label": "Watamu Shoreline"
+      },
+      {
+        "label": "Watamu White Sands Beach"
+      },
+      {
+        "label": "Safari Blue – Local Prawns"
+      },
+      {
+        "label": "Safari Blue – Sudi Island BBQ"
+      }
+    ]
+  },
+  "suites": {
+    "all": {
+      "heroEyebrow": "Suites & Apartments",
+      "heroTitle": "Stay Your Way",
+      "heroSub": "From intimate suites to a spacious apartment — an exceptional collection for every kind of traveller.",
+      "introEyebrow": "Suites & Apartments",
+      "introTitle": "Choose Your Retreat",
+      "introText": "Duma Suites offers a curated collection of living spaces across six distinctive suites — from the intimate Duma Suite Anna (1-bedroom) and 2-bedroom Suites Lucia and Roma, to the generous 3-bedroom Duma Suite Alice, and the spectacular two-floor Penthouse Suites Sofia and Chiara. Currently showcasing select properties; all suites are available upon enquiry.",
+      "videoEyebrow": "Resort Overview",
+      "videoTitle": "Experience Duma Suites",
+      "showcaseEyebrow": "Our Showcased Suites",
+      "showcaseTitle": "Choose Your Suite",
+      "showcaseIntro": "Three distinct escapes, each crafted for a different way of experiencing Watamu.",
+      "viewSuite": "View Suite",
+      "cards": [
+        {
+          "name": "Penthouse Suite Sofia",
+          "tagline": "Penthouse · Rooftop Luxury Retreat",
+          "desc": "A spectacular two-floor penthouse with rooftop sunset terrace, 3 king bedrooms, and sweeping sea views — the ultimate Watamu retreat.",
+          "size": "150 sq m",
+          "beds": "3 King Size Beds",
+          "guests": "6 Guests"
+        },
+        {
+          "name": "Duma Suite Anna",
+          "tagline": "1-Bedroom · Intimate Coastal Retreat",
+          "desc": "An intimate coastal retreat designed for couples seeking privacy and elegance, just steps from the Indian Ocean.",
+          "size": "70 sq m",
+          "beds": "1 King Bed",
+          "guests": "2 Guests"
+        },
+        {
+          "name": "Duma Suite Alice",
+          "tagline": "3-Bedroom · Luxury Family Retreat",
+          "desc": "A spacious three-bedroom suite with full kitchen, outdoor terrace, and garden views — perfect for families or groups.",
+          "size": "135 sq m",
+          "beds": "2 King Size Beds, 1 French Bed",
+          "guests": "6 Guests"
+        }
+      ]
+    },
+    "coastal": {
+      "metaTitle": "Duma Suite Anna | Duma Suites Watamu",
+      "metaDesc": "Duma Suite Anna at Duma Suites, Watamu. Intimate luxury with pool views, king bed, kitchenette and private lounge.",
+      "heroEyebrow": "1-Bedroom Suite",
+      "heroTitle": "Duma Suite Anna",
+      "heroTagline": "Intimate coastal luxury with ocean and pool views",
+      "heroCta1": "Book a Stay",
+      "heroCta2": "View Gallery",
+      "sqm": "70 sq m",
+      "beds": "1 King Bed",
+      "guests": "2 Guests",
+      "minStay": "2 Night Min",
+      "aboutEyebrow": "About this Suite",
+      "aboutTitle": "An Intimate Coastal Retreat",
+      "aboutText1": "Duma Suite Anna is a beautifully appointed one-bedroom sanctuary nestled within Ghepard Towers, offering sweeping views of the infinity pool and the Indian Ocean beyond. Crafted for couples and solo travellers seeking a refined escape, every detail has been considered — from the plush king-size bed to the fully equipped kitchenette and private lounge.",
+      "aboutText2": "Wake to golden morning light filtering through floor-to-ceiling windows, and unwind evenings on your private balcony as the ocean breeze rolls in. This is coastal luxury, distilled.",
+      "aboutCta": "Check Availability",
+      "aboutBookCta": "Book Duma Suite Anna",
+      "highlightsTitle": "Suite Highlights",
+      "highlights": [
+        "Stunning ocean and pool vistas",
+        "Elegant king-size bed with premium linens",
+        "Fully equipped kitchenette for in-suite dining",
+        "En-suite bathroom with rain shower",
+        "Private lounge with smart TV",
+        "Daily housekeeping and turndown service"
+      ],
+      "galleryEyebrow": "Photo Gallery",
+      "galleryTitle": "Inside the Suite",
+      "galleryDesc": "Step inside Duma Suite Anna and discover every corner — from the light-filled interiors to the tranquil garden and pool views that greet you morning and night.",
+      "galleryCta": "Book a Stay",
+      "tourEyebrow": "Room Tour",
+      "tourTitle": "Explore the Suite",
+      "tourSub": "Take a cinematic walkthrough of your coastal retreat.",
+      "tourCta": "Inquire About This Suite",
+      "amenitiesEyebrow": "What's Included",
+      "amenitiesTitle": "Suite Amenities",
+      "amenities": [
+        "King-size bed",
+        "En-suite bathroom",
+        "Full kitchenette",
+        "Private lounge",
+        "Balcony",
+        "Pool view",
+        "High-speed Wi-Fi",
+        "Daily housekeeping",
+        "Air conditioning",
+        "Smart TV",
+        "In-suite dining",
+        "Premium linens",
+        "Sunbeds",
+        "Towels provided",
+        "Ceiling fans"
+      ],
+      "policiesEyebrow": "Policies & Check-in",
+      "policiesTitle": "Know Before You Go",
+      "policies": [
+        {
+          "label": "Check-in",
+          "value": "2:00 PM"
+        },
+        {
+          "label": "Check-out",
+          "value": "10:00 AM"
+        },
+        {
+          "label": "Minimum stay",
+          "value": "2 nights"
+        },
+        {
+          "label": "Payment",
+          "value": "50% at booking · 50% on check-in"
+        },
+        {
+          "label": "Cancellation",
+          "value": "Before 30 days: fully refundable · Within 30 days: non-refundable"
+        },
+        {
+          "label": "Pets",
+          "value": "Small pets welcome"
+        },
+        {
+          "label": "Smoking",
+          "value": "Balcony & lobby only"
+        }
+      ],
+      "inquireEyebrow": "Reservations",
+      "inquireTitle": "Reserve Your Stay",
+      "inquireSub": "Ready to experience coastal luxury? Contact us to check availability and rates.",
+      "inquireEmail": "Email Us",
+      "inquireWhatsapp": "WhatsApp Us",
+      "suitesEyebrow": "Our Suites",
+      "suitesTitle": "Explore All Suites",
+      "badgeCurrent": "Current Suite",
+      "coastalTagline": "1-Bedroom · Intimate Coastal Retreat",
+      "serenityTagline": "3-Bedroom · Luxury Family Retreat",
+      "penthouseTagline": "Penthouse · Rooftop Luxury Retreat",
+      "viewSuiteBtn": "View Suite →"
+    },
+    "serenity": {
+      "metaTitle": "Duma Suite Alice | Duma Suites Watamu",
+      "metaDesc": "Duma Suite Alice at Duma Suites, Watamu. Spacious luxury suite with full kitchen, outdoor terrace and garden views.",
+      "heroEyebrow": "3-Bedroom Suite",
+      "heroTitle": "Duma Suite Alice",
+      "heroTagline": "Spacious 3-bedroom luxury with outdoor terrace and garden views",
+      "heroCta1": "Book a Stay",
+      "heroCta2": "View Gallery",
+      "sqm": "135 sq m",
+      "beds": "2 King Size Beds, 1 French Bed",
+      "guests": "6 Guests",
+      "minStay": "2 Night Min",
+      "aboutEyebrow": "About this Suite",
+      "aboutTitle": "A Sprawling Family Retreat",
+      "aboutText1": "Duma Suite Alice redefines space and comfort within Ghepard Towers. This expansive three-bedroom suite is designed for families and groups who refuse to compromise on luxury — offering a full kitchen, multiple en-suite bathrooms, a sweeping outdoor terrace, and lush garden views at every turn.",
+      "aboutText2": "Gather around the formal dining table, relax in the indoor lounge, or step out onto the private terrace for a morning coffee surrounded by the sights and sounds of Watamu's coastline. This is the full suite experience — refined, spacious, and unforgettable.",
+      "aboutCta": "Check Availability",
+      "aboutBookCta": "Book Duma Suite Alice",
+      "highlightsTitle": "Suite Highlights",
+      "highlights": [
+        "Three spacious king bedrooms",
+        "Multiple en-suite bathrooms",
+        "Fully-equipped kitchen for self-catering",
+        "Private outdoor terrace with garden views",
+        "Multiple lounges and dining areas",
+        "Spacious balcony for sunset evenings",
+        "Daily housekeeping and turndown service"
+      ],
+      "galleryEyebrow": "Photo Gallery",
+      "galleryTitle": "Inside the Suite",
+      "galleryDesc": "Explore every space of Duma Suite Alice — the warmth of three generous bedrooms, open living areas, and sweeping outdoor terraces where the light shifts beautifully from dawn to dusk.",
+      "galleryCta": "Book a Stay",
+      "tourEyebrow": "Room Tour",
+      "tourTitle": "Explore the Suite",
+      "tourSub": "Take a cinematic walkthrough of your private suite retreat.",
+      "tourCta": "Inquire About This Suite",
+      "amenitiesEyebrow": "What's Included",
+      "amenitiesTitle": "Suite Amenities",
+      "amenities": [
+        "3 King bedrooms",
+        "Multiple en-suites",
+        "Full kitchen",
+        "Outdoor terrace",
+        "Garden views",
+        "Formal dining area",
+        "Living room",
+        "Spacious balcony",
+        "High-speed Wi-Fi",
+        "Daily housekeeping",
+        "Air conditioning",
+        "Smart TVs",
+        "Sunbeds",
+        "Towels provided",
+        "Ceiling fans"
+      ],
+      "policiesEyebrow": "Policies & Check-in",
+      "policiesTitle": "Know Before You Go",
+      "policies": [
+        {
+          "label": "Check-in",
+          "value": "2:00 PM"
+        },
+        {
+          "label": "Check-out",
+          "value": "10:00 AM"
+        },
+        {
+          "label": "Minimum stay",
+          "value": "2 nights"
+        },
+        {
+          "label": "Payment",
+          "value": "50% at booking · 50% on check-in"
+        },
+        {
+          "label": "Cancellation",
+          "value": "Before 30 days: fully refundable · Within 30 days: non-refundable"
+        },
+        {
+          "label": "Pets",
+          "value": "Small pets welcome"
+        },
+        {
+          "label": "Smoking",
+          "value": "Balcony & lobby only"
+        }
+      ],
+      "inquireEyebrow": "Reservations",
+      "inquireTitle": "Reserve Your Stay",
+      "inquireSub": "Ready to experience suite luxury? Contact us to check availability and rates.",
+      "inquireEmail": "Email Us",
+      "inquireWhatsapp": "WhatsApp Us",
+      "suitesEyebrow": "Our Suites",
+      "suitesTitle": "Explore All Suites",
+      "badgeCurrent": "Current Suite",
+      "coastalTagline": "1-Bedroom · Intimate Coastal Retreat",
+      "serenityTagline": "3-Bedroom · Luxury Family Retreat",
+      "penthouseTagline": "Penthouse · Rooftop Luxury Retreat",
+      "viewSuiteBtn": "View Suite →"
+    },
+    "penthouse": {
+      "metaTitle": "Penthouse Suite Sofia | Duma Suites Watamu",
+      "metaDesc": "Penthouse Suite Sofia at Duma Suites, Watamu. A spectacular two-floor penthouse with rooftop sunset terrace, sea views, and 3 king bedrooms.",
+      "heroEyebrow": "Penthouse Suite",
+      "heroTitle": "Penthouse Suite Sofia",
+      "heroTagline": "Two floors of rooftop luxury with panoramic sea and sunset views",
+      "heroCta1": "Book a Stay",
+      "heroCta2": "View Gallery",
+      "sqm": "150 sq m",
+      "beds": "3 King Size Beds",
+      "guests": "6 Guests",
+      "minStay": "2 Night Min",
+      "aboutEyebrow": "About this Suite",
+      "aboutTitle": "A Rooftop Penthouse Retreat",
+      "aboutText1": "Penthouse Suite Sofia is a breathtaking two-floor penthouse crowning Ghepard Towers, offering 150 square metres of refined coastal living. Three king bedrooms, including a master bedroom on the top floor, are complemented by a fully equipped kitchenette, multiple lounge and dining areas, and spectacular outdoor spaces that make every moment a view to remember.",
+      "aboutText2": "From the rooftop sunset terrace to the outdoor 8-seater dining table, and the iconic swing with sea, garden and sunset views — this is the pinnacle of Watamu luxury, distilled into an unforgettable retreat.",
+      "aboutCta": "Check Availability",
+      "aboutBookCta": "Book Penthouse Sofia",
+      "highlightsTitle": "Suite Highlights",
+      "highlights": [
+        "Two-floor penthouse with master bedroom on top floor",
+        "Three king-size beds with premium linens",
+        "Rooftop sunset terrace with panoramic sea views",
+        "Outdoor 8-seater dining table on the terrace",
+        "Swing with sea, garden and sunset views",
+        "Fully equipped kitchenette",
+        "Daily housekeeping and turndown service"
+      ],
+      "galleryEyebrow": "Photo Gallery",
+      "galleryTitle": "Inside the Penthouse",
+      "galleryDesc": "A window into life at the top — explore the sweeping interiors of Penthouse Suite Sofia and the breathtaking views from its terraces and balconies, at sunrise, golden hour, and beneath the stars.",
+      "galleryCta": "Book Penthouse Sofia",
+      "amenitiesEyebrow": "What's Included",
+      "amenitiesTitle": "Penthouse Amenities",
+      "amenities": [
+        "3 King Size Beds",
+        "Multiple en-suites",
+        "2 Floors",
+        "Master Bedroom on Top Floor",
+        "Fully Equipped Kitchenette",
+        "Outdoor Sunbeds",
+        "Lounge Chairs",
+        "Recliner Chairs",
+        "Huge Balconies",
+        "Rooftop Sunset Terrace",
+        "Indoor Dining Table",
+        "Outdoor 8-Seater Dining Table",
+        "Swing with Sea & Sunset Views",
+        "High-speed Wi-Fi",
+        "Daily Housekeeping",
+        "Air conditioning",
+        "Smart TV",
+        "Towels provided",
+        "Ceiling Fans",
+        "Pool Access",
+        "Beach Views",
+        "Garden View"
+      ],
+      "policiesEyebrow": "Policies & Check-in",
+      "policiesTitle": "Know Before You Go",
+      "policies": [
+        {
+          "label": "Check-in",
+          "value": "2:00 PM"
+        },
+        {
+          "label": "Check-out",
+          "value": "10:00 AM"
+        },
+        {
+          "label": "Minimum stay",
+          "value": "2 nights"
+        },
+        {
+          "label": "Payment",
+          "value": "50% at booking · 50% on check-in"
+        },
+        {
+          "label": "Cancellation",
+          "value": "Before 30 days: fully refundable · Within 30 days: non-refundable"
+        },
+        {
+          "label": "Pets",
+          "value": "Small pets welcome"
+        },
+        {
+          "label": "Smoking",
+          "value": "Balcony & lobby only"
+        }
+      ],
+      "inquireEyebrow": "Reservations",
+      "inquireTitle": "Reserve Your Stay",
+      "inquireSub": "Ready to experience penthouse luxury? Contact us to check availability and rates.",
+      "inquireEmail": "Email Us",
+      "inquireWhatsapp": "WhatsApp Us",
+      "suitesEyebrow": "Our Suites",
+      "suitesTitle": "Explore All Suites",
+      "badgeCurrent": "Current Suite",
+      "coastalTagline": "1-Bedroom · Intimate Coastal Retreat",
+      "serenityTagline": "3-Bedroom · Luxury Family Retreat",
+      "penthouseTagline": "Penthouse · Rooftop Luxury Retreat",
+      "viewSuiteBtn": "View Suite →"
+    }
+  },
+  "gm": {
+    "welcome": "A heartfelt welcome to Duma Suites",
+    "eyebrow": "A Word from the General Manager",
+    "para1": "At Duma Suites, we do not merely offer accommodation — we craft moments. Every sunrise over the Indian Ocean, every breeze that carries the scent of the sea, is intentionally woven into the fabric of your stay.",
+    "para2": "Our team has dedicated itself to redefining what coastal luxury means — not through grandeur alone, but through the quiet confidence of perfection in every detail. From the linen on your bed to the last light of a Watamu sunset, nothing is left to chance.",
+    "para3": "Watamu is more than a destination; it is a state of mind. Whether you arrive seeking adventure along the reef or simply the profound peace of the horizon at dusk, Duma Suites will meet you exactly where you are — and exceed every expectation you carry.",
+    "closing": "Welcome to our home. Watch the short introduction below to see what awaits you.",
+    "gmName": "Andrea Boemo",
+    "gmTitle": "General Manager, Duma Suites",
+    "videoLabel": "A Short Introduction",
+    "videoCta": "Explore Our Suites",
+    "videoCtaSub": "Get in Touch"
+  },
+  "suiteHighlights": {
+    "eyebrow": "Suite Highlights",
+    "title": "The Duma Experience",
+    "subtitle": "Tap a card to discover its highlights",
+    "tapHint": "tap to see highlights ↩",
+    "viewAll": "Find Your Suite",
+    "cards": [
+      {
+        "title": "Pools of Serenity",
+        "points": [
+          "Infinity rooftop pool",
+          "Ground floor leisure pool",
+          "Outdoor showers",
+          "Ocean-facing poolside deck",
+          "Evening illuminated pool area"
+        ],
+        "overlayTitle": "Pools of Serenity",
+        "overlayText": "Dive into tranquillity above the Indian Ocean."
+      },
+      {
+        "title": "Swahili Elegance",
+        "points": [
+          "Authentic Swahili-inspired interiors",
+          "King beds with premium linens",
+          "Air conditioning & ceiling fans",
+          "Private en-suite bathrooms",
+          "Full kitchen, lounge & balcony"
+        ],
+        "overlayTitle": "Swahili Elegance",
+        "overlayText": "Coastal craftsmanship in every detail."
+      },
+      {
+        "title": "Nature & Security",
+        "points": [
+          "Steps from the beach",
+          "Lush tropical gardens",
+          "24/7 on-site security",
+          "Private parking",
+          "Serene natural surroundings"
+        ],
+        "overlayTitle": "Nature & Security",
+        "overlayText": "Peace of mind, naturally."
+      },
+      {
+        "title": "Effortless Luxury",
+        "points": [
+          "Daily housekeeping & turndown",
+          "Laundry service",
+          "High-speed Wi-Fi throughout",
+          "Seamless online booking",
+          "Curated guest experiences"
+        ],
+        "overlayTitle": "Effortless Luxury",
+        "overlayText": "Where every need is anticipated."
+      }
+    ]
+  },
+  "suitesPreview": {
+    "eyebrow": "Suites Preview",
+    "title": "The Duma Suites",
+    "intro": "Discover refined living spaces designed for coastal serenity.",
+    "viewAll": "View All Suites",
+    "suites": [
+      {
+        "name": "Penthouse Suite Sofia",
+        "tagline": "Penthouse · Rooftop Luxury Retreat",
+        "size": "150 sq m",
+        "beds": "3 King Size Beds",
+        "guests": "6 Guests"
+      },
+      {
+        "name": "Duma Suite Anna",
+        "tagline": "1-Bedroom · Intimate Coastal Retreat",
+        "size": "70 sq m",
+        "beds": "1 King Bed",
+        "guests": "2 Guests"
+      },
+      {
+        "name": "Duma Suite Alice",
+        "tagline": "3-Bedroom · Luxury Family Retreat",
+        "size": "135 sq m",
+        "beds": "2 King Size Beds, 1 French Bed",
+        "guests": "6 Guests"
+      }
+    ]
+  },
+  "article1": {
+    "metaTitle": "Top 5 Activities on the Watamu Coast | Duma Suites Stories",
+    "metaDesc": "From Safari Blue full-day and half-day to Gedi Ruins, elephant watching and the Mida Creek boardwalk — discover the top activities on the Watamu coast, curated by Duma Suites.",
+    "heroEyebrow": "Travel Guide",
+    "heroTitle": "Top Activities on the Watamu Coast",
+    "heroSub": "Extraordinary experiences curated for Duma Suites guests",
+    "proofRating": "TripAdvisor Rating",
+    "proofReturn": "Would Return",
+    "introTitle": "Discover Watamu’s Finest Experiences",
+    "introText": "Watamu is one of East Africa’s most captivating coastal destinations — and the activities available here go far beyond simply relaxing on its legendary white-sand beaches. From ancient ruins hidden within a sacred forest to legendary full-day marine adventures, every experience here leaves a lasting impression.",
+    "conciergeLabel": "From Our Concierge",
+    "conciergeText": "Our team personally curates and arranges every excursion below for guests staying at Duma Suites. Speak to us at check-in and we’ll tailor the perfect itinerary for your stay.",
+    "voicesEyebrow": "What Our Guests Say",
+    "tipsLabel": "Concierge Insider Tips",
+    "perfectFor": "Perfect for",
+    "bookCtaSub": "Our concierge can arrange any of these experiences directly from Duma Suites.",
+    "bookCtaBtn": "Book an Experience",
+    "readNextEyebrow": "Read Next",
+    "readNextTitle": "Coastal Swahili Dishes You Absolutely Need to Try",
+    "readNextExcerpt": "Discover the extraordinary culinary traditions of the Kenyan Swahili coast — from fragrant pilau and coconut fish curry to the legendary Safari Blue seafood feast.",
+    "readNextCta": "Read the Guide",
+    "nextCategory": "Food & Culture",
+    "moreFromEyebrow": "More From Duma Suites Stories",
+    "comingSoon": "Coming Soon",
+    "cs1Title": "A Guide to Watamu’s Best Beaches",
+    "cs1Desc": "The hidden coves, turtle nesting spots and sunset stretches of Watamu’s coastline — mapped for you.",
+    "cs2Title": "Snorkelling & Diving in Watamu",
+    "cs2Desc": "A complete guide to the reefs, dive sites and marine life of Watamu Marine Park.",
+    "backToStories": "Back to Stories & Guides",
+    "nextArticle": "Next: Coastal Swahili Dishes",
+    "insiderTips": [
+      "Book Safari Blue at least 2 days ahead — it fills fast during high season (December–February).",
+      "Visit Gedi Ruins early morning: cooler, quieter, and the colobus monkeys are most active at sunrise.",
+      "Bring binoculars to Mida Creek — the boardwalk rewards patience, especially at low tide."
+    ],
+    "quotes": [
+      {
+        "text": "Safari Blue was the most magical day of our entire trip — the dolphins, the reef, the feast on Sudi Island. Book it without hesitation.",
+        "author": "Sarah M.",
+        "origin": "London",
+        "platform": "TripAdvisor",
+        "variant": "teal"
+      },
+      {
+        "text": "The Gedi Ruins tour arranged by Duma’s concierge was utterly unforgettable. You feel 800 years of Swahili history standing in those courtyards.",
+        "author": "Marco T.",
+        "origin": "Rome",
+        "platform": "Google",
+        "variant": "espresso"
+      },
+      {
+        "text": "Mida Creek at low tide with herons and fish eagles circling overhead — we had no idea Watamu held something this serene.",
+        "author": "Claire & James B.",
+        "origin": "Sydney",
+        "platform": "Booking.com",
+        "variant": "sand"
+      }
+    ],
+    "activities": [
+      {
+        "title": "Safari Blue — Full-Day Excursion",
+        "pullQuote": "Spinner dolphins leap alongside the dhow as Watamu’s legendary full-day marine adventure unfolds before you.",
+        "tags": [
+          "Couples",
+          "Families",
+          "Adventurers"
+        ],
+        "badges": [
+          "Full Day · 8 hrs",
+          "Dolphin Watching",
+          "Seafood Feast on Sudi Island",
+          "Snorkelling Included",
+          "Book 2 Days Ahead"
+        ],
+        "desc": "Safari Blue is Watamu’s most iconic full-day marine adventure. Board a traditional wooden dhow and sail the crystal-clear waters off the Watamu and Mida Creek coast. The day begins with dolphin watching as spinner dolphins frequently leap alongside the dhow, followed by snorkelling over vibrant coral reefs at Watamu Marine Park. The highlight is a mid-day stop at Sudi Island for a fresh BBQ seafood feast on the beach — lobster, calamari, octopus and prawns grilled over charcoal. The full-day trip returns at sunset, leaving guests with one of the most complete and memorable days on the Kenyan coast."
+      },
+      {
+        "title": "Safari Blue — Half-Day Option",
+        "pullQuote": "A condensed introduction to the magic of the Watamu coastline — dolphin watching and coral reefs await.",
+        "tags": [
+          "Couples",
+          "Short stays"
+        ],
+        "badges": [
+          "Half Day · 4 hrs",
+          "Dolphin Watching",
+          "Coral Snorkelling",
+          "Morning Departure"
+        ],
+        "desc": "For guests with limited time, the Safari Blue half-day excursion offers the core marine experience without the Sudi Island seafood stop. You’ll enjoy dolphin watching and snorkelling over Watamu’s coral gardens aboard a traditional dhow, returning in the early afternoon. A wonderful condensed introduction to the magic of the Watamu coastline."
+      },
+      {
+        "title": "Watamu Marine Park Snorkelling",
+        "pullQuote": "Turtles, reef sharks and a kaleidoscope of tropical fish — an accessible and unforgettable underwater world.",
+        "tags": [
+          "Families",
+          "Snorkellers",
+          "First-timers"
+        ],
+        "badges": [
+          "2–3 hrs",
+          "UNESCO Protected",
+          "Turtles & Reef Sharks",
+          "All Levels Welcome",
+          "Equipment Provided"
+        ],
+        "desc": "One of Kenya’s oldest and most protected marine national parks sits right on Watamu’s doorstep. The coral gardens here are home to turtles, reef sharks, stingrays, vibrant tropical fish and an incredible diversity of corals. Whether you’re a seasoned diver or a first-time snorkeller, the Marine Park offers an accessible and unforgettable underwater world."
+      },
+      {
+        "title": "Gedi Ruins — Ancient Swahili City",
+        "pullQuote": "The haunting remains of a 12th-century Swahili trading town, still debated by historians — and still spellbinding.",
+        "tags": [
+          "History lovers",
+          "Nature fans",
+          "Couples"
+        ],
+        "badges": [
+          "Half Day · 2–3 hrs",
+          "12th Century",
+          "Guided Tours Available",
+          "Colobus Monkeys",
+          "Sacred Forest"
+        ],
+        "desc": "Tucked within a dense coastal forest just outside Watamu lies the Gedi Ruins — the haunting remains of a 12th-century Swahili trading town abandoned for reasons still debated by historians. Wander through crumbling mosques, royal palaces and merchant houses as resident colobus monkeys leap overhead. Guided tours bring the site’s extraordinary history to vivid life."
+      },
+      {
+        "title": "Elephant Watching at Tsavo",
+        "pullQuote": "Kenya’s largest elephant herds roam here — the famous red elephants of Tsavo, dusty with iron-rich soil.",
+        "tags": [
+          "Wildlife enthusiasts",
+          "Day-trippers",
+          "Families"
+        ],
+        "badges": [
+          "Full Day",
+          "Big Five Country",
+          "Red Elephants of Tsavo",
+          "Departs at Dawn",
+          "Game Drive Included"
+        ],
+        "desc": "A few hours from Watamu, the vast Tsavo East and West national parks are home to Kenya’s largest elephant herds. A full-day safari here offers close encounters with these gentle giants alongside lions, giraffes, buffalo, zebra and the famous “red elephants” of Tsavo — dusty-red from rolling in the iron-rich soil. An unmissable East African wildlife experience."
+      },
+      {
+        "title": "Mida Creek Mangrove Boardwalk",
+        "pullQuote": "A birdwatcher’s paradise — over 100 species recorded in the ancient mangrove forests of Mida Creek.",
+        "tags": [
+          "Nature lovers",
+          "Birdwatchers",
+          "Couples"
+        ],
+        "badges": [
+          "1–2 hrs",
+          "100+ Bird Species",
+          "Elevated Boardwalk",
+          "Best at Low Tide",
+          "Sunset Views"
+        ],
+        "desc": "Mida Creek is a protected tidal inlet fringed by ancient mangrove forests. The elevated boardwalk offers a tranquil walk through the ecosystem at low tide, with sweeping views across the creek and the Indian Ocean beyond. The creek is a birdwatcher’s paradise — over 100 species have been recorded here, including herons, flamingos, fish eagles and kingfishers. A serene and restorative experience away from the beach."
+      }
+    ]
+  },
+  "article2": {
+    "metaTitle": "Coastal Swahili Dishes You Absolutely Need to Try | Duma Suites Stories",
+    "metaDesc": "Discover the extraordinary culinary traditions of the Kenyan Swahili coast — from fragrant pilau and coconut fish curry to the legendary Safari Blue seafood feast.",
+    "heroEyebrow": "Food & Culture",
+    "heroTitle": "Coastal Swahili Dishes You Absolutely Need to Try",
+    "heroSub": "A culinary journey along the Kenyan coast — curated by Duma Suites",
+    "proofRating": "TripAdvisor Rating",
+    "proofReturn": "Would Return",
+    "introTitle": "The Flavours of the Swahili Coast",
+    "introText": "The Kenyan coast carries within it one of the world’s most distinctive culinary traditions. Born from centuries of Indian Ocean trade, the Swahili kitchen blends Arab spice routes, Indian aromatics, Persian rice techniques and African coastal ingredients into a cuisine that is at once deeply rooted and endlessly surprising. Here are six dishes you must seek out during your stay in Watamu.",
+    "conciergeLabel": "From Our Concierge",
+    "conciergeText": "Our team can recommend the best local restaurants in Watamu and arrange transport to the most authentic spots. For the Safari Blue seafood feast, speak to us at check-in.",
+    "voicesEyebrow": "What Our Guests Say",
+    "tipsLabel": "Concierge Food Tips",
+    "closingTitle": "Taste the Coast",
+    "closingText": "Our concierge team can recommend the best local restaurants in Watamu and arrange transport to the most authentic spots. For the full Safari Blue experience and its unforgettable seafood feast, speak to us when you book your stay.",
+    "closingCta": "Plan Your Stay",
+    "prevEyebrow": "Also in Stories & Guides",
+    "prevTitle": "Top Activities on the Watamu Coast",
+    "prevExcerpt": "From the legendary Safari Blue full-day excursion and dolphin watching to the ancient Gedi Ruins and the Mida Creek mangrove boardwalk — Watamu’s finest experiences, curated for you.",
+    "prevCta": "Read the Guide",
+    "prevCategory": "Travel Guide",
+    "moreFromEyebrow": "More From Duma Suites Stories",
+    "comingSoon": "Coming Soon",
+    "cs1Title": "Watamu’s Best Restaurants: A Local Guide",
+    "cs1Desc": "From hidden family kitchens to the best sunset seafood terrace — our concierge’s hand-picked list.",
+    "cs2Title": "A Morning at the Malindi Fish Market",
+    "cs2Desc": "The sights, smells and stories of the most vibrant fish market on the Kenyan coast — a must for food lovers.",
+    "backToStories": "Back to Stories & Guides",
+    "prevArticle": "Prev: Top 5 Activities",
+    "foodTips": [
+      "Ask the Duma Suites team for their current favourite local restaurant — recommendations change with the season.",
+      "The freshest pilau in Watamu is found at small family-run eateries, not tourist-facing restaurants.",
+      "Fresh coconut milk for wali wa nazi should always be squeezed the same day — tinned coconut simply cannot match it."
+    ],
+    "quotes": [
+      {
+        "text": "The pilau at the restaurant recommended by Duma’s team was unlike anything I’d ever tasted. Pure coastal magic — we went back three evenings in a row.",
+        "author": "Aarav K.",
+        "origin": "Mumbai",
+        "platform": "TripAdvisor",
+        "variant": "teal"
+      },
+      {
+        "text": "Safari Blue’s octopus on the sandbank — charcoal-grilled, fresh from the ocean, eaten with our hands. We still talk about it two years later.",
+        "author": "Emma L.",
+        "origin": "Paris",
+        "platform": "Google",
+        "variant": "espresso"
+      },
+      {
+        "text": "Wali wa nazi alongside a coconut fish curry, looking out at the Indian Ocean. I have been trying to recreate it at home ever since.",
+        "author": "Tom & Nina R.",
+        "origin": "Cape Town",
+        "platform": "Booking.com",
+        "variant": "sand"
+      }
+    ],
+    "dishes": [
+      {
+        "title": "Pilau",
+        "pullQuote": "No coastal celebration is complete without it — fragrant basmati rice perfected on the Kenyan coast for centuries.",
+        "badges": [
+          "Swahili Classic",
+          "Slow Cooked",
+          "Aromatic Spices",
+          "Festive Dish",
+          "Must Try"
+        ],
+        "desc": "Pilau is the soul of Swahili cuisine — fragrant basmati rice slow-cooked with a rich blend of whole spices including cardamom, cinnamon, cloves, cumin and black pepper. Often prepared with tender beef or chicken that has been marinated overnight, the result is an aromatic, deeply savoury rice dish that has been perfected on the Kenyan coast for centuries. No coastal celebration is complete without it."
+      },
+      {
+        "title": "Mchuzi wa Samaki",
+        "pullQuote": "A silky, golden curry best enjoyed with white rice — and ideally eaten with a view of the Indian Ocean.",
+        "badges": [
+          "Coconut Fish Curry",
+          "Fresh Daily Catch",
+          "Indian Ocean Fresh",
+          "Mild–Medium Heat",
+          "Swahili Coast"
+        ],
+        "desc": "Coastal Kenya’s quintessential fish curry — mchuzi wa samaki is made with whatever the fishermen bring in that morning. Fresh snapper, kingfish or barracuda is simmered in a base of tomatoes, onions, garlic, ginger, turmeric and the essential ingredient: coconut milk. The result is a silky, golden curry with a gentle heat that is best enjoyed with white rice or fresh chapati, and ideally eaten with a view of the Indian Ocean."
+      },
+      {
+        "title": "Safari Blue Seafood Feast",
+        "pullQuote": "Eating with your hands in the Indian Ocean breeze makes this a meal you will never forget.",
+        "badges": [
+          "Beachside Dining",
+          "Charcoal Grilled",
+          "Lobster & Octopus",
+          "Sandbank Island",
+          "Group Experience"
+        ],
+        "desc": "If you join the legendary Safari Blue excursion, you will experience one of the Kenyan coast’s most celebrated dining traditions — a fresh seafood feast cooked on a sandbank island. Lobster, calamari, octopus, prawns, crab and fresh fish are grilled over charcoal or cooked in coconut broth, accompanied by Swahili sides and cold drinks. Eating with your hands in the Indian Ocean breeze makes this a meal you will never forget."
+      },
+      {
+        "title": "Coconut Rice (Wali wa Nazi)",
+        "pullQuote": "Paired with grilled fish or a spoonful of mango achaar — comfort food at its most elegant.",
+        "badges": [
+          "Everyday Staple",
+          "Fresh Coconut Milk",
+          "Vegan Friendly",
+          "Comfort Food",
+          "Side Dish"
+        ],
+        "desc": "Wali wa nazi — rice cooked in fresh coconut milk — is the everyday companion to almost every Swahili coastal dish. The coconut milk is squeezed fresh from grated coconut flesh, giving the rice a subtle sweetness, creaminess and a perfume unlike anything you can achieve with ordinary water-cooked rice. Paired with grilled fish, a vegetable curry or simply with a spoonful of mango achaar, it is comfort food at its most elegant."
+      },
+      {
+        "title": "Biryani",
+        "pullQuote": "A benchmark by which local cooks measure their mastery — the Swahili coast biryani is in a class of its own.",
+        "badges": [
+          "Celebration Dish",
+          "Layered Saffron Rice",
+          "Slow Cooked",
+          "Arab & Indian Influence",
+          "Festive"
+        ],
+        "desc": "The Swahili coast biryani is distinct from its South Asian cousins — richer in spice, more intensely fragrant, with layers of saffron-coloured rice interlaced with slow-cooked spiced meat (usually goat or chicken), fried onions, raisins and a drizzle of ghee. Served on festive occasions and at weddings, a good coastal biryani is the benchmark by which local cooks measure their mastery."
+      },
+      {
+        "title": "Grilled Octopus (Pweza)",
+        "pullQuote": "The outside chars beautifully while the inside stays tender — a dish you will seek out at every opportunity.",
+        "badges": [
+          "Charcoal Grilled",
+          "Fresh Daily",
+          "Lime & Coconut",
+          "Street Food Icon",
+          "Local Favourite"
+        ],
+        "desc": "Along Watamu’s shores, fishermen haul in octopus on their daily runs. Tenderised by hand on the rocks at low tide, the octopus is then marinated in lime, garlic, chilli, coconut milk and spices before being grilled directly on charcoal. The outside chars beautifully while the inside stays tender and juicy. Served with a squeeze of fresh lime and a simple tomato salsa, pweza wa kukaanga is a dish you will seek out at every opportunity."
+      }
+    ]
+  },
+  "blog": {
+    "metaTitle": "Stories & Guides | Duma Suites – Watamu",
+    "metaDesc": "Explore travel guides, coastal culture, food stories and insider tips from the shores of Watamu — curated by the Duma Suites team.",
+    "heroSub": "Travel guides, coastal culture and insider stories from Watamu's most beloved address.",
+    "pullQuote": "\"Watamu offers a wealth of extraordinary experiences for every type of traveller.\"",
+    "editorsPick": "Editor's Pick",
+    "moreStoriesTitle": "More Stories & Guides",
+    "conciergeLabel": "From Our Concierge",
+    "conciergeText": "Our team personally curates these experiences and stories for guests staying at Duma Suites. Every guide you read here is drawn from local knowledge and lived experience on the Watamu coast.",
+    "conciergeCta": "Plan Your Stay",
+    "trustBadge1": "100% Local Knowledge",
+    "trustBadge2": "Curated by Our Concierge",
+    "trustBadge3": "Updated Seasonally",
+    "readTimeMin": "min read",
+    "articlesIntroEyebrow": "From the Field",
+    "articlesIntroTitle": "Stories & Guides from Watamu",
+    "articlesIntroDesc": "Dive into carefully crafted travel guides, local recipes and insider stories from Duma Suites — written to inspire your next stay on the Kenyan coast."
+  },
+  "privacyPolicy": {
+    "metaTitle": "Privacy Policy | Duma Suites Watamu",
+    "heroEyebrow": "Legal",
+    "heroTitle": "Privacy Policy",
+    "heroSub": "How we collect, use, and protect your personal information.",
+    "lastUpdated": "Last updated: January 2025",
+    "backToHome": "Home",
+    "trustSafe": "Your data is safe with us",
+    "trustSsl": "SSL Secured",
+    "trustPci": "PCI Compliant",
+    "sections": [
+      {
+        "title": "1. Information We Collect",
+        "icon": "database",
+        "content": "We collect information you provide directly to us when making reservations, contacting us, or using our services. This includes your name, email address, phone number, postal address, payment information, and any other information you choose to provide.",
+        "bullets": [
+          "Personal identification details (name, email, phone)",
+          "Booking and reservation information",
+          "Communication records and preferences",
+          "Payment details (processed securely via third-party providers)",
+          "Device and usage data when you visit our website"
+        ]
+      },
+      {
+        "title": "2. How We Use Your Information",
+        "icon": "settings",
+        "content": "We use the information we collect to provide, maintain, and improve our services, process reservations and payments, communicate with you about your stay, and personalise your experience.",
+        "bullets": [
+          "Process and manage your reservations",
+          "Send confirmation and pre-arrival information",
+          "Respond to your enquiries and support requests",
+          "Send marketing communications (with your consent)",
+          "Improve our services and website experience",
+          "Comply with legal obligations"
+        ]
+      },
+      {
+        "title": "3. Information Sharing",
+        "icon": "share",
+        "content": "We do not sell, trade, or rent your personal information to third parties. We may share your information with trusted service providers who assist in operating our website and services, subject to strict confidentiality agreements.",
+        "bullets": [
+          "Payment processors (for secure transaction handling)",
+          "Email service providers (for communication)",
+          "Analytics providers (anonymised data only)",
+          "Legal authorities (when required by law)"
+        ]
+      },
+      {
+        "title": "4. Data Security",
+        "icon": "shield",
+        "content": "We implement industry-standard security measures to protect your personal information from unauthorised access, disclosure, alteration, or destruction. All payment data is processed through encrypted, PCI-compliant systems.",
+        "bullets": [
+          "SSL/TLS encryption for all data transmission",
+          "Secure, access-controlled data storage",
+          "Regular security audits and monitoring",
+          "Staff trained in data protection practices"
+        ]
+      },
+      {
+        "title": "5. Cookies & Tracking",
+        "icon": "cookie",
+        "content": "Our website uses cookies and similar tracking technologies to enhance your browsing experience, analyse site traffic, and personalise content. You may control cookie settings through your browser preferences.",
+        "bullets": [
+          "Essential cookies (required for site functionality)",
+          "Analytics cookies (Google Analytics — anonymised)",
+          "Preference cookies (to remember your settings)"
+        ]
+      },
+      {
+        "title": "6. Your Rights",
+        "icon": "user-check",
+        "content": "You have the right to access, correct, or delete your personal information at any time. To exercise these rights or for any privacy-related enquiries, please contact us directly.",
+        "bullets": [
+          "Right to access your personal data",
+          "Right to correct inaccurate information",
+          "Right to request deletion of your data",
+          "Right to object to or restrict processing",
+          "Right to data portability"
+        ]
+      },
+      {
+        "title": "7. Contact Us",
+        "icon": "mail",
+        "content": "If you have any questions about this Privacy Policy or our data practices, please contact us:",
+        "contact": {
+          "email": "reservations@dumasuites.com",
+          "address": "Ghepard Towers, Watamu, Kilifi County, Kenya",
+          "phone": "+254 710 933 025"
+        }
+      }
+    ]
+  },
+  "termsOfService": {
+    "metaTitle": "Terms of Service | Duma Suites Watamu",
+    "heroEyebrow": "Legal",
+    "heroTitle": "Terms of Service",
+    "heroSub": "Please read these terms carefully before booking your stay with us.",
+    "lastUpdated": "Last updated: January 2025",
+    "backToHome": "Home",
+    "introBanner": "These terms form a binding agreement between you and Duma Suites. By completing a booking, you acknowledge that you have read and understood these terms.",
+    "sections": [
+      {
+        "title": "1. Acceptance of Terms",
+        "icon": "check-circle",
+        "content": "By accessing our website or making a reservation with Duma Suites, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services."
+      },
+      {
+        "title": "2. Reservations & Booking",
+        "icon": "calendar",
+        "content": "All reservations are subject to availability and confirmation by Duma Suites. A reservation is confirmed only upon receipt of a deposit payment and written confirmation from our team.",
+        "bullets": [
+          "50% payment is required at booking to secure your reservation",
+          "Remaining 50% is due on check-in",
+          "Reservations are non-transferable without prior written consent",
+          "We reserve the right to decline reservations at our discretion"
+        ]
+      },
+      {
+        "title": "3. Cancellation Policy",
+        "icon": "x-circle",
+        "content": "Our cancellation policy is designed to be fair to both guests and our team. We ask for as much notice as possible to allow us to accommodate other guests.",
+        "bullets": [
+          "Cancellation before 30 days of arrival: fully refundable",
+          "Cancellation within 30 days of arrival: non-refundable",
+          "No-show or early departure: full stay charged",
+          "Force majeure events will be considered on a case-by-case basis"
+        ]
+      },
+      {
+        "title": "4. Check-in & Check-out",
+        "icon": "clock",
+        "content": "Standard check-in time is 2:00 PM and check-out is 10:00 AM. Early check-in or late check-out may be arranged subject to availability and may incur additional charges."
+      },
+      {
+        "title": "5. Guest Conduct",
+        "icon": "users",
+        "content": "All guests are expected to conduct themselves in a manner that is respectful to other guests, staff, and the property. Duma Suites reserves the right to ask any guest to vacate the premises if their behaviour is deemed disruptive or harmful.",
+        "bullets": [
+          "Respect quiet hours (10:00 PM – 8:00 AM)",
+          "No smoking inside suites — balcony and lobby only",
+          "No parties or events without prior written approval",
+          "Guests are responsible for any damage caused during their stay"
+        ]
+      },
+      {
+        "title": "6. Liability",
+        "icon": "shield",
+        "content": "Duma Suites shall not be liable for any loss, damage, or injury to guests or their belongings during their stay, except where such loss or damage is caused by the direct negligence of Duma Suites staff.",
+        "bullets": [
+          "Use of pools and recreational facilities is at guests' own risk",
+          "We recommend travel insurance for all guests",
+          "Valuables should be stored in the in-suite safe"
+        ]
+      },
+      {
+        "title": "7. Governing Law",
+        "icon": "scale",
+        "content": "These Terms of Service are governed by and construed in accordance with the laws of Kenya. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the courts of Kenya."
+      },
+      {
+        "title": "8. Contact Us",
+        "icon": "mail",
+        "content": "For any questions or concerns regarding these Terms of Service, please contact us:",
+        "contact": {
+          "email": "reservations@dumasuites.com",
+          "address": "Ghepard Towers, Watamu, Kilifi County, Kenya",
+          "phone": "+254 710 933 025"
+        }
+      }
+    ]
+  },
+  "cookieBanner": {
+    "headline": "We use cookies to enhance your stay.",
+    "body": "We use essential, analytics and preference cookies to give you the finest experience at Duma Suites. Your choice is remembered across visits.",
+    "acceptAll": "Accept All",
+    "manage": "Manage Preferences",
+    "rejectNonEssential": "Reject Non-Essential",
+    "learnMore": "Cookie Policy"
+  },
+  "cookies": {
+    "metaTitle": "Cookie Policy | Duma Suites Watamu",
+    "metaDesc": "Learn how Duma Suites uses cookies to enhance your browsing experience, personalise content, and keep your data secure.",
+    "heroEyebrow": "Legal",
+    "heroTitle": "Cookie Policy",
+    "heroSub": "How we use cookies to enhance and personalise your experience.",
+    "lastUpdated": "Last updated: January 2025",
+    "intro": "This Cookie Policy explains what cookies are, which ones we use on the Duma Suites website, why we use them, and how you can manage your preferences. By continuing to browse our site, you agree to our use of cookies as described below.",
+    "sections": [
+      {
+        "icon": "layers",
+        "title": "1. What Are Cookies?",
+        "content": "Cookies are small text files placed on your device by a website when you visit it. They allow the site to remember your actions and preferences over a period of time, so you don't have to keep re-entering them whenever you come back to the site.",
+        "bullets": [
+          "Stored locally in your browser",
+          "Cannot run programs or deliver viruses",
+          "Do not access personal files on your device",
+          "Can be session-based (deleted on close) or persistent (retained across visits)"
+        ]
+      },
+      {
+        "icon": "cookie",
+        "title": "2. Cookies We Use",
+        "content": "We use three categories of cookies on the Duma Suites website, each serving a distinct purpose:",
+        "categories": [
+          {
+            "name": "Essential Cookies",
+            "badge": "Always Active",
+            "desc": "These cookies are strictly necessary for the website to function. They enable core features such as page navigation, security, and access to protected areas. The site cannot function properly without them. They do not store any personally identifiable information.",
+            "examples": [
+              "Session management",
+              "Security tokens",
+              "Load balancing"
+            ]
+          },
+          {
+            "name": "Analytics Cookies",
+            "badge": "Optional",
+            "desc": "These cookies help us understand how visitors interact with our website by collecting anonymised information about pages visited, time spent on site, and how guests arrived. We use Google Analytics with IP anonymisation enabled.",
+            "examples": [
+              "Google Analytics (anonymised)",
+              "Page view tracking",
+              "User journey analysis"
+            ]
+          },
+          {
+            "name": "Preference Cookies",
+            "badge": "Optional",
+            "desc": "These cookies remember your choices — such as your language preference (English or Italian) — so that your experience feels personalised and consistent on every visit.",
+            "examples": [
+              "Language preference (EN / IT)",
+              "Cookie consent choice",
+              "Scroll and UI state"
+            ]
+          }
+        ]
+      },
+      {
+        "icon": "heart",
+        "title": "3. Why We Use Cookies",
+        "content": "Each category of cookie serves a specific purpose in delivering the finest experience to our guests:",
+        "reasons": [
+          {
+            "label": "UX Improvement",
+            "desc": "Analytics data helps us identify and fix friction in the guest journey — from browsing suites to completing an enquiry."
+          },
+          {
+            "label": "Personalisation",
+            "desc": "Preference cookies ensure the site remembers your language and settings, so every visit feels tailored to you."
+          },
+          {
+            "label": "Security",
+            "desc": "Essential cookies protect you by maintaining secure, authenticated sessions and preventing cross-site request forgery."
+          },
+          {
+            "label": "Performance",
+            "desc": "We use session data to optimise page load times and serve the most relevant content to guests from different regions."
+          }
+        ]
+      },
+      {
+        "icon": "settings",
+        "title": "4. Managing Your Preferences",
+        "content": "You are in full control of your cookie preferences. Here are the ways you can manage them:",
+        "bullets": [
+          "Use the cookie banner that appears on your first visit to accept, reject or customise cookie categories.",
+          "Clear your cookie preferences at any time by clicking \"Manage Preferences\" in the cookie banner (reappears after clearing local storage).",
+          "Adjust your browser settings to block or delete cookies entirely — note this may affect site functionality.",
+          "Opt out of Google Analytics tracking at any time via: tools.google.com/dlpage/gaoptout"
+        ]
+      },
+      {
+        "icon": "refresh-cw",
+        "title": "5. Updates to This Policy",
+        "content": "We may update this Cookie Policy from time to time to reflect changes in technology, legislation, or our services. When we do, we will update the \"Last Updated\" date at the top of this page. We encourage you to review this policy periodically."
+      },
+      {
+        "icon": "mail",
+        "title": "6. Contact Us",
+        "content": "If you have any questions about our use of cookies or this policy, please reach out to our team:",
+        "contact": {
+          "email": "reservations@dumasuites.com",
+          "address": "Ghepard Towers, Watamu, Kilifi County, Kenya",
+          "phone": "+254 710 933 025"
+        }
+      }
+    ]
+  }
+}
