@@ -77,7 +77,7 @@ const POLICY_ICONS = [Clock, Clock, Calendar, CreditCard, Shield, PawPrint, Ciga
 const TOUR_VIDEO_BASE =
   'https://player.vimeo.com/video/1190453383' +
   '?badge=0&autopause=0&player_id=0&app_id=58479' +
-  '&byline=0&title=0&portrait=0&dnt=1&playsinline=1'
+  '&byline=0&title=0&portrait=0&dnt=1&playsinline=1&muted=1&loop=1'
 
 // Vimeo requires a brief delay after iframe load before it can receive postMessage listeners
 const VIMEO_IFRAME_READY_DELAY = 500
@@ -410,6 +410,7 @@ export default function SerenityVillaPage() {
                   allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
+                  playsInline
                   preload="metadata"
                   title="serenity-villa-room-tour"
                   onLoad={handleTourIframeLoad}
@@ -963,38 +964,21 @@ export default function SerenityVillaPage() {
   overflow: hidden;
 }
 
-/* Desktop/Tablet: scale portrait (9:16) iframe to cover landscape container */
 .sv-tour__frame iframe {
   position: absolute;
-  /* height = viewport-width × 16/9 so portrait video fills full width;
-     min-height:100% ensures it covers even on very wide screens */
+  inset: 0;
   width: 100%;
-  height: calc(100vw * 16 / 9);
-  min-height: 100%;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
+  height: 100%;
+  object-fit: cover;
+  background: #000;
   border: none;
 }
 
-/* Mobile — portrait aspect ratio, perfect 9:16 fit */
 @media (max-width: 767px) {
-  .sv-tour__frame-wrap {
-    width: 100%;
-    margin-left: 0;
-    height: auto;
-    aspect-ratio: 9 / 16;
-  }
-  .sv-tour__frame {
-    width: 100%;
-    height: 100%;
-  }
   .sv-tour__frame iframe {
-    position: absolute;
-    inset: 0;
     width: 100%;
     height: 100%;
-    transform: none;
+    object-fit: cover;
   }
 }
 
