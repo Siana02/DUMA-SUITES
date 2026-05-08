@@ -941,62 +941,69 @@ export default function CoastalHavenPage() {
         }
 
 
-/* Full-bleed viewport video on all screen sizes */
+/* Full viewport wrapper */
 .ch-tour__frame-wrap {
   position: relative;
-  left: 50%;
   width: 100vw;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  height: 100svh;
   height: 100dvh;
   overflow: hidden;
+  background: #000;
 }
 
+/* Video container */
 .ch-tour__frame {
   position: relative;
   width: 100%;
   height: 100%;
-  background: #000;
   overflow: hidden;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* FORCE iframe to behave like object-fit: cover */
 .ch-tour__frame iframe {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  border: none;
+  top: 50%;
+  left: 50%;
+
+  /* Cover sizing based on 16/9 ratio */
+  width: 177.78vh; /* 100vh × 16/9 */
+  height: 100vh;
+
+  min-width: 100vw;
+  min-height: 177.78vw; /* 100vw × 16/9 */
+
+  transform: translate(-50%, -50%);
+  border: 0;
 }
 
-/* Mobile — full viewport, edge-to-edge video */
+/* Mobile — true edge-to-edge vertical video */
 @media (max-width: 767px) {
-  .ch-tour__frame-wrap {
-    height: 100svh;
-    height: 100dvh;
-  }
-
+  .ch-tour__frame-wrap,
   .ch-tour__frame {
-    width: 100%;
-    height: 100%;
+    position: relative;
+    width: 100vw;
+    height: 100dvh;
+    overflow: hidden;
+    background: #000;
   }
 
   .ch-tour__frame iframe {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: max(100vw, calc(100vh * 9 / 16));
-    height: max(100vh, calc(100vw * 16 / 9));
     transform: translate(-50%, -50%);
-    border: none;
-  }
 
-  @supports (height: 100dvh) {
-    .ch-tour__frame iframe {
-      width: max(100vw, calc(100dvh * 9 / 16));
-      height: max(100dvh, calc(100vw * 16 / 9));
-    }
+    width: 177.78vh;
+    height: 100vh;
+
+    min-width: 100vw;
+    min-height: 177.78vw;
+
+    border: 0;
+    display: block;
   }
 }
 

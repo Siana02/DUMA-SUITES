@@ -961,6 +961,9 @@ export default function SerenityVillaPage() {
   height: 100%;
   overflow: hidden;
   background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* FORCE iframe to behave like object-fit: cover */
@@ -969,29 +972,42 @@ export default function SerenityVillaPage() {
   top: 50%;
   left: 50%;
 
-  /* 9:16 portrait ratio */
-  width: 177.78vh; /* 100vh × 9/16 */
+  /* Cover sizing based on 16/9 ratio */
+  width: 177.78vh; /* 100vh × 16/9 */
   height: 100vh;
 
   min-width: 100vw;
-  min-height: 562.5vw; /* 100vw × 16/9 */
+  min-height: 177.78vw; /* 100vw × 16/9 */
 
   transform: translate(-50%, -50%);
   border: 0;
 }
 
-/* Mobile adjustments */
+/* Mobile — true edge-to-edge vertical video */
 @media (max-width: 767px) {
-  .sv-tour__frame-wrap {
+  .sv-tour__frame-wrap,
+  .sv-tour__frame {
+    position: relative;
+    width: 100vw;
     height: 100dvh;
+    overflow: hidden;
+    background: #000;
   }
 
   .sv-tour__frame iframe {
-    width: 177.78dvh;
-    height: 100dvh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 177.78vh;
+    height: 100vh;
 
     min-width: 100vw;
     min-height: 177.78vw;
+
+    border: 0;
+    display: block;
   }
 }
 
