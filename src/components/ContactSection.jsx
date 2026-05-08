@@ -100,6 +100,17 @@ export default function ContactSection() {
               </li>
               <li className="contact-info-list__item">
                 <div className="contact-info-list__icon">
+                  <Phone size={18} strokeWidth={1.5} aria-hidden="true" />
+                </div>
+                <div>
+                  <span className="contact-info-list__label">{ct.info.receptionLabel}</span>
+                  <a href={`tel:${ct.info.receptionPhone.replace(/\s/g, '')}`} className="contact-info-list__value contact-info-list__link">
+                    {ct.info.receptionPhone}
+                  </a>
+                </div>
+              </li>
+              <li className="contact-info-list__item">
+                <div className="contact-info-list__icon">
                   <Mail size={18} strokeWidth={1.5} aria-hidden="true" />
                 </div>
                 <div>

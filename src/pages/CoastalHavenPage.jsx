@@ -714,6 +714,8 @@ export default function CoastalHavenPage() {
           border-radius: 14px;
           border: 1px solid var(--color-border, #e8e3dc);
           box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+          display: flex;
+          flex-direction: column;
         }
         .ch-about__highlights-img-wrap {
           border-radius: 10px;
@@ -721,6 +723,10 @@ export default function CoastalHavenPage() {
           border: 1px solid var(--color-border, #e8e3dc);
           box-shadow: 0 10px 24px rgba(0,0,0,0.12);
           min-height: 230px;
+          flex: 1;
+        }
+        @media (max-width: 767px) {
+          .ch-about__image-card { max-height: 340px; }
         }
         .ch-about__highlights-img {
           width: 100%;
@@ -974,14 +980,12 @@ export default function CoastalHavenPage() {
           cursor: default;
           border-radius: 3px;
           transition:
-            background-color 0.32s ease,
-            transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
-            box-shadow 0.32s ease;
+            transform 0.28s ease,
+            box-shadow 0.28s ease;
         }
         .ch-amenity:hover {
-          background-color: var(--color-teal);
-          transform: scale(1.06);
-          box-shadow: 0 10px 30px rgba(201, 169, 110, 0.32);
+          transform: translateY(-3px);
+          box-shadow: 0 10px 28px rgba(0,0,0,0.08);
         }
         .ch-amenity__icon-wrap {
           display: flex;
@@ -994,16 +998,18 @@ export default function CoastalHavenPage() {
           border: 1px solid rgba(201, 169, 110, 0.28);
           flex-shrink: 0;
           transition:
-            background 0.32s ease,
-            border-color 0.32s ease;
+            background 0.28s ease,
+            border-color 0.28s ease,
+            box-shadow 0.28s ease;
         }
         .ch-amenity:hover .ch-amenity__icon-wrap {
-          background: rgba(255, 255, 255, 0.22);
-          border-color: rgba(255, 255, 255, 0.45);
+          background: var(--color-teal);
+          border-color: var(--color-teal);
+          box-shadow: 0 6px 16px rgba(88, 176, 196, 0.35);
         }
         .ch-amenity__icon {
           color: var(--color-teal);
-          transition: color 0.32s ease;
+          transition: color 0.28s ease;
         }
         .ch-amenity:hover .ch-amenity__icon {
           color: #fff;
@@ -1012,10 +1018,6 @@ export default function CoastalHavenPage() {
           font-family: var(--font-body);
           font-size: 0.82rem;
           color: var(--color-text-body);
-          transition: color 0.32s ease;
-        }
-        .ch-amenity:hover .ch-amenity__label {
-          color: #fff;
         }
 
         /* ── Policies ── */

@@ -62,6 +62,23 @@ import serenityGarden   from '../assets/serenity-villa-outdoor-garden-view.JPEG'
 import serenityArt      from '../assets/serenity-villa-art-showcase.JPEG'
 import serenityFloor    from '../assets/serenity-villa-1stfloor-view.JPEG'
 
+// Penthouse suite view images
+import phNightPool   from '../assets/penthouse-suite-ariel-view-of-pool-from-penthouse-nighttime.jpg'
+import phNightGround from '../assets/penthouse-suite-ariel-view-of-groundfloor-pool-from-penthouse-nighttime.jpg'
+import phArielDay    from '../assets/penthouse-suite-ariel-view-of-pool-from-penthouse.jpg'
+import phBalconyView from '../assets/penthouse-suite-balcony-view.jpg'
+import phBeachView   from '../assets/penthouse-suite-beach-view-from-balcony.jpg'
+import phSunsetTerrace from '../assets/penthouse-suite-sunset-view-from-terrace.jpg'
+import phSunsetTerraceClose from '../assets/penthouse-suite-sunset-view-from-terrace-upclose.jpg'
+import phViewOcean   from '../assets/penthouse-suite-view-of-the-ocean.jpg'
+import phViewRooftop from '../assets/penthouse-suite-view-of-rooftop-pool-and-ocean.jpg'
+import phViewResort  from '../assets/penthouse-suite-view-of-resort-at-sunset-time-from-terrace.jpg'
+import phViewNight   from '../assets/penthouse-suite-view-outside-at-night.jpg'
+import phMoonView    from '../assets/penthouse-suite-moon-view.jpg'
+import phLoungeTerraceView from '../assets/penthouse-suite-lounge-recliners-terrace-view.jpg'
+import phBedSunset   from '../assets/penthouse-suite-bedroom-kingsize-bed-sunset-view.jpg'
+import phSwingView   from '../assets/penthouse-suite-swing-view.jpg'
+
 const IMAGES = [
   { src: gImg1,           alt: 'Duma Suites – gallery view 1' },
   { src: gImg2,           alt: 'Duma Suites – gallery view 2' },
@@ -119,7 +136,24 @@ const IMAGES = [
   { src: serenityKitchen,  alt: 'Three Bedroom Suite – full kitchen' },
   { src: serenityGarden,   alt: 'Three Bedroom Suite – outdoor garden' },
   { src: serenityArt,      alt: 'Three Bedroom Suite – art showcase' },
-  { src: serenityFloor,    alt: 'Three Bedroom Suite – first floor view' },
+  { src: serenityFloor,    alt: 'Duma Suite Alice – first floor view' },
+
+  // Penthouse suite views
+  { src: phNightPool,       alt: 'Aerial night view of penthouse pool' },
+  { src: phNightGround,     alt: 'Aerial night view of ground-floor pool from penthouse' },
+  { src: phArielDay,        alt: 'Aerial view of penthouse pool by day' },
+  { src: phBalconyView,     alt: 'Penthouse suite balcony view' },
+  { src: phBeachView,       alt: 'Beach view from penthouse balcony' },
+  { src: phSunsetTerrace,   alt: 'Sunset view from penthouse terrace' },
+  { src: phSunsetTerraceClose, alt: 'Sunset view from penthouse terrace close-up' },
+  { src: phViewOcean,       alt: 'Penthouse view of the Indian Ocean' },
+  { src: phViewRooftop,     alt: 'View of rooftop pool and ocean from penthouse' },
+  { src: phViewResort,      alt: 'Resort sunset view from penthouse terrace' },
+  { src: phViewNight,       alt: 'Penthouse view outside at night' },
+  { src: phMoonView,        alt: 'Penthouse moon view at night' },
+  { src: phLoungeTerraceView, alt: 'Penthouse lounge recliners terrace view' },
+  { src: phBedSunset,       alt: 'Penthouse king bedroom with sunset view' },
+  { src: phSwingView,       alt: 'Penthouse swing with sea and garden views' },
 ]
 
 export default function GalleryPage() {

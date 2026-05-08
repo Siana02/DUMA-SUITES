@@ -11,11 +11,14 @@ import elephantMain    from '../assets/upclose-elephant.JPEG'
 import elephantOverlay from '../assets/elephant-watching.JPEG'
 import dhowMain    from '../assets/sunset-dhow-cruise.JPEG'
 import dhowOverlay from '../assets/sunset-view.JPEG'
+import hellsMain    from '../assets/hells-kitchen-marafa1.jpeg'
+import hellsOverlay from '../assets/hells-kitchen-marafa2.jpeg'
 
 const EXCURSION_IMAGES = [
   { main: gediMain,     overlay: gediOverlay },
   { main: elephantMain, overlay: elephantOverlay },
   { main: dhowMain,     overlay: dhowOverlay },
+  { main: hellsMain,    overlay: hellsOverlay },
 ]
 
 function ExcursionCardWithT({ item, images, index, inView, cta }) {
