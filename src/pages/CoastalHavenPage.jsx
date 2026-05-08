@@ -941,62 +941,53 @@ export default function CoastalHavenPage() {
         }
 
 
-/* Full-bleed viewport video on all screen sizes */
+/* Full viewport wrapper */
 .ch-tour__frame-wrap {
   position: relative;
-  left: 50%;
   width: 100vw;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  height: 100svh;
   height: 100dvh;
   overflow: hidden;
+  background: #000;
 }
 
+/* Video container */
 .ch-tour__frame {
   position: relative;
   width: 100%;
   height: 100%;
-  background: #000;
   overflow: hidden;
+  background: #000;
 }
 
+/* FORCE iframe to behave like object-fit: cover */
 .ch-tour__frame iframe {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  border: none;
+  top: 50%;
+  left: 50%;
+
+  /* 9:16 portrait ratio */
+  width: 177.78vh; /* 100vh × 9/16 */
+  height: 100vh;
+
+  min-width: 100vw;
+  min-height: 562.5vw; /* 100vw × 16/9 */
+
+  transform: translate(-50%, -50%);
+  border: 0;
 }
 
-/* Mobile — full viewport, edge-to-edge video */
+/* Mobile adjustments */
 @media (max-width: 767px) {
   .ch-tour__frame-wrap {
-    height: 100svh;
     height: 100dvh;
   }
 
-  .ch-tour__frame {
-    width: 100%;
-    height: 100%;
-  }
-
   .ch-tour__frame iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: max(100vw, calc(100vh * 9 / 16));
-    height: max(100vh, calc(100vw * 16 / 9));
-    transform: translate(-50%, -50%);
-    border: none;
-  }
+    width: 177.78dvh;
+    height: 100dvh;
 
-  @supports (height: 100dvh) {
-    .ch-tour__frame iframe {
-      width: max(100vw, calc(100dvh * 9 / 16));
-      height: max(100dvh, calc(100vw * 16 / 9));
-    }
+    min-width: 100vw;
+    min-height: 177.78vw;
   }
 }
 
