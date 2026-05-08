@@ -183,8 +183,11 @@ export default function ExcursionsSection() {
         .exc-card__img-side {
           position: relative;
           overflow: hidden;
+          aspect-ratio: 4 / 3;
         }
         .exc-card__main-img {
+          position: absolute;
+          inset: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
@@ -274,18 +277,11 @@ export default function ExcursionsSection() {
           .exc-card--right {
             direction: ltr;
           }
-          .exc-card__img-side {
-            height: 260px;
-          }
           .exc-card__text-side {
             min-height: 280px;
           }
         }
-        @media (max-width: 480px) {
-          .exc-card__img-side {
-            height: 220px;
-          }
-        }
+
       `}</style>
     </section>
   )
