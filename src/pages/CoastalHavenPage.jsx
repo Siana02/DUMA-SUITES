@@ -966,7 +966,7 @@ export default function CoastalHavenPage() {
   left: 50%;
 
   /* 9:16 portrait ratio */
-  width: 177.78vh; /* 100vh × 9/16 */
+  width: 177.78vh; /* 100vh × 16/9 */
   height: 100vh;
 
   min-width: 100vw;
