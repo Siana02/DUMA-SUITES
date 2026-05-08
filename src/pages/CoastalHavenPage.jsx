@@ -781,6 +781,23 @@ export default function CoastalHavenPage() {
           background: linear-gradient(to top, rgba(86,51,17,0.18) 0%, transparent 50%);
           pointer-events: none;
         }
+        @keyframes ch-about-mobile-image-enter {
+          from { opacity: 0; transform: translateY(22px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 899px) {
+          .ch-about__img-col {
+            display: block;
+            width: min(100%, 620px);
+            margin-inline: auto;
+            animation: ch-about-mobile-image-enter 680ms cubic-bezier(0.4, 0, 0.2, 1) both;
+          }
+          .ch-about__img-wrap {
+            width: 100%;
+            aspect-ratio: 16/10;
+            max-height: clamp(220px, 56vw, 320px);
+          }
+        }
         @media (min-width: 900px) {
           .ch-about__inner {
             grid-template-columns: 1.05fr 0.95fr;
