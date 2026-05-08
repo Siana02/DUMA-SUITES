@@ -939,21 +939,22 @@ export default function CoastalHavenPage() {
           max-width: 480px;
           line-height: 1.7;
         }
-       .ch-tour__frame-wrap {
-  display: flex;
-  width: 100%;
-  justify-content: center;
+
+
+/* Full viewport video on all screen sizes */
+.ch-tour__frame-wrap {
+  display: block;
+  width: 100vw;
+  margin-left: calc((100% - 100vw) / 2);
+  height: 100vh;
 }
 
-/* Portrait 9:16 video */
 .ch-tour__frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 9/16;
+  height: 100%;
   background: #000;
-  border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 12px 50px rgba(86, 51, 17, 0.2);
 }
 
 .ch-tour__frame iframe {
@@ -962,32 +963,6 @@ export default function CoastalHavenPage() {
   width: 100%;
   height: 100%;
   border: none;
-}
-
-/* Desktop & laptops — full viewport, contain video without cropping */
-@media (min-width: 1024px) {
-  .ch-tour__frame-wrap {
-    display: block;
-    width: 100vw;
-    margin-left: calc((100% - 100vw) / 2);
-    height: 100vh;
-  }
-  .ch-tour__frame {
-    width: 100%;
-    height: 100%;
-    max-width: none;
-    aspect-ratio: unset;
-    border-radius: 0;
-    box-shadow: none;
-  }
-}
-
-/* Mobile — keep full width and portrait ratio */
-@media (max-width: 640px) {
-  .ch-tour__frame {
-    max-width: 100%;
-    aspect-ratio: 9/16;
-  }
 }
 
         .ch-tour__cta-wrap {
