@@ -64,7 +64,7 @@ const POLICY_ICONS = [Clock, Clock, Calendar, CreditCard, Shield, PawPrint, Ciga
 const TOUR_VIDEO_BASE =
   'https://player.vimeo.com/video/1190451724' +
   '?badge=0&autopause=0&player_id=0&app_id=58479' +
-  '&byline=0&title=0&portrait=0&dnt=1&playsinline=1&muted=1&loop=1'
+  '&byline=0&title=0&portrait=0&dnt=1&playsinline=1&loop=1'
 
 // Vimeo requires a brief delay after iframe load before it can receive postMessage listeners
 const VIMEO_IFRAME_READY_DELAY = 500
