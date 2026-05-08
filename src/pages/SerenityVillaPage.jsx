@@ -963,16 +963,21 @@ export default function SerenityVillaPage() {
   overflow: hidden;
 }
 
+/* Desktop/Tablet: scale portrait (9:16) iframe to cover landscape container */
 .sv-tour__frame iframe {
   position: absolute;
-  inset: 0;
+  /* height = viewport-width × 16/9 so portrait video fills full width;
+     min-height:100% ensures it covers even on very wide screens */
   width: 100%;
-  height: 100%;
+  height: calc(100vw * 16 / 9);
+  min-height: 100%;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
   border: none;
-  object-fit: cover;
 }
 
-/* Mobile — portrait aspect ratio, no fixed heights */
+/* Mobile — portrait aspect ratio, perfect 9:16 fit */
 @media (max-width: 767px) {
   .sv-tour__frame-wrap {
     width: 100%;
@@ -985,9 +990,11 @@ export default function SerenityVillaPage() {
     height: 100%;
   }
   .sv-tour__frame iframe {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    transform: none;
   }
 }
 
