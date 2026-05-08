@@ -976,8 +976,8 @@ export default function CoastalHavenPage() {
 
   .ch-tour__frame {
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background: #000;
     overflow: hidden;
   }
