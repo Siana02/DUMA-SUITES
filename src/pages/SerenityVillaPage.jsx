@@ -410,7 +410,6 @@ export default function SerenityVillaPage() {
                   allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
-                  playsInline
                   preload="metadata"
                   title="serenity-villa-room-tour"
                   onLoad={handleTourIframeLoad}
@@ -969,7 +968,6 @@ export default function SerenityVillaPage() {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   background: #000;
   border: none;
 }
@@ -978,7 +976,6 @@ export default function SerenityVillaPage() {
   .sv-tour__frame iframe {
     width: 100%;
     height: 100%;
-    object-fit: cover;
   }
 }
 

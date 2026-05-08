@@ -402,7 +402,6 @@ export default function CoastalHavenPage() {
                   allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
-                  playsInline
                   preload="metadata"
                   title="coastal-haven-suite-room-tour"
                   onLoad={handleTourIframeLoad}
@@ -963,7 +962,6 @@ export default function CoastalHavenPage() {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   background: #000;
   border: none;
 }
@@ -972,7 +970,6 @@ export default function CoastalHavenPage() {
   .ch-tour__frame iframe {
     width: 100%;
     height: 100%;
-    object-fit: cover;
   }
 }
 
