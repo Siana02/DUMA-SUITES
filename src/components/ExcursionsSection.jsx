@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ArrowRight, Info } from 'lucide-react'
@@ -21,14 +22,20 @@ const EXCURSION_IMAGES = [
   { main: hellsMain,    overlay: hellsOverlay },
 ]
 
-function ExcursionCardWithT({ item, images, index, cta }) {
+function ExcursionCardWithT({ item, images, index, cta, isActive, onSetActive }) {
   const isLeft = index % 2 === 0
-  const { ref: cardRef, inView: cardInView } = useInView({ threshold: 0.15, triggerOnce: true })
+  const { ref: cardRef, inView: cardInView } = useInView({
+    threshold: 0.55,
+    triggerOnce: false,
+    onChange: inView => {
+      if (inView) onSetActive(index)
+    },
+  })
 
   return (
     <motion.div
       ref={cardRef}
-      className={`exc-card exc-card--${isLeft ? 'left' : 'right'}`}
+      className={`exc-card exc-card--${isLeft ? 'left' : 'right'}${isActive ? ' is-active' : ' is-inactive'}`}
       initial={{ opacity: 0, y: 40 }}
       animate={cardInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay: 0.05, ease: [0.4, 0, 0.2, 1] }}
@@ -64,6 +71,7 @@ export default function ExcursionsSection() {
   const { lang } = useLanguage()
   const t = getT(lang)
   const exc = t.excursions
+  const [activeCardIndex, setActiveCardIndex] = useState(0)
 
   const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.3, triggerOnce: true })
 
@@ -97,6 +105,8 @@ export default function ExcursionsSection() {
               images={EXCURSION_IMAGES[i]}
               index={i}
               cta={exc.cta}
+              isActive={activeCardIndex === i}
+              onSetActive={setActiveCardIndex}
             />
           ))}
         </div>
@@ -113,6 +123,10 @@ export default function ExcursionsSection() {
         .exc-section__header.is-visible {
           opacity: 1;
           transform: translateY(0);
+        }
+        .exc-section {
+          --exc-inactive-opacity: 0.82;
+          --exc-active-z: 6;
         }
         .exc-cheetah-divider {
           display: flex;
@@ -157,6 +171,10 @@ export default function ExcursionsSection() {
           min-height: 440px;
           overflow: hidden;
           border-radius: 4px;
+          position: relative;
+          z-index: 0;
+          isolation: isolate;
+          background: #101010;
           box-shadow: 0 8px 40px rgba(86,51,17,0.1);
         }
         /* ── Desktop stacked card deck ── */
@@ -168,11 +186,16 @@ export default function ExcursionsSection() {
           .exc-card {
             position: sticky;
             top: 90px;
+            opacity: var(--exc-inactive-opacity);
+            transition: opacity 0.35s ease;
           }
-          .exc-card:nth-child(1) { z-index: 1; }
-          .exc-card:nth-child(2) { z-index: 2; }
-          .exc-card:nth-child(3) { z-index: 3; }
-          .exc-card:nth-child(4) { z-index: 4; }
+          .exc-card.is-active {
+            z-index: var(--exc-active-z);
+            opacity: 1;
+          }
+          .exc-card.is-inactive {
+            z-index: 0;
+          }
         }
         .exc-card--right {
           direction: rtl;
@@ -212,6 +235,7 @@ export default function ExcursionsSection() {
         .exc-card__text-side {
           position: relative;
           overflow: hidden;
+          background: #101010;
         }
         .exc-card__text-bg {
           position: absolute;
@@ -273,12 +297,22 @@ export default function ExcursionsSection() {
           .exc-card {
             grid-template-columns: 1fr;
             min-height: auto;
+            opacity: 1;
           }
           .exc-card--right {
             direction: ltr;
           }
           .exc-card__text-side {
             min-height: 280px;
+          }
+          .exc-card__img-side {
+            aspect-ratio: auto;
+          }
+          .exc-card__main-img {
+            position: relative;
+            inset: auto;
+            height: auto;
+            display: block;
           }
         }
 
