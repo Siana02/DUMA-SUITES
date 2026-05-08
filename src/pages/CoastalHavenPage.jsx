@@ -64,7 +64,7 @@ const POLICY_ICONS = [Clock, Clock, Calendar, CreditCard, Shield, PawPrint, Ciga
 const TOUR_VIDEO_BASE =
   'https://player.vimeo.com/video/1190451724' +
   '?badge=0&autopause=0&player_id=0&app_id=58479' +
-  '&byline=0&title=0&portrait=0&muted=1&dnt=1'
+  '&byline=0&title=0&portrait=0&dnt=1'
 
 // Vimeo requires a brief delay after iframe load before it can receive postMessage listeners
 const VIMEO_IFRAME_READY_DELAY = 500
@@ -86,34 +86,54 @@ export default function CoastalHavenPage() {
   const tc = t.suites.coastal
   const ts = t.suites.serenity
 
-  // Video pause-on-scroll logic
+  // Video play/pause logic — plays on hover and when fully in view
   const tourIframeRef = useRef(null)
   const tourHasPlayedRef = useRef(false)
+  const tourIsHoveredRef = useRef(false)
+  const tourInViewRef = useRef(false)
   const [tourVideoSrc, setTourVideoSrc] = useState(TOUR_VIDEO_BASE)
 
-  // Lower threshold → pauses sooner when scrolled out of view
-  const { ref: tourRef, inView: tourInView } = useInView({ threshold: 0.15 })
+  // threshold: 0.85 — treat video as "fully in view" when 85% is visible
+  const { ref: tourRef, inView: tourInView } = useInView({ threshold: 0.85 })
+
+  const postTour = useCallback((method, value) => {
+    const msg = value !== undefined ? { method, value } : { method }
+    tourIframeRef.current?.contentWindow?.postMessage(
+      JSON.stringify(msg), 'https://player.vimeo.com'
+    )
+  }, [])
+
+  const tryPlayTour = useCallback(() => {
+    if (!tourHasPlayedRef.current) {
+      tourHasPlayedRef.current = true
+      setTourVideoSrc(`${TOUR_VIDEO_BASE}&autoplay=1`)
+    } else {
+      postTour('play')
+    }
+  }, [postTour])
 
   useEffect(() => {
-    const post = (method, value) => {
-      const msg = value !== undefined ? { method, value } : { method }
-      tourIframeRef.current?.contentWindow?.postMessage(
-        JSON.stringify(msg), 'https://player.vimeo.com'
-      )
-    }
+    tourInViewRef.current = tourInView
     if (tourInView) {
-      if (!tourHasPlayedRef.current) {
-        tourHasPlayedRef.current = true
-        setTourVideoSrc(`${TOUR_VIDEO_BASE}&autoplay=1`)
-      } else {
-        post('play')
-      }
-    } else if (tourHasPlayedRef.current) {
-      post('pause')
+      tryPlayTour()
+    } else if (tourHasPlayedRef.current && !tourIsHoveredRef.current) {
+      postTour('pause')
     }
-  }, [tourInView])
+  }, [tourInView, tryPlayTour, postTour])
 
-  // When the video ends
+  const handleTourMouseEnter = useCallback(() => {
+    tourIsHoveredRef.current = true
+    tryPlayTour()
+  }, [tryPlayTour])
+
+  const handleTourMouseLeave = useCallback(() => {
+    tourIsHoveredRef.current = false
+    if (!tourInViewRef.current) {
+      postTour('pause')
+    }
+  }, [postTour])
+
+  // When the video ends → reset to start so the end screen never shows
   useEffect(() => {
     const onMsg = (e) => {
       if (e.origin !== 'https://player.vimeo.com') return
@@ -123,12 +143,8 @@ export default function CoastalHavenPage() {
         if (data.event === 'finish') {
           const win = tourIframeRef.current?.contentWindow
           if (!win) return
-          const post = (method, value) => {
-            const msg = value !== undefined ? { method, value } : { method }
-            win.postMessage(JSON.stringify(msg), 'https://player.vimeo.com')
-          }
-          post('pause')
-          post('setCurrentTime', 0)
+          win.postMessage(JSON.stringify({ method: 'pause' }), 'https://player.vimeo.com')
+          win.postMessage(JSON.stringify({ method: 'setCurrentTime', value: 0 }), 'https://player.vimeo.com')
         }
       } catch { /* ignore */ }
     }
@@ -374,7 +390,9 @@ export default function CoastalHavenPage() {
             <motion.p className="ch-tour__subtitle" {...fadeUp(0.18)}>
               {tc.tourSub}
             </motion.p>
-            <motion.div className="ch-tour__frame-wrap" {...fadeUp(0.26)} ref={tourRef}>
+            <motion.div className="ch-tour__frame-wrap" {...fadeUp(0.26)} ref={tourRef}
+              onMouseEnter={handleTourMouseEnter}
+              onMouseLeave={handleTourMouseLeave}>
               {/* Vertical 9:16 video — constrained width for portrait display */}
               <div className="ch-tour__frame">
                 <iframe
@@ -384,7 +402,7 @@ export default function CoastalHavenPage() {
                   allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
-                  loading="lazy"
+                  preload="metadata"
                   title="coastal-haven-suite-room-tour"
                   onLoad={handleTourIframeLoad}
                 />
@@ -927,11 +945,11 @@ export default function CoastalHavenPage() {
   justify-content: center;
 }
 
-/* Portrait 9:16 video — constrained to a comfortable width */
+/* Portrait 9:16 video */
 .ch-tour__frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 9/16;   /* match phone portrait ratio */
+  aspect-ratio: 9/16;
   background: #000;
   border-radius: 4px;
   overflow: hidden;
@@ -943,22 +961,28 @@ export default function CoastalHavenPage() {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;    /* default for mobile */
   border: none;
 }
 
-/* Desktop & laptops — show full video without cropping */
+/* Desktop & laptops — full viewport, contain video without cropping */
 @media (min-width: 1024px) {
+  .ch-tour__frame-wrap {
+    display: block;
+    width: 100vw;
+    margin-left: calc((100% - 100vw) / 2);
+    height: 100vh;
+  }
   .ch-tour__frame {
     width: 100%;
-    max-width: 560px;   /* constrain width so it’s comfortable */
-  }
-  .ch-tour__frame iframe {
-    object-fit: contain; /* show entire video top-to-bottom */
+    height: 100%;
+    max-width: none;
+    aspect-ratio: unset;
+    border-radius: 0;
+    box-shadow: none;
   }
 }
 
-/* Mobile — keep full width and cover */
+/* Mobile — keep full width and portrait ratio */
 @media (max-width: 640px) {
   .ch-tour__frame {
     max-width: 100%;
