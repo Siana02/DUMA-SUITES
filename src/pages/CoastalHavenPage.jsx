@@ -965,7 +965,7 @@ export default function CoastalHavenPage() {
   top: 50%;
   left: 50%;
 
-  /* 9:16 portrait ratio */
+  /* Cover sizing based on 16/9 ratio */
   width: 177.78vh; /* 100vh × 16/9 */
   height: 100vh;
 
@@ -983,11 +983,11 @@ export default function CoastalHavenPage() {
   }
 
   .ch-tour__frame iframe {
-    width: 177.78dvh;
+    width: 177.78dvh; /* 100dvh × 16/9 */
     height: 100dvh;
 
     min-width: 100vw;
-    min-height: 177.78vw;
+    min-height: 177.78vw; /* 100vw × 16/9 */
   }
 }
 
