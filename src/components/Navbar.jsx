@@ -2,12 +2,48 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, MapPin } from 'lucide-react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import logoImg from '../assets/mammal.png'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
 // Navbar appears as the preload curtains finish opening (~2.8 s)
 const NAVBAR_APPEAR_DELAY = 2.8
+
+function LanguageDropdown({ className = '', idPrefix = 'desktop' }) {
+  const { i18n } = useTranslation()
+  const { lang, setLanguage, supportedLanguages } = useLanguage()
+
+  const LABELS = {
+    en: 'English',
+    it: 'Italiano',
+    de: 'Deutsch',
+    fr: 'Français',
+    es: 'Español',
+  }
+
+  const selectedLanguage = supportedLanguages.includes(lang) ? lang : (i18n.resolvedLanguage || 'en')
+  const changeLanguage = (lng) => setLanguage(lng)
+
+  return (
+    <div className={className}>
+      <label className="navbar__lang-sr" htmlFor={`${idPrefix}-lang-select`}>Language</label>
+      <select
+        id={`${idPrefix}-lang-select`}
+        className="navbar__lang-select"
+        value={selectedLanguage}
+        onChange={(e) => changeLanguage(e.target.value)}
+        aria-label="Select language"
+      >
+        {supportedLanguages.map((lng) => (
+          <option key={lng} value={lng}>
+            {LABELS[lng]}
+          </option>
+        ))}
+      </select>
+    </div>
+  )
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled]     = useState(false)
@@ -17,7 +53,7 @@ export default function Navbar() {
 
   const location = useLocation()
   const navigate = useNavigate()
-  const { lang, toggleLang } = useLanguage()
+  const { lang } = useLanguage()
   const t = getT(lang)
 
   const NAV_LINKS = [
@@ -159,13 +195,7 @@ export default function Navbar() {
               <MapPin size={13} strokeWidth={1.5} aria-hidden="true" />
               Watamu, KE
             </span>
-            <button
-              className="navbar__lang-toggle"
-              onClick={toggleLang}
-              aria-label="Switch language"
-            >
-              {lang === 'en' ? 'IT' : 'EN'}
-            </button>
+            <LanguageDropdown className="navbar__lang" idPrefix="desktop" />
             <button
               className="navbar__toggle"
               onClick={() => setMenuOpen((o) => !o)}
@@ -220,9 +250,9 @@ export default function Navbar() {
             </nav>
 
             {/* Language toggle in drawer */}
-            <button className="navbar__lang-toggle navbar__lang-toggle--drawer" onClick={toggleLang} aria-label="Switch language">
-              {lang === 'en' ? '🇮🇹 Italiano' : '🇬🇧 English'}
-            </button>
+            <div className="navbar__mobile-lang">
+              <LanguageDropdown className="navbar__lang navbar__lang--drawer" idPrefix="mobile" />
+            </div>
 
             {/* Location in drawer */}
             <motion.span
@@ -408,34 +438,47 @@ export default function Navbar() {
           gap: 1rem;
           justify-self: end;
         }
-        .navbar__lang-toggle {
+        .navbar__lang-select {
           font-family: var(--font-nav);
-          font-size: 0.62rem;
+          font-size: 0.64rem;
           letter-spacing: 0.1em;
           text-transform: uppercase;
-          background: none;
+          background: transparent;
           border: 1px solid rgba(255,255,255,0.5);
           color: rgba(255,255,255,0.88);
-          padding: 3px 10px;
+          padding: 5px 12px;
           border-radius: 100px;
           cursor: pointer;
           transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
           white-space: nowrap;
         }
-        .navbar--scrolled .navbar__lang-toggle {
+        .navbar__lang-select option {
+          color: var(--color-espresso);
+          background: #fff;
+        }
+        .navbar--scrolled .navbar__lang-select {
           border-color: rgba(86,51,17,0.4);
           color: var(--color-espresso);
         }
-        .navbar__lang-toggle:hover {
+        .navbar__lang-select:hover {
           border-color: var(--color-teal);
           color: var(--color-teal);
         }
-        .navbar__lang-toggle--drawer {
+        .navbar__lang-sr {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          clip-path: inset(50%);
+        }
+        .navbar__lang--drawer .navbar__lang-select {
           font-family: var(--font-nav);
           font-size: 0.78rem;
           letter-spacing: 0.08em;
           text-transform: uppercase;
-          background: none;
+          background: transparent;
           border: 1px solid rgba(86,51,17,0.3);
           color: var(--color-espresso);
           padding: 8px 16px;
@@ -443,6 +486,9 @@ export default function Navbar() {
           cursor: pointer;
           text-align: left;
           width: fit-content;
+        }
+        .navbar__mobile-lang {
+          display: flex;
         }
         .navbar__location {
           display: flex;
@@ -546,8 +592,12 @@ export default function Navbar() {
         /* ── Responsive ── */
         @media (max-width: 900px) {
           .navbar__links,
-          .navbar__location {
+          .navbar__location,
+          .navbar__lang {
             display: none;
+          }
+          .navbar__lang--drawer {
+            display: block;
           }
           .navbar__toggle {
             display: block;
