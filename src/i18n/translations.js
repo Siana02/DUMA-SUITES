@@ -1,3 +1,5 @@
+import enFallback from '../../locales/en/translation.json'
+
 export const SUPPORTED_LANGUAGES = ['en', 'it', 'de', 'fr', 'es']
 
 const loaders = {
@@ -8,7 +10,7 @@ const loaders = {
   es: () => import('../../locales/es/translation.json'),
 }
 
-const cache = {}
+const cache = { en: enFallback }
 
 export const normalizeLanguage = (lang) =>
   SUPPORTED_LANGUAGES.includes(lang) ? lang : 'en'

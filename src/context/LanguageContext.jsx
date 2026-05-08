@@ -12,19 +12,15 @@ export const LanguageContext = createContext({
 
 export function LanguageProvider({ children }) {
   const [lang, setLang] = useState(getInitialLang)
-  const [ready, setReady] = useState(false)
 
   useEffect(() => {
     let active = true
     loadTranslations(lang)
-      .then(() => {
-        if (active) setReady(true)
-      })
+      .then(() => {})
       .catch(async () => {
         await loadTranslations('en')
         if (active) {
           setLang('en')
-          setReady(true)
         }
       })
     return () => {
@@ -59,8 +55,6 @@ export function LanguageProvider({ children }) {
     () => ({ lang, setLanguage, toggleLang, languages: SUPPORTED_LANGUAGES }),
     [lang, setLanguage, toggleLang],
   )
-
-  if (!ready) return null
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
 }
