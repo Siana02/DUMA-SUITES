@@ -145,6 +145,15 @@ export default function ContactPage() {
                   </div>
                 </li>
                 <li className="cp-info__item">
+                  <div className="cp-info__icon"><Phone size={18} strokeWidth={1.5} /></div>
+                  <div>
+                    <span className="cp-info__label">{ct.info.receptionLabel}</span>
+                    <a href={`tel:${ct.info.receptionPhone.replace(/\s/g,'')}`} className="cp-info__value cp-info__link">
+                      {ct.info.receptionPhone}
+                    </a>
+                  </div>
+                </li>
+                <li className="cp-info__item">
                   <div className="cp-info__icon"><Mail size={18} strokeWidth={1.5} /></div>
                   <div>
                     <span className="cp-info__label">Email</span>

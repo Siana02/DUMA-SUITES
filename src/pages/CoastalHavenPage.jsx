@@ -714,6 +714,8 @@ export default function CoastalHavenPage() {
           border-radius: 14px;
           border: 1px solid var(--color-border, #e8e3dc);
           box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+          display: flex;
+          flex-direction: column;
         }
         .ch-about__highlights-img-wrap {
           border-radius: 10px;
@@ -721,6 +723,10 @@ export default function CoastalHavenPage() {
           border: 1px solid var(--color-border, #e8e3dc);
           box-shadow: 0 10px 24px rgba(0,0,0,0.12);
           min-height: 230px;
+          flex: 1;
+        }
+        @media (max-width: 767px) {
+          .ch-about__image-card { max-height: 340px; }
         }
         .ch-about__highlights-img {
           width: 100%;
@@ -730,11 +736,12 @@ export default function CoastalHavenPage() {
         }
         /* Highlights card — now inside highlights-row */
         .ch-about__highlights-card {
-          background: var(--color-bg-secondary);
-          border: 1px solid rgba(201,169,110,0.18);
-          border-radius: 4px;
-          padding: clamp(20px, 3vw, 32px);
           margin-top: 0;
+          padding: 22px;
+          background: var(--color-surface, #faf9f7);
+          border-radius: 14px;
+          border: 1px solid var(--color-border, #e8e3dc);
+          box-shadow: 0 8px 28px rgba(0,0,0,0.06);
         }
         .ch-about__mobile-cta {
           display: flex;
@@ -745,21 +752,20 @@ export default function CoastalHavenPage() {
           .ch-about__mobile-cta { display: none; }
         }
         .ch-about__highlights-title {
-          font-family: var(--font-nav);
-          font-size: 0.68rem;
-          letter-spacing: 0.14em;
+          font-size: 0.8rem;
+          font-weight: 700;
+          letter-spacing: 0.1em;
           text-transform: uppercase;
-          color: var(--color-espresso);
-          margin-bottom: 1.25rem;
-          padding-bottom: 0.75rem;
-          border-bottom: 1px solid rgba(86,51,17,0.12);
+          color: var(--color-text-muted, #7a7065);
+          margin: 0 0 16px;
         }
         /* Right image column — visible on all breakpoints */
         .ch-about__img-wrap {
           position: relative;
           overflow: hidden;
-          border-radius: 3px;
+          border-radius: 14px;
           aspect-ratio: 16/10;
+          box-shadow: 0 14px 36px rgba(0,0,0,0.18);
         }
         .ch-about__img {
           width: 100%;
@@ -786,28 +792,25 @@ export default function CoastalHavenPage() {
             min-height: 400px;
           }
         }
-        .ch-highlights { display: flex; flex-direction: column; gap: 10px; }
+        .ch-highlights { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+        @media (min-width: 980px) {
+          .ch-highlights { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
         .ch-highlights__item {
           display: flex;
           align-items: flex-start;
           gap: 10px;
-          font-family: var(--font-body);
-          font-size: 0.9rem;
+          font-size: 0.88rem;
           color: var(--color-text-body);
           line-height: 1.5;
           padding: 8px 10px;
-          border-radius: 3px;
-          transition: background 0.2s ease;
+          border-radius: 10px;
+          background: rgba(201, 169, 110, 0.08);
         }
-        .ch-highlights__item:hover { background: rgba(201,169,110,0.08); }
         .ch-highlights__icon {
-          color: var(--color-teal);
+          color: var(--color-accent, #c9a96e);
           flex-shrink: 0;
           margin-top: 2px;
-          background: rgba(201,169,110,0.12);
-          padding: 3px;
-          border-radius: 50%;
-          box-sizing: content-box;
         }
 
         /* ── Gallery ── */
@@ -974,14 +977,12 @@ export default function CoastalHavenPage() {
           cursor: default;
           border-radius: 3px;
           transition:
-            background-color 0.32s ease,
-            transform 0.32s cubic-bezier(0.4, 0, 0.2, 1),
-            box-shadow 0.32s ease;
+            transform 0.28s ease,
+            box-shadow 0.28s ease;
         }
         .ch-amenity:hover {
-          background-color: var(--color-teal);
-          transform: scale(1.06);
-          box-shadow: 0 10px 30px rgba(201, 169, 110, 0.32);
+          transform: translateY(-3px);
+          box-shadow: 0 10px 28px rgba(0,0,0,0.08);
         }
         .ch-amenity__icon-wrap {
           display: flex;
@@ -994,16 +995,18 @@ export default function CoastalHavenPage() {
           border: 1px solid rgba(201, 169, 110, 0.28);
           flex-shrink: 0;
           transition:
-            background 0.32s ease,
-            border-color 0.32s ease;
+            background 0.28s ease,
+            border-color 0.28s ease,
+            box-shadow 0.28s ease;
         }
         .ch-amenity:hover .ch-amenity__icon-wrap {
-          background: rgba(255, 255, 255, 0.22);
-          border-color: rgba(255, 255, 255, 0.45);
+          background: var(--color-teal);
+          border-color: var(--color-teal);
+          box-shadow: 0 6px 16px rgba(88, 176, 196, 0.35);
         }
         .ch-amenity__icon {
           color: var(--color-teal);
-          transition: color 0.32s ease;
+          transition: color 0.28s ease;
         }
         .ch-amenity:hover .ch-amenity__icon {
           color: #fff;
@@ -1012,10 +1015,6 @@ export default function CoastalHavenPage() {
           font-family: var(--font-body);
           font-size: 0.82rem;
           color: var(--color-text-body);
-          transition: color 0.32s ease;
-        }
-        .ch-amenity:hover .ch-amenity__label {
-          color: #fff;
         }
 
         /* ── Policies ── */

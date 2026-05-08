@@ -634,6 +634,8 @@ export default function PenthouseSuiteSofiaPage() {
           border-radius: 14px;
           border: 1px solid var(--color-border, #e8e3dc);
           box-shadow: 0 8px 28px rgba(0,0,0,0.06);
+          display: flex;
+          flex-direction: column;
         }
         .ph-about__highlights-img-wrap {
           border-radius: 14px;
@@ -641,6 +643,10 @@ export default function PenthouseSuiteSofiaPage() {
           border: 1px solid var(--color-border, #e8e3dc);
           box-shadow: 0 10px 24px rgba(0,0,0,0.12);
           min-height: 230px;
+          flex: 1;
+        }
+        @media (max-width: 767px) {
+          .ph-about__image-card { max-height: 340px; }
         }
         .ph-about__highlights-img {
           width: 100%;
@@ -699,7 +705,7 @@ export default function PenthouseSuiteSofiaPage() {
         }
         @media (max-width: 559px) {
           .ph-about__stats-strip { padding: 18px; }
-          .ph-about__image-card { padding: 10px; }
+          .ph-about__image-card { padding: 10px; max-height: 260px; }
           .ph-about__highlights-card { padding: 18px; }
           .ph-about__highlights-img-wrap { min-height: 190px; }
         }

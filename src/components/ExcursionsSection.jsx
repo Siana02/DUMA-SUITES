@@ -11,22 +11,27 @@ import elephantMain    from '../assets/upclose-elephant.JPEG'
 import elephantOverlay from '../assets/elephant-watching.JPEG'
 import dhowMain    from '../assets/sunset-dhow-cruise.JPEG'
 import dhowOverlay from '../assets/sunset-view.JPEG'
+import hellsMain    from '../assets/hells-kitchen-marafa1.jpeg'
+import hellsOverlay from '../assets/hells-kitchen-marafa2.jpeg'
 
 const EXCURSION_IMAGES = [
   { main: gediMain,     overlay: gediOverlay },
   { main: elephantMain, overlay: elephantOverlay },
   { main: dhowMain,     overlay: dhowOverlay },
+  { main: hellsMain,    overlay: hellsOverlay },
 ]
 
-function ExcursionCardWithT({ item, images, index, inView, cta }) {
+function ExcursionCardWithT({ item, images, index, cta }) {
   const isLeft = index % 2 === 0
+  const { ref: cardRef, inView: cardInView } = useInView({ threshold: 0.15, triggerOnce: true })
 
   return (
     <motion.div
+      ref={cardRef}
       className={`exc-card exc-card--${isLeft ? 'left' : 'right'}`}
       initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.15, ease: [0.4, 0, 0.2, 1] }}
+      animate={cardInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, delay: 0.05, ease: [0.4, 0, 0.2, 1] }}
     >
       <div className="exc-card__img-side">
         <img src={images.main} alt={item.title} className="exc-card__main-img" loading="lazy" />
@@ -61,7 +66,6 @@ export default function ExcursionsSection() {
   const exc = t.excursions
 
   const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.3, triggerOnce: true })
-  const { ref: listRef,   inView: listInView }   = useInView({ threshold: 0.05, triggerOnce: true })
 
   return (
     <section className="exc-section section" id="excursions">
@@ -85,14 +89,13 @@ export default function ExcursionsSection() {
           </div>
         </div>
 
-        <div className="exc-section__list" ref={listRef}>
+        <div className="exc-section__list">
           {exc.items.map((item, i) => (
             <ExcursionCardWithT
               key={i}
               item={item}
               images={EXCURSION_IMAGES[i]}
               index={i}
-              inView={listInView}
               cta={exc.cta}
             />
           ))}
@@ -155,6 +158,21 @@ export default function ExcursionsSection() {
           overflow: hidden;
           border-radius: 4px;
           box-shadow: 0 8px 40px rgba(86,51,17,0.1);
+        }
+        /* ── Desktop stacked card deck ── */
+        @media (min-width: 769px) {
+          .exc-section__list {
+            gap: 0;
+            padding-bottom: 60px;
+          }
+          .exc-card {
+            position: sticky;
+            top: 90px;
+          }
+          .exc-card:nth-child(1) { z-index: 1; }
+          .exc-card:nth-child(2) { z-index: 2; }
+          .exc-card:nth-child(3) { z-index: 3; }
+          .exc-card:nth-child(4) { z-index: 4; }
         }
         .exc-card--right {
           direction: rtl;
