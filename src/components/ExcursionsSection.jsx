@@ -159,6 +159,21 @@ export default function ExcursionsSection() {
           border-radius: 4px;
           box-shadow: 0 8px 40px rgba(86,51,17,0.1);
         }
+        /* ── Desktop stacked card deck ── */
+        @media (min-width: 769px) {
+          .exc-section__list {
+            gap: 0;
+            padding-bottom: 60px;
+          }
+          .exc-card {
+            position: sticky;
+            top: 90px;
+          }
+          .exc-card:nth-child(1) { z-index: 1; }
+          .exc-card:nth-child(2) { z-index: 2; }
+          .exc-card:nth-child(3) { z-index: 3; }
+          .exc-card:nth-child(4) { z-index: 4; }
+        }
         .exc-card--right {
           direction: rtl;
         }
