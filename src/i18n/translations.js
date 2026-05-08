@@ -2072,6 +2072,14 @@ const it = {
   },
 }
 
+const dynamicTranslations = {}
+
+export function setDynamicTranslation(lang, translation) {
+  dynamicTranslations[lang] = translation
+}
+
 export function getT(lang) {
-  return lang === 'it' ? it : en
+  if (dynamicTranslations[lang]) return dynamicTranslations[lang]
+  if (lang === 'it') return it
+  return en
 }

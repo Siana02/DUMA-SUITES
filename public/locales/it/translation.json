@@ -1,0 +1,1496 @@
+{
+  "nav": {
+    "home": "Home",
+    "suites": "Suite",
+    "gallery": "Galleria",
+    "about": "Chi Siamo",
+    "contact": "Contatti",
+    "houseRules": "Regolamento",
+    "blog": "Blog",
+    "langSwitch": "EN"
+  },
+  "hero": {
+    "eyebrow": "Lusso Costiero",
+    "heading": "Dove l'Oceano Incontra l'Eleganza",
+    "sub": "All'interno delle Ghepard Towers, Watamu — a soli 50 metri dalle spiagge bianche dell'Oceano Indiano.",
+    "cta": "Scopri le Suite",
+    "ctaSub": "Tutti gli Alloggi",
+    "scroll": "Scorri per scoprire",
+    "headingTop": "L'ARTE DEL",
+    "headingMain": "LUSSO COSTIERO",
+    "ariaLabel": "L'Arte del Lusso Costiero",
+    "subtitle": "Scopri il rifugio esclusivo di Watamu."
+  },
+  "about": {
+    "eyebrow": "LA NOSTRA STORIA & VALORI",
+    "title": "Vivere alla Maniera Duma",
+    "intro": "Duma Suites è una collezione di residenze costiere progettate con cura, situate nelle prestigiose Ghepard Towers di Watamu, Kenya. Qui, la senza tempo eleganza swahili incontra il comfort contemporaneo, a pochi passi dall'Oceano Indiano.",
+    "cardsEyebrow": "Cosa Ci Definisce",
+    "transitionLine": "Oltre il soggiorno, ogni dettaglio è intenzionale.",
+    "expandText": "Per una comprensione completa della tua esperienza di soggiorno, esplora le nostre linee guida.",
+    "cta": "Scopri di Più",
+    "cards": [
+      {
+        "title": "Accesso Costiero Immersivo",
+        "shortDesc": "A 50 metri dalle spiagge di Watamu, direttamente sull'Oceano Indiano.",
+        "desc": "A soli 50 metri dalle candide spiagge di Watamu — l'oceano non è uno sfondo, è parte della tua vita quotidiana qui."
+      },
+      {
+        "title": "Artigianato Artistico",
+        "shortDesc": "Design swahili con dettagli scolpiti a mano e texture organiche in ogni suite.",
+        "desc": "Ogni suite è plasmata dal design swahili — dettagli scolpiti a mano, texture organiche e arredi scelti con cura che onorano la costa."
+      },
+      {
+        "title": "Comfort Elevato",
+        "shortDesc": "Piscina infinity, cucine complete e concierge 24/7 — il comfort come standard.",
+        "desc": "Piscina infinity sul rooftop, piscina leisure al piano terra, cucine complete, Wi-Fi ad alta velocità e servizio di concierge 24/7."
+      },
+      {
+        "title": "Vivere con la Natura",
+        "shortDesc": "Viste panoramiche sull'oceano da ogni balcone e terrazza privata.",
+        "desc": "Svegliatevi con viste panoramiche sull'Oceano Indiano e sulla costa di Watamu dal vostro balcone privato. La natura incornicia ogni momento."
+      },
+      {
+        "title": "Fiducia e Tranquillità",
+        "shortDesc": "Sicurezza 24 ore, CCTV e parcheggio privato per la massima tranquillità.",
+        "desc": "Sicurezza 24 ore su 24, videosorveglianza, guardie notturne e parcheggio privato sicuro — per riposare ed esplorare con piena fiducia."
+      },
+      {
+        "title": "Lusso Responsabile",
+        "shortDesc": "Ospitalità eco-consapevole — locale, responsabile, orientata alla comunità.",
+        "desc": "Crediamo che il lusso debba lasciare un'impronta più leggera. Pratiche eco-consapevoli, approvvigionamento locale e supporto alla comunità sono parte del nostro modo di ospitare."
+      },
+      {
+        "title": "Semplicità Elegante",
+        "shortDesc": "Arrivi flessibili, pulizie e trasferimenti concierge — tutto già gestito.",
+        "desc": "Arrivi flessibili, pulizie dedicate, escursioni organizzate dal concierge e trasferimenti aeroportuali — ogni logistica curata perché il tuo soggiorno scorra senza sforzo."
+      }
+    ]
+  },
+  "gallery": {
+    "eyebrow": "Viaggio Visivo",
+    "title": "Galleria",
+    "sub": "Una raccolta curata di momenti da Duma Suites e dalla costa di Watamu.",
+    "viewFullCta": "Vedi Galleria Completa"
+  },
+  "faq": {
+    "eyebrow": "Domande e Risposte",
+    "title": "Quello che potreste voler sapere",
+    "ctaIntro": "Avete altre domande?",
+    "cta": "Contattaci",
+    "items": [
+      {
+        "q": "📍 Dove si trova Duma Suites?",
+        "a": "Duma Suites si trova all'interno delle Ghepard Towers a Watamu, Contea di Kilifi, Kenya — a soli 50 metri dall'Oceano Indiano e dalle candide spiagge di Watamu."
+      },
+      {
+        "q": "🛏️ Quali tipologie di suite sono disponibili?",
+        "a": "Offriamo una collezione curata di sei suite distinte: la nostra intima Duma Suite Anna (1 camera, ideale per coppie), le suite da 2 camere Lucia e Roma (perfette per famiglie o gruppi di amici), la spaziosa Duma Suite Alice (3 camere, ideale per gruppi fino a 6 persone) e le spettacolari Penthouse Suite a due piani Sofia e Chiara — il massimo del lusso a Watamu. Tutte le suite sono disponibili su richiesta."
+      },
+      {
+        "q": "🏖️ La spiaggia è vicina?",
+        "a": "Sì — la spiaggia di Watamu dista solo 50 metri a piedi dalle Ghepard Towers. È famosa per le sue acque cristalline, la sabbia bianca e la ricca vita marina."
+      },
+      {
+        "q": "⏰ Quali sono gli orari di check-in e check-out?",
+        "a": "Il check-in standard è dalle ore 14:00 e il check-out entro le ore 10:00. Il check-in anticipato o il check-out posticipato possono essere concordati in base alla disponibilità."
+      },
+      {
+        "q": "🐾 Sono ammessi gli animali domestici?",
+        "a": "Siamo lieti di accogliere piccoli animali domestici ben educati per garantire un soggiorno confortevole a tutti. Vi chiediamo di informarci in anticipo così possiamo prendere le necessarie disposizioni."
+      },
+      {
+        "q": "🏊 C'è una piscina?",
+        "a": "Sì — disponiamo di due piscine: una leisure al piano terra e uno spettacolare infinity pool sul rooftop completo di lettini e asciugamani. Orario piscine: 09:00–21:00."
+      },
+      {
+        "q": "💳 Qual è la politica di pagamento e cancellazione?",
+        "a": "Accettiamo le principali carte di credito, bonifico bancario e metodi di pagamento mobile selezionati. Condizioni di pagamento semplici: 50% alla prenotazione e 50% al check-in. Cancellazione prima di 30 giorni: rimborso completo. Cancellazione entro 30 giorni: non rimborsabile."
+      },
+      {
+        "q": "📅 Qual è il soggiorno minimo e massimo?",
+        "a": "Il soggiorno minimo è di 2 notti. Per i soggiorni prolungati, accogliamo gli ospiti fino a 6 mesi, rendendo Duma Suites una seconda casa ideale per i visitatori a lungo termine."
+      },
+      {
+        "q": "🧭 Quali escursioni potete organizzare?",
+        "a": "Il nostro concierge può organizzare: visite alle Rovine di Gedi, avvistamento elefanti al Tsavo, crociere al tramonto in dhow, snorkelling al Parco Marino di Watamu, Safari Blue e tour gastronomici locali."
+      },
+      {
+        "q": "🚗 È disponibile il parcheggio?",
+        "a": "Sì, è disponibile un parcheggio privato e sicuro all'interno delle Ghepard Towers, senza costi aggiuntivi per gli ospiti."
+      },
+      {
+        "q": "👨‍👩‍👧 Le suite sono adatte alle famiglie?",
+        "a": "Assolutamente sì. Le suite da 2 e 3 camere con cucina completa sono ideali per le famiglie. I bambini sono i benvenuti e su richiesta possiamo fornire letti aggiuntivi o attrezzatura per neonati."
+      },
+      {
+        "q": "📩 Come posso effettuare una prenotazione?",
+        "a": "Potete contattarci tramite il modulo di contatto sul sito, via email a reservations@dumasuites.com, oppure telefonicamente. Confermeremo la disponibilità e forniremo un link di prenotazione personalizzato."
+      }
+    ]
+  },
+  "reviews": {
+    "eyebrow": "Esperienze & Storie",
+    "title": "Cosa hanno amato di più i nostri ospiti",
+    "leaveReview": "Lascia una Recensione",
+    "items": [
+      {
+        "id": 1,
+        "rating": 5,
+        "pullQuote": "Era come tornare a casa.",
+        "text": "Aprire le porte della terrazza ogni mattina con la vista e il profumo dell'Oceano Indiano era qualcosa di magico. Il personale ricordava i nostri nomi dal primo giorno — ogni dettaglio era premuroso, caloroso e meravigliosamente personale.",
+        "author": "Sarah & James O.",
+        "origin": "London, UK",
+        "initials": "SJ",
+        "source": "Google"
+      },
+      {
+        "id": 2,
+        "rating": 5,
+        "pullQuote": "Assolutamente indimenticabile.",
+        "text": "La suite era al di là di qualsiasi cosa avessimo immaginato. Guardare il tramonto dalla nostra terrazza privata con un bicchiere di vino keniota, l'orizzonte che brillava di ambra — un ricordo che porterò con me per anni.",
+        "author": "Aiko T.",
+        "origin": "Tokyo, Japan",
+        "initials": "AT",
+        "source": "Google"
+      },
+      {
+        "id": 3,
+        "rating": 5,
+        "pullQuote": "Duma Suites ha alzato il livello.",
+        "text": "Dalla luce del mattino sulla terrazza alla sera bordo piscina, ogni tocco era premuroso. Questo è il lusso costiero dell'Africa orientale al suo meglio — raffinato, pieno di anima e profondamente curato.",
+        "author": "David M.",
+        "origin": "Nairobi, Kenya",
+        "initials": "DM",
+        "source": "Google"
+      },
+      {
+        "id": 4,
+        "rating": 5,
+        "pullQuote": "La vera ospitalità, ridefinita.",
+        "text": "Il concierge ha organizzato un tour privato di snorkelling e una crociera al tramonto in dhow — entrambi straordinari. Questo è un posto che capisce davvero cosa significa ospitalità. Siamo partiti già pianificando il nostro ritorno.",
+        "author": "Priya & Rajan K.",
+        "origin": "Dubai, UAE",
+        "initials": "PR",
+        "source": "TripAdvisor"
+      },
+      {
+        "id": 5,
+        "rating": 5,
+        "pullQuote": "Una gemma nascosta sulla costa del Kenya.",
+        "text": "Le viste della piscina infinity all'alba sono incomparabili con qualsiasi cosa io abbia vissuto altrove nel mondo. Il silenzio, la luce, il servizio attento — tutto contribuisce a qualcosa di davvero raro. Tornerò assolutamente.",
+        "author": "Marco B.",
+        "origin": "Rome, Italy",
+        "initials": "MB",
+        "source": "TripAdvisor"
+      },
+      {
+        "id": 6,
+        "rating": 5,
+        "pullQuote": "Pura serenità fin dal primo respiro.",
+        "text": "Abbiamo festeggiato il nostro anniversario qui e ogni momento ha superato le nostre aspettative. La suite era impeccabile, la location eccezionale e il personale è andato silenziosamente al di là delle aspettative in modi di cui parliamo ancora.",
+        "author": "Céleste & Henri D.",
+        "origin": "Paris, France",
+        "initials": "CH",
+        "source": "Google"
+      },
+      {
+        "id": 7,
+        "rating": 5,
+        "pullQuote": "Bella, nuova e ben costruita.",
+        "text": "Residenza bella, nuova e ben costruita. Ben posizionata con eccellente accesso a tutto ciò che Watamu ha da offrire. Un'esperienza eccellente dall'inizio alla fine.",
+        "author": "Renzo S.",
+        "origin": "Italy",
+        "initials": "RS",
+        "source": "Google"
+      },
+      {
+        "id": 8,
+        "rating": 5,
+        "pullQuote": "Livello massimo.",
+        "text": "Livello massimo. Tutto del soggiorno — la suite, il servizio, la posizione — era eccezionale. Esattamente quello che si spera e molto di più.",
+        "author": "Gianpietro C.",
+        "origin": "Italy",
+        "initials": "GC",
+        "source": "Google"
+      }
+    ]
+  },
+  "articles": {
+    "eyebrow": "Articoli & Blog",
+    "title": "Scopri Watamu",
+    "subtitle": "Storie, guide e ispirazioni dalla costa del Kenya.",
+    "readMore": "Leggi di Più",
+    "blogCta": "Storie & Guide",
+    "items": [
+      {
+        "title": "Le 5 Migliori Attività sulla Costa di Watamu",
+        "excerpt": "Dalla leggendaria escursione di un'intera giornata con Safari Blue e l'avvistamento dei delfini a Mida Creek, all'esplorazione delle antiche Rovine di Gedi, allo snorkelling nel Parco Marino di Watamu e a un indimenticabile tramonto in dhow — Watamu offre esperienze straordinarie per ogni tipo di viaggiatore.",
+        "category": "Guida di Viaggio",
+        "slug": "top-5-activities-watamu"
+      },
+      {
+        "title": "Piatti Costieri Swahili da Assolutamente Provare",
+        "excerpt": "La costa del Kenya è la patria di una delle tradizioni culinarie più distintive dell'Africa. Dal profumato riso pilau al biryani cotto lentamente, dal polpo alla griglia al mchuzi wa samaki al cocco e all'iconico Safari Blue — questi sono i piatti che definiscono l'esperienza della costa swahili.",
+        "category": "Cibo & Cultura",
+        "slug": "coastal-swahili-dishes"
+      }
+    ]
+  },
+  "excursions": {
+    "eyebrow": "SAFARI & ESCURSIONI",
+    "title": "ESPERIENZE CURATE",
+    "note": "Disponibile solo per ospiti confermati e prenotazioni",
+    "cta": "Pianifica questa Attività",
+    "items": [
+      {
+        "title": "Rovine di Gedi",
+        "desc": "Esplorate uno dei siti archeologici più straordinari della costa dell'Africa orientale. L'antica città swahili di Gedi, nascosta in una fitta foresta costiera, risale al XII secolo. Scoprite moschee in rovina, rovine di palazzi e storie di secoli fa — con le scimmie residenti come guide.",
+        "badge": "Patrimonio Culturale"
+      },
+      {
+        "title": "Avvistamento Elefanti",
+        "desc": "Partite alla scoperta dei gentili giganti dell'Africa orientale nel loro habitat naturale. Una gita di un giorno nelle iconiche aree di conservazione degli elefanti di Tsavo offre incontri ravvicinati con elefanti selvatici, giraffe, bufali e un paesaggio di savana mozzafiato — a poche ore da Watamu.",
+        "badge": "Fauna Selvatica"
+      },
+      {
+        "title": "Crociera in Dhow al Tramonto",
+        "desc": "Salpa verso l'ora dorata a bordo di un tradizionale dhow di legno lungo la costa di Watamu. Mentre il sole scende sull'orizzonte dell'Oceano Indiano, gustate frutti di mare freschi, bevande fresche e la serena bellezza del tratto di costa più celebrato del Kenya.",
+        "badge": "Esperienza Oceanica"
+      },
+      {
+        "title": "Marafa – La Cucina dell'Inferno",
+        "desc": "Partite alla scoperta di una delle meraviglie naturali più straordinarie del Kenya — la Depressione di Marafa, conosciuta localmente come 'Nyari', ovvero 'il luogo che si è spezzato da solo'. Scolpite nei millenni dal vento e dalla pioggia, queste drammatiche gole di ocra e terracotta brillano di una luce ultraterrena all'alba e al tramonto, guadagnandosi il loro poetico soprannome: la Cucina dell'Inferno. Un paesaggio unico sulla costa del Kenya — primitivo, antico e assolutamente indimenticabile.",
+        "badge": "Meraviglia Naturale"
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Contattaci",
+    "title": "Siamo a Tua Disposizione",
+    "sub": "Ci farebbe piacere sentirti. Inviaci un messaggio e ti risponderemo il prima possibile.",
+    "formLabels": {
+      "name": "Nome Completo",
+      "email": "Indirizzo Email",
+      "phone": "Numero di Telefono",
+      "message": "Il Tuo Messaggio",
+      "send": "Invia Messaggio"
+    },
+    "info": {
+      "address": "Ghepard Towers, Watamu, Contea di Kilifi, Kenya",
+      "phone": "+254 710 933 025",
+      "receptionPhone": "+254 713 713663",
+      "receptionLabel": "Receptionist · James Ghepard Towers",
+      "email": "reservations@dumasuites.com"
+    }
+  },
+  "cta": {
+    "eyebrow": "Watamu ti Attende",
+    "headingLine1": "Inizia la Tua",
+    "headingLine2": "Storia Costiera",
+    "sub": "Ogni soggiorno a Duma Suites è unico. Lasciaci costruire il tuo — dalla scelta della suite a esperienze su misura. Contattaci e il nostro team risponderà entro 24 ore.",
+    "btn1": "Prenota ora",
+    "btn2": "Scrivici su WhatsApp"
+  },
+  "footer": {
+    "tagline": "Watamu · Lusso Costiero",
+    "desc": "All'interno delle Ghepard Towers, Watamu — a soli 50 metri dalle spiagge bianche e dalle acque turchesi dell'Oceano Indiano.",
+    "colSuites": "Suite",
+    "colExplore": "Esplora",
+    "colContact": "Contatti",
+    "links": {
+      "gallery": "Galleria",
+      "about": "Chi Siamo",
+      "faq": "FAQ",
+      "excursions": "Escursioni",
+      "blog": "Blog",
+      "houseRules": "Regolamento",
+      "privacy": "Privacy Policy",
+      "terms": "Termini di Servizio"
+    },
+    "suitesLinks": [
+      {
+        "label": "Duma Suite Anna",
+        "href": "/suites/coastal-haven"
+      },
+      {
+        "label": "Duma Suite Alice",
+        "href": "/suites/serenity-villa"
+      },
+      {
+        "label": "Penthouse Suite Sofia",
+        "href": "/suites/penthouse-suite-1-sofia"
+      },
+      {
+        "label": "Tutte le Suite",
+        "href": "/suites"
+      }
+    ],
+    "copy": "© 2026 Duma Suites. Tutti i diritti riservati.",
+    "privacy": "Privacy Policy",
+    "terms": "Termini di Servizio",
+    "houseRules": "Regolamento",
+    "cookies": "Cookie Policy"
+  },
+  "houseRules": {
+    "title": "Regolamento",
+    "subtitle": "Ghepard Towers Residence — Regolamento per l'Uso degli Appartamenti e delle Aree Comuni",
+    "intro": "Gentili Ospiti e Residenti, al fine di garantire una serena e sicura convivenza all'interno del Residence Ghepard Towers, si richiede il rispetto delle seguenti norme comportamentali:",
+    "sections": [
+      {
+        "title": "1. Uso della Piscina",
+        "items": [
+          "L'accesso alle piscine è consentito dalle ore 09:00 alle ore 21:00.",
+          "È severamente vietato correre attorno alla piscina al piano terra e tuffarsi, per motivi di sicurezza e per rispetto della quiete delle unità al piano terreno.",
+          "La piscina sul rooftop richiede la massima attenzione: l'accesso non è consentito a minori non accompagnati da un adulto responsabile.",
+          "È vietato introdurre in piscina o nelle aree comuni cibi, bevande o oggetti frangibili (bicchieri, bottiglie di vetro, ecc.).",
+          "È vietato l'uso di gommoni, materassini ingombranti o giocattoli voluminosi.",
+          "Importante: La Direzione declina ogni responsabilità per incidenti o danni derivanti dal mancato rispetto del presente regolamento. L'uso delle piscine è a proprio rischio e pericolo."
+        ]
+      },
+      {
+        "title": "2. Uso Responsabile di Energia e Risorse",
+        "items": [
+          "Si raccomanda un uso contenuto dell'energia elettrica e dell'aria condizionata, nel rispetto dell'ambiente.",
+          "L'acqua è un bene prezioso: si invita a non sprecarla e ad adottare comportamenti responsabili in ogni momento.",
+          "Si raccomanda il riutilizzo degli asciugamani, se possibile, per ridurre l'impatto ambientale.",
+          "Quando si lascia l'appartamento, anche per brevi periodi, si invita a spegnere sempre il boiler, l'aria condizionata e le luci."
+        ]
+      },
+      {
+        "title": "3. Comportamento e Rispetto della Quiete",
+        "items": [
+          "Non è consentito utilizzare apparecchi audio o dispositivi con volume elevato né nelle aree comuni né all'interno delle singole unità.",
+          "Sono vietati urla, schiamazzi o comportamenti rumorosi, in particolare durante le ore di riposo pomeridiane (13:00–15:00) e notturne (22:00–08:00).",
+          "È vietato usare fiamme libere, barbecue, griglie o apparecchi a gas non forniti direttamente dal residence."
+        ]
+      },
+      {
+        "title": "4. Tutela degli Spazi Comuni e Aree Verdi",
+        "items": [
+          "Non è consentito calpestare le aree verdi del giardino.",
+          "Si invitano tutti a mantenere puliti gli spazi comuni e a utilizzarli con cura.",
+          "Non sono ammessi all'interno del residence biciclette, monopattini o motocicli.",
+          "È vietato utilizzare nelle aree comuni lettini, sedie o altri arredi non forniti dal residence."
+        ]
+      },
+      {
+        "title": "5. Sicurezza e Gestione degli Appartamenti",
+        "items": [
+          "La Direzione declina ogni responsabilità per beni personali, oggetti di valore o denaro lasciati incustoditi all'interno degli appartamenti.",
+          "Ove presente, si invita all'uso della cassetta di sicurezza disponibile nell'unità.",
+          "Il residence non fornisce servizio di deposito chiavi: si invita pertanto a portare sempre con sé la chiave dell'appartamento.",
+          "Per qualsiasi necessità relativa all'appartamento affittato, si invita a contattare il proprietario o l'housekeeper di riferimento.",
+          "Eventuali danni causati all'interno degli appartamenti o nelle aree comuni dovranno essere rimborsati al proprietario dell'unità o alla società di gestione."
+        ]
+      },
+      {
+        "title": "6. Accessi, Vigilanza e Registrazione",
+        "items": [
+          "Un servizio di vigilanza notturna è attivo dalle ore 18:00 alle ore 06:00. Durante le restanti ore, è garantita la presenza del personale di portineria.",
+          "Per motivi di sicurezza, è obbligatoria la registrazione di ogni ospite. Solo le persone regolarmente registrate sono autorizzate ad accedere al residence.",
+          "In caso di violazione delle regole di sicurezza, la Direzione si riserva il diritto di chiamare le forze dell'ordine."
+        ]
+      },
+      {
+        "title": "7. Contatti di Emergenza",
+        "numbers": [
+          {
+            "label": "Polizia",
+            "value": "999 · +254(0)412311401 · 0736350114 · 0729614264"
+          },
+          {
+            "label": "Ambulanza",
+            "value": "0736241499"
+          },
+          {
+            "label": "Vigili del Fuoco",
+            "value": "0733550990 · 073065955"
+          },
+          {
+            "label": "Ospedale",
+            "value": "0702744917 · 0722474165"
+          },
+          {
+            "label": "Sicurezza",
+            "value": "0719088105 · 0794265943 · 0732100105"
+          },
+          {
+            "label": "Receptionist",
+            "value": "+254 713 713663 · James Ghepard Towers"
+          }
+        ]
+      }
+    ]
+  },
+  "videos": {
+    "eyebrow": "La Vita a Duma Suites",
+    "title": "Il Mondo in Movimento",
+    "sub": "Immergetevi nelle immagini e nei suoni di Watamu.",
+    "items": [
+      {
+        "label": "Vista Piscina sul Rooftop"
+      },
+      {
+        "label": "Piscina Infinity sul Tetto"
+      },
+      {
+        "label": "Ricci di Mare in Spiaggia"
+      },
+      {
+        "label": "Costa di Watamu"
+      },
+      {
+        "label": "Spiagge Bianche di Watamu"
+      },
+      {
+        "label": "Safari Blu – Gamberi Locali"
+      },
+      {
+        "label": "Safari Blu – BBQ Isola Sudi"
+      }
+    ]
+  },
+  "suites": {
+    "all": {
+      "heroEyebrow": "Suite e Appartamenti",
+      "heroTitle": "Soggiorna a Modo Tuo",
+      "heroSub": "Dalle suite intime a un appartamento spazioso — una collezione eccezionale per ogni tipo di viaggiatore.",
+      "introEyebrow": "Suite e Appartamenti",
+      "introTitle": "Scegli il Tuo Rifugio",
+      "introText": "Duma Suites offre una collezione curata di spazi abitativi in sei suite distinte — dalla nostra intima Duma Suite Anna (1 camera) e le suite da 2 camere Lucia e Roma, alla generosa Duma Suite Alice (3 camere) fino alle spettacolari Penthouse Suite a due piani Sofia e Chiara. Attualmente in mostra una selezione delle nostre proprietà; tutte le suite sono disponibili su richiesta.",
+      "videoEyebrow": "Panoramica del Resort",
+      "videoTitle": "Vivi Duma Suites",
+      "showcaseEyebrow": "Le Nostre Suite",
+      "showcaseTitle": "Scegli la Tua Suite",
+      "showcaseIntro": "Tre rifugi distinti, ognuno pensato per un modo diverso di vivere Watamu.",
+      "viewSuite": "Scopri la Suite",
+      "cards": [
+        {
+          "name": "Penthouse Suite Sofia",
+          "tagline": "Penthouse · Rifugio di Lusso sul Tetto",
+          "desc": "Un magnifico penthouse su due piani con terrazza al tramonto sul tetto, 3 camere king e viste panoramiche sul mare — il massimo del lusso a Watamu.",
+          "size": "150 mq",
+          "beds": "3 Letti King",
+          "guests": "6 Ospiti"
+        },
+        {
+          "name": "Duma Suite Anna",
+          "tagline": "1 Camera · Rifugio Costiero Intimo",
+          "desc": "Un rifugio costiero intimo per coppie in cerca di privacy ed eleganza, a pochi passi dall'Oceano Indiano.",
+          "size": "70 mq",
+          "beds": "1 Letto King",
+          "guests": "2 Ospiti"
+        },
+        {
+          "name": "Duma Suite Alice",
+          "tagline": "3 Camere · Rifugio di Lusso per Famiglie",
+          "desc": "Una spaziosa suite da tre camere con cucina completa, terrazza esterna e viste sul giardino — perfetta per famiglie o gruppi.",
+          "size": "135 mq",
+          "beds": "2 Letti King, 1 Letto Francese",
+          "guests": "6 Ospiti"
+        }
+      ]
+    },
+    "coastal": {
+      "metaTitle": "Duma Suite Anna | Duma Suites Watamu",
+      "metaDesc": "Duma Suite Anna a Duma Suites, Watamu. Lusso intimo con vista piscina, letto king, kitchenette e salotto privato.",
+      "heroEyebrow": "Suite 1 Camera",
+      "heroTitle": "Duma Suite Anna",
+      "heroTagline": "Lusso costiero intimo con vista oceano e piscina",
+      "heroCta1": "Prenota un Soggiorno",
+      "heroCta2": "Vedi la Galleria",
+      "sqm": "70 mq",
+      "beds": "1 Letto King",
+      "guests": "2 Ospiti",
+      "minStay": "Min 2 Notti",
+      "aboutEyebrow": "La Suite",
+      "aboutTitle": "Un Rifugio Costiero Intimo",
+      "aboutText1": "Duma Suite Anna è un santuario da una camera finemente arredato nelle Ghepard Towers, con viste spettacolari sulla piscina infinity e sull'Oceano Indiano. Pensata per coppie e viaggiatori solitari in cerca di un'evasione raffinata, ogni dettaglio è stato curato — dal lussuoso letto king alla kitchenette completamente attrezzata e al salotto privato.",
+      "aboutText2": "Svegliatevi con la luce dorata del mattino che filtra attraverso le finestre a tutta altezza, e rilassatevi la sera sul balcone privato con la brezza dell'oceano. Questo è il lusso costiero, nella sua essenza.",
+      "aboutCta": "Verifica Disponibilità",
+      "aboutBookCta": "Prenota Duma Suite Anna",
+      "highlightsTitle": "Punti Salienti",
+      "highlights": [
+        "Viste mozzafiato sull'oceano e sulla piscina",
+        "Elegante letto king con biancheria premium",
+        "Kitchenette completamente attrezzata",
+        "Bagno en-suite con doccia a pioggia",
+        "Salotto privato con Smart TV",
+        "Pulizie quotidiane e servizio di turndown"
+      ],
+      "galleryEyebrow": "Galleria Fotografica",
+      "galleryTitle": "Dentro la Suite",
+      "galleryDesc": "Entra nella Duma Suite Anna e scopri ogni angolo — dagli interni luminosi alle tranquille viste sul giardino e sulla piscina che ti accolgono mattina e sera.",
+      "galleryCta": "Prenota un Soggiorno",
+      "tourEyebrow": "Tour della Suite",
+      "tourTitle": "Scopri la Suite",
+      "tourSub": "Un walkthrough cinematografico del vostro rifugio costiero.",
+      "tourCta": "Richiedi Informazioni sulla Suite",
+      "amenitiesEyebrow": "Cosa è Incluso",
+      "amenitiesTitle": "Servizi della Suite",
+      "amenities": [
+        "Letto king size",
+        "Bagno en-suite",
+        "Kitchenette completa",
+        "Salotto privato",
+        "Balcone",
+        "Vista piscina",
+        "Wi-Fi ad alta velocità",
+        "Pulizie quotidiane",
+        "Aria condizionata",
+        "Smart TV",
+        "Cena in suite",
+        "Biancheria premium",
+        "Lettini",
+        "Asciugamani forniti",
+        "Ventilatori a soffitto"
+      ],
+      "policiesEyebrow": "Politiche e Check-in",
+      "policiesTitle": "Prima di Arrivare",
+      "policies": [
+        {
+          "label": "Check-in",
+          "value": "14:00"
+        },
+        {
+          "label": "Check-out",
+          "value": "10:00"
+        },
+        {
+          "label": "Soggiorno minimo",
+          "value": "2 notti"
+        },
+        {
+          "label": "Pagamento",
+          "value": "50% alla prenotazione · 50% al check-in"
+        },
+        {
+          "label": "Cancellazione",
+          "value": "Prima di 30 giorni: rimborso completo · Entro 30 giorni: non rimborsabile"
+        },
+        {
+          "label": "Animali",
+          "value": "Animali piccoli benvenuti"
+        },
+        {
+          "label": "Fumo",
+          "value": "Solo balcone e ingresso"
+        }
+      ],
+      "inquireEyebrow": "Prenotazioni",
+      "inquireTitle": "Prenota il Tuo Soggiorno",
+      "inquireSub": "Pronti a vivere il lusso costiero? Contattateci per verificare disponibilità e tariffe.",
+      "inquireEmail": "Scrivici",
+      "inquireWhatsapp": "Scrivici su WhatsApp",
+      "suitesEyebrow": "Le Nostre Suite",
+      "suitesTitle": "Scopri Tutte le Suite",
+      "badgeCurrent": "Suite Attuale",
+      "coastalTagline": "1 Camera · Rifugio Costiero Intimo",
+      "serenityTagline": "3 Camere · Rifugio di Lusso per Famiglie",
+      "penthouseTagline": "Penthouse · Rifugio di Lusso sul Tetto",
+      "viewSuiteBtn": "Scopri →"
+    },
+    "serenity": {
+      "metaTitle": "Duma Suite Alice | Duma Suites Watamu",
+      "metaDesc": "Duma Suite Alice a Duma Suites, Watamu. Suite di lusso spaziosa con cucina completa, terrazza esterna e viste sul giardino.",
+      "heroEyebrow": "Suite 3 Camere",
+      "heroTitle": "Duma Suite Alice",
+      "heroTagline": "Suite da 3 camere con terrazza esterna e viste sul giardino",
+      "heroCta1": "Prenota un Soggiorno",
+      "heroCta2": "Vedi la Galleria",
+      "sqm": "135 mq",
+      "beds": "2 Letti King, 1 Letto Francese",
+      "guests": "6 Ospiti",
+      "minStay": "Min 2 Notti",
+      "aboutEyebrow": "La Suite",
+      "aboutTitle": "Un Rifugio Familiare Esclusivo",
+      "aboutText1": "Duma Suite Alice ridefinisce lo spazio e il comfort nelle Ghepard Towers. Questa spaziosa suite da tre camere è pensata per famiglie e gruppi che non vogliono rinunciare al lusso — con cucina completa, più bagni en-suite, una terrazza esterna panoramica e lussureggianti viste sul giardino.",
+      "aboutText2": "Riunirsi attorno alla tavola da pranzo formale, rilassarsi nel salotto interno o uscire sulla terrazza privata per un caffè mattutino circondati dalle bellezze di Watamu. Questa è la vera esperienza suite — raffinata, spaziosa e indimenticabile.",
+      "aboutCta": "Verifica Disponibilità",
+      "aboutBookCta": "Prenota Duma Suite Alice",
+      "highlightsTitle": "Punti Salienti",
+      "highlights": [
+        "Tre spaziose camere da letto king",
+        "Più bagni en-suite",
+        "Cucina completamente attrezzata",
+        "Terrazza esterna privata con viste sul giardino",
+        "Più salotti e sale da pranzo",
+        "Ampio balcone per i tramonti",
+        "Pulizie quotidiane e servizio di turndown"
+      ],
+      "galleryEyebrow": "Galleria Fotografica",
+      "galleryTitle": "Dentro la Suite",
+      "galleryDesc": "Esplora ogni spazio della Duma Suite Alice — il calore di tre generose camere da letto, ampie aree living e terrazze esterne dove la luce cambia splendidamente dall'alba al tramonto.",
+      "galleryCta": "Prenota un Soggiorno",
+      "tourEyebrow": "Tour della Suite",
+      "tourTitle": "Scopri la Suite",
+      "tourSub": "Un walkthrough cinematografico del vostro rifugio privato.",
+      "tourCta": "Richiedi Informazioni sulla Suite",
+      "amenitiesEyebrow": "Cosa è Incluso",
+      "amenitiesTitle": "Servizi della Suite",
+      "amenities": [
+        "3 Camere king",
+        "Più en-suite",
+        "Cucina completa",
+        "Terrazza esterna",
+        "Viste sul giardino",
+        "Sala da pranzo formale",
+        "Soggiorno",
+        "Ampio balcone",
+        "Wi-Fi ad alta velocità",
+        "Pulizie quotidiane",
+        "Aria condizionata",
+        "Smart TV",
+        "Lettini",
+        "Asciugamani forniti",
+        "Ventilatori a soffitto"
+      ],
+      "policiesEyebrow": "Politiche e Check-in",
+      "policiesTitle": "Prima di Arrivare",
+      "policies": [
+        {
+          "label": "Check-in",
+          "value": "14:00"
+        },
+        {
+          "label": "Check-out",
+          "value": "10:00"
+        },
+        {
+          "label": "Soggiorno minimo",
+          "value": "2 notti"
+        },
+        {
+          "label": "Pagamento",
+          "value": "50% alla prenotazione · 50% al check-in"
+        },
+        {
+          "label": "Cancellazione",
+          "value": "Prima di 30 giorni: rimborso completo · Entro 30 giorni: non rimborsabile"
+        },
+        {
+          "label": "Animali",
+          "value": "Animali piccoli benvenuti"
+        },
+        {
+          "label": "Fumo",
+          "value": "Solo balcone e ingresso"
+        }
+      ],
+      "inquireEyebrow": "Prenotazioni",
+      "inquireTitle": "Prenota il Tuo Soggiorno",
+      "inquireSub": "Pronti a vivere il lusso della suite? Contattateci per verificare disponibilità e tariffe.",
+      "inquireEmail": "Scrivici",
+      "inquireWhatsapp": "Scrivici su WhatsApp",
+      "suitesEyebrow": "Le Nostre Suite",
+      "suitesTitle": "Scopri Tutte le Suite",
+      "badgeCurrent": "Suite Attuale",
+      "coastalTagline": "1 Camera · Rifugio Costiero Intimo",
+      "serenityTagline": "3 Camere · Rifugio di Lusso per Famiglie",
+      "penthouseTagline": "Penthouse · Rifugio di Lusso sul Tetto",
+      "viewSuiteBtn": "Scopri →"
+    },
+    "penthouse": {
+      "metaTitle": "Penthouse Suite Sofia | Duma Suites Watamu",
+      "metaDesc": "Penthouse Suite Sofia a Duma Suites, Watamu. Un magnifico penthouse su due piani con terrazza al tramonto sul tetto, viste panoramiche sul mare e 3 camere king.",
+      "heroEyebrow": "Penthouse Suite",
+      "heroTitle": "Penthouse Suite Sofia",
+      "heroTagline": "Due piani di lusso sul tetto con viste panoramiche sul mare e al tramonto",
+      "heroCta1": "Prenota un Soggiorno",
+      "heroCta2": "Vedi la Galleria",
+      "sqm": "150 mq",
+      "beds": "3 Letti King",
+      "guests": "6 Ospiti",
+      "minStay": "Min 2 Notti",
+      "aboutEyebrow": "La Suite",
+      "aboutTitle": "Un Rifugio Penthouse sul Tetto",
+      "aboutText1": "Penthouse Suite Sofia è uno straordinario penthouse su due piani che corona le Ghepard Towers, con 150 metri quadrati di raffinato living costiero. Tre camere king, tra cui una camera master al piano superiore, sono completate da una kitchenette completamente attrezzata, molteplici aree lounge e sala da pranzo, e spazi esterni spettacolari che rendono ogni momento una vista da ricordare.",
+      "aboutText2": "Dalla terrazza al tramonto sul tetto al tavolo da pranzo esterno da 8 posti, e il celebre swing con viste sul mare, il giardino e il tramonto — questo è il vertice del lusso a Watamu, condensato in un'esperienza indimenticabile.",
+      "aboutCta": "Verifica Disponibilità",
+      "aboutBookCta": "Prenota Penthouse Sofia",
+      "highlightsTitle": "Punti Salienti",
+      "highlights": [
+        "Penthouse su due piani con camera master al piano superiore",
+        "Tre letti king con biancheria premium",
+        "Terrazza al tramonto sul tetto con viste panoramiche sul mare",
+        "Tavolo da pranzo esterno da 8 posti sulla terrazza",
+        "Swing con viste su mare, giardino e tramonto",
+        "Kitchenette completamente attrezzata",
+        "Pulizie giornaliere e servizio di cura del letto"
+      ],
+      "galleryEyebrow": "Galleria Fotografica",
+      "galleryTitle": "Dentro il Penthouse",
+      "galleryDesc": "Una finestra sulla vita in cima — esplora i grandi interni del Penthouse Suite Sofia e le viste mozzafiato dalle terrazze e dai balconi, all'alba, all'ora dorata e sotto le stelle.",
+      "galleryCta": "Prenota Penthouse Sofia",
+      "amenitiesEyebrow": "Cosa è Incluso",
+      "amenitiesTitle": "Servizi del Penthouse",
+      "amenities": [
+        "3 Letti King",
+        "Più bagni en-suite",
+        "2 Piani",
+        "Camera Master al Piano Superiore",
+        "Kitchenette Completamente Attrezzata",
+        "Lettini da Sole Esterni",
+        "Sedie Lounge",
+        "Sedie Reclinabili",
+        "Grandi Balconi",
+        "Terrazza al Tramonto sul Tetto",
+        "Tavolo da Pranzo Interno",
+        "Tavolo da Pranzo Esterno 8 Posti",
+        "Swing con Vista Mare e Tramonto",
+        "Wi-Fi ad Alta Velocità",
+        "Pulizie Giornaliere",
+        "Aria Condizionata",
+        "Smart TV",
+        "Asciugamani Forniti",
+        "Ventilatori a Soffitto",
+        "Accesso alla Piscina",
+        "Vista Mare",
+        "Vista Giardino"
+      ],
+      "policiesEyebrow": "Politiche e Check-in",
+      "policiesTitle": "Prima del Vostro Arrivo",
+      "policies": [
+        {
+          "label": "Check-in",
+          "value": "14:00"
+        },
+        {
+          "label": "Check-out",
+          "value": "10:00"
+        },
+        {
+          "label": "Soggiorno minimo",
+          "value": "2 notti"
+        },
+        {
+          "label": "Pagamento",
+          "value": "50% alla prenotazione · 50% al check-in"
+        },
+        {
+          "label": "Cancellazione",
+          "value": "Prima di 30 giorni: rimborso completo · Entro 30 giorni: non rimborsabile"
+        },
+        {
+          "label": "Animali",
+          "value": "Animali di piccola taglia benvenuti"
+        },
+        {
+          "label": "Fumo",
+          "value": "Solo balcone e hall"
+        }
+      ],
+      "inquireEyebrow": "Prenotazioni",
+      "inquireTitle": "Prenota il Vostro Soggiorno",
+      "inquireSub": "Pronti a vivere il lusso del penthouse? Contattateci per verificare disponibilità e tariffe.",
+      "inquireEmail": "Scrivici",
+      "inquireWhatsapp": "WhatsApp",
+      "suitesEyebrow": "Le Nostre Suite",
+      "suitesTitle": "Scopri Tutte le Suite",
+      "badgeCurrent": "Suite Attuale",
+      "coastalTagline": "1 Camera · Rifugio Costiero Intimo",
+      "serenityTagline": "3 Camere · Rifugio di Lusso per Famiglie",
+      "penthouseTagline": "Penthouse · Rifugio di Lusso sul Tetto",
+      "viewSuiteBtn": "Scopri →"
+    }
+  },
+  "gm": {
+    "welcome": "Un caloroso benvenuto a Duma Suites",
+    "eyebrow": "Un Messaggio dal General Manager",
+    "para1": "A Duma Suites, non offriamo semplicemente un alloggio — creiamo momenti. Ogni alba sull’Oceano Indiano, ogni brezza che porta il profumo del mare, è tessuta intenzionalmente nel tessuto del vostro soggiorno.",
+    "para2": "Il nostro team si è dedicato a ridefinire il significato del lusso costiero — non solo attraverso la grandiosità, ma attraverso la silenziosa certezza della perfezione in ogni dettaglio. Dal lino sul vostro letto all’ultima luce del tramonto di Watamu, nulla è lasciato al caso.",
+    "para3": "Watamu è più di una destinazione; è uno stato d’animo. Che arriviate in cerca di avventura lungo la barriera corallina o semplicemente della pace profonda dell’orizzonte al crepuscolo, Duma Suites vi incontrerà esattamente dove siete — e supererà ogni vostra aspettativa.",
+    "closing": "Benvenuti a casa nostra. Guardate la breve introduzione qui sotto per scoprire cosa vi aspetta.",
+    "gmName": "Andrea Boemo",
+    "gmTitle": "General Manager, Duma Suites",
+    "videoLabel": "Una Breve Introduzione",
+    "videoCta": "Esplora le Nostre Suite",
+    "videoCtaSub": "Contattaci"
+  },
+  "suiteHighlights": {
+    "eyebrow": "Punti Salienti",
+    "title": "L’Esperienza Duma",
+    "subtitle": "Tocca una scheda per scoprirne i punti salienti",
+    "tapHint": "tocca per vedere i dettagli ↩",
+    "viewAll": "Trova la Tua Suite",
+    "cards": [
+      {
+        "title": "Piscine di Serenità",
+        "points": [
+          "Piscina infinity sul rooftop",
+          "Piscina leisure al piano terra",
+          "Docce esterne",
+          "Terrazza bordo piscina vista oceano",
+          "Area piscina illuminata la sera"
+        ],
+        "overlayTitle": "Piscine di Serenità",
+        "overlayText": "Immergetevi nella tranquillità sopra l'Oceano Indiano."
+      },
+      {
+        "title": "Eleganza Swahili",
+        "points": [
+          "Interni swahili autentici",
+          "Letti king con biancheria premium",
+          "Aria condizionata e ventilatori a soffitto",
+          "Bagni en-suite privati",
+          "Cucina, salotto e balcone completi"
+        ],
+        "overlayTitle": "Eleganza Swahili",
+        "overlayText": "Artigianato costiero in ogni dettaglio."
+      },
+      {
+        "title": "Natura e Sicurezza",
+        "points": [
+          "A pochi passi dalla spiaggia",
+          "Giardini tropicali rigogliosi",
+          "Sicurezza 24/7 in loco",
+          "Parcheggio privato",
+          "Ambienti naturali sereni"
+        ],
+        "overlayTitle": "Natura e Sicurezza",
+        "overlayText": "Tranquillità assoluta, naturalmente."
+      },
+      {
+        "title": "Lusso Senza Sforzo",
+        "points": [
+          "Pulizie quotidiane e turndown",
+          "Servizio lavanderia",
+          "Wi-Fi ad alta velocità ovunque",
+          "Prenotazione online intuitiva",
+          "Esperienze ospiti personalizzate"
+        ],
+        "overlayTitle": "Lusso Senza Sforzo",
+        "overlayText": "Dove ogni esigenza è anticipata."
+      }
+    ]
+  },
+  "suitesPreview": {
+    "eyebrow": "Anteprima Suite",
+    "title": "Le Duma Suites",
+    "intro": "Scopri spazi abitativi raffinati progettati per la serenità costiera.",
+    "viewAll": "Vedi Tutte le Suite",
+    "suites": [
+      {
+        "name": "Penthouse Suite Sofia",
+        "tagline": "Penthouse · Rifugio di Lusso sul Tetto",
+        "size": "150 mq",
+        "beds": "3 Letti King",
+        "guests": "6 Ospiti"
+      },
+      {
+        "name": "Duma Suite Anna",
+        "tagline": "1 Camera · Rifugio Costiero Intimo",
+        "size": "70 mq",
+        "beds": "1 Letto King",
+        "guests": "2 Ospiti"
+      },
+      {
+        "name": "Duma Suite Alice",
+        "tagline": "3 Camere · Rifugio di Lusso per Famiglie",
+        "size": "135 mq",
+        "beds": "2 Letti King, 1 Letto Francese",
+        "guests": "6 Ospiti"
+      }
+    ]
+  },
+  "article1": {
+    "metaTitle": "Le 5 Migliori Attività sulla Costa di Watamu | Storie Duma Suites",
+    "metaDesc": "Dal Safari Blue di un giorno intero e mezza giornata alle Rovine di Gedi, avvistamento elefanti e la passeggiata di Mida Creek — scopri le migliori attività sulla costa di Watamu.",
+    "heroEyebrow": "Guida di Viaggio",
+    "heroTitle": "Le Migliori Attività sulla Costa di Watamu",
+    "heroSub": "Esperienze straordinarie curate per gli ospiti di Duma Suites",
+    "proofRating": "Valutazione TripAdvisor",
+    "proofReturn": "Tornerebbe",
+    "introTitle": "Scopri le Migliori Esperienze di Watamu",
+    "introText": "Watamu è una delle destinazioni costiere più affascinanti dell’Africa orientale — e le attività qui disponibili vanno ben oltre il semplice relax sulle leggendarie spiagge di sabbia bianca. Dalle antiche rovine nascoste in una foresta sacra alle leggendarie avventure marine di un giorno intero, ogni esperienza lascia un’impressione duratura.",
+    "conciergeLabel": "Dal Nostro Concierge",
+    "conciergeText": "Il nostro team cura e organizza personalmente ogni escursione per gli ospiti che soggiornano a Duma Suites. Parlateci al check-in e creeremo l’itinerario perfetto per il vostro soggiorno.",
+    "voicesEyebrow": "Cosa Dicono i Nostri Ospiti",
+    "tipsLabel": "Consigli Insider del Concierge",
+    "perfectFor": "Perfetto per",
+    "bookCtaSub": "Il nostro concierge può organizzare qualsiasi di queste esperienze direttamente da Duma Suites.",
+    "bookCtaBtn": "Prenota un’Esperienza",
+    "readNextEyebrow": "Leggi Dopo",
+    "readNextTitle": "Piatti Costieri Swahili da Assolutamente Provare",
+    "readNextExcerpt": "Scopri le straordinarie tradizioni culinarie della costa swahili del Kenya — dal pilau profumato al curry di pesce al cocco fino al leggendario banchetto di frutti di mare del Safari Blue.",
+    "readNextCta": "Leggi la Guida",
+    "nextCategory": "Cibo & Cultura",
+    "moreFromEyebrow": "Altro da Duma Suites Stories",
+    "comingSoon": "Prossimamente",
+    "cs1Title": "Guida alle Spiagge Più Belle di Watamu",
+    "cs1Desc": "Le calette nascoste, i siti di nidificazione delle tartarughe e i tratti del tramonto della costa di Watamu — mappati per voi.",
+    "cs2Title": "Snorkelling e Immersioni a Watamu",
+    "cs2Desc": "Una guida completa alle barriere coralline, ai siti di immersione e alla fauna marina del Parco Marino di Watamu.",
+    "backToStories": "Torna a Storie & Guide",
+    "nextArticle": "Prossimo: Piatti Swahili",
+    "insiderTips": [
+      "Prenotate Safari Blue almeno 2 giorni prima — si esaurisce rapidamente durante l’alta stagione (dicembre–febbraio).",
+      "Visitate le Rovine di Gedi la mattina presto: più fresco, più tranquillo, e i colobus sono più attivi all’alba.",
+      "Portate il binocolo a Mida Creek — la passerella premia la pazienza, soprattutto con la bassa marea."
+    ],
+    "quotes": [
+      {
+        "text": "Safari Blue è stato il giorno più magico di tutto il nostro viaggio — i delfini, la barriera corallina, il banchetto sull’isola di Sudi. Prenotatelo senza esitare.",
+        "author": "Sarah M.",
+        "origin": "Londra",
+        "platform": "TripAdvisor",
+        "variant": "teal"
+      },
+      {
+        "text": "Il tour alle Rovine di Gedi organizzato dal concierge di Duma è stato assolutamente indimenticabile. In quei cortili si percepiscono 800 anni di storia swahili.",
+        "author": "Marco T.",
+        "origin": "Roma",
+        "platform": "Google",
+        "variant": "espresso"
+      },
+      {
+        "text": "Mida Creek con la bassa marea e aironi e aquile pescatrici in volo — non avevamo idea che Watamu nascondesse qualcosa di così sereno.",
+        "author": "Claire & James B.",
+        "origin": "Sydney",
+        "platform": "Booking.com",
+        "variant": "sand"
+      }
+    ],
+    "activities": [
+      {
+        "title": "Safari Blue — Escursione Giornaliera",
+        "pullQuote": "I delfini spinner saltano accanto al dhow mentre si svela l’avventura marina leggendaria di Watamu.",
+        "tags": [
+          "Coppie",
+          "Famiglie",
+          "Avventurieri"
+        ],
+        "badges": [
+          "Giornata Intera · 8 ore",
+          "Avvistamento Delfini",
+          "Banchetto di Pesce su Isola Sudi",
+          "Snorkelling Incluso",
+          "Prenota 2 Giorni Prima"
+        ],
+        "desc": "Safari Blue è l’avventura marina di un giorno intero più iconica di Watamu. A bordo di un tradizionale dhow di legno, navigate le acque cristalline al largo della costa di Watamu e Mida Creek. La giornata inizia con l’avvistamento dei delfini, seguita dallo snorkelling sulle barriere coralline del Parco Marino di Watamu. Il momento clou è la sosta a mezzogiorno sull’isola di Sudi per un banchetto BBQ di frutti di mare freschi sulla spiaggia — aragosta, calamari, polpo e gamberi grigliati su brace. Il viaggio di un giorno intero ritorna al tramonto."
+      },
+      {
+        "title": "Safari Blue — Mezza Giornata",
+        "pullQuote": "Un’introduzione condensata alla magia della costa di Watamu — delfini e barriere coralline vi aspettano.",
+        "tags": [
+          "Coppie",
+          "Soggiorni brevi"
+        ],
+        "badges": [
+          "Mezza Giornata · 4 ore",
+          "Avvistamento Delfini",
+          "Snorkelling Corallino",
+          "Partenza Mattutina"
+        ],
+        "desc": "Per gli ospiti con tempo limitato, l’escursione Safari Blue di mezza giornata offre l’esperienza marina principale senza la sosta per il banchetto sull’isola di Sudi. Godrete dell’avvistamento dei delfini e dello snorkelling sui giardini corallini di Watamu a bordo di un dhow tradizionale, rientrando nel primo pomeriggio."
+      },
+      {
+        "title": "Snorkelling al Parco Marino di Watamu",
+        "pullQuote": "Tartarughe, squali della barriera e una caleidoscopio di pesci tropicali — un mondo sottomarino accessibile e indimenticabile.",
+        "tags": [
+          "Famiglie",
+          "Snorkelisti",
+          "Prima volta"
+        ],
+        "badges": [
+          "2–3 ore",
+          "Protetto UNESCO",
+          "Tartarughe & Squali",
+          "Tutti i Livelli",
+          "Attrezzatura Fornita"
+        ],
+        "desc": "Uno dei parchi marini nazionali più antichi e protetti del Kenya si trova proprio alle porte di Watamu. I giardini corallini qui ospitano tartarughe, squali della barriera, razze, pesci tropicali vivaci e un’incredibile diversità di coralli."
+      },
+      {
+        "title": "Rovine di Gedi — Antica Città Swahili",
+        "pullQuote": "I resti spettrali di una città commerciale swahili del XII secolo, ancora dibattuta dagli storici — e ancora incantevole.",
+        "tags": [
+          "Appassionati di storia",
+          "Amanti della natura",
+          "Coppie"
+        ],
+        "badges": [
+          "Mezza Giornata · 2–3 ore",
+          "XII Secolo",
+          "Tour Guidati",
+          "Scimmie Colobus",
+          "Foresta Sacra"
+        ],
+        "desc": "Nascosta in una densa foresta costiera appena fuori Watamu si trovano le Rovine di Gedi — i resti spettrali di una città commerciale swahili del XII secolo abbandonata per ragioni ancora dibattute dagli storici. Camminate tra moschee in rovina, palazzi reali e case di mercanti mentre le scimmie colobus residenti saltano in alto. Le visite guidate portano in vita la straordinaria storia del sito."
+      },
+      {
+        "title": "Avvistamento Elefanti al Tsavo",
+        "pullQuote": "Le più grandi mandrie di elefanti del Kenya vivono qui — i famosi elefanti rossi del Tsavo, rossi di polvere.",
+        "tags": [
+          "Appassionati di fauna",
+          "Gitanti",
+          "Famiglie"
+        ],
+        "badges": [
+          "Giornata Intera",
+          "Big Five",
+          "Elefanti Rossi del Tsavo",
+          "Partenza all’Alba",
+          "Game Drive Incluso"
+        ],
+        "desc": "A poche ore da Watamu, i vasti parchi nazionali di Tsavo Est e Ovest ospitano le più grandi mandrie di elefanti del Kenya. Un safari di un giorno intero qui offre incontri ravvicinati con questi gentili giganti accanto a leoni, giraffe, bufali, zebre e i famosi “elefanti rossi” del Tsavo. Un'esperienza imperdibile della fauna selvatica dell’Africa orientale."
+      },
+      {
+        "title": "Passerella nelle Mangrovie di Mida Creek",
+        "pullQuote": "Un paradiso per i birdwatcher — oltre 100 specie registrate nelle antiche foreste di mangrovie di Mida Creek.",
+        "tags": [
+          "Amanti della natura",
+          "Birdwatcher",
+          "Coppie"
+        ],
+        "badges": [
+          "1–2 ore",
+          "Oltre 100 Specie",
+          "Passerella Sopraelevata",
+          "Meglio con Bassa Marea",
+          "Viste al Tramonto"
+        ],
+        "desc": "Mida Creek è un'insenatura protetta bordata da antiche foreste di mangrovie. La passerella sopraelevata offre una tranquilla passeggiata nell’ecosistema con la bassa marea, con ampie viste sul creek e sull’Oceano Indiano. Il creek è un paradiso per i birdwatcher — oltre 100 specie sono state registrate qui, tra cui aironi, fenicotteri, aquile pescatrici e martin pescatori."
+      }
+    ]
+  },
+  "article2": {
+    "metaTitle": "Piatti Costieri Swahili da Assolutamente Provare | Storie Duma Suites",
+    "metaDesc": "Scopri le straordinarie tradizioni culinarie della costa swahili del Kenya — dal pilau profumato al curry di pesce al cocco fino al leggendario banchetto di frutti di mare del Safari Blue.",
+    "heroEyebrow": "Cibo & Cultura",
+    "heroTitle": "Piatti Costieri Swahili da Assolutamente Provare",
+    "heroSub": "Un viaggio culinario lungo la costa del Kenya — curato da Duma Suites",
+    "proofRating": "Valutazione TripAdvisor",
+    "proofReturn": "Tornerebbe",
+    "introTitle": "I Sapori della Costa Swahili",
+    "introText": "La costa del Kenya racchiude in sé una delle tradizioni culinarie più distinctive al mondo. Nata da secoli di commercio nell’Oceano Indiano, la cucina swahili mescola rotte di spezie arabe, aromi indiani, tecniche persiane del riso e ingredienti costieri africani in una cucina che è allo stesso tempo profondamente radicata e sorprendente. Ecco sei piatti che dovete assolutamente cercare durante il vostro soggiorno a Watamu.",
+    "conciergeLabel": "Dal Nostro Concierge",
+    "conciergeText": "Il nostro team può consigliare i migliori ristoranti locali di Watamu e organizzare il trasporto verso i posti più autentici. Per il banchetto di frutti di mare del Safari Blue, parlateci al check-in.",
+    "voicesEyebrow": "Cosa Dicono i Nostri Ospiti",
+    "tipsLabel": "Consigli Gastronomici del Concierge",
+    "closingTitle": "Assaggia la Costa",
+    "closingText": "Il nostro team di concierge può consigliare i migliori ristoranti locali di Watamu e organizzare il trasporto verso i posti più autentici. Per la piena esperienza Safari Blue con il suo indimenticabile banchetto di frutti di mare, parlateci quando prenotate il vostro soggiorno.",
+    "closingCta": "Pianifica il Tuo Soggiorno",
+    "prevEyebrow": "Anche in Storie & Guide",
+    "prevTitle": "Le Migliori Attività sulla Costa di Watamu",
+    "prevExcerpt": "Dalla leggendaria escursione di un giorno intero con Safari Blue e l’avvistamento dei delfini alle antiche Rovine di Gedi e la passerella di Mida Creek — le migliori esperienze di Watamu, curate per voi.",
+    "prevCta": "Leggi la Guida",
+    "prevCategory": "Guida di Viaggio",
+    "moreFromEyebrow": "Altro da Duma Suites Stories",
+    "comingSoon": "Prossimamente",
+    "cs1Title": "I Migliori Ristoranti di Watamu: Una Guida Locale",
+    "cs1Desc": "Dalle cucine familiari nascoste alla miglior terrazza di pesce al tramonto — la lista selezionata dal nostro concierge.",
+    "cs2Title": "Una Mattina al Mercato del Pesce di Malindi",
+    "cs2Desc": "Le immagini, i profumi e le storie del mercato del pesce più vivace della costa del Kenya — imperdibile per gli amanti del cibo.",
+    "backToStories": "Torna a Storie & Guide",
+    "prevArticle": "Prec: Top 5 Attività",
+    "foodTips": [
+      "Chiedete al team di Duma Suites il loro ristorante locale preferito del momento — i consigli cambiano con la stagione.",
+      "Il pilau più fresco di Watamu si trova nelle piccole trattorie familiari, non nei ristoranti turistici.",
+      "Il latte di cocco fresco per il wali wa nazi deve sempre essere spremiuto lo stesso giorno — quello in lattina non può eguagliarlo."
+    ],
+    "quotes": [
+      {
+        "text": "Il pilau del ristorante consigliato dal team di Duma era diverso da tutto quello che avevo mai assaggiato. Magia costiera pura — siamo tornati tre sere di fila.",
+        "author": "Aarav K.",
+        "origin": "Mumbai",
+        "platform": "TripAdvisor",
+        "variant": "teal"
+      },
+      {
+        "text": "Il polpo del Safari Blue sulla bassa marea — grigliato su brace, fresco dall’oceano, mangiato con le mani. Ne parliamo ancora due anni dopo.",
+        "author": "Emma L.",
+        "origin": "Parigi",
+        "platform": "Google",
+        "variant": "espresso"
+      },
+      {
+        "text": "Wali wa nazi con un curry di pesce al cocco, guardando l’Oceano Indiano. Da allora cerco di ricrearlo a casa.",
+        "author": "Tom & Nina R.",
+        "origin": "Città del Capo",
+        "platform": "Booking.com",
+        "variant": "sand"
+      }
+    ],
+    "dishes": [
+      {
+        "title": "Pilau",
+        "pullQuote": "Nessuna celebrazione costiera è completa senza di esso — riso basmati profumato perfezionato sulla costa del Kenya per secoli.",
+        "badges": [
+          "Classico Swahili",
+          "Cottura Lenta",
+          "Spezie Aromatiche",
+          "Piatto Festivo",
+          "Da Provare"
+        ],
+        "desc": "Il pilau è l’anima della cucina swahili — riso basmati profumato cotto lentamente con un ricco mix di spezie intere tra cui cardamomo, cannella, chiodi di garofano, cumino e pepe nero. Spesso preparato con tenero manzo o pollo marinato durante la notte, il risultato è un piatto di riso aromatico e saporito perfezionato sulla costa del Kenya per secoli. Nessuna celebrazione costiera è completa senza di esso."
+      },
+      {
+        "title": "Mchuzi wa Samaki",
+        "pullQuote": "Un curry dorato e vellutato da gustare con riso bianco — e idealmente con vista sull’Oceano Indiano.",
+        "badges": [
+          "Curry di Pesce al Cocco",
+          "Pescato Fresco",
+          "Fresco dall'Oceano Indiano",
+          "Piccante Lieve-Medio",
+          "Costa Swahili"
+        ],
+        "desc": "Il curry di pesce per eccellenza della costa del Kenya — il mchuzi wa samaki è fatto con quello che i pescatori portano quella mattina. Snapper fresco, kingfish o barracuda viene cotto a fuoco lento in una base di pomodori, cipolle, aglio, zenzero, curcuma e l’ingrediente essenziale: latte di cocco. Il risultato è un curry dorato e vellutato con un calore delicato, da gustare con riso bianco o chapati fresco."
+      },
+      {
+        "title": "Banchetto di Frutti di Mare del Safari Blue",
+        "pullQuote": "Mangiare con le mani nella brezza dell’Oceano Indiano rende questo un pasto che non dimenticherete mai.",
+        "badges": [
+          "Cena sulla Spiaggia",
+          "Grigliato su Brace",
+          "Aragosta & Polpo",
+          "Isola Banco di Sabbia",
+          "Esperienza di Gruppo"
+        ],
+        "desc": "Se partecipate alla leggendaria escursione Safari Blue, vivrete una delle tradizioni culinarie più celebrate della costa del Kenya — un banchetto di frutti di mare freschi cucinato su un’isola di banco di sabbia. Aragosta, calamari, polpo, gamberi, granchio e pesce fresco vengono grigliati su brace o cotti nel brodo di cocco."
+      },
+      {
+        "title": "Riso al Cocco (Wali wa Nazi)",
+        "pullQuote": "Abbinato con pesce grigliato o un cucchiaio di mango achaar — comfort food nella sua forma più elegante.",
+        "badges": [
+          "Alimento Base",
+          "Latte di Cocco Fresco",
+          "Vegano",
+          "Comfort Food",
+          "Contorno"
+        ],
+        "desc": "Wali wa nazi — riso cotto nel latte di cocco fresco — è il compagno quotidiano di quasi ogni piatto costiero swahili. Il latte di cocco viene spremuto fresco dalla polpa di cocco grattugiata, dando al riso una sottile dolcezza e cremosità. Abbinato con pesce grigliato, un curry di verdure o semplicemente con un cucchiaio di mango achaar, è comfort food nella sua forma più elegante."
+      },
+      {
+        "title": "Biryani",
+        "pullQuote": "Il metro di misura con cui i cuochi locali misurano la propria maestria — il biryani della costa swahili è in una classe a sé.",
+        "badges": [
+          "Piatto Festivo",
+          "Riso Allo Zafferano Stratificato",
+          "Cottura Lenta",
+          "Influenza Araba & Indiana",
+          "Festivo"
+        ],
+        "desc": "Il biryani della costa swahili è distinto dai suoi cugini del Sud Asia — più ricco di spezie, più intensamente profumato, con strati di riso color zafferano intrecciati con carne speziata cotta lentamente (di solito capra o pollo), cipolle fritte, uvetta e un filo di ghee. Servito in occasioni festive e matrimoni."
+      },
+      {
+        "title": "Polpo alla Griglia (Pweza)",
+        "pullQuote": "L’esterno si carbonizza meravigliosamente mentre l’interno rimane tenero — un piatto che cercherete ad ogni occasione.",
+        "badges": [
+          "Grigliato su Brace",
+          "Fresco Ogni Giorno",
+          "Lime & Cocco",
+          "Icona Street Food",
+          "Preferito Locale"
+        ],
+        "desc": "Lungo le rive di Watamu, i pescatori raccolgono il polpo nelle loro uscite quotidiane. Tenuto a mano sulle rocce con la bassa marea, il polpo viene poi marinato in lime, aglio, peperoncino, latte di cocco e spezie prima di essere grigliato direttamente su brace. L’esterno si carbonizza meravigliosamente mentre l’interno rimane tenero e succoso. Servito con una spruzzata di lime fresco e una semplice salsa di pomodoro."
+      }
+    ]
+  },
+  "blog": {
+    "metaTitle": "Storie & Guide | Duma Suites – Watamu",
+    "metaDesc": "Esplora guide di viaggio, cultura costiera, storie gastronomiche e consigli dall'interno delle rive di Watamu — curate dal team di Duma Suites.",
+    "heroSub": "Guide di viaggio, cultura costiera e storie dall'indirizzo più amato di Watamu.",
+    "pullQuote": "\"Watamu offre una ricchezza di esperienze straordinarie per ogni tipo di viaggiatore.\"",
+    "editorsPick": "Scelta della Redazione",
+    "moreStoriesTitle": "Altre Storie & Guide",
+    "conciergeLabel": "Dal Nostro Concierge",
+    "conciergeText": "Il nostro team cura personalmente queste esperienze e storie per gli ospiti di Duma Suites. Ogni guida è tratta da conoscenze locali e dall'esperienza vissuta sulla costa di Watamu.",
+    "conciergeCta": "Pianifica il Soggiorno",
+    "trustBadge1": "100% Conoscenza Locale",
+    "trustBadge2": "Curato dal Nostro Concierge",
+    "trustBadge3": "Aggiornato Stagionalmente",
+    "readTimeMin": "min di lettura",
+    "articlesIntroEyebrow": "Dal Campo",
+    "articlesIntroTitle": "Storie & Guide da Watamu",
+    "articlesIntroDesc": "Scopri guide di viaggio, ricette locali e storie dall'interno di Duma Suites — scritte per ispirare il vostro prossimo soggiorno sulla costa keniota."
+  },
+  "privacyPolicy": {
+    "metaTitle": "Privacy Policy | Duma Suites Watamu",
+    "heroEyebrow": "Legale",
+    "heroTitle": "Privacy Policy",
+    "heroSub": "Come raccogliamo, utilizziamo e proteggiamo le vostre informazioni personali.",
+    "lastUpdated": "Ultimo aggiornamento: Gennaio 2025",
+    "backToHome": "Home",
+    "trustSafe": "I vostri dati sono al sicuro",
+    "trustSsl": "SSL Protetto",
+    "trustPci": "Conforme PCI",
+    "sections": [
+      {
+        "title": "1. Informazioni che Raccogliamo",
+        "icon": "database",
+        "content": "Raccogliamo informazioni che ci fornite direttamente quando effettuate prenotazioni, ci contattate o utilizzate i nostri servizi. Queste includono il vostro nome, indirizzo email, numero di telefono, indirizzo postale, informazioni di pagamento e qualsiasi altra informazione che scegliete di fornire.",
+        "bullets": [
+          "Dati identificativi personali (nome, email, telefono)",
+          "Informazioni su prenotazioni e soggiorni",
+          "Registrazioni delle comunicazioni e preferenze",
+          "Dati di pagamento (elaborati in sicurezza tramite provider terzi)",
+          "Dati del dispositivo e di utilizzo durante la visita al nostro sito"
+        ]
+      },
+      {
+        "title": "2. Come Utilizziamo le Vostre Informazioni",
+        "icon": "settings",
+        "content": "Utilizziamo le informazioni raccolte per fornire, mantenere e migliorare i nostri servizi, elaborare prenotazioni e pagamenti, comunicare con voi riguardo al vostro soggiorno e personalizzare la vostra esperienza.",
+        "bullets": [
+          "Elaborare e gestire le vostre prenotazioni",
+          "Inviare conferme e informazioni pre-arrivo",
+          "Rispondere alle vostre richieste e al supporto",
+          "Inviare comunicazioni di marketing (con il vostro consenso)",
+          "Migliorare i nostri servizi e l'esperienza sul sito",
+          "Rispettare gli obblighi legali"
+        ]
+      },
+      {
+        "title": "3. Condivisione delle Informazioni",
+        "icon": "share",
+        "content": "Non vendiamo, scambiamo o affittiamo le vostre informazioni personali a terzi. Possiamo condividere le vostre informazioni con fornitori di servizi fidati che assistono nel funzionamento del nostro sito e dei nostri servizi, soggetti a rigorosi accordi di riservatezza.",
+        "bullets": [
+          "Processori di pagamento (per la gestione sicura delle transazioni)",
+          "Fornitori di servizi email (per le comunicazioni)",
+          "Fornitori di analisi (solo dati anonimi)",
+          "Autorità legali (quando richiesto dalla legge)"
+        ]
+      },
+      {
+        "title": "4. Sicurezza dei Dati",
+        "icon": "shield",
+        "content": "Implementiamo misure di sicurezza conformi agli standard del settore per proteggere le vostre informazioni personali da accesso non autorizzato, divulgazione, alterazione o distruzione. Tutti i dati di pagamento vengono elaborati tramite sistemi crittografati e conformi PCI.",
+        "bullets": [
+          "Crittografia SSL/TLS per tutte le trasmissioni di dati",
+          "Archiviazione dati sicura e con controllo degli accessi",
+          "Audit e monitoraggio della sicurezza regolari",
+          "Personale formato nelle pratiche di protezione dei dati"
+        ]
+      },
+      {
+        "title": "5. Cookie e Tracciamento",
+        "icon": "cookie",
+        "content": "Il nostro sito utilizza cookie e tecnologie di tracciamento simili per migliorare la vostra esperienza di navigazione, analizzare il traffico del sito e personalizzare i contenuti. Potete controllare le impostazioni dei cookie tramite le preferenze del browser.",
+        "bullets": [
+          "Cookie essenziali (necessari per la funzionalità del sito)",
+          "Cookie analitici (Google Analytics — anonimi)",
+          "Cookie di preferenza (per ricordare le vostre impostazioni)"
+        ]
+      },
+      {
+        "title": "6. I Vostri Diritti",
+        "icon": "user-check",
+        "content": "Avete il diritto di accedere, correggere o eliminare le vostre informazioni personali in qualsiasi momento. Per esercitare questi diritti o per qualsiasi richiesta relativa alla privacy, vi preghiamo di contattarci direttamente.",
+        "bullets": [
+          "Diritto di accesso ai vostri dati personali",
+          "Diritto di correggere informazioni inesatte",
+          "Diritto di richiedere la cancellazione dei vostri dati",
+          "Diritto di opporsi o limitare il trattamento",
+          "Diritto alla portabilità dei dati"
+        ]
+      },
+      {
+        "title": "7. Contattateci",
+        "icon": "mail",
+        "content": "Se avete domande su questa Privacy Policy o sulle nostre pratiche in materia di dati, vi preghiamo di contattarci:",
+        "contact": {
+          "email": "reservations@dumasuites.com",
+          "address": "Ghepard Towers, Watamu, Contea di Kilifi, Kenya",
+          "phone": "+254 710 933 025"
+        }
+      }
+    ]
+  },
+  "termsOfService": {
+    "metaTitle": "Termini di Servizio | Duma Suites Watamu",
+    "heroEyebrow": "Legale",
+    "heroTitle": "Termini di Servizio",
+    "heroSub": "Vi preghiamo di leggere attentamente questi termini prima di prenotare il vostro soggiorno.",
+    "lastUpdated": "Ultimo aggiornamento: Gennaio 2025",
+    "backToHome": "Home",
+    "introBanner": "Questi termini costituiscono un accordo vincolante tra voi e Duma Suites. Completando una prenotazione, riconoscete di aver letto e compreso questi termini.",
+    "sections": [
+      {
+        "title": "1. Accettazione dei Termini",
+        "icon": "check-circle",
+        "content": "Accedendo al nostro sito o effettuando una prenotazione con Duma Suites, accettate di essere vincolati dai presenti Termini di Servizio. Se non accettate questi termini, vi preghiamo di non utilizzare i nostri servizi."
+      },
+      {
+        "title": "2. Prenotazioni",
+        "icon": "calendar",
+        "content": "Tutte le prenotazioni sono soggette a disponibilità e conferma da parte di Duma Suites. Una prenotazione è confermata solo al ricevimento di un acconto e della conferma scritta da parte del nostro team.",
+        "bullets": [
+          "È richiesto il 50% alla prenotazione per confermare il soggiorno",
+          "Il restante 50% è dovuto al check-in",
+          "Le prenotazioni non sono trasferibili senza previo consenso scritto",
+          "Ci riserviamo il diritto di rifiutare prenotazioni a nostra discrezione"
+        ]
+      },
+      {
+        "title": "3. Politica di Cancellazione",
+        "icon": "x-circle",
+        "content": "La nostra politica di cancellazione è progettata per essere equa sia per gli ospiti che per il nostro team. Chiediamo il massimo preavviso possibile per poter ospitare altri ospiti.",
+        "bullets": [
+          "Cancellazione prima di 30 giorni dall'arrivo: rimborso completo",
+          "Cancellazione entro 30 giorni dall'arrivo: non rimborsabile",
+          "Mancata presentazione o partenza anticipata: addebito del soggiorno completo",
+          "Gli eventi di forza maggiore saranno valutati caso per caso"
+        ]
+      },
+      {
+        "title": "4. Check-in e Check-out",
+        "icon": "clock",
+        "content": "L'orario standard di check-in è le 14:00 e il check-out è le 10:00. Il check-in anticipato o il check-out posticipato possono essere concordati in base alla disponibilità e potrebbero comportare costi aggiuntivi."
+      },
+      {
+        "title": "5. Comportamento degli Ospiti",
+        "icon": "users",
+        "content": "Tutti gli ospiti sono tenuti a comportarsi in modo rispettoso verso gli altri ospiti, il personale e la struttura. Duma Suites si riserva il diritto di chiedere a qualsiasi ospite di lasciare la struttura se il suo comportamento è ritenuto dirompente o dannoso.",
+        "bullets": [
+          "Rispettare le ore di silenzio (22:00 – 08:00)",
+          "Vietato fumare all'interno delle suite — solo balcone e ingresso",
+          "Vietate feste o eventi senza previa approvazione scritta",
+          "Gli ospiti sono responsabili di eventuali danni causati durante il soggiorno"
+        ]
+      },
+      {
+        "title": "6. Responsabilità",
+        "icon": "shield",
+        "content": "Duma Suites non sarà responsabile per qualsiasi perdita, danno o lesione agli ospiti o ai loro beni durante il soggiorno, tranne nei casi in cui tale perdita o danno sia causato dalla diretta negligenza del personale di Duma Suites.",
+        "bullets": [
+          "L'utilizzo delle piscine e delle strutture ricreative è a rischio degli ospiti",
+          "Raccomandiamo l'assicurazione di viaggio per tutti gli ospiti",
+          "I valori devono essere conservati nella cassaforte in suite"
+        ]
+      },
+      {
+        "title": "7. Legge Applicabile",
+        "icon": "scale",
+        "content": "I presenti Termini di Servizio sono regolati e interpretati in conformità con le leggi del Kenya. Qualsiasi controversia derivante da questi termini sarà soggetta alla giurisdizione esclusiva dei tribunali del Kenya."
+      },
+      {
+        "title": "8. Contattateci",
+        "icon": "mail",
+        "content": "Per qualsiasi domanda o dubbio riguardante i presenti Termini di Servizio, vi preghiamo di contattarci:",
+        "contact": {
+          "email": "reservations@dumasuites.com",
+          "address": "Ghepard Towers, Watamu, Contea di Kilifi, Kenya",
+          "phone": "+254 710 933 025"
+        }
+      }
+    ]
+  },
+  "cookieBanner": {
+    "headline": "Utilizziamo i cookie per migliorare il vostro soggiorno.",
+    "body": "Utilizziamo cookie essenziali, analitici e di preferenza per offrirvi la migliore esperienza a Duma Suites. La vostra scelta viene ricordata tra le visite.",
+    "acceptAll": "Accetta Tutti",
+    "manage": "Gestisci Preferenze",
+    "rejectNonEssential": "Rifiuta Non Essenziali",
+    "learnMore": "Cookie Policy"
+  },
+  "cookies": {
+    "metaTitle": "Cookie Policy | Duma Suites Watamu",
+    "metaDesc": "Scopri come Duma Suites utilizza i cookie per migliorare la navigazione, personalizzare i contenuti e proteggere i vostri dati.",
+    "heroEyebrow": "Legale",
+    "heroTitle": "Cookie Policy",
+    "heroSub": "Come utilizziamo i cookie per migliorare e personalizzare la vostra esperienza.",
+    "lastUpdated": "Ultimo aggiornamento: gennaio 2025",
+    "intro": "Questa Cookie Policy spiega cosa sono i cookie, quali utilizziamo sul sito di Duma Suites, perché li utilizziamo e come potete gestire le vostre preferenze. Continuando a navigare sul nostro sito, acconsentite all'utilizzo dei cookie come descritto di seguito.",
+    "sections": [
+      {
+        "icon": "layers",
+        "title": "1. Cosa Sono i Cookie?",
+        "content": "I cookie sono piccoli file di testo che un sito web deposita sul vostro dispositivo quando lo visitate. Consentono al sito di ricordare le vostre azioni e preferenze nel tempo, in modo che non dobbiate reinserirle ad ogni visita.",
+        "bullets": [
+          "Memorizzati localmente nel vostro browser",
+          "Non possono eseguire programmi o trasmettere virus",
+          "Non accedono ai file personali sul vostro dispositivo",
+          "Possono essere di sessione (eliminati alla chiusura) o persistenti (mantenuti tra le visite)"
+        ]
+      },
+      {
+        "icon": "cookie",
+        "title": "2. Cookie che Utilizziamo",
+        "content": "Utilizziamo tre categorie di cookie sul sito di Duma Suites, ciascuna con uno scopo specifico:",
+        "categories": [
+          {
+            "name": "Cookie Essenziali",
+            "badge": "Sempre Attivi",
+            "desc": "Questi cookie sono strettamente necessari per il funzionamento del sito. Abilitano funzionalità fondamentali come la navigazione, la sicurezza e l'accesso alle aree protette. Il sito non può funzionare correttamente senza di essi.",
+            "examples": [
+              "Gestione sessione",
+              "Token di sicurezza",
+              "Bilanciamento del carico"
+            ]
+          },
+          {
+            "name": "Cookie Analitici",
+            "badge": "Opzionali",
+            "desc": "Questi cookie ci aiutano a capire come i visitatori interagiscono con il sito, raccogliendo informazioni anonime su pagine visitate e tempo di permanenza. Utilizziamo Google Analytics con anonimizzazione IP.",
+            "examples": [
+              "Google Analytics (anonimizzato)",
+              "Tracciamento visualizzazioni",
+              "Analisi percorso utente"
+            ]
+          },
+          {
+            "name": "Cookie di Preferenza",
+            "badge": "Opzionali",
+            "desc": "Questi cookie ricordano le vostre scelte — come la preferenza linguistica (Italiano o Inglese) — così la vostra esperienza risulta personalizzata e coerente ad ogni visita.",
+            "examples": [
+              "Preferenza lingua (EN / IT)",
+              "Scelta consenso cookie",
+              "Stato UI e scroll"
+            ]
+          }
+        ]
+      },
+      {
+        "icon": "heart",
+        "title": "3. Perché Utilizziamo i Cookie",
+        "content": "Ogni categoria di cookie serve a uno scopo specifico per offrire la migliore esperienza ai nostri ospiti:",
+        "reasons": [
+          {
+            "label": "Miglioramento UX",
+            "desc": "I dati analitici ci aiutano a identificare e risolvere punti di attrito nel percorso dell'ospite, dalla navigazione delle suite all'invio di una richiesta."
+          },
+          {
+            "label": "Personalizzazione",
+            "desc": "I cookie di preferenza assicurano che il sito ricordi la vostra lingua e le impostazioni, rendendo ogni visita su misura per voi."
+          },
+          {
+            "label": "Sicurezza",
+            "desc": "I cookie essenziali proteggono mantenendo sessioni autenticate sicure e prevenendo le richieste cross-site contraffatte."
+          },
+          {
+            "label": "Prestazioni",
+            "desc": "Utilizziamo i dati di sessione per ottimizzare i tempi di caricamento e presentare i contenuti più pertinenti agli ospiti di diverse regioni."
+          }
+        ]
+      },
+      {
+        "icon": "settings",
+        "title": "4. Gestire le Preferenze",
+        "content": "Avete il pieno controllo sulle vostre preferenze cookie. Ecco come gestirle:",
+        "bullets": [
+          "Utilizzate il banner cookie che appare alla prima visita per accettare, rifiutare o personalizzare le categorie.",
+          "Cancellate le preferenze in qualsiasi momento cliccando su \"Gestisci Preferenze\" nel banner (riappare dopo aver svuotato il local storage).",
+          "Modificate le impostazioni del browser per bloccare o eliminare i cookie — nota: potrebbe influire sulla funzionalità del sito.",
+          "Rifiutate il tracciamento di Google Analytics tramite: tools.google.com/dlpage/gaoptout"
+        ]
+      },
+      {
+        "icon": "refresh-cw",
+        "title": "5. Aggiornamenti a questa Policy",
+        "content": "Potremmo aggiornare questa Cookie Policy di tanto in tanto per riflettere cambiamenti tecnologici, legislativi o nei nostri servizi. Vi incoraggiamo a consultarla periodicamente."
+      },
+      {
+        "icon": "mail",
+        "title": "6. Contattateci",
+        "content": "Per qualsiasi domanda sull'uso dei cookie o su questa policy, vi preghiamo di contattarci:",
+        "contact": {
+          "email": "reservations@dumasuites.com",
+          "address": "Ghepard Towers, Watamu, Contea di Kilifi, Kenya",
+          "phone": "+254 710 933 025"
+        }
+      }
+    ]
+  }
+}
