@@ -75,7 +75,7 @@ const AMENITY_ICONS = [
 const POLICY_ICONS = [Clock, Clock, Calendar, CreditCard, Shield, PawPrint, Cigarette]
 
 const TOUR_VIDEO_BASE =
-  'https://player.vimeo.com/video/1189024643' +
+  'https://player.vimeo.com/video/1190453383' +
   '?badge=0&autopause=0&player_id=0&app_id=58479' +
   '&byline=0&title=0&portrait=0&muted=1&dnt=1'
 
