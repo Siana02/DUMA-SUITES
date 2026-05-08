@@ -27,6 +27,7 @@ const WHEEL_STEP_LOCK_MS = 420
 const WHEEL_DELTA_TRIGGER = 8
 const STICKY_TOP_PX = 90
 const MOBILE_CARD_THRESHOLD = 0.2
+const ZONE_TOLERANCE_PX = 8
 
 // Shared card markup — identical visual design on both desktop and mobile
 function CardInner({ item, images, cta }) {
@@ -85,9 +86,7 @@ export default function ExcursionsSection() {
   const cardCount = deckItems.length
 
   // Desktop/laptop only: locked one-by-one card cycling
-  const [isDesktop, setIsDesktop] = useState(
-    () => typeof window !== 'undefined' ? window.innerWidth >= DESKTOP_BREAKPOINT : false
-  )
+  const [isDesktop, setIsDesktop] = useState(false)
   const [activeDeckIndex, setActiveDeckIndex] = useState(0)
 
   const sectionRef   = useRef(null)
@@ -114,45 +113,66 @@ export default function ExcursionsSection() {
     const sticky = deckStickyRef.current
     if (!section || !outer || !sticky) return
 
-    const handleWheel = event => {
-      if (Math.abs(event.deltaY) < WHEEL_DELTA_TRIGGER) return
-
-      const sectionRect = section.getBoundingClientRect()
-      const outerRect = outer.getBoundingClientRect()
-      const lockTop = STICKY_TOP_PX
-      const sectionInZone =
-        sectionRect.top <= lockTop + 8 &&
-        sectionRect.bottom >= lockTop + sticky.offsetHeight - 8 &&
-        outerRect.top <= lockTop + 8 &&
-        outerRect.bottom >= lockTop + sticky.offsetHeight - 8
-      if (!sectionInZone) return
-
+    const stepDeck = (direction, event) => {
       const now = performance.now()
       if (now < wheelLockUntilRef.current) {
-        event.preventDefault()
+        event?.preventDefault()
         return
       }
 
-      const direction = event.deltaY > 0 ? 1 : -1
       setActiveDeckIndex(prev => {
         const next = Math.max(0, Math.min(cardCount - 1, prev + direction))
         if (next !== prev) {
-          event.preventDefault()
+          event?.preventDefault()
           wheelLockUntilRef.current = now + WHEEL_STEP_LOCK_MS
         }
         return next
       })
     }
 
-    window.addEventListener('wheel', handleWheel, { passive: false })
+    const isSectionInActiveZone = () => {
+      const sectionRect = section.getBoundingClientRect()
+      const outerRect = outer.getBoundingClientRect()
+      const lockTop = STICKY_TOP_PX
+      return (
+        sectionRect.top <= lockTop + ZONE_TOLERANCE_PX &&
+        sectionRect.bottom >= lockTop + sticky.offsetHeight - ZONE_TOLERANCE_PX &&
+        outerRect.top <= lockTop + ZONE_TOLERANCE_PX &&
+        outerRect.bottom >= lockTop + sticky.offsetHeight - ZONE_TOLERANCE_PX
+      )
+    }
+
+    const handleWheel = event => {
+      if (Math.abs(event.deltaY) < WHEEL_DELTA_TRIGGER) return
+      if (!isSectionInActiveZone()) return
+
+      const direction = event.deltaY > 0 ? 1 : -1
+      stepDeck(direction, event)
+    }
+
+    const handleKeyDown = event => {
+      if (!isSectionInActiveZone()) return
+
+      if (event.key === 'ArrowDown') stepDeck(1, event)
+      if (event.key === 'ArrowUp') stepDeck(-1, event)
+    }
+
+    section.addEventListener('wheel', handleWheel, { passive: false })
+    window.addEventListener('keydown', handleKeyDown)
 
     return () => {
-      window.removeEventListener('wheel', handleWheel)
+      section.removeEventListener('wheel', handleWheel)
+      window.removeEventListener('keydown', handleKeyDown)
     }
   }, [cardCount, isDesktop])
 
   return (
-    <section ref={sectionRef} className="exc-section section" id="excursions">
+    <section
+      ref={sectionRef}
+      className="exc-section section"
+      id="excursions"
+      style={{ '--exc-sticky-top': `${STICKY_TOP_PX}px` }}
+    >
       <div className="container">
         <div
           ref={headerRef}
@@ -195,10 +215,9 @@ export default function ExcursionsSection() {
                 return (
                   <div
                     key={i}
-                    className={`exc-card exc-card--${isLeft ? 'left' : 'right'} exc-deck-card`}
+                    className={`exc-card exc-card--${isLeft ? 'left' : 'right'} exc-deck-card${activeDeckIndex >= i ? ' is-revealed' : ''}`}
                     style={{
                       zIndex: i + 1,
-                      transform: activeDeckIndex >= i ? 'translateY(0%)' : 'translateY(100%)',
                     }}
                   >
                     <CardInner item={item} images={EXCURSION_IMAGES[i]} cta={exc.cta} />
@@ -370,7 +389,7 @@ export default function ExcursionsSection() {
           color: #fff;
         }
 
-        /* ── Desktop / tablet: stacked card-deck ────────────── */
+        /* ── Desktop / laptop: stacked card-deck ────────────── */
         @media (min-width: 1024px) {
           /* Deck keeps section height stable while wheel is locked through 4 cards */
           .exc-deck-outer {
@@ -380,7 +399,7 @@ export default function ExcursionsSection() {
           /* Sticky viewport frame — height driven by card aspect ratio */
           .exc-deck-sticky {
             position: sticky;
-            top: ${STICKY_TOP_PX}px;
+            top: var(--exc-sticky-top);
             overflow: hidden;
             height: clamp(440px, 55vw, 580px);
           }
@@ -392,6 +411,10 @@ export default function ExcursionsSection() {
             min-height: unset;
             will-change: transform;
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(100%);
+          }
+          .exc-deck-card.is-revealed {
+            transform: translateY(0%);
           }
         }
 
