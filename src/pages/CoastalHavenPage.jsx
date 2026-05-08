@@ -966,10 +966,28 @@ export default function CoastalHavenPage() {
   border: none;
 }
 
+/* Mobile — full viewport, edge-to-edge video */
 @media (max-width: 767px) {
-  .ch-tour__frame iframe {
+  .ch-tour__frame-wrap {
+    width: 100vw;
+    height: 100vh;
+    margin-left: calc((100% - 100vw) / 2);
+  }
+
+  .ch-tour__frame {
+    position: relative;
     width: 100%;
     height: 100%;
+    background: #000;
+    overflow: hidden;
+  }
+
+  .ch-tour__frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
   }
 }
 

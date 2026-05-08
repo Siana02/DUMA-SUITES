@@ -972,10 +972,28 @@ export default function SerenityVillaPage() {
   border: none;
 }
 
+/* Mobile — full viewport, edge-to-edge video */
 @media (max-width: 767px) {
-  .sv-tour__frame iframe {
+  .sv-tour__frame-wrap {
+    width: 100vw;
+    height: 100vh;
+    margin-left: calc((100% - 100vw) / 2);
+  }
+
+  .sv-tour__frame {
+    position: relative;
     width: 100%;
     height: 100%;
+    background: #000;
+    overflow: hidden;
+  }
+
+  .sv-tour__frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
   }
 }
 
