@@ -75,9 +75,9 @@ const AMENITY_ICONS = [
 const POLICY_ICONS = [Clock, Clock, Calendar, CreditCard, Shield, PawPrint, Cigarette]
 
 const TOUR_VIDEO_BASE =
-  'https://player.vimeo.com/video/1189024643' +
+  'https://player.vimeo.com/video/1190453383' +
   '?badge=0&autopause=0&player_id=0&app_id=58479' +
-  '&byline=0&title=0&portrait=0&muted=1&dnt=1'
+  '&byline=0&title=0&portrait=0&dnt=1&playsinline=1'
 
 // Vimeo requires a brief delay after iframe load before it can receive postMessage listeners
 const VIMEO_IFRAME_READY_DELAY = 500
@@ -139,27 +139,48 @@ export default function SerenityVillaPage() {
 
   const tourIframeRef = useRef(null)
   const tourHasPlayedRef = useRef(false)
+  const tourIsHoveredRef = useRef(false)
+  const tourInViewRef = useRef(false)
   const [tourVideoSrc, setTourVideoSrc] = useState(TOUR_VIDEO_BASE)
-  const { ref: tourRef, inView: tourInView } = useInView({ threshold: 0.15 })
+  // threshold: 0.85 — treat video as "fully in view" when 85% is visible
+  const { ref: tourRef, inView: tourInView } = useInView({ threshold: 0.85 })
+
+  const postTour = useCallback((method, value) => {
+    const msg = value !== undefined ? { method, value } : { method }
+    tourIframeRef.current?.contentWindow?.postMessage(JSON.stringify(msg), 'https://player.vimeo.com')
+  }, [])
+
+  const tryPlayTour = useCallback(() => {
+    if (!tourHasPlayedRef.current) {
+      tourHasPlayedRef.current = true
+      setTourVideoSrc(`${TOUR_VIDEO_BASE}&autoplay=1`)
+    } else {
+      postTour('play')
+    }
+  }, [postTour])
 
   useEffect(() => {
-    const post = (method, value) => {
-      const msg = value !== undefined ? { method, value } : { method }
-      tourIframeRef.current?.contentWindow?.postMessage(JSON.stringify(msg), 'https://player.vimeo.com')
-    }
+    tourInViewRef.current = tourInView
     if (tourInView) {
-      if (!tourHasPlayedRef.current) {
-        tourHasPlayedRef.current = true
-        setTourVideoSrc(`${TOUR_VIDEO_BASE}&autoplay=1`)
-      } else {
-        post('play')
-      }
-    } else if (tourHasPlayedRef.current) {
-      post('pause')
+      tryPlayTour()
+    } else if (tourHasPlayedRef.current && !tourIsHoveredRef.current) {
+      postTour('pause')
     }
-  }, [tourInView])
+  }, [tourInView, tryPlayTour, postTour])
 
-  // When the video ends
+  const handleTourMouseEnter = useCallback(() => {
+    tourIsHoveredRef.current = true
+    tryPlayTour()
+  }, [tryPlayTour])
+
+  const handleTourMouseLeave = useCallback(() => {
+    tourIsHoveredRef.current = false
+    if (!tourInViewRef.current) {
+      postTour('pause')
+    }
+  }, [postTour])
+
+  // When the video ends → reset to start so the end screen never shows
   useEffect(() => {
     const onMsg = (e) => {
       if (e.origin !== 'https://player.vimeo.com') return
@@ -169,12 +190,8 @@ export default function SerenityVillaPage() {
         if (data.event === 'finish') {
           const win = tourIframeRef.current?.contentWindow
           if (!win) return
-          const post = (method, value) => {
-            const msg = value !== undefined ? { method, value } : { method }
-            win.postMessage(JSON.stringify(msg), 'https://player.vimeo.com')
-          }
-          post('pause')
-          post('setCurrentTime', 0)
+          win.postMessage(JSON.stringify({ method: 'pause' }), 'https://player.vimeo.com')
+          win.postMessage(JSON.stringify({ method: 'setCurrentTime', value: 0 }), 'https://player.vimeo.com')
         }
       } catch { /* ignore */ }
     }
@@ -381,7 +398,9 @@ export default function SerenityVillaPage() {
             <motion.p className="sv-tour__subtitle" {...fadeUp(0.18)}>
               {ts.tourSub}
             </motion.p>
-            <motion.div className="sv-tour__frame-wrap" {...fadeUp(0.26)} ref={tourRef}>
+            <motion.div className="sv-tour__frame-wrap" {...fadeUp(0.26)} ref={tourRef}
+              onMouseEnter={handleTourMouseEnter}
+              onMouseLeave={handleTourMouseLeave}>
               {/* Portrait 9:16 video — matches coastal haven framing */}
               <div className="sv-tour__frame">
                 <iframe
@@ -391,7 +410,7 @@ export default function SerenityVillaPage() {
                   allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
-                  loading="lazy"
+                  preload="metadata"
                   title="serenity-villa-room-tour"
                   onLoad={handleTourIframeLoad}
                 />
@@ -926,48 +945,56 @@ export default function SerenityVillaPage() {
           max-width: 480px;
           line-height: 1.7;
         }
-     .sv-tour__frame-wrap {
-  display: flex;
-  width: 100%;
-  justify-content: center;
+
+
+/* Full viewport video on all screen sizes */
+.sv-tour__frame-wrap {
+  display: block;
+  width: 100vw;
+  margin-left: calc((100% - 100vw) / 2);
+  height: 100vh;
 }
 
-/* Portrait 9:16 video — same as coastal haven */
 .sv-tour__frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 9/16;   /* match phone portrait ratio */
+  height: 100%;
   background: #000;
-  border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 12px 50px rgba(86, 51, 17, 0.2);
 }
 
+/* Desktop/Tablet: scale portrait (9:16) iframe to cover landscape container */
 .sv-tour__frame iframe {
   position: absolute;
-  inset: 0;
+  /* height = viewport-width × 16/9 so portrait video fills full width;
+     min-height:100% ensures it covers even on very wide screens */
   width: 100%;
-  height: 100%;
-  object-fit: cover;    /* default for mobile */
+  height: calc(100vw * 16 / 9);
+  min-height: 100%;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
   border: none;
 }
 
-/* Desktop & laptops — show full video without cropping */
-@media (min-width: 1024px) {
+/* Mobile — portrait aspect ratio, perfect 9:16 fit */
+@media (max-width: 767px) {
+  .sv-tour__frame-wrap {
+    width: 100%;
+    margin-left: 0;
+    height: auto;
+    aspect-ratio: 9 / 16;
+  }
   .sv-tour__frame {
     width: 100%;
-    max-width: 560px;   /* constrain width so it’s comfortable */
+    height: 100%;
   }
   .sv-tour__frame iframe {
-    object-fit: contain; /* show entire video top-to-bottom */
-  }
-}
-
-/* Mobile — keep full width and cover */
-@media (max-width: 640px) {
-  .sv-tour__frame {
-    max-width: 100%;
-    aspect-ratio: 9/16;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
   }
 }
 
