@@ -23,8 +23,9 @@ const EXCURSION_IMAGES = [
 ]
 
 const N_CARDS = 4
-// Scroll distance allocated per card-to-card transition (in viewport heights)
-const SCROLL_PER_TRANSITION_VH = 0.85
+const DESKTOP_BREAKPOINT = 1024
+const WHEEL_STEP_LOCK_MS = 420
+const WHEEL_DELTA_TRIGGER = 8
 
 // Shared card markup — identical visual design on both desktop and mobile
 function CardInner({ item, images, cta }) {
@@ -80,77 +81,75 @@ export default function ExcursionsSection() {
   const t = getT(lang)
   const exc = t.excursions
 
-  // isMobile: ≤768 px → normal scroll + fade animation; ≥769 px → stacked deck
-  const [isMobile, setIsMobile] = useState(
-    () => typeof window !== 'undefined' ? window.innerWidth <= 768 : false
+  // Desktop/laptop only: locked one-by-one card cycling
+  const [isDesktop, setIsDesktop] = useState(
+    () => typeof window !== 'undefined' ? window.innerWidth >= DESKTOP_BREAKPOINT : false
   )
+  const [activeDeckIndex, setActiveDeckIndex] = useState(0)
 
+  const sectionRef   = useRef(null)
   const deckOuterRef  = useRef(null)
   const deckStickyRef = useRef(null)
-  const cardRefs      = useRef([])
+  const wheelLockUntilRef = useRef(0)
 
   const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.3, triggerOnce: true })
 
-  // Keep isMobile in sync with window width
+  // Keep breakpoint mode in sync with window width
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 768)
+    const check = () => setIsDesktop(window.innerWidth >= DESKTOP_BREAKPOINT)
     window.addEventListener('resize', check, { passive: true })
     check() // resolve any mount-time mismatch
     return () => window.removeEventListener('resize', check)
   }, [])
 
-  // Desktop stacked-deck: scroll-driven translateY
+  // Desktop/laptop: lock wheel progression to one card per step while inside the deck
   useEffect(() => {
-    if (isMobile) return
+    if (!isDesktop) return
 
+    const section = sectionRef.current
     const outer  = deckOuterRef.current
     const sticky = deckStickyRef.current
-    if (!outer || !sticky) return
+    if (!section || !outer || !sticky) return
 
-    // Outer height = one card height + scroll space for (N-1) transitions.
-    // Each transition gets SCROLL_PER_TRANSITION_VH × 100vh of scroll distance.
-    const setOuterHeight = () => {
-      const cardH = sticky.offsetHeight
-      outer.style.height = `${cardH + (N_CARDS - 1) * SCROLL_PER_TRANSITION_VH * window.innerHeight}px`
-    }
-    setOuterHeight()
+    const handleWheel = event => {
+      if (Math.abs(event.deltaY) < WHEEL_DELTA_TRIGGER) return
 
-    // Map scroll progress (0→1) to translateY for each card.
-    // Card 0 is always at translateY(0).
-    // Card i (i=1…N-1) slides from translateY(100%) → translateY(0%)
-    // during progress segment [(i-1)/(N-1), i/(N-1)].
-    const handleScroll = () => {
-      const rect        = outer.getBoundingClientRect()
-      const totalScroll = outer.offsetHeight - sticky.offsetHeight
-      const scrolled    = Math.max(0, -rect.top)
-      const progress    = totalScroll > 0 ? Math.min(1, scrolled / totalScroll) : 0
+      const sectionRect = section.getBoundingClientRect()
+      const outerRect = outer.getBoundingClientRect()
+      const lockTop = 90
+      const sectionInZone =
+        sectionRect.top <= lockTop + 8 &&
+        sectionRect.bottom >= lockTop + sticky.offsetHeight - 8 &&
+        outerRect.top <= lockTop + 8 &&
+        outerRect.bottom >= lockTop + sticky.offsetHeight - 8
+      if (!sectionInZone) return
 
-      cardRefs.current.forEach((el, i) => {
-        if (!el) return
-        if (i === 0) {
-          el.style.transform = 'translateY(0%)'
-          return
+      const now = performance.now()
+      if (now < wheelLockUntilRef.current) {
+        event.preventDefault()
+        return
+      }
+
+      const direction = event.deltaY > 0 ? 1 : -1
+      setActiveDeckIndex(prev => {
+        const next = Math.max(0, Math.min(N_CARDS - 1, prev + direction))
+        if (next !== prev) {
+          event.preventDefault()
+          wheelLockUntilRef.current = now + WHEEL_STEP_LOCK_MS
         }
-        const segStart  = (i - 1) / (N_CARDS - 1)
-        const segEnd    = i       / (N_CARDS - 1)
-        // Normalise overall progress to a 0-1 value local to this card's segment
-        const seg       = Math.max(0, Math.min(1, (progress - segStart) / (segEnd - segStart)))
-        el.style.transform = `translateY(${(1 - seg) * 100}%)`
+        return next
       })
     }
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    window.addEventListener('resize', setOuterHeight, { passive: true })
-    handleScroll() // set initial positions
+    window.addEventListener('wheel', handleWheel, { passive: false })
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', setOuterHeight)
+      window.removeEventListener('wheel', handleWheel)
     }
-  }, [isMobile])
+  }, [isDesktop])
 
   return (
-    <section className="exc-section section" id="excursions">
+    <section ref={sectionRef} className="exc-section section" id="excursions">
       <div className="container">
         <div
           ref={headerRef}
@@ -172,7 +171,7 @@ export default function ExcursionsSection() {
         </div>
 
         {/* ── Mobile: simple stacked list with fade/slide/scale ── */}
-        {isMobile ? (
+        {!isDesktop ? (
           <div className="exc-section__list">
             {exc.items.map((item, i) => (
               <MobileExcursionCard
@@ -193,9 +192,11 @@ export default function ExcursionsSection() {
                 return (
                   <div
                     key={i}
-                    ref={el => { if (el) cardRefs.current[i] = el; else delete cardRefs.current[i] }}
                     className={`exc-card exc-card--${isLeft ? 'left' : 'right'} exc-deck-card`}
-                    style={{ zIndex: i + 1 }}
+                    style={{
+                      zIndex: i + 1,
+                      transform: i === 0 || i <= activeDeckIndex ? 'translateY(0%)' : 'translateY(100%)',
+                    }}
                   >
                     <CardInner item={item} images={EXCURSION_IMAGES[i]} cta={exc.cta} />
                   </div>
@@ -367,10 +368,11 @@ export default function ExcursionsSection() {
         }
 
         /* ── Desktop / tablet: stacked card-deck ────────────── */
-        @media (min-width: 769px) {
-          /* Outer: height is set dynamically by JS */
+        @media (min-width: 1024px) {
+          /* Deck keeps section height stable while wheel is locked through 4 cards */
           .exc-deck-outer {
             width: 100%;
+            min-height: clamp(440px, 55vw, 580px);
           }
           /* Sticky viewport frame — height driven by card aspect ratio */
           .exc-deck-sticky {
@@ -385,6 +387,8 @@ export default function ExcursionsSection() {
             inset: 0;
             height: 100%;
             min-height: unset;
+            will-change: transform;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
           }
           /* Cards 2-4 start hidden below (card 1 is always visible) */
           .exc-deck-card:not(:first-child) {
@@ -398,7 +402,7 @@ export default function ExcursionsSection() {
           flex-direction: column;
           gap: 40px;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 1023px) {
           .exc-card {
             grid-template-columns: 1fr;
             min-height: auto;
