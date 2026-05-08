@@ -984,11 +984,10 @@ export default function CoastalHavenPage() {
 
   .ch-tour__frame iframe {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: max(100vw, calc(100vh * 9 / 16));
-    height: max(100vh, calc(100vw * 16 / 9));
-    transform: translate(-50%, -50%);
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border: none;
   }
 }
