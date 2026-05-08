@@ -970,7 +970,7 @@ export default function CoastalHavenPage() {
   height: 100vh;
 
   min-width: 100vw;
-  min-height: 562.5vw; /* 100vw × 16/9 */
+  min-height: 177.78vw; /* 100vw × 16/9 */
 
   transform: translate(-50%, -50%);
   border: 0;
