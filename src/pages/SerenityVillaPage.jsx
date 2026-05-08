@@ -945,83 +945,48 @@ export default function SerenityVillaPage() {
           max-width: 480px;
           line-height: 1.7;
         }
-/* Full viewport wrapper */
+/* Full-bleed viewport video */
 .sv-tour__frame-wrap {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100dvh;
   overflow: hidden;
   background: #000;
 }
 
-/* Video container */
 .sv-tour__frame {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-/* FORCE iframe to behave like object-fit: cover */
 .sv-tour__frame iframe {
   position: absolute;
   top: 50%;
   left: 50%;
 
-  /* Cover sizing based on 16/9 ratio */
-  width: 177.78vh; /* 100vh × 16/9 */
-  height: 100vh;
+  width: 100vw;
+  height: 56.25vw; /* 16:9 */
 
-  min-width: 100vw;
-  min-height: 177.78vw; /* 100vw × 16/9 */
+  min-width: 177.78vh;
+  min-height: 100vh;
 
   transform: translate(-50%, -50%);
+
   border: 0;
+  display: block;
 }
 
-/* Mobile — centered edge-to-edge vertical video */
+/* Mobile — 9:16 cover */
 @media (max-width: 767px) {
 
-  html,
-  body {
-    margin: 0;
-    overflow-x: hidden;
-  }
-
-  .sv-tour__frame-wrap {
-    position: relative;
-    width: 100%;
-    height: 100dvh;
-    overflow: hidden;
-    background: #000;
-  }
-
-  .sv-tour__frame {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-
   .sv-tour__frame iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
     width: 177.78vh;
     height: 100vh;
 
     min-width: 100%;
     min-height: 177.78vw;
-
-    transform: translate(-50%, -50%);
-
-    border: 0;
-    display: block;
   }
 }
 
