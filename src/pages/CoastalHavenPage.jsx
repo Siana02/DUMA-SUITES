@@ -966,16 +966,15 @@ export default function CoastalHavenPage() {
   object-fit: contain;
 }
 
-/* Mobile — natural portrait layout */
+/* Mobile — full viewport, cover fill */
 @media (max-width: 767px) {
   .ch-tour__frame-wrap {
-    width: 100%;
-    margin-left: 0;
-    height: auto;
+    width: 100vw;
+    margin-left: calc((100% - 100vw) / 2);
+    height: 100vh;
   }
   .ch-tour__frame {
-    height: auto;
-    aspect-ratio: 9/16;
+    height: 100%;
   }
   .ch-tour__frame iframe {
     object-fit: cover;
