@@ -22,10 +22,11 @@ const EXCURSION_IMAGES = [
   { main: hellsMain,    overlay: hellsOverlay },
 ]
 
-const N_CARDS = 4
 const DESKTOP_BREAKPOINT = 1024
 const WHEEL_STEP_LOCK_MS = 420
 const WHEEL_DELTA_TRIGGER = 8
+const STICKY_TOP_PX = 90
+const MOBILE_CARD_THRESHOLD = 0.2
 
 // Shared card markup — identical visual design on both desktop and mobile
 function CardInner({ item, images, cta }) {
@@ -61,7 +62,7 @@ function CardInner({ item, images, cta }) {
 // Mobile card: fade + slide-up + scale as it enters the viewport
 function MobileExcursionCard({ item, images, index, cta }) {
   const isLeft = index % 2 === 0
-  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: false })
+  const { ref, inView } = useInView({ threshold: MOBILE_CARD_THRESHOLD, triggerOnce: false })
 
   return (
     <motion.div
@@ -80,6 +81,8 @@ export default function ExcursionsSection() {
   const { lang } = useLanguage()
   const t = getT(lang)
   const exc = t.excursions
+  const deckItems = exc.items.slice(0, EXCURSION_IMAGES.length)
+  const cardCount = deckItems.length
 
   // Desktop/laptop only: locked one-by-one card cycling
   const [isDesktop, setIsDesktop] = useState(
@@ -116,7 +119,7 @@ export default function ExcursionsSection() {
 
       const sectionRect = section.getBoundingClientRect()
       const outerRect = outer.getBoundingClientRect()
-      const lockTop = 90
+      const lockTop = STICKY_TOP_PX
       const sectionInZone =
         sectionRect.top <= lockTop + 8 &&
         sectionRect.bottom >= lockTop + sticky.offsetHeight - 8 &&
@@ -132,7 +135,7 @@ export default function ExcursionsSection() {
 
       const direction = event.deltaY > 0 ? 1 : -1
       setActiveDeckIndex(prev => {
-        const next = Math.max(0, Math.min(N_CARDS - 1, prev + direction))
+        const next = Math.max(0, Math.min(cardCount - 1, prev + direction))
         if (next !== prev) {
           event.preventDefault()
           wheelLockUntilRef.current = now + WHEEL_STEP_LOCK_MS
@@ -146,7 +149,7 @@ export default function ExcursionsSection() {
     return () => {
       window.removeEventListener('wheel', handleWheel)
     }
-  }, [isDesktop])
+  }, [cardCount, isDesktop])
 
   return (
     <section ref={sectionRef} className="exc-section section" id="excursions">
@@ -173,7 +176,7 @@ export default function ExcursionsSection() {
         {/* ── Mobile: simple stacked list with fade/slide/scale ── */}
         {!isDesktop ? (
           <div className="exc-section__list">
-            {exc.items.map((item, i) => (
+            {deckItems.map((item, i) => (
               <MobileExcursionCard
                 key={i}
                 item={item}
@@ -187,7 +190,7 @@ export default function ExcursionsSection() {
           /* ── Desktop/tablet: stacked card-deck ── */
           <div ref={deckOuterRef} className="exc-deck-outer">
             <div ref={deckStickyRef} className="exc-deck-sticky">
-              {exc.items.map((item, i) => {
+              {deckItems.map((item, i) => {
                 const isLeft = i % 2 === 0
                 return (
                   <div
@@ -195,7 +198,7 @@ export default function ExcursionsSection() {
                     className={`exc-card exc-card--${isLeft ? 'left' : 'right'} exc-deck-card`}
                     style={{
                       zIndex: i + 1,
-                      transform: i === 0 || i <= activeDeckIndex ? 'translateY(0%)' : 'translateY(100%)',
+                      transform: activeDeckIndex >= i ? 'translateY(0%)' : 'translateY(100%)',
                     }}
                   >
                     <CardInner item={item} images={EXCURSION_IMAGES[i]} cta={exc.cta} />
@@ -377,7 +380,7 @@ export default function ExcursionsSection() {
           /* Sticky viewport frame — height driven by card aspect ratio */
           .exc-deck-sticky {
             position: sticky;
-            top: 90px;
+            top: ${STICKY_TOP_PX}px;
             overflow: hidden;
             height: clamp(440px, 55vw, 580px);
           }
@@ -389,10 +392,6 @@ export default function ExcursionsSection() {
             min-height: unset;
             will-change: transform;
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-          }
-          /* Cards 2-4 start hidden below (card 1 is always visible) */
-          .exc-deck-card:not(:first-child) {
-            transform: translateY(100%);
           }
         }
 
