@@ -703,6 +703,23 @@ export default function PenthouseSuiteSofiaPage() {
           inset: 0;
           background: linear-gradient(to top, rgba(0,0,0,0.18) 0%, transparent 60%);
         }
+        @keyframes ph-about-mobile-image-enter {
+          from { opacity: 0; transform: translateY(22px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 899px) {
+          .ph-about__img-col {
+            display: block;
+            width: min(100%, 620px);
+            margin-inline: auto;
+            animation: ph-about-mobile-image-enter 680ms cubic-bezier(0.4, 0, 0.2, 1) both;
+          }
+          .ph-about__img-wrap {
+            width: 100%;
+            aspect-ratio: 16/10;
+            max-height: clamp(220px, 56vw, 320px);
+          }
+        }
         @media (max-width: 559px) {
           .ph-about__stats-strip { padding: 18px; }
           .ph-about__image-card { padding: 10px; max-height: 260px; }
