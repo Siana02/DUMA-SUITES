@@ -969,20 +969,24 @@ export default function SerenityVillaPage() {
   width: 100%;
   height: 100%;
   border: none;
-  object-fit: contain;
+  object-fit: cover;
 }
 
-/* Mobile — full viewport, cover fill */
+/* Mobile — portrait aspect ratio, no fixed heights */
 @media (max-width: 767px) {
   .sv-tour__frame-wrap {
-    width: 100vw;
-    margin-left: calc((100% - 100vw) / 2);
-    height: 100vh;
+    width: 100%;
+    margin-left: 0;
+    height: auto;
+    aspect-ratio: 9 / 16;
   }
   .sv-tour__frame {
+    width: 100%;
     height: 100%;
   }
   .sv-tour__frame iframe {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 }
