@@ -22,10 +22,8 @@ function LanguageDropdown({ className = '', idPrefix = 'desktop' }) {
     es: 'Español',
   }
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng)
-    setLanguage(lng)
-  }
+  const selectedLanguage = supportedLanguages.includes(lang) ? lang : (i18n.resolvedLanguage || 'en')
+  const changeLanguage = (lng) => setLanguage(lng)
 
   return (
     <div className={className}>
@@ -33,7 +31,7 @@ function LanguageDropdown({ className = '', idPrefix = 'desktop' }) {
       <select
         id={`${idPrefix}-lang-select`}
         className="navbar__lang-select"
-        value={lang}
+        value={selectedLanguage}
         onChange={(e) => changeLanguage(e.target.value)}
         aria-label="Select language"
       >
@@ -440,7 +438,6 @@ export default function Navbar() {
           gap: 1rem;
           justify-self: end;
         }
-        .navbar__lang-toggle {
         .navbar__lang-select {
           font-family: var(--font-nav);
           font-size: 0.64rem;

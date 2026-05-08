@@ -30,7 +30,9 @@ export function LanguageProvider({ children }) {
         setDynamicTranslation(lang, dynamicTranslation)
         setTranslationVersion((v) => v + 1)
       })
-      .catch(() => {})
+      .catch((error) => {
+        console.warn(`Failed to load locale file for "${lang}"`, error)
+      })
 
     return () => {
       canceled = true
@@ -40,6 +42,7 @@ export function LanguageProvider({ children }) {
   const setLanguage = (nextLang) => {
     const targetLang = SUPPORTED_LANGUAGES.includes(nextLang) ? nextLang : 'en'
     localStorage.setItem('duma-lang', targetLang)
+    i18n.changeLanguage(targetLang)
     setLang(targetLang)
   }
 

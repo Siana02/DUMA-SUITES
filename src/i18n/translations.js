@@ -2072,14 +2072,14 @@ const it = {
   },
 }
 
-const dynamicTranslations = {}
+const dynamicTranslations = new Map()
 
 export function setDynamicTranslation(lang, translation) {
-  dynamicTranslations[lang] = translation
+  dynamicTranslations.set(lang, translation)
 }
 
 export function getT(lang) {
-  if (dynamicTranslations[lang]) return dynamicTranslations[lang]
+  if (dynamicTranslations.has(lang)) return dynamicTranslations.get(lang)
   if (lang === 'it') return it
   return en
 }

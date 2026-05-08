@@ -1,25 +1,25 @@
 {
   "nav": {
-    "home": "Home",
+    "home": "Inicio",
     "suites": "Suites",
-    "gallery": "Gallery",
-    "about": "About",
-    "contact": "Contact",
-    "houseRules": "House Rules",
+    "gallery": "Galería",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "houseRules": "Normas de la Casa",
     "blog": "Blog",
-    "langSwitch": "IT"
+    "langSwitch": "EN"
   },
   "hero": {
-    "eyebrow": "Luxury Coastal Living",
-    "heading": "Where the Ocean Meets Elegance",
-    "sub": "Nestled within Ghepard Towers, Watamu — 50 metres from the white sands of the Indian Ocean.",
-    "cta": "Explore Suites",
-    "ctaSub": "View All Accommodations",
-    "scroll": "Scroll to discover",
-    "headingTop": "THE ART OF",
-    "headingMain": "COASTAL LUXURY",
-    "ariaLabel": "The Art of Coastal Luxury",
-    "subtitle": "Discover Watamu's most refined seaside retreat."
+    "eyebrow": "Lujo Costero",
+    "heading": "Donde el Océano se Encuentra con la Elegancia",
+    "sub": "Ubicado en Ghepard Towers, Watamu — a 50 metros de las arenas blancas del océano Índico.",
+    "cta": "Explorar Suites",
+    "ctaSub": "Ver todos los Alojamientos",
+    "scroll": "Desplázate para descubrir",
+    "headingTop": "EL ARTE DEL",
+    "headingMain": "LUJO COSTERO",
+    "ariaLabel": "El Arte del Lujo Costero",
+    "subtitle": "Descubre el refugio costero más refinado de Watamu."
   },
   "about": {
     "eyebrow": "OUR STORY & VALUES",
