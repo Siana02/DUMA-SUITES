@@ -951,7 +951,6 @@ export default function SerenityVillaPage() {
 .sv-tour__frame-wrap {
   position: relative;
   left: 50%;
-  right: 50%;
   width: 100vw;
   margin-left: -50vw;
   margin-right: -50vw;
