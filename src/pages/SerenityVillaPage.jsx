@@ -741,11 +741,12 @@ export default function SerenityVillaPage() {
         }
         /* Highlights card — now inside highlights-row */
         .sv-about__highlights-card {
-          background: var(--color-bg-secondary);
-          border: 1px solid rgba(201,169,110,0.18);
-          border-radius: 4px;
-          padding: clamp(20px, 3vw, 32px);
           margin-top: 0;
+          padding: 22px;
+          background: var(--color-surface, #faf9f7);
+          border-radius: 14px;
+          border: 1px solid var(--color-border, #e8e3dc);
+          box-shadow: 0 8px 28px rgba(0,0,0,0.06);
         }
         .sv-about__mobile-cta {
           display: flex;
@@ -756,44 +757,40 @@ export default function SerenityVillaPage() {
           .sv-about__mobile-cta { display: none; }
         }
         .sv-about__highlights-title {
-          font-family: var(--font-nav);
-          font-size: 0.68rem;
-          letter-spacing: 0.14em;
+          font-size: 0.8rem;
+          font-weight: 700;
+          letter-spacing: 0.1em;
           text-transform: uppercase;
-          color: var(--color-espresso);
-          margin-bottom: 1.25rem;
-          padding-bottom: 0.75rem;
-          border-bottom: 1px solid rgba(86,51,17,0.12);
+          color: var(--color-text-muted, #7a7065);
+          margin: 0 0 16px;
         }
-        .sv-highlights { display: flex; flex-direction: column; gap: 10px; }
+        .sv-highlights { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+        @media (min-width: 980px) {
+          .sv-highlights { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
         .sv-highlights__item {
           display: flex;
           align-items: flex-start;
           gap: 10px;
-          font-family: var(--font-body);
-          font-size: 0.9rem;
+          font-size: 0.88rem;
           color: var(--color-text-body);
           line-height: 1.5;
           padding: 8px 10px;
-          border-radius: 3px;
-          transition: background 0.2s ease;
+          border-radius: 10px;
+          background: rgba(201, 169, 110, 0.08);
         }
-        .sv-highlights__item:hover { background: rgba(201,169,110,0.08); }
         .sv-highlights__icon {
-          color: var(--color-teal);
+          color: var(--color-accent, #c9a96e);
           flex-shrink: 0;
           margin-top: 2px;
-          background: rgba(201,169,110,0.12);
-          padding: 3px;
-          border-radius: 50%;
-          box-sizing: content-box;
         }
         /* Right image column — visible on all breakpoints */
         .sv-about__img-wrap {
           position: relative;
           overflow: hidden;
-          border-radius: 3px;
+          border-radius: 14px;
           aspect-ratio: 16/10;
+          box-shadow: 0 14px 36px rgba(0,0,0,0.18);
         }
         .sv-about__img {
           width: 100%;
