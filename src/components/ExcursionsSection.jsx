@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ArrowRight, Info } from 'lucide-react'
@@ -25,6 +25,7 @@ const EXCURSION_IMAGES = [
 const DESKTOP_BREAKPOINT = 1024
 const STICKY_TOP_PX = 90
 const MOBILE_CARD_THRESHOLD = 0.2
+const CARD_TRANSITION_MS = 650 // must match the CSS transition duration
 
 // Shared card markup — identical visual design on both desktop and mobile
 function CardInner({ item, images, cta }) {
@@ -86,6 +87,11 @@ export default function ExcursionsSection() {
   const [isDesktop, setIsDesktop] = useState(false)
   const [activeDeckIndex, setActiveDeckIndex] = useState(0)
 
+  // Refs for wheel/touch interception (avoid stale closures in event handlers)
+  const activeIndexRef  = useRef(0)
+  const cooldownRef     = useRef(false)
+  const touchStartYRef  = useRef(0)
+
   const deckOuterRef  = useRef(null)
   const deckStickyRef = useRef(null)
 
@@ -99,7 +105,15 @@ export default function ExcursionsSection() {
     return () => window.removeEventListener('resize', check)
   }, [])
 
-  // Desktop/tablet: drive active card index from scroll position within the deck outer
+  // Desktop/tablet: intercept wheel + touch to cycle cards one-by-one
+  const cardCountRef = useRef(cardCount)
+  useEffect(() => { cardCountRef.current = cardCount }, [cardCount])
+
+  const goToCard = useCallback((idx) => {
+    activeIndexRef.current = idx
+    setActiveDeckIndex(idx)
+  }, [])
+
   useEffect(() => {
     if (!isDesktop) return
 
@@ -107,24 +121,72 @@ export default function ExcursionsSection() {
     const sticky = deckStickyRef.current
     if (!outer || !sticky) return
 
-    const update = () => {
-      const outerRect = outer.getBoundingClientRect()
+    // Returns true while the sticky frame is pinned to the viewport
+    const inActiveZone = () => {
+      const r = outer.getBoundingClientRect()
+      return r.top <= STICKY_TOP_PX + 1 && r.bottom > sticky.offsetHeight + STICKY_TOP_PX
+    }
+
+    // Sync card index from scroll position (used on mount / page-restore)
+    const syncFromScroll = () => {
+      const r         = outer.getBoundingClientRect()
       const stickyH   = sticky.offsetHeight
       const totalRange = outer.offsetHeight - stickyH
       if (totalRange <= 0) return
-
-      // How far past the sticky-top the outer has scrolled
-      const scrolledIn = STICKY_TOP_PX - outerRect.top
+      const scrolledIn = STICKY_TOP_PX - r.top
       const progress   = Math.max(0, Math.min(1, scrolledIn / totalRange))
-      const newIndex   = Math.min(Math.floor(progress * cardCount), cardCount - 1)
-      setActiveDeckIndex(newIndex)
+      const idx        = Math.min(Math.floor(progress * cardCountRef.current), cardCountRef.current - 1)
+      goToCard(idx)
     }
 
-    window.addEventListener('scroll', update, { passive: true })
-    update() // sync on mount / breakpoint change
+    if (inActiveZone()) syncFromScroll()
 
-    return () => window.removeEventListener('scroll', update)
-  }, [isDesktop, cardCount])
+    // Advance or retreat by one card; optionally intercepts a native scroll event
+    const tryAdvance = (dir, e) => {
+      if (!inActiveZone()) return
+
+      const curr = activeIndexRef.current
+      const next = Math.max(0, Math.min(cardCountRef.current - 1, curr + dir))
+
+      if (cooldownRef.current) {
+        // Keep page frozen during the card-slide animation
+        if (next !== curr) e?.preventDefault()
+        return
+      }
+
+      if (next !== curr) {
+        e?.preventDefault()
+        cooldownRef.current = true
+        goToCard(next)
+        setTimeout(() => { cooldownRef.current = false }, CARD_TRANSITION_MS)
+      }
+      // next === curr means we are at an edge — allow the page to scroll normally
+    }
+
+    const onWheel = (e) => tryAdvance(e.deltaY > 0 ? 1 : -1, e)
+
+    const onTouchStart = (e) => {
+      if (inActiveZone()) touchStartYRef.current = e.touches[0].clientY
+    }
+
+    const onTouchEnd = (e) => {
+      if (!inActiveZone()) return
+      const dy = touchStartYRef.current - e.changedTouches[0].clientY
+      if (Math.abs(dy) > 40) {
+        tryAdvance(dy > 0 ? 1 : -1)
+      }
+    }
+
+    window.addEventListener('wheel', onWheel, { passive: false })
+    window.addEventListener('touchstart', onTouchStart, { passive: true })
+    window.addEventListener('touchend', onTouchEnd, { passive: true })
+
+    return () => {
+      window.removeEventListener('wheel', onWheel)
+      window.removeEventListener('touchstart', onTouchStart)
+      window.removeEventListener('touchend', onTouchEnd)
+    }
+  }, [isDesktop, goToCard])
 
   return (
     <section
@@ -350,11 +412,11 @@ export default function ExcursionsSection() {
 
         /* ── Desktop / laptop: stacked card-deck ────────────── */
         @media (min-width: 1024px) {
-          /* Outer is 4× the card height so the sticky has room to work
-             and scroll progress drives one card reveal per quarter */
+          /* Outer is 2× the card height: one card height of natural scroll
+             before the section exits, with the cycle driven by wheel interception. */
           .exc-deck-outer {
             width: 100%;
-            height: calc(clamp(440px, 55vw, 580px) * 4);
+            height: calc(clamp(440px, 55vw, 580px) * 2);
           }
           /* Sticky viewport frame — height driven by card aspect ratio */
           .exc-deck-sticky {
