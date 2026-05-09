@@ -2,8 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ArrowLeft, ArrowRight, Info } from 'lucide-react'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useT } from '../i18n/useT.js'
 
 import cheetahIcon from '../assets/cheetah.png'
 import gediMain    from '../assets/gedi-ruins-excursion.JPEG'
@@ -87,8 +86,7 @@ function MobileExcursionCard({ item, images, index, cta }) {
 }
 
 export default function ExcursionsSection() {
-  const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const exc = t.excursions
   const deckItems = exc.items.slice(0, EXCURSION_IMAGES.length)
   const cardCount = deckItems.length

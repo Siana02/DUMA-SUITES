@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Cookie, X, ChevronRight } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useT } from '../i18n/useT.js'
 
 const STORAGE_KEY = 'duma-cookie-consent'
 
@@ -30,7 +30,7 @@ function getStoredConsent() {
 
 export default function CookieBanner({ preloadDone }) {
   const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const cb = t.cookieBanner
 
   // visible only once preload is done AND no prior consent is stored

@@ -4,8 +4,7 @@ import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Maximize2, BedDouble, Users, ArrowRight } from 'lucide-react'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useT } from '../i18n/useT.js'
 
 import outsideView2 from '../assets/outside-view2.jpeg'
 import coastalPreview from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
@@ -19,8 +18,7 @@ const SUITE_HREFS = ['/suites/penthouse-suite-1-sofia', '/suites/coastal-haven',
 function SuiteCard({ suite, image, href, index }) {
   const { ref, inView } = useInView({ threshold: 0.15, triggerOnce: true })
   const navigate = useNavigate()
-  const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
 
   return (
     <motion.article
@@ -62,8 +60,7 @@ function SuiteCard({ suite, image, href, index }) {
 
 export default function AllSuitesPage() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
-  const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const ts = t.suites.all
 
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.2, triggerOnce: true })

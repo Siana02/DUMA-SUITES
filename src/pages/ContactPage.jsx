@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { MapPin, Phone, Mail, Clock, Users, Star, CheckCircle } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useT } from '../i18n/useT.js'
 import heroImg from '../assets/infinity-pool-ocean-view.jpg'
 
 /* ── Social icons ── */
@@ -230,7 +230,7 @@ function Section({ children, delay = 0 }) {
 
 export default function ContactPage() {
   const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const ct = t.contact
   const copy = CONTACT_PAGE_COPY[lang] || CONTACT_PAGE_COPY.en
 

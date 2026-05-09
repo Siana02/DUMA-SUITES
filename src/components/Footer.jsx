@@ -2,8 +2,7 @@ import { Mail, Phone, MapPin } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import logoImg from '../assets/logo.jpeg'
 import mammalImg from '../assets/mammal.png'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useT } from '../i18n/useT.js'
 
 function TikTokIcon() {
   return (
@@ -38,8 +37,7 @@ const SOCIAL = [
 ]
 
 export default function Footer() {
-  const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const navigate = useNavigate()
   const suiteLinks = t.footer.suitesLinks
 

@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Waves, BedDouble, Leaf, Star } from 'lucide-react'
 import { useInView } from 'react-intersection-observer'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useT } from '../i18n/useT.js'
 
 import poolsImg   from '../assets/pools-of-serenity.JPEG'
 import swahiliImg from '../assets/swahili-elegance.JPEG'
@@ -132,8 +131,7 @@ function HighlightCard({ card, index }) {
 // Section
 // ─────────────────────────────────────────────────────────────────────────────
 export default function SuiteHighlightsSection() {
-  const { lang } = useLanguage()
-  const sh = getT(lang).suiteHighlights
+  const sh = useT().suiteHighlights
 
   // Merge static metadata (images/icons) with translated text
   const cards = CARD_META.map((meta, i) => ({

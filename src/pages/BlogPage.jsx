@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, Clock } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useT } from '../i18n/useT.js'
 
 import cheetahIcon from '../assets/cheetah.png'
 import dolphinImg   from '../assets/dolphin-watching-watamu.jpg'
@@ -27,7 +27,7 @@ const BLOG_PAGE_COPY = {
 
 export default function BlogPage() {
   const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const art = t.articles
   const blog = t.blog
   const copy = BLOG_PAGE_COPY[lang] || BLOG_PAGE_COPY.en

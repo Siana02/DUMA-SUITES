@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import logoImg from '../assets/mammal.png'
 import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useT } from '../i18n/useT.js'
 
 // Navbar appears as the preload curtains finish opening (~2.8 s)
 const NAVBAR_APPEAR_DELAY = 2.8
@@ -53,8 +53,7 @@ export default function Navbar() {
 
   const location = useLocation()
   const navigate = useNavigate()
-  const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
 
   const NAV_LINKS = [
     { label: t.nav.home,    href: '/',         isRoute: true },

@@ -2,8 +2,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useT } from '../i18n/useT.js'
 import cheetahIcon from '../assets/cheetah.png'
 import dolphinImg  from '../assets/dolphin-watching-watamu.jpg'
 import swahiliImg  from '../assets/coastal-swahili-dishes.webp'
@@ -11,8 +10,7 @@ import swahiliImg  from '../assets/coastal-swahili-dishes.webp'
 const ARTICLE_IMAGES = [dolphinImg, swahiliImg]
 
 export default function ArticlesSection() {
-  const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const art = t.articles
 
   const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.3, triggerOnce: true })

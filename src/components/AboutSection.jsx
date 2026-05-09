@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Waves, Sofa, Sparkles, Sunrise, Shield, Leaf, Star } from 'lucide-react'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useT } from '../i18n/useT.js'
 import cheetahIcon from '../assets/cheetah.png'
 
 const CARD_ICONS = [Waves, Sofa, Sparkles, Sunrise, Shield, Leaf, Star]
@@ -78,8 +77,7 @@ function ValueCard({ card, index, activeCard, setActiveCard, totalCards, isPage 
 }
 
 export default function AboutSection({ isPage = false }) {
-  const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const ab = t.about
   const [activeCard, setActiveCard] = useState(null)
 

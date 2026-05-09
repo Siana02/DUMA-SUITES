@@ -146,12 +146,10 @@ const fadeUp = (delay = 0) => ({
   transition:  { duration: 0.7, delay, ease: [0.4, 0, 0.2, 1] },
 })
 
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useT } from '../i18n/useT.js'
 
 export default function GalleryStripSection() {
-  const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
 
   const trackRef       = useRef(null)
   const posRef         = useRef(0)

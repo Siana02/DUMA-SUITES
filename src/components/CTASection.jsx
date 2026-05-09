@@ -3,8 +3,7 @@ import { useInView } from 'react-intersection-observer'
 import { gsap } from 'gsap'
 import { ArrowRight, Mail } from 'lucide-react'
 import cheetahIcon from '../assets/cheetah.png'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useT } from '../i18n/useT.js'
 
 function WhatsAppIcon() {
   return (
@@ -16,8 +15,7 @@ function WhatsAppIcon() {
 
 export default function CTASection() {
   const { ref, inView } = useInView({ threshold: 0.3, triggerOnce: true })
-  const { lang } = useLanguage()
-  const t = getT(lang).cta
+  const t = useT().cta
   const eyebrowRef = useRef(null)
   const dividerRef = useRef(null)
   const headingRef = useRef(null)

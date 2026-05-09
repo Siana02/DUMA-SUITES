@@ -9,8 +9,7 @@ import {
   Shield, AirVent, Sparkles, Sofa, Sunrise, UtensilsCrossed,
   Shirt, Fan, PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack,
 } from 'lucide-react'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useT } from '../i18n/useT.js'
 
 import heroImg from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
 import serenityPreview from '../assets/serenity-villa-3bedroomsuite-preview.JPEG'
@@ -81,8 +80,7 @@ function fadeUp(delay = 0) {
 export default function CoastalHavenPage() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
   const navigate = useNavigate()
-  const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const tc = t.suites.coastal
   const ts = t.suites.serenity
 
