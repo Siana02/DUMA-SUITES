@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ArrowRight, Info } from 'lucide-react'
@@ -22,17 +22,24 @@ const EXCURSION_IMAGES = [
   { main: hellsMain,    overlay: hellsOverlay },
 ]
 
-const DESKTOP_BREAKPOINT = 768
-
-function deckCardState(activeIndex, cardIndex) {
-  if (cardIndex < activeIndex)  return 'is-active is-below'
-  if (cardIndex === activeIndex) return 'is-active'
-  return 'is-inactive'
-}
-const STICKY_TOP_PX = 90
+const DESKTOP_BREAKPOINT  = 768
 const MOBILE_CARD_THRESHOLD = 0.2
+// Minimum ms between successive card advances (prevents rapid skipping on a
+// single flick — the timeout is cleared when the lock is released so that
+// the very next wheel tick after an unlock is never dropped).
+const WHEEL_DEBOUNCE_MS   = 700
+// Minimum vertical swipe distance (px) needed to advance one card on touch.
+const TOUCH_THRESHOLD_PX  = 50
+// How long (ms) to suppress re-locking after programmatically scrolling past
+// the section.  Must be long enough for the scroll + IntersectionObserver
+// callback to have settled.
+const UNLOCK_COOLDOWN_MS  = 800
+// Fraction of the deck container that must be visible before scroll is locked.
+const DECK_INTERSECTION_THRESHOLD = 0.6
 
-// Shared card markup — identical visual design on both desktop and mobile
+// ─────────────────────────────────────────────────────────────────────────────
+// Shared card markup — identical visual design on desktop and mobile
+// ─────────────────────────────────────────────────────────────────────────────
 function CardInner({ item, images, cta }) {
   return (
     <>
@@ -63,7 +70,9 @@ function CardInner({ item, images, cta }) {
   )
 }
 
-// Mobile card: fade + slide-up + scale as it enters the viewport
+// ─────────────────────────────────────────────────────────────────────────────
+// Mobile card — fade + slide-up + scale on viewport entry
+// ─────────────────────────────────────────────────────────────────────────────
 function MobileExcursionCard({ item, images, index, cta }) {
   const isLeft = index % 2 === 0
   const { ref, inView } = useInView({ threshold: MOBILE_CARD_THRESHOLD, triggerOnce: false })
@@ -81,6 +90,9 @@ function MobileExcursionCard({ item, images, index, cta }) {
   )
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Main section
+// ─────────────────────────────────────────────────────────────────────────────
 export default function ExcursionsSection() {
   const { lang } = useLanguage()
   const t = getT(lang)
@@ -88,55 +100,202 @@ export default function ExcursionsSection() {
   const deckItems = exc.items.slice(0, EXCURSION_IMAGES.length)
   const cardCount = deckItems.length
 
-  // Desktop/laptop only: locked one-by-one card cycling
-  const [isDesktop, setIsDesktop] = useState(false)
+  // Initialise synchronously so there's no flash of the mobile layout on
+  // desktop between the first render and the first useEffect run.
+  const [isDesktop, setIsDesktop] = useState(
+    typeof window !== 'undefined' && window.innerWidth >= DESKTOP_BREAKPOINT
+  )
   const [activeDeckIndex, setActiveDeckIndex] = useState(0)
 
-  const deckOuterRef  = useRef(null)
-  const deckStickyRef = useRef(null)
+  // ── refs ──────────────────────────────────────────────────────────────────
+  const sectionRef     = useRef(null)   // the <section> element (receives events)
+  const deckRef        = useRef(null)   // the card container (observed for intersection)
+  const isLockedRef    = useRef(false)  // true while page scroll is intercepted
+  const cooldownRef    = useRef(false)  // true briefly after releasing the lock
+  const wheelTimerRef  = useRef(null)   // debounce timer for wheel events
+  const touchStartYRef = useRef(null)   // Y position at touchstart
+  // Mirror of activeDeckIndex for use inside event-handler closures without
+  // re-creating those handlers on every state change.
+  const activeIdxRef   = useRef(0)
 
   const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.3, triggerOnce: true })
 
-  // Keep breakpoint mode in sync with window width
+  // Keep mirror ref in sync with React state
+  useEffect(() => { activeIdxRef.current = activeDeckIndex }, [activeDeckIndex])
+
+  // ── Breakpoint detection ───────────────────────────────────────────────────
   useEffect(() => {
     const check = () => setIsDesktop(window.innerWidth >= DESKTOP_BREAKPOINT)
     window.addEventListener('resize', check, { passive: true })
-    check() // resolve any mount-time mismatch
     return () => window.removeEventListener('resize', check)
   }, [])
 
-  // Desktop/tablet: drive active card index from scroll position within the deck outer
+  // Release the lock when switching to mobile (e.g. window resize)
   useEffect(() => {
-    if (!isDesktop) return
+    if (!isDesktop) isLockedRef.current = false
+  }, [isDesktop])
 
-    const outer  = deckOuterRef.current
-    const sticky = deckStickyRef.current
-    if (!outer || !sticky) return
+  // ── Helpers ────────────────────────────────────────────────────────────────
 
-    const update = () => {
-      const outerRect = outer.getBoundingClientRect()
-      const stickyH   = sticky.offsetHeight
-      const totalRange = outer.offsetHeight - stickyH
-      if (totalRange <= 0) return
+  // Programmatically scroll the window so the section is just off-screen in
+  // the given direction, then impose a cooldown so the IntersectionObserver
+  // callback does not immediately re-lock.
+  const scrollPast = useCallback((direction) => {
+    const section = sectionRef.current
+    if (!section) return
+    const sectionTop = section.getBoundingClientRect().top + window.pageYOffset
+    if (direction > 0) {
+      // Move to just below the section's bottom edge
+      window.scrollTo(0, sectionTop + section.offsetHeight + 2)
+    } else {
+      // Move to just above the section's top edge
+      window.scrollTo(0, Math.max(0, sectionTop - 2))
+    }
+  }, [])
 
-      // How far past the sticky-top the outer has scrolled
-      const scrolledIn = STICKY_TOP_PX - outerRect.top
-      const progress   = Math.max(0, Math.min(1, scrolledIn / totalRange))
-      const newIndex   = Math.min(Math.floor(progress * cardCount), cardCount - 1)
-      setActiveDeckIndex(newIndex)
+  // Try to advance/retreat the active card index.
+  // Returns true if the step was consumed, false if the edge was reached.
+  const step = useCallback((direction) => {
+    const next = activeIdxRef.current + direction
+    if (next >= 0 && next < cardCount) {
+      setActiveDeckIndex(next)
+      return true
+    }
+    return false
+  }, [cardCount])
+
+  // Unlock page scroll and scroll programmatically past the section.
+  const releaseLock = useCallback((direction) => {
+    isLockedRef.current = false
+    cooldownRef.current = true
+
+    if (wheelTimerRef.current) {
+      clearTimeout(wheelTimerRef.current)
+      wheelTimerRef.current = null
     }
 
-    window.addEventListener('scroll', update, { passive: true })
-    update() // sync on mount / breakpoint change
+    // Clear cooldown after enough time for IO callback to have settled
+    setTimeout(() => { cooldownRef.current = false }, UNLOCK_COOLDOWN_MS)
 
-    return () => window.removeEventListener('scroll', update)
+    scrollPast(direction)
+  }, [scrollPast])
+
+  // ── Event handlers (stable refs via useCallback) ───────────────────────────
+
+  // Wheel — must be registered as non-passive so preventDefault() works.
+  const handleWheel = useCallback((e) => {
+    if (!isLockedRef.current) return
+    e.preventDefault()
+    if (wheelTimerRef.current) return   // still within debounce window
+
+    const direction = e.deltaY >= 0 ? 1 : -1
+    if (!step(direction)) {
+      releaseLock(direction)
+    } else {
+      wheelTimerRef.current = setTimeout(
+        () => { wheelTimerRef.current = null },
+        WHEEL_DEBOUNCE_MS
+      )
+    }
+  }, [step, releaseLock])
+
+  // Touch — record start position (passive is fine here)
+  const handleTouchStart = useCallback((e) => {
+    if (!isLockedRef.current) return
+    touchStartYRef.current = e.touches[0].clientY
+  }, [])
+
+  // Touch move — prevent native scroll while locked (must be non-passive)
+  const handleTouchMove = useCallback((e) => {
+    if (!isLockedRef.current || touchStartYRef.current === null) return
+    e.preventDefault()
+  }, [])
+
+  // Touch end — compute swipe delta and advance/retreat
+  const handleTouchEnd = useCallback((e) => {
+    if (!isLockedRef.current || touchStartYRef.current === null) return
+    const deltaY = touchStartYRef.current - e.changedTouches[0].clientY
+    touchStartYRef.current = null
+    if (Math.abs(deltaY) < TOUCH_THRESHOLD_PX) return
+    const direction = deltaY > 0 ? 1 : -1
+    if (!step(direction)) releaseLock(direction)
+  }, [step, releaseLock])
+
+  // Keyboard — ArrowDown/Up and PageDown/Up advance the deck; all other keys
+  // pass through so Tab, Enter, Space etc. remain fully functional.
+  const handleKeyDown = useCallback((e) => {
+    if (!isLockedRef.current) return
+    let direction = 0
+    if (e.key === 'ArrowDown' || e.key === 'PageDown') direction = 1
+    if (e.key === 'ArrowUp'   || e.key === 'PageUp')   direction = -1
+    if (!direction) return
+    e.preventDefault()
+    if (!step(direction)) releaseLock(direction)
+  }, [step, releaseLock])
+
+  // ── Attach / detach event listeners ───────────────────────────────────────
+  useEffect(() => {
+    if (!isDesktop) return
+    const section = sectionRef.current
+    if (!section) return
+
+    // wheel and touchmove MUST be non-passive to call preventDefault
+    section.addEventListener('wheel',      handleWheel,      { passive: false })
+    section.addEventListener('touchstart', handleTouchStart, { passive: true })
+    section.addEventListener('touchmove',  handleTouchMove,  { passive: false })
+    section.addEventListener('touchend',   handleTouchEnd,   { passive: true })
+    window .addEventListener('keydown',    handleKeyDown)
+
+    return () => {
+      section.removeEventListener('wheel',      handleWheel)
+      section.removeEventListener('touchstart', handleTouchStart)
+      section.removeEventListener('touchmove',  handleTouchMove)
+      section.removeEventListener('touchend',   handleTouchEnd)
+      window .removeEventListener('keydown',    handleKeyDown)
+      if (wheelTimerRef.current) {
+        clearTimeout(wheelTimerRef.current)
+        wheelTimerRef.current = null
+      }
+    }
+  }, [isDesktop, handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd, handleKeyDown])
+
+  // ── IntersectionObserver — lock/unlock based on deck visibility ────────────
+  useEffect(() => {
+    if (!isDesktop) return
+    const deck = deckRef.current
+    if (!deck) return
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !cooldownRef.current) {
+          // A positive boundingClientRect.top means the deck's top edge is
+          // still below the viewport's top edge → section is entering from
+          // below (user scrolling down) → start at card 0.
+          // A negative value means the deck top is above the viewport →
+          // section is re-entering from above (user scrolling up) → start at
+          // the last card.
+          const scrollingDown = entry.boundingClientRect.top >= 0
+
+          const startIndex = scrollingDown ? 0 : cardCount - 1
+          setActiveDeckIndex(startIndex)
+          activeIdxRef.current = startIndex
+          isLockedRef.current  = true
+        } else if (!entry.isIntersecting) {
+          isLockedRef.current = false
+        }
+      })
+    }, { threshold: DECK_INTERSECTION_THRESHOLD })
+
+    observer.observe(deck)
+    return () => observer.disconnect()
   }, [isDesktop, cardCount])
 
+  // ── Render ─────────────────────────────────────────────────────────────────
   return (
     <section
+      ref={sectionRef}
       className="exc-section section"
       id="excursions"
-      style={{ '--exc-sticky-top': `${STICKY_TOP_PX}px` }}
     >
       <div className="container">
         <div
@@ -172,24 +331,21 @@ export default function ExcursionsSection() {
             ))}
           </div>
         ) : (
-          /* ── Desktop/tablet: stacked card-deck ── */
-          <div ref={deckOuterRef} className="exc-deck-outer">
-            <div ref={deckStickyRef} className="exc-deck-sticky">
-              {deckItems.map((item, i) => {
-                const isLeft = i % 2 === 0
-                return (
-                  <div
-                    key={i}
-                    className={`exc-card exc-card--${isLeft ? 'left' : 'right'} exc-deck-card ${deckCardState(activeDeckIndex, i)}`}
-                    style={{
-                      zIndex: i + 1,
-                    }}
-                  >
-                    <CardInner item={item} images={EXCURSION_IMAGES[i]} cta={exc.cta} />
-                  </div>
-                )
-              })}
-            </div>
+          /* ── Desktop/tablet: scroll-intercepted card deck ── */
+          <div ref={deckRef} className="exc-deck">
+            {deckItems.map((item, i) => {
+              const isLeft     = i % 2 === 0
+              const isRevealed = i <= activeDeckIndex
+              return (
+                <div
+                  key={i}
+                  className={`exc-card exc-card--${isLeft ? 'left' : 'right'} exc-deck-card${isRevealed ? ' is-revealed' : ''}`}
+                  style={{ zIndex: i + 1 }}
+                >
+                  <CardInner item={item} images={EXCURSION_IMAGES[i]} cta={exc.cta} />
+                </div>
+              )
+            })}
           </div>
         )}
       </div>
@@ -354,42 +510,35 @@ export default function ExcursionsSection() {
           color: #fff;
         }
 
-        /* ── Desktop/tablet: stacked card-deck ────────────── */
+        /* ── Desktop/tablet: scroll-intercepted card deck ────── */
         @media (min-width: 768px) {
-          /* Outer is 4× the card height so the sticky has room to work
-             and scroll progress drives one card reveal per quarter */
-          .exc-deck-outer {
+          /* Container — fills the viewport so each card is fully in view.
+             Cards are absolutely stacked inside; no scroll space needed. */
+          .exc-deck {
+            position: relative;
             width: 100%;
-            height: calc(clamp(440px, 55vw, 580px) * 4);
-          }
-          /* Sticky viewport frame — height driven by card aspect ratio */
-          .exc-deck-sticky {
-            position: sticky;
-            top: var(--exc-sticky-top);
+            min-height: 100vh;
             overflow: hidden;
-            height: clamp(440px, 55vw, 580px);
           }
-          /* Each card fills the sticky frame and is absolutely stacked */
+          /* Each card fills the deck container and is stacked by z-index.
+             Default: waiting below the fold. */
           .exc-deck-card {
             position: absolute;
             inset: 0;
             height: 100%;
             min-height: unset;
             will-change: transform;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             transform: translateY(100%);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
           }
-          /* Active: current top card — fully visible */
-          .exc-deck-card.is-active {
+          /* Revealed: current card and all already-seen cards stay in place. */
+          .exc-deck-card.is-revealed {
             transform: translateY(0%);
           }
-          /* Below: already-passed card — stays in place under newer cards */
-          .exc-deck-card.is-below {
-            transform: translateY(0%);
-          }
-          /* Inactive: upcoming card — waits below the fold */
-          .exc-deck-card.is-inactive {
-            transform: translateY(100%);
+          /* Image side: fill the full height of the card (no aspect-ratio lock) */
+          .exc-deck-card .exc-card__img-side {
+            aspect-ratio: unset;
+            height: 100%;
           }
         }
 
