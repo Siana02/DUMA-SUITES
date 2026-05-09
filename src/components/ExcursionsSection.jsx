@@ -34,8 +34,8 @@ const TOUCH_THRESHOLD_PX = 50
 // the section.  Must be long enough for the scroll + IntersectionObserver
 // callback to have settled.
 const UNLOCK_COOLDOWN_MS = 800
-// Full-view tolerance (px) to avoid floating point/layout jitter near 100%.
-const FULL_VIEW_TOLERANCE_PX = 0
+// Full-view tolerance (px) to avoid sub-pixel/layout jitter near 100% visibility.
+const FULL_VIEW_TOLERANCE_PX = 8
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Shared card markup — identical visual design on desktop and mobile
@@ -284,6 +284,8 @@ export default function ExcursionsSection() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const rect = entry.boundingClientRect
+        // Accept a tiny tolerance on both edges to absorb sub-pixel rounding so
+        // the "fully in view" lock still engages at practical 100% visibility.
         const fullyVisible =
           rect.top >= -FULL_VIEW_TOLERANCE_PX &&
           rect.bottom <= window.innerHeight + FULL_VIEW_TOLERANCE_PX
@@ -298,6 +300,7 @@ export default function ExcursionsSection() {
           isLockedRef.current = false
         }
       })
+    // 0 => entering/leaving viewport, 1 => fully visible transition.
     }, { threshold: [0, 1] })
 
     observer.observe(deck)
