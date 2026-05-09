@@ -137,8 +137,8 @@
       {
         "id": 1,
         "rating": 5,
-        "pullQuote": "It felt like coming home.",
-        "text": "Opening the terrace doors each morning to the sight and scent of the Indian Ocean was nothing short of magical. The staff remembered our names from day one — every detail was thoughtful, warm and wonderfully personal.",
+        "pullQuote": "Se sintió como volver a casa.",
+        "text": "Abrir cada mañana las puertas de la terraza con la vista y el aroma del océano Índico fue mágico. El equipo recordaba nuestros nombres desde el primer día.",
         "author": "Sarah & James O.",
         "origin": "London, UK",
         "initials": "SJ",
@@ -147,8 +147,8 @@
       {
         "id": 2,
         "rating": 5,
-        "pullQuote": "Absolutely unforgettable.",
-        "text": "The suite was beyond anything we had imagined. Watching the sunset from our private terrace with a glass of Kenyan wine, the horizon glowing amber — a memory I will carry for years.",
+        "pullQuote": "Absolutamente inolvidable.",
+        "text": "La suite superó todo lo que imaginábamos. Ver el atardecer desde nuestra terraza privada fue un recuerdo para toda la vida.",
         "author": "Aiko T.",
         "origin": "Tokyo, Japan",
         "initials": "AT",
@@ -157,8 +157,8 @@
       {
         "id": 3,
         "rating": 5,
-        "pullQuote": "Duma Suites has raised the bar.",
-        "text": "From the morning light on the terrace to the evening by the pool, every touch was thoughtful. This is East Africa's coastal luxury at its finest — refined, soulful and deeply considered.",
+        "pullQuote": "Duma Suites subió el listón.",
+        "text": "Desde la luz de la mañana en la terraza hasta la noche junto a la piscina, todo estuvo cuidado al detalle.",
         "author": "David M.",
         "origin": "Nairobi, Kenya",
         "initials": "DM",
@@ -167,8 +167,8 @@
       {
         "id": 4,
         "rating": 5,
-        "pullQuote": "True hospitality, redefined.",
-        "text": "The concierge arranged a private snorkelling tour and a sunset dhow cruise — both extraordinary. This is a place that genuinely understands what hospitality means. We left already planning our return.",
+        "pullQuote": "Hospitalidad real, redefinida.",
+        "text": "El concierge organizó snorkel privado y un crucero en dhow al atardecer: ambos extraordinarios.",
         "author": "Priya & Rajan K.",
         "origin": "Dubai, UAE",
         "initials": "PR",
@@ -177,8 +177,8 @@
       {
         "id": 5,
         "rating": 5,
-        "pullQuote": "A hidden gem on the Kenyan coast.",
-        "text": "The infinity pool views at sunrise are unlike anything I have experienced anywhere in the world. The silence, the light, the attentive service — it all adds up to something truly rare. Will absolutely return.",
+        "pullQuote": "Una joya escondida en la costa de Kenia.",
+        "text": "Las vistas de la piscina infinita al amanecer son únicas. Silencio, luz y servicio atento en una experiencia realmente especial.",
         "author": "Marco B.",
         "origin": "Rome, Italy",
         "initials": "MB",
@@ -187,8 +187,8 @@
       {
         "id": 6,
         "rating": 5,
-        "pullQuote": "Pure serenity from the first breath.",
-        "text": "We celebrated our anniversary here and every moment exceeded our expectations. The suite was immaculate, the setting was exceptional and the staff went quietly above and beyond in ways we still talk about.",
+        "pullQuote": "Pura serenidad desde el primer instante.",
+        "text": "Celebramos aquí nuestro aniversario y cada momento superó nuestras expectativas. Suite impecable, entorno excepcional y equipo excelente.",
         "author": "Céleste & Henri D.",
         "origin": "Paris, France",
         "initials": "CH",
@@ -197,8 +197,8 @@
       {
         "id": 7,
         "rating": 5,
-        "pullQuote": "Beautiful, new and well-built.",
-        "text": "Beautiful, new and well-built residence. Well located with excellent access to everything Watamu has to offer. An excellent experience from start to finish.",
+        "pullQuote": "Hermoso, nuevo y muy bien construido.",
+        "text": "Residencia hermosa, nueva y bien hecha. Muy bien ubicada, con acceso excelente a todo Watamu.",
         "author": "Renzo S.",
         "origin": "Italy",
         "initials": "RS",
@@ -207,8 +207,8 @@
       {
         "id": 8,
         "rating": 5,
-        "pullQuote": "Top level.",
-        "text": "Top level. Everything about the stay — the suite, the service, the location — was exceptional. Exactly what you hope for and more.",
+        "pullQuote": "Nivel superior.",
+        "text": "Nivel superior. La suite, el servicio y la ubicación fueron excepcionales. Exactamente lo que esperas y más.",
         "author": "Gianpietro C.",
         "origin": "Italy",
         "initials": "GC",
@@ -895,218 +895,218 @@
     ]
   },
   "article1": {
-    "metaTitle": "Top 5 Activities on the Watamu Coast | Duma Suites Stories",
-    "metaDesc": "From Safari Blue full-day and half-day to Gedi Ruins, elephant watching and the Mida Creek boardwalk — discover the top activities on the Watamu coast, curated by Duma Suites.",
-    "heroEyebrow": "Travel Guide",
-    "heroTitle": "Top Activities on the Watamu Coast",
-    "heroSub": "Extraordinary experiences curated for Duma Suites guests",
-    "proofRating": "TripAdvisor Rating",
-    "proofReturn": "Would Return",
-    "introTitle": "Discover Watamu’s Finest Experiences",
-    "introText": "Watamu is one of East Africa’s most captivating coastal destinations — and the activities available here go far beyond simply relaxing on its legendary white-sand beaches. From ancient ruins hidden within a sacred forest to legendary full-day marine adventures, every experience here leaves a lasting impression.",
-    "conciergeLabel": "From Our Concierge",
-    "conciergeText": "Our team personally curates and arranges every excursion below for guests staying at Duma Suites. Speak to us at check-in and we’ll tailor the perfect itinerary for your stay.",
-    "voicesEyebrow": "What Our Guests Say",
-    "tipsLabel": "Concierge Insider Tips",
-    "perfectFor": "Perfect for",
-    "bookCtaSub": "Our concierge can arrange any of these experiences directly from Duma Suites.",
-    "bookCtaBtn": "Book an Experience",
-    "readNextEyebrow": "Read Next",
-    "readNextTitle": "Coastal Swahili Dishes You Absolutely Need to Try",
-    "readNextExcerpt": "Discover the extraordinary culinary traditions of the Kenyan Swahili coast — from fragrant pilau and coconut fish curry to the legendary Safari Blue seafood feast.",
-    "readNextCta": "Read the Guide",
-    "nextCategory": "Food & Culture",
-    "moreFromEyebrow": "More From Duma Suites Stories",
-    "comingSoon": "Coming Soon",
-    "cs1Title": "A Guide to Watamu’s Best Beaches",
-    "cs1Desc": "The hidden coves, turtle nesting spots and sunset stretches of Watamu’s coastline — mapped for you.",
-    "cs2Title": "Snorkelling & Diving in Watamu",
-    "cs2Desc": "A complete guide to the reefs, dive sites and marine life of Watamu Marine Park.",
-    "backToStories": "Back to Stories & Guides",
-    "nextArticle": "Next: Coastal Swahili Dishes",
+    "metaTitle": "Top actividades en la costa de Watamu | Duma Suites Stories",
+    "metaDesc": "Descubra experiencias imprescindibles en Watamu, desde Safari Blue hasta las ruinas de Gedi.",
+    "heroEyebrow": "Guía de viaje",
+    "heroTitle": "Top actividades en la costa de Watamu",
+    "heroSub": "Experiencias extraordinarias para huéspedes de Duma Suites",
+    "proofRating": "Valoración TripAdvisor",
+    "proofReturn": "Volverían",
+    "introTitle": "Descubra lo mejor de Watamu",
+    "introText": "Watamu es uno de los destinos costeros más cautivadores de África Oriental. Entre aventura marina e historia swahili, cada experiencia deja huella.",
+    "conciergeLabel": "De nuestro concierge",
+    "conciergeText": "Nuestro equipo organiza personalmente cada excursión para los huéspedes de Duma Suites.",
+    "voicesEyebrow": "Lo que dicen nuestros huéspedes",
+    "tipsLabel": "Consejos insider del concierge",
+    "perfectFor": "Perfecto para",
+    "bookCtaSub": "Nuestro concierge puede organizar cualquiera de estas experiencias directamente desde Duma Suites.",
+    "bookCtaBtn": "Reservar una experiencia",
+    "readNextEyebrow": "Leer a continuación",
+    "readNextTitle": "Platos swahili costeros que debe probar",
+    "readNextExcerpt": "Descubra los sabores más emblemáticos de la costa swahili de Kenia.",
+    "readNextCta": "Leer la guía",
+    "nextCategory": "Gastronomía & Cultura",
+    "moreFromEyebrow": "Más de Duma Suites Stories",
+    "comingSoon": "Próximamente",
+    "cs1Title": "Guía de las mejores playas de Watamu",
+    "cs1Desc": "Calas ocultas, zonas de anidación de tortugas y atardeceres inolvidables.",
+    "cs2Title": "Snorkel y buceo en Watamu",
+    "cs2Desc": "Guía completa de arrecifes, puntos de inmersión y vida marina.",
+    "backToStories": "Volver a Historias & Guías",
+    "nextArticle": "Siguiente: Platos swahili costeros",
     "insiderTips": [
-      "Book Safari Blue at least 2 days ahead — it fills fast during high season (December–February).",
-      "Visit Gedi Ruins early morning: cooler, quieter, and the colobus monkeys are most active at sunrise.",
-      "Bring binoculars to Mida Creek — the boardwalk rewards patience, especially at low tide."
+      "Reserve Safari Blue al menos 2 días antes en temporada alta.",
+      "Visite las ruinas de Gedi temprano para más calma y clima fresco.",
+      "Lleve binoculares a Mida Creek, especialmente con marea baja."
     ],
     "quotes": [
       {
-        "text": "Safari Blue was the most magical day of our entire trip — the dolphins, the reef, the feast on Sudi Island. Book it without hesitation.",
+        "text": "Safari Blue fue el día más mágico de todo nuestro viaje.",
         "author": "Sarah M.",
-        "origin": "London",
+        "origin": "Londres",
         "platform": "TripAdvisor",
         "variant": "teal"
       },
       {
-        "text": "The Gedi Ruins tour arranged by Duma’s concierge was utterly unforgettable. You feel 800 years of Swahili history standing in those courtyards.",
+        "text": "La visita a las ruinas de Gedi organizada por Duma fue inolvidable.",
         "author": "Marco T.",
-        "origin": "Rome",
+        "origin": "Roma",
         "platform": "Google",
         "variant": "espresso"
       },
       {
-        "text": "Mida Creek at low tide with herons and fish eagles circling overhead — we had no idea Watamu held something this serene.",
+        "text": "Mida Creek en marea baja fue de una serenidad impresionante.",
         "author": "Claire & James B.",
-        "origin": "Sydney",
+        "origin": "Sídney",
         "platform": "Booking.com",
         "variant": "sand"
       }
     ],
     "activities": [
       {
-        "title": "Safari Blue — Full-Day Excursion",
-        "pullQuote": "Spinner dolphins leap alongside the dhow as Watamu’s legendary full-day marine adventure unfolds before you.",
+        "title": "Safari Blue — Excursión de día completo",
+        "pullQuote": "Delfines giradores acompañan el dhow en esta aventura marina legendaria.",
         "tags": [
-          "Couples",
-          "Families",
-          "Adventurers"
+          "Parejas",
+          "Familias",
+          "Aventureros"
         ],
         "badges": [
-          "Full Day · 8 hrs",
-          "Dolphin Watching",
-          "Seafood Feast on Sudi Island",
-          "Snorkelling Included",
-          "Book 2 Days Ahead"
+          "Día completo · 8 h",
+          "Avistamiento de delfines",
+          "Banquete de mariscos en Sudi Island",
+          "Snorkel incluido",
+          "Reservar 2 días antes"
         ],
-        "desc": "Safari Blue is Watamu’s most iconic full-day marine adventure. Board a traditional wooden dhow and sail the crystal-clear waters off the Watamu and Mida Creek coast. The day begins with dolphin watching as spinner dolphins frequently leap alongside the dhow, followed by snorkelling over vibrant coral reefs at Watamu Marine Park. The highlight is a mid-day stop at Sudi Island for a fresh BBQ seafood feast on the beach — lobster, calamari, octopus and prawns grilled over charcoal. The full-day trip returns at sunset, leaving guests with one of the most complete and memorable days on the Kenyan coast."
+        "desc": "Safari Blue es la experiencia marina más icónica de Watamu: salida en dhow tradicional, delfines, snorkel en arrecifes y almuerzo de mariscos frescos en Sudi Island."
       },
       {
-        "title": "Safari Blue — Half-Day Option",
-        "pullQuote": "A condensed introduction to the magic of the Watamu coastline — dolphin watching and coral reefs await.",
+        "title": "Safari Blue — Opción medio día",
+        "pullQuote": "La versión compacta de la magia de Watamu: delfines y arrecifes.",
         "tags": [
-          "Couples",
-          "Short stays"
+          "Parejas",
+          "Estancias cortas"
         ],
         "badges": [
-          "Half Day · 4 hrs",
-          "Dolphin Watching",
-          "Coral Snorkelling",
-          "Morning Departure"
+          "Medio día · 4 h",
+          "Avistamiento de delfines",
+          "Snorkel en coral",
+          "Salida por la mañana"
         ],
-        "desc": "For guests with limited time, the Safari Blue half-day excursion offers the core marine experience without the Sudi Island seafood stop. You’ll enjoy dolphin watching and snorkelling over Watamu’s coral gardens aboard a traditional dhow, returning in the early afternoon. A wonderful condensed introduction to the magic of the Watamu coastline."
+        "desc": "Ideal para quienes tienen poco tiempo: experiencia marina esencial sin parada gastronómica larga en Sudi Island."
       },
       {
-        "title": "Watamu Marine Park Snorkelling",
-        "pullQuote": "Turtles, reef sharks and a kaleidoscope of tropical fish — an accessible and unforgettable underwater world.",
+        "title": "Snorkel en el Parque Marino de Watamu",
+        "pullQuote": "Tortugas, tiburones de arrecife y peces tropicales en un mundo accesible.",
         "tags": [
-          "Families",
-          "Snorkellers",
-          "First-timers"
+          "Familias",
+          "Snorkelistas",
+          "Principiantes"
         ],
         "badges": [
-          "2–3 hrs",
-          "UNESCO Protected",
-          "Turtles & Reef Sharks",
-          "All Levels Welcome",
-          "Equipment Provided"
+          "2–3 h",
+          "Zona protegida UNESCO",
+          "Tortugas y tiburones de arrecife",
+          "Todos los niveles",
+          "Equipo incluido"
         ],
-        "desc": "One of Kenya’s oldest and most protected marine national parks sits right on Watamu’s doorstep. The coral gardens here are home to turtles, reef sharks, stingrays, vibrant tropical fish and an incredible diversity of corals. Whether you’re a seasoned diver or a first-time snorkeller, the Marine Park offers an accessible and unforgettable underwater world."
+        "desc": "Uno de los parques marinos más antiguos y protegidos de Kenia, con jardines de coral y una biodiversidad extraordinaria."
       },
       {
-        "title": "Gedi Ruins — Ancient Swahili City",
-        "pullQuote": "The haunting remains of a 12th-century Swahili trading town, still debated by historians — and still spellbinding.",
+        "title": "Ruinas de Gedi — Antigua ciudad swahili",
+        "pullQuote": "Vestigios fascinantes de una ciudad comercial del siglo XII.",
         "tags": [
-          "History lovers",
-          "Nature fans",
-          "Couples"
+          "Amantes de la historia",
+          "Naturaleza",
+          "Parejas"
         ],
         "badges": [
-          "Half Day · 2–3 hrs",
-          "12th Century",
-          "Guided Tours Available",
-          "Colobus Monkeys",
-          "Sacred Forest"
+          "Medio día · 2–3 h",
+          "Siglo XII",
+          "Tours guiados",
+          "Monos colobos",
+          "Bosque sagrado"
         ],
-        "desc": "Tucked within a dense coastal forest just outside Watamu lies the Gedi Ruins — the haunting remains of a 12th-century Swahili trading town abandoned for reasons still debated by historians. Wander through crumbling mosques, royal palaces and merchant houses as resident colobus monkeys leap overhead. Guided tours bring the site’s extraordinary history to vivid life."
+        "desc": "En un bosque costero cerca de Watamu, Gedi revela mezquitas, palacios y casas de comerciantes con siglos de historia."
       },
       {
-        "title": "Elephant Watching at Tsavo",
-        "pullQuote": "Kenya’s largest elephant herds roam here — the famous red elephants of Tsavo, dusty with iron-rich soil.",
+        "title": "Avistamiento de elefantes en Tsavo",
+        "pullQuote": "Aquí se encuentran las mayores manadas de elefantes de Kenia.",
         "tags": [
-          "Wildlife enthusiasts",
-          "Day-trippers",
-          "Families"
+          "Fauna salvaje",
+          "Excursionistas",
+          "Familias"
         ],
         "badges": [
-          "Full Day",
-          "Big Five Country",
-          "Red Elephants of Tsavo",
-          "Departs at Dawn",
-          "Game Drive Included"
+          "Día completo",
+          "Territorio Big Five",
+          "Elefantes rojos de Tsavo",
+          "Salida al amanecer",
+          "Game drive incluido"
         ],
-        "desc": "A few hours from Watamu, the vast Tsavo East and West national parks are home to Kenya’s largest elephant herds. A full-day safari here offers close encounters with these gentle giants alongside lions, giraffes, buffalo, zebra and the famous “red elephants” of Tsavo — dusty-red from rolling in the iron-rich soil. An unmissable East African wildlife experience."
+        "desc": "Tsavo Este y Oeste ofrecen safari de alto nivel con elefantes, leones, jirafas, cebras y paisajes de sabana espectaculares."
       },
       {
-        "title": "Mida Creek Mangrove Boardwalk",
-        "pullQuote": "A birdwatcher’s paradise — over 100 species recorded in the ancient mangrove forests of Mida Creek.",
+        "title": "Pasarela de manglares en Mida Creek",
+        "pullQuote": "Un paraíso para observadores de aves con más de 100 especies.",
         "tags": [
-          "Nature lovers",
-          "Birdwatchers",
-          "Couples"
+          "Naturaleza",
+          "Ornitología",
+          "Parejas"
         ],
         "badges": [
-          "1–2 hrs",
-          "100+ Bird Species",
-          "Elevated Boardwalk",
-          "Best at Low Tide",
-          "Sunset Views"
+          "1–2 h",
+          "100+ especies de aves",
+          "Pasarela elevada",
+          "Mejor con marea baja",
+          "Vistas al atardecer"
         ],
-        "desc": "Mida Creek is a protected tidal inlet fringed by ancient mangrove forests. The elevated boardwalk offers a tranquil walk through the ecosystem at low tide, with sweeping views across the creek and the Indian Ocean beyond. The creek is a birdwatcher’s paradise — over 100 species have been recorded here, including herons, flamingos, fish eagles and kingfishers. A serene and restorative experience away from the beach."
+        "desc": "Paseo tranquilo por manglares protegidos con vistas abiertas al creek y al océano Índico, ideal para desconectar y fotografiar."
       }
     ]
   },
   "article2": {
-    "metaTitle": "Coastal Swahili Dishes You Absolutely Need to Try | Duma Suites Stories",
-    "metaDesc": "Discover the extraordinary culinary traditions of the Kenyan Swahili coast — from fragrant pilau and coconut fish curry to the legendary Safari Blue seafood feast.",
-    "heroEyebrow": "Food & Culture",
-    "heroTitle": "Coastal Swahili Dishes You Absolutely Need to Try",
-    "heroSub": "A culinary journey along the Kenyan coast — curated by Duma Suites",
-    "proofRating": "TripAdvisor Rating",
-    "proofReturn": "Would Return",
-    "introTitle": "The Flavours of the Swahili Coast",
-    "introText": "The Kenyan coast carries within it one of the world’s most distinctive culinary traditions. Born from centuries of Indian Ocean trade, the Swahili kitchen blends Arab spice routes, Indian aromatics, Persian rice techniques and African coastal ingredients into a cuisine that is at once deeply rooted and endlessly surprising. Here are six dishes you must seek out during your stay in Watamu.",
-    "conciergeLabel": "From Our Concierge",
-    "conciergeText": "Our team can recommend the best local restaurants in Watamu and arrange transport to the most authentic spots. For the Safari Blue seafood feast, speak to us at check-in.",
-    "voicesEyebrow": "What Our Guests Say",
-    "tipsLabel": "Concierge Food Tips",
-    "closingTitle": "Taste the Coast",
-    "closingText": "Our concierge team can recommend the best local restaurants in Watamu and arrange transport to the most authentic spots. For the full Safari Blue experience and its unforgettable seafood feast, speak to us when you book your stay.",
-    "closingCta": "Plan Your Stay",
-    "prevEyebrow": "Also in Stories & Guides",
-    "prevTitle": "Top Activities on the Watamu Coast",
-    "prevExcerpt": "From the legendary Safari Blue full-day excursion and dolphin watching to the ancient Gedi Ruins and the Mida Creek mangrove boardwalk — Watamu’s finest experiences, curated for you.",
-    "prevCta": "Read the Guide",
-    "prevCategory": "Travel Guide",
-    "moreFromEyebrow": "More From Duma Suites Stories",
-    "comingSoon": "Coming Soon",
-    "cs1Title": "Watamu’s Best Restaurants: A Local Guide",
-    "cs1Desc": "From hidden family kitchens to the best sunset seafood terrace — our concierge’s hand-picked list.",
-    "cs2Title": "A Morning at the Malindi Fish Market",
-    "cs2Desc": "The sights, smells and stories of the most vibrant fish market on the Kenyan coast — a must for food lovers.",
-    "backToStories": "Back to Stories & Guides",
-    "prevArticle": "Prev: Top 5 Activities",
+    "metaTitle": "Platos swahili costeros que debe probar | Duma Suites Stories",
+    "metaDesc": "Descubra las tradiciones culinarias más destacadas de la costa swahili de Kenia.",
+    "heroEyebrow": "Gastronomía & Cultura",
+    "heroTitle": "Platos swahili costeros que debe probar",
+    "heroSub": "Un viaje culinario por la costa de Kenia",
+    "proofRating": "Valoración TripAdvisor",
+    "proofReturn": "Volverían",
+    "introTitle": "Sabores de la costa swahili",
+    "introText": "La cocina swahili mezcla influencias árabes, indias, persas y africanas para crear sabores únicos.",
+    "conciergeLabel": "De nuestro concierge",
+    "conciergeText": "Recomendamos los mejores restaurantes locales de Watamu y organizamos el transporte.",
+    "voicesEyebrow": "Lo que dicen nuestros huéspedes",
+    "tipsLabel": "Consejos gastronómicos del concierge",
+    "closingTitle": "Saboree la costa",
+    "closingText": "Hable con nuestro equipo para planificar restaurantes, recomendaciones locales y la experiencia Safari Blue completa.",
+    "closingCta": "Planifique su estancia",
+    "prevEyebrow": "También en Historias & Guías",
+    "prevTitle": "Top actividades en la costa de Watamu",
+    "prevExcerpt": "De Safari Blue a Gedi y Mida Creek: experiencias imprescindibles de Watamu.",
+    "prevCta": "Leer la guía",
+    "prevCategory": "Guía de viaje",
+    "moreFromEyebrow": "Más de Duma Suites Stories",
+    "comingSoon": "Próximamente",
+    "cs1Title": "Mejores restaurantes de Watamu: guía local",
+    "cs1Desc": "Desde cocinas familiares ocultas hasta terrazas de mariscos al atardecer.",
+    "cs2Title": "Una mañana en el mercado de pescado de Malindi",
+    "cs2Desc": "Aromas, escenas e historias del mercado más vibrante de la costa.",
+    "backToStories": "Volver a Historias & Guías",
+    "prevArticle": "Anterior: Top 5 actividades",
     "foodTips": [
-      "Ask the Duma Suites team for their current favourite local restaurant — recommendations change with the season.",
-      "The freshest pilau in Watamu is found at small family-run eateries, not tourist-facing restaurants.",
-      "Fresh coconut milk for wali wa nazi should always be squeezed the same day — tinned coconut simply cannot match it."
+      "Pregunte al equipo de Duma por sus restaurantes favoritos del momento.",
+      "El mejor pilau suele encontrarse en pequeños locales familiares.",
+      "Para un auténtico wali wa nazi, la leche de coco debe prensarse el mismo día."
     ],
     "quotes": [
       {
-        "text": "The pilau at the restaurant recommended by Duma’s team was unlike anything I’d ever tasted. Pure coastal magic — we went back three evenings in a row.",
+        "text": "El pilau del restaurante recomendado por Duma fue espectacular.",
         "author": "Aarav K.",
         "origin": "Mumbai",
         "platform": "TripAdvisor",
         "variant": "teal"
       },
       {
-        "text": "Safari Blue’s octopus on the sandbank — charcoal-grilled, fresh from the ocean, eaten with our hands. We still talk about it two years later.",
+        "text": "El pulpo de Safari Blue en el banco de arena fue inolvidable.",
         "author": "Emma L.",
-        "origin": "Paris",
+        "origin": "París",
         "platform": "Google",
         "variant": "espresso"
       },
       {
-        "text": "Wali wa nazi alongside a coconut fish curry, looking out at the Indian Ocean. I have been trying to recreate it at home ever since.",
+        "text": "Wali wa nazi con curry de pescado y vista al océano: inolvidable.",
         "author": "Tom & Nina R.",
         "origin": "Cape Town",
         "platform": "Booking.com",
@@ -1116,75 +1116,75 @@
     "dishes": [
       {
         "title": "Pilau",
-        "pullQuote": "No coastal celebration is complete without it — fragrant basmati rice perfected on the Kenyan coast for centuries.",
+        "pullQuote": "Ninguna celebración costera está completa sin este arroz aromático.",
         "badges": [
-          "Swahili Classic",
-          "Slow Cooked",
-          "Aromatic Spices",
-          "Festive Dish",
-          "Must Try"
+          "Clásico swahili",
+          "Cocción lenta",
+          "Especias aromáticas",
+          "Plato festivo",
+          "Imprescindible"
         ],
-        "desc": "Pilau is the soul of Swahili cuisine — fragrant basmati rice slow-cooked with a rich blend of whole spices including cardamom, cinnamon, cloves, cumin and black pepper. Often prepared with tender beef or chicken that has been marinated overnight, the result is an aromatic, deeply savoury rice dish that has been perfected on the Kenyan coast for centuries. No coastal celebration is complete without it."
+        "desc": "El pilau es el alma de la cocina swahili: arroz basmati con cardamomo, canela, clavo, comino y pimienta, cocinado lentamente."
       },
       {
         "title": "Mchuzi wa Samaki",
-        "pullQuote": "A silky, golden curry best enjoyed with white rice — and ideally eaten with a view of the Indian Ocean.",
+        "pullQuote": "Un curry de pescado con coco, suave y dorado, ideal con arroz blanco.",
         "badges": [
-          "Coconut Fish Curry",
-          "Fresh Daily Catch",
-          "Indian Ocean Fresh",
-          "Mild–Medium Heat",
-          "Swahili Coast"
+          "Curry de pescado al coco",
+          "Pesca del día",
+          "Fresco del Índico",
+          "Picante suave-medio",
+          "Costa swahili"
         ],
-        "desc": "Coastal Kenya’s quintessential fish curry — mchuzi wa samaki is made with whatever the fishermen bring in that morning. Fresh snapper, kingfish or barracuda is simmered in a base of tomatoes, onions, garlic, ginger, turmeric and the essential ingredient: coconut milk. The result is a silky, golden curry with a gentle heat that is best enjoyed with white rice or fresh chapati, and ideally eaten with a view of the Indian Ocean."
+        "desc": "Pescado fresco cocinado con tomate, cebolla, ajo, jengibre, cúrcuma y leche de coco para lograr un curry aromático y equilibrado."
       },
       {
-        "title": "Safari Blue Seafood Feast",
-        "pullQuote": "Eating with your hands in the Indian Ocean breeze makes this a meal you will never forget.",
+        "title": "Banquete de mariscos Safari Blue",
+        "pullQuote": "Comer con las manos junto al océano lo convierte en una experiencia inolvidable.",
         "badges": [
-          "Beachside Dining",
-          "Charcoal Grilled",
-          "Lobster & Octopus",
-          "Sandbank Island",
-          "Group Experience"
+          "Comida en playa",
+          "A la brasa",
+          "Langosta y pulpo",
+          "Isla-banco de arena",
+          "Experiencia grupal"
         ],
-        "desc": "If you join the legendary Safari Blue excursion, you will experience one of the Kenyan coast’s most celebrated dining traditions — a fresh seafood feast cooked on a sandbank island. Lobster, calamari, octopus, prawns, crab and fresh fish are grilled over charcoal or cooked in coconut broth, accompanied by Swahili sides and cold drinks. Eating with your hands in the Indian Ocean breeze makes this a meal you will never forget."
+        "desc": "En Safari Blue disfrutará mariscos frescos: langosta, calamar, pulpo, gambas, cangrejo y pescado, a la parrilla o en caldo de coco."
       },
       {
-        "title": "Coconut Rice (Wali wa Nazi)",
-        "pullQuote": "Paired with grilled fish or a spoonful of mango achaar — comfort food at its most elegant.",
+        "title": "Arroz con coco (Wali wa Nazi)",
+        "pullQuote": "Con pescado a la parrilla o mango achaar: confort en versión elegante.",
         "badges": [
-          "Everyday Staple",
-          "Fresh Coconut Milk",
-          "Vegan Friendly",
-          "Comfort Food",
-          "Side Dish"
+          "Acompañamiento diario",
+          "Leche de coco fresca",
+          "Apto vegano",
+          "Comfort food",
+          "Guarnición"
         ],
-        "desc": "Wali wa nazi — rice cooked in fresh coconut milk — is the everyday companion to almost every Swahili coastal dish. The coconut milk is squeezed fresh from grated coconut flesh, giving the rice a subtle sweetness, creaminess and a perfume unlike anything you can achieve with ordinary water-cooked rice. Paired with grilled fish, a vegetable curry or simply with a spoonful of mango achaar, it is comfort food at its most elegant."
+        "desc": "Arroz cocido con leche de coco fresca, cremoso y suave, acompañamiento clásico de muchos platos de la costa swahili."
       },
       {
         "title": "Biryani",
-        "pullQuote": "A benchmark by which local cooks measure their mastery — the Swahili coast biryani is in a class of its own.",
+        "pullQuote": "Un plato de referencia con el que se mide la maestría culinaria local.",
         "badges": [
-          "Celebration Dish",
-          "Layered Saffron Rice",
-          "Slow Cooked",
-          "Arab & Indian Influence",
-          "Festive"
+          "Plato de celebración",
+          "Arroz azafranado en capas",
+          "Cocción lenta",
+          "Influencia árabe e india",
+          "Festivo"
         ],
-        "desc": "The Swahili coast biryani is distinct from its South Asian cousins — richer in spice, more intensely fragrant, with layers of saffron-coloured rice interlaced with slow-cooked spiced meat (usually goat or chicken), fried onions, raisins and a drizzle of ghee. Served on festive occasions and at weddings, a good coastal biryani is the benchmark by which local cooks measure their mastery."
+        "desc": "El biryani de la costa swahili destaca por su intensidad aromática: capas de arroz, carne especiada, cebolla frita, pasas y un toque de ghee."
       },
       {
-        "title": "Grilled Octopus (Pweza)",
-        "pullQuote": "The outside chars beautifully while the inside stays tender — a dish you will seek out at every opportunity.",
+        "title": "Pulpo a la parrilla (Pweza)",
+        "pullQuote": "Crujiente por fuera y tierno por dentro: siempre querrá repetir.",
         "badges": [
-          "Charcoal Grilled",
-          "Fresh Daily",
-          "Lime & Coconut",
-          "Street Food Icon",
-          "Local Favourite"
+          "A la brasa",
+          "Fresco del día",
+          "Lima y coco",
+          "Icono street food",
+          "Favorito local"
         ],
-        "desc": "Along Watamu’s shores, fishermen haul in octopus on their daily runs. Tenderised by hand on the rocks at low tide, the octopus is then marinated in lime, garlic, chilli, coconut milk and spices before being grilled directly on charcoal. The outside chars beautifully while the inside stays tender and juicy. Served with a squeeze of fresh lime and a simple tomato salsa, pweza wa kukaanga is a dish you will seek out at every opportunity."
+        "desc": "Pulpo marinado con lima, ajo, chile y coco, luego asado al carbón y servido con salsa de tomate y un toque de lima fresca."
       }
     ]
   },
@@ -1299,79 +1299,79 @@
     ]
   },
   "termsOfService": {
-    "metaTitle": "Terms of Service | Duma Suites Watamu",
+    "metaTitle": "Términos del servicio | Duma Suites Watamu",
     "heroEyebrow": "Legal",
-    "heroTitle": "Terms of Service",
-    "heroSub": "Please read these terms carefully before booking your stay with us.",
-    "lastUpdated": "Last updated: January 2025",
-    "backToHome": "Home",
-    "introBanner": "These terms form a binding agreement between you and Duma Suites. By completing a booking, you acknowledge that you have read and understood these terms.",
+    "heroTitle": "Términos del servicio",
+    "heroSub": "Por favor, lea estos términos detenidamente antes de reservar su estancia.",
+    "lastUpdated": "Última actualización: enero de 2025",
+    "backToHome": "Inicio",
+    "introBanner": "Estos términos constituyen un acuerdo vinculante entre usted y Duma Suites. Al completar una reserva, reconoce que ha leído y comprendido estos términos.",
     "sections": [
       {
-        "title": "1. Acceptance of Terms",
+        "title": "1. Aceptación de los términos",
         "icon": "check-circle",
-        "content": "By accessing our website or making a reservation with Duma Suites, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services."
+        "content": "Al acceder a nuestro sitio web o realizar una reserva con Duma Suites, usted acepta quedar sujeto a estos Términos del servicio. Si no está de acuerdo con estos términos, por favor no utilice nuestros servicios."
       },
       {
-        "title": "2. Reservations & Booking",
+        "title": "2. Reservas",
         "icon": "calendar",
-        "content": "All reservations are subject to availability and confirmation by Duma Suites. A reservation is confirmed only upon receipt of a deposit payment and written confirmation from our team.",
+        "content": "Todas las reservas están sujetas a disponibilidad y confirmación por parte de Duma Suites. Una reserva solo se considera confirmada tras la recepción de un depósito y la confirmación escrita de nuestro equipo.",
         "bullets": [
-          "50% payment is required at booking to secure your reservation",
-          "Remaining 50% is due on check-in",
-          "Reservations are non-transferable without prior written consent",
-          "We reserve the right to decline reservations at our discretion"
+          "Se requiere el 50 % del pago al reservar para asegurar su estancia",
+          "El 50 % restante se paga al hacer el check-in",
+          "Las reservas no son transferibles sin consentimiento previo por escrito",
+          "Nos reservamos el derecho de rechazar reservas a nuestra discreción"
         ]
       },
       {
-        "title": "3. Cancellation Policy",
+        "title": "3. Política de cancelación",
         "icon": "x-circle",
-        "content": "Our cancellation policy is designed to be fair to both guests and our team. We ask for as much notice as possible to allow us to accommodate other guests.",
+        "content": "Nuestra política de cancelación está diseñada para ser justa tanto para los huéspedes como para nuestro equipo. Solicitamos el mayor aviso posible para poder atender a otros huéspedes.",
         "bullets": [
-          "Cancellation before 30 days of arrival: fully refundable",
-          "Cancellation within 30 days of arrival: non-refundable",
-          "No-show or early departure: full stay charged",
-          "Force majeure events will be considered on a case-by-case basis"
+          "Cancelación con más de 30 días antes de la llegada: reembolso completo",
+          "Cancelación dentro de los 30 días previos a la llegada: no reembolsable",
+          "No presentación o salida anticipada: se cobra la estancia completa",
+          "Los casos de fuerza mayor se evaluarán individualmente"
         ]
       },
       {
-        "title": "4. Check-in & Check-out",
+        "title": "4. Check-in y check-out",
         "icon": "clock",
-        "content": "Standard check-in time is 2:00 PM and check-out is 10:00 AM. Early check-in or late check-out may be arranged subject to availability and may incur additional charges."
+        "content": "La hora estándar de check-in es a las 14:00 y el check-out a las 10:00. El check-in temprano o el check-out tardío pueden gestionarse según disponibilidad y pueden implicar cargos adicionales."
       },
       {
-        "title": "5. Guest Conduct",
+        "title": "5. Conducta de los huéspedes",
         "icon": "users",
-        "content": "All guests are expected to conduct themselves in a manner that is respectful to other guests, staff, and the property. Duma Suites reserves the right to ask any guest to vacate the premises if their behaviour is deemed disruptive or harmful.",
+        "content": "Se espera que todos los huéspedes mantengan una conducta respetuosa hacia otros huéspedes, el personal y la propiedad. Duma Suites se reserva el derecho de pedir a cualquier huésped que abandone las instalaciones si su comportamiento se considera disruptivo o perjudicial.",
         "bullets": [
-          "Respect quiet hours (10:00 PM – 8:00 AM)",
-          "No smoking inside suites — balcony and lobby only",
-          "No parties or events without prior written approval",
-          "Guests are responsible for any damage caused during their stay"
+          "Respetar las horas de silencio (22:00 – 08:00)",
+          "No fumar dentro de las suites — solo en balcón y lobby",
+          "No se permiten fiestas ni eventos sin aprobación previa por escrito",
+          "Los huéspedes son responsables de cualquier daño causado durante su estancia"
         ]
       },
       {
-        "title": "6. Liability",
+        "title": "6. Responsabilidad",
         "icon": "shield",
-        "content": "Duma Suites shall not be liable for any loss, damage, or injury to guests or their belongings during their stay, except where such loss or damage is caused by the direct negligence of Duma Suites staff.",
+        "content": "Duma Suites no será responsable de pérdidas, daños o lesiones a huéspedes o pertenencias durante su estancia, salvo cuando dicha pérdida o daño sea causado por negligencia directa del personal de Duma Suites.",
         "bullets": [
-          "Use of pools and recreational facilities is at guests' own risk",
-          "We recommend travel insurance for all guests",
-          "Valuables should be stored in the in-suite safe"
+          "El uso de piscinas e instalaciones recreativas es bajo responsabilidad del huésped",
+          "Recomendamos seguro de viaje para todos los huéspedes",
+          "Los objetos de valor deben guardarse en la caja fuerte de la suite"
         ]
       },
       {
-        "title": "7. Governing Law",
+        "title": "7. Ley aplicable",
         "icon": "scale",
-        "content": "These Terms of Service are governed by and construed in accordance with the laws of Kenya. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the courts of Kenya."
+        "content": "Estos Términos del servicio se rigen e interpretan conforme a las leyes de Kenia. Cualquier disputa derivada de estos términos estará sujeta a la jurisdicción exclusiva de los tribunales de Kenia."
       },
       {
-        "title": "8. Contact Us",
+        "title": "8. Contáctenos",
         "icon": "mail",
-        "content": "For any questions or concerns regarding these Terms of Service, please contact us:",
+        "content": "Para cualquier consulta o inquietud sobre estos Términos del servicio, contáctenos:",
         "contact": {
           "email": "reservations@dumasuites.com",
-          "address": "Ghepard Towers, Watamu, Kilifi County, Kenya",
+          "address": "Ghepard Towers, Watamu, condado de Kilifi, Kenia",
           "phone": "+254 710 933 025"
         }
       }
@@ -1390,108 +1390,108 @@
     "reject": "Solo esenciales"
   },
   "cookies": {
-    "metaTitle": "Cookie Policy | Duma Suites Watamu",
-    "metaDesc": "Learn how Duma Suites uses cookies to enhance your browsing experience, personalise content, and keep your data secure.",
+    "metaTitle": "Política de cookies | Duma Suites Watamu",
+    "metaDesc": "Descubra cómo Duma Suites utiliza cookies para mejorar su navegación, personalizar contenido y proteger sus datos.",
     "heroEyebrow": "Legal",
-    "heroTitle": "Cookie Policy",
-    "heroSub": "How we use cookies to enhance and personalise your experience.",
-    "lastUpdated": "Last updated: January 2025",
-    "intro": "This Cookie Policy explains what cookies are, which ones we use on the Duma Suites website, why we use them, and how you can manage your preferences. By continuing to browse our site, you agree to our use of cookies as described below.",
+    "heroTitle": "Política de cookies",
+    "heroSub": "Cómo usamos cookies para mejorar y personalizar su experiencia.",
+    "lastUpdated": "Última actualización: enero de 2025",
+    "intro": "Esta Política de cookies explica qué son las cookies, cuáles utilizamos en el sitio web de Duma Suites, por qué las utilizamos y cómo puede gestionar sus preferencias. Al continuar navegando en nuestro sitio, acepta nuestro uso de cookies como se describe a continuación.",
     "sections": [
       {
         "icon": "layers",
-        "title": "1. What Are Cookies?",
-        "content": "Cookies are small text files placed on your device by a website when you visit it. They allow the site to remember your actions and preferences over a period of time, so you don't have to keep re-entering them whenever you come back to the site.",
+        "title": "1. ¿Qué son las cookies?",
+        "content": "Las cookies son pequeños archivos de texto que un sitio web guarda en su dispositivo cuando lo visita. Permiten que el sitio recuerde sus acciones y preferencias con el tiempo, para que no tenga que volver a introducirlas en cada visita.",
         "bullets": [
-          "Stored locally in your browser",
-          "Cannot run programs or deliver viruses",
-          "Do not access personal files on your device",
-          "Can be session-based (deleted on close) or persistent (retained across visits)"
+          "Se almacenan localmente en su navegador",
+          "No pueden ejecutar programas ni transmitir virus",
+          "No acceden a archivos personales en su dispositivo",
+          "Pueden ser cookies de sesión (se eliminan al cerrar) o persistentes"
         ]
       },
       {
         "icon": "cookie",
-        "title": "2. Cookies We Use",
-        "content": "We use three categories of cookies on the Duma Suites website, each serving a distinct purpose:",
+        "title": "2. Cookies que utilizamos",
+        "content": "Utilizamos tres categorías de cookies en el sitio de Duma Suites, cada una con una finalidad distinta:",
         "categories": [
           {
-            "name": "Essential Cookies",
-            "badge": "Always Active",
-            "desc": "These cookies are strictly necessary for the website to function. They enable core features such as page navigation, security, and access to protected areas. The site cannot function properly without them. They do not store any personally identifiable information.",
+            "name": "Cookies esenciales",
+            "badge": "Siempre activas",
+            "desc": "Estas cookies son estrictamente necesarias para que el sitio funcione. Habilitan funciones básicas como navegación, seguridad y acceso a áreas protegidas. El sitio no puede funcionar correctamente sin ellas.",
             "examples": [
-              "Session management",
-              "Security tokens",
-              "Load balancing"
+              "Gestión de sesión",
+              "Tokens de seguridad",
+              "Balanceo de carga"
             ]
           },
           {
-            "name": "Analytics Cookies",
-            "badge": "Optional",
-            "desc": "These cookies help us understand how visitors interact with our website by collecting anonymised information about pages visited, time spent on site, and how guests arrived. We use Google Analytics with IP anonymisation enabled.",
+            "name": "Cookies analíticas",
+            "badge": "Opcionales",
+            "desc": "Estas cookies nos ayudan a entender cómo interactúan los visitantes con nuestro sitio recopilando información anonimizada sobre páginas visitadas y tiempo de estancia. Usamos Google Analytics con anonimización de IP.",
             "examples": [
-              "Google Analytics (anonymised)",
-              "Page view tracking",
-              "User journey analysis"
+              "Google Analytics (anonimizado)",
+              "Seguimiento de páginas vistas",
+              "Análisis del recorrido del usuario"
             ]
           },
           {
-            "name": "Preference Cookies",
-            "badge": "Optional",
-            "desc": "These cookies remember your choices — such as your language preference (English or Italian) — so that your experience feels personalised and consistent on every visit.",
+            "name": "Cookies de preferencia",
+            "badge": "Opcionales",
+            "desc": "Estas cookies recuerdan sus elecciones — como su idioma preferido — para que su experiencia sea consistente y personalizada en cada visita.",
             "examples": [
-              "Language preference (EN / IT)",
-              "Cookie consent choice",
-              "Scroll and UI state"
+              "Preferencia de idioma (EN / IT / DE / FR / ES)",
+              "Elección de consentimiento de cookies",
+              "Estado de interfaz y desplazamiento"
             ]
           }
         ]
       },
       {
         "icon": "heart",
-        "title": "3. Why We Use Cookies",
-        "content": "Each category of cookie serves a specific purpose in delivering the finest experience to our guests:",
+        "title": "3. Por qué usamos cookies",
+        "content": "Cada categoría de cookies cumple un propósito específico para ofrecer la mejor experiencia a nuestros huéspedes:",
         "reasons": [
           {
-            "label": "UX Improvement",
-            "desc": "Analytics data helps us identify and fix friction in the guest journey — from browsing suites to completing an enquiry."
+            "label": "Mejora UX",
+            "desc": "Los datos analíticos nos ayudan a detectar y corregir puntos de fricción en el recorrido del huésped, desde explorar suites hasta enviar una consulta."
           },
           {
-            "label": "Personalisation",
-            "desc": "Preference cookies ensure the site remembers your language and settings, so every visit feels tailored to you."
+            "label": "Personalización",
+            "desc": "Las cookies de preferencia permiten recordar idioma y ajustes para que cada visita se adapte a usted."
           },
           {
-            "label": "Security",
-            "desc": "Essential cookies protect you by maintaining secure, authenticated sessions and preventing cross-site request forgery."
+            "label": "Seguridad",
+            "desc": "Las cookies esenciales protegen manteniendo sesiones autenticadas seguras y evitando falsificación de solicitudes entre sitios."
           },
           {
-            "label": "Performance",
-            "desc": "We use session data to optimise page load times and serve the most relevant content to guests from different regions."
+            "label": "Rendimiento",
+            "desc": "Usamos datos de sesión para optimizar tiempos de carga y mostrar contenido más relevante según la región del huésped."
           }
         ]
       },
       {
         "icon": "settings",
-        "title": "4. Managing Your Preferences",
-        "content": "You are in full control of your cookie preferences. Here are the ways you can manage them:",
+        "title": "4. Gestión de preferencias",
+        "content": "Usted tiene control total sobre sus preferencias de cookies. Así puede gestionarlas:",
         "bullets": [
-          "Use the cookie banner that appears on your first visit to accept, reject or customise cookie categories.",
-          "Clear your cookie preferences at any time by clicking \"Manage Preferences\" in the cookie banner (reappears after clearing local storage).",
-          "Adjust your browser settings to block or delete cookies entirely — note this may affect site functionality.",
-          "Opt out of Google Analytics tracking at any time via: tools.google.com/dlpage/gaoptout"
+          "Use el banner de cookies en su primera visita para aceptar, rechazar o personalizar categorías.",
+          "Puede cambiar sus preferencias en cualquier momento desde «Gestionar preferencias» en el banner (aparece de nuevo tras limpiar el almacenamiento local).",
+          "Ajuste la configuración de su navegador para bloquear o eliminar cookies — esto puede afectar el funcionamiento del sitio.",
+          "Puede desactivar Google Analytics en: tools.google.com/dlpage/gaoptout"
         ]
       },
       {
         "icon": "refresh-cw",
-        "title": "5. Updates to This Policy",
-        "content": "We may update this Cookie Policy from time to time to reflect changes in technology, legislation, or our services. When we do, we will update the \"Last Updated\" date at the top of this page. We encourage you to review this policy periodically."
+        "title": "5. Actualizaciones de esta política",
+        "content": "Podemos actualizar esta Política de cookies ocasionalmente para reflejar cambios tecnológicos, legales o en nuestros servicios. Le recomendamos revisarla periódicamente."
       },
       {
         "icon": "mail",
-        "title": "6. Contact Us",
-        "content": "If you have any questions about our use of cookies or this policy, please reach out to our team:",
+        "title": "6. Contáctenos",
+        "content": "Si tiene preguntas sobre nuestro uso de cookies o esta política, póngase en contacto con nuestro equipo:",
         "contact": {
           "email": "reservations@dumasuites.com",
-          "address": "Ghepard Towers, Watamu, Kilifi County, Kenya",
+          "address": "Ghepard Towers, Watamu, condado de Kilifi, Kenia",
           "phone": "+254 710 933 025"
         }
       }

@@ -21,6 +21,29 @@ const ACTIVITY_META = [
   { number: '06', icon: TreeDeciduous, image: null, imageAlt: '' },
 ]
 
+const COMING_SOON_PILLS = {
+  en: {
+    first: ['Travel', 'Beaches', 'Nature', 'Family'],
+    second: ['Marine', 'Diving', 'Wildlife', 'Adventure'],
+  },
+  it: {
+    first: ['Viaggio', 'Spiagge', 'Natura', 'Famiglia'],
+    second: ['Mare', 'Immersioni', 'Fauna', 'Avventura'],
+  },
+  de: {
+    first: ['Reisen', 'Strände', 'Natur', 'Familie'],
+    second: ['Meer', 'Tauchen', 'Wildlife', 'Abenteuer'],
+  },
+  fr: {
+    first: ['Voyage', 'Plages', 'Nature', 'Famille'],
+    second: ['Océan', 'Plongée', 'Faune', 'Aventure'],
+  },
+  es: {
+    first: ['Viaje', 'Playas', 'Naturaleza', 'Familia'],
+    second: ['Marino', 'Buceo', 'Fauna', 'Aventura'],
+  },
+}
+
 function CheetahDivider() {
   return (
     <div className="art1-divider" aria-hidden="true">
@@ -38,6 +61,7 @@ export default function Article1Page() {
   const { lang } = useLanguage()
   const a1 = getT(lang).article1
   const navigate = useNavigate()
+  const pills = COMING_SOON_PILLS[lang] || COMING_SOON_PILLS.en
 
   // Merge static metadata (icons/images) with translated activity data
   const activities = ACTIVITY_META.map((meta, i) => ({ ...meta, ...a1.activities[i] }))
@@ -321,10 +345,10 @@ export default function Article1Page() {
                 <h4 className="art1-cs__title">{a1.cs1Title}</h4>
                 <p className="art1-cs__desc">{a1.cs1Desc}</p>
                 <div className="art1-cs__pills">
-                  <span className="art1-cs__pill art1-cs__pill--travel">Travel</span>
-                  <span className="art1-cs__pill art1-cs__pill--nature">Beaches</span>
-                  <span className="art1-cs__pill art1-cs__pill--nature">Nature</span>
-                  <span className="art1-cs__pill art1-cs__pill--family">Family</span>
+                  <span className="art1-cs__pill art1-cs__pill--travel">{pills.first[0]}</span>
+                  <span className="art1-cs__pill art1-cs__pill--nature">{pills.first[1]}</span>
+                  <span className="art1-cs__pill art1-cs__pill--nature">{pills.first[2]}</span>
+                  <span className="art1-cs__pill art1-cs__pill--family">{pills.first[3]}</span>
                 </div>
               </motion.div>
               <motion.div
@@ -338,10 +362,10 @@ export default function Article1Page() {
                 <h4 className="art1-cs__title">{a1.cs2Title}</h4>
                 <p className="art1-cs__desc">{a1.cs2Desc}</p>
                 <div className="art1-cs__pills">
-                  <span className="art1-cs__pill art1-cs__pill--marine">Marine</span>
-                  <span className="art1-cs__pill art1-cs__pill--marine">Diving</span>
-                  <span className="art1-cs__pill art1-cs__pill--nature">Wildlife</span>
-                  <span className="art1-cs__pill art1-cs__pill--travel">Adventure</span>
+                  <span className="art1-cs__pill art1-cs__pill--marine">{pills.second[0]}</span>
+                  <span className="art1-cs__pill art1-cs__pill--marine">{pills.second[1]}</span>
+                  <span className="art1-cs__pill art1-cs__pill--nature">{pills.second[2]}</span>
+                  <span className="art1-cs__pill art1-cs__pill--travel">{pills.second[3]}</span>
                 </div>
               </motion.div>
             </div>
