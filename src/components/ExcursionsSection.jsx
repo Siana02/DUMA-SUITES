@@ -23,11 +23,8 @@ const EXCURSION_IMAGES = [
 ]
 
 const DESKTOP_BREAKPOINT = 1024
-const WHEEL_STEP_LOCK_MS = 420
-const WHEEL_DELTA_TRIGGER = 8
 const STICKY_TOP_PX = 90
 const MOBILE_CARD_THRESHOLD = 0.2
-const ZONE_TOLERANCE_PX = 8
 
 // Shared card markup — identical visual design on both desktop and mobile
 function CardInner({ item, images, cta }) {
@@ -89,10 +86,8 @@ export default function ExcursionsSection() {
   const [isDesktop, setIsDesktop] = useState(false)
   const [activeDeckIndex, setActiveDeckIndex] = useState(0)
 
-  const sectionRef   = useRef(null)
   const deckOuterRef  = useRef(null)
   const deckStickyRef = useRef(null)
-  const wheelLockUntilRef = useRef(0)
 
   const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.3, triggerOnce: true })
 
@@ -104,71 +99,35 @@ export default function ExcursionsSection() {
     return () => window.removeEventListener('resize', check)
   }, [])
 
-  // Desktop/laptop: lock wheel progression to one card per step while inside the deck
+  // Desktop/tablet: drive active card index from scroll position within the deck outer
   useEffect(() => {
     if (!isDesktop) return
 
-    const section = sectionRef.current
     const outer  = deckOuterRef.current
     const sticky = deckStickyRef.current
-    if (!section || !outer || !sticky) return
+    if (!outer || !sticky) return
 
-    const stepDeck = (direction, event) => {
-      const now = performance.now()
-      if (now < wheelLockUntilRef.current) {
-        event?.preventDefault()
-        return
-      }
-
-      setActiveDeckIndex(prev => {
-        const next = Math.max(0, Math.min(cardCount - 1, prev + direction))
-        if (next !== prev) {
-          event?.preventDefault()
-          wheelLockUntilRef.current = now + WHEEL_STEP_LOCK_MS
-        }
-        return next
-      })
-    }
-
-    const isSectionInActiveZone = () => {
-      const sectionRect = section.getBoundingClientRect()
+    const update = () => {
       const outerRect = outer.getBoundingClientRect()
-      const lockTop = STICKY_TOP_PX
-      return (
-        sectionRect.top <= lockTop + ZONE_TOLERANCE_PX &&
-        sectionRect.bottom >= lockTop + sticky.offsetHeight - ZONE_TOLERANCE_PX &&
-        outerRect.top <= lockTop + ZONE_TOLERANCE_PX &&
-        outerRect.bottom >= lockTop + sticky.offsetHeight - ZONE_TOLERANCE_PX
-      )
+      const stickyH   = sticky.offsetHeight
+      const totalRange = outer.offsetHeight - stickyH
+      if (totalRange <= 0) return
+
+      // How far past the sticky-top the outer has scrolled
+      const scrolledIn = STICKY_TOP_PX - outerRect.top
+      const progress   = Math.max(0, Math.min(1, scrolledIn / totalRange))
+      const newIndex   = Math.min(Math.floor(progress * cardCount), cardCount - 1)
+      setActiveDeckIndex(newIndex)
     }
 
-    const handleWheel = event => {
-      if (Math.abs(event.deltaY) < WHEEL_DELTA_TRIGGER) return
-      if (!isSectionInActiveZone()) return
+    window.addEventListener('scroll', update, { passive: true })
+    update() // sync on mount / breakpoint change
 
-      const direction = event.deltaY > 0 ? 1 : -1
-      stepDeck(direction, event)
-    }
-
-    const handleKeyDown = event => {
-      if (!isSectionInActiveZone()) return
-
-      if (event.key === 'ArrowDown') stepDeck(1, event)
-      if (event.key === 'ArrowUp') stepDeck(-1, event)
-    }
-
-    section.addEventListener('wheel', handleWheel, { passive: false })
-    window.addEventListener('keydown', handleKeyDown)
-
-    return () => {
-      section.removeEventListener('wheel', handleWheel)
-      window.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [cardCount, isDesktop])
+    return () => window.removeEventListener('scroll', update)
+  }, [isDesktop, cardCount])
 
   return (
     <section
-      ref={sectionRef}
       className="exc-section section"
       id="excursions"
       style={{ '--exc-sticky-top': `${STICKY_TOP_PX}px` }}
@@ -391,10 +350,11 @@ export default function ExcursionsSection() {
 
         /* ── Desktop / laptop: stacked card-deck ────────────── */
         @media (min-width: 1024px) {
-          /* Deck keeps section height stable while wheel is locked through 4 cards */
+          /* Outer is 4× the card height so the sticky has room to work
+             and scroll progress drives one card reveal per quarter */
           .exc-deck-outer {
             width: 100%;
-            min-height: clamp(440px, 55vw, 580px);
+            height: calc(clamp(440px, 55vw, 580px) * 4);
           }
           /* Sticky viewport frame — height driven by card aspect ratio */
           .exc-deck-sticky {
