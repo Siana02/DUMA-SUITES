@@ -3,8 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useInView } from 'react-intersection-observer'
 import { Maximize2, BedDouble, Users, ArrowLeft, ArrowRight } from 'lucide-react'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useLanguage, useT } from '../context/LanguageContext.jsx'
 
 import cheetahIcon from '../assets/cheetah.png'
 import coastalPreview from '../assets/coastal-haven-suite-lounge-couch.JPEG'
@@ -24,8 +23,7 @@ export default function SuitesPreviewSection() {
   const [current, setCurrent] = useState(0)
   const [direction, setDirection] = useState(1)
   const navigate = useNavigate()
-  const { lang } = useLanguage()
-  const sp = getT(lang).suitesPreview
+  const sp = useT().suitesPreview
 
   // Merge static metadata with translated suite data
   const suites = SUITE_META.map((meta, i) => ({ ...meta, ...sp.suites[i] }))

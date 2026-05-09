@@ -2,12 +2,10 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ChevronDown, ArrowRight } from 'lucide-react'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useLanguage, useT } from '../context/LanguageContext.jsx'
 
 export default function FAQSection() {
-  const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const faq = t.faq
 
   const [openIndex, setOpenIndex] = useState(null)

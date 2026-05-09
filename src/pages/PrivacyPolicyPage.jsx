@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useLanguage, useT } from '../context/LanguageContext.jsx'
 import {
   Shield, Database, Settings, Share2, Lock, Cookie,
   UserCheck, Mail, Phone, MapPin, CheckCircle,
@@ -22,8 +21,7 @@ const ICON_MAP = {
 export default function PrivacyPolicyPage() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
 
-  const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const pp = t.privacyPolicy
 
   return (

@@ -9,8 +9,7 @@ import {
   Shield, AirVent, Sparkles, Sofa, Sunrise, UtensilsCrossed,
   Sun, Fan, PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack,
 } from 'lucide-react'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useLanguage, useT } from '../context/LanguageContext.jsx'
 
 import heroImg from '../assets/serenity-villa-outdoor-terrace.JPEG'
 import coastalPreview from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
@@ -94,8 +93,7 @@ function fadeUp(delay = 0) {
 export default function SerenityVillaPage() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
   const navigate = useNavigate()
-  const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const ts = t.suites.serenity
   const tc = t.suites.coastal
 

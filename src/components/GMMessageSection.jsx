@@ -2,8 +2,7 @@ import { useRef, useState, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
 import { ArrowRight, BedDouble } from 'lucide-react'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useLanguage, useT } from '../context/LanguageContext.jsx'
 
 import gm1        from '../assets/General-manager1.jpg'
 import gm2        from '../assets/General-managers2.jpg'
@@ -43,8 +42,7 @@ const VIDEO_BASE_SRC =
 
 export default function GMMessageSection() {
   const { ref } = useInView({ threshold: 0.1, triggerOnce: true })
-  const { lang } = useLanguage()
-  const t = getT(lang).gm
+  const t = useT().gm
 
   // Track when the video is in / out of the viewport
   const iframeRef = useRef(null)

@@ -3,8 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Star, ThumbsUp, Flame, Fish, Anchor, Wheat, ChefHat, UtensilsCrossed, Quote as QuoteIcon, Lightbulb } from 'lucide-react'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useLanguage, useT } from '../context/LanguageContext.jsx'
 import heroImg     from '../assets/coastal-swahili-dishes.webp'
 import cheetahIcon from '../assets/cheetah.png'
 import prevArticleImg from '../assets/dolphin-watching-watamu.jpg'
@@ -51,7 +50,7 @@ export default function Article2Page() {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
   const heroImgY = useTransform(scrollYProgress, [0, 1], ['0%', '10%'])
   const { lang } = useLanguage()
-  const a2 = getT(lang).article2
+  const a2 = useT().article2
   const navigate = useNavigate()
   const pills = COMING_SOON_PILLS[lang] || COMING_SOON_PILLS.en
 

@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
 import { useInView } from 'react-intersection-observer'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useLanguage, useT } from '../context/LanguageContext.jsx'
 
 import cheetahIcon from '../assets/cheetah.png'
 
@@ -108,8 +107,7 @@ function VideoCard({ src, label }) {
 }
 
 export default function VideoStripSection() {
-  const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const vt = t.videos
 
   const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.3, triggerOnce: true })

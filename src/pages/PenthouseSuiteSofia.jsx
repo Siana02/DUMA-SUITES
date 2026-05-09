@@ -9,8 +9,7 @@ import {
   PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack, Star,
   Building2, DoorOpen, Armchair, Fan, WavesLadder, TreePalm, Leaf, Sun, ForkKnife, Wind,
 } from 'lucide-react'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useLanguage, useT } from '../context/LanguageContext.jsx'
 
 import heroImg from '../assets/penthouse-suite-balcony-dining-lights-decor-view.jpg'
 import aboutImg from '../assets/penthouse-suite-indoor-stairs-view.jpg'
@@ -149,8 +148,7 @@ function fadeUp(delay = 0) {
 export default function PenthouseSuiteSofiaPage() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
   const navigate = useNavigate()
-  const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const pt = t.suites.penthouse
   const tc = t.suites.coastal
   const ts = t.suites.serenity

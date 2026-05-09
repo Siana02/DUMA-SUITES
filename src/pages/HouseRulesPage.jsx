@@ -1,10 +1,9 @@
 import { Helmet } from 'react-helmet-async'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useLanguage, useT } from '../context/LanguageContext.jsx'
 
 export default function HouseRulesPage() {
   const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const hr = t.houseRules
 
   return (

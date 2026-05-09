@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import i18n from '../i18n/i18n.js'
-import { setDynamicTranslation } from '../i18n/translations.js'
+import { getT, setDynamicTranslation } from '../i18n/translations.js'
 
 const SUPPORTED_LANGUAGES = ['en', 'it', 'de', 'fr', 'es']
 
@@ -77,3 +77,16 @@ export function LanguageProvider({ children }) {
 }
 
 export const useLanguage = () => useContext(LanguageContext)
+
+/**
+ * Returns the current translation object. Re-renders automatically when
+ * the active language changes OR when an async locale file finishes loading
+ * (de/fr/es), ensuring all consumers always display the correct language.
+ */
+export function useT() {
+  const { lang, translationVersion } = useLanguage()
+  // translationVersion is intentionally consumed here so that this hook
+  // (and every component using it) re-renders once the async fetch resolves.
+  void translationVersion
+  return getT(lang)
+}

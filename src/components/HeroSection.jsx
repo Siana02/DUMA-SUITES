@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useLanguage, useT } from '../context/LanguageContext.jsx'
 
 // Cinematic image sequence (right panel, desktop)
 import seqImg1 from '../assets/arielview1.jpg?w=1920&format=webp&quality=90'
@@ -72,8 +71,7 @@ function AnimatedLetters({ text, keyPrefix }) {
 
 export default function HeroSection({ ready = false }) {
   const [activeIdx, setActiveIdx] = useState(0)
-  const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const navigate = useNavigate()
 
   // Start cycling images only after the preload curtain has lifted

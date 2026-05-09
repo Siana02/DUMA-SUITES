@@ -3,8 +3,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { MapPin, Phone, Mail, CheckCircle, Clock, Users, Star } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useLanguage, useT } from '../context/LanguageContext.jsx'
 
 function TikTokIcon() {
   return (
@@ -118,7 +117,7 @@ const CONTACT_SECTION_COPY = {
 
 export default function ContactSection() {
   const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const ct = t.contact
   const copy = CONTACT_SECTION_COPY[lang] || CONTACT_SECTION_COPY.en
   const navigate = useNavigate()

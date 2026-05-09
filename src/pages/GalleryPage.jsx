@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useLanguage, useT } from '../context/LanguageContext.jsx'
 import cheetahIcon from '../assets/cheetah.png'
 
 import gImg1  from '../assets/gallery-image1.JPEG'
@@ -157,8 +156,7 @@ const IMAGES = [
 ]
 
 export default function GalleryPage() {
-  const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
 
   return (
     <>

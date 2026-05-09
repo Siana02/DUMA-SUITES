@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Star, ArrowLeft, ArrowRight, PenLine } from 'lucide-react'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useLanguage, useT } from '../context/LanguageContext.jsx'
 
 const AUTO_ADVANCE_MS = 9000
 
@@ -72,8 +71,7 @@ function CredibilityBar() {
    Main component
    ════════════════════════════════════════════════════════════ */
 export default function ReviewsSection() {
-  const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const reviews = t.reviews.items
 
   const [index, setIndex]       = useState(0)

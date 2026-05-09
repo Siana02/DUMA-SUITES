@@ -2,8 +2,7 @@ import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
+import { useLanguage, useT } from '../context/LanguageContext.jsx'
 import {
   Cookie, Settings, Heart, RefreshCw, Mail, Layers,
   Phone, MapPin, CheckCircle, Shield, ToggleRight,
@@ -102,7 +101,7 @@ export default function CookiesPage() {
   useEffect(() => { window.scrollTo(0, 0) }, [])
 
   const { lang } = useLanguage()
-  const t = getT(lang)
+  const t = useT()
   const ck = t.cookies
   const navigate = useNavigate()
   const copy = COOKIES_PAGE_COPY[lang] || COOKIES_PAGE_COPY.en
