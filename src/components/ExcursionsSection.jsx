@@ -303,19 +303,22 @@ export default function ExcursionsSection() {
           inset: 0;
           background-size: cover;
           background-position: center;
+          background-repeat: no-repeat;
           filter: blur(22px);
           transform: scale(1.16);
           opacity: 0.78;
+          z-index: 0;
         }
         .exc-card__main-img {
           position: relative;
           width: 100%;
-          max-height: 100%;
+          max-height: none;
           height: auto;
           object-fit: contain;
           object-position: center;
           transition: transform 0.5s ease;
           z-index: 1;
+          display: block;
         }
         .exc-card:hover .exc-card__main-img {
           transform: scale(1.04);
@@ -332,6 +335,8 @@ export default function ExcursionsSection() {
           color: #fff;
           padding: 5px 14px;
           border-radius: 100px;
+          z-index: 3;
+          pointer-events: none;
         }
         .exc-card__text-side {
           position: relative;
