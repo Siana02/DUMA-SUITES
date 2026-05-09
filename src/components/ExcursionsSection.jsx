@@ -103,7 +103,7 @@ export default function ExcursionsSection() {
       setActiveDeckIndex(prev => (prev + 1) % cardCount)
     }, AUTO_CYCLE_MS)
     return () => window.clearInterval(timer)
-  }, [isCarouselMode, cardCount])
+  }, [isCarouselMode, cardCount, activeDeckIndex])
 
   // Sync horizontal scroll position when active index changes
   useEffect(() => {
@@ -122,16 +122,28 @@ export default function ExcursionsSection() {
     const viewport = viewportRef.current
     if (!viewport) return
 
+    let rafId = null
+
     const onScroll = () => {
-      const width = viewport.clientWidth
-      if (!width) return
-      const nextIndex = Math.round(viewport.scrollLeft / width)
-      const clamped = Math.max(0, Math.min(cardCount - 1, nextIndex))
-      setActiveDeckIndex(prev => (prev === clamped ? prev : clamped))
+      if (rafId !== null) return
+      rafId = window.requestAnimationFrame(() => {
+        const width = viewport.clientWidth
+        if (!width) {
+          rafId = null
+          return
+        }
+        const nextIndex = Math.round(viewport.scrollLeft / width)
+        const clamped = Math.max(0, Math.min(cardCount - 1, nextIndex))
+        setActiveDeckIndex(prev => (prev === clamped ? prev : clamped))
+        rafId = null
+      })
     }
 
     viewport.addEventListener('scroll', onScroll, { passive: true })
-    return () => viewport.removeEventListener('scroll', onScroll)
+    return () => {
+      viewport.removeEventListener('scroll', onScroll)
+      if (rafId !== null) window.cancelAnimationFrame(rafId)
+    }
   }, [isCarouselMode, cardCount])
 
   const goPrev = () => {
