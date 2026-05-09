@@ -142,16 +142,18 @@ export default function ExcursionsSection() {
       if (rafId !== null) return
       rafId = window.requestAnimationFrame(() => {
         const width = viewport.clientWidth
-        if (!width) {
+        if (width <= 0) {
           rafId = null
           return
         }
         const nextIndex = Math.round(viewport.scrollLeft / width)
         const clamped = Math.max(0, Math.min(cardCount - 1, nextIndex))
         const hasChanged = clamped !== activeDeckIndexRef.current
-        setActiveDeckIndex(clamped)
-        if (hasChanged && !isProgrammaticScrollRef.current) {
-          setManualCycleTick(prev => prev + 1)
+        if (hasChanged) {
+          setActiveDeckIndex(clamped)
+          if (!isProgrammaticScrollRef.current) {
+            setManualCycleTick(prev => prev + 1)
+          }
         }
         rafId = null
       })
