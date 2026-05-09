@@ -126,12 +126,12 @@ export default function ExcursionsSection() {
   }
 
   const handleTouchStart = e => {
-    touchStartXRef.current = e.touches?.[0]?.clientX ?? 0
+    touchStartXRef.current = e.touches?.length ? e.touches[0].clientX : 0
     touchDeltaXRef.current = 0
   }
 
   const handleTouchMove = e => {
-    const currentX = e.touches?.[0]?.clientX ?? 0
+    const currentX = e.touches?.length ? e.touches[0].clientX : 0
     touchDeltaXRef.current = currentX - touchStartXRef.current
   }
 
@@ -312,7 +312,6 @@ export default function ExcursionsSection() {
         .exc-card__main-img {
           position: relative;
           width: 100%;
-          max-height: none;
           height: auto;
           object-fit: contain;
           object-position: center;
@@ -362,11 +361,11 @@ export default function ExcursionsSection() {
         .exc-card__overlay-img {
           position: relative;
           width: 100%;
-          max-height: 100%;
           height: auto;
           object-fit: contain;
           object-position: center;
           z-index: 1;
+          display: block;
         }
         .exc-card__overlay-dark {
           position: absolute;
