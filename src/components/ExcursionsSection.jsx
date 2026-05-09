@@ -26,7 +26,8 @@ const DESKTOP_BREAKPOINT = 768
 const MOBILE_CARD_THRESHOLD = 0.2
 const SWIPE_THRESHOLD = 30
 const CARD_TRANSITION_MS = 500
-const VIEWPORT_TOLERANCE = 8
+// Small tolerance avoids sub-pixel viewport rounding issues during scroll checks.
+const VIEWPORT_TOLERANCE = 2
 
 // Shared card markup — identical visual design on both desktop and mobile
 function CardInner({ item, images, cta }) {
@@ -192,7 +193,7 @@ export default function ExcursionsSection() {
       if (Math.abs(deltaY) < SWIPE_THRESHOLD) return
 
       const handled = stepDeck(deltaY > 0 ? 1 : -1, event)
-      if (handled) touchStartYRef.current = currentY
+      if (handled) touchStartYRef.current = null
     }
 
     const onTouchEnd = () => {
