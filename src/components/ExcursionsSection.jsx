@@ -25,7 +25,7 @@ const EXCURSION_IMAGES = [
 const DESKTOP_BREAKPOINT = 768
 const MOBILE_CARD_THRESHOLD = 0.2
 const SWIPE_THRESHOLD = 30
-const CARD_TRANSITION_MS = 520
+const CARD_TRANSITION_MS = 500
 
 // Shared card markup — identical visual design on both desktop and mobile
 function CardInner({ item, images, cta }) {
@@ -91,6 +91,7 @@ export default function ExcursionsSection() {
   const touchStartYRef = useRef(null)
   const isAnimatingRef = useRef(false)
   const animationTimeoutRef = useRef(null)
+  const activeDeckIndexRef = useRef(0)
 
   const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.3, triggerOnce: true })
 
@@ -109,6 +110,10 @@ export default function ExcursionsSection() {
       }
     }
   }, [])
+
+  useEffect(() => {
+    activeDeckIndexRef.current = activeDeckIndex
+  }, [activeDeckIndex])
 
   // Desktop/tablet: lock scroll while cycling excursion cards
   useEffect(() => {
@@ -135,8 +140,9 @@ export default function ExcursionsSection() {
     const stepDeck = (direction, event) => {
       if (!isSectionFullyInView()) return false
 
-      const canMoveNext = direction > 0 && activeDeckIndex < cardCount - 1
-      const canMovePrev = direction < 0 && activeDeckIndex > 0
+      const currentIndex = activeDeckIndexRef.current
+      const canMoveNext = direction > 0 && currentIndex < cardCount - 1
+      const canMovePrev = direction < 0 && currentIndex > 0
 
       if (isAnimatingRef.current && (canMoveNext || canMovePrev)) {
         event.preventDefault()
@@ -145,14 +151,18 @@ export default function ExcursionsSection() {
 
       if (canMoveNext) {
         event.preventDefault()
-        setActiveDeckIndex(prev => Math.min(prev + 1, cardCount - 1))
+        const nextIndex = Math.min(currentIndex + 1, cardCount - 1)
+        activeDeckIndexRef.current = nextIndex
+        setActiveDeckIndex(nextIndex)
         lockCardChange()
         return true
       }
 
       if (canMovePrev) {
         event.preventDefault()
-        setActiveDeckIndex(prev => Math.max(prev - 1, 0))
+        const prevIndex = Math.max(currentIndex - 1, 0)
+        activeDeckIndexRef.current = prevIndex
+        setActiveDeckIndex(prevIndex)
         lockCardChange()
         return true
       }
@@ -197,7 +207,7 @@ export default function ExcursionsSection() {
       section.removeEventListener('touchend', onTouchEnd)
       section.removeEventListener('touchcancel', onTouchEnd)
     }
-  }, [isDesktop, cardCount, activeDeckIndex])
+  }, [isDesktop, cardCount])
 
   return (
     <section
