@@ -36,6 +36,8 @@ const TOUCH_THRESHOLD_PX = 50
 const UNLOCK_COOLDOWN_MS = 800
 // Full-view tolerance (px) to avoid sub-pixel/layout jitter near 100% visibility.
 const FULL_VIEW_TOLERANCE_PX = 8
+// Fire observer callbacks near full visibility too (not only at exact 1.0 ratio).
+const DECK_INTERSECTION_THRESHOLDS = [0, 0.25, 0.5, 0.75, 0.9, 0.95, 0.98, 0.99, 1]
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Shared card markup — identical visual design on desktop and mobile
@@ -300,8 +302,9 @@ export default function ExcursionsSection() {
           isLockedRef.current = false
         }
       })
-    // 0 => entering/leaving viewport, 1 => fully visible transition.
-    }, { threshold: [0, 1] })
+    // Include near-1 thresholds so lock logic still runs when ratio never hits
+    // an exact 1.0 due browser/layout rounding.
+    }, { threshold: DECK_INTERSECTION_THRESHOLDS })
 
     observer.observe(deck)
     return () => observer.disconnect()
