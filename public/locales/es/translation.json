@@ -22,117 +22,117 @@
     "subtitle": "Descubre el refugio costero más refinado de Watamu."
   },
   "about": {
-    "eyebrow": "OUR STORY & VALUES",
-    "title": "Living the Duma Way",
-    "intro": "Duma Suites is a collection of thoughtfully designed coastal residences within the prestigious Ghepard Towers in Watamu, Kenya. Here, timeless Swahili elegance meets contemporary comfort, just steps from the Indian Ocean.",
-    "cardsEyebrow": "What Defines Us",
-    "transitionLine": "Beyond the stay, every detail is intentional.",
-    "expandText": "For a complete understanding of your stay experience, explore our house guidelines.",
-    "cta": "Learn More About Us",
+    "eyebrow": "NUESTRA HISTORIA & VALORES",
+    "title": "Vivir a la manera Duma",
+    "intro": "Duma Suites es una colección de residencias costeras cuidadosamente diseñadas dentro de los prestigiosos Ghepard Towers en Watamu, Kenia. Aquí, la elegancia swahili atemporal se une al confort contemporáneo, a pocos pasos del océano Índico.",
+    "cardsEyebrow": "Lo que nos define",
+    "transitionLine": "Más allá de la estancia, cada detalle es intencional.",
+    "expandText": "Para una comprensión completa de su estancia, explore nuestras normas de la casa.",
+    "cta": "Saber más sobre nosotros",
     "cards": [
       {
-        "title": "Immersive Coastal Access",
-        "shortDesc": "50 metres from Watamu's pristine beaches, directly on the Indian Ocean.",
-        "desc": "Positioned within 50 metres of Watamu's pristine white-sand beaches — the ocean is not a backdrop, it is part of your daily life here."
+        "title": "Acceso costero inmersivo",
+        "shortDesc": "A 50 metros de las playas vírgenes de Watamu, directamente en el océano Índico.",
+        "desc": "Situado a 50 metros de las playas de arena blanca vírgenes de Watamu — el océano no es un telón de fondo, es parte de su vida cotidiana aquí."
       },
       {
-        "title": "Artisan Craftsmanship",
-        "shortDesc": "Swahili-inspired design with hand-carved details and organic textures throughout.",
-        "desc": "Every suite is shaped by Swahili-inspired design — hand-carved details, organic textures and purposefully chosen furnishings that honour the coast."
+        "title": "Artesanía de autor",
+        "shortDesc": "Diseño de inspiración swahili con detalles tallados a mano y texturas orgánicas.",
+        "desc": "Cada suite está moldeada por un diseño de inspiración swahili — detalles tallados a mano, texturas orgánicas y mobiliario seleccionado con cuidado que honra la costa."
       },
       {
-        "title": "Elevated Comfort",
-        "shortDesc": "Infinity pool, full kitchens and 24/7 concierge — comfort as a standard.",
-        "desc": "Rooftop infinity pool, ground-floor leisure pool, fully equipped kitchens, high-speed Wi-Fi and 24/7 concierge — comfort as a standard, not an upgrade."
+        "title": "Confort elevado",
+        "shortDesc": "Piscina infinita, cocinas completas y conserjería 24/7 — el confort como estándar.",
+        "desc": "Piscina infinita en la azotea, piscina de recreo en la planta baja, cocinas totalmente equipadas, Wi-Fi de alta velocidad y conserjería 24/7 — el confort como estándar, no como opción."
       },
       {
-        "title": "Living With Nature",
-        "shortDesc": "Panoramic ocean views from every private balcony and terrace.",
-        "desc": "Wake up to panoramic vistas of the Indian Ocean and Watamu's lush coastline from your private balcony or terrace. Nature frames every moment."
+        "title": "Vivir con la naturaleza",
+        "shortDesc": "Vistas panorámicas al océano desde cada terraza privada.",
+        "desc": "Despiértese con vistas panorámicas al océano Índico y la exuberante costa de Watamu desde su terraza privada. La naturaleza enmarca cada momento."
       },
       {
-        "title": "Trust & Peace of Mind",
-        "shortDesc": "24-hour security, CCTV and private parking for complete peace of mind.",
-        "desc": "24-hour on-site security, CCTV surveillance, night guards and secure private parking — so you can rest, explore and return with complete confidence."
+        "title": "Confianza & tranquilidad",
+        "shortDesc": "Seguridad 24h, CCTV y aparcamiento privado para total tranquilidad.",
+        "desc": "Seguridad en sitio 24 horas, vigilancia CCTV, guardias nocturnos y aparcamiento privado seguro — para que pueda descansar, explorar y regresar con total confianza."
       },
       {
-        "title": "Responsible Luxury",
-        "shortDesc": "Eco-conscious hosting — local sourcing, responsible practices, community care.",
-        "desc": "We believe luxury should leave a lighter footprint. Eco-conscious practices, local sourcing and community support are woven into how we host."
+        "title": "Lujo responsable",
+        "shortDesc": "Hospedaje eco-consciente — abastecimiento local, prácticas responsables, cuidado comunitario.",
+        "desc": "Creemos que el lujo debería dejar una huella más ligera. Las prácticas eco-conscientes, el abastecimiento local y el apoyo comunitario están integrados en nuestra forma de ser anfitriones."
       },
       {
-        "title": "Graceful Ease",
-        "shortDesc": "Flexible arrivals, housekeeping and concierge transfers — handled for you.",
-        "desc": "Flexible arrivals, dedicated housekeeping, concierge-arranged excursions and airport transfers — every logistic handled so your stay flows effortlessly."
+        "title": "Elegancia sin esfuerzo",
+        "shortDesc": "Llegadas flexibles, limpieza y traslados de conserjería — todo gestionado para usted.",
+        "desc": "Llegadas flexibles, limpieza dedicada, excursiones organizadas por el conserje y traslados al aeropuerto — cada logística gestionada para que su estancia fluya sin esfuerzo."
       }
     ]
   },
   "gallery": {
-    "eyebrow": "GLIMPSES & MOMENTS",
-    "title": "Moments by the Coast",
-    "sub": "A curated collection of moments from the luxurious Duma suites and Watamu coastline.",
-    "viewFullCta": "View Full Gallery"
+    "eyebrow": "DESTELLOS & MOMENTOS",
+    "title": "Momentos junto a la costa",
+    "sub": "Una colección curada de momentos de las lujosas Duma Suites y la costa de Watamu.",
+    "viewFullCta": "Ver galería completa"
   },
   "faq": {
-    "eyebrow": "Questions & Answers",
-    "title": "What you may wish to know",
-    "ctaIntro": "Have any more questions?",
-    "cta": "Contact Us",
+    "eyebrow": "Preguntas & Respuestas",
+    "title": "Lo que quizás desee saber",
+    "ctaIntro": "¿Tiene más preguntas?",
+    "cta": "Contáctenos",
     "items": [
       {
-        "q": "📍 Where is Duma Suites located?",
-        "a": "Duma Suites is located within Ghepard Towers in Watamu, Kilifi County, Kenya — just 50 metres from the Indian Ocean and the pristine sands of Watamu Beach."
+        "q": "📍 ¿Dónde están ubicadas las Duma Suites?",
+        "a": "Duma Suites está ubicada dentro de Ghepard Towers en Watamu, condado de Kilifi, Kenia — a solo 50 metros del océano Índico y las arenas vírgenes de la playa de Watamu."
       },
       {
-        "q": "🛏️ What suite types are available?",
-        "a": "We offer a curated range of six distinctive suites: the intimate Duma Suite Anna (1-bedroom, ideal for couples), 2-bedroom Suites Lucia and Roma (perfect for small families or friends), the spacious 3-bedroom Duma Suite Alice (ideal for larger groups of up to 6), and our spectacular two-floor Penthouse Suites Sofia and Chiara — the pinnacle of Watamu luxury. All suites are available upon enquiry."
+        "q": "🛏️ ¿Qué tipos de suites están disponibles?",
+        "a": "Ofrecemos una gama curada de seis suites distintivas: la íntima Duma Suite Anna (1 dormitorio, ideal para parejas), las suites de 2 dormitorios Lucia y Roma (perfectas para pequeñas familias o amigos), la espaciosa Duma Suite Alice de 3 dormitorios (ideal para grupos de hasta 6 personas), y nuestras espectaculares Penthouse Suites Sofia y Chiara de dos plantas — la cima del lujo en Watamu."
       },
       {
-        "q": "🏖️ Is the beach nearby?",
-        "a": "Yes — Watamu Beach is just a short 50-metre walk from Ghepard Towers. The beach is known for its crystal-clear waters, white sands and vibrant marine life."
+        "q": "🏖️ ¿Está la playa cerca?",
+        "a": "Sí — la playa de Watamu está a solo 50 metros de los Ghepard Towers. La playa es conocida por sus aguas cristalinas, arenas blancas y vibrante vida marina."
       },
       {
-        "q": "⏰ What are the check-in and check-out times?",
-        "a": "Standard check-in is from 14:00 and check-out is by 10:00. Early check-in or late check-out may be arranged subject to availability — please contact us in advance."
+        "q": "⏰ ¿Cuáles son los horarios de entrada y salida?",
+        "a": "El registro estándar es a partir de las 14:00 y la salida antes de las 10:00. La entrada anticipada o la salida tardía pueden organizarse según disponibilidad — contáctenos con antelación."
       },
       {
-        "q": "🐾 Are pets allowed?",
-        "a": "We are fond of welcoming small, well-behaved pets to ensure a comfortable stay for everyone. We kindly ask that you inform us in advance so we can make the necessary arrangements and ensure all guests enjoy a harmonious experience."
+        "q": "🐾 ¿Se admiten mascotas?",
+        "a": "Nos complace dar la bienvenida a mascotas pequeñas y bien educadas para garantizar una estancia cómoda para todos. Le pedimos que nos informe con anticipación para poder hacer los arreglos necesarios."
       },
       {
-        "q": "🏊 Is there a swimming pool?",
-        "a": "Yes — we have two pools: a ground-floor leisure pool and a spectacular rooftop infinity pool complete with sunbeds and towels. Both offer stunning views and are accessible daily from 09:00 to 21:00."
+        "q": "🏊 ¿Hay piscina?",
+        "a": "Sí — tenemos dos piscinas: una piscina de recreo en la planta baja y una espectacular piscina infinita en la azotea con tumbonas y toallas. Ambas ofrecen vistas impresionantes y son accesibles diariamente de 09:00 a 21:00."
       },
       {
-        "q": "💳 What is the payment and cancellation policy?",
-        "a": "We accept major credit cards, bank transfer and select mobile payment methods. Payment terms are simple: 50% at booking and 50% on check-in. Cancellation before 30 days is fully refundable. Cancellation within 30 days is non-refundable."
+        "q": "💳 ¿Cuál es la política de pago y cancelación?",
+        "a": "Aceptamos las principales tarjetas de crédito, transferencia bancaria y métodos de pago móvil selectos. Las condiciones de pago son simples: 50% en la reserva y 50% en el registro. Cancelación antes de 30 días: totalmente reembolsable. Cancelación en los 30 días: no reembolsable."
       },
       {
-        "q": "📅 What is the minimum and maximum stay?",
-        "a": "Our minimum stay is 2 nights, allowing you to truly settle in and experience everything Watamu has to offer. For extended stays, we welcome guests for up to 6 months, making Duma Suites an ideal home-away-from-home for long-term visitors."
+        "q": "📅 ¿Cuál es la estancia mínima y máxima?",
+        "a": "Nuestra estancia mínima es de 2 noches, lo que le permite instalarse y experimentar todo lo que Watamu tiene para ofrecer. Para estancias prolongadas, damos la bienvenida a huéspedes por hasta 6 meses."
       },
       {
-        "q": "🧭 What excursions can you arrange?",
-        "a": "Our concierge can arrange a wide range of activities including Gedi Ruins tours, elephant watching at Tsavo, sunset dhow cruises, snorkelling at Watamu Marine Park, Safari Blue, and local seafood tours."
+        "q": "🧭 ¿Qué excursiones pueden organizar?",
+        "a": "Nuestro conserje puede organizar una amplia gama de actividades, incluyendo visitas a las ruinas de Gedi, observación de elefantes en Tsavo, cruceros en dhow al atardecer, snorkel en el parque marino de Watamu, Safari Blue y tours de mariscos locales."
       },
       {
-        "q": "🚗 Is parking available?",
-        "a": "Yes, secure private parking is available on-site at Ghepard Towers at no additional charge for guests."
+        "q": "🚗 ¿Hay aparcamiento disponible?",
+        "a": "Sí, hay aparcamiento privado seguro en los Ghepard Towers sin cargo adicional para los huéspedes."
       },
       {
-        "q": "👨‍👩‍👧 Are the suites suitable for families?",
-        "a": "Absolutely. Our 2-bedroom and 3-bedroom suites with full kitchens are ideal for families. Children are welcome, and we can arrange extra bedding or baby equipment on request."
+        "q": "👨‍👩‍👧 ¿Las suites son adecuadas para familias?",
+        "a": "Absolutamente. Nuestras suites de 2 y 3 dormitorios con cocinas completas son ideales para familias. Los niños son bienvenidos y podemos organizar camas extra o equipamiento para bebés bajo petición."
       },
       {
-        "q": "📩 How do I make a reservation?",
-        "a": "You can contact us directly via the enquiry form on this website, email us at reservations@dumasuites.com, or call us. We will confirm availability and provide a personalised booking link."
+        "q": "📩 ¿Cómo hago una reserva?",
+        "a": "Puede contactarnos directamente a través del formulario de consulta en este sitio web, enviarnos un correo a reservations@dumasuites.com o llamarnos. Confirmaremos la disponibilidad y le proporcionaremos un enlace de reserva personalizado."
       }
     ]
   },
   "reviews": {
-    "eyebrow": "Experiences & Stories",
-    "title": "What our guests loved most",
-    "leaveReview": "Leave a Review",
+    "eyebrow": "Experiencias & Historias",
+    "title": "Lo que más amaron nuestros huéspedes",
+    "leaveReview": "Dejar una reseña",
     "items": [
       {
         "id": 1,
@@ -217,96 +217,96 @@
     ]
   },
   "articles": {
-    "eyebrow": "Articles & Blogs",
-    "title": "Discover Watamu",
-    "subtitle": "Stories, guides and inspiration from the Kenyan coastline.",
-    "readMore": "Read More",
-    "blogCta": "Stories & Guides",
+    "eyebrow": "Artículos & Blogs",
+    "title": "Descubrir Watamu",
+    "subtitle": "Historias, guías e inspiración desde la costa keniana.",
+    "readMore": "Leer más",
+    "blogCta": "Historias & Guías",
     "items": [
       {
-        "title": "Top 5 Activities on the Watamu Coast",
-        "excerpt": "From the legendary Safari Blue full-day excursion and dolphin watching at Mida Creek to exploring the ancient Gedi Ruins, snorkelling in the Watamu Marine Park, and an unforgettable sunset dhow cruise — Watamu offers a wealth of extraordinary experiences for every type of traveller.",
-        "category": "Travel Guide",
+        "title": "Top 5 actividades en la costa de Watamu",
+        "excerpt": "Desde la legendaria excursión de día completo Safari Blue y el avistamiento de delfines en Mida Creek hasta explorar las antiguas ruinas de Gedi, el snorkel en el parque marino de Watamu y un inolvidable crucero en dhow al atardecer — Watamu ofrece experiencias extraordinarias para todo tipo de viajero.",
+        "category": "Guía de viaje",
         "slug": "top-5-activities-watamu"
       },
       {
-        "title": "Coastal Swahili Dishes You Absolutely Need to Try",
-        "excerpt": "The Kenyan coast is home to one of Africa's most distinctive culinary traditions. From fragrant pilau rice and slow-cooked biryani to fresh grilled octopus, coconut-laced mchuzi wa samaki and the iconic Safari Blue seafood feast — these are the dishes that define the Swahili coast experience.",
-        "category": "Food & Culture",
+        "title": "Platos swahilis costeros que absolutamente debe probar",
+        "excerpt": "La costa keniana alberga una de las tradiciones culinarias más distintivas de África. Desde el fragante arroz pilau y el biryani cocinado a fuego lento hasta el pulpo fresco a la parrilla y el icónico festín de mariscos Safari Blue — estos son los platos que definen la experiencia de la costa swahili.",
+        "category": "Gastronomía & Cultura",
         "slug": "coastal-swahili-dishes"
       }
     ]
   },
   "excursions": {
-    "eyebrow": "SAFARIS & EXCURSION",
-    "title": "CRAFTED EXPERIENCES",
-    "note": "Available for confirmed guests and bookings only",
-    "cta": "Plan This Activity",
+    "eyebrow": "SAFARIS & EXCURSIONES",
+    "title": "EXPERIENCIAS A MEDIDA",
+    "note": "Disponible solo para huéspedes confirmados y reservas",
+    "cta": "Planificar esta actividad",
     "items": [
       {
-        "title": "Gedi Ruins",
-        "desc": "Explore one of the most remarkable archaeological sites on the East African coast. The ancient Swahili town of Gedi, hidden within a dense coastal forest, dates back to the 12th century. Discover crumbling mosques, palace ruins and the whisper of centuries-old stories — with resident monkeys as your guides.",
-        "badge": "Cultural Heritage"
+        "title": "Ruinas de Gedi",
+        "desc": "Explore uno de los sitios arqueológicos más notables de la costa de África Oriental. El antiguo pueblo swahili de Gedi, escondido en un denso bosque costero, data del siglo XII. Descubra mezquitas en ruinas, restos de palacios y el susurro de historias centenarias — con monos residentes como guías.",
+        "badge": "Patrimonio cultural"
       },
       {
-        "title": "Elephant Watching",
-        "desc": "Embark on a journey to encounter East Africa's gentle giants in their natural habitat. A day trip to the iconic Tsavo elephant conservation areas offers close encounters with wild elephants, alongside giraffes, buffalo and a stunning savannah landscape — just a few hours from Watamu.",
-        "badge": "Wildlife"
+        "title": "Avistamiento de elefantes",
+        "desc": "Embárquese en un viaje para encontrarse con los gentiles gigantes de África Oriental en su hábitat natural. Una excursión de un día a las icónicas áreas de conservación de elefantes de Tsavo ofrece encuentros cercanos con elefantes salvajes, jirafas, búfalos y un impresionante paisaje de sabana — a pocas horas de Watamu.",
+        "badge": "Vida salvaje"
       },
       {
-        "title": "Sunset Dhow Cruise",
-        "desc": "Sail into the golden hour aboard a traditional wooden dhow along the Watamu coastline. As the sun dips below the Indian Ocean horizon, savour fresh seafood, cool drinks and the serene beauty of Kenya's most celebrated stretch of coast.",
-        "badge": "Ocean Experience"
+        "title": "Crucero en dhow al atardecer",
+        "desc": "Navegue hacia la hora dorada a bordo de un dhow de madera tradicional a lo largo de la costa de Watamu. Mientras el sol se sumerge bajo el horizonte del océano Índico, disfrute de mariscos frescos, bebidas frías y la serena belleza del tramo de costa más célebre de Kenia.",
+        "badge": "Experiencia oceánica"
       },
       {
         "title": "Marafa Hell's Kitchen",
-        "desc": "Journey inland to one of Kenya's most breathtaking natural wonders — the Marafa Depression, known locally as 'Nyari', meaning 'the place broken by itself'. Sculpted over millennia by wind and rain, these dramatic ochre and terracotta ravines glow with an otherworldly fire at sunrise and sunset, earning their poetic name: Hell's Kitchen. A landscape unlike any other on the Kenyan coast — raw, ancient and utterly unforgettable.",
-        "badge": "Natural Wonder"
+        "desc": "Viaje tierra adentro hacia una de las maravillas naturales más impresionantes de Kenia — la depresión de Marafa, conocida localmente como 'Nyari'. Estos dramáticos barrancos ocre y terracota brillan con un fuego sobrenatural al amanecer y al atardecer — un paisaje único en la costa keniana.",
+        "badge": "Maravilla natural"
       }
     ]
   },
   "contact": {
-    "eyebrow": "Get in Touch",
-    "title": "Contact Us",
-    "sub": "We would love to hear from you. Send us a message and we will get back to you as soon as possible.",
+    "eyebrow": "Ponerse en contacto",
+    "title": "Contáctenos",
+    "sub": "Nos encantaría saber de usted. Envíenos un mensaje y nos pondremos en contacto con usted lo antes posible.",
     "formLabels": {
-      "name": "Full Name",
-      "email": "Email Address",
-      "phone": "Phone Number",
-      "message": "Your Message",
-      "send": "Send Message"
+      "name": "Nombre completo",
+      "email": "Dirección de correo electrónico",
+      "phone": "Número de teléfono",
+      "message": "Su mensaje",
+      "send": "Enviar mensaje"
     },
     "info": {
-      "address": "Ghepard Towers, Watamu, Kilifi County, Kenya",
+      "address": "Ghepard Towers, Watamu, Condado de Kilifi, Kenia",
       "phone": "+254 710 933 025",
       "receptionPhone": "+254 713 713663",
-      "receptionLabel": "Reception · James Ghepard Towers",
+      "receptionLabel": "Recepción · James Ghepard Towers",
       "email": "reservations@dumasuites.com"
     }
   },
   "cta": {
-    "eyebrow": "Watamu Awaits",
-    "headingLine1": "Begin Your",
-    "headingLine2": "Coastal Story",
-    "sub": "Every journey to Duma Suites is unique. Let us craft yours — from suite selection to bespoke experiences. Reach out and our team will respond within 24 hours.",
-    "btn1": "Make a Reservation",
-    "btn2": "WhatsApp Us"
+    "eyebrow": "Watamu le espera",
+    "headingLine1": "Comience su",
+    "headingLine2": "historia costera",
+    "sub": "Cada viaje a Duma Suites es único. Déjenos crear el suyo — desde la selección de la suite hasta experiencias a medida. Contáctenos y nuestro equipo responderá en 24 horas.",
+    "btn1": "Hacer una reserva",
+    "btn2": "WhatsApp"
   },
   "footer": {
-    "tagline": "Watamu · Coastal Luxury",
-    "desc": "Nestled within Ghepard Towers, Watamu — just 50 metres from the white sands and turquoise waters of the Indian Ocean.",
+    "tagline": "Watamu · Lujo costero",
+    "desc": "En los Ghepard Towers, Watamu — a solo 50 metros de las arenas blancas y las aguas turquesas del océano Índico.",
     "colSuites": "Suites",
-    "colExplore": "Explore",
-    "colContact": "Contact",
+    "colExplore": "Explorar",
+    "colContact": "Contacto",
     "links": {
-      "gallery": "Gallery",
-      "about": "About",
-      "faq": "FAQ",
-      "excursions": "Excursions",
+      "gallery": "Galería",
+      "about": "Sobre nosotros",
+      "faq": "Preguntas frecuentes",
+      "excursions": "Excursiones",
       "blog": "Blog",
-      "houseRules": "House Rules",
-      "privacy": "Privacy Policy",
-      "terms": "Terms of Service"
+      "houseRules": "Normas de la casa",
+      "privacy": "Política de privacidad",
+      "terms": "Términos de servicio"
     },
     "suitesLinks": [
       {
@@ -322,101 +322,101 @@
         "href": "/suites/penthouse-suite-1-sofia"
       },
       {
-        "label": "All Suites",
+        "label": "Todas las suites",
         "href": "/suites"
       }
     ],
-    "copy": "© 2026 Duma Suites. All rights reserved.",
-    "privacy": "Privacy Policy",
-    "terms": "Terms of Service",
-    "houseRules": "House Rules",
-    "cookies": "Cookie Policy"
+    "copy": "© 2026 Duma Suites. Todos los derechos reservados.",
+    "privacy": "Política de privacidad",
+    "terms": "Términos de servicio",
+    "houseRules": "Normas de la casa",
+    "cookies": "Política de cookies"
   },
   "houseRules": {
-    "title": "House Rules",
-    "subtitle": "Ghepard Towers Residence — Regulations for Use of Apartments and Common Areas",
-    "intro": "Dear Guests and Residents, in order to ensure a peaceful and safe coexistence within Ghepard Towers Residence, we ask that you observe the following behavioural guidelines:",
+    "title": "Normas de la casa",
+    "subtitle": "Residencia Ghepard Towers — Reglamento de uso de apartamentos y zonas comunes",
+    "intro": "Estimados clientes y residentes, para garantizar una convivencia pacífica y segura dentro de la Residencia Ghepard Towers, les pedimos que respeten las siguientes pautas de comportamiento:",
     "sections": [
       {
-        "title": "1. Use of the Pool",
+        "title": "1. Uso de la piscina",
         "items": [
-          "Access to the pools is permitted from 09:00 to 21:00.",
-          "Running around the ground-floor pool and diving are strictly prohibited for safety reasons and out of respect for ground-floor units.",
-          "The rooftop pool requires the utmost care: minors are not permitted without a responsible adult.",
-          "No food, drinks or fragile objects (glasses, bottles, etc.) are permitted in or around the pool.",
-          "Inflatables, large pool toys or bulky floats are not permitted.",
-          "Important: Management accepts no liability for accidents or damage resulting from failure to comply with these rules. Use of the pools is at your own risk."
+          "El acceso a las piscinas está permitido de 09:00 a 21:00.",
+          "Correr alrededor de la piscina y saltar están estrictamente prohibidos.",
+          "La piscina en la azotea requiere el máximo cuidado: los menores sin adulto responsable no están permitidos.",
+          "No se permiten alimentos, bebidas ni objetos frágiles en la piscina.",
+          "No se permiten flotadores o juguetes acuáticos grandes.",
+          "Importante: La dirección no acepta responsabilidad por accidentes."
         ]
       },
       {
-        "title": "2. Responsible Use of Energy & Resources",
+        "title": "2. Uso responsable de energía y recursos",
         "items": [
-          "We encourage moderate use of electricity and air conditioning in respect for the environment.",
-          "Water is precious — please avoid waste and adopt responsible behaviour at all times.",
-          "We recommend reusing towels where possible to reduce environmental impact.",
-          "When leaving the apartment, even briefly, please switch off the water heater, air conditioning and all lights."
+          "Fomentamos el uso moderado de electricidad y aire acondicionado.",
+          "El agua es preciosa — evite el desperdicio.",
+          "Recomendamos reutilizar las toallas.",
+          "Al salir del apartamento, apague todos los equipos y luces."
         ]
       },
       {
-        "title": "3. Behaviour & Quiet Hours",
+        "title": "3. Comportamiento & horario de silencio",
         "items": [
-          "Audio devices and equipment at high volume are not permitted in common areas or within individual units.",
-          "Shouting, rowdy behaviour or noise is prohibited, especially during afternoon rest (13:00–15:00) and night-time hours (22:00–08:00).",
-          "Open fires, BBQs, grills or gas appliances not provided or approved by the residence are strictly forbidden."
+          "Los dispositivos de audio a alto volumen no están permitidos en las zonas comunes.",
+          "El ruido está prohibido, especialmente durante el descanso vespertino (13:00–15:00) y de noche (22:00–08:00).",
+          "Los fuegos abiertos, barbacoas o aparatos de gas no aprobados están prohibidos."
         ]
       },
       {
-        "title": "4. Protection of Common Areas & Green Spaces",
+        "title": "4. Protección de zonas comunes y espacios verdes",
         "items": [
-          "Walking on garden green areas is not permitted.",
-          "Please keep all common areas clean and treat shared spaces with care.",
-          "Bicycles, scooters and motorcycles are not permitted within the residence.",
-          "The use of sun loungers, chairs or furniture not provided by the residence in common areas is not permitted."
+          "No está permitido caminar por las zonas verdes.",
+          "Mantenga todas las zonas comunes limpias.",
+          "Las bicicletas, scooters y motocicletas no están permitidos en la residencia.",
+          "No está permitido usar muebles no proporcionados por la residencia."
         ]
       },
       {
-        "title": "5. Security & Apartment Management",
+        "title": "5. Seguridad & gestión del apartamento",
         "items": [
-          "Management accepts no liability for personal belongings, valuables or cash left unattended in apartments.",
-          "We recommend making use of the in-apartment safe where available.",
-          "The residence does not provide a key deposit service — always carry your apartment key.",
-          "For any issues relating to your apartment, please contact the owner or dedicated housekeeper.",
-          "Any damage caused within apartments or in common areas, whether intentional or through negligence, must be compensated to the unit owner or management company."
+          "La dirección no acepta responsabilidad por objetos personales sin vigilancia.",
+          "Recomendamos usar la caja de seguridad si está disponible.",
+          "La residencia no proporciona servicio de depósito de llaves.",
+          "Para problemas, contacte al propietario o al limpiador.",
+          "Los daños causados deben ser compensados."
         ]
       },
       {
-        "title": "6. Access, Security & Registration",
+        "title": "6. Acceso, seguridad & registro",
         "items": [
-          "Night security is active from 18:00 to 06:00. During remaining hours, reception staff are on duty.",
-          "For security reasons, registration of all guests is mandatory. Only registered guests are authorised to access the residence.",
-          "In case of security rule violations, Management reserves the right to contact the relevant authorities."
+          "La seguridad nocturna está activa de 18:00 a 06:00.",
+          "El registro de todos los huéspedes es obligatorio.",
+          "En caso de violaciones, la dirección puede contactar a las autoridades."
         ]
       },
       {
-        "title": "7. Emergency Contacts",
+        "title": "7. Contactos de emergencia",
         "numbers": [
           {
-            "label": "Police",
-            "value": "999 · +254(0)412311401 · 0736350114 · 0729614264"
+            "label": "Policía",
+            "value": "999 · +254(0)412311401"
           },
           {
-            "label": "Ambulance",
+            "label": "Ambulancia",
             "value": "0736241499"
           },
           {
-            "label": "Fire",
-            "value": "0733550990 · 073065955"
+            "label": "Bomberos",
+            "value": "0733550990"
           },
           {
             "label": "Hospital",
-            "value": "0702744917 · 0722474165"
+            "value": "0702744917"
           },
           {
-            "label": "Security",
-            "value": "0719088105 · 0794265943 · 0732100105"
+            "label": "Seguridad",
+            "value": "0719088105"
           },
           {
-            "label": "Reception",
+            "label": "Recepción",
             "value": "+254 713 713663 · James Ghepard Towers"
           }
         ]
@@ -424,473 +424,473 @@
     ]
   },
   "videos": {
-    "eyebrow": "Life at Duma Suites",
-    "title": "World in Motion",
-    "sub": "Immerse yourself in the sights and sounds of Watamu.",
+    "eyebrow": "La vida en Duma Suites",
+    "title": "El mundo en movimiento",
+    "sub": "Sumérgete en las vistas y sonidos de Watamu.",
     "items": [
       {
-        "label": "Rooftop Pool View"
+        "label": "Vista desde la azotea"
       },
       {
-        "label": "Infinity Rooftop Pool"
+        "label": "Piscina infinita en la azotea"
       },
       {
-        "label": "Sea Urchin on the Beach"
+        "label": "Erizo de mar en la playa"
       },
       {
-        "label": "Watamu Shoreline"
+        "label": "Costa de Watamu"
       },
       {
-        "label": "Watamu White Sands Beach"
+        "label": "Playa de arena blanca de Watamu"
       },
       {
-        "label": "Safari Blue – Local Prawns"
+        "label": "Safari Blue – Gambas locales"
       },
       {
-        "label": "Safari Blue – Sudi Island BBQ"
+        "label": "Safari Blue – Barbacoa en isla Sudi"
       }
     ]
   },
   "suites": {
     "all": {
-      "heroEyebrow": "Suites & Apartments",
-      "heroTitle": "Stay Your Way",
-      "heroSub": "From intimate suites to a spacious apartment — an exceptional collection for every kind of traveller.",
-      "introEyebrow": "Suites & Apartments",
-      "introTitle": "Choose Your Retreat",
-      "introText": "Duma Suites offers a curated collection of living spaces across six distinctive suites — from the intimate Duma Suite Anna (1-bedroom) and 2-bedroom Suites Lucia and Roma, to the generous 3-bedroom Duma Suite Alice, and the spectacular two-floor Penthouse Suites Sofia and Chiara. Currently showcasing select properties; all suites are available upon enquiry.",
-      "videoEyebrow": "Resort Overview",
-      "videoTitle": "Experience Duma Suites",
-      "showcaseEyebrow": "Our Showcased Suites",
-      "showcaseTitle": "Choose Your Suite",
-      "showcaseIntro": "Three distinct escapes, each crafted for a different way of experiencing Watamu.",
-      "viewSuite": "View Suite",
+      "heroEyebrow": "Suites & Apartamentos",
+      "heroTitle": "Quédese a su manera",
+      "heroSub": "Desde suites íntimas hasta apartamentos espaciosos — una colección excepcional para todo tipo de viajero.",
+      "introEyebrow": "Suites & Apartamentos",
+      "introTitle": "Elija su retiro",
+      "introText": "Duma Suites ofrece una colección curada de espacios habitables en seis suites distintivas — desde la íntima Duma Suite Anna hasta las espectaculares Penthouse Suites Sofia y Chiara de dos plantas. Todas disponibles bajo petición.",
+      "videoEyebrow": "Visión general del resort",
+      "videoTitle": "Experimente Duma Suites",
+      "showcaseEyebrow": "Nuestras suites presentadas",
+      "showcaseTitle": "Elija su suite",
+      "showcaseIntro": "Tres escapadas distintas, cada una diseñada para una forma diferente de experimentar Watamu.",
+      "viewSuite": "Ver suite",
       "cards": [
         {
           "name": "Penthouse Suite Sofia",
-          "tagline": "Penthouse · Rooftop Luxury Retreat",
-          "desc": "A spectacular two-floor penthouse with rooftop sunset terrace, 3 king bedrooms, and sweeping sea views — the ultimate Watamu retreat.",
-          "size": "150 sq m",
-          "beds": "3 King Size Beds",
-          "guests": "6 Guests"
+          "tagline": "Penthouse · Retiro de lujo en azotea",
+          "desc": "Un espectacular penthouse de dos plantas con terraza de atardecer, 3 dormitorios king y amplias vistas al mar.",
+          "size": "150 m²",
+          "beds": "3 camas king size",
+          "guests": "6 Huéspedes"
         },
         {
           "name": "Duma Suite Anna",
-          "tagline": "1-Bedroom · Intimate Coastal Retreat",
-          "desc": "An intimate coastal retreat designed for couples seeking privacy and elegance, just steps from the Indian Ocean.",
-          "size": "70 sq m",
-          "beds": "1 King Bed",
-          "guests": "2 Guests"
+          "tagline": "1 Dormitorio · Retiro costero íntimo",
+          "desc": "Un retiro costero íntimo diseñado para parejas que buscan privacidad y elegancia, a pocos pasos del océano Índico.",
+          "size": "70 m²",
+          "beds": "1 cama king",
+          "guests": "2 Huéspedes"
         },
         {
           "name": "Duma Suite Alice",
-          "tagline": "3-Bedroom · Luxury Family Retreat",
-          "desc": "A spacious three-bedroom suite with full kitchen, outdoor terrace, and garden views — perfect for families or groups.",
-          "size": "135 sq m",
-          "beds": "2 King Size Beds, 1 French Bed",
-          "guests": "6 Guests"
+          "tagline": "3 Dormitorios · Retiro familiar de lujo",
+          "desc": "Una espaciosa suite de tres dormitorios con cocina completa, terraza exterior y vistas al jardín.",
+          "size": "135 m²",
+          "beds": "2 camas king, 1 cama francesa",
+          "guests": "6 Huéspedes"
         }
       ]
     },
     "coastal": {
       "metaTitle": "Duma Suite Anna | Duma Suites Watamu",
       "metaDesc": "Duma Suite Anna at Duma Suites, Watamu. Intimate luxury with pool views, king bed, kitchenette and private lounge.",
-      "heroEyebrow": "1-Bedroom Suite",
+      "heroEyebrow": "Suite 1 Dormitorio",
       "heroTitle": "Duma Suite Anna",
-      "heroTagline": "Intimate coastal luxury with ocean and pool views",
-      "heroCta1": "Book a Stay",
-      "heroCta2": "View Gallery",
-      "sqm": "70 sq m",
-      "beds": "1 King Bed",
-      "guests": "2 Guests",
-      "minStay": "2 Night Min",
-      "aboutEyebrow": "About this Suite",
-      "aboutTitle": "An Intimate Coastal Retreat",
-      "aboutText1": "Duma Suite Anna is a beautifully appointed one-bedroom sanctuary nestled within Ghepard Towers, offering sweeping views of the infinity pool and the Indian Ocean beyond. Crafted for couples and solo travellers seeking a refined escape, every detail has been considered — from the plush king-size bed to the fully equipped kitchenette and private lounge.",
-      "aboutText2": "Wake to golden morning light filtering through floor-to-ceiling windows, and unwind evenings on your private balcony as the ocean breeze rolls in. This is coastal luxury, distilled.",
-      "aboutCta": "Check Availability",
-      "aboutBookCta": "Book Duma Suite Anna",
-      "highlightsTitle": "Suite Highlights",
+      "heroTagline": "Lujo costero íntimo con vistas al océano y la piscina",
+      "heroCta1": "Reservar una estancia",
+      "heroCta2": "Ver galería",
+      "sqm": "70 m²",
+      "beds": "1 cama king",
+      "guests": "2 Huéspedes",
+      "minStay": "2 noches mín",
+      "aboutEyebrow": "Sobre esta suite",
+      "aboutTitle": "Un retiro costero íntimo",
+      "aboutText1": "La Duma Suite Anna es un santuario de un dormitorio bellamente decorado dentro de los Ghepard Towers, con amplias vistas a la piscina infinita y al océano Índico.",
+      "aboutText2": "Despierte con la luz dorada de la mañana filtrándose a través de ventanas del suelo al techo. Este es el lujo costero, destilado.",
+      "aboutCta": "Comprobar disponibilidad",
+      "aboutBookCta": "Reservar Duma Suite Anna",
+      "highlightsTitle": "Puntos destacados de la suite",
       "highlights": [
-        "Stunning ocean and pool vistas",
-        "Elegant king-size bed with premium linens",
-        "Fully equipped kitchenette for in-suite dining",
-        "En-suite bathroom with rain shower",
-        "Private lounge with smart TV",
-        "Daily housekeeping and turndown service"
+        "Impresionantes vistas al océano y la piscina",
+        "Elegante cama king con ropa de cama premium",
+        "Cocina totalmente equipada",
+        "Baño privado con ducha lluvia",
+        "Salón privado con Smart TV",
+        "Limpieza diaria y servicio de cobertura"
       ],
-      "galleryEyebrow": "Photo Gallery",
-      "galleryTitle": "Inside the Suite",
-      "galleryDesc": "Step inside Duma Suite Anna and discover every corner — from the light-filled interiors to the tranquil garden and pool views that greet you morning and night.",
-      "galleryCta": "Book a Stay",
-      "tourEyebrow": "Room Tour",
-      "tourTitle": "Explore the Suite",
-      "tourSub": "Take a cinematic walkthrough of your coastal retreat.",
-      "tourCta": "Inquire About This Suite",
-      "amenitiesEyebrow": "What's Included",
-      "amenitiesTitle": "Suite Amenities",
+      "galleryEyebrow": "Galería de fotos",
+      "galleryTitle": "Dentro de la suite",
+      "galleryDesc": "Entre en la Duma Suite Anna y descubra cada rincón — desde los interiores llenos de luz hasta las tranquilas vistas al jardín y la piscina.",
+      "galleryCta": "Reservar una estancia",
+      "tourEyebrow": "Tour de habitación",
+      "tourTitle": "Explorar la suite",
+      "tourSub": "Realice un recorrido cinematográfico por su retiro costero.",
+      "tourCta": "Consultar sobre esta suite",
+      "amenitiesEyebrow": "Qué está incluido",
+      "amenitiesTitle": "Equipamiento de la suite",
       "amenities": [
-        "King-size bed",
-        "En-suite bathroom",
-        "Full kitchenette",
-        "Private lounge",
-        "Balcony",
-        "Pool view",
-        "High-speed Wi-Fi",
-        "Daily housekeeping",
-        "Air conditioning",
+        "Cama king",
+        "Baño privado",
+        "Cocina completa",
+        "Salón privado",
+        "Balcón",
+        "Vista a la piscina",
+        "Wi-Fi alta velocidad",
+        "Limpieza diaria",
+        "Aire acondicionado",
         "Smart TV",
-        "In-suite dining",
-        "Premium linens",
-        "Sunbeds",
-        "Towels provided",
-        "Ceiling fans"
+        "Servicio en la suite",
+        "Ropa de cama premium",
+        "Tumbonas",
+        "Toallas",
+        "Ventiladores de techo"
       ],
-      "policiesEyebrow": "Policies & Check-in",
-      "policiesTitle": "Know Before You Go",
+      "policiesEyebrow": "Políticas & Entrada",
+      "policiesTitle": "Sepa antes de llegar",
       "policies": [
         {
-          "label": "Check-in",
-          "value": "2:00 PM"
+          "label": "Entrada",
+          "value": "14:00 h"
         },
         {
-          "label": "Check-out",
-          "value": "10:00 AM"
+          "label": "Salida",
+          "value": "10:00 h"
         },
         {
-          "label": "Minimum stay",
-          "value": "2 nights"
+          "label": "Estancia mínima",
+          "value": "2 noches"
         },
         {
-          "label": "Payment",
-          "value": "50% at booking · 50% on check-in"
+          "label": "Pago",
+          "value": "50% al reservar · 50% al entrar"
         },
         {
-          "label": "Cancellation",
-          "value": "Before 30 days: fully refundable · Within 30 days: non-refundable"
+          "label": "Cancelación",
+          "value": "Antes de 30 días: reembolso total · Dentro de 30 días: sin reembolso"
         },
         {
-          "label": "Pets",
-          "value": "Small pets welcome"
+          "label": "Mascotas",
+          "value": "Mascotas pequeñas bienvenidas"
         },
         {
-          "label": "Smoking",
-          "value": "Balcony & lobby only"
+          "label": "Fumar",
+          "value": "Solo en el balcón y el vestíbulo"
         }
       ],
-      "inquireEyebrow": "Reservations",
-      "inquireTitle": "Reserve Your Stay",
-      "inquireSub": "Ready to experience coastal luxury? Contact us to check availability and rates.",
-      "inquireEmail": "Email Us",
-      "inquireWhatsapp": "WhatsApp Us",
-      "suitesEyebrow": "Our Suites",
-      "suitesTitle": "Explore All Suites",
-      "badgeCurrent": "Current Suite",
-      "coastalTagline": "1-Bedroom · Intimate Coastal Retreat",
-      "serenityTagline": "3-Bedroom · Luxury Family Retreat",
-      "penthouseTagline": "Penthouse · Rooftop Luxury Retreat",
-      "viewSuiteBtn": "View Suite →"
+      "inquireEyebrow": "Reservas",
+      "inquireTitle": "Reserve su estancia",
+      "inquireSub": "¿Listo para experimentar el lujo costero? Contáctenos para comprobar disponibilidad y tarifas.",
+      "inquireEmail": "Envíenos un correo",
+      "inquireWhatsapp": "WhatsApp",
+      "suitesEyebrow": "Nuestras suites",
+      "suitesTitle": "Explorar todas las suites",
+      "badgeCurrent": "Suite actual",
+      "coastalTagline": "1 Dormitorio · Retiro costero íntimo",
+      "serenityTagline": "3 Dormitorios · Retiro familiar de lujo",
+      "penthouseTagline": "Penthouse · Retiro de lujo en azotea",
+      "viewSuiteBtn": "Ver suite →"
     },
     "serenity": {
       "metaTitle": "Duma Suite Alice | Duma Suites Watamu",
-      "metaDesc": "Duma Suite Alice at Duma Suites, Watamu. Spacious luxury suite with full kitchen, outdoor terrace and garden views.",
-      "heroEyebrow": "3-Bedroom Suite",
+      "metaDesc": "Duma Suite Alice en Duma Suites, Watamu. Suite de lujo espaciosa con cocina completa, terraza exterior y vistas al jardín.",
+      "heroEyebrow": "Suite 3 Dormitorios",
       "heroTitle": "Duma Suite Alice",
-      "heroTagline": "Spacious 3-bedroom luxury with outdoor terrace and garden views",
-      "heroCta1": "Book a Stay",
-      "heroCta2": "View Gallery",
-      "sqm": "135 sq m",
-      "beds": "2 King Size Beds, 1 French Bed",
-      "guests": "6 Guests",
-      "minStay": "2 Night Min",
-      "aboutEyebrow": "About this Suite",
-      "aboutTitle": "A Sprawling Family Retreat",
-      "aboutText1": "Duma Suite Alice redefines space and comfort within Ghepard Towers. This expansive three-bedroom suite is designed for families and groups who refuse to compromise on luxury — offering a full kitchen, multiple en-suite bathrooms, a sweeping outdoor terrace, and lush garden views at every turn.",
-      "aboutText2": "Gather around the formal dining table, relax in the indoor lounge, or step out onto the private terrace for a morning coffee surrounded by the sights and sounds of Watamu's coastline. This is the full suite experience — refined, spacious, and unforgettable.",
-      "aboutCta": "Check Availability",
-      "aboutBookCta": "Book Duma Suite Alice",
-      "highlightsTitle": "Suite Highlights",
+      "heroTagline": "Lujo de 3 dormitorios espacioso con terraza exterior y vistas al jardín",
+      "heroCta1": "Reservar una estancia",
+      "heroCta2": "Ver galería",
+      "sqm": "135 m²",
+      "beds": "2 camas king size, 1 cama francesa",
+      "guests": "6 Huéspedes",
+      "minStay": "2 noches mín",
+      "aboutEyebrow": "Sobre esta suite",
+      "aboutTitle": "Un retiro familiar expansivo",
+      "aboutText1": "La Duma Suite Alice redefine el espacio y el confort dentro de los Ghepard Towers. Con tres dormitorios espaciosos, un comedor formal, múltiples salones y una cocina totalmente equipada, esta suite está diseñada para quienes desean más espacio y libertad.",
+      "aboutText2": "Reúnase alrededor de la mesa del comedor, relájese en el salón o disfrute de los atardeceres en la amplia terraza exterior con vistas al jardín.",
+      "aboutCta": "Comprobar disponibilidad",
+      "aboutBookCta": "Reservar Duma Suite Alice",
+      "highlightsTitle": "Puntos destacados de la suite",
       "highlights": [
-        "Three spacious king bedrooms",
-        "Multiple en-suite bathrooms",
-        "Fully-equipped kitchen for self-catering",
-        "Private outdoor terrace with garden views",
-        "Multiple lounges and dining areas",
-        "Spacious balcony for sunset evenings",
-        "Daily housekeeping and turndown service"
+        "Tres dormitorios king espaciosos",
+        "Múltiples baños privativos",
+        "Cocina totalmente equipada para autoservicio",
+        "Terraza exterior privada con vistas al jardín",
+        "Múltiples salones y comedores",
+        "Amplio balcón para las noches de atardecer",
+        "Limpieza diaria y servicio de cobertura"
       ],
-      "galleryEyebrow": "Photo Gallery",
-      "galleryTitle": "Inside the Suite",
-      "galleryDesc": "Explore every space of Duma Suite Alice — the warmth of three generous bedrooms, open living areas, and sweeping outdoor terraces where the light shifts beautifully from dawn to dusk.",
-      "galleryCta": "Book a Stay",
-      "tourEyebrow": "Room Tour",
-      "tourTitle": "Explore the Suite",
-      "tourSub": "Take a cinematic walkthrough of your private suite retreat.",
-      "tourCta": "Inquire About This Suite",
-      "amenitiesEyebrow": "What's Included",
-      "amenitiesTitle": "Suite Amenities",
+      "galleryEyebrow": "Galería de fotos",
+      "galleryTitle": "Dentro de la suite",
+      "galleryDesc": "Explore cada espacio de la Duma Suite Alice — la calidez de tres dormitorios, la elegancia del comedor y la belleza serena de la terraza exterior.",
+      "galleryCta": "Reservar una estancia",
+      "tourEyebrow": "Tour de habitación",
+      "tourTitle": "Explorar la suite",
+      "tourSub": "Realice un recorrido cinematográfico por su retiro privado en suite.",
+      "tourCta": "Consultar sobre esta suite",
+      "amenitiesEyebrow": "Qué está incluido",
+      "amenitiesTitle": "Equipamiento de la suite",
       "amenities": [
-        "3 King bedrooms",
-        "Multiple en-suites",
-        "Full kitchen",
-        "Outdoor terrace",
-        "Garden views",
-        "Formal dining area",
-        "Living room",
-        "Spacious balcony",
-        "High-speed Wi-Fi",
-        "Daily housekeeping",
-        "Air conditioning",
+        "3 dormitorios king",
+        "Múltiples baños",
+        "Cocina completa",
+        "Terraza exterior",
+        "Vistas al jardín",
+        "Comedor formal",
+        "Salón",
+        "Balcón espacioso",
+        "Wi-Fi alta velocidad",
+        "Limpieza diaria",
+        "Aire acondicionado",
         "Smart TVs",
-        "Sunbeds",
-        "Towels provided",
-        "Ceiling fans"
+        "Tumbonas",
+        "Toallas",
+        "Ventiladores de techo"
       ],
-      "policiesEyebrow": "Policies & Check-in",
-      "policiesTitle": "Know Before You Go",
+      "policiesEyebrow": "Políticas & Entrada",
+      "policiesTitle": "Sepa antes de llegar",
       "policies": [
         {
-          "label": "Check-in",
-          "value": "2:00 PM"
+          "label": "Entrada",
+          "value": "14:00 h"
         },
         {
-          "label": "Check-out",
-          "value": "10:00 AM"
+          "label": "Salida",
+          "value": "10:00 h"
         },
         {
-          "label": "Minimum stay",
-          "value": "2 nights"
+          "label": "Estancia mínima",
+          "value": "2 noches"
         },
         {
-          "label": "Payment",
-          "value": "50% at booking · 50% on check-in"
+          "label": "Pago",
+          "value": "50% al reservar · 50% al entrar"
         },
         {
-          "label": "Cancellation",
-          "value": "Before 30 days: fully refundable · Within 30 days: non-refundable"
+          "label": "Cancelación",
+          "value": "Antes de 30 días: reembolso total · Dentro de 30 días: sin reembolso"
         },
         {
-          "label": "Pets",
-          "value": "Small pets welcome"
+          "label": "Mascotas",
+          "value": "Mascotas pequeñas bienvenidas"
         },
         {
-          "label": "Smoking",
-          "value": "Balcony & lobby only"
+          "label": "Fumar",
+          "value": "Solo en el balcón y el vestíbulo"
         }
       ],
-      "inquireEyebrow": "Reservations",
-      "inquireTitle": "Reserve Your Stay",
-      "inquireSub": "Ready to experience suite luxury? Contact us to check availability and rates.",
-      "inquireEmail": "Email Us",
-      "inquireWhatsapp": "WhatsApp Us",
-      "suitesEyebrow": "Our Suites",
-      "suitesTitle": "Explore All Suites",
-      "badgeCurrent": "Current Suite",
-      "coastalTagline": "1-Bedroom · Intimate Coastal Retreat",
-      "serenityTagline": "3-Bedroom · Luxury Family Retreat",
-      "penthouseTagline": "Penthouse · Rooftop Luxury Retreat",
-      "viewSuiteBtn": "View Suite →"
+      "inquireEyebrow": "Reservas",
+      "inquireTitle": "Reserve su estancia",
+      "inquireSub": "¿Listo para experimentar el lujo de la suite? Contáctenos para comprobar disponibilidad y tarifas.",
+      "inquireEmail": "Envíenos un correo",
+      "inquireWhatsapp": "WhatsApp",
+      "suitesEyebrow": "Nuestras suites",
+      "suitesTitle": "Explorar todas las suites",
+      "badgeCurrent": "Suite actual",
+      "coastalTagline": "1 Dormitorio · Retiro costero íntimo",
+      "serenityTagline": "3 Dormitorios · Retiro familiar de lujo",
+      "penthouseTagline": "Penthouse · Retiro de lujo en azotea",
+      "viewSuiteBtn": "Ver suite →"
     },
     "penthouse": {
       "metaTitle": "Penthouse Suite Sofia | Duma Suites Watamu",
-      "metaDesc": "Penthouse Suite Sofia at Duma Suites, Watamu. A spectacular two-floor penthouse with rooftop sunset terrace, sea views, and 3 king bedrooms.",
-      "heroEyebrow": "Penthouse Suite",
+      "metaDesc": "Penthouse Suite Sofia en Duma Suites, Watamu. Un espectacular penthouse de dos plantas con vistas panorámicas al mar y el atardecer.",
+      "heroEyebrow": "Suite Penthouse",
       "heroTitle": "Penthouse Suite Sofia",
-      "heroTagline": "Two floors of rooftop luxury with panoramic sea and sunset views",
-      "heroCta1": "Book a Stay",
-      "heroCta2": "View Gallery",
-      "sqm": "150 sq m",
-      "beds": "3 King Size Beds",
-      "guests": "6 Guests",
-      "minStay": "2 Night Min",
-      "aboutEyebrow": "About this Suite",
-      "aboutTitle": "A Rooftop Penthouse Retreat",
-      "aboutText1": "Penthouse Suite Sofia is a breathtaking two-floor penthouse crowning Ghepard Towers, offering 150 square metres of refined coastal living. Three king bedrooms, including a master bedroom on the top floor, are complemented by a fully equipped kitchenette, multiple lounge and dining areas, and spectacular outdoor spaces that make every moment a view to remember.",
-      "aboutText2": "From the rooftop sunset terrace to the outdoor 8-seater dining table, and the iconic swing with sea, garden and sunset views — this is the pinnacle of Watamu luxury, distilled into an unforgettable retreat.",
-      "aboutCta": "Check Availability",
-      "aboutBookCta": "Book Penthouse Sofia",
-      "highlightsTitle": "Suite Highlights",
+      "heroTagline": "Dos plantas de lujo en azotea con vistas panorámicas al mar y el atardecer",
+      "heroCta1": "Reservar una estancia",
+      "heroCta2": "Ver galería",
+      "sqm": "150 m²",
+      "beds": "3 camas king size",
+      "guests": "6 Huéspedes",
+      "minStay": "2 noches mín",
+      "aboutEyebrow": "Sobre esta suite",
+      "aboutTitle": "Un retiro en penthouse en la azotea",
+      "aboutText1": "El Penthouse Suite Sofia es un impresionante penthouse de dos plantas en el corazón de los Ghepard Towers. Con tres dormitorios king, el dormitorio principal en el piso superior y una vista impresionante al océano Índico y la costa de Watamu, esta suite supera todas las expectativas.",
+      "aboutText2": "Desde la terraza en la azotea hasta la mesa de comedor exterior de 8 personas — Penthouse Suite Sofia está diseñado para momentos inolvidables, ya sea el atardecer en la terraza o cenar bajo las estrellas.",
+      "aboutCta": "Comprobar disponibilidad",
+      "aboutBookCta": "Reservar Penthouse Sofia",
+      "highlightsTitle": "Puntos destacados de la suite",
       "highlights": [
-        "Two-floor penthouse with master bedroom on top floor",
-        "Three king-size beds with premium linens",
-        "Rooftop sunset terrace with panoramic sea views",
-        "Outdoor 8-seater dining table on the terrace",
-        "Swing with sea, garden and sunset views",
-        "Fully equipped kitchenette",
-        "Daily housekeeping and turndown service"
+        "Penthouse de dos plantas con dormitorio principal en el piso superior",
+        "Tres camas king con ropa de cama premium",
+        "Terraza en azotea con vistas panorámicas al mar y el atardecer",
+        "Mesa de comedor exterior de 8 personas en la terraza",
+        "Columpio con vistas al mar, jardín y atardecer",
+        "Cocina totalmente equipada",
+        "Limpieza diaria y servicio de cobertura"
       ],
-      "galleryEyebrow": "Photo Gallery",
-      "galleryTitle": "Inside the Penthouse",
-      "galleryDesc": "A window into life at the top — explore the sweeping interiors of Penthouse Suite Sofia and the breathtaking views from its terraces and balconies, at sunrise, golden hour, and beneath the stars.",
-      "galleryCta": "Book Penthouse Sofia",
-      "amenitiesEyebrow": "What's Included",
-      "amenitiesTitle": "Penthouse Amenities",
+      "galleryEyebrow": "Galería de fotos",
+      "galleryTitle": "Dentro del penthouse",
+      "galleryDesc": "Una ventana a la vida en la cima — explore los amplios interiores, la terraza en azotea y la vista panorámica al océano Índico.",
+      "galleryCta": "Reservar Penthouse Sofia",
+      "amenitiesEyebrow": "Qué está incluido",
+      "amenitiesTitle": "Equipamiento del penthouse",
       "amenities": [
-        "3 King Size Beds",
-        "Multiple en-suites",
-        "2 Floors",
-        "Master Bedroom on Top Floor",
-        "Fully Equipped Kitchenette",
-        "Outdoor Sunbeds",
-        "Lounge Chairs",
-        "Recliner Chairs",
-        "Huge Balconies",
-        "Rooftop Sunset Terrace",
-        "Indoor Dining Table",
-        "Outdoor 8-Seater Dining Table",
-        "Swing with Sea & Sunset Views",
-        "High-speed Wi-Fi",
-        "Daily Housekeeping",
-        "Air conditioning",
+        "3 camas king size",
+        "Múltiples baños",
+        "2 plantas",
+        "Dormitorio principal en planta superior",
+        "Cocina totalmente equipada",
+        "Tumbonas exteriores",
+        "Sillas de salón",
+        "Sillas reclinables",
+        "Enormes balcones",
+        "Terraza en azotea",
+        "Mesa de comedor interior",
+        "Mesa de comedor exterior de 8 personas",
+        "Columpio con vistas al mar y atardecer",
+        "Wi-Fi alta velocidad",
+        "Limpieza diaria",
+        "Aire acondicionado",
         "Smart TV",
-        "Towels provided",
-        "Ceiling Fans",
-        "Pool Access",
-        "Beach Views",
-        "Garden View"
+        "Toallas",
+        "Ventiladores de techo",
+        "Acceso a piscina",
+        "Vistas a la playa",
+        "Vista al jardín"
       ],
-      "policiesEyebrow": "Policies & Check-in",
-      "policiesTitle": "Know Before You Go",
+      "policiesEyebrow": "Políticas & Entrada",
+      "policiesTitle": "Sepa antes de llegar",
       "policies": [
         {
-          "label": "Check-in",
-          "value": "2:00 PM"
+          "label": "Entrada",
+          "value": "14:00 h"
         },
         {
-          "label": "Check-out",
-          "value": "10:00 AM"
+          "label": "Salida",
+          "value": "10:00 h"
         },
         {
-          "label": "Minimum stay",
-          "value": "2 nights"
+          "label": "Estancia mínima",
+          "value": "2 noches"
         },
         {
-          "label": "Payment",
-          "value": "50% at booking · 50% on check-in"
+          "label": "Pago",
+          "value": "50% al reservar · 50% al entrar"
         },
         {
-          "label": "Cancellation",
-          "value": "Before 30 days: fully refundable · Within 30 days: non-refundable"
+          "label": "Cancelación",
+          "value": "Antes de 30 días: reembolso total · Dentro de 30 días: sin reembolso"
         },
         {
-          "label": "Pets",
-          "value": "Small pets welcome"
+          "label": "Mascotas",
+          "value": "Mascotas pequeñas bienvenidas"
         },
         {
-          "label": "Smoking",
-          "value": "Balcony & lobby only"
+          "label": "Fumar",
+          "value": "Solo en el balcón y el vestíbulo"
         }
       ],
-      "inquireEyebrow": "Reservations",
-      "inquireTitle": "Reserve Your Stay",
-      "inquireSub": "Ready to experience penthouse luxury? Contact us to check availability and rates.",
-      "inquireEmail": "Email Us",
-      "inquireWhatsapp": "WhatsApp Us",
-      "suitesEyebrow": "Our Suites",
-      "suitesTitle": "Explore All Suites",
-      "badgeCurrent": "Current Suite",
-      "coastalTagline": "1-Bedroom · Intimate Coastal Retreat",
-      "serenityTagline": "3-Bedroom · Luxury Family Retreat",
-      "penthouseTagline": "Penthouse · Rooftop Luxury Retreat",
-      "viewSuiteBtn": "View Suite →"
+      "inquireEyebrow": "Reservas",
+      "inquireTitle": "Reserve su estancia",
+      "inquireSub": "¿Listo para experimentar el lujo del penthouse? Contáctenos para comprobar disponibilidad y tarifas.",
+      "inquireEmail": "Envíenos un correo",
+      "inquireWhatsapp": "WhatsApp",
+      "suitesEyebrow": "Nuestras suites",
+      "suitesTitle": "Explorar todas las suites",
+      "badgeCurrent": "Suite actual",
+      "coastalTagline": "1 Dormitorio · Retiro costero íntimo",
+      "serenityTagline": "3 Dormitorios · Retiro familiar de lujo",
+      "penthouseTagline": "Penthouse · Retiro de lujo en azotea",
+      "viewSuiteBtn": "Ver suite →"
     }
   },
   "gm": {
-    "welcome": "A heartfelt welcome to Duma Suites",
-    "eyebrow": "A Word from the General Manager",
-    "para1": "At Duma Suites, we do not merely offer accommodation — we craft moments. Every sunrise over the Indian Ocean, every breeze that carries the scent of the sea, is intentionally woven into the fabric of your stay.",
-    "para2": "Our team has dedicated itself to redefining what coastal luxury means — not through grandeur alone, but through the quiet confidence of perfection in every detail. From the linen on your bed to the last light of a Watamu sunset, nothing is left to chance.",
-    "para3": "Watamu is more than a destination; it is a state of mind. Whether you arrive seeking adventure along the reef or simply the profound peace of the horizon at dusk, Duma Suites will meet you exactly where you are — and exceed every expectation you carry.",
-    "closing": "Welcome to our home. Watch the short introduction below to see what awaits you.",
+    "welcome": "Una bienvenida cordial a Duma Suites",
+    "eyebrow": "Una palabra del Director General",
+    "para1": "En Duma Suites, no ofrecemos simplemente alojamiento — creamos momentos. Cada amanecer sobre el océano Índico, cada brisa que lleva el aroma del mar, está intencionalmente entretejida en el tejido de su estancia.",
+    "para2": "Nuestro equipo se ha dedicado a redefinir lo que significa el lujo costero — no solo a través de la grandiosidad, sino a través de la confianza tranquila de la perfección en cada detalle. Nada se deja al azar.",
+    "para3": "Watamu es más que un destino; es un estado mental. Ya sea que llegue buscando aventuras en el arrecife o simplemente la paz profunda del horizonte al anochecer, Duma Suites le recibirá exactamente donde esté.",
+    "closing": "Bienvenido a nuestro hogar. Vea la breve introducción a continuación para ver lo que le espera.",
     "gmName": "Andrea Boemo",
-    "gmTitle": "General Manager, Duma Suites",
-    "videoLabel": "A Short Introduction",
-    "videoCta": "Explore Our Suites",
-    "videoCtaSub": "Get in Touch"
+    "gmTitle": "Director General, Duma Suites",
+    "videoLabel": "Una breve introducción",
+    "videoCta": "Explorar nuestras suites",
+    "videoCtaSub": "Ponerse en contacto"
   },
   "suiteHighlights": {
-    "eyebrow": "Suite Highlights",
-    "title": "The Duma Experience",
-    "subtitle": "Tap a card to discover its highlights",
-    "tapHint": "tap to see highlights ↩",
-    "viewAll": "Find Your Suite",
+    "eyebrow": "Puntos destacados de las suites",
+    "title": "La experiencia Duma",
+    "subtitle": "Toque una tarjeta para descubrir sus puntos destacados",
+    "tapHint": "toque para ver los puntos destacados",
+    "viewAll": "Encuentra tu suite",
     "cards": [
       {
-        "title": "Pools of Serenity",
+        "title": "Piscinas de serenidad",
         "points": [
-          "Infinity rooftop pool",
-          "Ground floor leisure pool",
-          "Outdoor showers",
-          "Ocean-facing poolside deck",
-          "Evening illuminated pool area"
+          "Piscina infinita en la azotea",
+          "Piscina de recreo en la planta baja",
+          "Duchas exteriores",
+          "Terraza junto a la piscina con vistas al océano",
+          "Área de piscina iluminada por la noche"
         ],
-        "overlayTitle": "Pools of Serenity",
-        "overlayText": "Dive into tranquillity above the Indian Ocean."
+        "overlayTitle": "Piscinas de serenidad",
+        "overlayText": "Dos piscinas, vistas infinitas — relajación redefinida."
       },
       {
-        "title": "Swahili Elegance",
+        "title": "Elegancia swahili",
         "points": [
-          "Authentic Swahili-inspired interiors",
-          "King beds with premium linens",
-          "Air conditioning & ceiling fans",
-          "Private en-suite bathrooms",
-          "Full kitchen, lounge & balcony"
+          "Detalles de muebles tallados a mano",
+          "Textiles de inspiración swahili",
+          "Materiales orgánicos",
+          "Arte de artesanos locales",
+          "Piezas de mobiliario a medida"
         ],
-        "overlayTitle": "Swahili Elegance",
-        "overlayText": "Coastal craftsmanship in every detail."
+        "overlayTitle": "Elegancia swahili",
+        "overlayText": "Cada suite es un legado de la cultura costera — hecha a mano y duradera."
       },
       {
-        "title": "Nature & Security",
+        "title": "Naturaleza & Seguridad",
         "points": [
-          "Steps from the beach",
-          "Lush tropical gardens",
-          "24/7 on-site security",
-          "Private parking",
-          "Serene natural surroundings"
+          "Vistas panorámicas al océano",
+          "Aparcamiento privado",
+          "Seguridad 24h & CCTV",
+          "Balcones y terrazas privados",
+          "Recinto cercado con acceso controlado"
         ],
-        "overlayTitle": "Nature & Security",
-        "overlayText": "Peace of mind, naturally."
+        "overlayTitle": "Naturaleza & Seguridad",
+        "overlayText": "Tranquilidad y seguridad — lo mejor de la naturaleza, cuidadosamente protegido."
       },
       {
-        "title": "Effortless Luxury",
+        "title": "Lujo sin esfuerzo",
         "points": [
-          "Daily housekeeping & turndown",
-          "Laundry service",
-          "High-speed Wi-Fi throughout",
-          "Seamless online booking",
-          "Curated guest experiences"
+          "Limpieza diaria",
+          "Cocinas completas",
+          "Wi-Fi de alta velocidad",
+          "Aire acondicionado",
+          "Smart TV"
         ],
-        "overlayTitle": "Effortless Luxury",
-        "overlayText": "Where every need is anticipated."
+        "overlayTitle": "Lujo sin esfuerzo",
+        "overlayText": "Todo gestionado para usted — desde la llegada hasta la salida."
       }
     ]
   },
   "suitesPreview": {
-    "eyebrow": "Suites Preview",
-    "title": "The Duma Suites",
-    "intro": "Discover refined living spaces designed for coastal serenity.",
-    "viewAll": "View All Suites",
+    "eyebrow": "Vista previa de suites",
+    "title": "Las Duma Suites",
+    "intro": "Descubra espacios de vida refinados diseñados para la serenidad costera.",
+    "viewAll": "Ver todas las suites",
     "suites": [
       {
         "name": "Penthouse Suite Sofia",
-        "tagline": "Penthouse · Rooftop Luxury Retreat",
-        "size": "150 sq m",
-        "beds": "3 King Size Beds",
-        "guests": "6 Guests"
+        "tagline": "Penthouse · Retiro de lujo en azotea",
+        "size": "150 m²",
+        "beds": "3 camas king size",
+        "guests": "6 Huéspedes"
       },
       {
         "name": "Duma Suite Anna",
-        "tagline": "1-Bedroom · Intimate Coastal Retreat",
-        "size": "70 sq m",
-        "beds": "1 King Bed",
-        "guests": "2 Guests"
+        "tagline": "1 Dormitorio · Retiro costero íntimo",
+        "size": "70 m²",
+        "beds": "1 cama king",
+        "guests": "2 Huéspedes"
       },
       {
         "name": "Duma Suite Alice",
-        "tagline": "3-Bedroom · Luxury Family Retreat",
-        "size": "135 sq m",
-        "beds": "2 King Size Beds, 1 French Bed",
-        "guests": "6 Guests"
+        "tagline": "3 Dormitorios · Retiro familiar de lujo",
+        "size": "135 m²",
+        "beds": "2 camas king, 1 cama francesa",
+        "guests": "6 Huéspedes"
       }
     ]
   },
@@ -1189,22 +1189,22 @@
     ]
   },
   "blog": {
-    "metaTitle": "Stories & Guides | Duma Suites – Watamu",
-    "metaDesc": "Explore travel guides, coastal culture, food stories and insider tips from the shores of Watamu — curated by the Duma Suites team.",
-    "heroSub": "Travel guides, coastal culture and insider stories from Watamu's most beloved address.",
-    "pullQuote": "\"Watamu offers a wealth of extraordinary experiences for every type of traveller.\"",
-    "editorsPick": "Editor's Pick",
-    "moreStoriesTitle": "More Stories & Guides",
-    "conciergeLabel": "From Our Concierge",
-    "conciergeText": "Our team personally curates these experiences and stories for guests staying at Duma Suites. Every guide you read here is drawn from local knowledge and lived experience on the Watamu coast.",
-    "conciergeCta": "Plan Your Stay",
-    "trustBadge1": "100% Local Knowledge",
-    "trustBadge2": "Curated by Our Concierge",
-    "trustBadge3": "Updated Seasonally",
-    "readTimeMin": "min read",
-    "articlesIntroEyebrow": "From the Field",
-    "articlesIntroTitle": "Stories & Guides from Watamu",
-    "articlesIntroDesc": "Dive into carefully crafted travel guides, local recipes and insider stories from Duma Suites — written to inspire your next stay on the Kenyan coast."
+    "metaTitle": "Historias & Guías | Duma Suites – Watamu",
+    "metaDesc": "Explore guías de viaje, cultura costera y consejos de iniciados desde las orillas de Watamu — curados por el equipo de Duma Suites.",
+    "heroSub": "Guías de viaje, cultura costera e historias de iniciados de la dirección más querida de Watamu.",
+    "pullQuote": "Watamu ofrece experiencias extraordinarias para todo tipo de viajero.",
+    "editorsPick": "Selección del editor",
+    "moreStoriesTitle": "Más historias & guías",
+    "conciergeLabel": "De nuestro conserje",
+    "conciergeText": "Nuestro equipo selecciona personalmente estas experiencias e historias para los huéspedes de Duma Suites.",
+    "conciergeCta": "Planifique su estancia",
+    "trustBadge1": "100 % Conocimiento local",
+    "trustBadge2": "Curado por nuestro conserje",
+    "trustBadge3": "Actualizado estacionalmente",
+    "readTimeMin": "min de lectura",
+    "articlesIntroEyebrow": "Del terreno",
+    "articlesIntroTitle": "Historias & Guías de Watamu",
+    "articlesIntroDesc": "Sumérgete en guías de viaje cuidadosamente elaboradas, recetas locales e historias de iniciados de Duma Suites."
   },
   "privacyPolicy": {
     "metaTitle": "Privacy Policy | Duma Suites Watamu",
@@ -1378,12 +1378,16 @@
     ]
   },
   "cookieBanner": {
-    "headline": "We use cookies to enhance your stay.",
-    "body": "We use essential, analytics and preference cookies to give you the finest experience at Duma Suites. Your choice is remembered across visits.",
-    "acceptAll": "Accept All",
-    "manage": "Manage Preferences",
-    "rejectNonEssential": "Reject Non-Essential",
-    "learnMore": "Cookie Policy"
+    "headline": "Usamos cookies para mejorar su estancia.",
+    "body": "Usamos cookies esenciales, analíticas y de preferencia para ofrecerle la mejor experiencia en Duma Suites. Su elección se recuerda entre visitas.",
+    "acceptAll": "Aceptar todo",
+    "manage": "Gestionar preferencias",
+    "rejectNonEssential": "Rechazar no esenciales",
+    "learnMore": "Política de cookies",
+    "title": "Usamos cookies",
+    "text": "Usamos cookies para mejorar su experiencia y nuestros servicios. Al hacer clic en 'Aceptar todo', consiente el uso de cookies.",
+    "accept": "Aceptar todo",
+    "reject": "Solo esenciales"
   },
   "cookies": {
     "metaTitle": "Cookie Policy | Duma Suites Watamu",
