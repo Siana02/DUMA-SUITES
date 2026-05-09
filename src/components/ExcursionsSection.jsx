@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { ArrowRight, Info } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Info } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
@@ -22,8 +22,9 @@ const EXCURSION_IMAGES = [
   { main: hellsMain,    overlay: hellsOverlay },
 ]
 
-const DESKTOP_BREAKPOINT = 1024
-const STICKY_TOP_PX = 90
+const CAROUSEL_BREAKPOINT = 768
+const AUTO_CYCLE_MS = 7000
+const SWIPE_THRESHOLD_PX = 48
 const MOBILE_CARD_THRESHOLD = 0.2
 
 // Shared card markup — identical visual design on both desktop and mobile
@@ -31,12 +32,22 @@ function CardInner({ item, images, cta }) {
   return (
     <>
       <div className="exc-card__img-side">
+        <div
+          className="exc-card__img-blur"
+          aria-hidden="true"
+          style={{ backgroundImage: `url(${images.main})` }}
+        />
         <img src={images.main} alt={item.title} className="exc-card__main-img" loading="lazy" />
         <span className="exc-card__badge">{item.badge}</span>
       </div>
 
       <div className="exc-card__text-side">
         <div className="exc-card__text-bg">
+          <div
+            className="exc-card__overlay-blur"
+            aria-hidden="true"
+            style={{ backgroundImage: `url(${images.overlay})` }}
+          />
           <img src={images.overlay} alt="" className="exc-card__overlay-img" aria-hidden="true" loading="lazy" />
           <div className="exc-card__overlay-dark" aria-hidden="true" />
         </div>
@@ -82,55 +93,58 @@ export default function ExcursionsSection() {
   const deckItems = exc.items.slice(0, EXCURSION_IMAGES.length)
   const cardCount = deckItems.length
 
-  // Desktop/laptop only: locked one-by-one card cycling
-  const [isDesktop, setIsDesktop] = useState(false)
+  const [isCarouselMode, setIsCarouselMode] = useState(false)
   const [activeDeckIndex, setActiveDeckIndex] = useState(0)
-
-  const deckOuterRef  = useRef(null)
-  const deckStickyRef = useRef(null)
+  const touchStartXRef = useRef(0)
+  const touchDeltaXRef = useRef(0)
 
   const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.3, triggerOnce: true })
 
   // Keep breakpoint mode in sync with window width
   useEffect(() => {
-    const check = () => setIsDesktop(window.innerWidth >= DESKTOP_BREAKPOINT)
+    const check = () => setIsCarouselMode(window.innerWidth >= CAROUSEL_BREAKPOINT)
     window.addEventListener('resize', check, { passive: true })
     check() // resolve any mount-time mismatch
     return () => window.removeEventListener('resize', check)
   }, [])
 
-  // Desktop/tablet: drive active card index from scroll position within the deck outer
+  // Tablet/desktop: auto-cycle cards every 7 seconds
   useEffect(() => {
-    if (!isDesktop) return
+    if (!isCarouselMode || cardCount <= 1) return
+    const timer = window.setTimeout(() => {
+      setActiveDeckIndex(prev => (prev + 1) % cardCount)
+    }, AUTO_CYCLE_MS)
+    return () => window.clearTimeout(timer)
+  }, [isCarouselMode, cardCount, activeDeckIndex])
 
-    const outer  = deckOuterRef.current
-    const sticky = deckStickyRef.current
-    if (!outer || !sticky) return
+  const goPrev = () => {
+    setActiveDeckIndex(prev => (prev - 1 + cardCount) % cardCount)
+  }
 
-    const update = () => {
-      const outerRect = outer.getBoundingClientRect()
-      const stickyH   = sticky.offsetHeight
-      const totalRange = outer.offsetHeight - stickyH
-      if (totalRange <= 0) return
+  const goNext = () => {
+    setActiveDeckIndex(prev => (prev + 1) % cardCount)
+  }
 
-      // How far past the sticky-top the outer has scrolled
-      const scrolledIn = STICKY_TOP_PX - outerRect.top
-      const progress   = Math.max(0, Math.min(1, scrolledIn / totalRange))
-      const newIndex   = Math.min(Math.floor(progress * cardCount), cardCount - 1)
-      setActiveDeckIndex(newIndex)
-    }
+  const handleTouchStart = e => {
+    touchStartXRef.current = e.touches?.length ? e.touches[0].clientX : 0
+    touchDeltaXRef.current = 0
+  }
 
-    window.addEventListener('scroll', update, { passive: true })
-    update() // sync on mount / breakpoint change
+  const handleTouchMove = e => {
+    const currentX = e.touches?.length ? e.touches[0].clientX : 0
+    touchDeltaXRef.current = currentX - touchStartXRef.current
+  }
 
-    return () => window.removeEventListener('scroll', update)
-  }, [isDesktop, cardCount])
+  const handleTouchEnd = () => {
+    if (Math.abs(touchDeltaXRef.current) < SWIPE_THRESHOLD_PX) return
+    if (touchDeltaXRef.current > 0) goPrev()
+    else goNext()
+  }
 
   return (
     <section
       className="exc-section section"
       id="excursions"
-      style={{ '--exc-sticky-top': `${STICKY_TOP_PX}px` }}
     >
       <div className="container">
         <div
@@ -153,7 +167,7 @@ export default function ExcursionsSection() {
         </div>
 
         {/* ── Mobile: simple stacked list with fade/slide/scale ── */}
-        {!isDesktop ? (
+        {!isCarouselMode ? (
           <div className="exc-section__list">
             {deckItems.map((item, i) => (
               <MobileExcursionCard
@@ -166,29 +180,47 @@ export default function ExcursionsSection() {
             ))}
           </div>
         ) : (
-          /* ── Desktop/tablet: stacked card-deck ── */
-          <div ref={deckOuterRef} className="exc-deck-outer">
-            <div ref={deckStickyRef} className="exc-deck-sticky">
-              {deckItems.map((item, i) => {
-                const isLeft = i % 2 === 0
-                return (
-                  <div
-                    key={i}
-                    className={`exc-card exc-card--${isLeft ? 'left' : 'right'} exc-deck-card${activeDeckIndex >= i ? ' is-revealed' : ''}`}
-                    style={{
-                      zIndex: i + 1,
-                    }}
-                  >
-                    <CardInner item={item} images={EXCURSION_IMAGES[i]} cta={exc.cta} />
-                  </div>
-                )
-              })}
+          /* ── Tablet/desktop: full-width horizontal carousel ── */
+          <div className="exc-carousel-shell">
+            <button type="button" className="exc-carousel__arrow exc-carousel__arrow--left" onClick={goPrev} aria-label="Previous excursion">
+              <ArrowLeft size={18} strokeWidth={1.8} />
+            </button>
+            <button type="button" className="exc-carousel__arrow exc-carousel__arrow--right" onClick={goNext} aria-label="Next excursion">
+              <ArrowRight size={18} strokeWidth={1.8} />
+            </button>
+            <div
+              className="exc-carousel__viewport"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <div
+                className="exc-carousel__track"
+                style={{ transform: `translate3d(-${activeDeckIndex * 100}%, 0, 0)` }}
+              >
+                {deckItems.map((item, i) => {
+                  const isLeft = i % 2 === 0
+                  return (
+                    <div
+                      key={i}
+                      className={`exc-card exc-card--${isLeft ? 'left' : 'right'} exc-carousel__card`}
+                    >
+                      <CardInner item={item} images={EXCURSION_IMAGES[i]} cta={exc.cta} />
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           </div>
         )}
       </div>
 
       <style>{`
+        .exc-section {
+          --exc-overlay-dark-top: 0.56;
+          --exc-overlay-dark-bottom: 0.72;
+        }
+
         /* ── Header ─────────────────────────────────────────── */
         .exc-section__header {
           text-align: center;
@@ -242,7 +274,7 @@ export default function ExcursionsSection() {
         .exc-card {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          min-height: 440px;
+          min-height: 220px;
           overflow: hidden;
           border-radius: 4px;
           position: relative;
@@ -261,14 +293,31 @@ export default function ExcursionsSection() {
           position: relative;
           overflow: hidden;
           aspect-ratio: 4 / 3;
+          background: #111;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
-        .exc-card__main-img {
+        .exc-card__img-blur {
           position: absolute;
           inset: 0;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          filter: blur(22px);
+          transform: scale(1.16);
+          opacity: 0.78;
+          z-index: 0;
+        }
+        .exc-card__main-img {
+          position: relative;
           width: 100%;
-          height: 100%;
-          object-fit: cover;
+          height: auto;
+          object-fit: contain;
+          object-position: center;
           transition: transform 0.5s ease;
+          z-index: 1;
+          display: block;
         }
         .exc-card:hover .exc-card__main-img {
           transform: scale(1.04);
@@ -285,6 +334,8 @@ export default function ExcursionsSection() {
           color: #fff;
           padding: 5px 14px;
           border-radius: 100px;
+          z-index: 3;
+          pointer-events: none;
         }
         .exc-card__text-side {
           position: relative;
@@ -294,25 +345,46 @@ export default function ExcursionsSection() {
         .exc-card__text-bg {
           position: absolute;
           inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .exc-card__overlay-blur {
+          position: absolute;
+          inset: 0;
+          background-size: cover;
+          background-position: center;
+          filter: blur(22px);
+          transform: scale(1.16);
+          opacity: 0.8;
         }
         .exc-card__overlay-img {
+          position: relative;
           width: 100%;
-          height: 100%;
-          object-fit: cover;
+          height: auto;
+          object-fit: contain;
+          object-position: center;
+          z-index: 1;
+          display: block;
         }
         .exc-card__overlay-dark {
           position: absolute;
           inset: 0;
-          background: rgba(0,0,0,0.62);
+          background: linear-gradient(
+            180deg,
+            rgba(0,0,0,var(--exc-overlay-dark-top)),
+            rgba(0,0,0,var(--exc-overlay-dark-bottom))
+          );
+          z-index: 2;
         }
         .exc-card__content {
           position: relative;
-          z-index: 1;
+          z-index: 3;
           padding: clamp(28px, 4vw, 48px);
           height: 100%;
           display: flex;
           flex-direction: column;
-          justify-content: flex-end;
+          justify-content: center;
           gap: 16px;
         }
         .exc-card__title {
@@ -321,11 +393,13 @@ export default function ExcursionsSection() {
           font-weight: 600;
           color: #fff;
           line-height: 1.2;
+          text-shadow: 0 2px 14px rgba(0,0,0,0.45);
         }
         .exc-card__desc {
           font-size: 0.88rem;
-          color: rgba(255,255,255,0.82);
+          color: rgba(255,255,255,0.9);
           line-height: 1.7;
+          text-shadow: 0 1px 10px rgba(0,0,0,0.4);
         }
         .exc-card__cta {
           display: inline-flex;
@@ -348,33 +422,61 @@ export default function ExcursionsSection() {
           color: #fff;
         }
 
-        /* ── Desktop / laptop: stacked card-deck ────────────── */
-        @media (min-width: 1024px) {
-          /* Outer is 4× the card height so the sticky has room to work
-             and scroll progress drives one card reveal per quarter */
-          .exc-deck-outer {
-            width: 100%;
-            height: calc(clamp(440px, 55vw, 580px) * 4);
-          }
-          /* Sticky viewport frame — height driven by card aspect ratio */
-          .exc-deck-sticky {
-            position: sticky;
-            top: var(--exc-sticky-top);
-            overflow: hidden;
-            height: clamp(440px, 55vw, 580px);
-          }
-          /* Each card fills the sticky frame and is absolutely stacked */
-          .exc-deck-card {
-            position: absolute;
-            inset: 0;
+        /* ── Tablet / desktop: horizontal carousel ───────────── */
+        @media (min-width: 768px) {
+          .exc-card__img-side {
+            aspect-ratio: auto;
             height: 100%;
-            min-height: unset;
-            will-change: transform;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateY(100%);
           }
-          .exc-deck-card.is-revealed {
-            transform: translateY(0%);
+          .exc-carousel-shell {
+            position: relative;
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+          }
+          .exc-carousel__viewport {
+            overflow: hidden;
+            -webkit-overflow-scrolling: touch;
+          }
+          .exc-carousel__track {
+            display: flex;
+            width: 100%;
+            will-change: transform;
+            transition: transform 560ms cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          .exc-carousel__card {
+            flex: 0 0 100%;
+            width: 100%;
+            min-height: clamp(220px, 26vw, 310px);
+            border-radius: 0;
+          }
+          .exc-carousel__arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(16,16,16,0.55);
+            color: #fff;
+            cursor: pointer;
+            backdrop-filter: blur(2px);
+            transition: background 0.25s ease, border-color 0.25s ease;
+          }
+          .exc-carousel__arrow:hover {
+            background: rgba(16,16,16,0.8);
+            border-color: #fff;
+          }
+          .exc-carousel__arrow--left {
+            left: clamp(10px, 2vw, 24px);
+          }
+          .exc-carousel__arrow--right {
+            right: clamp(10px, 2vw, 24px);
           }
         }
 
@@ -384,7 +486,7 @@ export default function ExcursionsSection() {
           flex-direction: column;
           gap: 40px;
         }
-        @media (max-width: 1023px) {
+        @media (max-width: 767px) {
           .exc-card {
             grid-template-columns: 1fr;
             min-height: auto;
