@@ -84,7 +84,11 @@ export default function ExcursionsSection() {
 
   const [isCarouselMode, setIsCarouselMode] = useState(false)
   const [activeDeckIndex, setActiveDeckIndex] = useState(0)
+  const [manualCycleTick, setManualCycleTick] = useState(0)
   const viewportRef = useRef(null)
+  const activeDeckIndexRef = useRef(0)
+  const isProgrammaticScrollRef = useRef(false)
+  const scrollReleaseTimerRef = useRef(null)
 
   const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.3, triggerOnce: true })
 
@@ -96,6 +100,10 @@ export default function ExcursionsSection() {
     return () => window.removeEventListener('resize', check)
   }, [])
 
+  useEffect(() => {
+    activeDeckIndexRef.current = activeDeckIndex
+  }, [activeDeckIndex])
+
   // Tablet/desktop: auto-cycle cards every 7 seconds
   useEffect(() => {
     if (!isCarouselMode || cardCount <= 1) return
@@ -103,17 +111,23 @@ export default function ExcursionsSection() {
       setActiveDeckIndex(prev => (prev + 1) % cardCount)
     }, AUTO_CYCLE_MS)
     return () => window.clearInterval(timer)
-  }, [isCarouselMode, cardCount, activeDeckIndex])
+  }, [isCarouselMode, cardCount, manualCycleTick])
 
   // Sync horizontal scroll position when active index changes
   useEffect(() => {
     if (!isCarouselMode) return
     const viewport = viewportRef.current
     if (!viewport) return
+
+    isProgrammaticScrollRef.current = true
+    if (scrollReleaseTimerRef.current) window.clearTimeout(scrollReleaseTimerRef.current)
     viewport.scrollTo({
       left: activeDeckIndex * viewport.clientWidth,
       behavior: 'smooth',
     })
+    scrollReleaseTimerRef.current = window.setTimeout(() => {
+      isProgrammaticScrollRef.current = false
+    }, 500)
   }, [activeDeckIndex, isCarouselMode])
 
   // Keep active index in sync with manual horizontal touch/trackpad scroll
@@ -134,7 +148,11 @@ export default function ExcursionsSection() {
         }
         const nextIndex = Math.round(viewport.scrollLeft / width)
         const clamped = Math.max(0, Math.min(cardCount - 1, nextIndex))
-        setActiveDeckIndex(prev => (prev === clamped ? prev : clamped))
+        const hasChanged = clamped !== activeDeckIndexRef.current
+        setActiveDeckIndex(clamped)
+        if (hasChanged && !isProgrammaticScrollRef.current) {
+          setManualCycleTick(prev => prev + 1)
+        }
         rafId = null
       })
     }
@@ -147,12 +165,18 @@ export default function ExcursionsSection() {
   }, [isCarouselMode, cardCount])
 
   const goPrev = () => {
+    setManualCycleTick(prev => prev + 1)
     setActiveDeckIndex(prev => (prev - 1 + cardCount) % cardCount)
   }
 
   const goNext = () => {
+    setManualCycleTick(prev => prev + 1)
     setActiveDeckIndex(prev => (prev + 1) % cardCount)
   }
+
+  useEffect(() => () => {
+    if (scrollReleaseTimerRef.current) window.clearTimeout(scrollReleaseTimerRef.current)
+  }, [])
 
   return (
     <section
