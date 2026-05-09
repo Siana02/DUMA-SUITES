@@ -22,7 +22,13 @@ const EXCURSION_IMAGES = [
   { main: hellsMain,    overlay: hellsOverlay },
 ]
 
-const DESKTOP_BREAKPOINT = 1024
+const DESKTOP_BREAKPOINT = 768
+
+function deckCardState(activeIndex, cardIndex) {
+  if (cardIndex < activeIndex)  return 'is-active is-below'
+  if (cardIndex === activeIndex) return 'is-active'
+  return 'is-inactive'
+}
 const STICKY_TOP_PX = 90
 const MOBILE_CARD_THRESHOLD = 0.2
 
@@ -174,7 +180,7 @@ export default function ExcursionsSection() {
                 return (
                   <div
                     key={i}
-                    className={`exc-card exc-card--${isLeft ? 'left' : 'right'} exc-deck-card${activeDeckIndex >= i ? ' is-revealed' : ''}`}
+                    className={`exc-card exc-card--${isLeft ? 'left' : 'right'} exc-deck-card ${deckCardState(activeDeckIndex, i)}`}
                     style={{
                       zIndex: i + 1,
                     }}
@@ -348,8 +354,8 @@ export default function ExcursionsSection() {
           color: #fff;
         }
 
-        /* ── Desktop / laptop: stacked card-deck ────────────── */
-        @media (min-width: 1024px) {
+        /* ── Desktop/tablet: stacked card-deck ────────────── */
+        @media (min-width: 768px) {
           /* Outer is 4× the card height so the sticky has room to work
              and scroll progress drives one card reveal per quarter */
           .exc-deck-outer {
@@ -373,8 +379,17 @@ export default function ExcursionsSection() {
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             transform: translateY(100%);
           }
-          .exc-deck-card.is-revealed {
+          /* Active: current top card — fully visible */
+          .exc-deck-card.is-active {
             transform: translateY(0%);
+          }
+          /* Below: already-passed card — stays in place under newer cards */
+          .exc-deck-card.is-below {
+            transform: translateY(0%);
+          }
+          /* Inactive: upcoming card — waits below the fold */
+          .exc-deck-card.is-inactive {
+            transform: translateY(100%);
           }
         }
 
@@ -384,7 +399,7 @@ export default function ExcursionsSection() {
           flex-direction: column;
           gap: 40px;
         }
-        @media (max-width: 1023px) {
+        @media (max-width: 767px) {
           .exc-card {
             grid-template-columns: 1fr;
             min-height: auto;
