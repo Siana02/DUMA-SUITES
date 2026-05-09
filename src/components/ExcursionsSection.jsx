@@ -22,20 +22,20 @@ const EXCURSION_IMAGES = [
   { main: hellsMain,    overlay: hellsOverlay },
 ]
 
-const DESKTOP_BREAKPOINT  = 768
+const DESKTOP_BREAKPOINT = 768
 const MOBILE_CARD_THRESHOLD = 0.2
 // Minimum ms between successive card advances (prevents rapid skipping on a
 // single flick — the timeout is cleared when the lock is released so that
 // the very next wheel tick after an unlock is never dropped).
-const WHEEL_DEBOUNCE_MS   = 700
+const WHEEL_DEBOUNCE_MS = 700
 // Minimum vertical swipe distance (px) needed to advance one card on touch.
-const TOUCH_THRESHOLD_PX  = 50
+const TOUCH_THRESHOLD_PX = 50
 // How long (ms) to suppress re-locking after programmatically scrolling past
 // the section.  Must be long enough for the scroll + IntersectionObserver
 // callback to have settled.
-const UNLOCK_COOLDOWN_MS  = 800
+const UNLOCK_COOLDOWN_MS = 800
 // Full-view tolerance (px) to avoid floating point/layout jitter near 100%.
-const FULL_VIEW_TOLERANCE_PX = 1
+const FULL_VIEW_TOLERANCE_PX = 0
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Shared card markup — identical visual design on desktop and mobile
@@ -115,7 +115,7 @@ export default function ExcursionsSection() {
   const wheelTimerRef  = useRef(null)   // debounce timer for wheel events
   const touchStartYRef = useRef(null)   // Y position at touchstart
   const scrollDirectionRef = useRef(1)  // 1: down, -1: up
-  const lastScrollYRef = useRef(typeof window !== 'undefined' ? window.pageYOffset : 0)
+  const lastScrollYRef = useRef(typeof window !== 'undefined' ? window.scrollY : 0)
   // Mirror of activeDeckIndex for use inside event-handler closures without
   // re-creating those handlers on every state change.
   const activeIdxRef   = useRef(0)
@@ -142,7 +142,7 @@ export default function ExcursionsSection() {
   useEffect(() => {
     if (!isDesktop) return
     const onScroll = () => {
-      const y = window.pageYOffset
+      const y = window.scrollY
       const delta = y - lastScrollYRef.current
       if (delta !== 0) scrollDirectionRef.current = delta > 0 ? 1 : -1
       lastScrollYRef.current = y
@@ -159,7 +159,7 @@ export default function ExcursionsSection() {
   const scrollPast = useCallback((direction) => {
     const section = sectionRef.current
     if (!section) return
-    const sectionTop = section.getBoundingClientRect().top + window.pageYOffset
+    const sectionTop = section.getBoundingClientRect().top + window.scrollY
     if (direction > 0) {
       // Move to just below the section's bottom edge
       window.scrollTo(0, sectionTop + section.offsetHeight + 2)
@@ -289,7 +289,7 @@ export default function ExcursionsSection() {
           rect.bottom <= window.innerHeight + FULL_VIEW_TOLERANCE_PX
 
         if (fullyVisible && !cooldownRef.current && !isLockedRef.current) {
-          const scrollingDown = scrollDirectionRef.current >= 0
+          const scrollingDown = scrollDirectionRef.current > 0
           const startIndex = scrollingDown ? 0 : cardCount - 1
           setActiveDeckIndex(startIndex)
           activeIdxRef.current = startIndex
@@ -348,7 +348,7 @@ export default function ExcursionsSection() {
           /* ── Desktop/tablet: scroll-intercepted card deck ── */
           <div ref={deckRef} className="exc-deck">
             {deckItems.map((item, i) => {
-              const isLeft     = i % 2 === 0
+              const isLeft = i % 2 === 0
               const isRevealed = i <= activeDeckIndex
               return (
                 <div
