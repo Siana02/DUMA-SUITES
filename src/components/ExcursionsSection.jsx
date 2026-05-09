@@ -427,7 +427,6 @@ export default function ExcursionsSection() {
           .exc-card__img-side {
             aspect-ratio: auto;
             height: 100%;
-            min-height: 100%;
           }
           .exc-carousel-shell {
             position: relative;
