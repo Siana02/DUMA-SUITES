@@ -34,8 +34,8 @@ const TOUCH_THRESHOLD_PX  = 50
 // the section.  Must be long enough for the scroll + IntersectionObserver
 // callback to have settled.
 const UNLOCK_COOLDOWN_MS  = 800
-// Fraction of the deck container that must be visible before scroll is locked.
-const DECK_INTERSECTION_THRESHOLD = 0.6
+// Full-view tolerance (px) to avoid floating point/layout jitter near 100%.
+const FULL_VIEW_TOLERANCE_PX = 1
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Shared card markup — identical visual design on desktop and mobile
@@ -114,6 +114,8 @@ export default function ExcursionsSection() {
   const cooldownRef    = useRef(false)  // true briefly after releasing the lock
   const wheelTimerRef  = useRef(null)   // debounce timer for wheel events
   const touchStartYRef = useRef(null)   // Y position at touchstart
+  const scrollDirectionRef = useRef(1)  // 1: down, -1: up
+  const lastScrollYRef = useRef(typeof window !== 'undefined' ? window.pageYOffset : 0)
   // Mirror of activeDeckIndex for use inside event-handler closures without
   // re-creating those handlers on every state change.
   const activeIdxRef   = useRef(0)
@@ -133,6 +135,20 @@ export default function ExcursionsSection() {
   // Release the lock when switching to mobile (e.g. window resize)
   useEffect(() => {
     if (!isDesktop) isLockedRef.current = false
+  }, [isDesktop])
+
+  // Track scroll direction so full-view lock can start from card 0 (down)
+  // or from the last card (up).
+  useEffect(() => {
+    if (!isDesktop) return
+    const onScroll = () => {
+      const y = window.pageYOffset
+      const delta = y - lastScrollYRef.current
+      if (delta !== 0) scrollDirectionRef.current = delta > 0 ? 1 : -1
+      lastScrollYRef.current = y
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [isDesktop])
 
   // ── Helpers ────────────────────────────────────────────────────────────────
@@ -267,24 +283,22 @@ export default function ExcursionsSection() {
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting && !cooldownRef.current) {
-          // A positive boundingClientRect.top means the deck's top edge is
-          // still below the viewport's top edge → section is entering from
-          // below (user scrolling down) → start at card 0.
-          // A negative value means the deck top is above the viewport →
-          // section is re-entering from above (user scrolling up) → start at
-          // the last card.
-          const scrollingDown = entry.boundingClientRect.top >= 0
+        const rect = entry.boundingClientRect
+        const fullyVisible =
+          rect.top >= -FULL_VIEW_TOLERANCE_PX &&
+          rect.bottom <= window.innerHeight + FULL_VIEW_TOLERANCE_PX
 
+        if (fullyVisible && !cooldownRef.current && !isLockedRef.current) {
+          const scrollingDown = scrollDirectionRef.current >= 0
           const startIndex = scrollingDown ? 0 : cardCount - 1
           setActiveDeckIndex(startIndex)
           activeIdxRef.current = startIndex
           isLockedRef.current  = true
-        } else if (!entry.isIntersecting) {
+        } else if (!fullyVisible) {
           isLockedRef.current = false
         }
       })
-    }, { threshold: DECK_INTERSECTION_THRESHOLD })
+    }, { threshold: [0, 1] })
 
     observer.observe(deck)
     return () => observer.disconnect()
