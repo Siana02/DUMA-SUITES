@@ -13,6 +13,29 @@ import prevArticleImg from '../assets/dolphin-watching-watamu.jpg'
 const DISH_ICONS = [Flame, Fish, Anchor, Wheat, ChefHat, UtensilsCrossed]
 const DISH_NUMBERS = ['01', '02', '03', '04', '05', '06']
 
+const COMING_SOON_PILLS = {
+  en: {
+    first: ['Food', 'Local Picks', 'Culture'],
+    second: ['Seafood', 'Travel', 'Authentic'],
+  },
+  it: {
+    first: ['Cibo', 'Scelte Locali', 'Cultura'],
+    second: ['Frutti di mare', 'Viaggio', 'Autentico'],
+  },
+  de: {
+    first: ['Essen', 'Lokale Tipps', 'Kultur'],
+    second: ['Meeresfrüchte', 'Reisen', 'Authentisch'],
+  },
+  fr: {
+    first: ['Gastronomie', 'Sélection locale', 'Culture'],
+    second: ['Fruits de mer', 'Voyage', 'Authentique'],
+  },
+  es: {
+    first: ['Comida', 'Selección local', 'Cultura'],
+    second: ['Mariscos', 'Viaje', 'Auténtico'],
+  },
+}
+
 function CheetahDivider() {
   return (
     <div className="art2-divider" aria-hidden="true">
@@ -30,6 +53,7 @@ export default function Article2Page() {
   const { lang } = useLanguage()
   const a2 = getT(lang).article2
   const navigate = useNavigate()
+  const pills = COMING_SOON_PILLS[lang] || COMING_SOON_PILLS.en
 
   // Merge static icons/numbers with translated dish data
   const dishes = a2.dishes.map((dish, i) => ({
@@ -301,9 +325,9 @@ export default function Article2Page() {
                 <h4 className="art2-cs__title">{a2.cs1Title}</h4>
                 <p className="art2-cs__desc">{a2.cs1Desc}</p>
                 <div className="art2-cs__pills">
-                  <span className="art2-cs__pill art2-cs__pill--food">Food</span>
-                  <span className="art2-cs__pill art2-cs__pill--local">Local Picks</span>
-                  <span className="art2-cs__pill art2-cs__pill--culture">Culture</span>
+                  <span className="art2-cs__pill art2-cs__pill--food">{pills.first[0]}</span>
+                  <span className="art2-cs__pill art2-cs__pill--local">{pills.first[1]}</span>
+                  <span className="art2-cs__pill art2-cs__pill--culture">{pills.first[2]}</span>
                 </div>
               </motion.div>
               <motion.div
@@ -317,9 +341,9 @@ export default function Article2Page() {
                 <h4 className="art2-cs__title">{a2.cs2Title}</h4>
                 <p className="art2-cs__desc">{a2.cs2Desc}</p>
                 <div className="art2-cs__pills">
-                  <span className="art2-cs__pill art2-cs__pill--food">Seafood</span>
-                  <span className="art2-cs__pill art2-cs__pill--travel">Travel</span>
-                  <span className="art2-cs__pill art2-cs__pill--local">Authentic</span>
+                  <span className="art2-cs__pill art2-cs__pill--food">{pills.second[0]}</span>
+                  <span className="art2-cs__pill art2-cs__pill--travel">{pills.second[1]}</span>
+                  <span className="art2-cs__pill art2-cs__pill--local">{pills.second[2]}</span>
                 </div>
               </motion.div>
             </div>
