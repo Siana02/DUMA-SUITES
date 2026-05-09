@@ -217,8 +217,8 @@ export default function ExcursionsSection() {
 
       <style>{`
         .exc-section {
-          --exc-overlay-dark-top: 0.42;
-          --exc-overlay-dark-bottom: 0.7;
+          --exc-overlay-dark-top: 0.56;
+          --exc-overlay-dark-bottom: 0.72;
         }
 
         /* ── Header ─────────────────────────────────────────── */
@@ -294,22 +294,26 @@ export default function ExcursionsSection() {
           overflow: hidden;
           aspect-ratio: 4 / 3;
           background: #111;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .exc-card__img-blur {
           position: absolute;
           inset: 0;
           background-size: cover;
           background-position: center;
-          filter: blur(20px);
-          transform: scale(1.2);
-          opacity: 0.7;
+          filter: blur(22px);
+          transform: scale(1.16);
+          opacity: 0.78;
         }
         .exc-card__main-img {
-          position: absolute;
-          inset: 0;
+          position: relative;
           width: 100%;
-          height: 100%;
+          max-height: 100%;
+          height: auto;
           object-fit: contain;
+          object-position: center;
           transition: transform 0.5s ease;
           z-index: 1;
         }
@@ -337,21 +341,26 @@ export default function ExcursionsSection() {
         .exc-card__text-bg {
           position: absolute;
           inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .exc-card__overlay-blur {
           position: absolute;
           inset: 0;
           background-size: cover;
           background-position: center;
-          filter: blur(20px);
-          transform: scale(1.2);
-          opacity: 0.75;
+          filter: blur(22px);
+          transform: scale(1.16);
+          opacity: 0.8;
         }
         .exc-card__overlay-img {
           position: relative;
           width: 100%;
-          height: 100%;
+          max-height: 100%;
+          height: auto;
           object-fit: contain;
+          object-position: center;
           z-index: 1;
         }
         .exc-card__overlay-dark {
@@ -366,13 +375,14 @@ export default function ExcursionsSection() {
         }
         .exc-card__content {
           position: relative;
-          z-index: 1;
+          z-index: 3;
           padding: clamp(28px, 4vw, 48px);
           height: 100%;
           display: flex;
           flex-direction: column;
-          justify-content: flex-end;
+          justify-content: center;
           gap: 16px;
+          text-wrap: balance;
         }
         .exc-card__title {
           font-family: var(--font-title);
@@ -380,11 +390,13 @@ export default function ExcursionsSection() {
           font-weight: 600;
           color: #fff;
           line-height: 1.2;
+          text-shadow: 0 2px 14px rgba(0,0,0,0.45);
         }
         .exc-card__desc {
           font-size: 0.88rem;
-          color: rgba(255,255,255,0.82);
+          color: rgba(255,255,255,0.9);
           line-height: 1.7;
+          text-shadow: 0 1px 10px rgba(0,0,0,0.4);
         }
         .exc-card__cta {
           display: inline-flex;
