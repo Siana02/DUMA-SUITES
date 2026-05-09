@@ -126,12 +126,12 @@ export default function ExcursionsSection() {
   }
 
   const handleTouchStart = e => {
-    touchStartXRef.current = e.touches[0]?.clientX ?? 0
+    touchStartXRef.current = e.touches?.length ? e.touches[0].clientX : 0
     touchDeltaXRef.current = 0
   }
 
   const handleTouchMove = e => {
-    const currentX = e.touches[0]?.clientX ?? 0
+    const currentX = e.touches?.length ? e.touches[0].clientX : 0
     touchDeltaXRef.current = currentX - touchStartXRef.current
   }
 
