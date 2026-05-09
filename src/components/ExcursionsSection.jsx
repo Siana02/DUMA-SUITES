@@ -274,7 +274,7 @@ export default function ExcursionsSection() {
         .exc-card {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          min-height: 220px;
+          min-height: clamp(200px, 22vw, 260px); /* shorter base height */
           overflow: hidden;
           border-radius: 4px;
           position: relative;
@@ -447,7 +447,7 @@ export default function ExcursionsSection() {
           .exc-carousel__card {
             flex: 0 0 100%;
             width: 100%;
-            min-height: clamp(220px, 26vw, 310px);
+            min-height: clamp(200px, 22vw, 260px); 
             border-radius: 0;
           }
           .exc-carousel__arrow {
@@ -479,7 +479,7 @@ export default function ExcursionsSection() {
             right: clamp(10px, 2vw, 24px);
           }
         }
-
+ 
         /* ── Mobile: simple vertical list ───────────────────── */
         .exc-section__list {
           display: flex;
