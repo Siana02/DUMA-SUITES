@@ -491,7 +491,7 @@ export default function ExcursionsSection() {
         @media (max-width: 767px) {
           .exc-card {
             grid-template-columns: 1fr;
-            min-height: auto;
+            min-height: 90vh;
           }
           .exc-card--right {
             direction: ltr;
