@@ -2,7 +2,7 @@ import { Mail, Phone, MapPin } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import logoImg from '../assets/logo.jpeg'
 import mammalImg from '../assets/mammal.png'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 
 function TikTokIcon() {
   return (

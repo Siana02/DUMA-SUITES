@@ -9,7 +9,7 @@ import {
   PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack, Star,
   Building2, DoorOpen, Armchair, Fan, WavesLadder, TreePalm, Leaf, Sun, ForkKnife, Wind,
 } from 'lucide-react'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 
 import heroImg from '../assets/penthouse-suite-balcony-dining-lights-decor-view.jpg'
 import aboutImg from '../assets/penthouse-suite-indoor-stairs-view.jpg'

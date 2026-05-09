@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Cookie, X, ChevronRight } from 'lucide-react'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 
 const STORAGE_KEY = 'duma-cookie-consent'
 

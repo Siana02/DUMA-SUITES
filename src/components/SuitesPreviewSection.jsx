@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useInView } from 'react-intersection-observer'
 import { Maximize2, BedDouble, Users, ArrowLeft, ArrowRight } from 'lucide-react'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 
 import cheetahIcon from '../assets/cheetah.png'
 import coastalPreview from '../assets/coastal-haven-suite-lounge-couch.JPEG'

@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 import {
   Cookie, Settings, Heart, RefreshCw, Mail, Layers,
   Phone, MapPin, CheckCircle, Shield, ToggleRight,

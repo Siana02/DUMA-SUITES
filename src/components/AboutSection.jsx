@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Waves, Sofa, Sparkles, Sunrise, Shield, Leaf, Star } from 'lucide-react'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 import cheetahIcon from '../assets/cheetah.png'
 
 const CARD_ICONS = [Waves, Sofa, Sparkles, Sunrise, Shield, Leaf, Star]

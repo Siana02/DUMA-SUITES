@@ -9,7 +9,7 @@ import {
   Shield, AirVent, Sparkles, Sofa, Sunrise, UtensilsCrossed,
   Sun, Fan, PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack,
 } from 'lucide-react'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 
 import heroImg from '../assets/serenity-villa-outdoor-terrace.JPEG'
 import coastalPreview from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'

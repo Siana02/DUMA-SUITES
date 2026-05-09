@@ -3,7 +3,8 @@ import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { MapPin, Phone, Mail, Clock, Users, Star, CheckCircle } from 'lucide-react'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 import heroImg from '../assets/infinity-pool-ocean-view.jpg'
 
 /* ── Social icons ── */

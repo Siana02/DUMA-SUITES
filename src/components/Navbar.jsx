@@ -4,7 +4,8 @@ import { Menu, X, MapPin } from 'lucide-react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import logoImg from '../assets/mammal.png'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 
 // Navbar appears as the preload curtains finish opening (~2.8 s)
 const NAVBAR_APPEAR_DELAY = 2.8

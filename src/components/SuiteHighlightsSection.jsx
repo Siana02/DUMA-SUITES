@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Waves, BedDouble, Leaf, Star } from 'lucide-react'
 import { useInView } from 'react-intersection-observer'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 
 import poolsImg   from '../assets/pools-of-serenity.JPEG'
 import swahiliImg from '../assets/swahili-elegance.JPEG'

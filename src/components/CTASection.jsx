@@ -3,7 +3,7 @@ import { useInView } from 'react-intersection-observer'
 import { gsap } from 'gsap'
 import { ArrowRight, Mail } from 'lucide-react'
 import cheetahIcon from '../assets/cheetah.png'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 
 function WhatsAppIcon() {
   return (

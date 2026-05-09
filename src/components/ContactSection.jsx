@@ -3,7 +3,8 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { MapPin, Phone, Mail, CheckCircle, Clock, Users, Star } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 
 function TikTokIcon() {
   return (

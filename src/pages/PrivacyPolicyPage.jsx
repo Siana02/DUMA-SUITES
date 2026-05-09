@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 import {
   Shield, Database, Settings, Share2, Lock, Cookie,
   UserCheck, Mail, Phone, MapPin, CheckCircle,

@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ArrowLeft, ArrowRight, Info } from 'lucide-react'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 
 import cheetahIcon from '../assets/cheetah.png'
 import gediMain    from '../assets/gedi-ruins-excursion.JPEG'

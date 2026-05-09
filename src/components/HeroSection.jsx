@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 
 // Cinematic image sequence (right panel, desktop)
 import seqImg1 from '../assets/arielview1.jpg?w=1920&format=webp&quality=90'

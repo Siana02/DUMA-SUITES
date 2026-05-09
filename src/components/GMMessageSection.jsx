@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
 import { ArrowRight, BedDouble } from 'lucide-react'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 
 import gm1        from '../assets/General-manager1.jpg'
 import gm2        from '../assets/General-managers2.jpg'

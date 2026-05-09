@@ -146,7 +146,7 @@ const fadeUp = (delay = 0) => ({
   transition:  { duration: 0.7, delay, ease: [0.4, 0, 0.2, 1] },
 })
 
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 
 export default function GalleryStripSection() {
   const t = useT()

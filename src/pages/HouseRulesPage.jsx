@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 
 export default function HouseRulesPage() {
   const { lang } = useLanguage()

@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
-import { useLanguage, useT } from '../context/LanguageContext.jsx'
+import { useT } from '../i18n/useT.js'
 import cheetahIcon from '../assets/cheetah.png'
 
 import gImg1  from '../assets/gallery-image1.JPEG'
