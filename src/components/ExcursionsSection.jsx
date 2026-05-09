@@ -26,6 +26,7 @@ const DESKTOP_BREAKPOINT = 768
 const MOBILE_CARD_THRESHOLD = 0.2
 const SWIPE_THRESHOLD = 30
 const CARD_TRANSITION_MS = 500
+const VIEWPORT_TOLERANCE = 1
 
 // Shared card markup — identical visual design on both desktop and mobile
 function CardInner({ item, images, cta }) {
@@ -124,7 +125,7 @@ export default function ExcursionsSection() {
 
     const isSectionFullyInView = () => {
       const rect = section.getBoundingClientRect()
-      return rect.top <= 1 && rect.bottom >= window.innerHeight - 1
+      return rect.top <= VIEWPORT_TOLERANCE && rect.bottom >= window.innerHeight - VIEWPORT_TOLERANCE
     }
 
     const lockCardChange = () => {
@@ -143,15 +144,16 @@ export default function ExcursionsSection() {
       const currentIndex = activeDeckIndexRef.current
       const canMoveNext = direction > 0 && currentIndex < cardCount - 1
       const canMovePrev = direction < 0 && currentIndex > 0
+      const canCycle = canMoveNext || canMovePrev
 
-      if (isAnimatingRef.current && (canMoveNext || canMovePrev)) {
-        event.preventDefault()
-        return true
-      }
+      if (!canCycle) return false
+
+      event.preventDefault()
+
+      if (isAnimatingRef.current) return true
 
       if (canMoveNext) {
-        event.preventDefault()
-        const nextIndex = Math.min(currentIndex + 1, cardCount - 1)
+        const nextIndex = currentIndex + 1
         activeDeckIndexRef.current = nextIndex
         setActiveDeckIndex(nextIndex)
         lockCardChange()
@@ -159,8 +161,7 @@ export default function ExcursionsSection() {
       }
 
       if (canMovePrev) {
-        event.preventDefault()
-        const prevIndex = Math.max(currentIndex - 1, 0)
+        const prevIndex = currentIndex - 1
         activeDeckIndexRef.current = prevIndex
         setActiveDeckIndex(prevIndex)
         lockCardChange()
