@@ -274,7 +274,8 @@ export default function ExcursionsSection() {
         .exc-card {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          min-height: clamp(200px, 22vw, 260px); /* shorter base height */
+          min-height: 132px;
+          max-height: 60vh;
           overflow: hidden;
           border-radius: 4px;
           position: relative;
@@ -447,7 +448,8 @@ export default function ExcursionsSection() {
           .exc-carousel__card {
             flex: 0 0 100%;
             width: 100%;
-            min-height: clamp(200px, 22vw, 260px); 
+            min-height: 132px;
+            max-height: 60vh;
             border-radius: 0;
           }
           .exc-carousel__arrow {
