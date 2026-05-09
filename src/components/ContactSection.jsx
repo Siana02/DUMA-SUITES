@@ -38,10 +38,89 @@ const SOCIAL = [
   { Icon: WhatsAppIcon,  href: 'https://wa.me/254710933025',                                              label: 'WhatsApp' },
 ]
 
+const CONTACT_SECTION_COPY = {
+  en: {
+    address: 'Address',
+    phone: 'Phone',
+    hours: 'Hours',
+    hoursValue: 'We respond daily, 8 AM – 10 PM',
+    concierge: 'Our concierge team is here to assist you with reservations, experiences, and any questions.',
+    followUs: 'Follow us:',
+    successTitle: 'Message Sent!',
+    successBody: "Thank you — we'll reply within 24 hours.",
+    sendAnother: 'Send another message',
+    formIntro: 'Share your enquiry and a member of our team will personally get back to you within 24 hours.',
+    replyNote: "✓ We'll reply within 24 hours.",
+    moreDetails: 'Want more details?',
+    visitContactPage: 'Visit Full Contact Page →',
+  },
+  it: {
+    address: 'Indirizzo',
+    phone: 'Telefono',
+    hours: 'Orari',
+    hoursValue: 'Disponibili tutti i giorni, 8:00 – 22:00',
+    concierge: 'Il nostro team di concierge è a tua disposizione per prenotazioni, esperienze e qualsiasi richiesta speciale.',
+    followUs: 'Seguici:',
+    successTitle: 'Messaggio Inviato!',
+    successBody: 'Grazie — ti risponderemo entro 24 ore.',
+    sendAnother: 'Invia un altro messaggio',
+    formIntro: 'Condividi la tua richiesta e un membro del nostro team ti risponderà personalmente entro 24 ore.',
+    replyNote: '✓ Risponderemo entro 24 ore.',
+    moreDetails: 'Vuoi maggiori informazioni?',
+    visitContactPage: 'Visita la Pagina Contatti →',
+  },
+  de: {
+    address: 'Adresse',
+    phone: 'Telefon',
+    hours: 'Öffnungszeiten',
+    hoursValue: 'Täglich erreichbar, 8:00 – 22:00 Uhr',
+    concierge: 'Unser Concierge-Team unterstützt Sie bei Reservierungen, Erlebnissen und allen Fragen.',
+    followUs: 'Folgen Sie uns:',
+    successTitle: 'Nachricht gesendet!',
+    successBody: 'Vielen Dank — wir antworten innerhalb von 24 Stunden.',
+    sendAnother: 'Weitere Nachricht senden',
+    formIntro: 'Teilen Sie uns Ihre Anfrage mit und unser Team antwortet Ihnen persönlich innerhalb von 24 Stunden.',
+    replyNote: '✓ Wir antworten innerhalb von 24 Stunden.',
+    moreDetails: 'Möchten Sie mehr erfahren?',
+    visitContactPage: 'Zur Kontaktseite →',
+  },
+  fr: {
+    address: 'Adresse',
+    phone: 'Téléphone',
+    hours: 'Horaires',
+    hoursValue: 'Disponibles tous les jours, de 8h à 22h',
+    concierge: 'Notre équipe de conciergerie vous accompagne pour les réservations, expériences et toute demande.',
+    followUs: 'Suivez-nous :',
+    successTitle: 'Message envoyé !',
+    successBody: 'Merci — nous vous répondrons sous 24 heures.',
+    sendAnother: 'Envoyer un autre message',
+    formIntro: 'Partagez votre demande et un membre de notre équipe vous répondra personnellement sous 24 heures.',
+    replyNote: '✓ Nous vous répondrons sous 24 heures.',
+    moreDetails: 'Besoin de plus d’informations ?',
+    visitContactPage: 'Voir la page contact →',
+  },
+  es: {
+    address: 'Dirección',
+    phone: 'Teléfono',
+    hours: 'Horario',
+    hoursValue: 'Disponibles todos los días, de 8:00 a 22:00',
+    concierge: 'Nuestro equipo de conserjería está aquí para ayudarle con reservas, experiencias y cualquier consulta.',
+    followUs: 'Síganos:',
+    successTitle: '¡Mensaje enviado!',
+    successBody: 'Gracias — responderemos dentro de 24 horas.',
+    sendAnother: 'Enviar otro mensaje',
+    formIntro: 'Comparta su consulta y un miembro de nuestro equipo le responderá personalmente en un plazo de 24 horas.',
+    replyNote: '✓ Le responderemos dentro de 24 horas.',
+    moreDetails: '¿Quiere más detalles?',
+    visitContactPage: 'Visitar la página de contacto →',
+  },
+}
+
 export default function ContactSection() {
   const { lang } = useLanguage()
   const t = getT(lang)
   const ct = t.contact
+  const copy = CONTACT_SECTION_COPY[lang] || CONTACT_SECTION_COPY.en
   const navigate = useNavigate()
 
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
@@ -83,7 +162,7 @@ export default function ContactSection() {
                   <MapPin size={18} strokeWidth={1.5} aria-hidden="true" />
                 </div>
                 <div>
-                  <span className="contact-info-list__label">{lang === 'it' ? 'Indirizzo' : 'Address'}</span>
+                  <span className="contact-info-list__label">{copy.address}</span>
                   <span className="contact-info-list__value">{ct.info.address}</span>
                 </div>
               </li>
@@ -92,7 +171,7 @@ export default function ContactSection() {
                   <Phone size={18} strokeWidth={1.5} aria-hidden="true" />
                 </div>
                 <div>
-                  <span className="contact-info-list__label">{lang === 'it' ? 'Telefono' : 'Phone'}</span>
+                  <span className="contact-info-list__label">{copy.phone}</span>
                   <a href={`tel:${ct.info.phone.replace(/\s/g, '')}`} className="contact-info-list__value contact-info-list__link">
                     {ct.info.phone}
                   </a>
@@ -125,9 +204,9 @@ export default function ContactSection() {
                   <Clock size={18} strokeWidth={1.5} aria-hidden="true" />
                 </div>
                 <div>
-                  <span className="contact-info-list__label">{lang === 'it' ? 'Orari' : 'Hours'}</span>
+                  <span className="contact-info-list__label">{copy.hours}</span>
                   <span className="contact-info-list__value">
-                    {lang === 'it' ? 'Disponibili tutti i giorni, 8:00 – 22:00' : 'We respond daily, 8 AM – 10 PM'}
+                    {copy.hoursValue}
                   </span>
                 </div>
               </li>
@@ -137,9 +216,7 @@ export default function ContactSection() {
             <div className="contact-section__concierge">
               <Users size={16} strokeWidth={1.5} className="contact-section__concierge-icon" aria-hidden="true" />
               <p className="contact-section__concierge-text">
-                {lang === 'it'
-                  ? 'Il nostro team di concierge è a tua disposizione per prenotazioni, esperienze e qualsiasi richiesta speciale.'
-                  : 'Our concierge team is here to assist you with reservations, experiences, and any questions.'}
+                {copy.concierge}
               </p>
             </div>
 
@@ -174,7 +251,7 @@ export default function ContactSection() {
             {/* Social follow */}
             <div className="contact-section__social">
               <p className="contact-section__social-label">
-                {lang === 'it' ? 'Seguici:' : 'Follow us:'}
+                {copy.followUs}
               </p>
               <div className="contact-section__social-links">
                 {SOCIAL.map(({ Icon, href, label }) => (
@@ -215,21 +292,19 @@ export default function ContactSection() {
             {submitted ? (
               <div className="contact-section__success">
                 <CheckCircle size={48} strokeWidth={1.5} className="contact-section__success-icon" />
-                <h3>{lang === 'it' ? 'Messaggio Inviato!' : 'Message Sent!'}</h3>
-                <p>{lang === 'it' ? 'Grazie — ti risponderemo entro 24 ore.' : 'Thank you — we\'ll reply within 24 hours.'}</p>
+                <h3>{copy.successTitle}</h3>
+                <p>{copy.successBody}</p>
                 <button
                   className="btn btn-primary"
                   onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', message: '' }) }}
                 >
-                  {lang === 'it' ? 'Invia un altro messaggio' : 'Send another message'}
+                  {copy.sendAnother}
                 </button>
               </div>
             ) : (
               <>
                 <p className="contact-section__form-intro">
-                  {lang === 'it'
-                    ? 'Condividi la tua richiesta e un membro del nostro team ti risponderà personalmente entro 24 ore.'
-                    : 'Share your enquiry and a member of our team will personally get back to you within 24 hours.'}
+                  {copy.formIntro}
                 </p>
                 <form className="contact-form" onSubmit={handleSubmit} noValidate>
                   <div className="contact-form__group">
@@ -294,20 +369,20 @@ export default function ContactSection() {
                     {ct.formLabels.send}
                   </button>
                   <p className="contact-form__reply-note">
-                    {lang === 'it' ? '✓ Risponderemo entro 24 ore.' : '✓ We\'ll reply within 24 hours.'}
+                    {copy.replyNote}
                   </p>
                 </form>
 
                 {/* CTA to full contact page */}
                 <div className="contact-section__page-cta">
                   <p className="contact-section__page-cta-text">
-                    {lang === 'it' ? 'Vuoi maggiori informazioni?' : 'Want more details?'}
+                    {copy.moreDetails}
                   </p>
                   <button
                     className="btn btn-outline-espresso"
                     onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); navigate('/contact') }}
                   >
-                    {lang === 'it' ? 'Visita la Pagina Contatti →' : 'Visit Full Contact Page →'}
+                    {copy.visitContactPage}
                   </button>
                 </div>
               </>

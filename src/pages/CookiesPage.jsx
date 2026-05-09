@@ -23,6 +23,45 @@ const BADGE_COLORS = {
   'Optional':       { bg: 'rgba(201,169,110,0.14)', color: '#8a6830' },
   'Sempre Attivi':  { bg: 'rgba(88,176,196,0.12)', color: '#3a8fa0' },
   'Opzionali':      { bg: 'rgba(201,169,110,0.14)', color: '#8a6830' },
+  'Immer aktiv':    { bg: 'rgba(88,176,196,0.12)', color: '#3a8fa0' },
+  'Optional (DE)':  { bg: 'rgba(201,169,110,0.14)', color: '#8a6830' },
+  'Toujours actifs': { bg: 'rgba(88,176,196,0.12)', color: '#3a8fa0' },
+  'Optionnels':      { bg: 'rgba(201,169,110,0.14)', color: '#8a6830' },
+  'Siempre activas': { bg: 'rgba(88,176,196,0.12)', color: '#3a8fa0' },
+  'Opcionales':      { bg: 'rgba(201,169,110,0.14)', color: '#8a6830' },
+}
+
+const COOKIES_PAGE_COPY = {
+  en: {
+    back: 'Back',
+    dataSafe: 'Your data is safe',
+    fullControl: 'Full control',
+    gdpr: 'GDPR compliant',
+  },
+  it: {
+    back: 'Indietro',
+    dataSafe: 'Dati al Sicuro',
+    fullControl: 'Controllo Completo',
+    gdpr: 'Conforme GDPR',
+  },
+  de: {
+    back: 'Zurück',
+    dataSafe: 'Ihre Daten sind sicher',
+    fullControl: 'Volle Kontrolle',
+    gdpr: 'DSGVO-konform',
+  },
+  fr: {
+    back: 'Retour',
+    dataSafe: 'Vos données sont en sécurité',
+    fullControl: 'Contrôle total',
+    gdpr: 'Conforme RGPD',
+  },
+  es: {
+    back: 'Volver',
+    dataSafe: 'Sus datos están seguros',
+    fullControl: 'Control total',
+    gdpr: 'Cumple con el RGPD',
+  },
 }
 
 function CookieCategoryCard({ category }) {
@@ -66,6 +105,7 @@ export default function CookiesPage() {
   const t = getT(lang)
   const ck = t.cookies
   const navigate = useNavigate()
+  const copy = COOKIES_PAGE_COPY[lang] || COOKIES_PAGE_COPY.en
 
   return (
     <>
@@ -85,7 +125,7 @@ export default function CookiesPage() {
               onClick={() => navigate(-1)}
               aria-label="Go back"
             >
-              ← {lang === 'it' ? 'Indietro' : 'Back'}
+              ← {copy.back}
             </button>
 
             <motion.span
@@ -132,17 +172,17 @@ export default function CookiesPage() {
           <div className="container ck-trust-strip__inner">
             <div className="ck-trust-badge">
               <Shield size={14} strokeWidth={1.5} />
-              <span>{lang === 'it' ? 'Dati al Sicuro' : 'Your data is safe'}</span>
+              <span>{copy.dataSafe}</span>
             </div>
             <span className="ck-trust-divider" aria-hidden="true" />
             <div className="ck-trust-badge">
               <ToggleRight size={14} strokeWidth={1.5} />
-              <span>{lang === 'it' ? 'Controllo Completo' : 'Full control'}</span>
+              <span>{copy.fullControl}</span>
             </div>
             <span className="ck-trust-divider" aria-hidden="true" />
             <div className="ck-trust-badge">
               <CheckCircle size={14} strokeWidth={1.5} />
-              <span>{lang === 'it' ? 'Conforme GDPR' : 'GDPR compliant'}</span>
+              <span>{copy.gdpr}</span>
             </div>
           </div>
         </div>

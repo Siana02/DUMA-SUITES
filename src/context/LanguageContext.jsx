@@ -4,6 +4,23 @@ import { setDynamicTranslation } from '../i18n/translations.js'
 
 const SUPPORTED_LANGUAGES = ['en', 'it', 'de', 'fr', 'es']
 
+const getSupportedLanguage = (value) => {
+  if (!value || typeof value !== 'string') return null
+  const base = value.toLowerCase().split('-')[0]
+  return SUPPORTED_LANGUAGES.includes(base) ? base : null
+}
+
+const getInitialLanguage = () => {
+  const saved = getSupportedLanguage(localStorage.getItem('duma-lang'))
+  if (saved) return saved
+
+  const detected =
+    getSupportedLanguage(navigator.language) ||
+    navigator.languages?.map(getSupportedLanguage).find(Boolean)
+
+  return detected || 'en'
+}
+
 export const LanguageContext = createContext({
   lang: 'en',
   setLanguage: () => {},
@@ -12,8 +29,7 @@ export const LanguageContext = createContext({
 
 export function LanguageProvider({ children }) {
   const [lang, setLang] = useState(() => {
-    const saved = localStorage.getItem('duma-lang') || 'en'
-    const initialLang = SUPPORTED_LANGUAGES.includes(saved) ? saved : 'en'
+    const initialLang = getInitialLanguage()
     i18n.changeLanguage(initialLang)
     return initialLang
   })

@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { Shield, FileText, ArrowRight, CalendarDays } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
-import { getT } from '../i18n/translations.js'
 import AboutSection from '../components/AboutSection.jsx'
 
 import heroImg from '../assets/infinity-pool-ocean-view.jpg'
@@ -11,39 +10,181 @@ import heroImg from '../assets/infinity-pool-ocean-view.jpg'
 const LEGAL_CARDS = [
   {
     icon: Shield,
-    titleEn: 'Privacy Policy',
-    titleIt: 'Privacy Policy',
-    descEn: 'We take your privacy seriously. Learn how we collect, use and protect your personal data when you browse or book with Duma Suites.',
-    descIt: 'Prendiamo sul serio la tua privacy. Scopri come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali.',
+    copy: {
+      en: {
+        title: 'Privacy Policy',
+        desc: 'We take your privacy seriously. Learn how we collect, use and protect your personal data when you browse or book with Duma Suites.',
+        cta: 'Read Policy',
+      },
+      it: {
+        title: 'Privacy Policy',
+        desc: 'Prendiamo sul serio la tua privacy. Scopri come raccogliamo, utilizziamo e proteggiamo i tuoi dati personali.',
+        cta: 'Leggi la Policy',
+      },
+      de: {
+        title: 'Datenschutzrichtlinie',
+        desc: 'Ihre Privatsphäre ist uns wichtig. Erfahren Sie, wie wir Ihre personenbezogenen Daten beim Surfen und Buchen bei Duma Suites erheben, nutzen und schützen.',
+        cta: 'Richtlinie lesen',
+      },
+      fr: {
+        title: 'Politique de confidentialité',
+        desc: 'Votre vie privée est essentielle pour nous. Découvrez comment nous collectons, utilisons et protégeons vos données personnelles lorsque vous naviguez ou réservez chez Duma Suites.',
+        cta: 'Lire la politique',
+      },
+      es: {
+        title: 'Política de privacidad',
+        desc: 'Su privacidad es importante para nosotros. Descubra cómo recopilamos, usamos y protegemos sus datos personales al navegar o reservar con Duma Suites.',
+        cta: 'Leer la política',
+      },
+    },
     href: '/privacy-policy',
-    ctaEn: 'Read Policy',
-    ctaIt: 'Leggi la Policy',
   },
   {
     icon: FileText,
-    titleEn: 'Terms of Service',
-    titleIt: 'Termini di Servizio',
-    descEn: 'Our terms outline the conditions that govern your stay, bookings and use of our services — designed to ensure a clear, fair experience for every guest.',
-    descIt: 'I nostri termini definiscono le condizioni che regolano il soggiorno, le prenotazioni e l\'uso dei nostri servizi.',
+    copy: {
+      en: {
+        title: 'Terms of Service',
+        desc: 'Our terms outline the conditions that govern your stay, bookings and use of our services — designed to ensure a clear, fair experience for every guest.',
+        cta: 'Read Terms',
+      },
+      it: {
+        title: 'Termini di Servizio',
+        desc: 'I nostri termini definiscono le condizioni che regolano il soggiorno, le prenotazioni e l\'uso dei nostri servizi.',
+        cta: 'Leggi i Termini',
+      },
+      de: {
+        title: 'Nutzungsbedingungen',
+        desc: 'Unsere Bedingungen regeln Aufenthalt, Buchungen und die Nutzung unserer Services – für ein klares und faires Erlebnis für jeden Gast.',
+        cta: 'Bedingungen lesen',
+      },
+      fr: {
+        title: 'Conditions d’utilisation',
+        desc: 'Nos conditions définissent les règles de votre séjour, de vos réservations et de l’utilisation de nos services, pour une expérience claire et équitable.',
+        cta: 'Lire les conditions',
+      },
+      es: {
+        title: 'Términos del servicio',
+        desc: 'Nuestros términos establecen las condiciones de su estancia, reservas y uso de nuestros servicios para una experiencia clara y justa.',
+        cta: 'Leer términos',
+      },
+    },
     href: '/terms-of-service',
-    ctaEn: 'Read Terms',
-    ctaIt: 'Leggi i Termini',
   },
   {
     icon: Shield,
-    titleEn: 'Cookie Policy',
-    titleIt: 'Cookie Policy',
-    descEn: 'We use essential and optional cookies to enhance your browsing experience. Find out exactly which cookies we use and how to manage your preferences.',
-    descIt: 'Utilizziamo cookie essenziali e opzionali per migliorare la navigazione. Scopri quali cookie usiamo e come gestire le preferenze.',
+    copy: {
+      en: {
+        title: 'Cookie Policy',
+        desc: 'We use essential and optional cookies to enhance your browsing experience. Find out exactly which cookies we use and how to manage your preferences.',
+        cta: 'Read Policy',
+      },
+      it: {
+        title: 'Cookie Policy',
+        desc: 'Utilizziamo cookie essenziali e opzionali per migliorare la navigazione. Scopri quali cookie usiamo e come gestire le preferenze.',
+        cta: 'Leggi la Policy',
+      },
+      de: {
+        title: 'Cookie-Richtlinie',
+        desc: 'Wir verwenden notwendige und optionale Cookies, um Ihr Surferlebnis zu verbessern. Erfahren Sie genau, welche Cookies wir nutzen und wie Sie Ihre Präferenzen verwalten.',
+        cta: 'Richtlinie lesen',
+      },
+      fr: {
+        title: 'Politique de cookies',
+        desc: 'Nous utilisons des cookies essentiels et optionnels pour améliorer votre navigation. Découvrez quels cookies nous utilisons et comment gérer vos préférences.',
+        cta: 'Lire la politique',
+      },
+      es: {
+        title: 'Política de cookies',
+        desc: 'Usamos cookies esenciales y opcionales para mejorar su navegación. Descubra qué cookies usamos y cómo gestionar sus preferencias.',
+        cta: 'Leer la política',
+      },
+    },
     href: '/cookies',
-    ctaEn: 'Read Policy',
-    ctaIt: 'Leggi la Policy',
   },
 ]
+
+const ABOUT_PAGE_COPY = {
+  en: {
+    metaTitle: 'About Duma Suites | Living the Duma Way – Watamu',
+    metaDesc: 'Discover the story, values and philosophy behind Duma Suites — luxury coastal living in Watamu, Kenya, within the prestigious Ghepard Towers.',
+    heroEyebrow: 'Watamu · Coastal Luxury',
+    heroTitle: 'Living the Duma Way',
+    heroSub: 'A place where the coast shapes everything — how you sleep, how you unwind, how you live.',
+    legalEyebrow: 'Transparency & Privacy',
+    legalTitle: 'Our Policies',
+    legalSub: 'At Duma Suites, trust is everything. We invite you to review our policies — written to ensure clarity, fairness and respect for every guest.',
+    reserveEyebrow: 'Reserve Your Stay',
+    reserveTitle: 'Ready to experience\ncoastal luxury?',
+    reserveSub: 'Reach out to check availability, rates and to secure your stay at Duma Suites — Watamu\'s most refined coastal retreat.',
+    reserveCta: 'Make a Reservation',
+    suitesCta: 'Explore Suites',
+  },
+  it: {
+    metaTitle: 'Chi Siamo | Duma Suites – Watamu',
+    metaDesc: 'Scopri storia, valori e filosofia di Duma Suites — lusso costiero a Watamu, Kenya, nelle prestigiose Ghepard Towers.',
+    heroEyebrow: 'Watamu · Lusso Costiero',
+    heroTitle: 'Living the Duma Way',
+    heroSub: 'Un luogo in cui la costa plasma tutto: come dormi, come ti rilassi, come vivi.',
+    legalEyebrow: 'Trasparenza & Privacy',
+    legalTitle: 'Le nostre politiche',
+    legalSub: 'A Duma Suites, la fiducia è tutto. Vi invitiamo a leggere le nostre politiche — formulate per garantire chiarezza, equità e rispetto per ogni ospite.',
+    reserveEyebrow: 'Prenota il tuo soggiorno',
+    reserveTitle: 'Pronto a vivere la\ncoastal luxury?',
+    reserveSub: 'Scrivici per verificare la disponibilità, i prezzi e per prenotare il tuo soggiorno a Duma Suites — un rifugio costiero esclusivo a Watamu.',
+    reserveCta: 'Fai una Prenotazione',
+    suitesCta: 'Esplora le Suite',
+  },
+  de: {
+    metaTitle: 'Über Duma Suites | Leben nach dem Duma Way – Watamu',
+    metaDesc: 'Entdecken Sie Geschichte, Werte und Philosophie von Duma Suites — luxuriöses Küstenleben in Watamu, Kenia.',
+    heroEyebrow: 'Watamu · Küstenluxus',
+    heroTitle: 'Leben nach dem Duma Way',
+    heroSub: 'Ein Ort, an dem die Küste alles prägt — wie Sie schlafen, entspannen und leben.',
+    legalEyebrow: 'Transparenz & Datenschutz',
+    legalTitle: 'Unsere Richtlinien',
+    legalSub: 'Bei Duma Suites ist Vertrauen alles. Lesen Sie unsere Richtlinien für Klarheit, Fairness und Respekt gegenüber jedem Gast.',
+    reserveEyebrow: 'Buchen Sie Ihren Aufenthalt',
+    reserveTitle: 'Bereit für\nKüstenluxus?',
+    reserveSub: 'Kontaktieren Sie uns für Verfügbarkeit und Preise und sichern Sie sich Ihren Aufenthalt bei Duma Suites.',
+    reserveCta: 'Reservierung anfragen',
+    suitesCta: 'Suiten entdecken',
+  },
+  fr: {
+    metaTitle: 'À propos de Duma Suites | L’esprit Duma – Watamu',
+    metaDesc: 'Découvrez l’histoire, les valeurs et la philosophie de Duma Suites — le luxe côtier à Watamu, Kenya.',
+    heroEyebrow: 'Watamu · Luxe Côtier',
+    heroTitle: 'Vivre l’esprit Duma',
+    heroSub: 'Un lieu où la côte façonne tout — votre sommeil, votre détente, votre style de vie.',
+    legalEyebrow: 'Transparence & Confidentialité',
+    legalTitle: 'Nos politiques',
+    legalSub: 'Chez Duma Suites, la confiance est essentielle. Consultez nos politiques, conçues pour la clarté, l’équité et le respect de chaque hôte.',
+    reserveEyebrow: 'Réservez votre séjour',
+    reserveTitle: 'Prêt à vivre\nle luxe côtier ?',
+    reserveSub: 'Contactez-nous pour vérifier la disponibilité, les tarifs et confirmer votre séjour à Duma Suites.',
+    reserveCta: 'Faire une réservation',
+    suitesCta: 'Explorer les suites',
+  },
+  es: {
+    metaTitle: 'Sobre Duma Suites | Vivir el estilo Duma – Watamu',
+    metaDesc: 'Descubra la historia, valores y filosofía de Duma Suites — lujo costero en Watamu, Kenia.',
+    heroEyebrow: 'Watamu · Lujo Costero',
+    heroTitle: 'Vivir el estilo Duma',
+    heroSub: 'Un lugar donde la costa lo define todo: cómo duerme, cómo se relaja y cómo vive.',
+    legalEyebrow: 'Transparencia y Privacidad',
+    legalTitle: 'Nuestras políticas',
+    legalSub: 'En Duma Suites, la confianza lo es todo. Le invitamos a consultar nuestras políticas para garantizar claridad, equidad y respeto.',
+    reserveEyebrow: 'Reserve su estancia',
+    reserveTitle: '¿Listo para vivir\nel lujo costero?',
+    reserveSub: 'Contáctenos para consultar disponibilidad, tarifas y asegurar su estancia en Duma Suites.',
+    reserveCta: 'Hacer una reserva',
+    suitesCta: 'Explorar suites',
+  },
+}
 
 function LegalCard({ card, lang }) {
   const navigate = useNavigate()
   const Icon = card.icon
+  const copy = card.copy[lang] || card.copy.en
   return (
     <motion.div
       className="ap-legal-card"
@@ -56,17 +197,17 @@ function LegalCard({ card, lang }) {
         <Icon size={20} strokeWidth={1.5} />
       </div>
       <h3 className="ap-legal-card__title">
-        {lang === 'it' ? card.titleIt : card.titleEn}
+        {copy.title}
       </h3>
       <p className="ap-legal-card__desc">
-        {lang === 'it' ? card.descIt : card.descEn}
+        {copy.desc}
       </p>
       <a
         href={card.href}
         className="ap-legal-card__link"
         onClick={e => { e.preventDefault(); navigate(card.href) }}
       >
-        {lang === 'it' ? card.ctaIt : card.ctaEn}
+        {copy.cta}
         <ArrowRight size={13} strokeWidth={2} aria-hidden="true" />
       </a>
     </motion.div>
@@ -75,16 +216,16 @@ function LegalCard({ card, lang }) {
 
 export default function AboutPage() {
   const { lang } = useLanguage()
-  const t = getT(lang)
   const navigate = useNavigate()
+  const copy = ABOUT_PAGE_COPY[lang] || ABOUT_PAGE_COPY.en
 
   return (
     <>
       <Helmet>
-        <title>About Duma Suites | Living the Duma Way – Watamu</title>
+        <title>{copy.metaTitle}</title>
         <meta
           name="description"
-          content="Discover the story, values and philosophy behind Duma Suites — luxury coastal living in Watamu, Kenya, within the prestigious Ghepard Towers."
+          content={copy.metaDesc}
         />
       </Helmet>
 
@@ -108,7 +249,7 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
             >
-              Watamu · Coastal Luxury
+              {copy.heroEyebrow}
             </motion.span>
 
             <motion.h1
@@ -117,7 +258,7 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.22 }}
             >
-              Living the Duma Way
+              {copy.heroTitle}
             </motion.h1>
 
             <motion.p
@@ -126,7 +267,7 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.36 }}
             >
-              A place where the coast shapes everything — how you sleep, how you unwind, how you live.
+              {copy.heroSub}
             </motion.p>
           </div>
         </div>
@@ -144,7 +285,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              {lang === 'it' ? 'Trasparenza & Privacy' : 'Transparency & Privacy'}
+              {copy.legalEyebrow}
             </motion.span>
             <motion.h2
               className="section-title ap-legal__title"
@@ -153,7 +294,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: 0.1 }}
             >
-              {lang === 'it' ? 'Le nostre politiche' : 'Our Policies'}
+              {copy.legalTitle}
             </motion.h2>
             <motion.p
               className="ap-legal__sub"
@@ -162,9 +303,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.18 }}
             >
-              {lang === 'it'
-                ? 'A Duma Suites, la fiducia è tutto. Vi invitiamo a leggere le nostre politiche — formulate per garantire chiarezza, equità e rispetto per ogni ospite.'
-                : 'At Duma Suites, trust is everything. We invite you to review our policies — written to ensure clarity, fairness and respect for every guest.'}
+              {copy.legalSub}
             </motion.p>
             <div className="ap-legal__grid">
               {LEGAL_CARDS.map((card) => (
@@ -188,17 +327,13 @@ export default function AboutPage() {
                 <CalendarDays size={28} strokeWidth={1.2} />
               </div>
               <span className="eyebrow ap-reserve__eyebrow">
-                {lang === 'it' ? 'Prenota il tuo soggiorno' : 'Reserve Your Stay'}
+                {copy.reserveEyebrow}
               </span>
               <h2 className="ap-reserve__title">
-                {lang === 'it'
-                  ? 'Pronto a vivere la\ncoastal luxury?'
-                  : 'Ready to experience\ncoastal luxury?'}
+                {copy.reserveTitle}
               </h2>
               <p className="ap-reserve__sub">
-                {lang === 'it'
-                  ? 'Scrivici per verificare la disponibilità, i prezzi e per prenotare il tuo soggiorno a Duma Suites — un rifugio costiero esclusivo a Watamu.'
-                  : 'Reach out to check availability, rates and to secure your stay at Duma Suites — Watamu\'s most refined coastal retreat.'}
+                {copy.reserveSub}
               </p>
               <div className="ap-reserve__ctas">
                 <a
@@ -207,14 +342,14 @@ export default function AboutPage() {
                   onClick={e => { e.preventDefault(); navigate('/contact') }}
                 >
                   <CalendarDays size={14} strokeWidth={1.8} aria-hidden="true" />
-                  {lang === 'it' ? 'Fai una Prenotazione' : 'Make a Reservation'}
+                  {copy.reserveCta}
                 </a>
                 <a
                   href="/suites"
                   className="btn btn-inverse"
                   onClick={e => { e.preventDefault(); navigate('/suites') }}
                 >
-                  {lang === 'it' ? 'Esplora le Suite' : 'Explore Suites'}
+                  {copy.suitesCta}
                   <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />
                 </a>
               </div>

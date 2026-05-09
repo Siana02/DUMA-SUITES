@@ -1299,79 +1299,79 @@
     ]
   },
   "termsOfService": {
-    "metaTitle": "Terms of Service | Duma Suites Watamu",
-    "heroEyebrow": "Legal",
-    "heroTitle": "Terms of Service",
-    "heroSub": "Please read these terms carefully before booking your stay with us.",
-    "lastUpdated": "Last updated: January 2025",
-    "backToHome": "Home",
-    "introBanner": "These terms form a binding agreement between you and Duma Suites. By completing a booking, you acknowledge that you have read and understood these terms.",
+    "metaTitle": "Conditions d’utilisation | Duma Suites Watamu",
+    "heroEyebrow": "Légal",
+    "heroTitle": "Conditions d’utilisation",
+    "heroSub": "Veuillez lire attentivement ces conditions avant de réserver votre séjour.",
+    "lastUpdated": "Dernière mise à jour : janvier 2025",
+    "backToHome": "Accueil",
+    "introBanner": "Ces conditions constituent un accord contraignant entre vous et Duma Suites. En finalisant une réservation, vous reconnaissez avoir lu et compris ces conditions.",
     "sections": [
       {
-        "title": "1. Acceptance of Terms",
+        "title": "1. Acceptation des conditions",
         "icon": "check-circle",
-        "content": "By accessing our website or making a reservation with Duma Suites, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services."
+        "content": "En accédant à notre site web ou en effectuant une réservation chez Duma Suites, vous acceptez d’être lié(e) par les présentes conditions d’utilisation. Si vous n’acceptez pas ces conditions, veuillez ne pas utiliser nos services."
       },
       {
-        "title": "2. Reservations & Booking",
+        "title": "2. Réservations",
         "icon": "calendar",
-        "content": "All reservations are subject to availability and confirmation by Duma Suites. A reservation is confirmed only upon receipt of a deposit payment and written confirmation from our team.",
+        "content": "Toutes les réservations sont soumises à disponibilité et à confirmation par Duma Suites. Une réservation n’est confirmée qu’après réception d’un acompte et confirmation écrite de notre équipe.",
         "bullets": [
-          "50% payment is required at booking to secure your reservation",
-          "Remaining 50% is due on check-in",
-          "Reservations are non-transferable without prior written consent",
-          "We reserve the right to decline reservations at our discretion"
+          "Un paiement de 50 % est requis à la réservation pour confirmer votre séjour",
+          "Les 50 % restants sont dus à l’arrivée",
+          "Les réservations ne sont pas transférables sans autorisation écrite préalable",
+          "Nous nous réservons le droit de refuser des réservations à notre discrétion"
         ]
       },
       {
-        "title": "3. Cancellation Policy",
+        "title": "3. Politique d’annulation",
         "icon": "x-circle",
-        "content": "Our cancellation policy is designed to be fair to both guests and our team. We ask for as much notice as possible to allow us to accommodate other guests.",
+        "content": "Notre politique d’annulation est conçue pour être équitable pour les clients comme pour notre équipe. Nous demandons un préavis maximal afin de pouvoir accueillir d’autres voyageurs.",
         "bullets": [
-          "Cancellation before 30 days of arrival: fully refundable",
-          "Cancellation within 30 days of arrival: non-refundable",
-          "No-show or early departure: full stay charged",
-          "Force majeure events will be considered on a case-by-case basis"
+          "Annulation plus de 30 jours avant l’arrivée : remboursement intégral",
+          "Annulation dans les 30 jours avant l’arrivée : non remboursable",
+          "Non-présentation ou départ anticipé : séjour complet facturé",
+          "Les cas de force majeure sont étudiés au cas par cas"
         ]
       },
       {
-        "title": "4. Check-in & Check-out",
+        "title": "4. Arrivée & départ",
         "icon": "clock",
-        "content": "Standard check-in time is 2:00 PM and check-out is 10:00 AM. Early check-in or late check-out may be arranged subject to availability and may incur additional charges."
+        "content": "L’heure d’arrivée standard est 14h00 et le départ est à 10h00. Une arrivée anticipée ou un départ tardif peut être accordé selon disponibilité et peut entraîner des frais supplémentaires."
       },
       {
-        "title": "5. Guest Conduct",
+        "title": "5. Comportement des clients",
         "icon": "users",
-        "content": "All guests are expected to conduct themselves in a manner that is respectful to other guests, staff, and the property. Duma Suites reserves the right to ask any guest to vacate the premises if their behaviour is deemed disruptive or harmful.",
+        "content": "Tous les clients doivent adopter un comportement respectueux envers les autres clients, le personnel et l’établissement. Duma Suites se réserve le droit de demander à tout client de quitter les lieux si son comportement est jugé perturbateur ou nuisible.",
         "bullets": [
-          "Respect quiet hours (10:00 PM – 8:00 AM)",
-          "No smoking inside suites — balcony and lobby only",
-          "No parties or events without prior written approval",
-          "Guests are responsible for any damage caused during their stay"
+          "Respecter les heures de calme (22h00 – 08h00)",
+          "Interdiction de fumer dans les suites — balcon et hall uniquement",
+          "Aucune fête ni événement sans autorisation écrite préalable",
+          "Les clients sont responsables de tout dommage causé durant leur séjour"
         ]
       },
       {
-        "title": "6. Liability",
+        "title": "6. Responsabilité",
         "icon": "shield",
-        "content": "Duma Suites shall not be liable for any loss, damage, or injury to guests or their belongings during their stay, except where such loss or damage is caused by the direct negligence of Duma Suites staff.",
+        "content": "Duma Suites ne peut être tenu responsable de toute perte, dommage ou blessure subis par les clients ou leurs effets personnels pendant le séjour, sauf en cas de négligence directe du personnel de Duma Suites.",
         "bullets": [
-          "Use of pools and recreational facilities is at guests' own risk",
-          "We recommend travel insurance for all guests",
-          "Valuables should be stored in the in-suite safe"
+          "L’utilisation des piscines et équipements de loisirs se fait aux risques des clients",
+          "Nous recommandons une assurance voyage à tous les clients",
+          "Les objets de valeur doivent être conservés dans le coffre de la suite"
         ]
       },
       {
-        "title": "7. Governing Law",
+        "title": "7. Droit applicable",
         "icon": "scale",
-        "content": "These Terms of Service are governed by and construed in accordance with the laws of Kenya. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the courts of Kenya."
+        "content": "Les présentes conditions d’utilisation sont régies et interprétées conformément aux lois du Kenya. Tout litige découlant de ces conditions relève de la compétence exclusive des tribunaux kenyans."
       },
       {
-        "title": "8. Contact Us",
+        "title": "8. Contact",
         "icon": "mail",
-        "content": "For any questions or concerns regarding these Terms of Service, please contact us:",
+        "content": "Pour toute question ou préoccupation concernant ces conditions d’utilisation, veuillez nous contacter :",
         "contact": {
           "email": "reservations@dumasuites.com",
-          "address": "Ghepard Towers, Watamu, Kilifi County, Kenya",
+          "address": "Ghepard Towers, Watamu, comté de Kilifi, Kenya",
           "phone": "+254 710 933 025"
         }
       }
@@ -1390,108 +1390,108 @@
     "reject": "Essentiels uniquement"
   },
   "cookies": {
-    "metaTitle": "Cookie Policy | Duma Suites Watamu",
-    "metaDesc": "Learn how Duma Suites uses cookies to enhance your browsing experience, personalise content, and keep your data secure.",
-    "heroEyebrow": "Legal",
-    "heroTitle": "Cookie Policy",
-    "heroSub": "How we use cookies to enhance and personalise your experience.",
-    "lastUpdated": "Last updated: January 2025",
-    "intro": "This Cookie Policy explains what cookies are, which ones we use on the Duma Suites website, why we use them, and how you can manage your preferences. By continuing to browse our site, you agree to our use of cookies as described below.",
+    "metaTitle": "Politique de cookies | Duma Suites Watamu",
+    "metaDesc": "Découvrez comment Duma Suites utilise les cookies pour améliorer votre navigation, personnaliser le contenu et protéger vos données.",
+    "heroEyebrow": "Légal",
+    "heroTitle": "Politique de cookies",
+    "heroSub": "Comment nous utilisons les cookies pour améliorer et personnaliser votre expérience.",
+    "lastUpdated": "Dernière mise à jour : janvier 2025",
+    "intro": "Cette Politique de cookies explique ce que sont les cookies, lesquels nous utilisons sur le site de Duma Suites, pourquoi nous les utilisons et comment vous pouvez gérer vos préférences. En continuant à naviguer sur notre site, vous acceptez l’utilisation des cookies telle que décrite ci-dessous.",
     "sections": [
       {
         "icon": "layers",
-        "title": "1. What Are Cookies?",
-        "content": "Cookies are small text files placed on your device by a website when you visit it. They allow the site to remember your actions and preferences over a period of time, so you don't have to keep re-entering them whenever you come back to the site.",
+        "title": "1. Que sont les cookies ?",
+        "content": "Les cookies sont de petits fichiers texte qu’un site web dépose sur votre appareil lors de votre visite. Ils permettent au site de mémoriser vos actions et préférences dans le temps afin que vous n’ayez pas à les ressaisir à chaque visite.",
         "bullets": [
-          "Stored locally in your browser",
-          "Cannot run programs or deliver viruses",
-          "Do not access personal files on your device",
-          "Can be session-based (deleted on close) or persistent (retained across visits)"
+          "Stockés localement dans votre navigateur",
+          "Ne peuvent pas exécuter de programme ni transmettre de virus",
+          "N’accèdent pas aux fichiers personnels de votre appareil",
+          "Peuvent être des cookies de session (supprimés à la fermeture) ou persistants"
         ]
       },
       {
         "icon": "cookie",
-        "title": "2. Cookies We Use",
-        "content": "We use three categories of cookies on the Duma Suites website, each serving a distinct purpose:",
+        "title": "2. Cookies que nous utilisons",
+        "content": "Nous utilisons trois catégories de cookies sur le site Duma Suites, chacune ayant un objectif spécifique :",
         "categories": [
           {
-            "name": "Essential Cookies",
-            "badge": "Always Active",
-            "desc": "These cookies are strictly necessary for the website to function. They enable core features such as page navigation, security, and access to protected areas. The site cannot function properly without them. They do not store any personally identifiable information.",
+            "name": "Cookies essentiels",
+            "badge": "Toujours actifs",
+            "desc": "Ces cookies sont strictement nécessaires au fonctionnement du site. Ils permettent des fonctions de base telles que la navigation, la sécurité et l’accès aux zones protégées. Le site ne peut pas fonctionner correctement sans eux.",
             "examples": [
-              "Session management",
-              "Security tokens",
-              "Load balancing"
+              "Gestion de session",
+              "Jetons de sécurité",
+              "Équilibrage de charge"
             ]
           },
           {
-            "name": "Analytics Cookies",
-            "badge": "Optional",
-            "desc": "These cookies help us understand how visitors interact with our website by collecting anonymised information about pages visited, time spent on site, and how guests arrived. We use Google Analytics with IP anonymisation enabled.",
+            "name": "Cookies analytiques",
+            "badge": "Optionnels",
+            "desc": "Ces cookies nous aident à comprendre comment les visiteurs interagissent avec notre site en collectant des informations anonymisées sur les pages visitées et le temps passé. Nous utilisons Google Analytics avec anonymisation IP.",
             "examples": [
-              "Google Analytics (anonymised)",
-              "Page view tracking",
-              "User journey analysis"
+              "Google Analytics (anonymisé)",
+              "Suivi des pages vues",
+              "Analyse du parcours utilisateur"
             ]
           },
           {
-            "name": "Preference Cookies",
-            "badge": "Optional",
-            "desc": "These cookies remember your choices — such as your language preference (English or Italian) — so that your experience feels personalised and consistent on every visit.",
+            "name": "Cookies de préférence",
+            "badge": "Optionnels",
+            "desc": "Ces cookies mémorisent vos choix — comme votre langue préférée — afin que votre expérience soit cohérente et personnalisée à chaque visite.",
             "examples": [
-              "Language preference (EN / IT)",
-              "Cookie consent choice",
-              "Scroll and UI state"
+              "Préférence de langue (EN / IT / DE / FR / ES)",
+              "Choix de consentement aux cookies",
+              "État de l’interface et du défilement"
             ]
           }
         ]
       },
       {
         "icon": "heart",
-        "title": "3. Why We Use Cookies",
-        "content": "Each category of cookie serves a specific purpose in delivering the finest experience to our guests:",
+        "title": "3. Pourquoi nous utilisons les cookies",
+        "content": "Chaque catégorie de cookies a un rôle spécifique pour offrir la meilleure expérience à nos clients :",
         "reasons": [
           {
-            "label": "UX Improvement",
-            "desc": "Analytics data helps us identify and fix friction in the guest journey — from browsing suites to completing an enquiry."
+            "label": "Amélioration UX",
+            "desc": "Les données analytiques nous aident à identifier et corriger les points de friction du parcours client, de la découverte des suites à l’envoi d’une demande."
           },
           {
-            "label": "Personalisation",
-            "desc": "Preference cookies ensure the site remembers your language and settings, so every visit feels tailored to you."
+            "label": "Personnalisation",
+            "desc": "Les cookies de préférence permettent au site de mémoriser votre langue et vos réglages pour une expérience adaptée à chaque visite."
           },
           {
-            "label": "Security",
-            "desc": "Essential cookies protect you by maintaining secure, authenticated sessions and preventing cross-site request forgery."
+            "label": "Sécurité",
+            "desc": "Les cookies essentiels protègent en maintenant des sessions authentifiées sécurisées et en empêchant les requêtes intersites falsifiées."
           },
           {
             "label": "Performance",
-            "desc": "We use session data to optimise page load times and serve the most relevant content to guests from different regions."
+            "desc": "Nous utilisons les données de session pour optimiser les temps de chargement et proposer des contenus plus pertinents selon les régions."
           }
         ]
       },
       {
         "icon": "settings",
-        "title": "4. Managing Your Preferences",
-        "content": "You are in full control of your cookie preferences. Here are the ways you can manage them:",
+        "title": "4. Gérer vos préférences",
+        "content": "Vous gardez le contrôle total de vos préférences cookies. Voici comment les gérer :",
         "bullets": [
-          "Use the cookie banner that appears on your first visit to accept, reject or customise cookie categories.",
-          "Clear your cookie preferences at any time by clicking \"Manage Preferences\" in the cookie banner (reappears after clearing local storage).",
-          "Adjust your browser settings to block or delete cookies entirely — note this may affect site functionality.",
-          "Opt out of Google Analytics tracking at any time via: tools.google.com/dlpage/gaoptout"
+          "Utilisez la bannière cookies affichée lors de votre première visite pour accepter, refuser ou personnaliser les catégories.",
+          "Vous pouvez modifier vos préférences à tout moment via « Gérer les préférences » dans la bannière (réapparaît après suppression du stockage local).",
+          "Ajustez les paramètres de votre navigateur pour bloquer ou supprimer les cookies — cela peut affecter le fonctionnement du site.",
+          "Refusez le suivi Google Analytics via : tools.google.com/dlpage/gaoptout"
         ]
       },
       {
         "icon": "refresh-cw",
-        "title": "5. Updates to This Policy",
-        "content": "We may update this Cookie Policy from time to time to reflect changes in technology, legislation, or our services. When we do, we will update the \"Last Updated\" date at the top of this page. We encourage you to review this policy periodically."
+        "title": "5. Mises à jour de cette politique",
+        "content": "Nous pouvons mettre à jour cette Politique de cookies afin de refléter des évolutions technologiques, légales ou de services. Nous vous encourageons à la consulter régulièrement."
       },
       {
         "icon": "mail",
-        "title": "6. Contact Us",
-        "content": "If you have any questions about our use of cookies or this policy, please reach out to our team:",
+        "title": "6. Contact",
+        "content": "Pour toute question concernant notre utilisation des cookies ou cette politique, contactez notre équipe :",
         "contact": {
           "email": "reservations@dumasuites.com",
-          "address": "Ghepard Towers, Watamu, Kilifi County, Kenya",
+          "address": "Ghepard Towers, Watamu, comté de Kilifi, Kenya",
           "phone": "+254 710 933 025"
         }
       }

@@ -40,6 +40,174 @@ const SOCIAL = [
   { Icon: WhatsAppIcon,  href: 'https://wa.me/254710933025',                                              label: 'WhatsApp',  handle: '+254 710 933 025' },
 ]
 
+const CONTACT_PAGE_COPY = {
+  en: {
+    heroEyebrow: 'Get in Touch',
+    heroTitle: "We're Here for You",
+    heroSub: "Whether you're planning your stay or simply curious, our team is ready to assist.",
+    infoHeading: 'Contact Information',
+    address: 'Address',
+    phone: 'Phone',
+    hours: 'Hours',
+    hoursValue: 'Available daily, 8 AM – 10 PM',
+    concierge: 'Our concierge team is delighted to help with reservations, experiences, and special requests.',
+    reviewsTitle: 'Trusted by our guests',
+    formHeading: 'Send Us a Message',
+    formIntro: 'Share your enquiry and a member of our team will personally get back to you within 24 hours.',
+    successTitle: 'Message Sent!',
+    successBody: "Thank you — we'll reply within 24 hours.",
+    sendAnother: 'Send another message',
+    fullName: 'Full Name',
+    yourName: 'Your name',
+    emailAddress: 'Email Address',
+    yourEmail: 'your@email.com',
+    message: 'Message',
+    howHelp: 'How can we help you?',
+    send: 'Send Message',
+    replyNote: "✓ We'll reply within 24 hours.",
+    findUs: 'Find Us',
+    followUs: 'Follow Us',
+    stayConnected: 'Stay Connected',
+    followSub: 'Discover the latest moments, special offers, and stories from our coastal retreat.',
+    escapeEyebrow: 'Your Escape Awaits',
+    planExperience: 'Plan Your Experience',
+    planSub: 'Ready to book? Our concierge is just a message away on WhatsApp to craft your perfect coastal escape.',
+    bookWhatsapp: 'Book via WhatsApp →',
+  },
+  it: {
+    heroEyebrow: 'Contattaci',
+    heroTitle: 'Siamo qui per te',
+    heroSub: 'Che tu stia pianificando il tuo soggiorno o abbia semplicemente una domanda, il nostro team è pronto ad assisterti.',
+    infoHeading: 'Informazioni di Contatto',
+    address: 'Indirizzo',
+    phone: 'Telefono',
+    hours: 'Orari',
+    hoursValue: 'Disponibili tutti i giorni, 8:00 – 22:00',
+    concierge: 'Il nostro team di concierge è felice di assisterti con prenotazioni, esperienze e richieste speciali.',
+    reviewsTitle: 'Cosa dicono i nostri ospiti',
+    formHeading: 'Inviaci un Messaggio',
+    formIntro: 'Condividi la tua richiesta e un membro del nostro team ti risponderà personalmente entro 24 ore.',
+    successTitle: 'Messaggio Inviato!',
+    successBody: 'Grazie — ti risponderemo entro 24 ore.',
+    sendAnother: 'Invia un altro messaggio',
+    fullName: 'Nome Completo',
+    yourName: 'Il tuo nome',
+    emailAddress: 'Indirizzo Email',
+    yourEmail: 'La tua email',
+    message: 'Messaggio',
+    howHelp: 'Come possiamo aiutarti?',
+    send: 'Invia Messaggio',
+    replyNote: '✓ Risponderemo entro 24 ore.',
+    findUs: 'Dove Siamo',
+    followUs: 'Seguici',
+    stayConnected: 'Rimani connesso con noi',
+    followSub: 'Scopri gli ultimi momenti, offerte speciali e storie dal nostro rifugio costiero.',
+    escapeEyebrow: 'La tua fuga ti aspetta',
+    planExperience: 'Pianifica la tua Esperienza',
+    planSub: 'Pronto a prenotare? Il nostro concierge è a tua disposizione via WhatsApp per garantirti la migliore esperienza.',
+    bookWhatsapp: 'Prenota via WhatsApp →',
+  },
+  de: {
+    heroEyebrow: 'Kontaktieren Sie uns',
+    heroTitle: 'Wir sind für Sie da',
+    heroSub: 'Ob Sie Ihren Aufenthalt planen oder nur eine Frage haben — unser Team hilft Ihnen gerne weiter.',
+    infoHeading: 'Kontaktinformationen',
+    address: 'Adresse',
+    phone: 'Telefon',
+    hours: 'Öffnungszeiten',
+    hoursValue: 'Täglich erreichbar, 8:00 – 22:00 Uhr',
+    concierge: 'Unser Concierge-Team unterstützt Sie gerne bei Reservierungen, Erlebnissen und Sonderwünschen.',
+    reviewsTitle: 'Vertrauen unserer Gäste',
+    formHeading: 'Senden Sie uns eine Nachricht',
+    formIntro: 'Teilen Sie uns Ihre Anfrage mit, und ein Teammitglied antwortet Ihnen persönlich innerhalb von 24 Stunden.',
+    successTitle: 'Nachricht gesendet!',
+    successBody: 'Vielen Dank — wir antworten innerhalb von 24 Stunden.',
+    sendAnother: 'Weitere Nachricht senden',
+    fullName: 'Vollständiger Name',
+    yourName: 'Ihr Name',
+    emailAddress: 'E-Mail-Adresse',
+    yourEmail: 'ihre@email.de',
+    message: 'Nachricht',
+    howHelp: 'Wie können wir helfen?',
+    send: 'Nachricht senden',
+    replyNote: '✓ Wir antworten innerhalb von 24 Stunden.',
+    findUs: 'So finden Sie uns',
+    followUs: 'Folgen Sie uns',
+    stayConnected: 'Bleiben Sie verbunden',
+    followSub: 'Entdecken Sie aktuelle Eindrücke, Sonderangebote und Geschichten aus unserem Küstenrefugium.',
+    escapeEyebrow: 'Ihre Auszeit wartet',
+    planExperience: 'Planen Sie Ihr Erlebnis',
+    planSub: 'Bereit zu buchen? Unser Concierge ist über WhatsApp nur eine Nachricht entfernt.',
+    bookWhatsapp: 'Per WhatsApp buchen →',
+  },
+  fr: {
+    heroEyebrow: 'Contactez-nous',
+    heroTitle: 'Nous sommes là pour vous',
+    heroSub: 'Que vous prépariez votre séjour ou ayez simplement une question, notre équipe est prête à vous aider.',
+    infoHeading: 'Informations de contact',
+    address: 'Adresse',
+    phone: 'Téléphone',
+    hours: 'Horaires',
+    hoursValue: 'Disponibles tous les jours, de 8h à 22h',
+    concierge: 'Notre équipe de conciergerie vous aide avec les réservations, expériences et demandes spéciales.',
+    reviewsTitle: 'Recommandé par nos clients',
+    formHeading: 'Envoyez-nous un message',
+    formIntro: 'Partagez votre demande et un membre de notre équipe vous répondra personnellement sous 24 heures.',
+    successTitle: 'Message envoyé !',
+    successBody: 'Merci — nous vous répondrons sous 24 heures.',
+    sendAnother: 'Envoyer un autre message',
+    fullName: 'Nom complet',
+    yourName: 'Votre nom',
+    emailAddress: 'Adresse e-mail',
+    yourEmail: 'votre@email.fr',
+    message: 'Message',
+    howHelp: 'Comment pouvons-nous vous aider ?',
+    send: 'Envoyer le message',
+    replyNote: '✓ Nous vous répondrons sous 24 heures.',
+    findUs: 'Nous trouver',
+    followUs: 'Suivez-nous',
+    stayConnected: 'Restez connectés',
+    followSub: 'Découvrez les derniers moments, offres spéciales et histoires de notre refuge côtier.',
+    escapeEyebrow: 'Votre escapade vous attend',
+    planExperience: 'Planifiez votre expérience',
+    planSub: 'Prêt à réserver ? Notre concierge est à un message WhatsApp de votre escapade idéale.',
+    bookWhatsapp: 'Réserver via WhatsApp →',
+  },
+  es: {
+    heroEyebrow: 'Contáctenos',
+    heroTitle: 'Estamos aquí para usted',
+    heroSub: 'Ya sea que esté planificando su estancia o tenga una consulta, nuestro equipo está listo para ayudarle.',
+    infoHeading: 'Información de contacto',
+    address: 'Dirección',
+    phone: 'Teléfono',
+    hours: 'Horario',
+    hoursValue: 'Disponibles todos los días, de 8:00 a 22:00',
+    concierge: 'Nuestro equipo de conserjería está encantado de ayudarle con reservas, experiencias y solicitudes especiales.',
+    reviewsTitle: 'La confianza de nuestros huéspedes',
+    formHeading: 'Envíenos un mensaje',
+    formIntro: 'Comparta su consulta y un miembro de nuestro equipo le responderá personalmente en un plazo de 24 horas.',
+    successTitle: '¡Mensaje enviado!',
+    successBody: 'Gracias — responderemos dentro de 24 horas.',
+    sendAnother: 'Enviar otro mensaje',
+    fullName: 'Nombre completo',
+    yourName: 'Su nombre',
+    emailAddress: 'Correo electrónico',
+    yourEmail: 'su@email.com',
+    message: 'Mensaje',
+    howHelp: '¿Cómo podemos ayudarle?',
+    send: 'Enviar mensaje',
+    replyNote: '✓ Le responderemos dentro de 24 horas.',
+    findUs: 'Dónde estamos',
+    followUs: 'Síganos',
+    stayConnected: 'Manténgase conectado',
+    followSub: 'Descubra los últimos momentos, ofertas especiales e historias de nuestro refugio costero.',
+    escapeEyebrow: 'Su escapada le espera',
+    planExperience: 'Planifique su experiencia',
+    planSub: '¿Listo para reservar? Nuestro conserje está a un mensaje de WhatsApp para crear su escapada ideal.',
+    bookWhatsapp: 'Reservar por WhatsApp →',
+  },
+}
+
 const fadeUp = {
   hidden:  { opacity: 0, y: 28 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.4, 0, 0.2, 1] } },
@@ -64,6 +232,7 @@ export default function ContactPage() {
   const { lang } = useLanguage()
   const t = getT(lang)
   const ct = t.contact
+  const copy = CONTACT_PAGE_COPY[lang] || CONTACT_PAGE_COPY.en
 
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
@@ -94,7 +263,7 @@ export default function ContactPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              {lang === 'it' ? 'Contattaci' : 'Get in Touch'}
+              {copy.heroEyebrow}
             </motion.span>
             <motion.h1
               className="cp-hero__title"
@@ -102,7 +271,7 @@ export default function ContactPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.35 }}
             >
-              {lang === 'it' ? 'Siamo qui per te' : "We're Here for You"}
+              {copy.heroTitle}
             </motion.h1>
             <motion.p
               className="cp-hero__sub"
@@ -110,9 +279,7 @@ export default function ContactPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.52 }}
             >
-              {lang === 'it'
-                ? 'Che tu stia pianificando il tuo soggiorno o abbia semplicemente una domanda, il nostro team è pronto ad assisterti.'
-                : "Whether you're planning your stay or simply curious, our team is ready to assist."}
+              {copy.heroSub}
             </motion.p>
           </div>
         </div>
@@ -124,21 +291,21 @@ export default function ContactPage() {
           <Section delay={0.05}>
             <div className="cp-info">
               <h2 className="cp-info__heading">
-                {lang === 'it' ? 'Informazioni di Contatto' : 'Contact Information'}
+                {copy.infoHeading}
               </h2>
 
               <ul className="cp-info__list">
                 <li className="cp-info__item">
                   <div className="cp-info__icon"><MapPin size={18} strokeWidth={1.5} /></div>
                   <div>
-                    <span className="cp-info__label">{lang === 'it' ? 'Indirizzo' : 'Address'}</span>
+                    <span className="cp-info__label">{copy.address}</span>
                     <span className="cp-info__value">{ct.info.address}</span>
                   </div>
                 </li>
                 <li className="cp-info__item">
                   <div className="cp-info__icon"><Phone size={18} strokeWidth={1.5} /></div>
                   <div>
-                    <span className="cp-info__label">{lang === 'it' ? 'Telefono' : 'Phone'}</span>
+                    <span className="cp-info__label">{copy.phone}</span>
                     <a href={`tel:${ct.info.phone.replace(/\s/g,'')}`} className="cp-info__value cp-info__link">
                       {ct.info.phone}
                     </a>
@@ -165,9 +332,9 @@ export default function ContactPage() {
                 <li className="cp-info__item">
                   <div className="cp-info__icon"><Clock size={18} strokeWidth={1.5} /></div>
                   <div>
-                    <span className="cp-info__label">{lang === 'it' ? 'Orari' : 'Hours'}</span>
+                    <span className="cp-info__label">{copy.hours}</span>
                     <span className="cp-info__value">
-                      {lang === 'it' ? 'Disponibili tutti i giorni, 8:00 – 22:00' : 'Available daily, 8 AM – 10 PM'}
+                      {copy.hoursValue}
                     </span>
                   </div>
                 </li>
@@ -177,16 +344,14 @@ export default function ContactPage() {
               <div className="cp-concierge">
                 <Users size={16} strokeWidth={1.5} className="cp-concierge__icon" aria-hidden="true" />
                 <p className="cp-concierge__text">
-                  {lang === 'it'
-                    ? 'Il nostro team di concierge è felice di assisterti con prenotazioni, esperienze e richieste speciali.'
-                    : "Our concierge team is delighted to help with reservations, experiences, and special requests."}
+                  {copy.concierge}
                 </p>
               </div>
 
               {/* Reviews */}
               <div className="cp-reviews">
                 <span className="cp-reviews__title">
-                  {lang === 'it' ? 'Cosa dicono i nostri ospiti' : 'Trusted by our guests'}
+                  {copy.reviewsTitle}
                 </span>
                 <div className="cp-reviews__badges">
                   <a
@@ -222,73 +387,71 @@ export default function ContactPage() {
           <Section delay={0.15}>
             <div className="cp-form-col">
               <h2 className="cp-form-col__heading">
-                {lang === 'it' ? 'Inviaci un Messaggio' : 'Send Us a Message'}
+                {copy.formHeading}
               </h2>
               <p className="cp-form-col__intro">
-                {lang === 'it'
-                  ? 'Condividi la tua richiesta e un membro del nostro team ti risponderà personalmente entro 24 ore.'
-                  : 'Share your enquiry and a member of our team will personally get back to you within 24 hours.'}
+                {copy.formIntro}
               </p>
 
               {submitted ? (
                 <div className="cp-success">
                   <CheckCircle size={52} strokeWidth={1.5} className="cp-success__icon" />
                   <h3 className="cp-success__title">
-                    {lang === 'it' ? 'Messaggio Inviato!' : 'Message Sent!'}
+                    {copy.successTitle}
                   </h3>
                   <p className="cp-success__body">
-                    {lang === 'it' ? 'Grazie — ti risponderemo entro 24 ore.' : "Thank you — we'll reply within 24 hours."}
+                    {copy.successBody}
                   </p>
                   <button
                     className="btn btn-primary"
                     onClick={() => { setSubmitted(false); setForm({ name: '', email: '', message: '' }) }}
                   >
-                    {lang === 'it' ? 'Invia un altro messaggio' : 'Send another message'}
+                    {copy.sendAnother}
                   </button>
                 </div>
               ) : (
                 <form className="cp-form" onSubmit={handleSubmit} noValidate>
                   <div className="cp-form__group">
                     <label className="cp-form__label" htmlFor="cp-name">
-                      {lang === 'it' ? 'Nome Completo' : 'Full Name'}
+                      {copy.fullName}
                     </label>
                     <input
                       id="cp-name" type="text" name="name"
                       className="cp-form__input"
                       value={form.name} onChange={handleChange}
                       required autoComplete="name"
-                      placeholder={lang === 'it' ? 'Il tuo nome' : 'Your name'}
+                      placeholder={copy.yourName}
                     />
                   </div>
                   <div className="cp-form__group">
                     <label className="cp-form__label" htmlFor="cp-email">
-                      {lang === 'it' ? 'Indirizzo Email' : 'Email Address'}
+                      {copy.emailAddress}
                     </label>
                     <input
                       id="cp-email" type="email" name="email"
                       className="cp-form__input"
                       value={form.email} onChange={handleChange}
                       required autoComplete="email"
-                      placeholder={lang === 'it' ? 'La tua email' : 'your@email.com'}
+                      placeholder={copy.yourEmail}
                     />
                   </div>
                   <div className="cp-form__group">
                     <label className="cp-form__label" htmlFor="cp-message">
-                      {lang === 'it' ? 'Messaggio' : 'Message'}
+                      {copy.message}
                     </label>
                     <textarea
                       id="cp-message" name="message"
                       className="cp-form__input cp-form__textarea"
                       value={form.message} onChange={handleChange}
                       rows={6} required
-                      placeholder={lang === 'it' ? 'Come possiamo aiutarti?' : 'How can we help you?'}
+                      placeholder={copy.howHelp}
                     />
                   </div>
                   <button type="submit" className="btn btn-primary cp-form__submit">
-                    {lang === 'it' ? 'Invia Messaggio' : 'Send Message'}
+                    {copy.send}
                   </button>
                   <p className="cp-form__reply-note">
-                    {lang === 'it' ? '✓ Risponderemo entro 24 ore.' : "✓ We'll reply within 24 hours."}
+                    {copy.replyNote}
                   </p>
                 </form>
               )}
@@ -301,7 +464,7 @@ export default function ContactPage() {
         <Section>
           <div className="cp-map-section container">
             <h2 className="cp-map-section__heading section-title" style={{ textAlign: 'center', marginBottom: '2rem' }}>
-              {lang === 'it' ? 'Dove Siamo' : 'Find Us'}
+              {copy.findUs}
             </h2>
             <div className="cp-map-wrap">
               <iframe
@@ -323,15 +486,13 @@ export default function ContactPage() {
             <Section delay={0.05}>
               <div className="cp-social">
                 <span className="eyebrow" style={{ marginBottom: '0.6rem', display: 'block' }}>
-                  {lang === 'it' ? 'Seguici' : 'Follow Us'}
+                  {copy.followUs}
                 </span>
                 <h3 className="cp-social__heading">
-                  {lang === 'it' ? 'Rimani connesso con noi' : 'Stay Connected'}
+                  {copy.stayConnected}
                 </h3>
                 <p className="cp-social__sub">
-                  {lang === 'it'
-                    ? 'Scopri gli ultimi momenti, offerte speciali e storie dal nostro rifugio costiero.'
-                    : 'Discover the latest moments, special offers, and stories from our coastal retreat.'}
+                  {copy.followSub}
                 </p>
                 <div className="cp-social__links">
                   {SOCIAL.map(({ Icon, href, label, handle }) => (
@@ -358,15 +519,13 @@ export default function ContactPage() {
             <Section delay={0.12}>
               <div className="cp-book-cta">
                 <span className="eyebrow" style={{ marginBottom: '0.6rem', display: 'block' }}>
-                  {lang === 'it' ? 'La tua fuga ti aspetta' : 'Your Escape Awaits'}
+                  {copy.escapeEyebrow}
                 </span>
                 <h3 className="cp-book-cta__heading">
-                  {lang === 'it' ? 'Pianifica la tua Esperienza' : 'Plan Your Experience'}
+                  {copy.planExperience}
                 </h3>
                 <p className="cp-book-cta__sub">
-                  {lang === 'it'
-                    ? 'Pronto a prenotare? Il nostro concierge è a tua disposizione via WhatsApp per garantirti la migliore esperienza.'
-                    : "Ready to book? Our concierge is just a message away on WhatsApp to craft your perfect coastal escape."}
+                  {copy.planSub}
                 </p>
                 <a
                   href="https://wa.me/254710933025"
@@ -374,7 +533,7 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   className="btn btn-primary cp-book-cta__btn"
                 >
-                  {lang === 'it' ? 'Prenota via WhatsApp →' : 'Book via WhatsApp →'}
+                  {copy.bookWhatsapp}
                 </a>
               </div>
             </Section>

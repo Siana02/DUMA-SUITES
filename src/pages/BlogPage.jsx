@@ -17,11 +17,20 @@ const ARTICLE_META = [
   { readTime: '6', tags: ['Food', 'Culture', 'Swahili', 'Local'] },
 ]
 
+const BLOG_PAGE_COPY = {
+  en: { featured: 'Featured' },
+  it: { featured: 'In Evidenza' },
+  de: { featured: 'Empfohlen' },
+  fr: { featured: 'À la une' },
+  es: { featured: 'Destacado' },
+}
+
 export default function BlogPage() {
   const { lang } = useLanguage()
   const t = getT(lang)
   const art = t.articles
   const blog = t.blog
+  const copy = BLOG_PAGE_COPY[lang] || BLOG_PAGE_COPY.en
   const navigate = useNavigate()
 
   const featured = art.items[0]
@@ -127,7 +136,7 @@ export default function BlogPage() {
                   className="blog-featured-card__img"
                 />
                 <div className="blog-featured-card__gradient" aria-hidden="true" />
-                <span className="blog-featured-card__badge">Featured</span>
+                <span className="blog-featured-card__badge">{copy.featured}</span>
                 <span className="blog-featured-card__category">{featured.category}</span>
                 <span className="blog-featured-card__read-time">
                   <Clock size={11} strokeWidth={1.5} />
