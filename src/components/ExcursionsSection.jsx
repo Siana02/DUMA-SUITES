@@ -216,6 +216,11 @@ export default function ExcursionsSection() {
       </div>
 
       <style>{`
+        .exc-section {
+          --exc-overlay-dark-top: 0.42;
+          --exc-overlay-dark-bottom: 0.7;
+        }
+
         /* ── Header ─────────────────────────────────────────── */
         .exc-section__header {
           text-align: center;
@@ -352,7 +357,11 @@ export default function ExcursionsSection() {
         .exc-card__overlay-dark {
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, rgba(0,0,0,0.42), rgba(0,0,0,0.7));
+          background: linear-gradient(
+            180deg,
+            rgba(0,0,0,var(--exc-overlay-dark-top)),
+            rgba(0,0,0,var(--exc-overlay-dark-bottom))
+          );
           z-index: 2;
         }
         .exc-card__content {
