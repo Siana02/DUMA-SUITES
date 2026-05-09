@@ -424,6 +424,11 @@ export default function ExcursionsSection() {
 
         /* ── Tablet / desktop: horizontal carousel ───────────── */
         @media (min-width: 768px) {
+          .exc-card__img-side {
+            aspect-ratio: auto;
+            height: 100%;
+            min-height: 100%;
+          }
           .exc-carousel-shell {
             position: relative;
             width: 100vw;
