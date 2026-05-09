@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { ArrowRight, Info } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Info } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { getT } from '../i18n/translations.js'
 
@@ -22,8 +22,8 @@ const EXCURSION_IMAGES = [
   { main: hellsMain,    overlay: hellsOverlay },
 ]
 
-const DESKTOP_BREAKPOINT = 1024
-const STICKY_TOP_PX = 90
+const CAROUSEL_BREAKPOINT = 768
+const AUTO_CYCLE_MS = 7000
 const MOBILE_CARD_THRESHOLD = 0.2
 
 // Shared card markup — identical visual design on both desktop and mobile
@@ -82,55 +82,70 @@ export default function ExcursionsSection() {
   const deckItems = exc.items.slice(0, EXCURSION_IMAGES.length)
   const cardCount = deckItems.length
 
-  // Desktop/laptop only: locked one-by-one card cycling
-  const [isDesktop, setIsDesktop] = useState(false)
+  const [isCarouselMode, setIsCarouselMode] = useState(false)
   const [activeDeckIndex, setActiveDeckIndex] = useState(0)
-
-  const deckOuterRef  = useRef(null)
-  const deckStickyRef = useRef(null)
+  const viewportRef = useRef(null)
 
   const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.3, triggerOnce: true })
 
   // Keep breakpoint mode in sync with window width
   useEffect(() => {
-    const check = () => setIsDesktop(window.innerWidth >= DESKTOP_BREAKPOINT)
+    const check = () => setIsCarouselMode(window.innerWidth >= CAROUSEL_BREAKPOINT)
     window.addEventListener('resize', check, { passive: true })
     check() // resolve any mount-time mismatch
     return () => window.removeEventListener('resize', check)
   }, [])
 
-  // Desktop/tablet: drive active card index from scroll position within the deck outer
+  // Tablet/desktop: auto-cycle cards every 7 seconds
   useEffect(() => {
-    if (!isDesktop) return
+    if (!isCarouselMode || cardCount <= 1) return
+    const timer = window.setInterval(() => {
+      setActiveDeckIndex(prev => (prev + 1) % cardCount)
+    }, AUTO_CYCLE_MS)
+    return () => window.clearInterval(timer)
+  }, [isCarouselMode, cardCount])
 
-    const outer  = deckOuterRef.current
-    const sticky = deckStickyRef.current
-    if (!outer || !sticky) return
+  // Sync horizontal scroll position when active index changes
+  useEffect(() => {
+    if (!isCarouselMode) return
+    const viewport = viewportRef.current
+    if (!viewport) return
+    viewport.scrollTo({
+      left: activeDeckIndex * viewport.clientWidth,
+      behavior: 'smooth',
+    })
+  }, [activeDeckIndex, isCarouselMode])
 
-    const update = () => {
-      const outerRect = outer.getBoundingClientRect()
-      const stickyH   = sticky.offsetHeight
-      const totalRange = outer.offsetHeight - stickyH
-      if (totalRange <= 0) return
+  // Keep active index in sync with manual horizontal touch/trackpad scroll
+  useEffect(() => {
+    if (!isCarouselMode) return
+    const viewport = viewportRef.current
+    if (!viewport) return
 
-      // How far past the sticky-top the outer has scrolled
-      const scrolledIn = STICKY_TOP_PX - outerRect.top
-      const progress   = Math.max(0, Math.min(1, scrolledIn / totalRange))
-      const newIndex   = Math.min(Math.floor(progress * cardCount), cardCount - 1)
-      setActiveDeckIndex(newIndex)
+    const onScroll = () => {
+      const width = viewport.clientWidth
+      if (!width) return
+      const nextIndex = Math.round(viewport.scrollLeft / width)
+      const clamped = Math.max(0, Math.min(cardCount - 1, nextIndex))
+      setActiveDeckIndex(prev => (prev === clamped ? prev : clamped))
     }
 
-    window.addEventListener('scroll', update, { passive: true })
-    update() // sync on mount / breakpoint change
+    viewport.addEventListener('scroll', onScroll, { passive: true })
+    return () => viewport.removeEventListener('scroll', onScroll)
+  }, [isCarouselMode, cardCount])
 
-    return () => window.removeEventListener('scroll', update)
-  }, [isDesktop, cardCount])
+  const goPrev = () => {
+    setActiveDeckIndex(prev => (prev - 1 + cardCount) % cardCount)
+  }
+
+  const goNext = () => {
+    setActiveDeckIndex(prev => (prev + 1) % cardCount)
+  }
 
   return (
     <section
       className="exc-section section"
       id="excursions"
-      style={{ '--exc-sticky-top': `${STICKY_TOP_PX}px` }}
     >
       <div className="container">
         <div
@@ -153,7 +168,7 @@ export default function ExcursionsSection() {
         </div>
 
         {/* ── Mobile: simple stacked list with fade/slide/scale ── */}
-        {!isDesktop ? (
+        {!isCarouselMode ? (
           <div className="exc-section__list">
             {deckItems.map((item, i) => (
               <MobileExcursionCard
@@ -166,23 +181,28 @@ export default function ExcursionsSection() {
             ))}
           </div>
         ) : (
-          /* ── Desktop/tablet: stacked card-deck ── */
-          <div ref={deckOuterRef} className="exc-deck-outer">
-            <div ref={deckStickyRef} className="exc-deck-sticky">
-              {deckItems.map((item, i) => {
-                const isLeft = i % 2 === 0
-                return (
-                  <div
-                    key={i}
-                    className={`exc-card exc-card--${isLeft ? 'left' : 'right'} exc-deck-card${activeDeckIndex >= i ? ' is-revealed' : ''}`}
-                    style={{
-                      zIndex: i + 1,
-                    }}
-                  >
-                    <CardInner item={item} images={EXCURSION_IMAGES[i]} cta={exc.cta} />
-                  </div>
-                )
-              })}
+          /* ── Tablet/desktop: full-width horizontal carousel ── */
+          <div className="exc-carousel-shell">
+            <button type="button" className="exc-carousel__arrow exc-carousel__arrow--left" onClick={goPrev} aria-label="Previous excursion">
+              <ArrowLeft size={18} strokeWidth={1.8} />
+            </button>
+            <button type="button" className="exc-carousel__arrow exc-carousel__arrow--right" onClick={goNext} aria-label="Next excursion">
+              <ArrowRight size={18} strokeWidth={1.8} />
+            </button>
+            <div ref={viewportRef} className="exc-carousel__viewport">
+              <div className="exc-carousel__track">
+                {deckItems.map((item, i) => {
+                  const isLeft = i % 2 === 0
+                  return (
+                    <div
+                      key={i}
+                      className={`exc-card exc-card--${isLeft ? 'left' : 'right'} exc-carousel__card`}
+                    >
+                      <CardInner item={item} images={EXCURSION_IMAGES[i]} cta={exc.cta} />
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           </div>
         )}
@@ -348,33 +368,62 @@ export default function ExcursionsSection() {
           color: #fff;
         }
 
-        /* ── Desktop / laptop: stacked card-deck ────────────── */
-        @media (min-width: 1024px) {
-          /* Outer is 4× the card height so the sticky has room to work
-             and scroll progress drives one card reveal per quarter */
-          .exc-deck-outer {
+        /* ── Tablet / desktop: horizontal carousel ───────────── */
+        @media (min-width: 768px) {
+          .exc-carousel-shell {
+            position: relative;
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+          }
+          .exc-carousel__viewport {
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+          }
+          .exc-carousel__viewport::-webkit-scrollbar {
+            display: none;
+          }
+          .exc-carousel__track {
+            display: flex;
+          }
+          .exc-carousel__card {
+            flex: 0 0 100%;
             width: 100%;
-            height: calc(clamp(440px, 55vw, 580px) * 4);
+            min-height: clamp(440px, 52vw, 620px);
+            border-radius: 0;
+            scroll-snap-align: start;
           }
-          /* Sticky viewport frame — height driven by card aspect ratio */
-          .exc-deck-sticky {
-            position: sticky;
-            top: var(--exc-sticky-top);
-            overflow: hidden;
-            height: clamp(440px, 55vw, 580px);
-          }
-          /* Each card fills the sticky frame and is absolutely stacked */
-          .exc-deck-card {
+          .exc-carousel__arrow {
             position: absolute;
-            inset: 0;
-            height: 100%;
-            min-height: unset;
-            will-change: transform;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateY(100%);
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(16,16,16,0.55);
+            color: #fff;
+            cursor: pointer;
+            backdrop-filter: blur(2px);
+            transition: background 0.25s ease, border-color 0.25s ease;
           }
-          .exc-deck-card.is-revealed {
-            transform: translateY(0%);
+          .exc-carousel__arrow:hover {
+            background: rgba(16,16,16,0.8);
+            border-color: #fff;
+          }
+          .exc-carousel__arrow--left {
+            left: clamp(10px, 2vw, 24px);
+          }
+          .exc-carousel__arrow--right {
+            right: clamp(10px, 2vw, 24px);
           }
         }
 
@@ -384,7 +433,7 @@ export default function ExcursionsSection() {
           flex-direction: column;
           gap: 40px;
         }
-        @media (max-width: 1023px) {
+        @media (max-width: 767px) {
           .exc-card {
             grid-template-columns: 1fr;
             min-height: auto;
