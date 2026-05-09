@@ -171,7 +171,7 @@ export default function ExcursionsSection() {
 
     const onTouchMove = event => {
       const currentY = event.touches[0]?.clientY
-      if (currentY == null || touchStartYRef.current == null) return
+      if (currentY === undefined || touchStartYRef.current === null) return
 
       const deltaY = touchStartYRef.current - currentY
       if (Math.abs(deltaY) < SWIPE_THRESHOLD) return
@@ -184,16 +184,18 @@ export default function ExcursionsSection() {
       touchStartYRef.current = null
     }
 
-    window.addEventListener('wheel', onWheel, { passive: false })
-    window.addEventListener('touchstart', onTouchStart, { passive: true })
-    window.addEventListener('touchmove', onTouchMove, { passive: false })
-    window.addEventListener('touchend', onTouchEnd, { passive: true })
+    section.addEventListener('wheel', onWheel, { passive: false })
+    section.addEventListener('touchstart', onTouchStart, { passive: true })
+    section.addEventListener('touchmove', onTouchMove, { passive: false })
+    section.addEventListener('touchend', onTouchEnd, { passive: true })
+    section.addEventListener('touchcancel', onTouchEnd, { passive: true })
 
     return () => {
-      window.removeEventListener('wheel', onWheel)
-      window.removeEventListener('touchstart', onTouchStart)
-      window.removeEventListener('touchmove', onTouchMove)
-      window.removeEventListener('touchend', onTouchEnd)
+      section.removeEventListener('wheel', onWheel)
+      section.removeEventListener('touchstart', onTouchStart)
+      section.removeEventListener('touchmove', onTouchMove)
+      section.removeEventListener('touchend', onTouchEnd)
+      section.removeEventListener('touchcancel', onTouchEnd)
     }
   }, [isDesktop, cardCount, activeDeckIndex])
 
