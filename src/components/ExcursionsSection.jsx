@@ -22,9 +22,10 @@ const EXCURSION_IMAGES = [
   { main: hellsMain,    overlay: hellsOverlay },
 ]
 
-const DESKTOP_BREAKPOINT = 1024
-const STICKY_TOP_PX = 90
+const DESKTOP_BREAKPOINT = 768
 const MOBILE_CARD_THRESHOLD = 0.2
+const SWIPE_THRESHOLD = 30
+const CARD_TRANSITION_MS = 520
 
 // Shared card markup — identical visual design on both desktop and mobile
 function CardInner({ item, images, cta }) {
@@ -82,12 +83,14 @@ export default function ExcursionsSection() {
   const deckItems = exc.items.slice(0, EXCURSION_IMAGES.length)
   const cardCount = deckItems.length
 
-  // Desktop/laptop only: locked one-by-one card cycling
+  // Desktop/tablet only: locked one-by-one card cycling
   const [isDesktop, setIsDesktop] = useState(false)
   const [activeDeckIndex, setActiveDeckIndex] = useState(0)
 
-  const deckOuterRef  = useRef(null)
-  const deckStickyRef = useRef(null)
+  const excursionsSectionRef = useRef(null)
+  const touchStartYRef = useRef(null)
+  const isAnimatingRef = useRef(false)
+  const animationTimeoutRef = useRef(null)
 
   const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.3, triggerOnce: true })
 
@@ -99,38 +102,105 @@ export default function ExcursionsSection() {
     return () => window.removeEventListener('resize', check)
   }, [])
 
-  // Desktop/tablet: drive active card index from scroll position within the deck outer
+  useEffect(() => {
+    return () => {
+      if (animationTimeoutRef.current) {
+        window.clearTimeout(animationTimeoutRef.current)
+      }
+    }
+  }, [])
+
+  // Desktop/tablet: lock scroll while cycling excursion cards
   useEffect(() => {
     if (!isDesktop) return
 
-    const outer  = deckOuterRef.current
-    const sticky = deckStickyRef.current
-    if (!outer || !sticky) return
+    const section = excursionsSectionRef.current
+    if (!section || cardCount < 2) return
 
-    const update = () => {
-      const outerRect = outer.getBoundingClientRect()
-      const stickyH   = sticky.offsetHeight
-      const totalRange = outer.offsetHeight - stickyH
-      if (totalRange <= 0) return
-
-      // How far past the sticky-top the outer has scrolled
-      const scrolledIn = STICKY_TOP_PX - outerRect.top
-      const progress   = Math.max(0, Math.min(1, scrolledIn / totalRange))
-      const newIndex   = Math.min(Math.floor(progress * cardCount), cardCount - 1)
-      setActiveDeckIndex(newIndex)
+    const isSectionFullyInView = () => {
+      const rect = section.getBoundingClientRect()
+      return rect.top <= 1 && rect.bottom >= window.innerHeight - 1
     }
 
-    window.addEventListener('scroll', update, { passive: true })
-    update() // sync on mount / breakpoint change
+    const lockCardChange = () => {
+      isAnimatingRef.current = true
+      if (animationTimeoutRef.current) {
+        window.clearTimeout(animationTimeoutRef.current)
+      }
+      animationTimeoutRef.current = window.setTimeout(() => {
+        isAnimatingRef.current = false
+      }, CARD_TRANSITION_MS)
+    }
 
-    return () => window.removeEventListener('scroll', update)
-  }, [isDesktop, cardCount])
+    const stepDeck = (direction, event) => {
+      if (!isSectionFullyInView()) return false
+
+      const canMoveNext = direction > 0 && activeDeckIndex < cardCount - 1
+      const canMovePrev = direction < 0 && activeDeckIndex > 0
+
+      if (isAnimatingRef.current && (canMoveNext || canMovePrev)) {
+        event.preventDefault()
+        return true
+      }
+
+      if (canMoveNext) {
+        event.preventDefault()
+        setActiveDeckIndex(prev => Math.min(prev + 1, cardCount - 1))
+        lockCardChange()
+        return true
+      }
+
+      if (canMovePrev) {
+        event.preventDefault()
+        setActiveDeckIndex(prev => Math.max(prev - 1, 0))
+        lockCardChange()
+        return true
+      }
+
+      return false
+    }
+
+    const onWheel = event => {
+      if (event.deltaY === 0) return
+      stepDeck(event.deltaY > 0 ? 1 : -1, event)
+    }
+
+    const onTouchStart = event => {
+      touchStartYRef.current = event.touches[0]?.clientY ?? null
+    }
+
+    const onTouchMove = event => {
+      const currentY = event.touches[0]?.clientY
+      if (currentY == null || touchStartYRef.current == null) return
+
+      const deltaY = touchStartYRef.current - currentY
+      if (Math.abs(deltaY) < SWIPE_THRESHOLD) return
+
+      const handled = stepDeck(deltaY > 0 ? 1 : -1, event)
+      if (handled) touchStartYRef.current = currentY
+    }
+
+    const onTouchEnd = () => {
+      touchStartYRef.current = null
+    }
+
+    window.addEventListener('wheel', onWheel, { passive: false })
+    window.addEventListener('touchstart', onTouchStart, { passive: true })
+    window.addEventListener('touchmove', onTouchMove, { passive: false })
+    window.addEventListener('touchend', onTouchEnd, { passive: true })
+
+    return () => {
+      window.removeEventListener('wheel', onWheel)
+      window.removeEventListener('touchstart', onTouchStart)
+      window.removeEventListener('touchmove', onTouchMove)
+      window.removeEventListener('touchend', onTouchEnd)
+    }
+  }, [isDesktop, cardCount, activeDeckIndex])
 
   return (
     <section
       className="exc-section section"
       id="excursions"
-      style={{ '--exc-sticky-top': `${STICKY_TOP_PX}px` }}
     >
       <div className="container">
         <div
@@ -167,14 +237,14 @@ export default function ExcursionsSection() {
           </div>
         ) : (
           /* ── Desktop/tablet: stacked card-deck ── */
-          <div ref={deckOuterRef} className="exc-deck-outer">
-            <div ref={deckStickyRef} className="exc-deck-sticky">
+          <div ref={excursionsSectionRef} className="excursions-section">
+            <div className="exc-deck-sticky">
               {deckItems.map((item, i) => {
                 const isLeft = i % 2 === 0
                 return (
                   <div
                     key={i}
-                    className={`exc-card exc-card--${isLeft ? 'left' : 'right'} exc-deck-card${activeDeckIndex >= i ? ' is-revealed' : ''}`}
+                    className={`exc-card exc-card--${isLeft ? 'left' : 'right'} exc-deck-card${activeDeckIndex >= i ? ' is-revealed' : ''}${activeDeckIndex === i ? ' is-active' : ' is-inactive'}`}
                     style={{
                       zIndex: i + 1,
                     }}
@@ -348,33 +418,38 @@ export default function ExcursionsSection() {
           color: #fff;
         }
 
-        /* ── Desktop / laptop: stacked card-deck ────────────── */
-        @media (min-width: 1024px) {
-          /* Outer is 4× the card height so the sticky has room to work
-             and scroll progress drives one card reveal per quarter */
-          .exc-deck-outer {
+        /* ── Desktop / tablet: locked stacked card-deck ─────── */
+        @media (min-width: 768px) {
+          .excursions-section {
+            position: relative;
             width: 100%;
-            height: calc(clamp(440px, 55vw, 580px) * 4);
-          }
-          /* Sticky viewport frame — height driven by card aspect ratio */
-          .exc-deck-sticky {
-            position: sticky;
-            top: var(--exc-sticky-top);
+            height: 100vh;
             overflow: hidden;
-            height: clamp(440px, 55vw, 580px);
           }
-          /* Each card fills the sticky frame and is absolutely stacked */
+          .exc-deck-sticky {
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+          }
           .exc-deck-card {
             position: absolute;
-            inset: 0;
-            height: 100%;
-            min-height: unset;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            min-height: 100vh;
             will-change: transform;
             transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             transform: translateY(100%);
           }
           .exc-deck-card.is-revealed {
             transform: translateY(0%);
+          }
+          .exc-deck-card.is-active {
+            pointer-events: auto;
+          }
+          .exc-deck-card.is-inactive {
+            pointer-events: none;
           }
         }
 
@@ -384,7 +459,7 @@ export default function ExcursionsSection() {
           flex-direction: column;
           gap: 40px;
         }
-        @media (max-width: 1023px) {
+        @media (max-width: 767px) {
           .exc-card {
             grid-template-columns: 1fr;
             min-height: auto;
