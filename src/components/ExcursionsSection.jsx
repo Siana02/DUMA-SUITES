@@ -26,7 +26,7 @@ const DESKTOP_BREAKPOINT = 768
 const MOBILE_CARD_THRESHOLD = 0.2
 const SWIPE_THRESHOLD = 30
 const CARD_TRANSITION_MS = 500
-const VIEWPORT_TOLERANCE = 1
+const VIEWPORT_TOLERANCE = 8
 
 // Shared card markup — identical visual design on both desktop and mobile
 function CardInner({ item, images, cta }) {
@@ -177,6 +177,10 @@ export default function ExcursionsSection() {
     }
 
     const onTouchStart = event => {
+      if (!isSectionFullyInView()) {
+        touchStartYRef.current = null
+        return
+      }
       touchStartYRef.current = event.touches[0]?.clientY ?? null
     }
 
@@ -195,18 +199,18 @@ export default function ExcursionsSection() {
       touchStartYRef.current = null
     }
 
-    section.addEventListener('wheel', onWheel, { passive: false })
-    section.addEventListener('touchstart', onTouchStart, { passive: true })
-    section.addEventListener('touchmove', onTouchMove, { passive: false })
-    section.addEventListener('touchend', onTouchEnd, { passive: true })
-    section.addEventListener('touchcancel', onTouchEnd, { passive: true })
+    window.addEventListener('wheel', onWheel, { passive: false })
+    window.addEventListener('touchstart', onTouchStart, { passive: true })
+    window.addEventListener('touchmove', onTouchMove, { passive: false })
+    window.addEventListener('touchend', onTouchEnd, { passive: true })
+    window.addEventListener('touchcancel', onTouchEnd, { passive: true })
 
     return () => {
-      section.removeEventListener('wheel', onWheel)
-      section.removeEventListener('touchstart', onTouchStart)
-      section.removeEventListener('touchmove', onTouchMove)
-      section.removeEventListener('touchend', onTouchEnd)
-      section.removeEventListener('touchcancel', onTouchEnd)
+      window.removeEventListener('wheel', onWheel)
+      window.removeEventListener('touchstart', onTouchStart)
+      window.removeEventListener('touchmove', onTouchMove)
+      window.removeEventListener('touchend', onTouchEnd)
+      window.removeEventListener('touchcancel', onTouchEnd)
     }
   }, [isDesktop, cardCount])
 
