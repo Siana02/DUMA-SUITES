@@ -24,8 +24,7 @@ const EXCURSION_IMAGES = [
 
 const CAROUSEL_BREAKPOINT = 768
 const AUTO_CYCLE_MS = 7000
-const SCROLL_RELEASE_MS = 450
-const MANUAL_SCROLL_IDLE_MS = 180
+const SWIPE_THRESHOLD_PX = 48
 const MOBILE_CARD_THRESHOLD = 0.2
 
 // Shared card markup — identical visual design on both desktop and mobile
@@ -33,12 +32,22 @@ function CardInner({ item, images, cta }) {
   return (
     <>
       <div className="exc-card__img-side">
+        <div
+          className="exc-card__img-blur"
+          aria-hidden="true"
+          style={{ backgroundImage: `url(${images.main})` }}
+        />
         <img src={images.main} alt={item.title} className="exc-card__main-img" loading="lazy" />
         <span className="exc-card__badge">{item.badge}</span>
       </div>
 
       <div className="exc-card__text-side">
         <div className="exc-card__text-bg">
+          <div
+            className="exc-card__overlay-blur"
+            aria-hidden="true"
+            style={{ backgroundImage: `url(${images.overlay})` }}
+          />
           <img src={images.overlay} alt="" className="exc-card__overlay-img" aria-hidden="true" loading="lazy" />
           <div className="exc-card__overlay-dark" aria-hidden="true" />
         </div>
@@ -86,13 +95,8 @@ export default function ExcursionsSection() {
 
   const [isCarouselMode, setIsCarouselMode] = useState(false)
   const [activeDeckIndex, setActiveDeckIndex] = useState(0)
-  const [manualCycleTick, setManualCycleTick] = useState(0)
-  const viewportRef = useRef(null)
-  const activeDeckIndexRef = useRef(0)
-  const isProgrammaticScrollRef = useRef(false)
-  const scrollReleaseTimerRef = useRef(null)
-  const manualScrollIdleTimerRef = useRef(null)
-  const manualScrollSessionRef = useRef(false)
+  const touchStartXRef = useRef(0)
+  const touchDeltaXRef = useRef(0)
 
   const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.3, triggerOnce: true })
 
@@ -104,103 +108,38 @@ export default function ExcursionsSection() {
     return () => window.removeEventListener('resize', check)
   }, [])
 
-  useEffect(() => {
-    activeDeckIndexRef.current = activeDeckIndex
-  }, [activeDeckIndex])
-
   // Tablet/desktop: auto-cycle cards every 7 seconds
   useEffect(() => {
     if (!isCarouselMode || cardCount <= 1) return
-    const timer = window.setInterval(() => {
+    const timer = window.setTimeout(() => {
       setActiveDeckIndex(prev => (prev + 1) % cardCount)
     }, AUTO_CYCLE_MS)
-    return () => window.clearInterval(timer)
-  }, [isCarouselMode, cardCount, manualCycleTick])
-
-  // Sync horizontal scroll position when active index changes
-  useEffect(() => {
-    if (!isCarouselMode) {
-      isProgrammaticScrollRef.current = false
-      if (scrollReleaseTimerRef.current) window.clearTimeout(scrollReleaseTimerRef.current)
-      if (manualScrollIdleTimerRef.current) window.clearTimeout(manualScrollIdleTimerRef.current)
-      manualScrollSessionRef.current = false
-    }
-  }, [isCarouselMode])
-
-  useEffect(() => {
-    if (!isCarouselMode) return
-    const viewport = viewportRef.current
-    if (!viewport) return
-
-    isProgrammaticScrollRef.current = true
-    if (scrollReleaseTimerRef.current) window.clearTimeout(scrollReleaseTimerRef.current)
-    viewport.scrollTo({
-      left: activeDeckIndex * viewport.clientWidth,
-      behavior: 'smooth',
-    })
-    scrollReleaseTimerRef.current = window.setTimeout(() => {
-      isProgrammaticScrollRef.current = false
-    }, SCROLL_RELEASE_MS)
-  }, [activeDeckIndex, isCarouselMode])
-
-  // Keep active index in sync with manual horizontal touch/trackpad scroll
-  useEffect(() => {
-    if (!isCarouselMode) return
-    const viewport = viewportRef.current
-    if (!viewport) return
-
-    let rafId = null
-
-    const onScroll = () => {
-      if (rafId !== null) return
-      rafId = window.requestAnimationFrame(() => {
-        const width = viewport.clientWidth
-        if (width <= 0) {
-          rafId = null
-          return
-        }
-        const nextIndex = Math.round(viewport.scrollLeft / width)
-        const clamped = Math.max(0, Math.min(cardCount - 1, nextIndex))
-        const hasChanged = clamped !== activeDeckIndexRef.current
-        if (hasChanged) {
-          setActiveDeckIndex(clamped)
-          if (!isProgrammaticScrollRef.current && !manualScrollSessionRef.current) {
-            setManualCycleTick(prev => prev + 1)
-            manualScrollSessionRef.current = true
-          }
-        }
-        if (!isProgrammaticScrollRef.current) {
-          if (manualScrollIdleTimerRef.current) window.clearTimeout(manualScrollIdleTimerRef.current)
-          manualScrollIdleTimerRef.current = window.setTimeout(() => {
-            manualScrollSessionRef.current = false
-          }, MANUAL_SCROLL_IDLE_MS)
-        }
-        rafId = null
-      })
-    }
-
-    viewport.addEventListener('scroll', onScroll, { passive: true })
-    return () => {
-      viewport.removeEventListener('scroll', onScroll)
-      if (rafId !== null) window.cancelAnimationFrame(rafId)
-      if (manualScrollIdleTimerRef.current) window.clearTimeout(manualScrollIdleTimerRef.current)
-    }
-  }, [isCarouselMode, cardCount])
+    return () => window.clearTimeout(timer)
+  }, [isCarouselMode, cardCount, activeDeckIndex])
 
   const goPrev = () => {
-    setManualCycleTick(prev => prev + 1)
     setActiveDeckIndex(prev => (prev - 1 + cardCount) % cardCount)
   }
 
   const goNext = () => {
-    setManualCycleTick(prev => prev + 1)
     setActiveDeckIndex(prev => (prev + 1) % cardCount)
   }
 
-  useEffect(() => () => {
-    if (scrollReleaseTimerRef.current) window.clearTimeout(scrollReleaseTimerRef.current)
-    if (manualScrollIdleTimerRef.current) window.clearTimeout(manualScrollIdleTimerRef.current)
-  }, [])
+  const handleTouchStart = e => {
+    touchStartXRef.current = e.touches[0]?.clientX ?? 0
+    touchDeltaXRef.current = 0
+  }
+
+  const handleTouchMove = e => {
+    const currentX = e.touches[0]?.clientX ?? 0
+    touchDeltaXRef.current = currentX - touchStartXRef.current
+  }
+
+  const handleTouchEnd = () => {
+    if (Math.abs(touchDeltaXRef.current) < SWIPE_THRESHOLD_PX) return
+    if (touchDeltaXRef.current > 0) goPrev()
+    else goNext()
+  }
 
   return (
     <section
@@ -249,8 +188,16 @@ export default function ExcursionsSection() {
             <button type="button" className="exc-carousel__arrow exc-carousel__arrow--right" onClick={goNext} aria-label="Next excursion">
               <ArrowRight size={18} strokeWidth={1.8} />
             </button>
-            <div ref={viewportRef} className="exc-carousel__viewport">
-              <div className="exc-carousel__track">
+            <div
+              className="exc-carousel__viewport"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <div
+                className="exc-carousel__track"
+                style={{ transform: `translate3d(-${activeDeckIndex * 100}%, 0, 0)` }}
+              >
                 {deckItems.map((item, i) => {
                   const isLeft = i % 2 === 0
                   return (
@@ -341,14 +288,25 @@ export default function ExcursionsSection() {
           position: relative;
           overflow: hidden;
           aspect-ratio: 4 / 3;
+          background: #111;
+        }
+        .exc-card__img-blur {
+          position: absolute;
+          inset: 0;
+          background-size: cover;
+          background-position: center;
+          filter: blur(20px);
+          transform: scale(1.2);
+          opacity: 0.7;
         }
         .exc-card__main-img {
           position: absolute;
           inset: 0;
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain;
           transition: transform 0.5s ease;
+          z-index: 1;
         }
         .exc-card:hover .exc-card__main-img {
           transform: scale(1.04);
@@ -375,15 +333,27 @@ export default function ExcursionsSection() {
           position: absolute;
           inset: 0;
         }
+        .exc-card__overlay-blur {
+          position: absolute;
+          inset: 0;
+          background-size: cover;
+          background-position: center;
+          filter: blur(20px);
+          transform: scale(1.2);
+          opacity: 0.75;
+        }
         .exc-card__overlay-img {
+          position: relative;
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain;
+          z-index: 1;
         }
         .exc-card__overlay-dark {
           position: absolute;
           inset: 0;
-          background: rgba(0,0,0,0.62);
+          background: linear-gradient(180deg, rgba(0,0,0,0.42), rgba(0,0,0,0.7));
+          z-index: 2;
         }
         .exc-card__content {
           position: relative;
@@ -437,25 +407,20 @@ export default function ExcursionsSection() {
             margin-right: calc(50% - 50vw);
           }
           .exc-carousel__viewport {
-            overflow-x: auto;
-            overflow-y: hidden;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
+            overflow: hidden;
             -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-          }
-          .exc-carousel__viewport::-webkit-scrollbar {
-            display: none;
           }
           .exc-carousel__track {
             display: flex;
+            width: 100%;
+            will-change: transform;
+            transition: transform 560ms cubic-bezier(0.4, 0, 0.2, 1);
           }
           .exc-carousel__card {
             flex: 0 0 100%;
             width: 100%;
             min-height: clamp(440px, 52vw, 620px);
             border-radius: 0;
-            scroll-snap-align: start;
           }
           .exc-carousel__arrow {
             position: absolute;
