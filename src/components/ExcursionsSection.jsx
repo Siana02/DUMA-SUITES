@@ -491,21 +491,27 @@ export default function ExcursionsSection() {
         @media (max-width: 767px) {
           .exc-card {
             grid-template-columns: 1fr;
-            min-height: 90vh;
+            min-height: auto;  
+            max-height: 80vh;
+            height: auto;  
           }
           .exc-card--right {
             direction: ltr;
           }
           .exc-card__text-side {
-            min-height: 280px;
+           min-height: auto;       /* remove fixed 280px */
+           padding: 20px;  
           }
           .exc-card__img-side {
-            aspect-ratio: auto;
+            aspect-ratio: 4/3;
+            max-height: 40vh; 
           }
           .exc-card__main-img {
+           width: 100%;
+           height: auto;
+           object-fit: cover; 
             position: relative;
             inset: auto;
-            height: auto;
             display: block;
           }
         }
