@@ -24,6 +24,8 @@ const EXCURSION_IMAGES = [
 
 const CAROUSEL_BREAKPOINT = 768
 const AUTO_CYCLE_MS = 7000
+const SCROLL_RELEASE_MS = 450
+const MANUAL_SCROLL_IDLE_MS = 180
 const MOBILE_CARD_THRESHOLD = 0.2
 
 // Shared card markup — identical visual design on both desktop and mobile
@@ -89,6 +91,8 @@ export default function ExcursionsSection() {
   const activeDeckIndexRef = useRef(0)
   const isProgrammaticScrollRef = useRef(false)
   const scrollReleaseTimerRef = useRef(null)
+  const manualScrollIdleTimerRef = useRef(null)
+  const manualScrollSessionRef = useRef(false)
 
   const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.3, triggerOnce: true })
 
@@ -115,6 +119,15 @@ export default function ExcursionsSection() {
 
   // Sync horizontal scroll position when active index changes
   useEffect(() => {
+    if (!isCarouselMode) {
+      isProgrammaticScrollRef.current = false
+      if (scrollReleaseTimerRef.current) window.clearTimeout(scrollReleaseTimerRef.current)
+      if (manualScrollIdleTimerRef.current) window.clearTimeout(manualScrollIdleTimerRef.current)
+      manualScrollSessionRef.current = false
+    }
+  }, [isCarouselMode])
+
+  useEffect(() => {
     if (!isCarouselMode) return
     const viewport = viewportRef.current
     if (!viewport) return
@@ -127,7 +140,7 @@ export default function ExcursionsSection() {
     })
     scrollReleaseTimerRef.current = window.setTimeout(() => {
       isProgrammaticScrollRef.current = false
-    }, 500)
+    }, SCROLL_RELEASE_MS)
   }, [activeDeckIndex, isCarouselMode])
 
   // Keep active index in sync with manual horizontal touch/trackpad scroll
@@ -151,9 +164,16 @@ export default function ExcursionsSection() {
         const hasChanged = clamped !== activeDeckIndexRef.current
         if (hasChanged) {
           setActiveDeckIndex(clamped)
-          if (!isProgrammaticScrollRef.current) {
+          if (!isProgrammaticScrollRef.current && !manualScrollSessionRef.current) {
             setManualCycleTick(prev => prev + 1)
+            manualScrollSessionRef.current = true
           }
+        }
+        if (!isProgrammaticScrollRef.current) {
+          if (manualScrollIdleTimerRef.current) window.clearTimeout(manualScrollIdleTimerRef.current)
+          manualScrollIdleTimerRef.current = window.setTimeout(() => {
+            manualScrollSessionRef.current = false
+          }, MANUAL_SCROLL_IDLE_MS)
         }
         rafId = null
       })
@@ -163,6 +183,7 @@ export default function ExcursionsSection() {
     return () => {
       viewport.removeEventListener('scroll', onScroll)
       if (rafId !== null) window.cancelAnimationFrame(rafId)
+      if (manualScrollIdleTimerRef.current) window.clearTimeout(manualScrollIdleTimerRef.current)
     }
   }, [isCarouselMode, cardCount])
 
@@ -178,6 +199,7 @@ export default function ExcursionsSection() {
 
   useEffect(() => () => {
     if (scrollReleaseTimerRef.current) window.clearTimeout(scrollReleaseTimerRef.current)
+    if (manualScrollIdleTimerRef.current) window.clearTimeout(manualScrollIdleTimerRef.current)
   }, [])
 
   return (
