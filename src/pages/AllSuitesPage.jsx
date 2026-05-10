@@ -105,11 +105,11 @@ export default function AllSuitesPage() {
   }
 
   return (
-    <>
-      <Helmet>
-        <title>All Suites | Duma Suites Watamu</title>
-        <meta name="description" content="Explore all six signature suites at Duma Suites in Watamu — from intimate one-bedroom retreats to elevated penthouse living." />
-      </Helmet>
+      <>
+        <Helmet>
+          <title>{`${ts.heroTitle} | Duma Suites`}</title>
+          <meta name="description" content={ts.heroSub} />
+        </Helmet>
 
       <main id="suites-page">
         {/* Hero */}

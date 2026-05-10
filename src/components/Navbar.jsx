@@ -48,8 +48,11 @@ function LanguageDropdown({ className = '', idPrefix = 'desktop' }) {
 export default function Navbar() {
   const [scrolled, setScrolled]     = useState(false)
   const [menuOpen, setMenuOpen]     = useState(false)
-  const [activeHref, setActiveHref] = useState('/')
-  const activeHrefRef               = useRef('/')
+  const [homeActiveHref, setHomeActiveHref] = useState('/')
+  const [desktopSuitesOpen, setDesktopSuitesOpen] = useState(false)
+  const activeHrefRef = useRef('/')
+  const suitesCloseTimeoutRef = useRef(null)
+  const suitesGroupRef = useRef(null)
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -66,25 +69,19 @@ export default function Navbar() {
   const suiteChildren = [...(t.footer?.suitesLinks || [])]
     .sort((a, b) => (a.href === '/suites' ? -1 : b.href === '/suites' ? 1 : 0))
 
-  // If we are on a /suites/* route, mark the Suites link active immediately
-  useEffect(() => {
-    if (location.pathname.startsWith('/suites')) {
-      activeHrefRef.current = '/suites'
-      setActiveHref('/suites')
-    } else if (location.pathname === '/gallery') {
-      activeHrefRef.current = '/gallery'
-      setActiveHref('/gallery')
-    } else if (location.pathname.startsWith('/blog')) {
-      activeHrefRef.current = '/blog'
-      setActiveHref('/blog')
-    } else if (location.pathname === '/contact') {
-      activeHrefRef.current = '/#contact'
-      setActiveHref('/#contact')
-    } else if (location.pathname === '/') {
-      activeHrefRef.current = '/'
-      setActiveHref('/')
-    }
-  }, [location.pathname])
+  const routeActiveHref = location.pathname.startsWith('/suites')
+    ? '/suites'
+    : location.pathname === '/gallery'
+      ? '/gallery'
+      : location.pathname.startsWith('/blog')
+        ? '/blog'
+        : location.pathname === '/contact'
+          ? '/#contact'
+          : location.pathname === '/about'
+            ? '/#about'
+            : '/'
+
+  const activeHref = location.pathname === '/' ? homeActiveHref : routeActiveHref
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -114,7 +111,7 @@ export default function Navbar() {
             const href = sectionMap[entry.target.id]
             if (href && href !== activeHrefRef.current) {
               activeHrefRef.current = href
-              setActiveHref(href)
+              setHomeActiveHref(href)
             }
           }
         })
@@ -130,6 +127,53 @@ export default function Navbar() {
     return () => obs.disconnect()
   }, [location.pathname])
 
+  useEffect(() => {
+    activeHrefRef.current = activeHref
+  }, [activeHref])
+
+  const cancelSuitesClose = () => {
+    if (suitesCloseTimeoutRef.current) {
+      window.clearTimeout(suitesCloseTimeoutRef.current)
+      suitesCloseTimeoutRef.current = null
+    }
+  }
+
+  const openSuitesMenu = () => {
+    cancelSuitesClose()
+    setDesktopSuitesOpen(true)
+  }
+
+  const scheduleSuitesClose = () => {
+    cancelSuitesClose()
+    suitesCloseTimeoutRef.current = window.setTimeout(() => {
+      setDesktopSuitesOpen(false)
+      suitesCloseTimeoutRef.current = null
+    }, 280)
+  }
+
+  useEffect(() => {
+    const handlePointerDown = (event) => {
+      if (!suitesGroupRef.current?.contains(event.target)) {
+        setDesktopSuitesOpen(false)
+      }
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setDesktopSuitesOpen(false)
+      }
+    }
+
+    document.addEventListener('pointerdown', handlePointerDown)
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('pointerdown', handlePointerDown)
+      document.removeEventListener('keydown', handleKeyDown)
+      cancelSuitesClose()
+    }
+  }, [])
+
   const handleLinkClick = (href, isRoute) => {
     const clearFocusedElement = () => {
       if (document.activeElement instanceof HTMLElement) {
@@ -137,13 +181,19 @@ export default function Navbar() {
       }
     }
 
+    setDesktopSuitesOpen(false)
+
     if (isRoute) {
       activeHrefRef.current = href
-      setActiveHref(href)
+      if (location.pathname === '/') {
+        setHomeActiveHref(href)
+      }
       navigate(href)
       clearFocusedElement()
     } else if (href.startsWith('/#')) {
       const sectionId = href.slice(2)
+      activeHrefRef.current = href
+
       if (location.pathname !== '/') {
         navigate('/')
         clearFocusedElement()
@@ -151,6 +201,7 @@ export default function Navbar() {
           document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
         }, 100)
       } else {
+        setHomeActiveHref(href)
         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
       }
     }
@@ -188,11 +239,30 @@ export default function Navbar() {
           <nav className="navbar__links" aria-label="Primary navigation">
             {NAV_LINKS.map((link) => (
               link.href === '/suites' ? (
-                <div key={link.href} className="navbar__link-group">
+                <div
+                  key={link.href}
+                  ref={suitesGroupRef}
+                  className={`navbar__link-group${desktopSuitesOpen ? ' navbar__link-group--open' : ''}`}
+                  onMouseEnter={openSuitesMenu}
+                  onMouseLeave={scheduleSuitesClose}
+                  onFocus={openSuitesMenu}
+                  onBlur={(event) => {
+                    if (!event.currentTarget.contains(event.relatedTarget)) {
+                      scheduleSuitesClose()
+                    }
+                  }}
+                >
                   <a
                     href={link.href}
                     className={`navbar__link${activeHref === link.href ? ' navbar__link--active' : ''}`}
                     onClick={e => { e.preventDefault(); handleLinkClick(link.href, link.isRoute) }}
+                    onDoubleClick={(e) => {
+                      e.preventDefault()
+                      cancelSuitesClose()
+                      setDesktopSuitesOpen(false)
+                    }}
+                    aria-haspopup="menu"
+                    aria-expanded={desktopSuitesOpen}
                   >
                     {link.label}
                   </a>
@@ -450,14 +520,17 @@ export default function Navbar() {
           box-shadow: 0 10px 28px rgba(86, 51, 17, 0.12);
           padding: 10px 0;
           opacity: 0;
+          visibility: hidden;
           pointer-events: none;
-          transition: opacity 0.22s ease;
+          transform: translateX(-50%) translateY(8px);
+          transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
           z-index: 1001;
         }
-        .navbar__link-group:hover .navbar__submenu,
-        .navbar__link-group:focus-within .navbar__submenu {
+        .navbar__link-group--open .navbar__submenu {
           opacity: 1;
+          visibility: visible;
           pointer-events: auto;
+          transform: translateX(-50%) translateY(0);
         }
         .navbar__submenu-link {
           display: block;

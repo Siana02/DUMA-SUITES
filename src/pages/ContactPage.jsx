@@ -241,14 +241,14 @@ export default function ContactPage() {
   const handleSubmit = e => { e.preventDefault(); setSubmitted(true) }
 
   return (
-    <>
-      <Helmet>
-        <title>Contact Us | Duma Suites – Watamu</title>
-        <meta
-          name="description"
-          content="Get in touch with the Duma Suites concierge team. We're available daily 8 AM – 10 PM to help with reservations, experiences, and special requests."
-        />
-      </Helmet>
+      <>
+        <Helmet>
+          <title>{`${copy.heroTitle} | Duma Suites`}</title>
+          <meta
+            name="description"
+            content={copy.heroSub}
+          />
+        </Helmet>
 
       <main className="cp-page">
 

@@ -159,11 +159,11 @@ export default function GalleryPage() {
   const t = useT()
 
   return (
-    <>
-      <Helmet>
-        <title>Gallery – Duma Suites</title>
-        <meta name="description" content="Explore Duma Suites through our curated photo gallery showcasing our suites, pools, and the beautiful Watamu coastline." />
-      </Helmet>
+      <>
+        <Helmet>
+          <title>{`${t.gallery.title} | Duma Suites`}</title>
+          <meta name="description" content={t.gallery.sub} />
+        </Helmet>
 
       <main style={{ paddingTop: 80 }}>
         <section className="section gallery-page" id="gallery">

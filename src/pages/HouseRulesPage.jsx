@@ -8,11 +8,11 @@ export default function HouseRulesPage() {
   const hr = t.houseRules
 
   return (
-    <>
-      <Helmet>
-        <title>House Rules – Duma Suites</title>
-        <meta name="description" content="Ghepard Towers Residence regulations for use of apartments and common areas." />
-      </Helmet>
+      <>
+        <Helmet>
+          <title>{`${hr.title} | Duma Suites`}</title>
+          <meta name="description" content={hr.subtitle} />
+        </Helmet>
 
       <main style={{ paddingTop: 80 }}>
         <section className="section house-rules-page">
