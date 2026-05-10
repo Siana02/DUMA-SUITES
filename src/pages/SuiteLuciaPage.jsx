@@ -447,7 +447,7 @@ export default function SuiteLuciaPage() {
               ].map((suite, i) => (
                 <motion.div className="ph-suite-card" key={suite.href} {...fadeUp(0.22 + i * 0.1)} onClick={() => navigate(suite.href)} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(suite.href) } }}>
                   <div className="ph-suite-card__img-wrap">
-                    <img src={suite.image} alt={suite.name} className="ph-suite-card__img" loading="eager" />
+                    <img src={suite.image} alt={suite.name} className="ph-suite-card__img" loading="lazy" />
                     {suite.current && <div className="ph-suite-card__badge">{pt.badgeCurrent}</div>}
                   </div>
                   <div className="ph-suite-card__body">

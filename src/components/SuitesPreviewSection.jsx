@@ -135,6 +135,7 @@ export default function SuitesPreviewSection() {
                   src={suite.image}
                   alt={suite.name}
                   className="sp-slide__img"
+                  loading="lazy"
                 />
 
                 {/* Bottom-left overlay — transparent, white text */}
