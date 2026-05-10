@@ -131,14 +131,22 @@ export default function Navbar() {
   }, [location.pathname])
 
   const handleLinkClick = (href, isRoute) => {
+    const clearFocusedElement = () => {
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur()
+      }
+    }
+
     if (isRoute) {
       activeHrefRef.current = href
       setActiveHref(href)
       navigate(href)
+      clearFocusedElement()
     } else if (href.startsWith('/#')) {
       const sectionId = href.slice(2)
       if (location.pathname !== '/') {
         navigate('/')
+        clearFocusedElement()
         setTimeout(() => {
           document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
         }, 100)
@@ -365,13 +373,14 @@ export default function Navbar() {
           justify-self: start;
         }
         .navbar__logo-img {
-          width: 54px;
-          height: 54px;
+          width: 56px;
+          height: 56px;
           object-fit: contain;
           border-radius: 0;
           transition: filter 0.4s ease;
           /* White version over hero */
           filter: brightness(0) invert(1);
+          transform: translateY(-1px);
         }
         .navbar--scrolled .navbar__logo-img {
           filter: none;

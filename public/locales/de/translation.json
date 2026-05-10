@@ -310,11 +310,11 @@
     },
     "suitesLinks": [
       {
-        "label": "Penthouse Suite Sofia",
+        "label": "Duma Penthouse Sofia",
         "href": "/suites/penthouse-suite-1-sofia"
       },
       {
-        "label": "Penthouse Suite Chiara",
+        "label": "Duma Penthouse Chiara",
         "href": "/suites/penthouse-suite-2-chiara"
       },
       {
@@ -479,7 +479,7 @@
       "viewSuite": "Suite ansehen",
       "cards": [
         {
-          "name": "Penthouse Suite Sofia",
+          "name": "Duma Penthouse Sofia",
           "tagline": "Penthouse · Luxus-Dachterrassenresidenz",
           "desc": "Ein spektakuläres zweistöckiges Penthouse mit Sonnenuntergangs-Dachterrasse, 3 Kingsize-Schlafzimmern und weitem Meerblick.",
           "size": "150 m²",
@@ -503,10 +503,10 @@
           "guests": "6 Gäste"
         },
         {
-          "name": "Penthouse Suite Chiara",
-          "tagline": "Penthouse · Elevated Two-Floor Retreat",
-          "desc": "An elevated two-floor penthouse with 3 bedrooms, 2 living rooms, indoor and outdoor dining, and panoramic sea views.",
-          "size": "160 sq m",
+          "name": "Duma Penthouse Chiara",
+          "tagline": "Penthouse · Elevated Coastal Retreat",
+          "desc": "Ein elegantes Penthouse auf einer Ebene mit 3 Schlafzimmern, 2 Wohnzimmern, Innen- und Außenspeisebereich sowie privater Terrasse und Meerblick vom Balkon.",
+          "size": "135 m²",
           "beds": "3 King Size Beds",
           "guests": "6 Guests"
         },
@@ -514,15 +514,15 @@
           "name": "Duma Suite Lucia",
           "tagline": "2-Bedroom · Coastal Luxury Suite",
           "desc": "A bright and airy two-bedroom suite on the 2nd floor with sea-facing views, a fully equipped kitchen, lounge room, and private terrace.",
-          "size": "100 sq m",
+          "size": "100 m²",
           "beds": "2 King Size Beds",
           "guests": "4 Guests"
         },
         {
           "name": "Duma Suite Roma",
           "tagline": "2-Bedroom · Architectural Suite",
-          "desc": "A design-focused two-bedroom suite with bold architectural interiors, a fully equipped kitchen, lounge room, and private terrace.",
-          "size": "100 sq m",
+          "desc": "A design-focused two-bedroom suite with bold architectural interiors, a fully equipped kitchen, lounge room, and private terrace/balcony access.",
+          "size": "120 m²",
           "beds": "2 King Size Beds",
           "guests": "4 Guests"
         }
@@ -728,10 +728,10 @@
       "viewSuiteBtn": "Suite ansehen →"
     },
     "penthouse": {
-      "metaTitle": "Penthouse Suite Sofia | Duma Suites Watamu",
-      "metaDesc": "Penthouse Suite Sofia bei Duma Suites, Watamu. Ein spektakuläres zweistöckiges Penthouse mit Panoramablick auf Meer und Sonnenuntergang.",
+      "metaTitle": "Duma Penthouse Sofia | Duma Suites Watamu",
+      "metaDesc": "Duma Penthouse Sofia bei Duma Suites, Watamu. Ein spektakuläres zweistöckiges Penthouse mit Panoramablick auf Meer und Sonnenuntergang.",
       "heroEyebrow": "Penthouse-Suite",
-      "heroTitle": "Penthouse Suite Sofia",
+      "heroTitle": "Duma Penthouse Sofia",
       "heroTagline": "Zwei Stockwerke Dachterrassenluxus mit Panoramablick auf Meer und Sonnenuntergang",
       "heroCta1": "Aufenthalt buchen",
       "heroCta2": "Galerie ansehen",
@@ -741,13 +741,13 @@
       "minStay": "Min. 2 Nächte",
       "aboutEyebrow": "Über diese Suite",
       "aboutTitle": "Ein Dachterrassenpenthaus-Rückzug",
-      "aboutText1": "Penthouse Suite Sofia ist ein atemberaubendes zweistöckiges Penthouse im Herzen der Ghepard Towers. Mit drei Kingsize-Schlafzimmern, dem Hauptschlafzimmer im Obergeschoss und einem atemberaubenden Blick auf den Indischen Ozean und Watamus Küstenlinie übertrifft diese Suite jede Erwartung.",
-      "aboutText2": "Von der Dachterrassenlounge bis zum Outdoor-8-Sitzer-Esstisch — Penthouse Suite Sofia ist für unvergessliche Momente konzipiert, ob Sonnenuntergang auf der Terrasse, Abendessen unter den Sternen oder einfach der Luxus des unendlichen Horizonts.",
+      "aboutText1": "Duma Penthouse Sofia ist ein atemberaubendes zweistöckiges Penthouse im Herzen der Ghepard Towers. Mit drei Kingsize-Schlafzimmern, dem Hauptschlafzimmer im Obergeschoss und einem atemberaubenden Blick auf den Indischen Ozean und Watamus Küstenlinie übertrifft diese Suite jede Erwartung.",
+      "aboutText2": "Von der Dachterrassenlounge bis zum Outdoor-8-Sitzer-Esstisch — Duma Penthouse Sofia ist für unvergessliche Momente konzipiert, ob Sonnenuntergang auf der Terrasse, Abendessen unter den Sternen oder einfach der Luxus des unendlichen Horizonts.",
       "aboutCta": "Verfügbarkeit prüfen",
       "aboutBookCta": "Penthouse Sofia buchen",
       "highlightsTitle": "Suite-Highlights",
       "highlights": [
-        "Zweistöckiges Penthouse mit Hauptschlafzimmer im Obergeschoss",
+        "Penthouse auf zwei Ebenen mit Hauptschlafzimmer im Obergeschoss",
         "Drei Kingsize-Betten mit Premium-Bettwäsche",
         "Dachterrassen-Lounge mit Panoramablick auf Meer und Sonnenuntergang",
         "Outdoor-8-Sitzer-Esstisch auf der Terrasse",
@@ -764,7 +764,7 @@
       "amenities": [
         "3 Kingsize-Betten",
         "Mehrere Bäder",
-        "2 Stockwerke",
+        "2 Etagen",
         "Hauptschlafzimmer im Obergeschoss",
         "Vollständige Küchenzeile",
         "Außen-Sonnenliegen",
@@ -831,26 +831,26 @@
       "viewSuiteBtn": "Suite ansehen →"
     },
     "chiara": {
-      "metaTitle": "Penthouse Suite Chiara | Penthouse Suite 2 | Duma Suites Watamu",
-      "metaDesc": "Penthouse Suite Chiara at Duma Suites, Watamu. A luxurious two-floor penthouse with 3 bedrooms, 2 living rooms, indoor and outdoor dining, and panoramic sea views.",
+      "metaTitle": "Duma Penthouse Chiara | Duma Suites Watamu",
+      "metaDesc": "Duma Penthouse Chiara at Duma Suites, Watamu. A refined single-floor penthouse with 3 bedrooms, 2 living rooms, indoor and outdoor dining, plus private terrace and balcony sea views.",
       "heroEyebrow": "Penthouse Suite",
-      "heroTitle": "Penthouse Suite Chiara",
-      "heroTagline": "An elevated two-floor penthouse with sweeping sea views and effortless indoor-outdoor living",
+      "heroTitle": "Duma Penthouse Chiara",
+      "heroTagline": "A refined single-floor penthouse with sweeping sea views and effortless indoor-outdoor living",
       "heroCta1": "Aufenthalt buchen",
       "heroCta2": "Galerie ansehen",
-      "sqm": "160 sq m",
+      "sqm": "135 m²",
       "beds": "3 King Size Beds",
       "guests": "6 Guests",
       "minStay": "2 Night Min",
       "aboutEyebrow": "About this Suite",
       "aboutTitle": "Elevated Penthouse Living",
-      "aboutText1": "Penthouse Suite Chiara is a breathtaking two-floor penthouse that embodies the pinnacle of elevated coastal luxury. Spanning two expansive floors within Ghepard Towers, this suite offers three king bedrooms — including a master bedroom on the upper floor — two generous living rooms, a fully equipped kitchen, and both indoor and outdoor dining areas that capture the essence of sophisticated living by the sea.",
-      "aboutText2": "Step onto the terrace and take in the panoramic views, unwind in the outdoor lounge with the ocean breeze, or gather around the dining table beneath a canopy of stars. With a washing machine, spacious closets, and every thoughtful detail in place, Penthouse Suite Chiara is your complete home above the waves.",
+      "aboutText1": "Duma Penthouse Chiara ist ein atemberaubendes Penthouse auf einer Ebene, das den Höhepunkt gehobenen Küstenluxus verkörpert. In den Ghepard Towers gelegen, bietet diese Suite drei Kingsize-Schlafzimmer, zwei großzügige Wohnbereiche, eine voll ausgestattete Küche sowie Innen- und Außenspeisebereiche, die die Essenz anspruchsvollen Wohnens am Meer einfangen.",
+      "aboutText2": "Treten Sie auf die Terrasse und genießen Sie den Panoramablick, entspannen Sie in der Outdoor-Lounge mit Meeresbrise oder kommen Sie unter dem Sternenhimmel am Esstisch zusammen. Mit Waschmaschine, großzügigen Schränken und liebevollen Details ist Duma Penthouse Chiara Ihr vollständiges Zuhause über den Wellen.",
       "aboutCta": "Jetzt buchen",
-      "aboutBookCta": "Jetzt buchen",
+      "aboutBookCta": "Duma Penthouse Chiara buchen",
       "highlightsTitle": "Suite Highlights",
       "highlights": [
-        "Two-floor penthouse with master bedroom on upper floor",
+        "Single-floor penthouse with expansive layout",
         "Three king-size beds with premium linens",
         "2 spacious living rooms for relaxed gatherings",
         "Indoor and outdoor dining areas",
@@ -860,16 +860,16 @@
         "Daily housekeeping and turndown service"
       ],
       "galleryEyebrow": "Suite-Galerie",
-      "galleryTitle": "Leben in der Penthouse Suite Chiara",
-      "galleryDesc": "Explore the sweeping interiors of Penthouse Suite Chiara — three elegant bedrooms, dual living rooms, a fully equipped kitchen, and breathtaking outdoor spaces that invite you to live life elevated.",
-      "galleryCta": "Penthouse Suite Chiara buchen",
+      "galleryTitle": "Inside Duma Penthouse Chiara",
+      "galleryDesc": "Explore the sweeping interiors of Duma Penthouse Chiara — three elegant bedrooms, dual living rooms, a fully equipped kitchen, and breathtaking outdoor spaces that invite you to live life elevated.",
+      "galleryCta": "Duma Penthouse Chiara buchen",
       "amenitiesEyebrow": "Suite-Ausstattung",
       "amenitiesTitle": "Inklusivleistungen",
       "amenities": [
         "3 King Size Beds",
         "Multiple en-suites & closets",
-        "2 Floors",
-        "Master Bedroom on Upper Floor",
+        "Single-floor layout",
+        "Expansive primary bedroom",
         "Fully Equipped Kitchen",
         "2 Living Rooms",
         "Balcony & Terrace",
@@ -928,18 +928,18 @@
       "badgeCurrent": "Current Suite",
       "sofiaTagline": "Penthouse · Rooftop Luxury Retreat",
       "luciaTagline": "2-Bedroom · Coastal Luxury Suite",
-      "chiaraTagline": "Penthouse · Elevated Two-Floor Retreat",
+      "chiaraTagline": "Penthouse · Elevated Coastal Retreat",
       "viewSuiteBtn": "Suite ansehen"
     },
     "lucia": {
       "metaTitle": "Duma Suite Lucia | Two-Bedroom Suite | Duma Suites Watamu",
-      "metaDesc": "Duma Suite Lucia at Duma Suites, Watamu. A bright and airy two-bedroom suite on the 2nd floor with sea-facing views, kitchen, lounge, and terrace.",
+      "metaDesc": "Duma Suite Lucia at Duma Suites, Watamu. A bright and airy two-bedroom suite on the 2nd floor with sea-facing views, kitchen, lounge, and private terrace access.",
       "heroEyebrow": "Duma Suite",
       "heroTitle": "Duma Suite Lucia",
       "heroTagline": "A bright coastal retreat with sea-facing views and relaxed luxury living",
       "heroCta1": "Aufenthalt buchen",
       "heroCta2": "Galerie ansehen",
-      "sqm": "100 sq m",
+      "sqm": "100 m²",
       "beds": "2 King Size Beds",
       "guests": "4 Guests",
       "minStay": "2 Night Min",
@@ -1023,20 +1023,20 @@
       "suitesEyebrow": "Weitere Suiten entdecken",
       "suitesTitle": "Alle Suiten entdecken",
       "badgeCurrent": "Current Suite",
-      "chiaraTagline": "Penthouse · Elevated Two-Floor Retreat",
+      "chiaraTagline": "Penthouse · Elevated Coastal Retreat",
       "romaTagline": "2-Bedroom · Architectural Suite",
       "luciaTagline": "2-Bedroom · Coastal Luxury Suite",
       "viewSuiteBtn": "Suite ansehen"
     },
     "roma": {
       "metaTitle": "Duma Suite Roma | Two-Bedroom Suite | Duma Suites Watamu",
-      "metaDesc": "Duma Suite Roma at Duma Suites, Watamu. A design-focused two-bedroom suite with architectural interiors, a fully equipped kitchen, lounge room, and terrace.",
+      "metaDesc": "Duma Suite Roma at Duma Suites, Watamu. A design-focused two-bedroom suite with architectural interiors, a fully equipped kitchen, lounge room, and private terrace/balcony access.",
       "heroEyebrow": "Duma Suite",
       "heroTitle": "Duma Suite Roma",
       "heroTagline": "A design-focused architectural retreat with sophisticated interiors and coastal serenity",
       "heroCta1": "Aufenthalt buchen",
       "heroCta2": "Galerie ansehen",
-      "sqm": "100 sq m",
+      "sqm": "120 m²",
       "beds": "2 King Size Beds",
       "guests": "4 Guests",
       "minStay": "2 Night Min",
@@ -1120,7 +1120,7 @@
       "suitesEyebrow": "Weitere Suiten entdecken",
       "suitesTitle": "Alle Suiten entdecken",
       "badgeCurrent": "Current Suite",
-      "chiaraTagline": "Penthouse · Elevated Two-Floor Retreat",
+      "chiaraTagline": "Penthouse · Elevated Coastal Retreat",
       "luciaTagline": "2-Bedroom · Coastal Luxury Suite",
       "romaTagline": "2-Bedroom · Architectural Suite",
       "viewSuiteBtn": "Suite ansehen"
@@ -1203,7 +1203,7 @@
     "viewAll": "Alle Suiten ansehen",
     "suites": [
       {
-        "name": "Penthouse Suite Sofia",
+        "name": "Duma Penthouse Sofia",
         "tagline": "Penthouse · Luxus-Dachterrassenresidenz",
         "size": "150 m²",
         "beds": "3 Kingsize-Betten",
@@ -1224,23 +1224,23 @@
         "guests": "6 Gäste"
       },
       {
-        "name": "Penthouse Suite Chiara",
-        "tagline": "Penthouse · Elevated Two-Floor Retreat",
-        "size": "160 sq m",
+        "name": "Duma Penthouse Chiara",
+        "tagline": "Penthouse · Elevated Coastal Retreat",
+        "size": "135 m²",
         "beds": "3 King Size Beds",
         "guests": "6 Guests"
       },
       {
         "name": "Duma Suite Lucia",
         "tagline": "2-Bedroom · Coastal Luxury Suite",
-        "size": "100 sq m",
+        "size": "100 m²",
         "beds": "2 King Size Beds",
         "guests": "4 Guests"
       },
       {
         "name": "Duma Suite Roma",
         "tagline": "2-Bedroom · Architectural Suite",
-        "size": "100 sq m",
+        "size": "120 m²",
         "beds": "2 King Size Beds",
         "guests": "4 Guests"
       }

@@ -69,48 +69,48 @@ const GALLERY = [
 ]
 const DEFAULT_IMAGE_WIDTH = 352
 const GALLERY_LABELS = [
-  'Penthouse Suite Sofia two floors overview',
-  'Penthouse Suite Sofia outdoor balcony dining area',
-  'Penthouse Suite Sofia balcony dining lights decor',
-  'Penthouse Suite Sofia indoor stairs two floors',
-  'Penthouse Suite Sofia king bedroom',
-  'Penthouse Suite Sofia bedroom view 2',
-  'Penthouse Suite Sofia bedroom view 3',
-  'Penthouse Suite Sofia bedroom view 4',
-  'Penthouse Suite Sofia bedroom view 5',
-  'Penthouse Suite Sofia bedroom view 6',
-  'Penthouse Suite Sofia bedroom sunset view',
-  'Penthouse Suite Sofia lounge living room',
-  'Penthouse Suite Sofia lounge TV area',
-  'Penthouse Suite Sofia recliner chairs view 1',
-  'Penthouse Suite Sofia recliner chairs view 2',
-  'Penthouse Suite Sofia recliner chairs view 3',
-  'Penthouse Suite Sofia recliner chairs terrace view',
-  'Penthouse Suite Sofia indoor dining table',
-  'Penthouse Suite Sofia balcony swing and dining area',
-  'Penthouse Suite Sofia swing view',
-  'Penthouse Suite Sofia sunbeds',
-  'Penthouse Suite Sofia balcony lounge chair',
-  'Penthouse Suite Sofia balcony view',
-  'Penthouse Suite Sofia rooftop pool and ocean view',
-  'Penthouse Suite Sofia aerial pool view',
-  'Penthouse Suite Sofia aerial pool nighttime view',
-  'Penthouse Suite Sofia aerial ground floor pool nighttime view',
-  'Penthouse Suite Sofia sunset view from terrace',
-  'Penthouse Suite Sofia sunset terrace close-up',
-  'Penthouse Suite Sofia sunset garden decor',
-  'Penthouse Suite Sofia sunset garden decor close-up',
-  'Penthouse Suite Sofia resort view at sunset from terrace',
-  'Penthouse Suite Sofia beach view from balcony',
-  'Penthouse Suite Sofia exterior view',
-  'Penthouse Suite Sofia exterior night view',
-  'Penthouse Suite Sofia moon view',
-  'Penthouse Suite Sofia terrace lounge chairs moon view',
-  'Penthouse Suite Sofia ocean view',
-  'Penthouse Suite Sofia closet and dressing room',
-  'Penthouse Suite Sofia indoor closet and desk art view',
-  'Penthouse Suite Sofia balcony view',
-  'Penthouse Suite Sofia sunset view',
+  'Duma Penthouse Sofia two floors overview',
+  'Duma Penthouse Sofia outdoor balcony dining area',
+  'Duma Penthouse Sofia balcony dining lights decor',
+  'Duma Penthouse Sofia indoor stairs two floors',
+  'Duma Penthouse Sofia king bedroom',
+  'Duma Penthouse Sofia bedroom view 2',
+  'Duma Penthouse Sofia bedroom view 3',
+  'Duma Penthouse Sofia bedroom view 4',
+  'Duma Penthouse Sofia bedroom view 5',
+  'Duma Penthouse Sofia bedroom view 6',
+  'Duma Penthouse Sofia bedroom sunset view',
+  'Duma Penthouse Sofia lounge living room',
+  'Duma Penthouse Sofia lounge TV area',
+  'Duma Penthouse Sofia recliner chairs view 1',
+  'Duma Penthouse Sofia recliner chairs view 2',
+  'Duma Penthouse Sofia recliner chairs view 3',
+  'Duma Penthouse Sofia recliner chairs terrace view',
+  'Duma Penthouse Sofia indoor dining table',
+  'Duma Penthouse Sofia balcony swing and dining area',
+  'Duma Penthouse Sofia swing view',
+  'Duma Penthouse Sofia sunbeds',
+  'Duma Penthouse Sofia balcony lounge chair',
+  'Duma Penthouse Sofia balcony view',
+  'Duma Penthouse Sofia rooftop pool and ocean view',
+  'Duma Penthouse Sofia aerial pool view',
+  'Duma Penthouse Sofia aerial pool nighttime view',
+  'Duma Penthouse Sofia aerial ground floor pool nighttime view',
+  'Duma Penthouse Sofia sunset view from terrace',
+  'Duma Penthouse Sofia sunset terrace close-up',
+  'Duma Penthouse Sofia sunset garden decor',
+  'Duma Penthouse Sofia sunset garden decor close-up',
+  'Duma Penthouse Sofia resort view at sunset from terrace',
+  'Duma Penthouse Sofia beach view from balcony',
+  'Duma Penthouse Sofia exterior view',
+  'Duma Penthouse Sofia exterior night view',
+  'Duma Penthouse Sofia moon view',
+  'Duma Penthouse Sofia terrace lounge chairs moon view',
+  'Duma Penthouse Sofia ocean view',
+  'Duma Penthouse Sofia closet and dressing room',
+  'Duma Penthouse Sofia indoor closet and desk art view',
+  'Duma Penthouse Sofia balcony view',
+  'Duma Penthouse Sofia sunset view',
 ]
 
 const AMENITY_ICONS = [
@@ -210,7 +210,7 @@ export default function PenthouseSuiteSofiaPage() {
 
         {/* ── a) Hero ── */}
         <section className="ph-hero">
-          <img src={heroImg} alt="Penthouse Suite Sofia balcony dining lights decor view" className="ph-hero__bg" />
+          <img src={heroImg} alt="Duma Penthouse Sofia balcony dining lights decor view" className="ph-hero__bg" />
           <div className="ph-hero__overlay" aria-hidden="true" />
           <div className="ph-hero__content">
             <motion.span
@@ -279,7 +279,7 @@ export default function PenthouseSuiteSofiaPage() {
 
               <motion.div className="ph-about__img-col" {...fadeUp(0.16)}>
                 <div className="ph-about__img-wrap">
-                  <img src={aboutImg} alt="Penthouse Suite Sofia indoor stairs view" className="ph-about__img" />
+                  <img src={aboutImg} alt="Duma Penthouse Sofia indoor stairs view" className="ph-about__img" />
                   <div className="ph-about__img-overlay" aria-hidden="true" />
                 </div>
               </motion.div>
@@ -289,7 +289,7 @@ export default function PenthouseSuiteSofiaPage() {
                 <div className="ph-about__highlights-img-wrap">
                   <img
                     src={g26}
-                    alt="Penthouse Suite Sofia aerial pool view at nighttime"
+                    alt="Duma Penthouse Sofia aerial pool view at nighttime"
                     className="ph-about__highlights-img"
                     loading="lazy"
                   />
