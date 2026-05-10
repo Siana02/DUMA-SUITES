@@ -9,10 +9,10 @@ import { useT } from '../i18n/useT.js'
 import outsideView2 from '../assets/outside-view2.jpeg'
 import coastalPreview from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
 import serenityPreview from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
-import penthousePreview from '../assets/penthouse-suite-outside-balcony-dinining-table-area.jpg'
-import chiaraPreview from '../assets/suite-chiara-card-preview-image1.jpeg'
-import luciaPreview from '../assets/suite-lucia-homepage-card-preview-image.jpeg'
-import romaPreview from '../assets/suite-roma-card-preview-image.jpeg'
+import penthousePreview from '../assets/penthouse-suite-view-from-outside.jpg'
+import chiaraPreview from '../assets/suite-chiara-outside-terrace-lounge-chairs-with-view.jpeg'
+import luciaPreview from '../assets/suite-lucia-1stbedroom-view1.jpeg'
+import romaPreview from '../assets/suite-roma-1stbedroom-view1.jpeg'
 import cheetahIcon from '../assets/cheetah.png'
 
 const SUITE_IMAGES = [penthousePreview, coastalPreview, serenityPreview, chiaraPreview, luciaPreview, romaPreview]
@@ -108,7 +108,7 @@ export default function AllSuitesPage() {
     <>
       <Helmet>
         <title>All Suites | Duma Suites Watamu</title>
-        <meta name="description" content="Explore the showcased suites at Duma Suites — the One Bedroom Suite and Three Bedroom Suite. Exceptional retreats in Watamu, Kenya, with more options available." />
+        <meta name="description" content="Explore all six signature suites at Duma Suites in Watamu — from intimate one-bedroom retreats to elevated penthouse living." />
       </Helmet>
 
       <main id="suites-page">
@@ -367,8 +367,8 @@ export default function AllSuitesPage() {
           opacity: 0.55;
         }
         .as-intro__divider-icon {
-          width: 26px;
-          height: 26px;
+          width: 32px;
+          height: 32px;
           object-fit: contain;
           opacity: 0.7;
         }
@@ -407,8 +407,8 @@ export default function AllSuitesPage() {
           opacity: 0.55;
         }
         .as-showcase__divider-icon {
-          width: 26px;
-          height: 26px;
+          width: 32px;
+          height: 32px;
           object-fit: contain;
           opacity: 0.7;
         }

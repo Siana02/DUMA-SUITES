@@ -17,6 +17,9 @@ import nightArielImg from '../assets/nighttime-ariel-view.jpg'
 import cheetahIcon from '../assets/cheetah.png'
 import serenityPreviewImg from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
 import penthousePreviewImg from '../assets/penthouse-suite-view-from-outside.jpg'
+import chiaraPreviewImg from '../assets/suite-chiara-outside-terrace-lounge-chairs-with-view.jpeg'
+import luciaPreviewImg from '../assets/suite-lucia-1stbedroom-view1.jpeg'
+import romaPreviewImg from '../assets/suite-roma-1stbedroom-view1.jpeg'
 
 // Gallery images — reordered: bedrooms → closet → lounge/dining → outdoor → kitchen → entrance → bathroom → 1stfloor-view (last)
 import g1  from '../assets/serenity-villa-1st-bedroom-view1.JPEG'
@@ -96,6 +99,11 @@ export default function SerenityVillaPage() {
   const t = useT()
   const ts = t.suites.serenity
   const tc = t.suites.coastal
+  const tp = t.suites.penthouse
+  const tch = t.suites.chiara
+  const tl = t.suites.lucia
+  const tr = t.suites.roma
+  const allSuiteCards = t.suites.all.cards
 
   const galleryTrackRef    = useRef(null)
   const galleryPosRef      = useRef(0)
@@ -523,46 +531,28 @@ export default function SerenityVillaPage() {
             </motion.h2>
 
             <div className="sv-suites__grid">
-              {/* Coastal Haven card */}
-              <motion.div className="sv-suite-card" {...fadeUp(0.22)} onClick={() => navigate('/suites/coastal-haven')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/coastal-haven') } }}>
-                <div className="sv-suite-card__img-wrap">
-                  <img src={coastalPreview} alt={tc.heroTitle} className="sv-suite-card__img" loading="eager" />
-                </div>
-                <div className="sv-suite-card__body">
-                  <p className="sv-suite-card__tagline">{ts.coastalTagline}</p>
-                  <h3 className="sv-suite-card__name">{tc.heroTitle}</h3>
-                  <a href="/suites/coastal-haven" className="btn btn-inverse sv-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/coastal-haven') }}>
-                    {ts.viewSuiteBtn}
-                  </a>
-                </div>
-              </motion.div>
-
-              {/* Serenity Villa card */}
-              <motion.div className="sv-suite-card" {...fadeUp(0.32)} onClick={() => navigate('/suites/serenity-villa')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/serenity-villa') } }}>
-                <div className="sv-suite-card__img-wrap">
-                  <img src={serenityPreviewImg} alt={ts.heroTitle} className="sv-suite-card__img" loading="eager" />
-                  <div className="sv-suite-card__badge">{ts.badgeCurrent}</div>
-                </div>
-                <div className="sv-suite-card__body">
-                  <p className="sv-suite-card__tagline">{ts.serenityTagline}</p>
-                  <h3 className="sv-suite-card__name">{ts.heroTitle}</h3>
-                  <a href="/suites/serenity-villa" className="btn btn-inverse sv-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/serenity-villa') }}>
-                    {ts.viewSuiteBtn}
-                  </a>
-                </div>
-              </motion.div>
-              <motion.div className="sv-suite-card" {...fadeUp(0.42)} onClick={() => navigate('/suites/penthouse-suite-1-sofia')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/penthouse-suite-1-sofia') } }}>
-                <div className="sv-suite-card__img-wrap">
-                  <img src={penthousePreviewImg} alt="Penthouse Suite Sofia" className="sv-suite-card__img" loading="eager" />
-                </div>
-                <div className="sv-suite-card__body">
-                  <p className="sv-suite-card__tagline">{ts.penthouseTagline}</p>
-                  <h3 className="sv-suite-card__name">Penthouse Suite Sofia</h3>
-                  <a href="/suites/penthouse-suite-1-sofia" className="btn btn-inverse sv-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/penthouse-suite-1-sofia') }}>
-                    {ts.viewSuiteBtn}
-                  </a>
-                </div>
-              </motion.div>
+              {[
+                { href: '/suites/penthouse-suite-1-sofia', image: penthousePreviewImg, name: tp.heroTitle, tagline: allSuiteCards[0]?.tagline },
+                { href: '/suites/coastal-haven', image: coastalPreview, name: tc.heroTitle, tagline: allSuiteCards[1]?.tagline },
+                { href: '/suites/serenity-villa', image: serenityPreviewImg, name: ts.heroTitle, tagline: allSuiteCards[2]?.tagline, current: true },
+                { href: '/suites/penthouse-suite-2-chiara', image: chiaraPreviewImg, name: tch.heroTitle, tagline: allSuiteCards[3]?.tagline },
+                { href: '/suites/suite-lucia', image: luciaPreviewImg, name: tl.heroTitle, tagline: allSuiteCards[4]?.tagline },
+                { href: '/suites/suite-roma', image: romaPreviewImg, name: tr.heroTitle, tagline: allSuiteCards[5]?.tagline },
+              ].map((suite, i) => (
+                <motion.div className="sv-suite-card" key={suite.href} {...fadeUp(0.22 + i * 0.1)} onClick={() => navigate(suite.href)} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(suite.href) } }}>
+                  <div className="sv-suite-card__img-wrap">
+                    <img src={suite.image} alt={suite.name} className="sv-suite-card__img" loading="eager" />
+                    {suite.current && <div className="sv-suite-card__badge">{ts.badgeCurrent}</div>}
+                  </div>
+                  <div className="sv-suite-card__body">
+                    <p className="sv-suite-card__tagline">{suite.tagline}</p>
+                    <h3 className="sv-suite-card__name">{suite.name}</h3>
+                    <a href={suite.href} className="btn btn-inverse sv-suite-card__btn" onClick={e => { e.stopPropagation(); navigate(suite.href) }}>
+                      {ts.viewSuiteBtn}
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -886,7 +876,7 @@ export default function SerenityVillaPage() {
         }
         .sv-gallery__img {
           width: 340px;
-          height: 300px;
+          height: 320px;
           object-fit: cover;
           display: block;
           transition: transform 500ms ease;
@@ -1141,8 +1131,8 @@ export default function SerenityVillaPage() {
           background: linear-gradient(to left, transparent, var(--color-teal));
         }
         .sv-suites__divider-icon {
-          width: 2rem;
-          height: 2rem;
+          width: 2.5rem;
+          height: 2.5rem;
           opacity: 0.72;
           flex-shrink: 0;
         }

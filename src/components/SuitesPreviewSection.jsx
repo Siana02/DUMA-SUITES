@@ -9,9 +9,9 @@ import cheetahIcon from '../assets/cheetah.png'
 import coastalPreview from '../assets/coastal-haven-suite-lounge-couch.JPEG'
 import serenityPreview from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
 import penthousePreview from '../assets/penthouse-suite-view-from-outside.jpg'
-import chiaraPreview from '../assets/suite-chiara-card-preview-image1.jpeg'
-import luciaPreview from '../assets/suite-lucia-homepage-card-preview-image.jpeg'
-import romaPreview from '../assets/suite-roma-card-preview-image.jpeg'
+import chiaraPreview from '../assets/suite-chiara-outside-terrace-lounge-chairs-with-view.jpeg'
+import luciaPreview from '../assets/suite-lucia-1stbedroom-view1.jpeg'
+import romaPreview from '../assets/suite-roma-1stbedroom-view1.jpeg'
 
 // Static metadata: images & hrefs only
 const SUITE_META = [
@@ -225,8 +225,8 @@ export default function SuitesPreviewSection() {
           background: linear-gradient(to left, transparent, var(--color-teal));
         }
         .sp-divider__cheetah {
-          width: 2.2rem;
-          height: 2.2rem;
+          width: 2.7rem;
+          height: 2.7rem;
           opacity: 0.72;
           flex-shrink: 0;
         }

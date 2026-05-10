@@ -63,6 +63,8 @@ export default function Navbar() {
     { label: t.nav.blog,    href: '/blog',     isRoute: true },
     { label: t.nav.contact, href: '/#contact', isRoute: false },
   ]
+  const suiteChildren = [...(t.footer?.suitesLinks || [])]
+    .sort((a, b) => (a.href === '/suites' ? -1 : b.href === '/suites' ? 1 : 0))
 
   // If we are on a /suites/* route, mark the Suites link active immediately
   useEffect(() => {
@@ -177,14 +179,38 @@ export default function Navbar() {
           {/* ── Center: Desktop nav ── */}
           <nav className="navbar__links" aria-label="Primary navigation">
             {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className={`navbar__link${activeHref === link.href ? ' navbar__link--active' : ''}`}
-                onClick={e => { e.preventDefault(); handleLinkClick(link.href, link.isRoute) }}
-              >
-                {link.label}
-              </a>
+              link.href === '/suites' ? (
+                <div key={link.href} className="navbar__link-group">
+                  <a
+                    href={link.href}
+                    className={`navbar__link${activeHref === link.href ? ' navbar__link--active' : ''}`}
+                    onClick={e => { e.preventDefault(); handleLinkClick(link.href, link.isRoute) }}
+                  >
+                    {link.label}
+                  </a>
+                  <div className="navbar__submenu" role="menu" aria-label="Suites submenu">
+                    {suiteChildren.map((suite) => (
+                      <a
+                        key={suite.href}
+                        href={suite.href}
+                        className="navbar__submenu-link"
+                        onClick={e => { e.preventDefault(); handleLinkClick(suite.href, true) }}
+                      >
+                        {suite.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={`navbar__link${activeHref === link.href ? ' navbar__link--active' : ''}`}
+                  onClick={e => { e.preventDefault(); handleLinkClick(link.href, link.isRoute) }}
+                >
+                  {link.label}
+                </a>
+              )
             ))}
           </nav>
 
@@ -234,17 +260,47 @@ export default function Navbar() {
           >
             <nav aria-label="Mobile navigation">
               {NAV_LINKS.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  className={`navbar__drawer-link${activeHref === link.href ? ' navbar__drawer-link--active' : ''}`}
-                  onClick={e => { e.preventDefault(); handleLinkClick(link.href, link.isRoute) }}
-                  initial={{ opacity: 0, x: 24 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.06 + 0.1 }}
-                >
-                  {link.label}
-                </motion.a>
+                link.href === '/suites' ? (
+                  <motion.div
+                    key={link.href}
+                    className="navbar__drawer-group"
+                    initial={{ opacity: 0, x: 24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.06 + 0.1 }}
+                  >
+                    <a
+                      href={link.href}
+                      className={`navbar__drawer-link${activeHref === link.href ? ' navbar__drawer-link--active' : ''}`}
+                      onClick={e => { e.preventDefault(); handleLinkClick(link.href, link.isRoute) }}
+                    >
+                      {link.label}
+                    </a>
+                    <div className="navbar__drawer-submenu">
+                      {suiteChildren.map((suite) => (
+                        <a
+                          key={suite.href}
+                          href={suite.href}
+                          className="navbar__drawer-submenu-link"
+                          onClick={e => { e.preventDefault(); handleLinkClick(suite.href, true) }}
+                        >
+                          {suite.label}
+                        </a>
+                      ))}
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    className={`navbar__drawer-link${activeHref === link.href ? ' navbar__drawer-link--active' : ''}`}
+                    onClick={e => { e.preventDefault(); handleLinkClick(link.href, link.isRoute) }}
+                    initial={{ opacity: 0, x: 24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.06 + 0.1 }}
+                  >
+                    {link.label}
+                  </motion.a>
+                )
               ))}
             </nav>
 
@@ -309,8 +365,8 @@ export default function Navbar() {
           justify-self: start;
         }
         .navbar__logo-img {
-          width: 46px;
-          height: 46px;
+          width: 54px;
+          height: 54px;
           object-fit: contain;
           border-radius: 0;
           transition: filter 0.4s ease;
@@ -368,6 +424,46 @@ export default function Navbar() {
           position: relative;
           padding-bottom: 3px;
           transition: color 0.25s ease;
+        }
+        .navbar__link-group {
+          position: relative;
+          display: flex;
+          align-items: center;
+        }
+        .navbar__submenu {
+          position: absolute;
+          top: calc(100% + 16px);
+          left: 50%;
+          transform: translateX(-50%);
+          min-width: 240px;
+          background: rgba(247, 241, 229, 0.98);
+          border: 1px solid rgba(86, 51, 17, 0.12);
+          box-shadow: 0 10px 28px rgba(86, 51, 17, 0.12);
+          padding: 10px 0;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.22s ease;
+          z-index: 1001;
+        }
+        .navbar__link-group:hover .navbar__submenu,
+        .navbar__link-group:focus-within .navbar__submenu {
+          opacity: 1;
+          pointer-events: auto;
+        }
+        .navbar__submenu-link {
+          display: block;
+          padding: 9px 16px;
+          text-decoration: none;
+          font-family: var(--font-nav);
+          font-size: 0.62rem;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--color-espresso);
+          transition: color 0.22s ease, background-color 0.22s ease;
+        }
+        .navbar__submenu-link:hover {
+          color: var(--color-teal);
+          background: rgba(201, 169, 110, 0.08);
         }
         .navbar--scrolled .navbar__link {
           color: var(--color-espresso);
@@ -586,6 +682,30 @@ export default function Navbar() {
           letter-spacing: 0.06em;
           color: var(--color-text-muted);
           margin-top: auto;
+        }
+        .navbar__drawer-group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.8rem;
+        }
+        .navbar__drawer-submenu {
+          display: flex;
+          flex-direction: column;
+          gap: 0.7rem;
+          padding-left: 14px;
+          border-left: 1px solid rgba(86,51,17,0.14);
+        }
+        .navbar__drawer-submenu-link {
+          font-family: var(--font-nav);
+          font-size: 0.7rem;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: rgba(86, 51, 17, 0.88);
+          text-decoration: none;
+          transition: color 0.22s ease;
+        }
+        .navbar__drawer-submenu-link:hover {
+          color: var(--color-teal);
         }
 
         /* ── Responsive ── */

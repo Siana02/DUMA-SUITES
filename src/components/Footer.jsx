@@ -39,7 +39,18 @@ const SOCIAL = [
 export default function Footer() {
   const t = useT()
   const navigate = useNavigate()
-  const suiteLinks = t.footer.suitesLinks
+  const SUITE_ORDER = [
+    '/suites/penthouse-suite-1-sofia',
+    '/suites/penthouse-suite-2-chiara',
+    '/suites/serenity-villa',
+    '/suites/suite-lucia',
+    '/suites/suite-roma',
+    '/suites/coastal-haven',
+    '/suites',
+  ]
+  const suiteLinks = [...t.footer.suitesLinks].sort(
+    (a, b) => SUITE_ORDER.indexOf(a.href) - SUITE_ORDER.indexOf(b.href)
+  )
 
   const EXPLORE_LINKS = [
     { label: t.footer.links.gallery,    href: '/gallery',      isRoute: true },
@@ -207,8 +218,8 @@ export default function Footer() {
           gap: 14px;
         }
         .footer__wordmark-mammal {
-          width: 56px;
-          height: 56px;
+          width: 68px;
+          height: 68px;
           object-fit: contain;
           filter: brightness(0) invert(1);
           opacity: 0.88;

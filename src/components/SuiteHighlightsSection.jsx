@@ -235,8 +235,8 @@ export default function SuiteHighlightsSection() {
           background: linear-gradient(to left,  transparent, var(--color-teal));
         }
         .sh-divider__cheetah {
-          width: 2.2rem;
-          height: 2.2rem;
+          width: 2.7rem;
+          height: 2.7rem;
           opacity: 0.72;
           color: var(--color-teal);
           flex-shrink: 0;
@@ -353,8 +353,8 @@ export default function SuiteHighlightsSection() {
                       transform 0.35s ease;
         }
         .sh-card__icon {
-          width: 26px;
-          height: 26px;
+          width: 32px;
+          height: 32px;
           color: var(--color-teal);
           stroke-width: 1.5;
           transition: color 0.35s ease, transform 0.35s ease;
