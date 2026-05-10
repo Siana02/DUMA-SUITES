@@ -218,12 +218,13 @@ export default function Footer() {
           gap: 14px;
         }
         .footer__wordmark-mammal {
-          width: 68px;
-          height: 68px;
+          width: 71px;
+          height: 71px;
           object-fit: contain;
           filter: brightness(0) invert(1);
           opacity: 0.88;
           flex-shrink: 0;
+          transform: translateY(-1px);
         }
         .footer__wordmark-text {
           display: flex;

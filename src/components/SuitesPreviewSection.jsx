@@ -10,8 +10,8 @@ import coastalPreview from '../assets/coastal-haven-suite-lounge-couch.JPEG'
 import serenityPreview from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
 import penthousePreview from '../assets/penthouse-suite-view-from-outside.jpg'
 import chiaraPreview from '../assets/suite-chiara-outside-terrace-lounge-chairs-with-view.jpeg'
-import luciaPreview from '../assets/suite-lucia-1stbedroom-view1.jpeg'
-import romaPreview from '../assets/suite-roma-1stbedroom-view1.jpeg'
+import luciaPreview from '../assets/suite-lucia-hero-page-section-background-image.jpeg'
+import romaPreview from '../assets/suite-roma-kitchen-with-decor-wall-view.jpeg'
 
 // Static metadata: images & hrefs only
 const SUITE_META = [

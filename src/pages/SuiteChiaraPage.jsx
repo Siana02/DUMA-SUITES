@@ -13,7 +13,7 @@ import {
 import { useT } from '../i18n/useT.js'
 
 import heroImg from '../assets/suite-chiara-hero-page-background-image.jpeg'
-import aboutImg from '../assets/penthouse-suite-chiara-stairs.jpeg'
+import aboutImg from '../assets/suite-chiara.jpeg'
 import sofiaPreviewImg from '../assets/penthouse-suite-view-from-outside.jpg'
 import annaPreviewImg from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
 import alicePreviewImg from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
