@@ -282,8 +282,8 @@ export default function PreloadScreen({ onComplete, images = [] }) {
 
         /* Cheetah silhouette icon */
         .preload__cheetah {
-          width: 2.25rem;
-          height: 2.25rem;
+          width: 2.8rem;
+          height: 2.8rem;
           object-fit: contain;
           flex-shrink: 0;
           display: block;

@@ -17,6 +17,9 @@ import gm2Img from '../assets/General-managers2.jpg'
 import cheetahIcon from '../assets/cheetah.png'
 import serenityPreviewImg from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
 import penthousePreviewImg from '../assets/penthouse-suite-view-from-outside.jpg'
+import chiaraPreviewImg from '../assets/suite-chiara-outside-terrace-lounge-chairs-with-view.jpeg'
+import luciaPreviewImg from '../assets/suite-lucia-1stbedroom-view1.jpeg'
+import romaPreviewImg from '../assets/suite-roma-1stbedroom-view1.jpeg'
 
 // Gallery images — ordered: beds → kitchen/lounge → outdoor/views → entrance → closet → bathroom
 import g1  from '../assets/coastal-haven-suite-kingsize-bed.JPEG'
@@ -83,6 +86,11 @@ export default function CoastalHavenPage() {
   const t = useT()
   const tc = t.suites.coastal
   const ts = t.suites.serenity
+  const tp = t.suites.penthouse
+  const tch = t.suites.chiara
+  const tl = t.suites.lucia
+  const tr = t.suites.roma
+  const allSuiteCards = t.suites.all.cards
 
   // Video play/pause logic — plays on hover and when fully in view
   const tourIframeRef = useRef(null)
@@ -513,46 +521,28 @@ export default function CoastalHavenPage() {
             </motion.h2>
 
             <div className="ch-suites__grid">
-              {/* Coastal Haven card */}
-              <motion.div className="ch-suite-card" {...fadeUp(0.22)} onClick={() => navigate('/suites/coastal-haven')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/coastal-haven') } }}>
-                <div className="ch-suite-card__img-wrap">
-                  <img src={heroImg} alt={tc.heroTitle} className="ch-suite-card__img" loading="eager" />
-                  <div className="ch-suite-card__badge">{tc.badgeCurrent}</div>
-                </div>
-                <div className="ch-suite-card__body">
-                  <p className="ch-suite-card__tagline">{tc.coastalTagline}</p>
-                  <h3 className="ch-suite-card__name">{tc.heroTitle}</h3>
-                  <a href="/suites/coastal-haven" className="btn btn-inverse ch-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/coastal-haven') }}>
-                    {tc.viewSuiteBtn}
-                  </a>
-                </div>
-              </motion.div>
-
-              {/* Serenity Villa card */}
-              <motion.div className="ch-suite-card" {...fadeUp(0.32)} onClick={() => navigate('/suites/serenity-villa')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/serenity-villa') } }}>
-                <div className="ch-suite-card__img-wrap">
-                  <img src={serenityPreviewImg} alt={ts.heroTitle} className="ch-suite-card__img" loading="eager" />
-                </div>
-                <div className="ch-suite-card__body">
-                  <p className="ch-suite-card__tagline">{tc.serenityTagline}</p>
-                  <h3 className="ch-suite-card__name">{ts.heroTitle}</h3>
-                  <a href="/suites/serenity-villa" className="btn btn-inverse ch-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/serenity-villa') }}>
-                    {tc.viewSuiteBtn}
-                  </a>
-                </div>
-              </motion.div>
-              <motion.div className="ch-suite-card" {...fadeUp(0.42)} onClick={() => navigate('/suites/penthouse-suite-1-sofia')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/penthouse-suite-1-sofia') } }}>
-                <div className="ch-suite-card__img-wrap">
-                  <img src={penthousePreviewImg} alt="Penthouse Suite Sofia" className="ch-suite-card__img" loading="eager" />
-                </div>
-                <div className="ch-suite-card__body">
-                  <p className="ch-suite-card__tagline">{tc.penthouseTagline}</p>
-                  <h3 className="ch-suite-card__name">Penthouse Suite Sofia</h3>
-                  <a href="/suites/penthouse-suite-1-sofia" className="btn btn-inverse ch-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/penthouse-suite-1-sofia') }}>
-                    {tc.viewSuiteBtn}
-                  </a>
-                </div>
-              </motion.div>
+              {[
+                { href: '/suites/penthouse-suite-1-sofia', image: penthousePreviewImg, name: tp.heroTitle, tagline: allSuiteCards[0]?.tagline },
+                { href: '/suites/coastal-haven', image: heroImg, name: tc.heroTitle, tagline: allSuiteCards[1]?.tagline, current: true },
+                { href: '/suites/serenity-villa', image: serenityPreviewImg, name: ts.heroTitle, tagline: allSuiteCards[2]?.tagline },
+                { href: '/suites/penthouse-suite-2-chiara', image: chiaraPreviewImg, name: tch.heroTitle, tagline: allSuiteCards[3]?.tagline },
+                { href: '/suites/suite-lucia', image: luciaPreviewImg, name: tl.heroTitle, tagline: allSuiteCards[4]?.tagline },
+                { href: '/suites/suite-roma', image: romaPreviewImg, name: tr.heroTitle, tagline: allSuiteCards[5]?.tagline },
+              ].map((suite, i) => (
+                <motion.div className="ch-suite-card" key={suite.href} {...fadeUp(0.22 + i * 0.1)} onClick={() => navigate(suite.href)} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(suite.href) } }}>
+                  <div className="ch-suite-card__img-wrap">
+                    <img src={suite.image} alt={suite.name} className="ch-suite-card__img" loading="eager" />
+                    {suite.current && <div className="ch-suite-card__badge">{tc.badgeCurrent}</div>}
+                  </div>
+                  <div className="ch-suite-card__body">
+                    <p className="ch-suite-card__tagline">{suite.tagline}</p>
+                    <h3 className="ch-suite-card__name">{suite.name}</h3>
+                    <a href={suite.href} className="btn btn-inverse ch-suite-card__btn" onClick={e => { e.stopPropagation(); navigate(suite.href) }}>
+                      {tc.viewSuiteBtn}
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -822,7 +812,7 @@ export default function CoastalHavenPage() {
           .ch-about__img-wrap {
             aspect-ratio: unset;
             height: 100%;
-            min-height: 400px;
+            min-height: 280px;
           }
         }
         .ch-highlights { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
@@ -880,7 +870,7 @@ export default function CoastalHavenPage() {
         }
         .ch-gallery__img {
           width: 340px;
-          height: 300px;
+          height: 320px;
           object-fit: cover;
           display: block;
           transition: transform 500ms ease;
@@ -1149,8 +1139,8 @@ export default function CoastalHavenPage() {
           background: linear-gradient(to left, transparent, var(--color-teal));
         }
         .ch-suites__divider-icon {
-          width: 2rem;
-          height: 2rem;
+          width: 2.5rem;
+          height: 2.5rem;
           opacity: 0.72;
           flex-shrink: 0;
         }

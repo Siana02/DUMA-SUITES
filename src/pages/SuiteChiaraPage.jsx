@@ -13,9 +13,13 @@ import {
 import { useT } from '../i18n/useT.js'
 
 import heroImg from '../assets/suite-chiara-hero-page-background-image.jpeg'
-import aboutImg from '../assets/suite-chiara-hero-page-section-image.jpeg'
+import aboutImg from '../assets/penthouse-suite-chiara-stairs.jpeg'
 import sofiaPreviewImg from '../assets/penthouse-suite-view-from-outside.jpg'
-import luciaPreviewImg from '../assets/suite-lucia-homepage-card-preview-image.jpeg'
+import annaPreviewImg from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
+import alicePreviewImg from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
+import chiaraPreviewImg from '../assets/suite-chiara-outside-terrace-lounge-chairs-with-view.jpeg'
+import luciaPreviewImg from '../assets/suite-lucia-1stbedroom-view1.jpeg'
+import romaPreviewImg from '../assets/suite-roma-1stbedroom-view1.jpeg'
 
 import g1  from '../assets/suite-chiara-1stbedroom-view1.jpeg'
 import g2  from '../assets/suite-chiara-1stbedroom-view2.jpeg'
@@ -134,8 +138,12 @@ export default function SuiteChiaraPage() {
   const navigate = useNavigate()
   const t = useT()
   const pt = t.suites.chiara
+  const tc = t.suites.coastal
+  const ts = t.suites.serenity
   const tl = t.suites.lucia
+  const tr = t.suites.roma
   const ts_sofia = t.suites.penthouse
+  const allSuiteCards = t.suites.all.cards
 
   const galleryTrackRef    = useRef(null)
   const galleryPosRef      = useRef(0)
@@ -440,43 +448,28 @@ export default function SuiteChiaraPage() {
               {pt.suitesTitle}
             </motion.h2>
             <div className="ph-suites__grid">
-              <motion.div className="ph-suite-card" {...fadeUp(0.22)} onClick={() => navigate('/suites/penthouse-suite-1-sofia')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/penthouse-suite-1-sofia') } }}>
-                <div className="ph-suite-card__img-wrap">
-                  <img src={sofiaPreviewImg} alt={ts_sofia.heroTitle} className="ph-suite-card__img" loading="eager" />
-                </div>
-                <div className="ph-suite-card__body">
-                  <p className="ph-suite-card__tagline">{pt.sofiaTagline}</p>
-                  <h3 className="ph-suite-card__name">{ts_sofia.heroTitle}</h3>
-                  <a href="/suites/penthouse-suite-1-sofia" className="btn btn-inverse ph-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/penthouse-suite-1-sofia') }}>
-                    {pt.viewSuiteBtn}
-                  </a>
-                </div>
-              </motion.div>
-              <motion.div className="ph-suite-card" {...fadeUp(0.32)} onClick={() => navigate('/suites/suite-lucia')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/suite-lucia') } }}>
-                <div className="ph-suite-card__img-wrap">
-                  <img src={luciaPreviewImg} alt={tl.heroTitle} className="ph-suite-card__img" loading="eager" />
-                </div>
-                <div className="ph-suite-card__body">
-                  <p className="ph-suite-card__tagline">{pt.luciaTagline}</p>
-                  <h3 className="ph-suite-card__name">{tl.heroTitle}</h3>
-                  <a href="/suites/suite-lucia" className="btn btn-inverse ph-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/suite-lucia') }}>
-                    {pt.viewSuiteBtn}
-                  </a>
-                </div>
-              </motion.div>
-              <motion.div className="ph-suite-card" {...fadeUp(0.42)} onClick={() => navigate('/suites/penthouse-suite-2-chiara')} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/suites/penthouse-suite-2-chiara') } }}>
-                <div className="ph-suite-card__img-wrap">
-                  <img src={heroImg} alt={pt.heroTitle} className="ph-suite-card__img" loading="eager" />
-                  <div className="ph-suite-card__badge">{pt.badgeCurrent}</div>
-                </div>
-                <div className="ph-suite-card__body">
-                  <p className="ph-suite-card__tagline">{pt.chiaraTagline}</p>
-                  <h3 className="ph-suite-card__name">{pt.heroTitle}</h3>
-                  <a href="/suites/penthouse-suite-2-chiara" className="btn btn-inverse ph-suite-card__btn" onClick={e => { e.stopPropagation(); navigate('/suites/penthouse-suite-2-chiara') }}>
-                    {pt.viewSuiteBtn}
-                  </a>
-                </div>
-              </motion.div>
+              {[
+                { href: '/suites/penthouse-suite-1-sofia', image: sofiaPreviewImg, name: ts_sofia.heroTitle, tagline: allSuiteCards[0]?.tagline },
+                { href: '/suites/coastal-haven', image: annaPreviewImg, name: tc.heroTitle, tagline: allSuiteCards[1]?.tagline },
+                { href: '/suites/serenity-villa', image: alicePreviewImg, name: ts.heroTitle, tagline: allSuiteCards[2]?.tagline },
+                { href: '/suites/penthouse-suite-2-chiara', image: chiaraPreviewImg, name: pt.heroTitle, tagline: allSuiteCards[3]?.tagline, current: true },
+                { href: '/suites/suite-lucia', image: luciaPreviewImg, name: tl.heroTitle, tagline: allSuiteCards[4]?.tagline },
+                { href: '/suites/suite-roma', image: romaPreviewImg, name: tr.heroTitle, tagline: allSuiteCards[5]?.tagline },
+              ].map((suite, i) => (
+                <motion.div className="ph-suite-card" key={suite.href} {...fadeUp(0.22 + i * 0.1)} onClick={() => navigate(suite.href)} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(suite.href) } }}>
+                  <div className="ph-suite-card__img-wrap">
+                    <img src={suite.image} alt={suite.name} className="ph-suite-card__img" loading="eager" />
+                    {suite.current && <div className="ph-suite-card__badge">{pt.badgeCurrent}</div>}
+                  </div>
+                  <div className="ph-suite-card__body">
+                    <p className="ph-suite-card__tagline">{suite.tagline}</p>
+                    <h3 className="ph-suite-card__name">{suite.name}</h3>
+                    <a href={suite.href} className="btn btn-inverse ph-suite-card__btn" onClick={e => { e.stopPropagation(); navigate(suite.href) }}>
+                      {pt.viewSuiteBtn}
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -746,7 +739,7 @@ export default function SuiteChiaraPage() {
         .ph-gallery__item {
           flex-shrink: 0;
           width: 340px;
-          height: 260px;
+          height: 290px;
           border-radius: 10px;
           overflow: hidden;
         }
