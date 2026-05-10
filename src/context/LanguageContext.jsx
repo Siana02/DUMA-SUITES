@@ -36,6 +36,7 @@ export function LanguageProvider({ children }) {
   const [translationVersion, setTranslationVersion] = useState(0)
 
   useEffect(() => {
+    if (lang === 'en' || lang === 'it') return
     let canceled = false
 
     fetch(`/locales/${lang}/translation.json`)
