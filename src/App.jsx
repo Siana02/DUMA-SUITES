@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import PreloadScreen from './components/PreloadScreen'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import CookieBanner from './components/CookieBanner'
+import PwaInstallPrompt from './components/PwaInstallPrompt'
+import Seo from './components/Seo'
 import HomePage from './pages/HomePage'
 import AllSuitesPage from './pages/AllSuitesPage'
 import CoastalHavenPage from './pages/CoastalHavenPage'
@@ -45,13 +46,7 @@ function App() {
 
   return (
     <>
-      <Helmet>
-        <title>Duma Suites | Luxury Coastal Living in Watamu</title>
-        <meta
-          name="description"
-          content="Duma Suites – Luxury Coastal Living in Watamu. Nestled in the heart of Watamu within the prestigious Ghepard Towers, offering an exceptional blend of modern elegance, comfort, and prime coastal living."
-        />
-      </Helmet>
+      <Seo />
 
       {!preloadDone && (
         <PreloadScreen
@@ -62,6 +57,7 @@ function App() {
 
       <ScrollToTop />
       <Navbar />
+      <PwaInstallPrompt preloadDone={preloadDone} />
 
       <Routes>
         <Route path="/" element={<HomePage ready={preloadDone} />} />

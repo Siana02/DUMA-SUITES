@@ -3,30 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Cookie, X, ChevronRight } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { useT } from '../i18n/useT.js'
-
-const STORAGE_KEY = 'duma-cookie-consent'
-
-/**
- * Saves the guest's cookie choice to localStorage.
- * value: 'all' | 'essential' | 'pending-manage'
- */
-function saveConsent(value) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ choice: value, ts: Date.now() }))
-  } catch (_) {
-    // localStorage unavailable — fail silently
-  }
-}
-
-function getStoredConsent() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return null
-    return JSON.parse(raw)
-  } catch (_) {
-    return null
-  }
-}
+import { getCookiePreference, setCookiePreference } from '../utils/localPreferences.js'
 
 export default function CookieBanner({ preloadDone }) {
   const { lang } = useLanguage()
@@ -38,8 +15,9 @@ export default function CookieBanner({ preloadDone }) {
 
   useEffect(() => {
     if (!preloadDone) return
-    const stored = getStoredConsent()
-    if (!stored) {
+    const stored = getCookiePreference()
+
+    if (!stored.hasInteracted) {
       // Small delay so the hero animation settles before the banner slides in
       const timer = setTimeout(() => setVisible(true), 900)
       return () => clearTimeout(timer)
@@ -47,7 +25,7 @@ export default function CookieBanner({ preloadDone }) {
   }, [preloadDone])
 
   const dismiss = (choice) => {
-    saveConsent(choice)
+    setCookiePreference(choice)
     setVisible(false)
   }
 

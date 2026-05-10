@@ -53,25 +53,94 @@ export default defineConfig({
     }),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg'],
+      manifestFilename: 'site.webmanifest',
+      includeAssets: [
+        'favicon.ico',
+        'favicon-16x16.png',
+        'favicon-32x32.png',
+        'apple-touch-icon.png',
+        'android-chrome-192x192.png',
+        'android-chrome-512x512.png',
+        'pwa-192x192.png',
+        'pwa-512x512.png',
+        'safari-pinned-tab.svg',
+        'robots.txt',
+        'sitemap.xml',
+      ],
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,webmanifest}'],
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'google-fonts',
+              expiration: {
+                maxEntries: 10,
+                maxAgeSeconds: 60 * 60 * 24 * 365,
+              },
+            },
+          },
+          {
+            urlPattern: /\/locales\/.*\.json$/i,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'locale-content',
+              networkTimeoutSeconds: 3,
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 60 * 60 * 24 * 7,
+              },
+            },
+          },
+        ],
+      },
       manifest: {
         name: 'Duma Suites',
         short_name: 'Duma Suites',
         description: 'Luxury Coastal Living in Watamu',
+        id: '/',
         theme_color: '#c9a96e',
         background_color: '#f7f1e5',
         display: 'standalone',
+        scope: '/',
         start_url: '/',
+        categories: ['travel', 'lifestyle', 'hospitality'],
+        shortcuts: [
+          {
+            name: 'Explore Suites',
+            short_name: 'Suites',
+            url: '/suites',
+          },
+          {
+            name: 'Gallery',
+            short_name: 'Gallery',
+            url: '/gallery',
+          },
+          {
+            name: 'Contact Concierge',
+            short_name: 'Contact',
+            url: '/contact',
+          },
+        ],
         icons: [
           {
             src: 'pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png',
+            purpose: 'any',
           },
           {
             src: 'pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
+            purpose: 'any',
+          },
+          {
+            src: 'android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
           },
         ],
       },
