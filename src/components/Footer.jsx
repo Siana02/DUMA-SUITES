@@ -83,7 +83,7 @@ export default function Footer() {
         <div className="footer__brand">
           {/* Top: mammal + wordmark */}
           <div className="footer__wordmark">
-            <img src={mammalImg} alt="" className="footer__wordmark-mammal" aria-hidden="true" />
+            <img src={mammalImg} alt="" className="footer__wordmark-mammal" aria-hidden="true" loading="lazy" />
             <div className="footer__wordmark-text">
               <span className="footer__wordmark-name">Duma Suites</span>
               <span className="footer__wordmark-tagline">{t.footer.tagline}</span>
@@ -97,7 +97,7 @@ export default function Footer() {
             className="footer__logo-showcase"
             aria-label="Duma Suites Home"
           >
-            <img src={logoImg} alt="Duma Suites crest" className="footer__logo-showcase__img" />
+            <img src={logoImg} alt="Duma Suites crest" className="footer__logo-showcase__img" loading="lazy" />
             <div className="footer__logo-showcase__overlay" aria-hidden="true" />
           </a>
 

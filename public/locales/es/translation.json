@@ -504,27 +504,27 @@
         },
         {
           "name": "Duma Penthouse Chiara",
-          "tagline": "Penthouse · Elevated Coastal Retreat",
+          "tagline": "Penthouse · Retiro costero elevado",
           "desc": "Un penthouse refinado de una sola planta con 3 dormitorios, 2 salas de estar, comedor interior y exterior, además de acceso a terraza privada y balcón con vistas al mar.",
           "size": "135 m²",
-          "beds": "3 King Size Beds",
-          "guests": "6 Guests"
+          "beds": "3 camas king size",
+          "guests": "6 Huéspedes"
         },
         {
           "name": "Duma Suite Lucia",
-          "tagline": "2-Bedroom · Coastal Luxury Suite",
-          "desc": "A bright and airy two-bedroom suite on the 2nd floor with sea-facing views, a fully equipped kitchen, lounge room, and private terrace.",
+          "tagline": "2 Dormitorios · Suite de lujo costera",
+          "desc": "Una luminosa suite de dos dormitorios en el 2.° piso con vistas al mar, cocina totalmente equipada, sala de estar y terraza privada.",
           "size": "100 m²",
-          "beds": "2 King Size Beds",
-          "guests": "4 Guests"
+          "beds": "2 camas king size",
+          "guests": "4 Huéspedes"
         },
         {
           "name": "Duma Suite Roma",
-          "tagline": "2-Bedroom · Architectural Suite",
-          "desc": "A design-focused two-bedroom suite with bold architectural interiors, a fully equipped kitchen, lounge room, and private terrace/balcony access.",
+          "tagline": "2 Dormitorios · Suite arquitectónica",
+          "desc": "Una suite de dos dormitorios enfocada en el diseño con interiores arquitectónicos atrevidos, cocina totalmente equipada, sala de estar y acceso a terraza/balcón privado.",
           "size": "120 m²",
-          "beds": "2 King Size Beds",
-          "guests": "4 Guests"
+          "beds": "2 camas king size",
+          "guests": "4 Huéspedes"
         }
       ]
     },
@@ -832,90 +832,90 @@
     },
     "chiara": {
       "metaTitle": "Duma Penthouse Chiara | Duma Suites Watamu",
-      "metaDesc": "Duma Penthouse Chiara at Duma Suites, Watamu. A refined single-floor penthouse with 3 bedrooms, 2 living rooms, indoor and outdoor dining, plus private terrace and balcony sea views.",
-      "heroEyebrow": "Penthouse Suite",
+      "metaDesc": "Duma Penthouse Chiara en Duma Suites, Watamu. Un refinado penthouse de una sola planta con 3 dormitorios, 2 salones, comedor interior y exterior, además de acceso a terraza privada y balcón con vistas al mar.",
+      "heroEyebrow": "Suite Penthouse",
       "heroTitle": "Duma Penthouse Chiara",
-      "heroTagline": "A refined single-floor penthouse with sweeping sea views and effortless indoor-outdoor living",
+      "heroTagline": "Un refinado penthouse de una sola planta con amplias vistas al mar y vida interior-exterior sin esfuerzo",
       "heroCta1": "Reservar una estancia",
       "heroCta2": "Ver galería",
       "sqm": "135 m²",
-      "beds": "3 King Size Beds",
-      "guests": "6 Guests",
-      "minStay": "2 Night Min",
-      "aboutEyebrow": "About this Suite",
-      "aboutTitle": "Elevated Penthouse Living",
+      "beds": "3 camas king size",
+      "guests": "6 Huéspedes",
+      "minStay": "Mín. 2 noches",
+      "aboutEyebrow": "Sobre esta suite",
+      "aboutTitle": "Vida en penthouse elevada",
       "aboutText1": "Duma Penthouse Chiara es un impresionante penthouse de una sola planta que encarna la máxima expresión del lujo costero elevado. Ubicada en Ghepard Towers, esta suite ofrece tres dormitorios king, dos amplias salas de estar, una cocina totalmente equipada y zonas de comedor interior y exterior que capturan la esencia de una vida sofisticada junto al mar.",
       "aboutText2": "Sal a la terraza y contempla las vistas panorámicas, relájate en el lounge exterior con la brisa del océano o reúnete alrededor de la mesa bajo un cielo estrellado. Con lavadora, amplios armarios y cada detalle cuidadosamente pensado, Duma Penthouse Chiara es tu hogar completo sobre las olas.",
       "aboutCta": "Reservar ahora",
       "aboutBookCta": "Reservar Duma Penthouse Chiara",
-      "highlightsTitle": "Suite Highlights",
+      "highlightsTitle": "Destacados de la suite",
       "highlights": [
-        "Single-floor penthouse with expansive layout",
-        "Three king-size beds with premium linens",
-        "2 spacious living rooms for relaxed gatherings",
-        "Indoor and outdoor dining areas",
-        "Fully equipped kitchen",
-        "Terrace and balcony lounge areas",
-        "Washing machine for extended stays",
-        "Daily housekeeping and turndown service"
+        "Penthouse de una sola planta con distribución amplia",
+        "Tres camas king size con ropa de cama premium",
+        "2 amplios salones para reuniones relajadas",
+        "Espacios de comedor interior y exterior",
+        "Cocina totalmente equipada",
+        "Terraza y áreas de lounge en el balcón",
+        "Lavadora para estancias prolongadas",
+        "Servicio de limpieza diario y cobertura"
       ],
       "galleryEyebrow": "Galería de la suite",
-      "galleryTitle": "Inside Duma Penthouse Chiara",
-      "galleryDesc": "Explore the sweeping interiors of Duma Penthouse Chiara — three elegant bedrooms, dual living rooms, a fully equipped kitchen, and breathtaking outdoor spaces that invite you to live life elevated.",
+      "galleryTitle": "Interior del Duma Penthouse Chiara",
+      "galleryDesc": "Explora los amplios interiores del Duma Penthouse Chiara — tres elegantes dormitorios, dos salones, una cocina totalmente equipada y espacios exteriores impresionantes.",
       "galleryCta": "Reservar Duma Penthouse Chiara",
       "amenitiesEyebrow": "Comodidades de la suite",
       "amenitiesTitle": "Comodidades incluidas",
       "amenities": [
-        "3 King Size Beds",
-        "Multiple en-suites & closets",
-        "Single-floor layout",
-        "Expansive primary bedroom",
-        "Fully Equipped Kitchen",
-        "2 Living Rooms",
-        "Balcony & Terrace",
-        "Indoor Dining Area",
-        "Outdoor Dining Area",
-        "Washing Machine",
-        "High-speed Wi-Fi",
-        "Daily Housekeeping",
-        "Air conditioning",
+        "3 camas king size",
+        "Varios baños y vestidores",
+        "Penthouse de una sola planta",
+        "Amplio dormitorio principal",
+        "Cocina totalmente equipada",
+        "2 salones",
+        "Balcón y terraza",
+        "Comedor interior",
+        "Comedor exterior",
+        "Lavadora",
+        "Wi-Fi de alta velocidad",
+        "Limpieza diaria",
+        "Aire acondicionado",
         "Smart TV",
-        "Towels provided",
-        "Ceiling Fans",
-        "Pool Access",
-        "Beach Views",
-        "Garden View"
+        "Toallas incluidas",
+        "Ventiladores de techo",
+        "Acceso a la piscina",
+        "Vistas al mar",
+        "Vista al jardín"
       ],
       "policiesEyebrow": "Políticas de la suite",
       "policiesTitle": "Información de estancia",
       "policies": [
         {
           "label": "Check-in",
-          "value": "2:00 PM"
+          "value": "14:00 h"
         },
         {
           "label": "Check-out",
-          "value": "10:00 AM"
+          "value": "10:00 h"
         },
         {
-          "label": "Minimum stay",
-          "value": "2 nights"
+          "label": "Estancia mínima",
+          "value": "2 noches"
         },
         {
-          "label": "Payment",
-          "value": "50% at booking · 50% on check-in"
+          "label": "Pago",
+          "value": "50 % al reservar · 50 % al hacer el check-in"
         },
         {
-          "label": "Cancellation",
-          "value": "Before 30 days: fully refundable · Within 30 days: non-refundable"
+          "label": "Cancelación",
+          "value": "Antes de 30 días: reembolso total · En los 30 días: sin reembolso"
         },
         {
-          "label": "Pets",
-          "value": "Small pets welcome"
+          "label": "Mascotas",
+          "value": "Mascotas pequeñas bienvenidas"
         },
         {
-          "label": "Smoking",
-          "value": "Balcony & lobby only"
+          "label": "Fumar",
+          "value": "Solo en balcón y vestíbulo"
         }
       ],
       "inquireEyebrow": "Reserva",
@@ -925,94 +925,94 @@
       "inquireWhatsapp": "Contactar por WhatsApp",
       "suitesEyebrow": "Explora más suites",
       "suitesTitle": "Explorar todas las suites",
-      "badgeCurrent": "Current Suite",
-      "sofiaTagline": "Penthouse · Rooftop Luxury Retreat",
-      "luciaTagline": "2-Bedroom · Coastal Luxury Suite",
-      "chiaraTagline": "Penthouse · Elevated Coastal Retreat",
+      "badgeCurrent": "Suite actual",
+      "sofiaTagline": "Penthouse · Retiro de lujo en azotea",
+      "luciaTagline": "2 Dormitorios · Suite de lujo costera",
+      "chiaraTagline": "Penthouse · Retiro costero elevado",
       "viewSuiteBtn": "Ver suite"
     },
     "lucia": {
       "metaTitle": "Duma Suite Lucia | Two-Bedroom Suite | Duma Suites Watamu",
       "metaDesc": "Duma Suite Lucia at Duma Suites, Watamu. A bright and airy two-bedroom suite on the 2nd floor with sea-facing views, kitchen, lounge, and private terrace access.",
-      "heroEyebrow": "Duma Suite",
+      "heroEyebrow": "Suite 2 Dormitorios",
       "heroTitle": "Duma Suite Lucia",
-      "heroTagline": "A bright coastal retreat with sea-facing views and relaxed luxury living",
+      "heroTagline": "Un luminoso retiro costero con vistas al mar y vida de lujo relajada",
       "heroCta1": "Reservar una estancia",
       "heroCta2": "Ver galería",
       "sqm": "100 m²",
-      "beds": "2 King Size Beds",
-      "guests": "4 Guests",
-      "minStay": "2 Night Min",
-      "aboutEyebrow": "About this Suite",
-      "aboutTitle": "Bright Coastal Living",
-      "aboutText1": "Duma Suite Lucia is a beautifully appointed two-bedroom suite on the 2nd floor of Ghepard Towers, bathed in natural light and designed for effortless coastal living. With two generously sized bedrooms — each featuring an en-suite bathroom and closet — a fully equipped kitchen, a comfortable lounge room, and a private terrace with outdoor lounge seating, Duma Suite Lucia captures the airy, sun-drenched spirit of the Kenyan coast.",
-      "aboutText2": "Step onto the terrace as the sea breeze rolls in, or gather in the lounge for a relaxed evening in. Every detail of Duma Suite Lucia has been considered to deliver the perfect balance of comfort and coastal elegance.",
+      "beds": "2 camas king size",
+      "guests": "4 Huéspedes",
+      "minStay": "Mín. 2 noches",
+      "aboutEyebrow": "Sobre esta suite",
+      "aboutTitle": "Vida costera luminosa",
+      "aboutText1": "Duma Suite Lucia es una suite de dos dormitorios exquisitamente decorada en el 2.° piso de las Ghepard Towers, con vistas al mar, cocina totalmente equipada, sala de estar y terraza privada.",
+      "aboutText2": "Sal a la terraza mientras entra la brisa marina, o reúnete en el salón para una noche relajada. Este es el lujo costero luminoso.",
       "aboutCta": "Reservar ahora",
       "aboutBookCta": "Reservar ahora",
-      "highlightsTitle": "Suite Highlights",
+      "highlightsTitle": "Destacados de la suite",
       "highlights": [
-        "Two king-size bedrooms with en-suite bathrooms and closets",
-        "Fully equipped kitchen",
-        "Comfortable lounge room",
-        "Private terrace and balcony lounge areas",
-        "Sea-facing views and coastal light",
-        "Located on the 2nd floor for elevated views",
-        "Daily housekeeping and turndown service"
+        "Dos dormitorios king size con baños en suite y vestidores",
+        "Cocina totalmente equipada",
+        "Cómoda sala de estar",
+        "Terraza y áreas de lounge en el balcón",
+        "Vistas al mar y luz costera",
+        "Ubicada en el 2.° piso para vistas elevadas",
+        "Servicio de limpieza diario y cobertura"
       ],
       "galleryEyebrow": "Galería de la suite",
       "galleryTitle": "La vida en Duma Suite Lucia",
-      "galleryDesc": "Step inside Duma Suite Lucia and discover the warmth of two elegant bedrooms, an open kitchen, airy living spaces, and a private terrace where the sea breeze and golden light meet.",
+      "galleryDesc": "Entra a la Duma Suite Lucia y descubre la calidez de dos elegantes dormitorios, una cocina abierta y una terraza aireada con vistas al mar.",
       "galleryCta": "Reservar Duma Suite Lucia",
       "amenitiesEyebrow": "Comodidades de la suite",
       "amenitiesTitle": "Comodidades incluidas",
       "amenities": [
-        "2 King Size Beds",
-        "2 En-suite Bathrooms & Closets",
-        "Lounge Room",
-        "Fully Equipped Kitchen",
-        "Terrace / Balcony Lounge",
-        "Outdoor Lounge Chairs",
-        "Indoor Dining Area",
-        "High-speed Wi-Fi",
-        "Daily Housekeeping",
-        "Air conditioning",
+        "2 camas king size",
+        "2 baños en suite y vestidores",
+        "Sala de estar",
+        "Cocina totalmente equipada",
+        "Terraza / Lounge balcón",
+        "Tumbonas exteriores",
+        "Comedor interior",
+        "Wi-Fi de alta velocidad",
+        "Limpieza diaria",
+        "Aire acondicionado",
         "Smart TV",
-        "Towels provided",
-        "Ceiling Fans",
-        "Pool Access",
-        "Beach Views",
-        "Sea Views"
+        "Toallas incluidas",
+        "Ventiladores de techo",
+        "Acceso a la piscina",
+        "Vistas a la playa",
+        "Vistas al mar"
       ],
       "policiesEyebrow": "Políticas de la suite",
       "policiesTitle": "Información de estancia",
       "policies": [
         {
           "label": "Check-in",
-          "value": "2:00 PM"
+          "value": "14:00 h"
         },
         {
           "label": "Check-out",
-          "value": "10:00 AM"
+          "value": "10:00 h"
         },
         {
-          "label": "Minimum stay",
-          "value": "2 nights"
+          "label": "Estancia mínima",
+          "value": "2 noches"
         },
         {
-          "label": "Payment",
-          "value": "50% at booking · 50% on check-in"
+          "label": "Pago",
+          "value": "50 % al reservar · 50 % al hacer el check-in"
         },
         {
-          "label": "Cancellation",
-          "value": "Before 30 days: fully refundable · Within 30 days: non-refundable"
+          "label": "Cancelación",
+          "value": "Antes de 30 días: reembolso total · En los 30 días: sin reembolso"
         },
         {
-          "label": "Pets",
-          "value": "Small pets welcome"
+          "label": "Mascotas",
+          "value": "Mascotas pequeñas bienvenidas"
         },
         {
-          "label": "Smoking",
-          "value": "Balcony & lobby only"
+          "label": "Fumar",
+          "value": "Solo en balcón y vestíbulo"
         }
       ],
       "inquireEyebrow": "Reserva",
@@ -1022,94 +1022,94 @@
       "inquireWhatsapp": "Contactar por WhatsApp",
       "suitesEyebrow": "Explora más suites",
       "suitesTitle": "Explorar todas las suites",
-      "badgeCurrent": "Current Suite",
-      "chiaraTagline": "Penthouse · Elevated Coastal Retreat",
-      "romaTagline": "2-Bedroom · Architectural Suite",
-      "luciaTagline": "2-Bedroom · Coastal Luxury Suite",
+      "badgeCurrent": "Suite actual",
+      "chiaraTagline": "Penthouse · Retiro costero elevado",
+      "romaTagline": "2 Dormitorios · Suite arquitectónica",
+      "luciaTagline": "2 Dormitorios · Suite de lujo costera",
       "viewSuiteBtn": "Ver suite"
     },
     "roma": {
       "metaTitle": "Duma Suite Roma | Two-Bedroom Suite | Duma Suites Watamu",
       "metaDesc": "Duma Suite Roma at Duma Suites, Watamu. A design-focused two-bedroom suite with architectural interiors, a fully equipped kitchen, lounge room, and private terrace/balcony access.",
-      "heroEyebrow": "Duma Suite",
+      "heroEyebrow": "Suite 2 Dormitorios",
       "heroTitle": "Duma Suite Roma",
-      "heroTagline": "A design-focused architectural retreat with sophisticated interiors and coastal serenity",
+      "heroTagline": "Un retiro arquitectónico enfocado en el diseño con interiores sofisticados y serenidad costera",
       "heroCta1": "Reservar una estancia",
       "heroCta2": "Ver galería",
       "sqm": "120 m²",
-      "beds": "2 King Size Beds",
-      "guests": "4 Guests",
-      "minStay": "2 Night Min",
-      "aboutEyebrow": "About this Suite",
-      "aboutTitle": "Architectural Coastal Retreat",
-      "aboutText1": "Duma Suite Roma is a two-bedroom sanctuary that celebrates bold design, texture, and craftsmanship. From the striking interiors that blend geometric lines with rich dark tones, to the curated art and carefully composed spaces, every corner of Duma Suite Roma communicates a distinctive design sensibility that sets it apart.",
-      "aboutText2": "Two king-size bedrooms — each with a private en-suite bathroom and closet — are complemented by a fully equipped kitchen, a lounge room for relaxed evenings, and a private terrace and balcony lounge area where the cool coastal air invites you to pause, unwind, and take in the view.",
+      "beds": "2 camas king size",
+      "guests": "4 Huéspedes",
+      "minStay": "Mín. 2 noches",
+      "aboutEyebrow": "Sobre esta suite",
+      "aboutTitle": "Retiro costero arquitectónico",
+      "aboutText1": "Duma Suite Roma es un santuario de dos dormitorios que celebra el diseño atrevido, la textura y la artesanía. Cada detalle ha sido cuidadosamente seleccionado para crear una suite que parece una obra de arte.",
+      "aboutText2": "Dos dormitorios king size — cada uno con baño privado y vestidor — complementados por una cocina completa, sala de estar y acceso a terraza/balcón privado.",
       "aboutCta": "Reservar ahora",
       "aboutBookCta": "Reservar ahora",
-      "highlightsTitle": "Suite Highlights",
+      "highlightsTitle": "Destacados de la suite",
       "highlights": [
-        "Two king-size bedrooms with en-suite bathrooms and closets",
-        "Fully equipped kitchen",
-        "Comfortable lounge room",
-        "Private terrace and balcony lounge areas",
-        "Bold architectural interiors and art-focused design",
-        "Sophisticated interior composition and textures",
-        "Daily housekeeping and turndown service"
+        "Dos dormitorios king size con baños en suite y vestidores",
+        "Cocina totalmente equipada",
+        "Cómoda sala de estar",
+        "Terraza y áreas de lounge en el balcón",
+        "Interiores arquitectónicos atrevidos y diseño artístico",
+        "Composición interior sofisticada y texturas",
+        "Servicio de limpieza diario y cobertura"
       ],
       "galleryEyebrow": "Galería de la suite",
       "galleryTitle": "La vida en Duma Suite Roma",
-      "galleryDesc": "Discover the bold geometry, rich textures, and architectural details that define Duma Suite Roma — a space where design meets coastal luxury in every framed moment.",
+      "galleryDesc": "Descubre la geometría atrevida, las texturas ricas y los detalles arquitectónicos que definen la Duma Suite Roma — un retiro como ningún otro.",
       "galleryCta": "Reservar Duma Suite Roma",
       "amenitiesEyebrow": "Comodidades de la suite",
       "amenitiesTitle": "Comodidades incluidas",
       "amenities": [
-        "2 King Size Beds",
-        "2 En-suite Bathrooms & Closets",
-        "Lounge Room",
-        "Fully Equipped Kitchen",
-        "Terrace / Balcony Lounge",
-        "Outdoor Lounge Chairs",
-        "Indoor Dining Area",
-        "High-speed Wi-Fi",
-        "Daily Housekeeping",
-        "Air conditioning",
+        "2 camas king size",
+        "2 baños en suite y vestidores",
+        "Sala de estar",
+        "Cocina totalmente equipada",
+        "Terraza / Lounge balcón",
+        "Tumbonas exteriores",
+        "Comedor interior",
+        "Wi-Fi de alta velocidad",
+        "Limpieza diaria",
+        "Aire acondicionado",
         "Smart TV",
-        "Towels provided",
-        "Ceiling Fans",
-        "Pool Access",
-        "Beach Views",
-        "Sea Views"
+        "Toallas incluidas",
+        "Ventiladores de techo",
+        "Acceso a la piscina",
+        "Vistas a la playa",
+        "Vistas al mar"
       ],
       "policiesEyebrow": "Políticas de la suite",
       "policiesTitle": "Información de estancia",
       "policies": [
         {
           "label": "Check-in",
-          "value": "2:00 PM"
+          "value": "14:00 h"
         },
         {
           "label": "Check-out",
-          "value": "10:00 AM"
+          "value": "10:00 h"
         },
         {
-          "label": "Minimum stay",
-          "value": "2 nights"
+          "label": "Estancia mínima",
+          "value": "2 noches"
         },
         {
-          "label": "Payment",
-          "value": "50% at booking · 50% on check-in"
+          "label": "Pago",
+          "value": "50 % al reservar · 50 % al hacer el check-in"
         },
         {
-          "label": "Cancellation",
-          "value": "Before 30 days: fully refundable · Within 30 days: non-refundable"
+          "label": "Cancelación",
+          "value": "Antes de 30 días: reembolso total · En los 30 días: sin reembolso"
         },
         {
-          "label": "Pets",
-          "value": "Small pets welcome"
+          "label": "Mascotas",
+          "value": "Mascotas pequeñas bienvenidas"
         },
         {
-          "label": "Smoking",
-          "value": "Balcony & lobby only"
+          "label": "Fumar",
+          "value": "Solo en balcón y vestíbulo"
         }
       ],
       "inquireEyebrow": "Reserva",
@@ -1119,10 +1119,10 @@
       "inquireWhatsapp": "Contactar por WhatsApp",
       "suitesEyebrow": "Explora más suites",
       "suitesTitle": "Explorar todas las suites",
-      "badgeCurrent": "Current Suite",
-      "chiaraTagline": "Penthouse · Elevated Coastal Retreat",
-      "luciaTagline": "2-Bedroom · Coastal Luxury Suite",
-      "romaTagline": "2-Bedroom · Architectural Suite",
+      "badgeCurrent": "Suite actual",
+      "chiaraTagline": "Penthouse · Retiro costero elevado",
+      "luciaTagline": "2 Dormitorios · Suite de lujo costera",
+      "romaTagline": "2 Dormitorios · Suite arquitectónica",
       "viewSuiteBtn": "Ver suite"
     }
   },
@@ -1225,24 +1225,24 @@
       },
       {
         "name": "Duma Penthouse Chiara",
-        "tagline": "Penthouse · Elevated Coastal Retreat",
+        "tagline": "Penthouse · Retiro costero elevado",
         "size": "135 m²",
-        "beds": "3 King Size Beds",
-        "guests": "6 Guests"
+        "beds": "3 camas king size",
+        "guests": "6 Huéspedes"
       },
       {
         "name": "Duma Suite Lucia",
-        "tagline": "2-Bedroom · Coastal Luxury Suite",
+        "tagline": "2 Dormitorios · Suite de lujo costera",
         "size": "100 m²",
-        "beds": "2 King Size Beds",
-        "guests": "4 Guests"
+        "beds": "2 camas king size",
+        "guests": "4 Huéspedes"
       },
       {
         "name": "Duma Suite Roma",
-        "tagline": "2-Bedroom · Architectural Suite",
+        "tagline": "2 Dormitorios · Suite arquitectónica",
         "size": "120 m²",
-        "beds": "2 King Size Beds",
-        "guests": "4 Guests"
+        "beds": "2 camas king size",
+        "guests": "4 Huéspedes"
       }
     ]
   },

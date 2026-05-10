@@ -88,7 +88,7 @@ function VideoCard({ src, label }) {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="none"
           aria-label={label}
           title={label}
           disablePictureInPicture

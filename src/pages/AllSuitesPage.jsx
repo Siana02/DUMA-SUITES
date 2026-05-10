@@ -40,7 +40,7 @@ function SuiteCard({ suite, image, href, index }) {
         aria-label={`View ${suite.name}`}
         onKeyDown={(e) => e.key === 'Enter' && navigate(href)}
       >
-        <img src={image} alt={suite.name} className="as-card__img" />
+        <img src={image} alt={suite.name} className="as-card__img" loading="lazy" />
         <div className="as-card__overlay">
           <p className="as-card__tagline">{suite.tagline}</p>
           <h3 className="as-card__name">{suite.name}</h3>
@@ -209,6 +209,7 @@ export default function AllSuitesPage() {
                 frameBorder="0"
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
+                loading="lazy"
                 title="Duma Suites Resort Overview"
                 onLoad={handleOverviewIframeLoad}
               />

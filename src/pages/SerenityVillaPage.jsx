@@ -542,7 +542,7 @@ export default function SerenityVillaPage() {
               ].map((suite, i) => (
                 <motion.div className="sv-suite-card" key={suite.href} {...fadeUp(0.22 + i * 0.1)} onClick={() => navigate(suite.href)} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(suite.href) } }}>
                   <div className="sv-suite-card__img-wrap">
-                    <img src={suite.image} alt={suite.name} className="sv-suite-card__img" loading="eager" />
+                    <img src={suite.image} alt={suite.name} className="sv-suite-card__img" loading="lazy" />
                     {suite.current && <div className="sv-suite-card__badge">{ts.badgeCurrent}</div>}
                   </div>
                   <div className="sv-suite-card__body">
