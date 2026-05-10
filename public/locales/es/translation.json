@@ -506,7 +506,7 @@
           "name": "Duma Penthouse Chiara",
           "tagline": "Penthouse · Elevated Coastal Retreat",
           "desc": "Un penthouse refinado de una sola planta con 3 dormitorios, 2 salas de estar, comedor interior y exterior, además de acceso a terraza privada y balcón con vistas al mar.",
-          "size": "135 sq m",
+          "size": "135 m²",
           "beds": "3 King Size Beds",
           "guests": "6 Guests"
         },
@@ -514,7 +514,7 @@
           "name": "Duma Suite Lucia",
           "tagline": "2-Bedroom · Coastal Luxury Suite",
           "desc": "A bright and airy two-bedroom suite on the 2nd floor with sea-facing views, a fully equipped kitchen, lounge room, and private terrace.",
-          "size": "100 sq m",
+          "size": "100 m²",
           "beds": "2 King Size Beds",
           "guests": "4 Guests"
         },
@@ -522,7 +522,7 @@
           "name": "Duma Suite Roma",
           "tagline": "2-Bedroom · Architectural Suite",
           "desc": "A design-focused two-bedroom suite with bold architectural interiors, a fully equipped kitchen, lounge room, and private terrace/balcony access.",
-          "size": "120 sq m",
+          "size": "120 m²",
           "beds": "2 King Size Beds",
           "guests": "4 Guests"
         }
@@ -764,8 +764,8 @@
       "amenities": [
         "3 camas king size",
         "Múltiples baños",
-        "2 Floors",
-        "Master Bedroom on Top Floor",
+        "2 plantas",
+        "Dormitorio principal en planta superior",
         "Cocina totalmente equipada",
         "Tumbonas exteriores",
         "Sillas de salón",
@@ -838,7 +838,7 @@
       "heroTagline": "A refined single-floor penthouse with sweeping sea views and effortless indoor-outdoor living",
       "heroCta1": "Reservar una estancia",
       "heroCta2": "Ver galería",
-      "sqm": "135 sq m",
+      "sqm": "135 m²",
       "beds": "3 King Size Beds",
       "guests": "6 Guests",
       "minStay": "2 Night Min",
@@ -847,7 +847,7 @@
       "aboutText1": "Duma Penthouse Chiara es un impresionante penthouse de una sola planta que encarna la máxima expresión del lujo costero elevado. Ubicada en Ghepard Towers, esta suite ofrece tres dormitorios king, dos amplias salas de estar, una cocina totalmente equipada y zonas de comedor interior y exterior que capturan la esencia de una vida sofisticada junto al mar.",
       "aboutText2": "Sal a la terraza y contempla las vistas panorámicas, relájate en el lounge exterior con la brisa del océano o reúnete alrededor de la mesa bajo un cielo estrellado. Con lavadora, amplios armarios y cada detalle cuidadosamente pensado, Duma Penthouse Chiara es tu hogar completo sobre las olas.",
       "aboutCta": "Reservar ahora",
-      "aboutBookCta": "Book Duma Penthouse Chiara",
+      "aboutBookCta": "Reservar Duma Penthouse Chiara",
       "highlightsTitle": "Suite Highlights",
       "highlights": [
         "Single-floor penthouse with expansive layout",
@@ -862,7 +862,7 @@
       "galleryEyebrow": "Galería de la suite",
       "galleryTitle": "Inside Duma Penthouse Chiara",
       "galleryDesc": "Explore the sweeping interiors of Duma Penthouse Chiara — three elegant bedrooms, dual living rooms, a fully equipped kitchen, and breathtaking outdoor spaces that invite you to live life elevated.",
-      "galleryCta": "Book Duma Penthouse Chiara",
+      "galleryCta": "Reservar Duma Penthouse Chiara",
       "amenitiesEyebrow": "Comodidades de la suite",
       "amenitiesTitle": "Comodidades incluidas",
       "amenities": [
@@ -939,7 +939,7 @@
       "heroTagline": "A bright coastal retreat with sea-facing views and relaxed luxury living",
       "heroCta1": "Reservar una estancia",
       "heroCta2": "Ver galería",
-      "sqm": "100 sq m",
+      "sqm": "100 m²",
       "beds": "2 King Size Beds",
       "guests": "4 Guests",
       "minStay": "2 Night Min",
@@ -1036,7 +1036,7 @@
       "heroTagline": "A design-focused architectural retreat with sophisticated interiors and coastal serenity",
       "heroCta1": "Reservar una estancia",
       "heroCta2": "Ver galería",
-      "sqm": "120 sq m",
+      "sqm": "120 m²",
       "beds": "2 King Size Beds",
       "guests": "4 Guests",
       "minStay": "2 Night Min",
@@ -1226,21 +1226,21 @@
       {
         "name": "Duma Penthouse Chiara",
         "tagline": "Penthouse · Elevated Coastal Retreat",
-        "size": "135 sq m",
+        "size": "135 m²",
         "beds": "3 King Size Beds",
         "guests": "6 Guests"
       },
       {
         "name": "Duma Suite Lucia",
         "tagline": "2-Bedroom · Coastal Luxury Suite",
-        "size": "100 sq m",
+        "size": "100 m²",
         "beds": "2 King Size Beds",
         "guests": "4 Guests"
       },
       {
         "name": "Duma Suite Roma",
         "tagline": "2-Bedroom · Architectural Suite",
-        "size": "120 sq m",
+        "size": "120 m²",
         "beds": "2 King Size Beds",
         "guests": "4 Guests"
       }
