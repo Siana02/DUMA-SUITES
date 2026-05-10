@@ -10,10 +10,13 @@ import outsideView2 from '../assets/outside-view2.jpeg'
 import coastalPreview from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
 import serenityPreview from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
 import penthousePreview from '../assets/penthouse-suite-outside-balcony-dinining-table-area.jpg'
+import chiaraPreview from '../assets/suite-chiara-card-preview-image1.jpeg'
+import luciaPreview from '../assets/suite-lucia-homepage-card-preview-image.jpeg'
+import romaPreview from '../assets/suite-roma-card-preview-image.jpeg'
 import cheetahIcon from '../assets/cheetah.png'
 
-const SUITE_IMAGES = [penthousePreview, coastalPreview, serenityPreview]
-const SUITE_HREFS = ['/suites/penthouse-suite-1-sofia', '/suites/coastal-haven', '/suites/serenity-villa']
+const SUITE_IMAGES = [penthousePreview, coastalPreview, serenityPreview, chiaraPreview, luciaPreview, romaPreview]
+const SUITE_HREFS = ['/suites/penthouse-suite-1-sofia', '/suites/coastal-haven', '/suites/serenity-villa', '/suites/penthouse-suite-2-chiara', '/suites/suite-lucia', '/suites/suite-roma']
 
 function SuiteCard({ suite, image, href, index }) {
   const { ref, inView } = useInView({ threshold: 0.15, triggerOnce: true })

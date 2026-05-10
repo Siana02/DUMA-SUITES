@@ -322,6 +322,18 @@
         "href": "/suites/penthouse-suite-1-sofia"
       },
       {
+        "label": "Suite Chiara",
+        "href": "/suites/penthouse-suite-2-chiara"
+      },
+      {
+        "label": "Suite Lucia",
+        "href": "/suites/suite-lucia"
+      },
+      {
+        "label": "Suite Roma",
+        "href": "/suites/suite-roma"
+      },
+      {
         "label": "Alle Suiten",
         "href": "/suites"
       }
@@ -463,7 +475,7 @@
       "videoTitle": "Duma Suites erleben",
       "showcaseEyebrow": "Unsere vorgestellten Suiten",
       "showcaseTitle": "Wählen Sie Ihre Suite",
-      "showcaseIntro": "Drei verschiedene Fluchten, jede für eine andere Art, Watamu zu erleben.",
+      "showcaseIntro": "Six distinct escapes, each crafted for a different way of experiencing Watamu.",
       "viewSuite": "Suite ansehen",
       "cards": [
         {
@@ -489,6 +501,30 @@
           "size": "135 m²",
           "beds": "2 Kingsize-Betten, 1 französisches Bett",
           "guests": "6 Gäste"
+        },
+        {
+          "name": "Suite Chiara",
+          "tagline": "Penthouse · Elevated Two-Floor Retreat",
+          "desc": "An elevated two-floor penthouse with 3 bedrooms, 2 living rooms, indoor and outdoor dining, and panoramic sea views.",
+          "size": "160 sq m",
+          "beds": "3 King Size Beds",
+          "guests": "6 Guests"
+        },
+        {
+          "name": "Suite Lucia",
+          "tagline": "2-Bedroom · Coastal Luxury Suite",
+          "desc": "A bright and airy two-bedroom suite on the 2nd floor with sea-facing views, a fully equipped kitchen, lounge room, and private terrace.",
+          "size": "100 sq m",
+          "beds": "2 King Size Beds",
+          "guests": "4 Guests"
+        },
+        {
+          "name": "Suite Roma",
+          "tagline": "2-Bedroom · Architectural Suite",
+          "desc": "A design-focused two-bedroom suite with bold architectural interiors, a fully equipped kitchen, lounge room, and private terrace.",
+          "size": "100 sq m",
+          "beds": "2 King Size Beds",
+          "guests": "4 Guests"
         }
       ]
     },
@@ -793,6 +829,301 @@
       "serenityTagline": "3-Schlafzimmer · Luxuriöser Familienrückzug",
       "penthouseTagline": "Penthouse · Luxus-Dachterrassenresidenz",
       "viewSuiteBtn": "Suite ansehen →"
+    },
+    "chiara": {
+      "metaTitle": "Suite Chiara | Penthouse Suite 2 | Duma Suites Watamu",
+      "metaDesc": "Suite Chiara at Duma Suites, Watamu. A luxurious two-floor penthouse with 3 bedrooms, 2 living rooms, indoor and outdoor dining, and panoramic sea views.",
+      "heroEyebrow": "Penthouse Suite",
+      "heroTitle": "Suite Chiara",
+      "heroTagline": "An elevated two-floor penthouse with sweeping sea views and effortless indoor-outdoor living",
+      "heroCta1": "Book a Stay",
+      "heroCta2": "View Gallery",
+      "sqm": "160 sq m",
+      "beds": "3 King Size Beds",
+      "guests": "6 Guests",
+      "minStay": "2 Night Min",
+      "aboutEyebrow": "About this Suite",
+      "aboutTitle": "Elevated Penthouse Living",
+      "aboutText1": "Suite Chiara is a breathtaking two-floor penthouse that embodies the pinnacle of elevated coastal luxury. Spanning two expansive floors within Ghepard Towers, this suite offers three king bedrooms — including a master bedroom on the upper floor — two generous living rooms, a fully equipped kitchen, and both indoor and outdoor dining areas that capture the essence of sophisticated living by the sea.",
+      "aboutText2": "Step onto the terrace and take in the panoramic views, unwind in the outdoor lounge with the ocean breeze, or gather around the dining table beneath a canopy of stars. With a washing machine, spacious closets, and every thoughtful detail in place, Suite Chiara is your complete home above the waves.",
+      "aboutCta": "Check Availability",
+      "aboutBookCta": "Book Suite Chiara",
+      "highlightsTitle": "Suite Highlights",
+      "highlights": [
+        "Two-floor penthouse with master bedroom on upper floor",
+        "Three king-size beds with premium linens",
+        "2 spacious living rooms for relaxed gatherings",
+        "Indoor and outdoor dining areas",
+        "Fully equipped kitchen",
+        "Terrace and balcony lounge areas",
+        "Washing machine for extended stays",
+        "Daily housekeeping and turndown service"
+      ],
+      "galleryEyebrow": "Photo Gallery",
+      "galleryTitle": "Inside Suite Chiara",
+      "galleryDesc": "Explore the sweeping interiors of Suite Chiara — three elegant bedrooms, dual living rooms, a fully equipped kitchen, and breathtaking outdoor spaces that invite you to live life elevated.",
+      "galleryCta": "Book Suite Chiara",
+      "amenitiesEyebrow": "What's Included",
+      "amenitiesTitle": "Suite Amenities",
+      "amenities": [
+        "3 King Size Beds",
+        "Multiple en-suites & closets",
+        "2 Floors",
+        "Master Bedroom on Upper Floor",
+        "Fully Equipped Kitchen",
+        "2 Living Rooms",
+        "Balcony & Terrace",
+        "Indoor Dining Area",
+        "Outdoor Dining Area",
+        "Washing Machine",
+        "High-speed Wi-Fi",
+        "Daily Housekeeping",
+        "Air conditioning",
+        "Smart TV",
+        "Towels provided",
+        "Ceiling Fans",
+        "Pool Access",
+        "Beach Views",
+        "Garden View"
+      ],
+      "policiesEyebrow": "Policies & Check-in",
+      "policiesTitle": "Know Before You Go",
+      "policies": [
+        {
+          "label": "Check-in",
+          "value": "2:00 PM"
+        },
+        {
+          "label": "Check-out",
+          "value": "10:00 AM"
+        },
+        {
+          "label": "Minimum stay",
+          "value": "2 nights"
+        },
+        {
+          "label": "Payment",
+          "value": "50% at booking · 50% on check-in"
+        },
+        {
+          "label": "Cancellation",
+          "value": "Before 30 days: fully refundable · Within 30 days: non-refundable"
+        },
+        {
+          "label": "Pets",
+          "value": "Small pets welcome"
+        },
+        {
+          "label": "Smoking",
+          "value": "Balcony & lobby only"
+        }
+      ],
+      "inquireEyebrow": "Reservations",
+      "inquireTitle": "Reserve Your Stay",
+      "inquireSub": "Ready to experience penthouse luxury at its finest? Contact us to check availability and rates.",
+      "inquireEmail": "Email Us",
+      "inquireWhatsapp": "WhatsApp Us",
+      "suitesEyebrow": "Our Suites",
+      "suitesTitle": "Explore All Suites",
+      "badgeCurrent": "Current Suite",
+      "sofiaTagline": "Penthouse · Rooftop Luxury Retreat",
+      "luciaTagline": "2-Bedroom · Coastal Luxury Suite",
+      "chiaraTagline": "Penthouse · Elevated Two-Floor Retreat",
+      "viewSuiteBtn": "View Suite →"
+    },
+    "lucia": {
+      "metaTitle": "Suite Lucia | Two-Bedroom Suite | Duma Suites Watamu",
+      "metaDesc": "Suite Lucia at Duma Suites, Watamu. A bright and airy two-bedroom suite on the 2nd floor with sea-facing views, kitchen, lounge, and terrace.",
+      "heroEyebrow": "2-Bedroom Suite",
+      "heroTitle": "Suite Lucia",
+      "heroTagline": "A bright coastal retreat with sea-facing views and relaxed luxury living",
+      "heroCta1": "Book a Stay",
+      "heroCta2": "View Gallery",
+      "sqm": "100 sq m",
+      "beds": "2 King Size Beds",
+      "guests": "4 Guests",
+      "minStay": "2 Night Min",
+      "aboutEyebrow": "About this Suite",
+      "aboutTitle": "Bright Coastal Living",
+      "aboutText1": "Suite Lucia is a beautifully appointed two-bedroom suite on the 2nd floor of Ghepard Towers, bathed in natural light and designed for effortless coastal living. With two generously sized bedrooms — each featuring an en-suite bathroom and closet — a fully equipped kitchen, a comfortable lounge room, and a private terrace with outdoor lounge seating, Suite Lucia captures the airy, sun-drenched spirit of the Kenyan coast.",
+      "aboutText2": "Step onto the terrace as the sea breeze rolls in, or gather in the lounge for a relaxed evening in. Every detail of Suite Lucia has been considered to deliver the perfect balance of comfort and coastal elegance.",
+      "aboutCta": "Check Availability",
+      "aboutBookCta": "Book Suite Lucia",
+      "highlightsTitle": "Suite Highlights",
+      "highlights": [
+        "Two king-size bedrooms with en-suite bathrooms and closets",
+        "Fully equipped kitchen",
+        "Comfortable lounge room",
+        "Private terrace and balcony lounge areas",
+        "Sea-facing views and coastal light",
+        "Located on the 2nd floor for elevated views",
+        "Daily housekeeping and turndown service"
+      ],
+      "galleryEyebrow": "Photo Gallery",
+      "galleryTitle": "Inside Suite Lucia",
+      "galleryDesc": "Step inside Suite Lucia and discover the warmth of two elegant bedrooms, an open kitchen, airy living spaces, and a private terrace where the sea breeze and golden light meet.",
+      "galleryCta": "Book Suite Lucia",
+      "amenitiesEyebrow": "What's Included",
+      "amenitiesTitle": "Suite Amenities",
+      "amenities": [
+        "2 King Size Beds",
+        "2 En-suite Bathrooms & Closets",
+        "Lounge Room",
+        "Fully Equipped Kitchen",
+        "Terrace / Balcony Lounge",
+        "Outdoor Lounge Chairs",
+        "Indoor Dining Area",
+        "High-speed Wi-Fi",
+        "Daily Housekeeping",
+        "Air conditioning",
+        "Smart TV",
+        "Towels provided",
+        "Ceiling Fans",
+        "Pool Access",
+        "Beach Views",
+        "Sea Views"
+      ],
+      "policiesEyebrow": "Policies & Check-in",
+      "policiesTitle": "Know Before You Go",
+      "policies": [
+        {
+          "label": "Check-in",
+          "value": "2:00 PM"
+        },
+        {
+          "label": "Check-out",
+          "value": "10:00 AM"
+        },
+        {
+          "label": "Minimum stay",
+          "value": "2 nights"
+        },
+        {
+          "label": "Payment",
+          "value": "50% at booking · 50% on check-in"
+        },
+        {
+          "label": "Cancellation",
+          "value": "Before 30 days: fully refundable · Within 30 days: non-refundable"
+        },
+        {
+          "label": "Pets",
+          "value": "Small pets welcome"
+        },
+        {
+          "label": "Smoking",
+          "value": "Balcony & lobby only"
+        }
+      ],
+      "inquireEyebrow": "Reservations",
+      "inquireTitle": "Reserve Your Stay",
+      "inquireSub": "Ready to experience the bright coastal elegance of Suite Lucia? Contact us to check availability and rates.",
+      "inquireEmail": "Email Us",
+      "inquireWhatsapp": "WhatsApp Us",
+      "suitesEyebrow": "Our Suites",
+      "suitesTitle": "Explore All Suites",
+      "badgeCurrent": "Current Suite",
+      "chiaraTagline": "Penthouse · Elevated Two-Floor Retreat",
+      "romaTagline": "2-Bedroom · Architectural Suite",
+      "luciaTagline": "2-Bedroom · Coastal Luxury Suite",
+      "viewSuiteBtn": "View Suite →"
+    },
+    "roma": {
+      "metaTitle": "Suite Roma | Two-Bedroom Suite | Duma Suites Watamu",
+      "metaDesc": "Suite Roma at Duma Suites, Watamu. A design-focused two-bedroom suite with architectural interiors, a fully equipped kitchen, lounge room, and terrace.",
+      "heroEyebrow": "2-Bedroom Suite",
+      "heroTitle": "Suite Roma",
+      "heroTagline": "A design-focused architectural retreat with sophisticated interiors and coastal serenity",
+      "heroCta1": "Book a Stay",
+      "heroCta2": "View Gallery",
+      "sqm": "100 sq m",
+      "beds": "2 King Size Beds",
+      "guests": "4 Guests",
+      "minStay": "2 Night Min",
+      "aboutEyebrow": "About this Suite",
+      "aboutTitle": "Architectural Coastal Retreat",
+      "aboutText1": "Suite Roma is a two-bedroom sanctuary that celebrates bold design, texture, and craftsmanship. From the striking interiors that blend geometric lines with rich dark tones, to the curated art and carefully composed spaces, every corner of Suite Roma communicates a distinctive design sensibility that sets it apart.",
+      "aboutText2": "Two king-size bedrooms — each with a private en-suite bathroom and closet — are complemented by a fully equipped kitchen, a lounge room for relaxed evenings, and a private terrace and balcony lounge area where the cool coastal air invites you to pause, unwind, and take in the view.",
+      "aboutCta": "Check Availability",
+      "aboutBookCta": "Book Suite Roma",
+      "highlightsTitle": "Suite Highlights",
+      "highlights": [
+        "Two king-size bedrooms with en-suite bathrooms and closets",
+        "Fully equipped kitchen",
+        "Comfortable lounge room",
+        "Private terrace and balcony lounge areas",
+        "Bold architectural interiors and art-focused design",
+        "Sophisticated interior composition and textures",
+        "Daily housekeeping and turndown service"
+      ],
+      "galleryEyebrow": "Photo Gallery",
+      "galleryTitle": "Inside Suite Roma",
+      "galleryDesc": "Discover the bold geometry, rich textures, and architectural details that define Suite Roma — a space where design meets coastal luxury in every framed moment.",
+      "galleryCta": "Book Suite Roma",
+      "amenitiesEyebrow": "What's Included",
+      "amenitiesTitle": "Suite Amenities",
+      "amenities": [
+        "2 King Size Beds",
+        "2 En-suite Bathrooms & Closets",
+        "Lounge Room",
+        "Fully Equipped Kitchen",
+        "Terrace / Balcony Lounge",
+        "Outdoor Lounge Chairs",
+        "Indoor Dining Area",
+        "High-speed Wi-Fi",
+        "Daily Housekeeping",
+        "Air conditioning",
+        "Smart TV",
+        "Towels provided",
+        "Ceiling Fans",
+        "Pool Access",
+        "Beach Views",
+        "Sea Views"
+      ],
+      "policiesEyebrow": "Policies & Check-in",
+      "policiesTitle": "Know Before You Go",
+      "policies": [
+        {
+          "label": "Check-in",
+          "value": "2:00 PM"
+        },
+        {
+          "label": "Check-out",
+          "value": "10:00 AM"
+        },
+        {
+          "label": "Minimum stay",
+          "value": "2 nights"
+        },
+        {
+          "label": "Payment",
+          "value": "50% at booking · 50% on check-in"
+        },
+        {
+          "label": "Cancellation",
+          "value": "Before 30 days: fully refundable · Within 30 days: non-refundable"
+        },
+        {
+          "label": "Pets",
+          "value": "Small pets welcome"
+        },
+        {
+          "label": "Smoking",
+          "value": "Balcony & lobby only"
+        }
+      ],
+      "inquireEyebrow": "Reservations",
+      "inquireTitle": "Reserve Your Stay",
+      "inquireSub": "Ready to experience the architectural luxury of Suite Roma? Contact us to check availability and rates.",
+      "inquireEmail": "Email Us",
+      "inquireWhatsapp": "WhatsApp Us",
+      "suitesEyebrow": "Our Suites",
+      "suitesTitle": "Explore All Suites",
+      "badgeCurrent": "Current Suite",
+      "chiaraTagline": "Penthouse · Elevated Two-Floor Retreat",
+      "luciaTagline": "2-Bedroom · Coastal Luxury Suite",
+      "romaTagline": "2-Bedroom · Architectural Suite",
+      "viewSuiteBtn": "View Suite →"
     }
   },
   "gm": {
@@ -891,6 +1222,27 @@
         "size": "135 m²",
         "beds": "2 Kingsize-Betten, 1 französisches Bett",
         "guests": "6 Gäste"
+      },
+      {
+        "name": "Suite Chiara",
+        "tagline": "Penthouse · Elevated Two-Floor Retreat",
+        "size": "160 sq m",
+        "beds": "3 King Size Beds",
+        "guests": "6 Guests"
+      },
+      {
+        "name": "Suite Lucia",
+        "tagline": "2-Bedroom · Coastal Luxury Suite",
+        "size": "100 sq m",
+        "beds": "2 King Size Beds",
+        "guests": "4 Guests"
+      },
+      {
+        "name": "Suite Roma",
+        "tagline": "2-Bedroom · Architectural Suite",
+        "size": "100 sq m",
+        "beds": "2 King Size Beds",
+        "guests": "4 Guests"
       }
     ]
   },

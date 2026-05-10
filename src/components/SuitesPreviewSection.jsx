@@ -9,12 +9,18 @@ import cheetahIcon from '../assets/cheetah.png'
 import coastalPreview from '../assets/coastal-haven-suite-lounge-couch.JPEG'
 import serenityPreview from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
 import penthousePreview from '../assets/penthouse-suite-view-from-outside.jpg'
+import chiaraPreview from '../assets/suite-chiara-card-preview-image1.jpeg'
+import luciaPreview from '../assets/suite-lucia-homepage-card-preview-image.jpeg'
+import romaPreview from '../assets/suite-roma-card-preview-image.jpeg'
 
 // Static metadata: images & hrefs only
 const SUITE_META = [
   { id: 'penthouse-suite-1-sofia', href: '/suites/penthouse-suite-1-sofia', image: penthousePreview },
   { id: 'coastal-haven', href: '/suites/coastal-haven', image: coastalPreview },
   { id: 'serenity-villa', href: '/suites/serenity-villa', image: serenityPreview },
+  { id: 'penthouse-suite-2-chiara', href: '/suites/penthouse-suite-2-chiara', image: chiaraPreview },
+  { id: 'suite-lucia', href: '/suites/suite-lucia', image: luciaPreview },
+  { id: 'suite-roma', href: '/suites/suite-roma', image: romaPreview },
 ]
 
 const AUTO_ADVANCE_MS = 7000

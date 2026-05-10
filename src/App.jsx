@@ -10,6 +10,9 @@ import AllSuitesPage from './pages/AllSuitesPage'
 import CoastalHavenPage from './pages/CoastalHavenPage'
 import SerenityVillaPage from './pages/SerenityVillaPage'
 import PenthouseSuiteSofiaPage from './pages/PenthouseSuiteSofia'
+import SuiteChiaraPage from './pages/SuiteChiaraPage'
+import SuiteLuciaPage from './pages/SuiteLuciaPage'
+import SuiteRomaPage from './pages/SuiteRomaPage'
 import GalleryPage from './pages/GalleryPage'
 import HouseRulesPage from './pages/HouseRulesPage'
 import AboutPage from './pages/AboutPage'
@@ -66,6 +69,9 @@ function App() {
         <Route path="/suites/coastal-haven" element={<CoastalHavenPage />} />
         <Route path="/suites/serenity-villa" element={<SerenityVillaPage />} />
         <Route path="/suites/penthouse-suite-1-sofia" element={<PenthouseSuiteSofiaPage />} />
+        <Route path="/suites/penthouse-suite-2-chiara" element={<SuiteChiaraPage />} />
+        <Route path="/suites/suite-lucia" element={<SuiteLuciaPage />} />
+        <Route path="/suites/suite-roma" element={<SuiteRomaPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/house-rules" element={<HouseRulesPage />} />
         <Route path="/about" element={<AboutPage />} />
