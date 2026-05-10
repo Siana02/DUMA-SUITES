@@ -10,6 +10,7 @@ import {
   Shirt, Fan, PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack,
 } from 'lucide-react'
 import { useT } from '../i18n/useT.js'
+import { SUITE_ROUTES } from '../constants/suiteRoutes'
 
 import heroImg from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
 import serenityPreview from '../assets/serenity-villa-3bedroomsuite-preview.JPEG'
@@ -522,12 +523,12 @@ export default function CoastalHavenPage() {
 
             <div className="ch-suites__grid">
               {[
-                { href: '/suites/penthouse-suite-1-sofia', image: penthousePreviewImg, name: tp.heroTitle, tagline: allSuiteCards[0]?.tagline },
-                { href: '/suites/coastal-haven', image: heroImg, name: tc.heroTitle, tagline: allSuiteCards[1]?.tagline, current: true },
-                { href: '/suites/serenity-villa', image: serenityPreviewImg, name: ts.heroTitle, tagline: allSuiteCards[2]?.tagline },
-                { href: '/suites/penthouse-suite-2-chiara', image: chiaraPreviewImg, name: tch.heroTitle, tagline: allSuiteCards[3]?.tagline },
-                { href: '/suites/suite-lucia', image: luciaPreviewImg, name: tl.heroTitle, tagline: allSuiteCards[4]?.tagline },
-                { href: '/suites/suite-roma', image: romaPreviewImg, name: tr.heroTitle, tagline: allSuiteCards[5]?.tagline },
+                { href: SUITE_ROUTES.SOFIA, image: penthousePreviewImg, name: tp.heroTitle, tagline: allSuiteCards[0]?.tagline },
+                { href: SUITE_ROUTES.ANNA, image: heroImg, name: tc.heroTitle, tagline: allSuiteCards[1]?.tagline, current: true },
+                { href: SUITE_ROUTES.ALICE, image: serenityPreviewImg, name: ts.heroTitle, tagline: allSuiteCards[2]?.tagline },
+                { href: SUITE_ROUTES.CHIARA, image: chiaraPreviewImg, name: tch.heroTitle, tagline: allSuiteCards[3]?.tagline },
+                { href: SUITE_ROUTES.LUCIA, image: luciaPreviewImg, name: tl.heroTitle, tagline: allSuiteCards[4]?.tagline },
+                { href: SUITE_ROUTES.ROMA, image: romaPreviewImg, name: tr.heroTitle, tagline: allSuiteCards[5]?.tagline },
               ].map((suite, i) => (
                 <motion.div className="ch-suite-card" key={suite.href} {...fadeUp(0.22 + i * 0.1)} onClick={() => navigate(suite.href)} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(suite.href) } }}>
                   <div className="ch-suite-card__img-wrap">
@@ -537,7 +538,7 @@ export default function CoastalHavenPage() {
                   <div className="ch-suite-card__body">
                     <p className="ch-suite-card__tagline">{suite.tagline}</p>
                     <h3 className="ch-suite-card__name">{suite.name}</h3>
-                    <a href={suite.href} className="btn btn-inverse ch-suite-card__btn" onClick={e => { e.stopPropagation(); navigate(suite.href) }}>
+                    <a href={suite.href} className="btn btn-inverse ch-suite-card__btn" onClick={e => { e.preventDefault(); e.stopPropagation(); navigate(suite.href) }}>
                       {tc.viewSuiteBtn}
                     </a>
                   </div>

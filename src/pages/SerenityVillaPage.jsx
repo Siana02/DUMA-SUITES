@@ -10,6 +10,7 @@ import {
   Sun, Fan, PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack,
 } from 'lucide-react'
 import { useT } from '../i18n/useT.js'
+import { SUITE_ROUTES } from '../constants/suiteRoutes'
 
 import heroImg from '../assets/serenity-villa-outdoor-terrace.JPEG'
 import coastalPreview from '../assets/1bedroom-coastal-haven-suite-preview.JPEG'
@@ -532,12 +533,12 @@ export default function SerenityVillaPage() {
 
             <div className="sv-suites__grid">
               {[
-                { href: '/suites/penthouse-suite-1-sofia', image: penthousePreviewImg, name: tp.heroTitle, tagline: allSuiteCards[0]?.tagline },
-                { href: '/suites/coastal-haven', image: coastalPreview, name: tc.heroTitle, tagline: allSuiteCards[1]?.tagline },
-                { href: '/suites/serenity-villa', image: serenityPreviewImg, name: ts.heroTitle, tagline: allSuiteCards[2]?.tagline, current: true },
-                { href: '/suites/penthouse-suite-2-chiara', image: chiaraPreviewImg, name: tch.heroTitle, tagline: allSuiteCards[3]?.tagline },
-                { href: '/suites/suite-lucia', image: luciaPreviewImg, name: tl.heroTitle, tagline: allSuiteCards[4]?.tagline },
-                { href: '/suites/suite-roma', image: romaPreviewImg, name: tr.heroTitle, tagline: allSuiteCards[5]?.tagline },
+                { href: SUITE_ROUTES.SOFIA, image: penthousePreviewImg, name: tp.heroTitle, tagline: allSuiteCards[0]?.tagline },
+                { href: SUITE_ROUTES.ANNA, image: coastalPreview, name: tc.heroTitle, tagline: allSuiteCards[1]?.tagline },
+                { href: SUITE_ROUTES.ALICE, image: serenityPreviewImg, name: ts.heroTitle, tagline: allSuiteCards[2]?.tagline, current: true },
+                { href: SUITE_ROUTES.CHIARA, image: chiaraPreviewImg, name: tch.heroTitle, tagline: allSuiteCards[3]?.tagline },
+                { href: SUITE_ROUTES.LUCIA, image: luciaPreviewImg, name: tl.heroTitle, tagline: allSuiteCards[4]?.tagline },
+                { href: SUITE_ROUTES.ROMA, image: romaPreviewImg, name: tr.heroTitle, tagline: allSuiteCards[5]?.tagline },
               ].map((suite, i) => (
                 <motion.div className="sv-suite-card" key={suite.href} {...fadeUp(0.22 + i * 0.1)} onClick={() => navigate(suite.href)} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(suite.href) } }}>
                   <div className="sv-suite-card__img-wrap">
@@ -547,7 +548,7 @@ export default function SerenityVillaPage() {
                   <div className="sv-suite-card__body">
                     <p className="sv-suite-card__tagline">{suite.tagline}</p>
                     <h3 className="sv-suite-card__name">{suite.name}</h3>
-                    <a href={suite.href} className="btn btn-inverse sv-suite-card__btn" onClick={e => { e.stopPropagation(); navigate(suite.href) }}>
+                    <a href={suite.href} className="btn btn-inverse sv-suite-card__btn" onClick={e => { e.preventDefault(); e.stopPropagation(); navigate(suite.href) }}>
                       {ts.viewSuiteBtn}
                     </a>
                   </div>

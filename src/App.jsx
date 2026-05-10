@@ -24,6 +24,7 @@ import ContactPage from './pages/ContactPage'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import TermsOfServicePage from './pages/TermsOfServicePage'
 import CookiesPage from './pages/CookiesPage'
+import { ALL_SUITES_ROUTE, SUITE_ROUTES } from './constants/suiteRoutes'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -61,13 +62,13 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage ready={preloadDone} />} />
-        <Route path="/suites" element={<AllSuitesPage />} />
-        <Route path="/suites/coastal-haven" element={<CoastalHavenPage />} />
-        <Route path="/suites/serenity-villa" element={<SerenityVillaPage />} />
-        <Route path="/suites/penthouse-suite-1-sofia" element={<PenthouseSuiteSofiaPage />} />
-        <Route path="/suites/penthouse-suite-2-chiara" element={<SuiteChiaraPage />} />
-        <Route path="/suites/suite-lucia" element={<SuiteLuciaPage />} />
-        <Route path="/suites/suite-roma" element={<SuiteRomaPage />} />
+        <Route path={ALL_SUITES_ROUTE} element={<AllSuitesPage />} />
+        <Route path={SUITE_ROUTES.ANNA} element={<CoastalHavenPage />} />
+        <Route path={SUITE_ROUTES.ALICE} element={<SerenityVillaPage />} />
+        <Route path={SUITE_ROUTES.SOFIA} element={<PenthouseSuiteSofiaPage />} />
+        <Route path={SUITE_ROUTES.CHIARA} element={<SuiteChiaraPage />} />
+        <Route path={SUITE_ROUTES.LUCIA} element={<SuiteLuciaPage />} />
+        <Route path={SUITE_ROUTES.ROMA} element={<SuiteRomaPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/house-rules" element={<HouseRulesPage />} />
         <Route path="/about" element={<AboutPage />} />

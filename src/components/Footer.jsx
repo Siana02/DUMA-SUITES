@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import logoImg from '../assets/logo.jpeg'
 import mammalImg from '../assets/mammal.png'
 import { useT } from '../i18n/useT.js'
+import { SUITE_NAV_ORDER } from '../constants/suiteRoutes'
 
 function TikTokIcon() {
   return (
@@ -39,17 +40,12 @@ const SOCIAL = [
 export default function Footer() {
   const t = useT()
   const navigate = useNavigate()
-  const SUITE_ORDER = [
-    '/suites/penthouse-suite-1-sofia',
-    '/suites/penthouse-suite-2-chiara',
-    '/suites/serenity-villa',
-    '/suites/suite-lucia',
-    '/suites/suite-roma',
-    '/suites/coastal-haven',
-    '/suites',
-  ]
+  const suiteOrderIndex = (href) => {
+    const index = SUITE_NAV_ORDER.indexOf(href)
+    return index === -1 ? Number.MAX_SAFE_INTEGER : index
+  }
   const suiteLinks = [...t.footer.suitesLinks].sort(
-    (a, b) => SUITE_ORDER.indexOf(a.href) - SUITE_ORDER.indexOf(b.href)
+    (a, b) => suiteOrderIndex(a.href) - suiteOrderIndex(b.href)
   )
 
   const EXPLORE_LINKS = [
@@ -218,13 +214,13 @@ export default function Footer() {
           gap: 14px;
         }
         .footer__wordmark-mammal {
-          width: 71px;
-          height: 71px;
+          width: 76px;
+          height: 76px;
           object-fit: contain;
           filter: brightness(0) invert(1);
           opacity: 0.88;
           flex-shrink: 0;
-          transform: translateY(-1px);
+          transform: translateY(-3px);
         }
         .footer__wordmark-text {
           display: flex;

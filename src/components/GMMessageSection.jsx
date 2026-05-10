@@ -3,6 +3,7 @@ import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
 import { ArrowRight, BedDouble } from 'lucide-react'
 import { useT } from '../i18n/useT.js'
+import { ALL_SUITES_ROUTE } from '../constants/suiteRoutes'
 
 import gm1        from '../assets/General-manager1.jpg'
 import gm2        from '../assets/General-managers2.jpg'
@@ -266,7 +267,7 @@ export default function GMMessageSection() {
 
       {/* ── Post-video CTA ── */}
       <motion.div className="gm-video-cta" {...fadeUp(0.82)}>
-        <a href="/suites" className="btn btn-primary">
+        <a href={ALL_SUITES_ROUTE} className="btn btn-primary">
           <BedDouble size={14} strokeWidth={1.8} aria-hidden="true" />
           {t.videoCta}
         </a>
@@ -648,4 +649,3 @@ export default function GMMessageSection() {
     </section>
   )
 }
-

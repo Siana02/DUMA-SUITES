@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useInView } from 'react-intersection-observer'
 import { Maximize2, BedDouble, Users, ArrowLeft, ArrowRight } from 'lucide-react'
 import { useT } from '../i18n/useT.js'
+import { ALL_SUITES_ROUTE, SUITE_ROUTES } from '../constants/suiteRoutes'
 
 import cheetahIcon from '../assets/cheetah.png'
 import coastalPreview from '../assets/coastal-haven-suite-lounge-couch.JPEG'
@@ -15,12 +16,12 @@ import romaPreview from '../assets/suite-roma-kitchen-with-decor-wall-view.jpeg'
 
 // Static metadata: images & hrefs only
 const SUITE_META = [
-  { id: 'penthouse-suite-1-sofia', href: '/suites/penthouse-suite-1-sofia', image: penthousePreview },
-  { id: 'coastal-haven', href: '/suites/coastal-haven', image: coastalPreview },
-  { id: 'serenity-villa', href: '/suites/serenity-villa', image: serenityPreview },
-  { id: 'penthouse-suite-2-chiara', href: '/suites/penthouse-suite-2-chiara', image: chiaraPreview },
-  { id: 'suite-lucia', href: '/suites/suite-lucia', image: luciaPreview },
-  { id: 'suite-roma', href: '/suites/suite-roma', image: romaPreview },
+  { id: 'penthouse-suite-1-sofia', href: SUITE_ROUTES.SOFIA, image: penthousePreview },
+  { id: 'coastal-haven', href: SUITE_ROUTES.ANNA, image: coastalPreview },
+  { id: 'serenity-villa', href: SUITE_ROUTES.ALICE, image: serenityPreview },
+  { id: 'penthouse-suite-2-chiara', href: SUITE_ROUTES.CHIARA, image: chiaraPreview },
+  { id: 'suite-lucia', href: SUITE_ROUTES.LUCIA, image: luciaPreview },
+  { id: 'suite-roma', href: SUITE_ROUTES.ROMA, image: romaPreview },
 ]
 
 const AUTO_ADVANCE_MS = 7000
@@ -181,7 +182,7 @@ export default function SuitesPreviewSection() {
 
         {/* CTA */}
         <motion.div className="sp-cta-wrap" {...fadeUp(0.44)}>
-          <a href="/suites" className="sp-cta-btn">
+          <a href={ALL_SUITES_ROUTE} className="sp-cta-btn">
             {sp.viewAll}
             <span className="sp-cta-btn__arrow" aria-hidden="true">&rarr;</span>
           </a>

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Shield, FileText, ArrowRight, CalendarDays } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import AboutSection from '../components/AboutSection.jsx'
+import { ALL_SUITES_ROUTE } from '../constants/suiteRoutes'
 
 import heroImg from '../assets/infinity-pool-ocean-view.jpg'
 
@@ -345,9 +346,9 @@ export default function AboutPage() {
                   {copy.reserveCta}
                 </a>
                 <a
-                  href="/suites"
+                  href={ALL_SUITES_ROUTE}
                   className="btn btn-inverse"
-                  onClick={e => { e.preventDefault(); navigate('/suites') }}
+                  onClick={e => { e.preventDefault(); navigate(ALL_SUITES_ROUTE) }}
                 >
                   {copy.suitesCta}
                   <ArrowRight size={14} strokeWidth={1.8} aria-hidden="true" />

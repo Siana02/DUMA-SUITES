@@ -14,9 +14,10 @@ import chiaraPreview from '../assets/suite-chiara-outside-terrace-lounge-chairs-
 import luciaPreview from '../assets/suite-lucia-hero-page-section-background-image.jpeg'
 import romaPreview from '../assets/suite-roma-kitchen-with-decor-wall-view.jpeg'
 import cheetahIcon from '../assets/cheetah.png'
+import { SUITE_ROUTE_ORDER } from '../constants/suiteRoutes'
 
 const SUITE_IMAGES = [penthousePreview, coastalPreview, serenityPreview, chiaraPreview, luciaPreview, romaPreview]
-const SUITE_HREFS = ['/suites/penthouse-suite-1-sofia', '/suites/coastal-haven', '/suites/serenity-villa', '/suites/penthouse-suite-2-chiara', '/suites/suite-lucia', '/suites/suite-roma']
+const SUITE_HREFS = SUITE_ROUTE_ORDER
 
 function SuiteCard({ suite, image, href, index }) {
   const { ref, inView } = useInView({ threshold: 0.15, triggerOnce: true })
@@ -52,7 +53,14 @@ function SuiteCard({ suite, image, href, index }) {
       </div>
       <div className="as-card__body">
         <p className="as-card__desc">{suite.desc}</p>
-        <a href={href} className="btn btn-inverse as-card__btn">
+        <a
+          href={href}
+          className="btn btn-inverse as-card__btn"
+          onClick={(e) => {
+            e.preventDefault()
+            navigate(href)
+          }}
+        >
           {t.suites.all.viewSuite}
           <ArrowRight size={13} strokeWidth={1.6} aria-hidden="true" />
         </a>
