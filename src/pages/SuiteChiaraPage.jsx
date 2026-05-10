@@ -11,6 +11,7 @@ import {
   WashingMachine,
 } from 'lucide-react'
 import { useT } from '../i18n/useT.js'
+import { SUITE_ROUTES } from '../constants/suiteRoutes'
 
 import heroImg from '../assets/suite-chiara-hero-page-background-image.jpeg'
 import aboutImg from '../assets/suite-chiara.jpeg'
@@ -449,12 +450,12 @@ export default function SuiteChiaraPage() {
             </motion.h2>
             <div className="ph-suites__grid">
               {[
-                { href: '/suites/penthouse-suite-1-sofia', image: sofiaPreviewImg, name: tSofia.heroTitle, tagline: allSuiteCards[0]?.tagline },
-                { href: '/suites/coastal-haven', image: annaPreviewImg, name: tCoastal.heroTitle, tagline: allSuiteCards[1]?.tagline },
-                { href: '/suites/serenity-villa', image: alicePreviewImg, name: tSerenity.heroTitle, tagline: allSuiteCards[2]?.tagline },
-                { href: '/suites/penthouse-suite-2-chiara', image: chiaraPreviewImg, name: pt.heroTitle, tagline: allSuiteCards[3]?.tagline, current: true },
-                { href: '/suites/suite-lucia', image: luciaPreviewImg, name: tLucia.heroTitle, tagline: allSuiteCards[4]?.tagline },
-                { href: '/suites/suite-roma', image: romaPreviewImg, name: tRoma.heroTitle, tagline: allSuiteCards[5]?.tagline },
+                { href: SUITE_ROUTES.SOFIA, image: sofiaPreviewImg, name: tSofia.heroTitle, tagline: allSuiteCards[0]?.tagline },
+                { href: SUITE_ROUTES.ANNA, image: annaPreviewImg, name: tCoastal.heroTitle, tagline: allSuiteCards[1]?.tagline },
+                { href: SUITE_ROUTES.ALICE, image: alicePreviewImg, name: tSerenity.heroTitle, tagline: allSuiteCards[2]?.tagline },
+                { href: SUITE_ROUTES.CHIARA, image: chiaraPreviewImg, name: pt.heroTitle, tagline: allSuiteCards[3]?.tagline, current: true },
+                { href: SUITE_ROUTES.LUCIA, image: luciaPreviewImg, name: tLucia.heroTitle, tagline: allSuiteCards[4]?.tagline },
+                { href: SUITE_ROUTES.ROMA, image: romaPreviewImg, name: tRoma.heroTitle, tagline: allSuiteCards[5]?.tagline },
               ].map((suite, i) => (
                 <motion.div className="ph-suite-card" key={suite.href} {...fadeUp(0.22 + i * 0.1)} onClick={() => navigate(suite.href)} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(suite.href) } }}>
                   <div className="ph-suite-card__img-wrap">

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Waves, BedDouble, Leaf, Star } from 'lucide-react'
 import { useInView } from 'react-intersection-observer'
 import { useT } from '../i18n/useT.js'
+import { ALL_SUITES_ROUTE } from '../constants/suiteRoutes'
 
 import poolsImg   from '../assets/pools-of-serenity.JPEG'
 import swahiliImg from '../assets/swahili-elegance.JPEG'
@@ -185,7 +186,7 @@ export default function SuiteHighlightsSection() {
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.7, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
       >
-        <a href="/suites" className="sh-cta">
+        <a href={ALL_SUITES_ROUTE} className="sh-cta">
           {sh.viewAll}
           <span className="sh-cta__arrow" aria-hidden="true">&rarr;</span>
         </a>

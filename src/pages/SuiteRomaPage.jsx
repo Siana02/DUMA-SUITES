@@ -10,6 +10,7 @@ import {
   Armchair, Fan, WavesLadder, TreePalm, Sun,
 } from 'lucide-react'
 import { useT } from '../i18n/useT.js'
+import { SUITE_ROUTES } from '../constants/suiteRoutes'
 
 import heroImg from '../assets/suite-roma-main-page-hero-image-background.jpeg'
 import aboutImg from '../assets/suite-roma-dining-table-with-tv-view.jpeg'
@@ -394,12 +395,12 @@ export default function SuiteRomaPage() {
             </motion.h2>
             <div className="ph-suites__grid">
               {[
-                { href: '/suites/penthouse-suite-1-sofia', image: sofiaPreviewImg, name: tsp.heroTitle, tagline: allSuiteCards[0]?.tagline },
-                { href: '/suites/coastal-haven', image: annaPreviewImg, name: tann.heroTitle, tagline: allSuiteCards[1]?.tagline },
-                { href: '/suites/serenity-villa', image: alicePreviewImg, name: tali.heroTitle, tagline: allSuiteCards[2]?.tagline },
-                { href: '/suites/penthouse-suite-2-chiara', image: chiaraPreviewImg, name: tc.heroTitle, tagline: allSuiteCards[3]?.tagline },
-                { href: '/suites/suite-lucia', image: luciaPreviewImg, name: tl.heroTitle, tagline: allSuiteCards[4]?.tagline },
-                { href: '/suites/suite-roma', image: romaPreviewCardImg, name: pt.heroTitle, tagline: allSuiteCards[5]?.tagline, current: true },
+                { href: SUITE_ROUTES.SOFIA, image: sofiaPreviewImg, name: tsp.heroTitle, tagline: allSuiteCards[0]?.tagline },
+                { href: SUITE_ROUTES.ANNA, image: annaPreviewImg, name: tann.heroTitle, tagline: allSuiteCards[1]?.tagline },
+                { href: SUITE_ROUTES.ALICE, image: alicePreviewImg, name: tali.heroTitle, tagline: allSuiteCards[2]?.tagline },
+                { href: SUITE_ROUTES.CHIARA, image: chiaraPreviewImg, name: tc.heroTitle, tagline: allSuiteCards[3]?.tagline },
+                { href: SUITE_ROUTES.LUCIA, image: luciaPreviewImg, name: tl.heroTitle, tagline: allSuiteCards[4]?.tagline },
+                { href: SUITE_ROUTES.ROMA, image: romaPreviewCardImg, name: pt.heroTitle, tagline: allSuiteCards[5]?.tagline, current: true },
               ].map((suite, i) => (
                 <motion.div className="ph-suite-card" key={suite.href} {...fadeUp(0.22 + i * 0.1)} onClick={() => navigate(suite.href)} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(suite.href) } }}>
                   <div className="ph-suite-card__img-wrap">

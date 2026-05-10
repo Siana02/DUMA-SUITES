@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import logoImg from '../assets/mammal.png'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { useT } from '../i18n/useT.js'
+import { ALL_SUITES_ROUTE, SUITE_NAV_ORDER } from '../constants/suiteRoutes'
 
 // Navbar appears as the preload curtains finish opening (~2.8 s)
 const NAVBAR_APPEAR_DELAY = 2.8
@@ -60,17 +61,21 @@ export default function Navbar() {
 
   const NAV_LINKS = [
     { label: t.nav.home,    href: '/',         isRoute: true },
-    { label: t.nav.suites,  href: '/suites',   isRoute: true },
+    { label: t.nav.suites,  href: ALL_SUITES_ROUTE, isRoute: true },
     { label: t.nav.gallery, href: '/gallery',  isRoute: true },
     { label: t.nav.about,   href: '/#about',   isRoute: false },
     { label: t.nav.blog,    href: '/blog',     isRoute: true },
     { label: t.nav.contact, href: '/#contact', isRoute: false },
   ]
+  const suiteOrderIndex = (href) => {
+    const index = SUITE_NAV_ORDER.indexOf(href)
+    return index === -1 ? Number.MAX_SAFE_INTEGER : index
+  }
   const suiteChildren = [...(t.footer?.suitesLinks || [])]
-    .sort((a, b) => (a.href === '/suites' ? -1 : b.href === '/suites' ? 1 : 0))
+    .sort((a, b) => suiteOrderIndex(a.href) - suiteOrderIndex(b.href))
 
   const routeActiveHref = location.pathname.startsWith('/suites')
-    ? '/suites'
+    ? ALL_SUITES_ROUTE
     : location.pathname === '/gallery'
       ? '/gallery'
       : location.pathname.startsWith('/blog')
@@ -97,7 +102,7 @@ export default function Navbar() {
     // Map section IDs to nav hrefs (only sections that actually exist in the DOM)
     const sectionMap = {
       home:             '/',
-      'suites-preview': '/suites',
+      'suites-preview': ALL_SUITES_ROUTE,
       'gallery-strip':  '/gallery',
       articles:         '/blog',
       about:            '/#about',
@@ -238,7 +243,7 @@ export default function Navbar() {
           {/* ── Center: Desktop nav ── */}
           <nav className="navbar__links" aria-label="Primary navigation">
             {NAV_LINKS.map((link) => (
-              link.href === '/suites' ? (
+              link.href === ALL_SUITES_ROUTE ? (
                 <div
                   key={link.href}
                   ref={suitesGroupRef}
@@ -338,7 +343,7 @@ export default function Navbar() {
           >
             <nav aria-label="Mobile navigation">
               {NAV_LINKS.map((link, i) => (
-                link.href === '/suites' ? (
+                link.href === ALL_SUITES_ROUTE ? (
                   <motion.div
                     key={link.href}
                     className="navbar__drawer-group"
@@ -443,14 +448,14 @@ export default function Navbar() {
           justify-self: start;
         }
         .navbar__logo-img {
-          width: 56px;
-          height: 56px;
+          width: 60px;
+          height: 60px;
           object-fit: contain;
           border-radius: 0;
           transition: filter 0.4s ease;
           /* White version over hero */
           filter: brightness(0) invert(1);
-          transform: translateY(-1px);
+          transform: translateY(-3px);
         }
         .navbar--scrolled .navbar__logo-img {
           filter: none;

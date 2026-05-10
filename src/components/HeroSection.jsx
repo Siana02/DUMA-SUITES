@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useT } from '../i18n/useT.js'
+import { ALL_SUITES_ROUTE } from '../constants/suiteRoutes'
 
 // Cinematic image sequence (right panel, desktop)
 import seqImg1 from '../assets/arielview1.jpg?w=1920&format=webp&quality=90'
@@ -192,9 +193,9 @@ export default function HeroSection({ ready = false }) {
             transition={{ duration: 0.7, delay: DELAYS.cta }}
           >
             <a
-              href="/suites"
+              href={ALL_SUITES_ROUTE}
               className="hero__cta"
-              onClick={e => { e.preventDefault(); navigate('/suites') }}
+              onClick={e => { e.preventDefault(); navigate(ALL_SUITES_ROUTE) }}
             >
               {t.hero.cta}
               <motion.span
