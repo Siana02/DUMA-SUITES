@@ -217,8 +217,8 @@ export default function SuiteRomaPage() {
               <div className="ph-about__image-card">
                 <div className="ph-about__highlights-img-wrap">
                   <img
-                    src={g4}
-                    alt="Suite Roma second bedroom view"
+                    src={g11}
+                    alt="Suite Roma main hero view"
                     className="ph-about__highlights-img"
                     loading="lazy"
                   />
