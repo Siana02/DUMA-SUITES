@@ -55,6 +55,7 @@ const GALLERY = [
   g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,g11,g12,g13,g14,g15,g16,
   g17,g18,g19,g20,g21,g22,g23,g24,g25,g26,g27,g28,g29,g30,g31,
 ]
+const luciaPreviewCardImg = g1
 const DEFAULT_IMAGE_WIDTH = 352
 const GALLERY_LABELS = [
   'Suite Lucia first bedroom view 1',
@@ -440,7 +441,7 @@ export default function SuiteLuciaPage() {
                 { href: '/suites/coastal-haven', image: annaPreviewImg, name: tann.heroTitle, tagline: allSuiteCards[1]?.tagline },
                 { href: '/suites/serenity-villa', image: alicePreviewImg, name: tali.heroTitle, tagline: allSuiteCards[2]?.tagline },
                 { href: '/suites/penthouse-suite-2-chiara', image: chiaraPreviewImg, name: tc.heroTitle, tagline: allSuiteCards[3]?.tagline },
-                { href: '/suites/suite-lucia', image: g1, name: pt.heroTitle, tagline: allSuiteCards[4]?.tagline, current: true },
+                { href: '/suites/suite-lucia', image: luciaPreviewCardImg, name: pt.heroTitle, tagline: allSuiteCards[4]?.tagline, current: true },
                 { href: '/suites/suite-roma', image: romaPreviewImg, name: tr.heroTitle, tagline: allSuiteCards[5]?.tagline },
               ].map((suite, i) => (
                 <motion.div className="ph-suite-card" key={suite.href} {...fadeUp(0.22 + i * 0.1)} onClick={() => navigate(suite.href)} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(suite.href) } }}>

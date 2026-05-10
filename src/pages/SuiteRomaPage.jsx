@@ -32,6 +32,7 @@ import g10 from '../assets/suite-roma-kitchen-with-decor-wall-view.jpeg'
 import g11 from '../assets/suite-roma-main-page-hero-image-background.jpeg'
 
 const GALLERY = [g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,g11]
+const romaPreviewCardImg = g1
 const DEFAULT_IMAGE_WIDTH = 352
 const GALLERY_LABELS = [
   'Suite Roma first bedroom view 1',
@@ -398,7 +399,7 @@ export default function SuiteRomaPage() {
                 { href: '/suites/serenity-villa', image: alicePreviewImg, name: tali.heroTitle, tagline: allSuiteCards[2]?.tagline },
                 { href: '/suites/penthouse-suite-2-chiara', image: chiaraPreviewImg, name: tc.heroTitle, tagline: allSuiteCards[3]?.tagline },
                 { href: '/suites/suite-lucia', image: luciaPreviewImg, name: tl.heroTitle, tagline: allSuiteCards[4]?.tagline },
-                { href: '/suites/suite-roma', image: g1, name: pt.heroTitle, tagline: allSuiteCards[5]?.tagline, current: true },
+                { href: '/suites/suite-roma', image: romaPreviewCardImg, name: pt.heroTitle, tagline: allSuiteCards[5]?.tagline, current: true },
               ].map((suite, i) => (
                 <motion.div className="ph-suite-card" key={suite.href} {...fadeUp(0.22 + i * 0.1)} onClick={() => navigate(suite.href)} role="button" tabIndex={0} onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(suite.href) } }}>
                   <div className="ph-suite-card__img-wrap">
