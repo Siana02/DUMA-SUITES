@@ -410,7 +410,7 @@ export default function SuiteRomaPage() {
                   <div className="ph-suite-card__body">
                     <p className="ph-suite-card__tagline">{suite.tagline}</p>
                     <h3 className="ph-suite-card__name">{suite.name}</h3>
-                    <a href={suite.href} className="btn btn-inverse ph-suite-card__btn" onClick={e => { e.stopPropagation(); navigate(suite.href) }}>
+                    <a href={suite.href} className="btn btn-inverse ph-suite-card__btn" onClick={e => { e.preventDefault(); e.stopPropagation(); navigate(suite.href) }}>
                       {pt.viewSuiteBtn}
                     </a>
                   </div>

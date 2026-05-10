@@ -548,7 +548,7 @@ export default function SerenityVillaPage() {
                   <div className="sv-suite-card__body">
                     <p className="sv-suite-card__tagline">{suite.tagline}</p>
                     <h3 className="sv-suite-card__name">{suite.name}</h3>
-                    <a href={suite.href} className="btn btn-inverse sv-suite-card__btn" onClick={e => { e.stopPropagation(); navigate(suite.href) }}>
+                    <a href={suite.href} className="btn btn-inverse sv-suite-card__btn" onClick={e => { e.preventDefault(); e.stopPropagation(); navigate(suite.href) }}>
                       {ts.viewSuiteBtn}
                     </a>
                   </div>
