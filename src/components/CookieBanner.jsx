@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Cookie, X, ChevronRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { useT } from '../i18n/useT.js'
 import { getCookiePreference, setCookiePreference } from '../utils/localPreferences.js'
@@ -83,13 +84,13 @@ export default function CookieBanner({ preloadDone }) {
               >
                 {cb.manage}
               </button>
-              <a
-                href="/cookies"
+              <Link
+                to="/cookies"
                 className="ckb-learn"
               >
                 {cb.learnMore}
                 <ChevronRight size={13} strokeWidth={2} aria-hidden="true" />
-              </a>
+              </Link>
             </div>
           </div>
 

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 import cheetahIcon from '../assets/cheetah.png'
 
@@ -320,10 +321,10 @@ export default function GalleryStripSection() {
 
       {/* ── View More CTA ── */}
       <motion.div className="gs-cta-wrap" {...fadeUp(0.44)}>
-        <a href="/gallery" className="gs-cta-btn">
+        <Link to="/gallery" className="gs-cta-btn">
           {t.gallery.viewFullCta || 'View Full Gallery'}
           <span className="gs-cta-btn__arrow" aria-hidden="true">→</span>
-        </a>
+        </Link>
       </motion.div>
 
       <style>{`
