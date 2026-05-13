@@ -51,10 +51,7 @@ export default function PwaInstallPrompt({ preloadDone }) {
     if (!preloadDone || isStandaloneDisplayMode()) return
 
     const preference = getPwaInstallPreference()
-    if (preference.installed || preference.dismissedUntil > Date.now()) {
-      setPromptType(null)
-      return
-    }
+    if (preference.installed || preference.dismissedUntil > Date.now()) return
 
     const nextPromptType = deferredPrompt ? 'native' : isIosInstallableBrowser() ? 'ios' : null
     if (!nextPromptType) return
