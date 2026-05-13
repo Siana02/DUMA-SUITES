@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Download, Smartphone, X } from 'lucide-react'
+import { Download, Plus, Share, Smartphone, X } from 'lucide-react'
 import {
   getPwaInstallPreference,
   isStandaloneDisplayMode,
@@ -9,9 +9,23 @@ import {
 
 const DISMISS_WINDOW_MS = 1000 * 60 * 60 * 24 * 14
 
+function isIosDevice() {
+  if (typeof window === 'undefined') return false
+
+  const userAgent = window.navigator.userAgent || ''
+  const isMacWithTouchScreen = /macintosh/i.test(userAgent) && window.navigator.maxTouchPoints > 1
+  return /iphone|ipad|ipod/i.test(userAgent) || isMacWithTouchScreen
+}
+
+function getPromptType(deferredPrompt) {
+  if (deferredPrompt) return 'native'
+  if (isIosDevice()) return 'ios'
+  return null
+}
+
 export default function PwaInstallPrompt({ preloadDone }) {
   const [deferredPrompt, setDeferredPrompt] = useState(null)
-  const [visible, setVisible] = useState(false)
+  const [promptType, setPromptType] = useState(null)
 
   useEffect(() => {
     if (isStandaloneDisplayMode()) {
@@ -27,7 +41,7 @@ export default function PwaInstallPrompt({ preloadDone }) {
 
     const handleAppInstalled = () => {
       setPwaInstallPreference({ installed: true, dismissedUntil: 0 })
-      setVisible(false)
+      setPromptType(null)
       setDeferredPrompt(null)
     }
 
@@ -41,24 +55,27 @@ export default function PwaInstallPrompt({ preloadDone }) {
   }, [])
 
   useEffect(() => {
-    if (!preloadDone || !deferredPrompt || isStandaloneDisplayMode()) return
+    if (!preloadDone || isStandaloneDisplayMode()) return
 
     const preference = getPwaInstallPreference()
     if (preference.installed || preference.dismissedUntil > Date.now()) return
 
-    const timer = window.setTimeout(() => setVisible(true), 1400)
+    const nextPromptType = getPromptType(deferredPrompt)
+    if (!nextPromptType) return
+
+    const timer = window.setTimeout(() => setPromptType(nextPromptType), 1400)
     return () => window.clearTimeout(timer)
   }, [deferredPrompt, preloadDone])
 
   const dismissPrompt = () => {
     setPwaInstallPreference({ dismissedUntil: Date.now() + DISMISS_WINDOW_MS })
-    setVisible(false)
+    setPromptType(null)
   }
 
   const handleInstall = async () => {
     if (!deferredPrompt) return
 
-    setVisible(false)
+    setPromptType(null)
     await deferredPrompt.prompt()
     const { outcome } = await deferredPrompt.userChoice
 
@@ -71,9 +88,17 @@ export default function PwaInstallPrompt({ preloadDone }) {
     setDeferredPrompt(null)
   }
 
+  const isVisible = promptType !== null
+  const isIosPrompt = promptType === 'ios'
+  const title = isIosPrompt
+    ? 'Add Duma Suites to your Home Screen for the full app experience.'
+    : 'Install Duma Suites for a faster home-screen experience.'
+  const eyebrow = isIosPrompt ? 'Add to Home Screen' : 'App Download'
+  const PromptIcon = isIosPrompt ? Share : Smartphone
+
   return (
     <AnimatePresence>
-      {visible && (
+      {isVisible && (
         <motion.aside
           className="pwa-prompt"
           initial={{ opacity: 0, y: 24 }}
@@ -92,22 +117,38 @@ export default function PwaInstallPrompt({ preloadDone }) {
           </button>
 
           <div className="pwa-prompt__icon" aria-hidden="true">
-            <Smartphone size={20} strokeWidth={1.6} />
+            <PromptIcon size={20} strokeWidth={1.6} />
           </div>
 
           <div className="pwa-prompt__copy">
-            <p className="pwa-prompt__eyebrow">App Download</p>
-            <p className="pwa-prompt__title">Install Duma Suites for a faster home-screen experience.</p>
+            <p className="pwa-prompt__eyebrow">{eyebrow}</p>
+            <p className="pwa-prompt__title">{title}</p>
+            {isIosPrompt && (
+              <p className="pwa-prompt__instructions">
+                Tap <span><Share size={13} strokeWidth={1.8} aria-hidden="true" /> Share</span>, then choose{' '}
+                <span><Plus size={13} strokeWidth={1.8} aria-hidden="true" /> Add to Home Screen</span>.
+              </p>
+            )}
           </div>
 
-          <button
-            type="button"
-            className="pwa-prompt__button"
-            onClick={handleInstall}
-          >
-            <Download size={14} strokeWidth={1.8} aria-hidden="true" />
-            Install App
-          </button>
+          {isIosPrompt ? (
+            <button
+              type="button"
+              className="pwa-prompt__button pwa-prompt__button--secondary"
+              onClick={dismissPrompt}
+            >
+              Maybe Later
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="pwa-prompt__button"
+              onClick={handleInstall}
+            >
+              <Download size={14} strokeWidth={1.8} aria-hidden="true" />
+              Install App
+            </button>
+          )}
 
           <style>{`
             .pwa-prompt {
@@ -175,6 +216,20 @@ export default function PwaInstallPrompt({ preloadDone }) {
               line-height: 1.55;
               color: rgba(255, 255, 255, 0.86);
             }
+            .pwa-prompt__instructions {
+              margin: 8px 0 0;
+              font-family: var(--font-body);
+              font-size: 0.75rem;
+              line-height: 1.55;
+              color: rgba(255, 255, 255, 0.68);
+            }
+            .pwa-prompt__instructions span {
+              display: inline-flex;
+              align-items: center;
+              gap: 4px;
+              color: rgba(255, 255, 255, 0.82);
+              white-space: nowrap;
+            }
             .pwa-prompt__button {
               display: inline-flex;
               align-items: center;
@@ -192,9 +247,17 @@ export default function PwaInstallPrompt({ preloadDone }) {
               transition: transform 0.2s ease, background 0.2s ease;
               white-space: nowrap;
             }
+            .pwa-prompt__button--secondary {
+              background: rgba(255, 255, 255, 0.08);
+              border-color: rgba(255, 255, 255, 0.16);
+              color: rgba(255, 255, 255, 0.84);
+            }
             .pwa-prompt__button:hover {
               background: #a8835a;
               transform: translateY(-1px);
+            }
+            .pwa-prompt__button--secondary:hover {
+              background: rgba(255, 255, 255, 0.14);
             }
             @media (max-width: 900px) {
               .pwa-prompt {

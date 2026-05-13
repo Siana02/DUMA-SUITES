@@ -4,6 +4,8 @@ import { VitePWA } from 'vite-plugin-pwa'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 import { imagetools } from 'vite-imagetools'
 
+const THIRTY_DAYS_IN_SECONDS = 60 * 60 * 24 * 30
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
@@ -90,6 +92,17 @@ export default defineConfig({
               expiration: {
                 maxEntries: 20,
                 maxAgeSeconds: 60 * 60 * 24 * 7,
+              },
+            },
+          },
+          {
+            urlPattern: /\/assets\/.*\.(?:avif|gif|jpe?g|png|svg|webp)$/i,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'app-images',
+              expiration: {
+                maxEntries: 120,
+                maxAgeSeconds: THIRTY_DAYS_IN_SECONDS,
               },
             },
           },
