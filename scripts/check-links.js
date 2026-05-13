@@ -7,6 +7,8 @@ const REPO_ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), 
 const SRC_DIR = path.join(REPO_ROOT, 'src')
 const APP_FILE = path.join(SRC_DIR, 'App.jsx')
 const SUITE_ROUTES_FILE = path.join(SRC_DIR, 'constants', 'suiteRoutes.js')
+const MAX_CRAWL_PAGES = 200
+const REQUEST_TIMEOUT_MS = 8000
 
 const BASE_URL = process.argv.find((arg) => arg.startsWith('--base-url='))?.split('=')[1]
   || process.env.BASE_URL
@@ -171,7 +173,14 @@ function parseLinksWithCheerio(filePath, content, constants) {
 function normalizeInternalLink(rawLink, basePath = '/') {
   if (!rawLink) return null
   const value = rawLink.trim()
-  if (!value || value.startsWith('mailto:') || value.startsWith('tel:') || value.startsWith('javascript:')) {
+  if (
+    !value
+    || value.startsWith('mailto:')
+    || value.startsWith('tel:')
+    || value.startsWith('javascript:')
+    || value.startsWith('data:')
+    || value.startsWith('vbscript:')
+  ) {
     return null
   }
 
@@ -186,7 +195,7 @@ function normalizeInternalLink(rawLink, basePath = '/') {
     }
   }
 
-  if (value.startsWith('#')) return `/${value}`
+  if (value.startsWith('#')) return value
   if (value.startsWith('/')) return value
 
   try {
@@ -265,6 +274,23 @@ function validateInternalLinks(records, validRoutes, homeSectionIds) {
   for (const record of records) {
     const normalized = normalizeInternalLink(record.rawLink)
     if (!normalized) continue
+    if (normalized.startsWith('#')) {
+      const hashOnly = normalized.slice(1)
+      if (hashOnly && !homeSectionIds.has(hashOnly)) {
+        const sectionHint = [...homeSectionIds].slice(0, 6).map((id) => `#${id}`).join(', ')
+        issues.push({
+          type: 'misdirected navigation path',
+          source: record.source,
+          target: normalized,
+          expectedDestination: 'existing section on current page',
+          suggestedFix: sectionHint
+            ? `Use an existing section id such as ${sectionHint}`
+            : 'Point to an existing section id',
+          context: record.context,
+        })
+      }
+      continue
+    }
 
     const { pathOnly, hashOnly } = splitPathAndHash(normalized)
     const hasValidPath = validRoutes.has(pathOnly)
@@ -311,14 +337,14 @@ async function crawlSite(baseUrl) {
   const visited = new Set()
   const queue = ['/']
 
-  while (queue.length > 0 && visited.size < 200) {
+  while (queue.length > 0 && visited.size < MAX_CRAWL_PAGES) {
     const currentPath = queue.shift()
     if (visited.has(currentPath)) continue
     visited.add(currentPath)
 
     try {
       const targetUrl = new URL(currentPath, baseUrl).toString()
-      const response = await axios.get(targetUrl, { timeout: 8000, validateStatus: () => true })
+      const response = await axios.get(targetUrl, { timeout: REQUEST_TIMEOUT_MS, validateStatus: () => true })
       if (response.status >= 400) {
         discovered.push({
           source: `runtime:${currentPath}`,
@@ -342,8 +368,8 @@ async function crawlSite(baseUrl) {
         const { pathOnly } = splitPathAndHash(normalized)
         if (!visited.has(pathOnly)) queue.push(pathOnly)
       })
-    } catch {
-      // Runtime crawl is best-effort only.
+    } catch (error) {
+      console.warn(`⚠ Runtime crawl warning on ${currentPath}: ${error.message}`)
       break
     }
   }
