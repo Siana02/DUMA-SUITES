@@ -16,6 +16,12 @@ function isIosInstallableBrowser() {
   return /iphone|ipad|ipod/i.test(userAgent)
 }
 
+function getPromptType(deferredPrompt) {
+  if (deferredPrompt) return 'native'
+  if (isIosInstallableBrowser()) return 'ios'
+  return null
+}
+
 export default function PwaInstallPrompt({ preloadDone }) {
   const [deferredPrompt, setDeferredPrompt] = useState(null)
   const [promptType, setPromptType] = useState(null)
@@ -53,7 +59,7 @@ export default function PwaInstallPrompt({ preloadDone }) {
     const preference = getPwaInstallPreference()
     if (preference.installed || preference.dismissedUntil > Date.now()) return
 
-    const nextPromptType = deferredPrompt ? 'native' : isIosInstallableBrowser() ? 'ios' : null
+    const nextPromptType = getPromptType(deferredPrompt)
     if (!nextPromptType) return
 
     const timer = window.setTimeout(() => setPromptType(nextPromptType), 1400)
