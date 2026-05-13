@@ -417,7 +417,7 @@ export default function CoastalHavenPage() {
             </motion.div>
             {/* Post-tour CTA */}
             <motion.div className="ch-tour__cta-wrap" {...fadeUp(0.34)}>
-              <a href="/contact" className="btn btn-primary">{tc.tourCta}</a>
+              <a href="#inquire" className="btn btn-primary">{tc.tourCta}</a>
             </motion.div>
           </div>
         </section>
