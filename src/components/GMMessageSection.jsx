@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
+import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, BedDouble } from 'lucide-react'
 import { useT } from '../i18n/useT.js'
@@ -44,6 +45,7 @@ const VIDEO_BASE_SRC =
 export default function GMMessageSection() {
   const { ref } = useInView({ threshold: 0.1, triggerOnce: true })
   const t = useT().gm
+  const navigate = useNavigate()
 
   // Track when the video is in / out of the viewport
   const iframeRef = useRef(null)
@@ -267,7 +269,15 @@ export default function GMMessageSection() {
 
       {/* ── Post-video CTA ── */}
       <motion.div className="gm-video-cta" {...fadeUp(0.82)}>
-        <a href={ALL_SUITES_ROUTE} className="btn btn-primary">
+        <a
+          href={ALL_SUITES_ROUTE}
+          className="btn btn-primary"
+          onClick={(e) => {
+            e.preventDefault()
+            window.scrollTo(0, 0)
+            navigate(ALL_SUITES_ROUTE)
+          }}
+        >
           <BedDouble size={14} strokeWidth={1.8} aria-hidden="true" />
           {t.videoCta}
         </a>

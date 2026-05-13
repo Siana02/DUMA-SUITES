@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin } from 'lucide-react'
+import { Mail, Phone, MapPin, ChefHat, Plane, Check } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import logoImg from '../assets/logo.jpeg'
 import mammalImg from '../assets/mammal.png'
@@ -37,6 +37,13 @@ const SOCIAL = [
   { Icon: WhatsAppIcon,  href: 'https://wa.me/254710933025',                                                     label: 'WhatsApp' },
 ]
 
+const ADDED_SERVICE_ICON_MAP = {
+  'Private chef on demand': ChefHat,
+  'Airport transfers to and from Mombasa & Malindi airports': Plane,
+  'Chef privato su richiesta': ChefHat,
+  'Transfer aeroportuale da/per gli aeroporti di Mombasa e Malindi': Plane,
+}
+
 export default function Footer() {
   const t = useT()
   const navigate = useNavigate()
@@ -47,6 +54,11 @@ export default function Footer() {
   const suiteLinks = [...t.footer.suitesLinks].sort(
     (a, b) => suiteOrderIndex(a.href) - suiteOrderIndex(b.href)
   )
+  const addedServicesTitle = t.footer.addedServicesTitle ?? 'Added Services'
+  const addedServices = t.footer.addedServices ?? [
+    'Private chef on demand',
+    'Airport transfers to and from Mombasa & Malindi airports',
+  ]
 
   const EXPLORE_LINKS = [
     { label: t.footer.links.gallery,    href: '/gallery',      isRoute: true },
@@ -144,6 +156,20 @@ export default function Footer() {
               </li>
             ))}
           </ul>
+          <div className="footer__added-services">
+            <h4 className="footer__added-services-title">{addedServicesTitle}</h4>
+            <ul className="footer__added-services-list">
+              {addedServices.map((service) => {
+                const Icon = ADDED_SERVICE_ICON_MAP[service] ?? Check
+                return (
+                  <li key={service}>
+                    <Icon size={14} strokeWidth={1.8} aria-hidden="true" />
+                    <span>{service}</span>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
         </div>
 
         {/* Contact column */}
@@ -326,6 +352,36 @@ export default function Footer() {
         }
         .footer__link:hover {
           color: var(--color-teal);
+        }
+        .footer__added-services {
+          margin-top: 18px;
+        }
+        .footer__added-services-title {
+          font-family: var(--font-nav);
+          font-size: 0.6rem;
+          font-weight: 600;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.82);
+          margin-bottom: 10px;
+        }
+        .footer__added-services-list {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .footer__added-services-list li {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          color: rgba(255, 255, 255, 0.55);
+          font-size: 0.82rem;
+          line-height: 1.5;
+        }
+        .footer__added-services-list li svg {
+          flex-shrink: 0;
+          color: var(--color-teal);
+          margin-top: 2px;
         }
         .footer__contact-list {
           display: flex;
