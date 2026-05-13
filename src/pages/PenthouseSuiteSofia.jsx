@@ -376,7 +376,7 @@ export default function PenthouseSuiteSofiaPage() {
 
         <SuiteVideoTourSection
           videoId="1191912401"
-          iframeTitle="Penthouse Suite Sofia room tour video"
+          iframeTitle="Duma Penthouse Sofia room tour video"
           eyebrow={tourCopy.tourEyebrow}
           title={tourCopy.tourTitle}
           subtitle={tourCopy.tourSub}

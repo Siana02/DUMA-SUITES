@@ -360,7 +360,7 @@ export default function SuiteChiaraPage() {
 
         <SuiteVideoTourSection
           videoId="1191918577"
-          iframeTitle="Penthouse Suite Chiara room tour video"
+          iframeTitle="Duma Penthouse Chiara room tour video"
           eyebrow={tourCopy.tourEyebrow}
           title={tourCopy.tourTitle}
           subtitle={tourCopy.tourSub}
