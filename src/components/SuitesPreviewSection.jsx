@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useInView } from 'react-intersection-observer'
 import { Maximize2, BedDouble, Users, ArrowLeft, ArrowRight } from 'lucide-react'
 import { useT } from '../i18n/useT.js'
@@ -183,10 +183,10 @@ export default function SuitesPreviewSection() {
 
         {/* CTA */}
         <motion.div className="sp-cta-wrap" {...fadeUp(0.44)}>
-          <a href={ALL_SUITES_ROUTE} className="sp-cta-btn">
+          <Link to={ALL_SUITES_ROUTE} className="sp-cta-btn">
             {sp.viewAll}
             <span className="sp-cta-btn__arrow" aria-hidden="true">&rarr;</span>
-          </a>
+          </Link>
         </motion.div>
       </div>
 

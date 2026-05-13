@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { Waves, BedDouble, Leaf, Star } from 'lucide-react'
 import { useInView } from 'react-intersection-observer'
 import { useT } from '../i18n/useT.js'
@@ -186,10 +187,10 @@ export default function SuiteHighlightsSection() {
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.7, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
       >
-        <a href={ALL_SUITES_ROUTE} className="sh-cta">
+        <Link to={ALL_SUITES_ROUTE} className="sh-cta">
           {sh.viewAll}
           <span className="sh-cta__arrow" aria-hidden="true">&rarr;</span>
-        </a>
+        </Link>
       </motion.div>
 
       <style>{`
