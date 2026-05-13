@@ -7,7 +7,7 @@ import {
   Wifi, Tv, Bath, Utensils, Calendar, Clock, CreditCard,
   Shield, AirVent, Sparkles, Sofa, Sunrise, UtensilsCrossed,
   PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack,
-  Armchair, Fan, WavesLadder, TreePalm, Sun,
+  Armchair, Fan, WavesLadder, TreePalm, Sun, ChefHat, Plane, BatteryCharging,
 } from 'lucide-react'
 import { useT } from '../i18n/useT.js'
 import { SUITE_ROUTES } from '../constants/suiteRoutes'
@@ -110,6 +110,9 @@ const AMENITY_ICONS = [
   WavesLadder,
   TreePalm,
   Sun,
+  ChefHat,
+  Plane,
+  BatteryCharging,
 ]
 
 const POLICY_ICONS = [Clock, Clock, Calendar, CreditCard, Shield, PawPrint, Cigarette]

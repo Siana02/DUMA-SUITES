@@ -8,6 +8,7 @@ import {
   Wifi, Tv, Bath, Waves, Utensils, Calendar, Clock, CreditCard,
   Shield, AirVent, Sparkles, Sofa, Sunrise, UtensilsCrossed,
   Shirt, Fan, PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack,
+  ChefHat, Plane, BatteryCharging,
 } from 'lucide-react'
 import { useT } from '../i18n/useT.js'
 import { SUITE_ROUTES } from '../constants/suiteRoutes'
@@ -60,6 +61,9 @@ const AMENITY_ICONS = [
   ({ size, strokeWidth, className }) => <span className={className} style={{ fontSize: size, lineHeight: 1 }}>⛱</span>,
   TowelRack,
   Fan,
+  ChefHat,
+  Plane,
+  BatteryCharging,
 ]
 
 const POLICY_ICONS = [Clock, Clock, Calendar, CreditCard, Shield, PawPrint, Cigarette]

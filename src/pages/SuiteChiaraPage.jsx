@@ -9,6 +9,7 @@ import {
   PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack, Star,
   Building2, DoorOpen, Fan, WavesLadder, TreePalm, Leaf, ForkKnife,
   WashingMachine,
+  ChefHat, Plane, BatteryCharging,
 } from 'lucide-react'
 import { useT } from '../i18n/useT.js'
 import { SUITE_ROUTES } from '../constants/suiteRoutes'
@@ -122,6 +123,9 @@ const AMENITY_ICONS = [
   WavesLadder,     // Pool Access
   TreePalm,        // Beach Views
   Leaf,            // Garden View
+  ChefHat,         // Private Chef On Demand
+  Plane,           // Airport Transfers
+  BatteryCharging, // Backup Battery System
 ]
 
 const POLICY_ICONS = [Clock, Clock, Calendar, CreditCard, Shield, PawPrint, Cigarette]

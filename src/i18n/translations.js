@@ -162,6 +162,12 @@ const en = {
     colSuites: 'Suites',
     colExplore: 'Explore',
     colContact: 'Contact',
+    addedServicesTitle: 'Added Services',
+    addedServices: [
+      'Private chef on demand',
+      'Airport transfers to and from Mombasa & Malindi airports',
+      'Backup battery system in every apartment',
+    ],
     links: {
       gallery: 'Gallery',
       about: 'About',
@@ -326,7 +332,7 @@ const en = {
       tourCta: 'Inquire About This Suite',
       amenitiesEyebrow: "What's Included",
       amenitiesTitle: 'Suite Amenities',
-      amenities: ['King-size bed', 'En-suite bathroom', 'Full kitchenette', 'Private lounge', 'Balcony', 'Pool view', 'High-speed Wi-Fi', 'Daily housekeeping', 'Air conditioning', 'Smart TV', 'In-suite dining', 'Premium linens', 'Sunbeds', 'Towels provided', 'Ceiling fans'],
+      amenities: ['King-size bed', 'En-suite bathroom', 'Full kitchenette', 'Private lounge', 'Balcony', 'Pool view', 'High-speed Wi-Fi', 'Daily housekeeping', 'Air conditioning', 'Smart TV', 'In-suite dining', 'Premium linens', 'Sunbeds', 'Towels provided', 'Ceiling fans', 'Private chef on demand', 'Airport transfers to and from Mombasa & Malindi airports', 'Backup battery system in every apartment'],
       policiesEyebrow: 'Policies & Check-in',
       policiesTitle: 'Know Before You Go',
       policies: [
@@ -381,7 +387,7 @@ const en = {
       tourCta: 'Inquire About This Suite',
       amenitiesEyebrow: "What's Included",
       amenitiesTitle: 'Suite Amenities',
-      amenities: ['3 King bedrooms', 'Multiple en-suites', 'Full kitchen', 'Outdoor terrace', 'Garden views', 'Formal dining area', 'Living room', 'Spacious balcony', 'High-speed Wi-Fi', 'Daily housekeeping', 'Air conditioning', 'Smart TVs', 'Sunbeds', 'Towels provided', 'Ceiling fans'],
+      amenities: ['3 King bedrooms', 'Multiple en-suites', 'Full kitchen', 'Outdoor terrace', 'Garden views', 'Formal dining area', 'Living room', 'Spacious balcony', 'High-speed Wi-Fi', 'Daily housekeeping', 'Air conditioning', 'Smart TVs', 'Sunbeds', 'Towels provided', 'Ceiling fans', 'Private chef on demand', 'Airport transfers to and from Mombasa & Malindi airports', 'Backup battery system in every apartment'],
       policiesEyebrow: 'Policies & Check-in',
       policiesTitle: 'Know Before You Go',
       policies: [
@@ -432,7 +438,7 @@ const en = {
       galleryCta: 'Book Penthouse Sofia',
       amenitiesEyebrow: "What's Included",
       amenitiesTitle: 'Penthouse Amenities',
-      amenities: ['3 King Size Beds', 'Multiple en-suites', '2 Floors', 'Master Bedroom on Top Floor', 'Fully Equipped Kitchenette', 'Outdoor Sunbeds', 'Lounge Chairs', 'Recliner Chairs', 'Huge Balconies', 'Rooftop Sunset Terrace', 'Indoor Dining Table', 'Outdoor 8-Seater Dining Table', 'Swing with Sea & Sunset Views', 'High-speed Wi-Fi', 'Daily Housekeeping', 'Air conditioning', 'Smart TV', 'Towels provided', 'Ceiling Fans', 'Pool Access', 'Beach Views', 'Garden View'],
+      amenities: ['3 King Size Beds', 'Multiple en-suites', '2 Floors', 'Master Bedroom on Top Floor', 'Fully Equipped Kitchenette', 'Outdoor Sunbeds', 'Lounge Chairs', 'Recliner Chairs', 'Huge Balconies', 'Rooftop Sunset Terrace', 'Indoor Dining Table', 'Outdoor 8-Seater Dining Table', 'Swing with Sea & Sunset Views', 'High-speed Wi-Fi', 'Daily Housekeeping', 'Air conditioning', 'Smart TV', 'Towels provided', 'Ceiling Fans', 'Pool Access', 'Beach Views', 'Garden View', 'Private chef on demand', 'Airport transfers to and from Mombasa & Malindi airports', 'Backup battery system in every apartment'],
       policiesEyebrow: 'Policies & Check-in',
       policiesTitle: 'Know Before You Go',
       policies: [
@@ -483,7 +489,7 @@ const en = {
       galleryCta: 'Book Duma Penthouse Chiara',
       amenitiesEyebrow: "What's Included",
       amenitiesTitle: 'Suite Amenities',
-      amenities: ['3 King Size Beds', 'Multiple en-suites & closets', 'Single-floor layout', 'Expansive primary bedroom', 'Fully Equipped Kitchen', '2 Living Rooms', 'Balcony & Terrace', 'Indoor Dining Area', 'Outdoor Dining Area', 'Washing Machine', 'High-speed Wi-Fi', 'Daily Housekeeping', 'Air conditioning', 'Smart TV', 'Towels provided', 'Ceiling Fans', 'Pool Access', 'Beach Views', 'Garden View'],
+      amenities: ['3 King Size Beds', 'Multiple en-suites & closets', 'Single-floor layout', 'Expansive primary bedroom', 'Fully Equipped Kitchen', '2 Living Rooms', 'Balcony & Terrace', 'Indoor Dining Area', 'Outdoor Dining Area', 'Washing Machine', 'High-speed Wi-Fi', 'Daily Housekeeping', 'Air conditioning', 'Smart TV', 'Towels provided', 'Ceiling Fans', 'Pool Access', 'Beach Views', 'Garden View', 'Private chef on demand', 'Airport transfers to and from Mombasa & Malindi airports', 'Backup battery system in every apartment'],
       policiesEyebrow: 'Policies & Check-in',
       policiesTitle: 'Know Before You Go',
       policies: [
@@ -534,7 +540,7 @@ const en = {
       galleryCta: 'Book Duma Suite Lucia',
       amenitiesEyebrow: "What's Included",
       amenitiesTitle: 'Suite Amenities',
-      amenities: ['2 King Size Beds', '2 En-suite Bathrooms & Closets', 'Lounge Room', 'Fully Equipped Kitchen', 'Terrace / Balcony Lounge', 'Outdoor Lounge Chairs', 'Indoor Dining Area', 'High-speed Wi-Fi', 'Daily Housekeeping', 'Air conditioning', 'Smart TV', 'Towels provided', 'Ceiling Fans', 'Pool Access', 'Beach Views', 'Sea Views'],
+      amenities: ['2 King Size Beds', '2 En-suite Bathrooms & Closets', 'Lounge Room', 'Fully Equipped Kitchen', 'Terrace / Balcony Lounge', 'Outdoor Lounge Chairs', 'Indoor Dining Area', 'High-speed Wi-Fi', 'Daily Housekeeping', 'Air conditioning', 'Smart TV', 'Towels provided', 'Ceiling Fans', 'Pool Access', 'Beach Views', 'Sea Views', 'Private chef on demand', 'Airport transfers to and from Mombasa & Malindi airports', 'Backup battery system in every apartment'],
       policiesEyebrow: 'Policies & Check-in',
       policiesTitle: 'Know Before You Go',
       policies: [
@@ -585,7 +591,7 @@ const en = {
       galleryCta: 'Book Duma Suite Roma',
       amenitiesEyebrow: "What's Included",
       amenitiesTitle: 'Suite Amenities',
-      amenities: ['2 King Size Beds', '2 En-suite Bathrooms & Closets', 'Lounge Room', 'Fully Equipped Kitchen', 'Terrace / Balcony Lounge', 'Outdoor Lounge Chairs', 'Indoor Dining Area', 'High-speed Wi-Fi', 'Daily Housekeeping', 'Air conditioning', 'Smart TV', 'Towels provided', 'Ceiling Fans', 'Pool Access', 'Beach Views', 'Sea Views'],
+      amenities: ['2 King Size Beds', '2 En-suite Bathrooms & Closets', 'Lounge Room', 'Fully Equipped Kitchen', 'Terrace / Balcony Lounge', 'Outdoor Lounge Chairs', 'Indoor Dining Area', 'High-speed Wi-Fi', 'Daily Housekeeping', 'Air conditioning', 'Smart TV', 'Towels provided', 'Ceiling Fans', 'Pool Access', 'Beach Views', 'Sea Views', 'Private chef on demand', 'Airport transfers to and from Mombasa & Malindi airports', 'Backup battery system in every apartment'],
       policiesEyebrow: 'Policies & Check-in',
       policiesTitle: 'Know Before You Go',
       policies: [
@@ -1378,6 +1384,12 @@ const it = {
     colSuites: 'Suite',
     colExplore: 'Esplora',
     colContact: 'Contatti',
+    addedServicesTitle: 'Servizi Aggiuntivi',
+    addedServices: [
+      'Chef privato su richiesta',
+      'Transfer aeroportuale da/per gli aeroporti di Mombasa e Malindi',
+      'Sistema di backup a batteria in ogni appartamento',
+    ],
     links: {
       gallery: 'Galleria',
       about: 'Chi Siamo',
@@ -1543,7 +1555,7 @@ const it = {
       tourCta: 'Richiedi Informazioni sulla Suite',
       amenitiesEyebrow: 'Cosa è Incluso',
       amenitiesTitle: 'Servizi della Suite',
-      amenities: ['Letto king size', 'Bagno en-suite', 'Kitchenette completa', 'Salotto privato', 'Balcone', 'Vista piscina', 'Wi-Fi ad alta velocità', 'Pulizie quotidiane', 'Aria condizionata', 'Smart TV', 'Cena in suite', 'Biancheria premium', 'Lettini', 'Asciugamani forniti', 'Ventilatori a soffitto'],
+      amenities: ['Letto king size', 'Bagno en-suite', 'Kitchenette completa', 'Salotto privato', 'Balcone', 'Vista piscina', 'Wi-Fi ad alta velocità', 'Pulizie quotidiane', 'Aria condizionata', 'Smart TV', 'Cena in suite', 'Biancheria premium', 'Lettini', 'Asciugamani forniti', 'Ventilatori a soffitto', 'Chef privato su richiesta', 'Transfer aeroportuale da/per gli aeroporti di Mombasa e Malindi', 'Sistema di backup a batteria in ogni appartamento'],
       policiesEyebrow: 'Politiche e Check-in',
       policiesTitle: 'Prima di Arrivare',
       policies: [
@@ -1598,7 +1610,7 @@ const it = {
       tourCta: 'Richiedi Informazioni sulla Suite',
       amenitiesEyebrow: 'Cosa è Incluso',
       amenitiesTitle: 'Servizi della Suite',
-      amenities: ['3 Camere king', 'Più en-suite', 'Cucina completa', 'Terrazza esterna', 'Viste sul giardino', 'Sala da pranzo formale', 'Soggiorno', 'Ampio balcone', 'Wi-Fi ad alta velocità', 'Pulizie quotidiane', 'Aria condizionata', 'Smart TV', 'Lettini', 'Asciugamani forniti', 'Ventilatori a soffitto'],
+      amenities: ['3 Camere king', 'Più en-suite', 'Cucina completa', 'Terrazza esterna', 'Viste sul giardino', 'Sala da pranzo formale', 'Soggiorno', 'Ampio balcone', 'Wi-Fi ad alta velocità', 'Pulizie quotidiane', 'Aria condizionata', 'Smart TV', 'Lettini', 'Asciugamani forniti', 'Ventilatori a soffitto', 'Chef privato su richiesta', 'Transfer aeroportuale da/per gli aeroporti di Mombasa e Malindi', 'Sistema di backup a batteria in ogni appartamento'],
       policiesEyebrow: 'Politiche e Check-in',
       policiesTitle: 'Prima di Arrivare',
       policies: [
@@ -1649,7 +1661,7 @@ const it = {
       galleryCta: 'Prenota Penthouse Sofia',
       amenitiesEyebrow: "Cosa è Incluso",
       amenitiesTitle: 'Servizi del Penthouse',
-      amenities: ['3 Letti King', 'Più bagni en-suite', '2 Piani', 'Camera Master al Piano Superiore', 'Kitchenette Completamente Attrezzata', 'Lettini da Sole Esterni', 'Sedie Lounge', 'Sedie Reclinabili', 'Grandi Balconi', 'Terrazza al Tramonto sul Tetto', 'Tavolo da Pranzo Interno', 'Tavolo da Pranzo Esterno 8 Posti', 'Swing con Vista Mare e Tramonto', 'Wi-Fi ad Alta Velocità', 'Pulizie Giornaliere', 'Aria Condizionata', 'Smart TV', 'Asciugamani Forniti', 'Ventilatori a Soffitto', 'Accesso alla Piscina', 'Vista Mare', 'Vista Giardino'],
+      amenities: ['3 Letti King', 'Più bagni en-suite', '2 Piani', 'Camera Master al Piano Superiore', 'Kitchenette Completamente Attrezzata', 'Lettini da Sole Esterni', 'Sedie Lounge', 'Sedie Reclinabili', 'Grandi Balconi', 'Terrazza al Tramonto sul Tetto', 'Tavolo da Pranzo Interno', 'Tavolo da Pranzo Esterno 8 Posti', 'Swing con Vista Mare e Tramonto', 'Wi-Fi ad Alta Velocità', 'Pulizie Giornaliere', 'Aria Condizionata', 'Smart TV', 'Asciugamani Forniti', 'Ventilatori a Soffitto', 'Accesso alla Piscina', 'Vista Mare', 'Vista Giardino', 'Chef privato su richiesta', 'Transfer aeroportuale da/per gli aeroporti di Mombasa e Malindi', 'Sistema di backup a batteria in ogni appartamento'],
       policiesEyebrow: 'Politiche e Check-in',
       policiesTitle: 'Prima del Vostro Arrivo',
       policies: [
@@ -1700,7 +1712,7 @@ const it = {
       galleryCta: 'Prenota Duma Penthouse Chiara',
       amenitiesEyebrow: 'Cosa è Incluso',
       amenitiesTitle: 'Servizi della Suite',
-      amenities: ['3 Letti King', 'Più bagni en-suite e armadi', 'Layout su un solo piano', 'Camera padronale spaziosa', 'Cucina Completamente Attrezzata', '2 Soggiorni', 'Balcone e Terrazza', 'Sala da Pranzo Interna', 'Sala da Pranzo Esterna', 'Lavatrice', 'Wi-Fi ad Alta Velocità', 'Pulizie Giornaliere', 'Aria Condizionata', 'Smart TV', 'Asciugamani Forniti', 'Ventilatori a Soffitto', 'Accesso alla Piscina', 'Vista Mare', 'Vista Giardino'],
+      amenities: ['3 Letti King', 'Più bagni en-suite e armadi', 'Layout su un solo piano', 'Camera padronale spaziosa', 'Cucina Completamente Attrezzata', '2 Soggiorni', 'Balcone e Terrazza', 'Sala da Pranzo Interna', 'Sala da Pranzo Esterna', 'Lavatrice', 'Wi-Fi ad Alta Velocità', 'Pulizie Giornaliere', 'Aria Condizionata', 'Smart TV', 'Asciugamani Forniti', 'Ventilatori a Soffitto', 'Accesso alla Piscina', 'Vista Mare', 'Vista Giardino', 'Chef privato su richiesta', 'Transfer aeroportuale da/per gli aeroporti di Mombasa e Malindi', 'Sistema di backup a batteria in ogni appartamento'],
       policiesEyebrow: 'Politiche e Check-in',
       policiesTitle: 'Prima del Vostro Arrivo',
       policies: [
@@ -1751,7 +1763,7 @@ const it = {
       galleryCta: 'Prenota Duma Suite Lucia',
       amenitiesEyebrow: 'Cosa è Incluso',
       amenitiesTitle: 'Servizi della Suite',
-      amenities: ['2 Letti King', '2 Bagni en-suite e Armadi', 'Soggiorno', 'Cucina Completamente Attrezzata', 'Terrazza / Lounge sul Balcone', 'Sedie Lounge Esterne', 'Sala da Pranzo Interna', 'Wi-Fi ad Alta Velocità', 'Pulizie Giornaliere', 'Aria Condizionata', 'Smart TV', 'Asciugamani Forniti', 'Ventilatori a Soffitto', 'Accesso alla Piscina', 'Vista Mare', 'Vista Oceano'],
+      amenities: ['2 Letti King', '2 Bagni en-suite e Armadi', 'Soggiorno', 'Cucina Completamente Attrezzata', 'Terrazza / Lounge sul Balcone', 'Sedie Lounge Esterne', 'Sala da Pranzo Interna', 'Wi-Fi ad Alta Velocità', 'Pulizie Giornaliere', 'Aria Condizionata', 'Smart TV', 'Asciugamani Forniti', 'Ventilatori a Soffitto', 'Accesso alla Piscina', 'Vista Mare', 'Vista Oceano', 'Chef privato su richiesta', 'Transfer aeroportuale da/per gli aeroporti di Mombasa e Malindi', 'Sistema di backup a batteria in ogni appartamento'],
       policiesEyebrow: 'Politiche e Check-in',
       policiesTitle: 'Prima del Vostro Arrivo',
       policies: [
@@ -1802,7 +1814,7 @@ const it = {
       galleryCta: 'Prenota Duma Suite Roma',
       amenitiesEyebrow: 'Cosa è Incluso',
       amenitiesTitle: 'Servizi della Suite',
-      amenities: ['2 Letti King', '2 Bagni en-suite e Armadi', 'Soggiorno', 'Cucina Completamente Attrezzata', 'Terrazza / Lounge sul Balcone', 'Sedie Lounge Esterne', 'Sala da Pranzo Interna', 'Wi-Fi ad Alta Velocità', 'Pulizie Giornaliere', 'Aria Condizionata', 'Smart TV', 'Asciugamani Forniti', 'Ventilatori a Soffitto', 'Accesso alla Piscina', 'Vista Mare', 'Vista Oceano'],
+      amenities: ['2 Letti King', '2 Bagni en-suite e Armadi', 'Soggiorno', 'Cucina Completamente Attrezzata', 'Terrazza / Lounge sul Balcone', 'Sedie Lounge Esterne', 'Sala da Pranzo Interna', 'Wi-Fi ad Alta Velocità', 'Pulizie Giornaliere', 'Aria Condizionata', 'Smart TV', 'Asciugamani Forniti', 'Ventilatori a Soffitto', 'Accesso alla Piscina', 'Vista Mare', 'Vista Oceano', 'Chef privato su richiesta', 'Transfer aeroportuale da/per gli aeroporti di Mombasa e Malindi', 'Sistema di backup a batteria in ogni appartamento'],
       policiesEyebrow: 'Politiche e Check-in',
       policiesTitle: 'Prima del Vostro Arrivo',
       policies: [

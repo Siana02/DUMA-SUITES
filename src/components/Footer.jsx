@@ -47,6 +47,12 @@ export default function Footer() {
   const suiteLinks = [...t.footer.suitesLinks].sort(
     (a, b) => suiteOrderIndex(a.href) - suiteOrderIndex(b.href)
   )
+  const addedServicesTitle = t.footer.addedServicesTitle ?? 'Added Services'
+  const addedServices = t.footer.addedServices ?? [
+    'Private chef on demand',
+    'Airport transfers to and from Mombasa & Malindi airports',
+    'Backup battery system in every apartment',
+  ]
 
   const EXPLORE_LINKS = [
     { label: t.footer.links.gallery,    href: '/gallery',      isRoute: true },
@@ -144,6 +150,14 @@ export default function Footer() {
               </li>
             ))}
           </ul>
+          <div className="footer__added-services">
+            <h4 className="footer__added-services-title">{addedServicesTitle}</h4>
+            <ul className="footer__added-services-list">
+              {addedServices.map((service) => (
+                <li key={service}>{service}</li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Contact column */}
@@ -326,6 +340,41 @@ export default function Footer() {
         }
         .footer__link:hover {
           color: var(--color-teal);
+        }
+        .footer__added-services {
+          margin-top: 18px;
+        }
+        .footer__added-services-title {
+          font-family: var(--font-nav);
+          font-size: 0.6rem;
+          font-weight: 600;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.82);
+          margin-bottom: 10px;
+        }
+        .footer__added-services-list {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .footer__added-services-list li {
+          position: relative;
+          padding-left: 12px;
+          color: rgba(255, 255, 255, 0.55);
+          font-size: 0.82rem;
+          line-height: 1.5;
+        }
+        .footer__added-services-list li::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0.62em;
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          background: var(--color-teal);
+          transform: translateY(-50%);
         }
         .footer__contact-list {
           display: flex;
