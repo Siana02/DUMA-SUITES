@@ -1,9 +1,11 @@
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import axios from 'axios'
 import * as cheerio from 'cheerio'
 
-const REPO_ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const REPO_ROOT = path.resolve(__dirname, '..')
 const SRC_DIR = path.join(REPO_ROOT, 'src')
 const APP_FILE = path.join(SRC_DIR, 'App.jsx')
 const SUITE_ROUTES_FILE = path.join(SRC_DIR, 'constants', 'suiteRoutes.js')
@@ -239,15 +241,15 @@ function levenshteinDistance(a, b) {
   const rows = a.length + 1
   const cols = b.length + 1
   const dp = Array.from({ length: rows }, () => Array(cols).fill(0))
-  for (let i = 0; i < rows; i += 1) dp[i][0] = i
-  for (let j = 0; j < cols; j += 1) dp[0][j] = j
-  for (let i = 1; i < rows; i += 1) {
-    for (let j = 1; j < cols; j += 1) {
-      const cost = a[i - 1] === b[j - 1] ? 0 : 1
-      dp[i][j] = Math.min(
-        dp[i - 1][j] + 1,
-        dp[i][j - 1] + 1,
-        dp[i - 1][j - 1] + cost
+  for (let row = 0; row < rows; row += 1) dp[row][0] = row
+  for (let col = 0; col < cols; col += 1) dp[0][col] = col
+  for (let row = 1; row < rows; row += 1) {
+    for (let col = 1; col < cols; col += 1) {
+      const cost = a[row - 1] === b[col - 1] ? 0 : 1
+      dp[row][col] = Math.min(
+        dp[row - 1][col] + 1,
+        dp[row][col - 1] + 1,
+        dp[row - 1][col - 1] + cost
       )
     }
   }
@@ -369,8 +371,9 @@ async function crawlSite(baseUrl) {
         if (!visited.has(pathOnly)) queue.push(pathOnly)
       })
     } catch (error) {
-      console.warn(`⚠ Runtime crawl warning on ${currentPath}: ${error.message}`)
-      break
+      const message = error?.message || 'Unknown crawl error'
+      console.warn(`⚠ Runtime crawl warning on ${currentPath}: ${message}`)
+      continue
     }
   }
 
