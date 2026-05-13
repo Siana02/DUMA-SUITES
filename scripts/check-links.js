@@ -9,7 +9,7 @@ const REPO_ROOT = path.resolve(__dirname, '..')
 const SRC_DIR = path.join(REPO_ROOT, 'src')
 const APP_FILE = path.join(SRC_DIR, 'App.jsx')
 const SUITE_ROUTES_FILE = path.join(SRC_DIR, 'constants', 'suiteRoutes.js')
-const MAX_CRAWL_PAGES = 200
+const MAX_CRAWLED_PAGES = 200
 const REQUEST_TIMEOUT_MS = 8000
 
 const BASE_URL = process.argv.find((arg) => arg.startsWith('--base-url='))?.split('=')[1]
@@ -45,7 +45,7 @@ function walkFiles(dir, fileList = []) {
   return fileList
 }
 
-function countLine(content, index) {
+function getLineNumber(content, index) {
   return content.slice(0, index).split('\n').length
 }
 
@@ -116,7 +116,7 @@ function parseLinksWithCheerio(filePath, content, constants) {
 
   while (tag) {
     const originalTag = tag[0]
-    const sourceLine = countLine(content, tag.index)
+    const sourceLine = getLineNumber(content, tag.index)
     const normalizedTag = originalTag
       .replace(/^<Link\b/, '<a data-component="Link"')
       .replace(/\sto=\s*/g, ' href=')
@@ -160,7 +160,7 @@ function parseLinksWithCheerio(filePath, content, constants) {
       const resolved = resolveRouteToken(rawValue, constants) || rawValue
       if (isStaticLinkCandidate(resolved)) {
         records.push({
-          source: `${relativeFile}:${countLine(content, match.index)}`,
+          source: `${relativeFile}:${getLineNumber(content, match.index)}`,
           rawLink: resolved,
           context,
         })
@@ -339,7 +339,7 @@ async function crawlSite(baseUrl) {
   const visited = new Set()
   const queue = ['/']
 
-  while (queue.length > 0 && visited.size < MAX_CRAWL_PAGES) {
+  while (queue.length > 0 && visited.size < MAX_CRAWLED_PAGES) {
     const currentPath = queue.shift()
     if (visited.has(currentPath)) continue
     visited.add(currentPath)
