@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin } from 'lucide-react'
+import { Mail, Phone, MapPin, ChefHat, Plane } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import logoImg from '../assets/logo.jpeg'
 import mammalImg from '../assets/mammal.png'
@@ -37,6 +37,8 @@ const SOCIAL = [
   { Icon: WhatsAppIcon,  href: 'https://wa.me/254710933025',                                                     label: 'WhatsApp' },
 ]
 
+const ADDED_SERVICE_ICONS = [ChefHat, Plane]
+
 export default function Footer() {
   const t = useT()
   const navigate = useNavigate()
@@ -51,7 +53,6 @@ export default function Footer() {
   const addedServices = t.footer.addedServices ?? [
     'Private chef on demand',
     'Airport transfers to and from Mombasa & Malindi airports',
-    'Backup battery system in every apartment',
   ]
 
   const EXPLORE_LINKS = [
@@ -153,9 +154,15 @@ export default function Footer() {
           <div className="footer__added-services">
             <h4 className="footer__added-services-title">{addedServicesTitle}</h4>
             <ul className="footer__added-services-list">
-              {addedServices.map((service) => (
-                <li key={service}>{service}</li>
-              ))}
+              {addedServices.map((service, index) => {
+                const Icon = ADDED_SERVICE_ICONS[index] ?? ChefHat
+                return (
+                  <li key={service}>
+                    <Icon size={14} strokeWidth={1.8} aria-hidden="true" />
+                    <span>{service}</span>
+                  </li>
+                )
+              })}
             </ul>
           </div>
         </div>
@@ -359,22 +366,17 @@ export default function Footer() {
           gap: 8px;
         }
         .footer__added-services-list li {
-          position: relative;
-          padding-left: 12px;
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
           color: rgba(255, 255, 255, 0.55);
           font-size: 0.82rem;
           line-height: 1.5;
         }
-        .footer__added-services-list li::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 0.62em;
-          width: 4px;
-          height: 4px;
-          border-radius: 50%;
-          background: var(--color-teal);
-          transform: translateY(-50%);
+        .footer__added-services-list li svg {
+          flex-shrink: 0;
+          color: var(--color-teal);
+          margin-top: 2px;
         }
         .footer__contact-list {
           display: flex;

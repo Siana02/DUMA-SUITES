@@ -166,7 +166,6 @@ const en = {
     addedServices: [
       'Private chef on demand',
       'Airport transfers to and from Mombasa & Malindi airports',
-      'Backup battery system in every apartment',
     ],
     links: {
       gallery: 'Gallery',
@@ -1388,7 +1387,6 @@ const it = {
     addedServices: [
       'Chef privato su richiesta',
       'Transfer aeroportuale da/per gli aeroporti di Mombasa e Malindi',
-      'Sistema di backup a batteria in ogni appartamento',
     ],
     links: {
       gallery: 'Galleria',
