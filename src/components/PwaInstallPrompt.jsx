@@ -13,7 +13,8 @@ function isIosDevice() {
   if (typeof window === 'undefined') return false
 
   const userAgent = window.navigator.userAgent || ''
-  return /iphone|ipad|ipod/i.test(userAgent) || (/macintosh/i.test(userAgent) && window.navigator.maxTouchPoints > 1)
+  const isMacWithTouchScreen = /macintosh/i.test(userAgent) && window.navigator.maxTouchPoints > 1
+  return /iphone|ipad|ipod/i.test(userAgent) || isMacWithTouchScreen
 }
 
 function getPromptType(deferredPrompt) {
