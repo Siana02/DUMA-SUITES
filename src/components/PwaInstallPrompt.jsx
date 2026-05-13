@@ -13,7 +13,7 @@ function isIosDevice() {
   if (typeof window === 'undefined') return false
 
   const userAgent = window.navigator.userAgent || ''
-  return /iphone|ipad|ipod/i.test(userAgent)
+  return /iphone|ipad|ipod/i.test(userAgent) || (/macintosh/i.test(userAgent) && window.navigator.maxTouchPoints > 1)
 }
 
 function getPromptType(deferredPrompt) {
@@ -218,7 +218,7 @@ export default function PwaInstallPrompt({ preloadDone }) {
             .pwa-prompt__instructions {
               margin: 8px 0 0;
               font-family: var(--font-body);
-              font-size: 0.72rem;
+              font-size: 0.75rem;
               line-height: 1.55;
               color: rgba(255, 255, 255, 0.68);
             }
