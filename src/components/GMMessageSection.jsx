@@ -274,7 +274,7 @@ export default function GMMessageSection() {
           className="btn btn-primary"
           onClick={(e) => {
             e.preventDefault()
-            window.scrollTo({ top: 0, behavior: 'auto' })
+            window.scrollTo(0, 0)
             navigate(ALL_SUITES_ROUTE)
           }}
         >
