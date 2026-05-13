@@ -425,7 +425,7 @@ export default function SerenityVillaPage() {
             </motion.div>
             {/* Post-tour CTA */}
             <motion.div className="sv-tour__cta-wrap" {...fadeUp(0.34)}>
-              <a href="/contact" className="btn btn-primary">{ts.tourCta}</a>
+              <a href="#inquire" className="btn btn-primary">{ts.tourCta}</a>
             </motion.div>
           </div>
         </section>

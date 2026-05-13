@@ -201,7 +201,7 @@ export default function ReviewsSection() {
         {/* ── Leave a Review CTA ─────────────────────── */}
         <div className="rv-leave-cta">
           <a
-            href="https://search.google.com/local/writereview?placeid=PLACE_ID"
+            href="https://www.google.com/search?q=Duma+Suites+Watamu"
             className="rv-leave-cta__btn btn btn-primary"
             target="_blank"
             rel="noopener noreferrer"
