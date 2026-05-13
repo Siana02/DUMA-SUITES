@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import { useT } from '../i18n/useT.js'
 import { SUITE_ROUTES } from '../constants/suiteRoutes'
+import SuiteVideoTourSection from '../components/SuiteVideoTourSection.jsx'
 
 import heroImg from '../assets/suite-roma-main-page-hero-image-background.jpeg'
 import aboutImg from '../assets/suite-roma-dining-table-with-tv-view.jpeg'
@@ -90,6 +91,7 @@ export default function SuiteRomaPage() {
   const tann = t.suites.coastal
   const tali = t.suites.serenity
   const allSuiteCards = t.suites.all.cards
+  const tourCopy = pt.tourEyebrow ? pt : t.suites.serenity
 
   const galleryTrackRef    = useRef(null)
   const galleryPosRef      = useRef(0)
@@ -300,6 +302,16 @@ export default function SuiteRomaPage() {
             </motion.a>
           </div>
         </section>
+
+        <SuiteVideoTourSection
+          videoId="1191921207"
+          iframeTitle="Duma Suite Roma room tour video"
+          eyebrow={tourCopy.tourEyebrow}
+          title={tourCopy.tourTitle}
+          subtitle={tourCopy.tourSub}
+          ctaLabel={tourCopy.tourCta}
+          fadeUp={fadeUp}
+        />
 
         {/* ── d) Amenities ── */}
         <section className="ph-amenities section" id="amenities">

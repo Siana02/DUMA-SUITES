@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import { useT } from '../i18n/useT.js'
 import { SUITE_ROUTES } from '../constants/suiteRoutes'
+import SuiteVideoTourSection from '../components/SuiteVideoTourSection.jsx'
 
 import heroImg from '../assets/penthouse-suite-balcony-dining-lights-decor-view.jpg'
 import aboutImg from '../assets/penthouse-suite-indoor-stairs-view.jpg'
@@ -161,6 +162,7 @@ export default function PenthouseSuiteSofiaPage() {
   const tl = t.suites.lucia
   const tr = t.suites.roma
   const allSuiteCards = t.suites.all.cards
+  const tourCopy = pt.tourEyebrow ? pt : t.suites.serenity
 
   const galleryTrackRef    = useRef(null)
   const galleryPosRef      = useRef(0)
@@ -371,6 +373,16 @@ export default function PenthouseSuiteSofiaPage() {
             </motion.a>
           </div>
         </section>
+
+        <SuiteVideoTourSection
+          videoId="1191912401"
+          iframeTitle="Penthouse Suite Sofia room tour video"
+          eyebrow={tourCopy.tourEyebrow}
+          title={tourCopy.tourTitle}
+          subtitle={tourCopy.tourSub}
+          ctaLabel={tourCopy.tourCta}
+          fadeUp={fadeUp}
+        />
 
         {/* ── d) Amenities ── */}
         <section className="ph-amenities section" id="amenities">
