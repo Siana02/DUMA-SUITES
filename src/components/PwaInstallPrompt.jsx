@@ -9,7 +9,7 @@ import {
 
 const DISMISS_WINDOW_MS = 1000 * 60 * 60 * 24 * 14
 
-function isIosInstallableBrowser() {
+function isIosDevice() {
   if (typeof window === 'undefined') return false
 
   const userAgent = window.navigator.userAgent || ''
@@ -18,7 +18,7 @@ function isIosInstallableBrowser() {
 
 function getPromptType(deferredPrompt) {
   if (deferredPrompt) return 'native'
-  if (isIosInstallableBrowser()) return 'ios'
+  if (isIosDevice()) return 'ios'
   return null
 }
 
@@ -93,6 +93,7 @@ export default function PwaInstallPrompt({ preloadDone }) {
     ? 'Add Duma Suites to your Home Screen for the full app experience.'
     : 'Install Duma Suites for a faster home-screen experience.'
   const eyebrow = isIosPrompt ? 'Add to Home Screen' : 'App Download'
+  const PromptIcon = isIosPrompt ? Share : Smartphone
 
   return (
     <AnimatePresence>
@@ -115,7 +116,7 @@ export default function PwaInstallPrompt({ preloadDone }) {
           </button>
 
           <div className="pwa-prompt__icon" aria-hidden="true">
-            {isIosPrompt ? <Share size={20} strokeWidth={1.6} /> : <Smartphone size={20} strokeWidth={1.6} />}
+            <PromptIcon size={20} strokeWidth={1.6} />
           </div>
 
           <div className="pwa-prompt__copy">
