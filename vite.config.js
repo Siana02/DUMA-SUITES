@@ -93,6 +93,17 @@ export default defineConfig({
               },
             },
           },
+          {
+            urlPattern: /\/assets\/.*\.(?:avif|gif|jpe?g|png|svg|webp)$/i,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'app-images',
+              expiration: {
+                maxEntries: 120,
+                maxAgeSeconds: 60 * 60 * 24 * 30,
+              },
+            },
+          },
         ],
       },
       manifest: {
