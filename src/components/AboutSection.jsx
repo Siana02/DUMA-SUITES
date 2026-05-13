@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { useNavigate } from 'react-router-dom'
 import { Waves, Sofa, Sparkles, Sunrise, Shield, Leaf, Star } from 'lucide-react'
 import { useT } from '../i18n/useT.js'
 import cheetahIcon from '../assets/cheetah.png'
@@ -78,6 +79,7 @@ function ValueCard({ card, index, activeCard, setActiveCard, totalCards, isPage 
 
 export default function AboutSection({ isPage = false }) {
   const t = useT()
+  const navigate = useNavigate()
   const ab = t.about
   const [activeCard, setActiveCard] = useState(null)
 
@@ -130,12 +132,26 @@ export default function AboutSection({ isPage = false }) {
         <motion.div className="as-expand" {...fadeUp(0.1)}>
           <p className="as-expand__text">{ab.expandText}</p>
           {isPage ? (
-            <a href="/house-rules" className="btn btn-outline as-expand__cta">
+            <a
+              href="/house-rules"
+              className="btn btn-outline as-expand__cta"
+              onClick={(e) => {
+                e.preventDefault()
+                navigate('/house-rules')
+              }}
+            >
               House Guidelines
               <span className="as-expand__arrow" aria-hidden="true">→</span>
             </a>
           ) : (
-            <a href="/about" className="btn btn-primary as-expand__cta">
+            <a
+              href="/about"
+              className="btn btn-primary as-expand__cta"
+              onClick={(e) => {
+                e.preventDefault()
+                navigate('/about')
+              }}
+            >
               {ab.cta}
               <span className="as-expand__arrow" aria-hidden="true">→</span>
             </a>
@@ -515,4 +531,3 @@ export default function AboutSection({ isPage = false }) {
     </section>
   )
 }
-
