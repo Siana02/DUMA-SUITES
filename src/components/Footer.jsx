@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, ChefHat, Plane } from 'lucide-react'
+import { Mail, Phone, MapPin, ChefHat, Plane, Check } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import logoImg from '../assets/logo.jpeg'
 import mammalImg from '../assets/mammal.png'
@@ -160,7 +160,7 @@ export default function Footer() {
             <h4 className="footer__added-services-title">{addedServicesTitle}</h4>
             <ul className="footer__added-services-list">
               {addedServices.map((service) => {
-                const Icon = ADDED_SERVICE_ICON_MAP[service] ?? ChefHat
+                const Icon = ADDED_SERVICE_ICON_MAP[service] ?? Check
                 return (
                   <li key={service}>
                     <Icon size={14} strokeWidth={1.8} aria-hidden="true" />
