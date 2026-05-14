@@ -5,7 +5,7 @@ import { MapPin, Phone, Mail, CheckCircle, Clock, Users, Star } from 'lucide-rea
 import { useNavigate } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { useT } from '../i18n/useT.js'
-import { FORMSPREE_ENDPOINT, submitContactForm } from '../utils/formspree.js'
+import { FORMSPREE_ENDPOINT, getFormSubmissionErrorMessage, submitContactForm } from '../utils/formspree.js'
 
 function TikTokIcon() {
   return (
@@ -129,7 +129,9 @@ export default function ContactSection() {
   const copy = CONTACT_SECTION_COPY[lang] || CONTACT_SECTION_COPY.en
   const navigate = useNavigate()
 
-  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '', website: '' })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
   const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.3, triggerOnce: true })
@@ -139,6 +141,8 @@ export default function ContactSection() {
 
   const handleSubmit = async e => {
     e.preventDefault()
+    setSubmitError('')
+    setIsSubmitting(true)
 
     try {
       await submitContactForm({
@@ -146,11 +150,15 @@ export default function ContactSection() {
         email: form.email,
         telephone: form.phone,
         message: form.message,
+        honeypot: form.website,
       })
       setSubmitted(true)
     } catch (error) {
       console.error(error)
-      window.alert(copy.errorBody)
+      setSubmitError(getFormSubmissionErrorMessage(error, copy.errorBody))
+      window.alert(getFormSubmissionErrorMessage(error, copy.errorBody))
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -312,19 +320,35 @@ export default function ContactSection() {
                 <CheckCircle size={48} strokeWidth={1.5} className="contact-section__success-icon" />
                 <h3>{copy.successTitle}</h3>
                 <p>{copy.successBody}</p>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', message: '' }) }}
-                >
-                  {copy.sendAnother}
-                </button>
-              </div>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => {
+                      setSubmitted(false)
+                      setSubmitError('')
+                      setForm({ name: '', email: '', phone: '', message: '', website: '' })
+                    }}
+                  >
+                    {copy.sendAnother}
+                  </button>
+                </div>
             ) : (
               <>
                 <p className="contact-section__form-intro">
                   {copy.formIntro}
                 </p>
                 <form className="contact-form" action={FORMSPREE_ENDPOINT} method="POST" onSubmit={handleSubmit} noValidate>
+                  <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
+                    <label htmlFor="contact-company">Company</label>
+                    <input
+                      id="contact-company"
+                      type="text"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={form.website}
+                      onChange={handleChange}
+                    />
+                  </div>
                   <div className="contact-form__group">
                     <label className="contact-form__label" htmlFor="contact-name">
                       {ct.formLabels.name}
@@ -383,9 +407,10 @@ export default function ContactSection() {
                       required
                     />
                   </div>
-                  <button type="submit" className="btn btn-primary contact-form__submit">
-                    {ct.formLabels.send}
+                  <button type="submit" className="btn btn-primary contact-form__submit" disabled={isSubmitting}>
+                    {isSubmitting ? 'Sending…' : ct.formLabels.send}
                   </button>
+                  {submitError && <p className="contact-form__reply-note" role="alert">{submitError}</p>}
                   <p className="contact-form__reply-note">
                     {copy.replyNote}
                   </p>
