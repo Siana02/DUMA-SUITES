@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import PreloadScreen from './components/PreloadScreen'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -92,6 +93,7 @@ function App() {
 
       <Footer />
       <CookieBanner preloadDone={preloadDone} />
+      <Analytics />
     </>
   )
 }
