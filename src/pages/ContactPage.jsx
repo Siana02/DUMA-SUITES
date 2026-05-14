@@ -248,11 +248,12 @@ export default function ContactPage() {
     e.preventDefault()
 
     try {
-      await submitContactForm({
+      const responseStatus = await submitContactForm({
         name: form.name,
         email: form.email,
         message: form.message,
       })
+      console.info('Contact page form submitted with status:', responseStatus)
       setSubmitted(true)
     } catch (error) {
       console.error(error)

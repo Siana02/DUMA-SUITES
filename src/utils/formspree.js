@@ -32,6 +32,8 @@ export async function submitContactForm({ name, email, telephone = '', message }
     const errorText = await response.text()
     throw new Error(`Form submission failed with status ${response.status}${errorText ? `: ${errorText}` : ''}`)
   }
+
+  return response.status
 }
 
 export { FORMSPREE_ENDPOINT }
