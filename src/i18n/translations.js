@@ -1404,10 +1404,10 @@ const it = {
       { label: 'Tutte le Suite', href: '/suites' },
     ],
     copy: `© ${new Date().getFullYear()} Duma Suites. Tutti i diritti riservati.`,
-    privacy: 'Privacy Policy',
+    privacy: 'Informativa sulla Privacy',
     terms: 'Termini di Servizio',
     houseRules: 'Regolamento',
-    cookies: 'Cookie Policy',
+    cookies: 'Informativa sui Cookie',
   },
   houseRules: {
     title: 'Regolamento',
