@@ -57,6 +57,7 @@ const CONTACT_PAGE_COPY = {
     formIntro: 'Share your enquiry and a member of our team will personally get back to you within 24 hours.',
     successTitle: 'Message Sent!',
     successBody: "Thank you — we'll reply within 24 hours.",
+    errorBody: 'Unable to send your message right now. Please try again.',
     sendAnother: 'Send another message',
     fullName: 'Full Name',
     yourName: 'Your name',
@@ -90,6 +91,7 @@ const CONTACT_PAGE_COPY = {
     formIntro: 'Condividi la tua richiesta e un membro del nostro team ti risponderà personalmente entro 24 ore.',
     successTitle: 'Messaggio Inviato!',
     successBody: 'Grazie — ti risponderemo entro 24 ore.',
+    errorBody: 'Impossibile inviare il messaggio in questo momento. Riprova.',
     sendAnother: 'Invia un altro messaggio',
     fullName: 'Nome Completo',
     yourName: 'Il tuo nome',
@@ -123,6 +125,7 @@ const CONTACT_PAGE_COPY = {
     formIntro: 'Teilen Sie uns Ihre Anfrage mit, und ein Teammitglied antwortet Ihnen persönlich innerhalb von 24 Stunden.',
     successTitle: 'Nachricht gesendet!',
     successBody: 'Vielen Dank — wir antworten innerhalb von 24 Stunden.',
+    errorBody: 'Ihre Nachricht konnte gerade nicht gesendet werden. Bitte versuchen Sie es erneut.',
     sendAnother: 'Weitere Nachricht senden',
     fullName: 'Vollständiger Name',
     yourName: 'Ihr Name',
@@ -156,6 +159,7 @@ const CONTACT_PAGE_COPY = {
     formIntro: 'Partagez votre demande et un membre de notre équipe vous répondra personnellement sous 24 heures.',
     successTitle: 'Message envoyé !',
     successBody: 'Merci — nous vous répondrons sous 24 heures.',
+    errorBody: 'Impossible d’envoyer votre message pour le moment. Veuillez réessayer.',
     sendAnother: 'Envoyer un autre message',
     fullName: 'Nom complet',
     yourName: 'Votre nom',
@@ -189,6 +193,7 @@ const CONTACT_PAGE_COPY = {
     formIntro: 'Comparta su consulta y un miembro de nuestro equipo le responderá personalmente en un plazo de 24 horas.',
     successTitle: '¡Mensaje enviado!',
     successBody: 'Gracias — responderemos dentro de 24 horas.',
+    errorBody: 'No es posible enviar su mensaje ahora mismo. Inténtelo de nuevo.',
     sendAnother: 'Enviar otro mensaje',
     fullName: 'Nombre completo',
     yourName: 'Su nombre',
@@ -251,6 +256,7 @@ export default function ContactPage() {
       setSubmitted(true)
     } catch (error) {
       console.error(error)
+      window.alert(copy.errorBody)
     }
   }
 

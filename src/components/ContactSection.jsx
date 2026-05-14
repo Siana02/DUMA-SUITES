@@ -49,6 +49,7 @@ const CONTACT_SECTION_COPY = {
     followUs: 'Follow us:',
     successTitle: 'Message Sent!',
     successBody: "Thank you — we'll reply within 24 hours.",
+    errorBody: 'Unable to send your message right now. Please try again.',
     sendAnother: 'Send another message',
     formIntro: 'Share your enquiry and a member of our team will personally get back to you within 24 hours.',
     replyNote: "✓ We'll reply within 24 hours.",
@@ -64,6 +65,7 @@ const CONTACT_SECTION_COPY = {
     followUs: 'Seguici:',
     successTitle: 'Messaggio Inviato!',
     successBody: 'Grazie — ti risponderemo entro 24 ore.',
+    errorBody: 'Impossibile inviare il messaggio in questo momento. Riprova.',
     sendAnother: 'Invia un altro messaggio',
     formIntro: 'Condividi la tua richiesta e un membro del nostro team ti risponderà personalmente entro 24 ore.',
     replyNote: '✓ Risponderemo entro 24 ore.',
@@ -79,6 +81,7 @@ const CONTACT_SECTION_COPY = {
     followUs: 'Folgen Sie uns:',
     successTitle: 'Nachricht gesendet!',
     successBody: 'Vielen Dank — wir antworten innerhalb von 24 Stunden.',
+    errorBody: 'Ihre Nachricht konnte gerade nicht gesendet werden. Bitte versuchen Sie es erneut.',
     sendAnother: 'Weitere Nachricht senden',
     formIntro: 'Teilen Sie uns Ihre Anfrage mit und unser Team antwortet Ihnen persönlich innerhalb von 24 Stunden.',
     replyNote: '✓ Wir antworten innerhalb von 24 Stunden.',
@@ -94,6 +97,7 @@ const CONTACT_SECTION_COPY = {
     followUs: 'Suivez-nous :',
     successTitle: 'Message envoyé !',
     successBody: 'Merci — nous vous répondrons sous 24 heures.',
+    errorBody: 'Impossible d’envoyer votre message pour le moment. Veuillez réessayer.',
     sendAnother: 'Envoyer un autre message',
     formIntro: 'Partagez votre demande et un membre de notre équipe vous répondra personnellement sous 24 heures.',
     replyNote: '✓ Nous vous répondrons sous 24 heures.',
@@ -109,6 +113,7 @@ const CONTACT_SECTION_COPY = {
     followUs: 'Síganos:',
     successTitle: '¡Mensaje enviado!',
     successBody: 'Gracias — responderemos dentro de 24 horas.',
+    errorBody: 'No es posible enviar su mensaje ahora mismo. Inténtelo de nuevo.',
     sendAnother: 'Enviar otro mensaje',
     formIntro: 'Comparta su consulta y un miembro de nuestro equipo le responderá personalmente en un plazo de 24 horas.',
     replyNote: '✓ Le responderemos dentro de 24 horas.',
@@ -145,6 +150,7 @@ export default function ContactSection() {
       setSubmitted(true)
     } catch (error) {
       console.error(error)
+      window.alert(copy.errorBody)
     }
   }
 

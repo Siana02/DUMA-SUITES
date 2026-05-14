@@ -12,6 +12,10 @@ function buildContactMessage({ name, email, telephone = '', message }) {
 }
 
 export async function submitContactForm({ name, email, telephone = '', message }) {
+  if (!name?.trim() || !email?.trim() || !message?.trim()) {
+    throw new Error('Name, email, and message are required')
+  }
+
   const response = await fetch(FORMSPREE_ENDPOINT, {
     method: 'POST',
     headers: {
