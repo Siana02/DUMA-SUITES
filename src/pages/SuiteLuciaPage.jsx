@@ -6,7 +6,7 @@ import {
   Maximize2, BedDouble, Users, Check, Mail, MessageCircle,
   Wifi, Tv, Bath, Utensils, Calendar, Clock, CreditCard,
   Shield, AirVent, Sparkles, Sofa, Sunrise, UtensilsCrossed,
-  PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack,
+   ArrowLeft, ArrowRight, TowelRack,
   Armchair, Fan, WavesLadder, TreePalm, Sun, ChefHat, Plane, BatteryCharging,
 } from 'lucide-react'
 import { useT } from '../i18n/useT.js'
@@ -115,7 +115,7 @@ const AMENITY_ICONS = [
   BatteryCharging,
 ]
 
-const POLICY_ICONS = [Clock, Clock, Calendar, CreditCard, Shield, PawPrint, Cigarette]
+const POLICY_ICONS = [Clock, Clock, Calendar, CreditCard, Shield]
 
 function fadeUp(delay = 0) {
   return {

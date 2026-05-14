@@ -505,7 +505,7 @@
         {
           "name": "Duma Penthouse Chiara",
           "tagline": "Penthouse · Retraite côtière élevée",
-          "desc": "Un penthouse raffiné de plain-pied avec 3 chambres, 2 salons, des espaces repas intérieurs et extérieurs, ainsi qu’un accès terrasse privée et balcon avec vue mer.",
+          "desc": "Un penthouse raffiné de plain-pied avec 3 chambres, un vaste salon, des espaces repas intérieurs et extérieurs, ainsi qu’une terrasse privée et des vues mer depuis le balcon.",
           "size": "135 m²",
           "beds": "3 lits king size",
           "guests": "6 Personnes"
@@ -832,7 +832,7 @@
     },
     "chiara": {
       "metaTitle": "Duma Penthouse Chiara | Duma Suites Watamu",
-      "metaDesc": "Duma Penthouse Chiara à Duma Suites, Watamu. Un penthouse raffiné de plain-pied avec 3 chambres, 2 salons, des espaces repas intérieurs et extérieurs, ainsi qu'un accès terrasse et balcon avec vue mer.",
+      "metaDesc": "Duma Penthouse Chiara à Duma Suites, Watamu. Un penthouse raffiné de plain-pied avec 3 chambres, un vaste salon, des espaces repas intérieurs et extérieurs, ainsi qu’un accès terrasse et balcon avec vue mer.",
       "heroEyebrow": "Suite Penthouse",
       "heroTitle": "Duma Penthouse Chiara",
       "heroTagline": "Un penthouse raffiné de plain-pied avec vue panoramique sur la mer et une vie intérieure-extérieure sans effort",
@@ -844,7 +844,7 @@
       "minStay": "2 nuits min.",
       "aboutEyebrow": "À propos de cette suite",
       "aboutTitle": "Vie en penthouse élevée",
-      "aboutText1": "Duma Penthouse Chiara est un superbe penthouse de plain-pied qui incarne le summum du luxe côtier. Située dans les Ghepard Towers, cette suite offre trois chambres king-size, deux généreux salons, une cuisine entièrement équipée, ainsi que des espaces repas intérieurs et extérieurs qui capturent l’essence d’un art de vivre sophistiqué au bord de la mer.",
+      "aboutText1": "Duma Penthouse Chiara est un superbe penthouse de plain-pied qui incarne le summum du luxe côtier. Située dans les Ghepard Towers, cette suite offre trois chambres king-size, un vaste salon, une cuisine entièrement équipée, ainsi que des espaces repas intérieurs et extérieurs qui capturent l’essence d’un art de vivre sophistiqué au bord de la mer.",
       "aboutText2": "Sortez sur la terrasse pour admirer la vue panoramique, détendez-vous dans le salon extérieur bercé par la brise de l’océan, ou retrouvez-vous autour de la table à manger sous les étoiles. Avec machine à laver, rangements spacieux et chaque détail soigneusement pensé, Duma Penthouse Chiara est votre maison complète au-dessus des vagues.",
       "aboutCta": "Réserver maintenant",
       "aboutBookCta": "Réserver Duma Penthouse Chiara",
@@ -852,7 +852,7 @@
       "highlights": [
         "Penthouse de plain-pied avec un agencement spacieux",
         "Trois lits king size avec linge de maison premium",
-        "2 vastes salons pour des réunions décontractées",
+        "Un salon pour des moments de détente partagés",
         "Espaces repas intérieurs et extérieurs",
         "Cuisine entièrement équipée",
         "Terrasse et espaces lounge sur le balcon",
@@ -861,7 +861,7 @@
       ],
       "galleryEyebrow": "Galerie de la suite",
       "galleryTitle": "À l'intérieur du Duma Penthouse Chiara",
-      "galleryDesc": "Explorez les vastes intérieurs du Duma Penthouse Chiara — trois élégantes chambres, deux salons, une cuisine entièrement équipée et des espaces extérieurs à couper le souffle.",
+      "galleryDesc": "Explorez les vastes intérieurs du Duma Penthouse Chiara — trois élégantes chambres, un vaste salon, une cuisine entièrement équipée et des espaces extérieurs à couper le souffle.",
       "galleryCta": "Réserver Duma Penthouse Chiara",
       "amenitiesEyebrow": "Équipements de la suite",
       "amenitiesTitle": "Équipements inclus",
@@ -871,7 +871,7 @@
         "Penthouse de plain-pied",
         "Chambre principale spacieuse",
         "Cuisine entièrement équipée",
-        "2 salons",
+        "Vaste salon",
         "Balcon & Terrasse",
         "Espace repas intérieur",
         "Espace repas extérieur",
@@ -908,14 +908,6 @@
         {
           "label": "Annulation",
           "value": "Avant 30 jours : intégralement remboursable · Dans les 30 jours : non remboursable"
-        },
-        {
-          "label": "Animaux",
-          "value": "Petits animaux bienvenus"
-        },
-        {
-          "label": "Tabac",
-          "value": "Balcon et hall uniquement"
         }
       ],
       "inquireEyebrow": "Réservation",
@@ -1005,14 +997,6 @@
         {
           "label": "Annulation",
           "value": "Avant 30 jours : intégralement remboursable · Dans les 30 jours : non remboursable"
-        },
-        {
-          "label": "Animaux",
-          "value": "Petits animaux bienvenus"
-        },
-        {
-          "label": "Tabac",
-          "value": "Balcon et hall uniquement"
         }
       ],
       "inquireEyebrow": "Réservation",

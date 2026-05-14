@@ -505,7 +505,7 @@
         {
           "name": "Duma Penthouse Chiara",
           "tagline": "Penthouse · Erhabener Küstenrückzug",
-          "desc": "Ein elegantes Penthouse auf einer Ebene mit 3 Schlafzimmern, 2 Wohnzimmern, Innen- und Außenspeisebereich sowie privater Terrasse und Meerblick vom Balkon.",
+          "desc": "Ein elegantes Penthouse auf einer Ebene mit 3 Schlafzimmern, einem großzügigen Wohnbereich, Innen- und Außenspeisebereich sowie privater Terrasse und Meerblick vom Balkon.",
           "size": "135 m²",
           "beds": "3 Kingsize-Betten",
           "guests": "6 Gäste"
@@ -832,7 +832,7 @@
     },
     "chiara": {
       "metaTitle": "Duma Penthouse Chiara | Duma Suites Watamu",
-      "metaDesc": "Duma Penthouse Chiara bei Duma Suites, Watamu. Ein elegantes Penthouse auf einer Ebene mit 3 Schlafzimmern, 2 Wohnzimmern, Innen- und Außenspeisebereich sowie privater Terrasse und Meerblick vom Balkon.",
+      "metaDesc": "Duma Penthouse Chiara bei Duma Suites, Watamu. Ein elegantes Penthouse auf einer Ebene mit 3 Schlafzimmern, einem großzügigen Wohnbereich, Innen- und Außenspeisebereich sowie privater Terrasse und Meerblick vom Balkon.",
       "heroEyebrow": "Penthouse-Suite",
       "heroTitle": "Duma Penthouse Chiara",
       "heroTagline": "Ein elegantes Penthouse auf einer Ebene mit weitem Meerblick und mühelosem Indoor-Outdoor-Leben",
@@ -844,7 +844,7 @@
       "minStay": "Min. 2 Nächte",
       "aboutEyebrow": "Über diese Suite",
       "aboutTitle": "Erhabenes Penthouseleben",
-      "aboutText1": "Duma Penthouse Chiara ist ein atemberaubendes Penthouse auf einer Ebene, das den Höhepunkt gehobenen Küstenluxus verkörpert. In den Ghepard Towers gelegen, bietet diese Suite drei Kingsize-Schlafzimmer, zwei großzügige Wohnbereiche, eine voll ausgestattete Küche sowie Innen- und Außenspeisebereiche, die die Essenz anspruchsvollen Wohnens am Meer einfangen.",
+      "aboutText1": "Duma Penthouse Chiara ist ein atemberaubendes Penthouse auf einer Ebene, das den Höhepunkt gehobenen Küstenluxus verkörpert. In den Ghepard Towers gelegen, bietet diese Suite drei Kingsize-Schlafzimmer, einen großzügigen Wohnbereich, eine voll ausgestattete Küche sowie Innen- und Außenspeisebereiche, die die Essenz anspruchsvollen Wohnens am Meer einfangen.",
       "aboutText2": "Treten Sie auf die Terrasse und genießen Sie den Panoramablick, entspannen Sie in der Outdoor-Lounge mit Meeresbrise oder kommen Sie unter dem Sternenhimmel am Esstisch zusammen. Mit Waschmaschine, großzügigen Schränken und liebevollen Details ist Duma Penthouse Chiara Ihr vollständiges Zuhause über den Wellen.",
       "aboutCta": "Jetzt buchen",
       "aboutBookCta": "Duma Penthouse Chiara buchen",
@@ -852,7 +852,7 @@
       "highlights": [
         "Penthouse auf einer Ebene mit weitläufiger Raumaufteilung",
         "Drei Kingsize-Betten mit Premium-Bettwäsche",
-        "2 großzügige Wohnzimmer für entspannte Treffen",
+        "Ein Wohnbereich für entspannte Zusammenkünfte",
         "Innen- und Außenspeisebereiche",
         "Vollständig ausgestattete Küche",
         "Terrassen- und Balkon-Loungebereiche",
@@ -861,7 +861,7 @@
       ],
       "galleryEyebrow": "Suite-Galerie",
       "galleryTitle": "Im Inneren des Duma Penthouse Chiara",
-      "galleryDesc": "Erkunden Sie die weitläufigen Innenräume des Duma Penthouse Chiara — drei elegante Schlafzimmer, zwei Wohnzimmer, eine vollständig ausgestattete Küche und atemberaubende Außenbereiche.",
+      "galleryDesc": "Erkunden Sie die weitläufigen Innenräume des Duma Penthouse Chiara — drei elegante Schlafzimmer, einen großzügigen Wohnbereich, eine vollständig ausgestattete Küche und atemberaubende Außenbereiche.",
       "galleryCta": "Duma Penthouse Chiara buchen",
       "amenitiesEyebrow": "Suite-Ausstattung",
       "amenitiesTitle": "Inklusivleistungen",
@@ -871,7 +871,7 @@
         "Penthouse auf einer Ebene",
         "Großzügiges Hauptschlafzimmer",
         "Vollständig ausgestattete Küche",
-        "2 Wohnzimmer",
+        "Großzügiger Wohnbereich",
         "Balkon & Terrasse",
         "Innen-Essbereich",
         "Außen-Essbereich",
@@ -908,14 +908,6 @@
         {
           "label": "Stornierung",
           "value": "Vor 30 Tagen: vollständig erstattungsfähig · Innerhalb von 30 Tagen: nicht erstattungsfähig"
-        },
-        {
-          "label": "Haustiere",
-          "value": "Kleine Haustiere willkommen"
-        },
-        {
-          "label": "Rauchen",
-          "value": "Nur auf dem Balkon & in der Lobby"
         }
       ],
       "inquireEyebrow": "Reservierung",
@@ -1005,14 +997,6 @@
         {
           "label": "Stornierung",
           "value": "Vor 30 Tagen: vollständig erstattungsfähig · Innerhalb von 30 Tagen: nicht erstattungsfähig"
-        },
-        {
-          "label": "Haustiere",
-          "value": "Kleine Haustiere willkommen"
-        },
-        {
-          "label": "Rauchen",
-          "value": "Nur auf dem Balkon & in der Lobby"
         }
       ],
       "inquireEyebrow": "Reservierung",
