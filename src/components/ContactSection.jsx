@@ -5,6 +5,7 @@ import { MapPin, Phone, Mail, CheckCircle, Clock, Users, Star } from 'lucide-rea
 import { useNavigate } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { useT } from '../i18n/useT.js'
+import { FORMSPREE_ENDPOINT, submitContactForm } from '../utils/formspree.js'
 
 function TikTokIcon() {
   return (
@@ -131,9 +132,20 @@ export default function ContactSection() {
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    setSubmitted(true)
+
+    try {
+      await submitContactForm({
+        name: form.name,
+        email: form.email,
+        telephone: form.phone,
+        message: form.message,
+      })
+      setSubmitted(true)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -306,7 +318,7 @@ export default function ContactSection() {
                 <p className="contact-section__form-intro">
                   {copy.formIntro}
                 </p>
-                <form className="contact-form" onSubmit={handleSubmit} noValidate>
+                <form className="contact-form" action={FORMSPREE_ENDPOINT} method="POST" onSubmit={handleSubmit} noValidate>
                   <div className="contact-form__group">
                     <label className="contact-form__label" htmlFor="contact-name">
                       {ct.formLabels.name}

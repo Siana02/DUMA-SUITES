@@ -6,6 +6,7 @@ import { MapPin, Phone, Mail, Clock, Users, Star, CheckCircle } from 'lucide-rea
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { useT } from '../i18n/useT.js'
 import heroImg from '../assets/infinity-pool-ocean-view.jpg'
+import { FORMSPREE_ENDPOINT, submitContactForm } from '../utils/formspree.js'
 
 /* ── Social icons ── */
 function TikTokIcon() {
@@ -238,7 +239,20 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
-  const handleSubmit = e => { e.preventDefault(); setSubmitted(true) }
+  const handleSubmit = async e => {
+    e.preventDefault()
+
+    try {
+      await submitContactForm({
+        name: form.name,
+        email: form.email,
+        message: form.message,
+      })
+      setSubmitted(true)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
       <>
@@ -410,7 +424,7 @@ export default function ContactPage() {
                   </button>
                 </div>
               ) : (
-                <form className="cp-form" onSubmit={handleSubmit} noValidate>
+                <form className="cp-form" action={FORMSPREE_ENDPOINT} method="POST" onSubmit={handleSubmit} noValidate>
                   <div className="cp-form__group">
                     <label className="cp-form__label" htmlFor="cp-name">
                       {copy.fullName}
