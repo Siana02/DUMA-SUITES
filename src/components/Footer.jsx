@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, ChefHat, Plane, Check } from 'lucide-react'
+import { Mail, Phone, MapPin, ChefHat, Plane, Check, Calendar } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import logoImg from '../assets/logo.jpeg'
 import mammalImg from '../assets/mammal.png'
@@ -186,6 +186,17 @@ export default function Footer() {
               <Mail size={14} strokeWidth={1.5} />
               <a href={`mailto:${t.contact.info.email}`} className="footer__link">
                 {t.contact.info.email}
+              </a>
+            </li>
+            <li>
+              <Calendar size={14} strokeWidth={1.5} />
+              <a
+                href="https://wa.me/254710933025?text=Hello%20Duma%20Suites%2C%20I%20would%20like%20to%20book%20a%20stay."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer__link"
+              >
+                {t.footer.bookNow ?? 'Book Your Stay'}
               </a>
             </li>
           </ul>
