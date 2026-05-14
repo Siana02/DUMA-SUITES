@@ -5,7 +5,7 @@ import { MapPin, Phone, Mail, CheckCircle, Clock, Users, Star } from 'lucide-rea
 import { useNavigate } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { useT } from '../i18n/useT.js'
-import { FORMSPREE_ENDPOINT, getFormSubmissionErrorMessage, submitContactForm } from '../utils/formspree.js'
+import { getFormSubmissionErrorMessage } from '../utils/formspree.js'
 
 function TikTokIcon() {
   return (
@@ -139,25 +139,46 @@ export default function ContactSection() {
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setSubmitError('')
     setIsSubmitting(true)
 
+    const payload = {
+      email: form.email,
+      message: `Name: ${form.name}
+Email: ${form.email}
+Telephone: ${form.phone || 'N/A'}
+
+Message:
+${form.message}`,
+    }
+
+    console.log('🚀 DIRECT FORMSPREE SUBMIT:', payload)
+
     try {
-      await submitContactForm({
-        name: form.name,
-        email: form.email,
-        telephone: form.phone,
-        message: form.message,
-        honeypot: form.website,
+      const response = await fetch('https://formspree.io/f/xykoavab', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
       })
+
+      const data = await response.json()
+      console.log('📩 RESPONSE:', data)
+
+      if (!response.ok) {
+        throw new Error(data?.error || 'Submission failed')
+      }
+
       setSubmitted(true)
     } catch (error) {
-      console.error(error)
-      const errorMessage = getFormSubmissionErrorMessage(error, copy.errorBody)
-      setSubmitError(errorMessage)
-      window.alert(errorMessage)
+      console.error('❌ FORM ERROR:', error)
+      const msg = getFormSubmissionErrorMessage(error, copy.errorBody)
+      setSubmitError(msg)
+      window.alert(msg)
     } finally {
       setIsSubmitting(false)
     }
@@ -337,7 +358,7 @@ export default function ContactSection() {
                 <p className="contact-section__form-intro">
                   {copy.formIntro}
                 </p>
-                <form className="contact-form" action={FORMSPREE_ENDPOINT} method="POST" onSubmit={handleSubmit} noValidate>
+                <form className="contact-form" action="https://formspree.io/f/xykoavab" method="POST" onSubmit={handleSubmit} noValidate>
                   <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
                     <label htmlFor="contact-company">Company</label>
                     <input
