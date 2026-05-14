@@ -6,7 +6,7 @@ import {
   Maximize2, BedDouble, Users, Check, Mail, MessageCircle,
   Wifi, Tv, Bath, Utensils, Calendar, Clock, CreditCard,
   Shield, AirVent, Sparkles, Sofa, UtensilsCrossed,
-  PawPrint, Cigarette, ArrowLeft, ArrowRight, TowelRack, Star,
+   ArrowLeft, ArrowRight, TowelRack, Star,
   Building2, DoorOpen, Fan, WavesLadder, TreePalm, Leaf, ForkKnife,
   WashingMachine,
   ChefHat, Plane, BatteryCharging,
@@ -128,7 +128,7 @@ const AMENITY_ICONS = [
   BatteryCharging,
 ]
 
-const POLICY_ICONS = [Clock, Clock, Calendar, CreditCard, Shield, PawPrint, Cigarette]
+const POLICY_ICONS = [Clock, Clock, Calendar, CreditCard, Shield]
 
 function fadeUp(delay = 0) {
   return {

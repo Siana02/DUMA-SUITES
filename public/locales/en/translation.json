@@ -505,7 +505,7 @@
         {
           "name": "Duma Penthouse Chiara",
           "tagline": "Penthouse · Elevated Coastal Retreat",
-          "desc": "A refined single-floor penthouse with 3 bedrooms, 2 living rooms, indoor and outdoor dining, plus private terrace and balcony sea views.",
+          "desc": "A refined single-floor penthouse with 3 bedrooms, one spacious living room, indoor and outdoor dining, plus private terrace and balcony sea views.",
           "size": "135 sq m",
           "beds": "3 King Size Beds",
           "guests": "6 Guests"
@@ -832,7 +832,7 @@
     },
     "chiara": {
       "metaTitle": "Duma Penthouse Chiara | Duma Suites Watamu",
-      "metaDesc": "Duma Penthouse Chiara at Duma Suites, Watamu. A refined single-floor penthouse with 3 bedrooms, 2 living rooms, indoor and outdoor dining, plus private terrace and balcony sea views.",
+      "metaDesc": "Duma Penthouse Chiara at Duma Suites, Watamu. A refined single-floor penthouse with 3 bedrooms, one spacious living room, indoor and outdoor dining, plus private terrace and balcony sea views.",
       "heroEyebrow": "Penthouse Suite",
       "heroTitle": "Duma Penthouse Chiara",
       "heroTagline": "A refined single-floor penthouse with sweeping sea views and effortless indoor-outdoor living",
@@ -844,7 +844,7 @@
       "minStay": "2 Night Min",
       "aboutEyebrow": "About this Suite",
       "aboutTitle": "Elevated Penthouse Living",
-      "aboutText1": "Duma Penthouse Chiara is a breathtaking single-floor penthouse that embodies the pinnacle of elevated coastal luxury. Set within Ghepard Towers, this suite offers three king bedrooms, two generous living rooms, a fully equipped kitchen, and both indoor and outdoor dining areas that capture the essence of sophisticated living by the sea.",
+      "aboutText1": "Duma Penthouse Chiara is a breathtaking single-floor penthouse that embodies the pinnacle of elevated coastal luxury. Set within Ghepard Towers, this suite offers three king bedrooms, one spacious living room, a fully equipped kitchen, and both indoor and outdoor dining areas that capture the essence of sophisticated living by the sea.",
       "aboutText2": "Step onto the terrace and take in the panoramic views, unwind in the outdoor lounge with the ocean breeze, or gather around the dining table beneath a canopy of stars. With a washing machine, spacious closets, and every thoughtful detail in place, Duma Penthouse Chiara is your complete home above the waves.",
       "aboutCta": "Check Availability",
       "aboutBookCta": "Book Duma Penthouse Chiara",
@@ -852,7 +852,7 @@
       "highlights": [
         "Single-floor penthouse with expansive layout",
         "Three king-size beds with premium linens",
-        "2 spacious living rooms for relaxed gatherings",
+        "One living room for relaxed gatherings",
         "Indoor and outdoor dining areas",
         "Fully equipped kitchen",
         "Terrace and balcony lounge areas",
@@ -861,7 +861,7 @@
       ],
       "galleryEyebrow": "Photo Gallery",
       "galleryTitle": "Inside Duma Penthouse Chiara",
-      "galleryDesc": "Explore the sweeping interiors of Duma Penthouse Chiara — three elegant bedrooms, dual living rooms, a fully equipped kitchen, and breathtaking outdoor spaces that invite you to live life elevated.",
+      "galleryDesc": "Explore the sweeping interiors of Duma Penthouse Chiara — three elegant bedrooms, one spacious living room, a fully equipped kitchen, and breathtaking outdoor spaces that invite you to live life elevated.",
       "galleryCta": "Book Duma Penthouse Chiara",
       "amenitiesEyebrow": "What's Included",
       "amenitiesTitle": "Suite Amenities",
@@ -871,7 +871,7 @@
         "Single-floor layout",
         "Expansive primary bedroom",
         "Fully Equipped Kitchen",
-        "2 Living Rooms",
+        "Spacious Living Room",
         "Balcony & Terrace",
         "Indoor Dining Area",
         "Outdoor Dining Area",
@@ -908,14 +908,6 @@
         {
           "label": "Cancellation",
           "value": "Before 30 days: fully refundable · Within 30 days: non-refundable"
-        },
-        {
-          "label": "Pets",
-          "value": "Small pets welcome"
-        },
-        {
-          "label": "Smoking",
-          "value": "Balcony & lobby only"
         }
       ],
       "inquireEyebrow": "Reservations",
@@ -1005,14 +997,6 @@
         {
           "label": "Cancellation",
           "value": "Before 30 days: fully refundable · Within 30 days: non-refundable"
-        },
-        {
-          "label": "Pets",
-          "value": "Small pets welcome"
-        },
-        {
-          "label": "Smoking",
-          "value": "Balcony & lobby only"
         }
       ],
       "inquireEyebrow": "Reservations",
