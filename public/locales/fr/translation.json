@@ -342,7 +342,12 @@
     "privacy": "Politique de confidentialité",
     "terms": "Conditions d'utilisation",
     "houseRules": "Règlement de la maison",
-    "cookies": "Politique des cookies"
+    "cookies": "Politique des cookies",
+    "addedServicesTitle": "Services Supplémentaires",
+    "addedServices": [
+      "Chef privé sur demande",
+      "Transferts aéroport depuis/vers les aéroports de Mombasa et Malindi"
+    ]
   },
   "houseRules": {
     "title": "Règlement de la maison",
