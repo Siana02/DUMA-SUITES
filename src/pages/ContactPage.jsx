@@ -6,7 +6,7 @@ import { MapPin, Phone, Mail, Clock, Users, Star, CheckCircle } from 'lucide-rea
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { useT } from '../i18n/useT.js'
 import heroImg from '../assets/infinity-pool-ocean-view.jpg'
-import { FORMSPREE_ENDPOINT, submitContactForm } from '../utils/formspree.js'
+import { FORMSPREE_ENDPOINT, getFormSubmissionErrorMessage, submitContactForm } from '../utils/formspree.js'
 
 /* ── Social icons ── */
 function TikTokIcon() {
@@ -240,23 +240,32 @@ export default function ContactPage() {
   const ct = t.contact
   const copy = CONTACT_PAGE_COPY[lang] || CONTACT_PAGE_COPY.en
 
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', message: '', website: '' })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
   const [submitted, setSubmitted] = useState(false)
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
   const handleSubmit = async e => {
     e.preventDefault()
+    setSubmitError('')
+    setIsSubmitting(true)
 
     try {
       await submitContactForm({
         name: form.name,
         email: form.email,
         message: form.message,
+        honeypot: form.website,
       })
       setSubmitted(true)
     } catch (error) {
       console.error(error)
-      window.alert(copy.errorBody)
+      const errorMessage = getFormSubmissionErrorMessage(error, copy.errorBody)
+      setSubmitError(errorMessage)
+      window.alert(errorMessage)
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -424,13 +433,29 @@ export default function ContactPage() {
                   </p>
                   <button
                     className="btn btn-primary"
-                    onClick={() => { setSubmitted(false); setForm({ name: '', email: '', message: '' }) }}
+                    onClick={() => {
+                      setSubmitted(false)
+                      setSubmitError('')
+                      setForm({ name: '', email: '', message: '', website: '' })
+                    }}
                   >
                     {copy.sendAnother}
                   </button>
                 </div>
               ) : (
                 <form className="cp-form" action={FORMSPREE_ENDPOINT} method="POST" onSubmit={handleSubmit} noValidate>
+                  <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
+                    <label htmlFor="cp-company">Company</label>
+                    <input
+                      id="cp-company"
+                      type="text"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={form.website}
+                      onChange={handleChange}
+                    />
+                  </div>
                   <div className="cp-form__group">
                     <label className="cp-form__label" htmlFor="cp-name">
                       {copy.fullName}
@@ -467,9 +492,10 @@ export default function ContactPage() {
                       placeholder={copy.howHelp}
                     />
                   </div>
-                  <button type="submit" className="btn btn-primary cp-form__submit">
-                    {copy.send}
+                  <button type="submit" className="btn btn-primary cp-form__submit" disabled={isSubmitting}>
+                    {isSubmitting ? 'Sending…' : copy.send}
                   </button>
+                  {submitError && <p className="cp-form__reply-note" role="alert">{submitError}</p>}
                   <p className="cp-form__reply-note">
                     {copy.replyNote}
                   </p>
