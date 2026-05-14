@@ -25,7 +25,8 @@ export async function submitContactForm({ name, email, telephone = '', message }
   })
 
   if (!response.ok) {
-    throw new Error('Form submission failed')
+    const errorText = await response.text()
+    throw new Error(`Form submission failed with status ${response.status}${errorText ? `: ${errorText}` : ''}`)
   }
 }
 
