@@ -37,12 +37,8 @@ const SOCIAL = [
   { Icon: WhatsAppIcon,  href: 'https://wa.me/254710933025',                                                     label: 'WhatsApp' },
 ]
 
-const ADDED_SERVICE_ICON_MAP = {
-  'Private chef on demand': ChefHat,
-  'Airport transfers to and from Mombasa & Malindi airports': Plane,
-  'Chef privato su richiesta': ChefHat,
-  'Transfer aeroportuale da/per gli aeroporti di Mombasa e Malindi': Plane,
-}
+// Order matches addedServices array: [0] = Chef (ChefHat), [1] = Airport transfer (Plane)
+const ADDED_SERVICE_ICONS = [ChefHat, Plane]
 
 export default function Footer() {
   const t = useT()
@@ -159,8 +155,8 @@ export default function Footer() {
           <div className="footer__added-services">
             <h4 className="footer__added-services-title">{addedServicesTitle}</h4>
             <ul className="footer__added-services-list">
-              {addedServices.map((service) => {
-                const Icon = ADDED_SERVICE_ICON_MAP[service] ?? Check
+              {addedServices.map((service, i) => {
+                const Icon = ADDED_SERVICE_ICONS[i] ?? Check
                 return (
                   <li key={service}>
                     <Icon size={14} strokeWidth={1.8} aria-hidden="true" />

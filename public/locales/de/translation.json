@@ -342,7 +342,12 @@
     "privacy": "Datenschutzrichtlinie",
     "terms": "Nutzungsbedingungen",
     "houseRules": "Hausregeln",
-    "cookies": "Cookie-Richtlinie"
+    "cookies": "Cookie-Richtlinie",
+    "addedServicesTitle": "Zusätzliche Leistungen",
+    "addedServices": [
+      "Privatkoch auf Anfrage",
+      "Flughafentransfers zu und von den Flughäfen Mombasa & Malindi"
+    ]
   },
   "houseRules": {
     "title": "Hausregeln",
