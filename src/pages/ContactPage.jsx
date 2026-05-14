@@ -6,7 +6,7 @@ import { MapPin, Phone, Mail, Clock, Users, Star, CheckCircle } from 'lucide-rea
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { useT } from '../i18n/useT.js'
 import heroImg from '../assets/infinity-pool-ocean-view.jpg'
-
+import { getFormSubmissionErrorMessage } from '../utils/formspree.js'
 
 /* ── Social icons ── */
 function TikTokIcon() {
@@ -251,16 +251,12 @@ export default function ContactPage() {
     setSubmitError('')
     setIsSubmitting(true)
 
-    const name = form.name
-    const email = form.email
-    const message = form.message
-
     const payload = {
-      email: email,
-      message: `Name: ${name}\nEmail: ${email}\nTelephone: N/A\n\nMessage:\n${message}`
+      email: form.email,
+      message: `Name: ${form.name}\nEmail: ${form.email}\nTelephone: N/A\n\nMessage:\n${form.message}`
     }
 
-    console.log('Submitting to Formspree...', payload)
+    console.log('🚀 DIRECT FORMSPREE SUBMIT:', payload)
 
     try {
       const response = await fetch('https://formspree.io/f/xykoavab', {
@@ -272,20 +268,19 @@ export default function ContactPage() {
         body: JSON.stringify(payload),
       })
 
-      const result = await response.json()
-      console.log('Formspree response:', result)
+      const data = await response.json()
+      console.log('📩 RESPONSE:', data)
 
       if (!response.ok) {
-        throw new Error(result?.error || 'Form submission failed')
+        throw new Error(data?.error || 'Submission failed')
       }
 
-      alert('Message sent successfully')
       setSubmitted(true)
     } catch (error) {
-      console.error(error)
-      const errorMessage = error.message || copy.errorBody
-      setSubmitError(errorMessage)
-      window.alert(errorMessage)
+      console.error('❌ FORM ERROR:', error)
+      const msg = getFormSubmissionErrorMessage(error, copy.errorBody)
+      setSubmitError(msg)
+      window.alert(msg)
     } finally {
       setIsSubmitting(false)
     }
