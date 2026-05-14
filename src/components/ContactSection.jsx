@@ -5,7 +5,7 @@ import { MapPin, Phone, Mail, CheckCircle, Clock, Users, Star } from 'lucide-rea
 import { useNavigate } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { useT } from '../i18n/useT.js'
-import { FORMSPREE_ENDPOINT, getFormSubmissionErrorMessage, submitContactForm } from '../utils/formspree.js'
+import { FORMSPREE_ENDPOINT, createContactFormSubmitHandler } from '../utils/formspree.js'
 
 function TikTokIcon() {
   return (
@@ -139,29 +139,12 @@ export default function ContactSection() {
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
 
-  const handleSubmit = async e => {
-    e.preventDefault()
-    setSubmitError('')
-    setIsSubmitting(true)
-
-    try {
-      await submitContactForm({
-        name: form.name,
-        email: form.email,
-        telephone: form.phone,
-        message: form.message,
-        honeypot: form.website,
-      })
-      setSubmitted(true)
-    } catch (error) {
-      console.error(error)
-      const errorMessage = getFormSubmissionErrorMessage(error, copy.errorBody)
-      setSubmitError(errorMessage)
-      window.alert(errorMessage)
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
+  const handleSubmit = createContactFormSubmitHandler({
+    form,
+    setIsSubmitting,
+    setSubmitError,
+    setSubmitted,
+  })
 
   return (
     <section className="contact-section section contact-section--bg" id="contact">

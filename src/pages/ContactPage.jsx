@@ -6,7 +6,7 @@ import { MapPin, Phone, Mail, Clock, Users, Star, CheckCircle } from 'lucide-rea
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { useT } from '../i18n/useT.js'
 import heroImg from '../assets/infinity-pool-ocean-view.jpg'
-import { FORMSPREE_ENDPOINT, getFormSubmissionErrorMessage, submitContactForm } from '../utils/formspree.js'
+import { FORMSPREE_ENDPOINT, createContactFormSubmitHandler } from '../utils/formspree.js'
 
 /* ── Social icons ── */
 function TikTokIcon() {
@@ -246,28 +246,12 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
-  const handleSubmit = async e => {
-    e.preventDefault()
-    setSubmitError('')
-    setIsSubmitting(true)
-
-    try {
-      await submitContactForm({
-        name: form.name,
-        email: form.email,
-        message: form.message,
-        honeypot: form.website,
-      })
-      setSubmitted(true)
-    } catch (error) {
-      console.error(error)
-      const errorMessage = getFormSubmissionErrorMessage(error, copy.errorBody)
-      setSubmitError(errorMessage)
-      window.alert(errorMessage)
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
+  const handleSubmit = createContactFormSubmitHandler({
+    form,
+    setIsSubmitting,
+    setSubmitError,
+    setSubmitted,
+  })
 
   return (
       <>
