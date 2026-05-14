@@ -1802,7 +1802,7 @@ const it = {
       galleryTitle: 'Dentro Duma Suite Roma',
       galleryDesc: 'Scoprite le geometrie decise, le texture ricche e i dettagli architettonici che definiscono Duma Suite Roma: uno spazio in cui il design incontra il lusso costiero con assoluta naturalezza.',
       galleryCta: 'Prenota Duma Suite Roma',
-      amenitiesEyebrow: 'Cosa troverete',
+      amenitiesEyebrow: 'Servizi Inclusi',
       amenitiesTitle: 'Servizi della Suite',
       amenities: ['2 Letti King', '2 Bagni en-suite e armadi', 'Soggiorno accogliente', 'Cucina completamente attrezzata', 'Terrazza / lounge sul balcone', 'Sedute lounge esterne', 'Sala da pranzo interna', 'Wi-Fi ad alta velocità', 'Pulizie giornaliere', 'Aria condizionata', 'Smart TV', 'Asciugamani forniti', 'Ventilatori a soffitto', 'Accesso alla piscina', 'Vista mare', 'Vista oceano', 'Chef privato su richiesta', 'Trasferimenti aeroportuali da/per gli aeroporti di Mombasa e Malindi', 'Sistema di backup a batteria in ogni appartamento'],
       policiesEyebrow: 'Politiche e Check-in',
