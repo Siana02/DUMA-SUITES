@@ -103,3 +103,8 @@ export function createContactFormSubmitHandler({ form, setIsSubmitting, setSubmi
 }
 
 export { FORMSPREE_ENDPOINT, FORM_SUBMISSION_ERROR_MESSAGE }
+
+export function getFormSubmissionErrorMessage(error, fallbackMessage) {
+  if (!error) return fallbackMessage
+  return error?.message || fallbackMessage
+}

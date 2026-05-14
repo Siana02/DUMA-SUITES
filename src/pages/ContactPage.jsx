@@ -6,7 +6,7 @@ import { MapPin, Phone, Mail, Clock, Users, Star, CheckCircle } from 'lucide-rea
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { useT } from '../i18n/useT.js'
 import heroImg from '../assets/infinity-pool-ocean-view.jpg'
-import { FORMSPREE_ENDPOINT, createContactFormSubmitHandler } from '../utils/formspree.js'
+import { getFormSubmissionErrorMessage } from '../utils/formspree.js'
 
 /* ── Social icons ── */
 function TikTokIcon() {
@@ -246,12 +246,50 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
-  const handleSubmit = createContactFormSubmitHandler({
-    form,
-    setIsSubmitting,
-    setSubmitError,
-    setSubmitted,
-  })
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setSubmitError('')
+    setIsSubmitting(true)
+
+    const payload = {
+      email: form.email,
+      message: `Name: ${form.name}
+Email: ${form.email}
+Telephone: ${form.phone || 'N/A'}
+
+Message:
+${form.message}`,
+    }
+
+    console.log('🚀 DIRECT FORMSPREE SUBMIT:', payload)
+
+    try {
+      const response = await fetch('https://formspree.io/f/xykoavab', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+
+      const data = await response.json()
+      console.log('📩 RESPONSE:', data)
+
+      if (!response.ok) {
+        throw new Error(data?.error || 'Submission failed')
+      }
+
+      setSubmitted(true)
+    } catch (error) {
+      console.error('❌ FORM ERROR:', error)
+      const msg = getFormSubmissionErrorMessage(error, copy.errorBody)
+      setSubmitError(msg)
+      window.alert(msg)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
       <>
@@ -427,7 +465,7 @@ export default function ContactPage() {
                   </button>
                 </div>
               ) : (
-                <form className="cp-form" action={FORMSPREE_ENDPOINT} method="POST" onSubmit={handleSubmit} noValidate>
+                <form className="cp-form" action="https://formspree.io/f/xykoavab" method="POST" onSubmit={handleSubmit} noValidate>
                   <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
                     <label htmlFor="cp-company">Company</label>
                     <input
