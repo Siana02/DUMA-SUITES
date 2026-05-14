@@ -2,13 +2,15 @@ const DEFAULT_FORMSPREE_ENDPOINT = 'https://formspree.io/f/xykoavab'
 const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT?.trim() || DEFAULT_FORMSPREE_ENDPOINT
 const REQUEST_TIMEOUT_MS = 12000
 
-function withTimeout(signal) {
-  const controller = new AbortController()
-  const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)
-  if (signal) {
-    signal.addEventListener('abort', () => controller.abort(), { once: true })
+function getRequestSignal(signal) {
+  if (typeof AbortSignal?.timeout !== 'function') {
+    return signal
   }
-  return { controller, timeout }
+  const timeoutSignal = AbortSignal.timeout(REQUEST_TIMEOUT_MS)
+  if (signal && typeof AbortSignal?.any === 'function') {
+    return AbortSignal.any([signal, timeoutSignal])
+  }
+  return signal || timeoutSignal
 }
 
 function normalizePayload({ name, email, telephone = '', message }) {
@@ -37,41 +39,42 @@ async function parseFormspreeError(response) {
 }
 
 async function submitJson(payload, signal) {
-  const { controller, timeout } = withTimeout(signal)
-  try {
-    return await fetch(FORMSPREE_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-      signal: controller.signal,
-    })
-  } finally {
-    clearTimeout(timeout)
-  }
+  return fetch(FORMSPREE_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+    signal: getRequestSignal(signal),
+  })
 }
 
 async function submitUrlEncoded(payload, signal) {
-  const { controller, timeout } = withTimeout(signal)
-  try {
-    const form = new URLSearchParams()
-    Object.entries(payload).forEach(([key, value]) => {
-      form.set(key, value)
-    })
-    return await fetch(FORMSPREE_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-      },
-      body: form.toString(),
-      signal: controller.signal,
-    })
-  } finally {
-    clearTimeout(timeout)
+  const form = new URLSearchParams()
+  Object.entries(payload).forEach(([key, value]) => {
+    form.set(key, value)
+  })
+  return fetch(FORMSPREE_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    },
+    body: form.toString(),
+    signal: getRequestSignal(signal),
+  })
+}
+
+function mapTransportError(error) {
+  if (error?.name === 'AbortError') {
+    const timeoutError = new Error('Form request timed out')
+    timeoutError.diagnosticCode = 'request_timeout'
+    return timeoutError
   }
+  const networkError = new Error('Network error while contacting Formspree')
+  networkError.diagnosticCode = 'network_unreachable'
+  return networkError
 }
 
 export async function submitContactForm({ name, email, telephone = '', message, honeypot = '', signal } = {}) {
@@ -90,21 +93,19 @@ export async function submitContactForm({ name, email, telephone = '', message, 
   const payload = normalizePayload({ name, email, telephone, message })
 
   let response
+  let firstTransportError
   try {
     response = await submitJson(payload, signal)
   } catch (error) {
-    if (error.name === 'AbortError') {
-      const timeoutError = new Error('Form request timed out')
-      timeoutError.diagnosticCode = 'request_timeout'
-      throw timeoutError
-    }
-    const networkError = new Error('Network error while contacting Formspree')
-    networkError.diagnosticCode = 'network_unreachable'
-    throw networkError
+    firstTransportError = mapTransportError(error)
   }
 
-  if (!response.ok && [400, 415, 422].includes(response.status)) {
-    response = await submitUrlEncoded(payload, signal)
+  if (!response || (!response.ok && [400, 415, 422].includes(response.status))) {
+    try {
+      response = await submitUrlEncoded(payload, signal)
+    } catch (error) {
+      throw firstTransportError || mapTransportError(error)
+    }
   }
 
   if (!response.ok) {

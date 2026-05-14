@@ -155,8 +155,9 @@ export default function ContactSection() {
       setSubmitted(true)
     } catch (error) {
       console.error(error)
-      setSubmitError(getFormSubmissionErrorMessage(error, copy.errorBody))
-      window.alert(getFormSubmissionErrorMessage(error, copy.errorBody))
+      const errorMessage = getFormSubmissionErrorMessage(error, copy.errorBody)
+      setSubmitError(errorMessage)
+      window.alert(errorMessage)
     } finally {
       setIsSubmitting(false)
     }
@@ -320,17 +321,17 @@ export default function ContactSection() {
                 <CheckCircle size={48} strokeWidth={1.5} className="contact-section__success-icon" />
                 <h3>{copy.successTitle}</h3>
                 <p>{copy.successBody}</p>
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => {
-                      setSubmitted(false)
-                      setSubmitError('')
-                      setForm({ name: '', email: '', phone: '', message: '', website: '' })
-                    }}
-                  >
-                    {copy.sendAnother}
-                  </button>
-                </div>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => {
+                    setSubmitted(false)
+                    setSubmitError('')
+                    setForm({ name: '', email: '', phone: '', message: '', website: '' })
+                  }}
+                >
+                  {copy.sendAnother}
+                </button>
+              </div>
             ) : (
               <>
                 <p className="contact-section__form-intro">

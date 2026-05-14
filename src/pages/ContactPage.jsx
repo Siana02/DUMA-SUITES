@@ -261,8 +261,9 @@ export default function ContactPage() {
       setSubmitted(true)
     } catch (error) {
       console.error(error)
-      setSubmitError(getFormSubmissionErrorMessage(error, copy.errorBody))
-      window.alert(getFormSubmissionErrorMessage(error, copy.errorBody))
+      const errorMessage = getFormSubmissionErrorMessage(error, copy.errorBody)
+      setSubmitError(errorMessage)
+      window.alert(errorMessage)
     } finally {
       setIsSubmitting(false)
     }
