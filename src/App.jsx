@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import PreloadScreen from './components/PreloadScreen'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -69,6 +69,15 @@ function App() {
         <Route path={SUITE_ROUTES.CHIARA} element={<SuiteChiaraPage />} />
         <Route path={SUITE_ROUTES.LUCIA} element={<SuiteLuciaPage />} />
         <Route path={SUITE_ROUTES.ROMA} element={<SuiteRomaPage />} />
+        <Route path="/suites/coastal-haven" element={<Navigate to={SUITE_ROUTES.ANNA} replace />} />
+        <Route path="/suites/serenity-villa" element={<Navigate to={SUITE_ROUTES.ALICE} replace />} />
+        <Route path="/suites/penthouse-suite-1-sofia" element={<Navigate to={SUITE_ROUTES.SOFIA} replace />} />
+        <Route path="/suites/penthouse-suite-2-chiara" element={<Navigate to={SUITE_ROUTES.CHIARA} replace />} />
+        <Route path="/suites/suite-lucia" element={<Navigate to={SUITE_ROUTES.LUCIA} replace />} />
+        <Route path="/suites/suite-roma" element={<Navigate to={SUITE_ROUTES.ROMA} replace />} />
+        <Route path="/suite-chiara" element={<Navigate to={SUITE_ROUTES.CHIARA} replace />} />
+        <Route path="/suite-lucia" element={<Navigate to={SUITE_ROUTES.LUCIA} replace />} />
+        <Route path="/suite-roma" element={<Navigate to={SUITE_ROUTES.ROMA} replace />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/house-rules" element={<HouseRulesPage />} />
         <Route path="/about" element={<AboutPage />} />

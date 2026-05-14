@@ -10,6 +10,7 @@ import chiaraImage from '../assets/suite-chiara-outside-terrace-lounge-chairs-wi
 import luciaImage from '../assets/suite-lucia-hero-page-section-background-image.jpeg'
 import romaImage from '../assets/suite-roma-kitchen-with-decor-wall-view.jpeg'
 import serenityImage from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
+import { SUITE_ROUTES } from '../constants/suiteRoutes'
 
 export const SITE_URL = 'https://dumasuites.com'
 
@@ -41,12 +42,61 @@ export function getRouteSeo(pathname, t, lang) {
       type: 'website',
       schema: 'collection',
     },
+    [SUITE_ROUTES.ANNA]: {
+      title: t.suites.coastal.metaTitle,
+      description: t.suites.coastal.metaDesc,
+      image: coastalImage,
+      type: 'website',
+      schema: 'suite',
+      canonicalPath: SUITE_ROUTES.ANNA,
+    },
+    [SUITE_ROUTES.ALICE]: {
+      title: t.suites.serenity.metaTitle,
+      description: t.suites.serenity.metaDesc,
+      image: serenityImage,
+      type: 'website',
+      schema: 'suite',
+      canonicalPath: SUITE_ROUTES.ALICE,
+    },
+    [SUITE_ROUTES.SOFIA]: {
+      title: t.suites.penthouse.metaTitle,
+      description: t.suites.penthouse.metaDesc,
+      image: penthouseImage,
+      type: 'website',
+      schema: 'suite',
+      canonicalPath: SUITE_ROUTES.SOFIA,
+    },
+    [SUITE_ROUTES.CHIARA]: {
+      title: t.suites.chiara.metaTitle,
+      description: t.suites.chiara.metaDesc,
+      image: chiaraImage,
+      type: 'website',
+      schema: 'suite',
+      canonicalPath: SUITE_ROUTES.CHIARA,
+    },
+    [SUITE_ROUTES.LUCIA]: {
+      title: t.suites.lucia.metaTitle,
+      description: t.suites.lucia.metaDesc,
+      image: luciaImage,
+      type: 'website',
+      schema: 'suite',
+      canonicalPath: SUITE_ROUTES.LUCIA,
+    },
+    [SUITE_ROUTES.ROMA]: {
+      title: t.suites.roma.metaTitle,
+      description: t.suites.roma.metaDesc,
+      image: romaImage,
+      type: 'website',
+      schema: 'suite',
+      canonicalPath: SUITE_ROUTES.ROMA,
+    },
     '/suites/coastal-haven': {
       title: t.suites.coastal.metaTitle,
       description: t.suites.coastal.metaDesc,
       image: coastalImage,
       type: 'website',
       schema: 'suite',
+      canonicalPath: SUITE_ROUTES.ANNA,
     },
     '/suites/serenity-villa': {
       title: t.suites.serenity.metaTitle,
@@ -54,6 +104,7 @@ export function getRouteSeo(pathname, t, lang) {
       image: serenityImage,
       type: 'website',
       schema: 'suite',
+      canonicalPath: SUITE_ROUTES.ALICE,
     },
     '/suites/penthouse-suite-1-sofia': {
       title: t.suites.penthouse.metaTitle,
@@ -61,6 +112,7 @@ export function getRouteSeo(pathname, t, lang) {
       image: penthouseImage,
       type: 'website',
       schema: 'suite',
+      canonicalPath: SUITE_ROUTES.SOFIA,
     },
     '/suites/penthouse-suite-2-chiara': {
       title: t.suites.chiara.metaTitle,
@@ -68,6 +120,7 @@ export function getRouteSeo(pathname, t, lang) {
       image: chiaraImage,
       type: 'website',
       schema: 'suite',
+      canonicalPath: SUITE_ROUTES.CHIARA,
     },
     '/suites/suite-lucia': {
       title: t.suites.lucia.metaTitle,
@@ -75,6 +128,7 @@ export function getRouteSeo(pathname, t, lang) {
       image: luciaImage,
       type: 'website',
       schema: 'suite',
+      canonicalPath: SUITE_ROUTES.LUCIA,
     },
     '/suites/suite-roma': {
       title: t.suites.roma.metaTitle,
@@ -82,6 +136,31 @@ export function getRouteSeo(pathname, t, lang) {
       image: romaImage,
       type: 'website',
       schema: 'suite',
+      canonicalPath: SUITE_ROUTES.ROMA,
+    },
+    '/suite-chiara': {
+      title: t.suites.chiara.metaTitle,
+      description: t.suites.chiara.metaDesc,
+      image: chiaraImage,
+      type: 'website',
+      schema: 'suite',
+      canonicalPath: SUITE_ROUTES.CHIARA,
+    },
+    '/suite-lucia': {
+      title: t.suites.lucia.metaTitle,
+      description: t.suites.lucia.metaDesc,
+      image: luciaImage,
+      type: 'website',
+      schema: 'suite',
+      canonicalPath: SUITE_ROUTES.LUCIA,
+    },
+    '/suite-roma': {
+      title: t.suites.roma.metaTitle,
+      description: t.suites.roma.metaDesc,
+      image: romaImage,
+      type: 'website',
+      schema: 'suite',
+      canonicalPath: SUITE_ROUTES.ROMA,
     },
     '/gallery': {
       title: `${t.gallery.title} | Duma Suites`,

@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://dumasuites.com/</loc></url>
-  <url><loc>https://dumasuites.com/suites</loc></url>
-  <url><loc>https://dumasuites.com/suites/coastal-haven</loc></url>
-  <url><loc>https://dumasuites.com/suites/serenity-villa</loc></url>
-  <url><loc>https://dumasuites.com/suites/penthouse-suite-1-sofia</loc></url>
-  <url><loc>https://dumasuites.com/suites/penthouse-suite-2-chiara</loc></url>
-  <url><loc>https://dumasuites.com/suites/suite-lucia</loc></url>
-  <url><loc>https://dumasuites.com/suites/suite-roma</loc></url>
+  <url><loc>https://dumasuites.com/contact</loc></url>
   <url><loc>https://dumasuites.com/gallery</loc></url>
+  <url><loc>https://dumasuites.com/suite-chiara</loc></url>
+  <url><loc>https://dumasuites.com/suite-lucia</loc></url>
+  <url><loc>https://dumasuites.com/suite-roma</loc></url>
+  <url><loc>https://dumasuites.com/duma-penthouse-sofia</loc></url>
+  <url><loc>https://dumasuites.com/duma-penthouse-chiara</loc></url>
+  <url><loc>https://dumasuites.com/duma-suite-anna</loc></url>
+  <url><loc>https://dumasuites.com/duma-suite-alice</loc></url>
+  <url><loc>https://dumasuites.com/duma-suite-lucia</loc></url>
+  <url><loc>https://dumasuites.com/duma-suite-roma</loc></url>
+  <url><loc>https://dumasuites.com/suites</loc></url>
   <url><loc>https://dumasuites.com/about</loc></url>
   <url><loc>https://dumasuites.com/blog</loc></url>
   <url><loc>https://dumasuites.com/blog/top-5-activities-watamu</loc></url>
   <url><loc>https://dumasuites.com/blog/coastal-swahili-dishes</loc></url>
-  <url><loc>https://dumasuites.com/contact</loc></url>
 </urlset>

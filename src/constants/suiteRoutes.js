@@ -1,12 +1,12 @@
 export const ALL_SUITES_ROUTE = '/suites'
 
 export const SUITE_ROUTES = Object.freeze({
-  ANNA: '/suites/coastal-haven',
-  ALICE: '/suites/serenity-villa',
-  SOFIA: '/suites/penthouse-suite-1-sofia',
-  CHIARA: '/suites/penthouse-suite-2-chiara',
-  LUCIA: '/suites/suite-lucia',
-  ROMA: '/suites/suite-roma',
+  ANNA: '/duma-suite-anna',
+  ALICE: '/duma-suite-alice',
+  SOFIA: '/duma-penthouse-sofia',
+  CHIARA: '/duma-penthouse-chiara',
+  LUCIA: '/duma-suite-lucia',
+  ROMA: '/duma-suite-roma',
 })
 
 export const SUITE_ROUTE_ORDER = Object.freeze([

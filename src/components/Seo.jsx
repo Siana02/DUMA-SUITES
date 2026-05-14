@@ -19,7 +19,7 @@ export default function Seo() {
     [lang, location.pathname, t],
   )
 
-  const canonical = toAbsoluteUrl(location.pathname)
+  const canonical = toAbsoluteUrl(meta.canonicalPath || location.pathname)
   const image = toAbsoluteUrl(meta.image)
   const alternateLocales = ['en_GB', 'it_IT', 'de_DE', 'fr_FR', 'es_ES'].filter((locale) => locale !== meta.locale)
 
