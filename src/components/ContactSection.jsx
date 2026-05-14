@@ -5,7 +5,7 @@ import { MapPin, Phone, Mail, CheckCircle, Clock, Users, Star } from 'lucide-rea
 import { useNavigate } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { useT } from '../i18n/useT.js'
-import { FORMSPREE_ENDPOINT, getFormSubmissionErrorMessage, submitContactForm } from '../utils/formspree.js'
+
 
 function TikTokIcon() {
   return (
@@ -144,18 +144,40 @@ export default function ContactSection() {
     setSubmitError('')
     setIsSubmitting(true)
 
+    const name = form.name
+    const email = form.email
+    const telephone = form.phone
+    const message = form.message
+
+    const payload = {
+      email: email,
+      message: `Name: ${name}\nEmail: ${email}\nTelephone: ${telephone || 'N/A'}\n\nMessage:\n${message}`
+    }
+
+    console.log('Submitting to Formspree...', payload)
+
     try {
-      await submitContactForm({
-        name: form.name,
-        email: form.email,
-        telephone: form.phone,
-        message: form.message,
-        honeypot: form.website,
+      const response = await fetch('https://formspree.io/f/xykoavab', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
       })
+
+      const result = await response.json()
+      console.log('Formspree response:', result)
+
+      if (!response.ok) {
+        throw new Error(result?.error || 'Form submission failed')
+      }
+
+      alert('Message sent successfully')
       setSubmitted(true)
     } catch (error) {
       console.error(error)
-      const errorMessage = getFormSubmissionErrorMessage(error, copy.errorBody)
+      const errorMessage = error.message || copy.errorBody
       setSubmitError(errorMessage)
       window.alert(errorMessage)
     } finally {
@@ -337,7 +359,7 @@ export default function ContactSection() {
                 <p className="contact-section__form-intro">
                   {copy.formIntro}
                 </p>
-                <form className="contact-form" action={FORMSPREE_ENDPOINT} method="POST" onSubmit={handleSubmit} noValidate>
+                <form className="contact-form" onSubmit={handleSubmit} noValidate>
                   <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
                     <label htmlFor="contact-company">Company</label>
                     <input
