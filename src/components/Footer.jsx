@@ -37,6 +37,7 @@ const SOCIAL = [
   { Icon: WhatsAppIcon,  href: 'https://wa.me/254710933025',                                                     label: 'WhatsApp' },
 ]
 
+// Order matches addedServices array: [0] = Chef (ChefHat), [1] = Airport transfer (Plane)
 const ADDED_SERVICE_ICONS = [ChefHat, Plane]
 
 export default function Footer() {
