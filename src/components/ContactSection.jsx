@@ -141,13 +141,12 @@ export default function ContactSection() {
     e.preventDefault()
 
     try {
-      const responseStatus = await submitContactForm({
+      await submitContactForm({
         name: form.name,
         email: form.email,
         telephone: form.phone,
         message: form.message,
       })
-      console.info('Contact section form submitted with status:', responseStatus)
       setSubmitted(true)
     } catch (error) {
       console.error(error)
