@@ -76,7 +76,7 @@ export default function AllSuitesPage() {
 
   const { ref: heroRef, inView: heroInView } = useInView({ threshold: 0.2, triggerOnce: true })
   const { ref: introRef, inView: introInView } = useInView({ threshold: 0.2, triggerOnce: true })
-  const { ref: showcaseRef, inView: showcaseInView } = useInView({ threshold: 0.2, triggerOnce: true })
+  const { ref: showcaseRef, inView: showcaseInView } = useInView({ threshold: 0.01, triggerOnce: true })
 
   // Resort overview video — listen for finish and reset to prevent Vimeo end-screen
   const overviewIframeRef = useRef(null)
