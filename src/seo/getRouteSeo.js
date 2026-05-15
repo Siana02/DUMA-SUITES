@@ -103,6 +103,7 @@ export function getRouteSeo(pathname, t, lang) {
       description: t.suites.roma.metaDesc,
       image: romaImage,
       type: 'website',
+      keywords: 'Duma Suite Momme, 2 bedroom luxury suite Watamu, architectural suite Kenya, terrace suite Watamu',
       schema: 'suite',
       canonicalPath: SUITE_ROUTES.ROMA,
     },
