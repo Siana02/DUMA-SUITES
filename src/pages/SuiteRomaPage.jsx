@@ -37,17 +37,17 @@ const GALLERY = [g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,g11]
 const romaPreviewCardImg = g1
 const DEFAULT_IMAGE_WIDTH = 352
 const GALLERY_LABELS = [
-  'Suite Roma first bedroom view 1',
-  'Suite Roma first bedroom view 2',
-  'Suite Roma first bedroom view 3',
-  'Suite Roma second bedroom view 1',
-  'Suite Roma second bedroom view 2',
-  'Suite Roma second bedroom view 3',
-  'Suite Roma bathroom view',
-  'Suite Roma dining table with TV view',
-  'Suite Roma kitchen view',
-  'Suite Roma kitchen with decor wall view',
-  'Suite Roma main hero view',
+  'Suite Momme first bedroom view 1',
+  'Suite Momme first bedroom view 2',
+  'Suite Momme first bedroom view 3',
+  'Suite Momme second bedroom view 1',
+  'Suite Momme second bedroom view 2',
+  'Suite Momme second bedroom view 3',
+  'Suite Momme bathroom view',
+  'Suite Momme dining table with TV view',
+  'Suite Momme kitchen view',
+  'Suite Momme kitchen with decor wall view',
+  'Suite Momme main hero view',
 ]
 
 const AMENITY_ICONS = [
@@ -145,7 +145,7 @@ export default function SuiteRomaPage() {
 
         {/* ── a) Hero ── */}
         <section className="ph-hero">
-          <img src={heroImg} alt="Suite Roma main view" className="ph-hero__bg" />
+          <img src={heroImg} alt="Suite Momme main view" className="ph-hero__bg" />
           <div className="ph-hero__overlay" aria-hidden="true" />
           <div className="ph-hero__content">
             <motion.span
@@ -214,7 +214,7 @@ export default function SuiteRomaPage() {
 
               <motion.div className="ph-about__img-col" {...fadeUp(0.16)}>
                 <div className="ph-about__img-wrap">
-                  <img src={aboutImg} alt="Suite Roma dining table with TV view" className="ph-about__img" />
+                  <img src={aboutImg} alt="Suite Momme dining table with TV view" className="ph-about__img" />
                   <div className="ph-about__img-overlay" aria-hidden="true" />
                 </div>
               </motion.div>
@@ -224,7 +224,7 @@ export default function SuiteRomaPage() {
                 <div className="ph-about__highlights-img-wrap">
                   <img
                     src={g11}
-                    alt="Suite Roma main hero view"
+                    alt="Suite Momme main hero view"
                     className="ph-about__highlights-img"
                     loading="lazy"
                   />
@@ -308,7 +308,7 @@ export default function SuiteRomaPage() {
 
         <SuiteVideoTourSection
           videoId="1191921207"
-          iframeTitle="Duma Suite Roma room tour video"
+          iframeTitle="Duma Suite Momme room tour video"
           eyebrow={tourCopy.tourEyebrow}
           title={tourCopy.tourTitle}
           subtitle={tourCopy.tourSub}

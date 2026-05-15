@@ -326,8 +326,8 @@
         "href": "/duma-suite-lucia"
       },
       {
-        "label": "Duma Suite Roma",
-        "href": "/duma-suite-roma"
+        "label": "Duma Suite Momme",
+        "href": "/duma-suite-momme"
       },
       {
         "label": "Duma Suite Anna",
@@ -524,7 +524,7 @@
           "guests": "4 Guests"
         },
         {
-          "name": "Duma Suite Roma",
+          "name": "Duma Suite Momme",
           "tagline": "2-Bedroom · Architectural Suite",
           "desc": "A design-focused two-bedroom suite with bold architectural interiors, a fully equipped kitchen, lounge room, and private terrace/balcony access.",
           "size": "120 mq",
@@ -1018,10 +1018,10 @@
       "viewSuiteBtn": "Visualizza la Suite"
     },
     "roma": {
-      "metaTitle": "Duma Suite Roma | Two-Bedroom Suite | Duma Suites Watamu",
-      "metaDesc": "Duma Suite Roma at Duma Suites, Watamu. A design-focused two-bedroom suite with architectural interiors, a fully equipped kitchen, lounge room, and private terrace/balcony access.",
+      "metaTitle": "Duma Suite Momme | Two-Bedroom Suite | Duma Suites Watamu",
+      "metaDesc": "Duma Suite Momme at Duma Suites, Watamu. A design-focused two-bedroom suite with architectural interiors, a fully equipped kitchen, lounge room, and private terrace/balcony access.",
       "heroEyebrow": "Duma Suite",
-      "heroTitle": "Duma Suite Roma",
+      "heroTitle": "Duma Suite Momme",
       "heroTagline": "Un rifugio architettonico con interni sofisticati e serenità costiera",
       "heroCta1": "Prenota un Soggiorno",
       "heroCta2": "Vedi Galleria",
@@ -1031,7 +1031,7 @@
       "minStay": "2 Night Min",
       "aboutEyebrow": "Sulla Suite",
       "aboutTitle": "Rifugio Costiero Architettonico",
-      "aboutText1": "Duma Suite Roma è un rifugio di due camere che celebra il design audace, le texture e la maestria artigianale. Dagli interni di forte impatto visivo che fondono linee geometriche con toni scuri e profondi, alle opere d'arte selezionate e agli spazi attentamente composti, ogni angolo di Duma Suite Roma esprime una sensibilità estetica distintiva che la rende unica.",
+      "aboutText1": "Duma Suite Momme è un rifugio di due camere che celebra il design audace, le texture e la maestria artigianale. Dagli interni di forte impatto visivo che fondono linee geometriche con toni scuri e profondi, alle opere d'arte selezionate e agli spazi attentamente composti, ogni angolo di Duma Suite Momme esprime una sensibilità estetica distintiva che la rende unica.",
       "aboutText2": "Due camere king — ognuna con bagno en-suite privato e armadio — si completano con una cucina completamente attrezzata, un salotto per serate rilassate, e una terrazza privata e lounge sul balcone dove l'aria fresca della costa vi invita a fermarvi, respirare e godervi il panorama.",
       "aboutCta": "Prenota Ora",
       "aboutBookCta": "Prenota Ora",
@@ -1046,9 +1046,9 @@
         "Pulizia quotidiana e servizio turndown"
       ],
       "galleryEyebrow": "Galleria della Suite",
-      "galleryTitle": "La vita nel Duma Suite Roma",
-      "galleryDesc": "Scoprite la geometria audace, le texture ricche e i dettagli architettonici che definiscono Duma Suite Roma — uno spazio dove il design incontra il lusso costiero in ogni momento.",
-      "galleryCta": "Prenota Duma Suite Roma",
+      "galleryTitle": "La vita nel Duma Suite Momme",
+      "galleryDesc": "Scoprite la geometria audace, le texture ricche e i dettagli architettonici che definiscono Duma Suite Momme — uno spazio dove il design incontra il lusso costiero in ogni momento.",
+      "galleryCta": "Prenota Duma Suite Momme",
       "amenitiesEyebrow": "Servizi della Suite",
       "amenitiesTitle": "Servizi Inclusi",
       "amenities": [
@@ -1227,7 +1227,7 @@
         "guests": "4 Guests"
       },
       {
-        "name": "Duma Suite Roma",
+        "name": "Duma Suite Momme",
         "tagline": "2-Bedroom · Architectural Suite",
         "size": "120 mq",
         "beds": "2 King Size Beds",

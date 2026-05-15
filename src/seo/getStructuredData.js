@@ -40,7 +40,7 @@ const SUITE_SCHEMA_BY_ROUTE = {
     features: ['Terrace', 'Balcony', 'Sea view'],
   },
   [SUITE_ROUTES.ROMA]: {
-    name: 'Duma Suite Roma',
+    name: 'Duma Suite Momme',
     bedrooms: 2,
     maxGuests: 4,
     sizeSqm: 120,

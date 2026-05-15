@@ -326,8 +326,8 @@
         "href": "/duma-suite-lucia"
       },
       {
-        "label": "Duma Suite Roma",
-        "href": "/duma-suite-roma"
+        "label": "Duma Suite Momme",
+        "href": "/duma-suite-momme"
       },
       {
         "label": "Duma Suite Anna",
@@ -524,7 +524,7 @@
           "guests": "4 Guests"
         },
         {
-          "name": "Duma Suite Roma",
+          "name": "Duma Suite Momme",
           "tagline": "2-Bedroom · Architectural Suite",
           "desc": "A design-focused two-bedroom suite with bold architectural interiors, a fully equipped kitchen, lounge room, and private terrace/balcony access.",
           "size": "120 sq m",
@@ -1018,10 +1018,10 @@
       "viewSuiteBtn": "View Suite →"
     },
     "roma": {
-      "metaTitle": "Duma Suite Roma | Two-Bedroom Suite | Duma Suites Watamu",
-      "metaDesc": "Duma Suite Roma at Duma Suites, Watamu. A design-focused two-bedroom suite with architectural interiors, a fully equipped kitchen, lounge room, and private terrace/balcony access.",
+      "metaTitle": "Duma Suite Momme | Two-Bedroom Suite | Duma Suites Watamu",
+      "metaDesc": "Duma Suite Momme at Duma Suites, Watamu. A design-focused two-bedroom suite with architectural interiors, a fully equipped kitchen, lounge room, and private terrace/balcony access.",
       "heroEyebrow": "2-Bedroom Suite",
-      "heroTitle": "Duma Suite Roma",
+      "heroTitle": "Duma Suite Momme",
       "heroTagline": "A design-focused architectural retreat with sophisticated interiors and coastal serenity",
       "heroCta1": "Book a Stay",
       "heroCta2": "View Gallery",
@@ -1031,10 +1031,10 @@
       "minStay": "2 Night Min",
       "aboutEyebrow": "About this Suite",
       "aboutTitle": "Architectural Coastal Retreat",
-      "aboutText1": "Duma Suite Roma is a two-bedroom sanctuary that celebrates bold design, texture, and craftsmanship. From the striking interiors that blend geometric lines with rich dark tones, to the curated art and carefully composed spaces, every corner of Duma Suite Roma communicates a distinctive design sensibility that sets it apart.",
+      "aboutText1": "Duma Suite Momme is a two-bedroom sanctuary that celebrates bold design, texture, and craftsmanship. From the striking interiors that blend geometric lines with rich dark tones, to the curated art and carefully composed spaces, every corner of Duma Suite Momme communicates a distinctive design sensibility that sets it apart.",
       "aboutText2": "Two king-size bedrooms — each with a private en-suite bathroom and closet — are complemented by a fully equipped kitchen, a lounge room for relaxed evenings, and a private terrace and balcony lounge area where the cool coastal air invites you to pause, unwind, and take in the view.",
       "aboutCta": "Check Availability",
-      "aboutBookCta": "Book Suite Roma",
+      "aboutBookCta": "Book Suite Momme",
       "highlightsTitle": "Suite Highlights",
       "highlights": [
         "Two king-size bedrooms with en-suite bathrooms and closets",
@@ -1046,9 +1046,9 @@
         "Daily housekeeping and turndown service"
       ],
       "galleryEyebrow": "Photo Gallery",
-      "galleryTitle": "Inside Suite Roma",
-      "galleryDesc": "Discover the bold geometry, rich textures, and architectural details that define Duma Suite Roma — a space where design meets coastal luxury in every framed moment.",
-      "galleryCta": "Book Duma Suite Roma",
+      "galleryTitle": "Inside Suite Momme",
+      "galleryDesc": "Discover the bold geometry, rich textures, and architectural details that define Duma Suite Momme — a space where design meets coastal luxury in every framed moment.",
+      "galleryCta": "Book Duma Suite Momme",
       "amenitiesEyebrow": "What's Included",
       "amenitiesTitle": "Suite Amenities",
       "amenities": [
@@ -1103,7 +1103,7 @@
       ],
       "inquireEyebrow": "Reservations",
       "inquireTitle": "Reserve Your Stay",
-      "inquireSub": "Ready to experience the architectural luxury of Suite Roma? Contact us to check availability and rates.",
+      "inquireSub": "Ready to experience the architectural luxury of Suite Momme? Contact us to check availability and rates.",
       "inquireEmail": "Email Us",
       "inquireWhatsapp": "WhatsApp Us",
       "suitesEyebrow": "Our Suites",
@@ -1227,7 +1227,7 @@
         "guests": "4 Guests"
       },
       {
-        "name": "Duma Suite Roma",
+        "name": "Duma Suite Momme",
         "tagline": "2-Bedroom · Architectural Suite",
         "size": "120 sq m",
         "beds": "2 King Size Beds",
