@@ -70,6 +70,7 @@ function App() {
         <Route path={SUITE_ROUTES.CHIARA} element={<SuiteChiaraPage />} />
         <Route path={SUITE_ROUTES.LUCIA} element={<SuiteLuciaPage />} />
         <Route path={SUITE_ROUTES.ROMA} element={<SuiteRomaPage />} />
+        <Route path="/duma-suite-roma" element={<Navigate to={SUITE_ROUTES.ROMA} replace />} />
         <Route path="/suites/coastal-haven" element={<Navigate to={SUITE_ROUTES.ANNA} replace />} />
         <Route path="/suites/serenity-villa" element={<Navigate to={SUITE_ROUTES.ALICE} replace />} />
         <Route path="/suites/penthouse-suite-1-sofia" element={<Navigate to={SUITE_ROUTES.SOFIA} replace />} />
@@ -78,7 +79,7 @@ function App() {
         <Route path="/suites/suite-roma" element={<Navigate to={SUITE_ROUTES.ROMA} replace />} />
         <Route path="/suite-chiara" element={<SuiteChiaraPage />} />
         <Route path="/suite-lucia" element={<SuiteLuciaPage />} />
-        <Route path="/suite-roma" element={<SuiteRomaPage />} />
+        <Route path="/suite-roma" element={<Navigate to={SUITE_ROUTES.ROMA} replace />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/house-rules" element={<HouseRulesPage />} />
         <Route path="/about" element={<AboutPage />} />

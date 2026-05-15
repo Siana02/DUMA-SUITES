@@ -326,8 +326,8 @@
         "href": "/duma-suite-lucia"
       },
       {
-        "label": "Duma Suite Roma",
-        "href": "/duma-suite-roma"
+        "label": "Duma Suite Momme",
+        "href": "/duma-suite-momme"
       },
       {
         "label": "Duma Suite Anna",
@@ -524,7 +524,7 @@
           "guests": "4 Personnes"
         },
         {
-          "name": "Duma Suite Roma",
+          "name": "Duma Suite Momme",
           "tagline": "2 Chambres · Suite architecturale",
           "desc": "Une suite axée sur le design avec des intérieurs architecturaux audacieux, une cuisine entièrement équipée, un salon et un accès à une terrasse/balcon privé.",
           "size": "120 m²",
@@ -1018,10 +1018,10 @@
       "viewSuiteBtn": "Voir la suite"
     },
     "roma": {
-      "metaTitle": "Duma Suite Roma | Two-Bedroom Suite | Duma Suites Watamu",
-      "metaDesc": "Duma Suite Roma at Duma Suites, Watamu. A design-focused two-bedroom suite with architectural interiors, a fully equipped kitchen, lounge room, and private terrace/balcony access.",
+      "metaTitle": "Duma Suite Momme | Two-Bedroom Suite | Duma Suites Watamu",
+      "metaDesc": "Duma Suite Momme at Duma Suites, Watamu. A design-focused two-bedroom suite with architectural interiors, a fully equipped kitchen, lounge room, and private terrace/balcony access.",
       "heroEyebrow": "Suite 2 Chambres",
-      "heroTitle": "Duma Suite Roma",
+      "heroTitle": "Duma Suite Momme",
       "heroTagline": "Une retraite architecturale axée sur le design avec des intérieurs sophistiqués et une sérénité côtière",
       "heroCta1": "Réserver un séjour",
       "heroCta2": "Voir la galerie",
@@ -1031,7 +1031,7 @@
       "minStay": "2 nuits min.",
       "aboutEyebrow": "À propos de cette suite",
       "aboutTitle": "Retraite côtière architecturale",
-      "aboutText1": "Duma Suite Roma est un sanctuaire deux chambres qui célèbre le design audacieux, la texture et l'artisanat. Chaque détail a été soigneusement sélectionné pour créer une suite qui ressemble à une œuvre d'art.",
+      "aboutText1": "Duma Suite Momme est un sanctuaire deux chambres qui célèbre le design audacieux, la texture et l'artisanat. Chaque détail a été soigneusement sélectionné pour créer une suite qui ressemble à une œuvre d'art.",
       "aboutText2": "Deux chambres king size — chacune avec une salle de bain privée et un dressing — sont complétées par une cuisine complète, un salon et un accès terrasse/balcon privé.",
       "aboutCta": "Réserver maintenant",
       "aboutBookCta": "Réserver maintenant",
@@ -1046,9 +1046,9 @@
         "Service de ménage quotidien et de couverture"
       ],
       "galleryEyebrow": "Galerie de la suite",
-      "galleryTitle": "La vie dans la Duma Suite Roma",
-      "galleryDesc": "Découvrez la géométrie audacieuse, les textures riches et les détails architecturaux qui définissent la Duma Suite Roma — une retraite comme nulle autre.",
-      "galleryCta": "Réserver Duma Suite Roma",
+      "galleryTitle": "La vie dans la Duma Suite Momme",
+      "galleryDesc": "Découvrez la géométrie audacieuse, les textures riches et les détails architecturaux qui définissent la Duma Suite Momme — une retraite comme nulle autre.",
+      "galleryCta": "Réserver Duma Suite Momme",
       "amenitiesEyebrow": "Équipements de la suite",
       "amenitiesTitle": "Équipements inclus",
       "amenities": [
@@ -1227,7 +1227,7 @@
         "guests": "4 Personnes"
       },
       {
-        "name": "Duma Suite Roma",
+        "name": "Duma Suite Momme",
         "tagline": "2 Chambres · Suite architecturale",
         "size": "120 m²",
         "beds": "2 lits king size",

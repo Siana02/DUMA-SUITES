@@ -6,7 +6,7 @@ export const SUITE_ROUTES = Object.freeze({
   SOFIA: '/duma-penthouse-sofia',
   CHIARA: '/duma-penthouse-chiara',
   LUCIA: '/duma-suite-lucia',
-  ROMA: '/duma-suite-roma',
+  ROMA: '/duma-suite-momme',
 })
 
 export const SUITE_ROUTE_ORDER = Object.freeze([
