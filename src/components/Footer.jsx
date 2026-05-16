@@ -1,5 +1,5 @@
 import { Mail, Phone, MapPin, ChefHat, Plane, Check, Calendar } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import logoImg from '../assets/logo.jpeg'
 import mammalImg from '../assets/mammal.png'
 import { useT } from '../i18n/useT.js'
@@ -42,6 +42,7 @@ const ADDED_SERVICE_ICONS = [ChefHat, Plane]
 
 export default function Footer() {
   const t = useT()
+  const location = useLocation()
   const navigate = useNavigate()
   const suiteOrderIndex = (href) => {
     const index = SUITE_NAV_ORDER.indexOf(href)
@@ -71,16 +72,35 @@ export default function Footer() {
   }
 
   const handleExploreClick = (e, link) => {
+    const scrollToSectionTop = (sectionId, behavior = 'smooth') => {
+      const target = document.getElementById(sectionId)
+      if (!target) return false
+
+      const navbarHeight = document.querySelector('.navbar')?.getBoundingClientRect().height ?? 0
+      const top = target.getBoundingClientRect().top + window.scrollY - navbarHeight
+      window.scrollTo({ top: Math.max(0, top), behavior })
+      return true
+    }
+
+    const scrollToSectionTopWhenReady = (sectionId, attempts = 24) => {
+      if (scrollToSectionTop(sectionId, 'smooth') || attempts <= 0) return
+      window.setTimeout(() => scrollToSectionTopWhenReady(sectionId, attempts - 1), 50)
+    }
+
     e.preventDefault()
     if (link.isRoute) {
       window.scrollTo({ top: 0, behavior: 'instant' })
       navigate(link.href)
     } else if (link.href.startsWith('/#')) {
       const id = link.href.slice(2)
-      navigate('/')
-      setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-      }, 100)
+      if (location.pathname !== '/') {
+        navigate('/')
+        setTimeout(() => {
+          scrollToSectionTopWhenReady(id)
+        }, 100)
+      } else {
+        scrollToSectionTop(id, 'smooth')
+      }
     }
   }
 
