@@ -57,20 +57,14 @@ export default defineConfig({
       registerType: 'autoUpdate',
       manifestFilename: 'site.webmanifest',
       includeAssets: [
-        'favicon.ico',
-        'favicon-16x16.png',
-        'favicon-32x32.png',
-        'apple-touch-icon.png',
-        'android-chrome-192x192.png',
-        'android-chrome-512x512.png',
-        'pwa-192x192.png',
-        'pwa-512x512.png',
-        'safari-pinned-tab.svg',
         'robots.txt',
         'sitemap.xml',
       ],
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,webmanifest}'],
+        globPatterns: ['**/*.{js,css,html}'],
+        cleanupOutdatedCaches: true,
+        navigateFallback: 'index.html',
+        navigateFallbackDenylist: [/^\/locales\//],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
@@ -110,14 +104,19 @@ export default defineConfig({
       },
       manifest: {
         name: 'Duma Suites',
-        short_name: 'Duma Suites',
+        short_name: 'Duma',
         description: 'Luxury Coastal Living in Watamu',
         id: '/',
+        lang: 'en',
+        dir: 'ltr',
         theme_color: '#c9a96e',
         background_color: '#f7f1e5',
         display: 'standalone',
+        display_override: ['window-controls-overlay', 'standalone', 'browser'],
+        orientation: 'portrait-primary',
         scope: '/',
         start_url: '/',
+        prefer_related_applications: false,
         categories: ['travel', 'lifestyle', 'hospitality'],
         shortcuts: [
           {
@@ -151,6 +150,18 @@ export default defineConfig({
           },
           {
             src: 'android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any',
+          },
+          {
+            src: 'maskable-icon-192.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+          {
+            src: 'maskable-icon-512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable',

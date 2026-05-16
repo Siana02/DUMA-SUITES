@@ -8,7 +8,19 @@ import App from './App.jsx'
 import { LanguageProvider } from './context/LanguageContext.jsx'
 import './i18n/i18n.js'
 
-registerSW({ immediate: true })
+const updateServiceWorker = registerSW({
+  immediate: true,
+  onOfflineReady() {
+    window.dispatchEvent(new CustomEvent('pwa:offline-ready'))
+  },
+  onNeedRefresh() {
+    window.dispatchEvent(
+      new CustomEvent('pwa:update-ready', {
+        detail: { updateServiceWorker },
+      }),
+    )
+  },
+})
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

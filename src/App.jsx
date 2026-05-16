@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import CookieBanner from './components/CookieBanner'
 import PwaInstallPrompt from './components/PwaInstallPrompt'
+import PwaStatusPrompt from './components/PwaStatusPrompt'
 import Seo from './components/Seo'
 import HomePage from './pages/HomePage'
 import AllSuitesPage from './pages/AllSuitesPage'
@@ -60,6 +61,7 @@ function App() {
       <ScrollToTop />
       <Navbar />
       <PwaInstallPrompt preloadDone={preloadDone} />
+      <PwaStatusPrompt />
 
       <Routes>
         <Route path="/" element={<HomePage ready={preloadDone} />} />
