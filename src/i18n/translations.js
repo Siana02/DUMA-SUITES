@@ -124,7 +124,7 @@ const en = {
       },
       {
         title: "Marafa Hell's Kitchen",
-        desc: "Journey inland to one of Kenya's most breathtaking natural wonders — the Marafa Depression, known locally as 'Nyari', meaning 'the place broken by itself'. Sculpted over millennia by wind and rain, these dramatic ochre and terracotta ravines glow with an otherworldly fire at sunrise and sunset, earning their poetic name: Hell's Kitchen. A landscape unlike any other on the Kenyan coast — raw, ancient and utterly unforgettable.",
+        desc: "Journey inland to the Marafa Depression — 'Nyari', the place broken by itself. These dramatic ochre ravines glow with otherworldly fire at sunrise and sunset. Raw, ancient, unforgettable.",
         badge: 'Natural Wonder',
       },
     ],
@@ -1341,7 +1341,7 @@ const it = {
       },
       {
         title: "Marafa – La Cucina dell'Inferno",
-        desc: "Partite alla scoperta di una delle meraviglie naturali più straordinarie del Kenya — la Depressione di Marafa, conosciuta localmente come 'Nyari', ovvero 'il luogo che si è spezzato da solo'. Scolpite nei millenni dal vento e dalla pioggia, queste drammatiche gole di ocra e terracotta brillano di una luce ultraterrena all'alba e al tramonto, guadagnandosi il loro poetico soprannome: la Cucina dell'Inferno. Un paesaggio unico sulla costa del Kenya — primitivo, antico e assolutamente indimenticabile.",
+        desc: "Scoprite la Depressione di Marafa, 'Nyari' — il luogo che si è spezzato da solo. Queste drammatiche gole di ocra brillano di luce ultraterrena all'alba e al tramonto. Primitivo e indimenticabile.",
         badge: 'Meraviglia Naturale',
       },
     ],
