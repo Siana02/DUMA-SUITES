@@ -414,6 +414,7 @@ export default function Navbar() {
           left: 0;
           right: 0;
           z-index: 1000;
+          padding-top: env(safe-area-inset-top, 0px);
           transition:
             background-color 0.4s ease,
             backdrop-filter 0.4s ease,
@@ -721,7 +722,7 @@ export default function Navbar() {
           z-index: 999;
           display: flex;
           flex-direction: column;
-          padding: 88px 40px 48px;
+          padding: calc(88px + env(safe-area-inset-top, 0px)) 40px calc(48px + env(safe-area-inset-bottom, 0px));
           box-shadow: -8px 0 48px rgba(86, 51, 17, 0.15);
           overflow-y: auto;
           gap: 2rem;

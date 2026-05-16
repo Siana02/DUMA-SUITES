@@ -153,8 +153,8 @@ export default function PwaInstallPrompt({ preloadDone }) {
           <style>{`
             .pwa-prompt {
               position: fixed;
-              top: clamp(88px, 10vw, 118px);
-              right: clamp(16px, 3vw, 28px);
+              top: calc(clamp(88px, 10vw, 118px) + env(safe-area-inset-top, 0px));
+              right: calc(clamp(16px, 3vw, 28px) + env(safe-area-inset-right, 0px));
               z-index: 1100;
               display: grid;
               grid-template-columns: auto 1fr auto;
@@ -261,9 +261,9 @@ export default function PwaInstallPrompt({ preloadDone }) {
             }
             @media (max-width: 900px) {
               .pwa-prompt {
-                top: 84px;
-                right: 16px;
-                left: 16px;
+                top: calc(84px + env(safe-area-inset-top, 0px));
+                right: calc(16px + env(safe-area-inset-right, 0px));
+                left: calc(16px + env(safe-area-inset-left, 0px));
                 width: auto;
                 grid-template-columns: auto 1fr;
               }
