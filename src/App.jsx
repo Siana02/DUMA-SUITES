@@ -79,8 +79,8 @@ function App() {
         <Route path="/suites/penthouse-suite-2-chiara" element={<Navigate to={SUITE_ROUTES.CHIARA} replace />} />
         <Route path="/suites/suite-lucia" element={<Navigate to={SUITE_ROUTES.LUCIA} replace />} />
         <Route path="/suites/suite-roma" element={<Navigate to={SUITE_ROUTES.ROMA} replace />} />
-        <Route path="/suite-chiara" element={<SuiteChiaraPage />} />
-        <Route path="/suite-lucia" element={<SuiteLuciaPage />} />
+        <Route path="/suite-chiara" element={<Navigate to={SUITE_ROUTES.CHIARA} replace />} />
+        <Route path="/suite-lucia" element={<Navigate to={SUITE_ROUTES.LUCIA} replace />} />
         <Route path="/suite-roma" element={<Navigate to={SUITE_ROUTES.ROMA} replace />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/house-rules" element={<HouseRulesPage />} />
