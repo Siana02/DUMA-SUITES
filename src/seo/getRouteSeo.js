@@ -12,7 +12,7 @@ import romaImage from '../assets/suite-roma-kitchen-with-decor-wall-view.jpeg'
 import serenityImage from '../assets/serenity-villa-tv-and-kitchen-view.JPEG'
 import { SUITE_ROUTES } from '../constants/suiteRoutes'
 
-export const SITE_URL = 'https://dumasuites.com'
+export const SITE_URL = 'https://www.dumasuites.com'
 
 export function getRouteSeo(pathname, t, lang) {
   const locales = {
