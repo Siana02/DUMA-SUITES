@@ -1,9 +1,8 @@
 {
-  "routes": [
-    { "handle": "filesystem" },
+  "rewrites": [
     {
-      "src": "/(suites(?:/.*)?|gallery|house-rules|about|blog(?:/.*)?|contact|privacy-policy|terms-of-service|cookies)/?",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
