@@ -35,7 +35,7 @@ export function getRouteSeo(pathname, t, lang) {
   }
 
   const routeMap = {
-    '/': defaultMeta,
+    '/': { ...defaultMeta, canonicalPath: '/' },
     '/suites': {
       title: `${t.suites.all.heroTitle} | Duma Suites`,
       description: t.suites.all.heroSub,
@@ -43,6 +43,7 @@ export function getRouteSeo(pathname, t, lang) {
       type: 'website',
       keywords: 'Watamu suites, luxury apartments Watamu, family suites Kenya, penthouse Watamu, Duma Suites accommodation',
       schema: 'collection',
+      canonicalPath: '/suites',
     },
     [SUITE_ROUTES.ANNA]: {
       title: t.suites.coastal.metaTitle,
@@ -186,6 +187,7 @@ export function getRouteSeo(pathname, t, lang) {
       type: 'website',
       keywords: 'Duma Suites gallery, Watamu resort photos, luxury suite images, beachfront accommodation Kenya',
       schema: 'collection',
+      canonicalPath: '/gallery',
     },
     '/about': {
       title: `${t.about.title} | Duma Suites`,
@@ -194,6 +196,7 @@ export function getRouteSeo(pathname, t, lang) {
       type: 'website',
       keywords: 'about Duma Suites, Watamu boutique hotel, luxury accommodation Kenya coast',
       schema: 'webpage',
+      canonicalPath: '/about',
     },
     '/blog': {
       title: t.blog.metaTitle,
@@ -202,6 +205,7 @@ export function getRouteSeo(pathname, t, lang) {
       type: 'website',
       keywords: 'Watamu travel guide, Duma Suites blog, Kenya coast activities, Watamu tips',
       schema: 'collection',
+      canonicalPath: '/blog',
     },
     '/blog/top-5-activities-watamu': {
       title: t.article1.metaTitle,
@@ -209,6 +213,7 @@ export function getRouteSeo(pathname, t, lang) {
       image: articleOneImage,
       type: 'article',
       schema: 'article',
+      canonicalPath: '/blog/top-5-activities-watamu',
     },
     '/blog/coastal-swahili-dishes': {
       title: t.article2.metaTitle,
@@ -216,6 +221,7 @@ export function getRouteSeo(pathname, t, lang) {
       image: articleTwoImage,
       type: 'article',
       schema: 'article',
+      canonicalPath: '/blog/coastal-swahili-dishes',
     },
     '/contact': {
       title: `${t.contact.title} | Duma Suites`,
@@ -224,6 +230,7 @@ export function getRouteSeo(pathname, t, lang) {
       type: 'website',
       keywords: 'book Duma Suites, Watamu accommodation reservations, contact Duma Suites, Kenya coast stay',
       schema: 'contact',
+      canonicalPath: '/contact',
     },
     '/house-rules': {
       title: `${t.houseRules.title} | Duma Suites`,
@@ -232,6 +239,7 @@ export function getRouteSeo(pathname, t, lang) {
       type: 'website',
       keywords: 'Duma Suites house rules, Watamu hotel policy',
       schema: 'webpage',
+      canonicalPath: '/house-rules',
     },
     '/privacy-policy': {
       title: t.privacyPolicy.metaTitle,
@@ -240,6 +248,7 @@ export function getRouteSeo(pathname, t, lang) {
       type: 'website',
       keywords: 'Duma Suites privacy policy, Watamu accommodation privacy',
       schema: 'webpage',
+      canonicalPath: '/privacy-policy',
     },
     '/terms-of-service': {
       title: t.termsOfService.metaTitle,
@@ -248,6 +257,7 @@ export function getRouteSeo(pathname, t, lang) {
       type: 'website',
       keywords: 'Duma Suites terms of service, booking terms Watamu',
       schema: 'webpage',
+      canonicalPath: '/terms-of-service',
     },
     '/cookies': {
       title: t.cookies.metaTitle,
@@ -256,6 +266,7 @@ export function getRouteSeo(pathname, t, lang) {
       type: 'website',
       keywords: 'Duma Suites cookie policy, Watamu website cookies',
       schema: 'webpage',
+      canonicalPath: '/cookies',
     },
   }
 
