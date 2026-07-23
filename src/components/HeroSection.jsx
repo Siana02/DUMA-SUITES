@@ -5,16 +5,16 @@ import { useT } from '../i18n/useT.js'
 import { ALL_SUITES_ROUTE } from '../constants/suiteRoutes'
 
 // Cinematic image sequence (right panel, desktop)
-import seqImg1 from '../assets/arielview1.jpg?w=1920&format=webp&quality=90'
-import seqImg2 from '../assets/outside-view2.jpeg?w=1920&format=webp&quality=90'
-import seqImg3 from '../assets/up-view.jpg?w=1920&format=webp&quality=90'
-import seqImg4 from '../assets/outside-view.jpg?w=1920&format=webp&quality=90'
+import seqImg1 from '../assets/suite-roma-main-page-hero-image-background.jpeg?w=1920&format=webp&quality=90'
+import seqImg2 from '../assets/penthouse-suite-ariel-view-of-pool-from-penthouse-nighttime.jpg?w=1920&format=webp&quality=90'
+import seqImg3 from '../assets/penthouse-suite-view-from-outside.jpg?w=1920&format=webp&quality=90'
+import seqImg4 from '../assets/penthouse-suite-lounge-recliners-view1.jpg?w=1920&format=webp&quality=90'
 
 // Ambient blurred background — one per sequence image so the left panel syncs with the right
-import ambientImg1 from '../assets/arielview1.jpg?w=1280&format=webp&quality=80'
-import ambientImg2 from '../assets/outside-view2.jpeg?w=1280&format=webp&quality=80'
-import ambientImg3 from '../assets/up-view.jpg?w=1280&format=webp&quality=80'
-import ambientImg4 from '../assets/outside-view.jpg?w=1280&format=webp&quality=80'
+import ambientImg1 from '../assets/suite-roma-main-page-hero-image-background.jpeg?w=1280&format=webp&quality=80'
+import ambientImg2 from '../assets/penthouse-suite-ariel-view-of-pool-from-penthouse-nighttime.jpg?w=1280&format=webp&quality=80'
+import ambientImg3 from '../assets/penthouse-suite-view-from-outside.jpg?w=1280&format=webp&quality=80'
+import ambientImg4 from '../assets/penthouse-suite-lounge-recliners-view1.jpg?w=1280&format=webp&quality=80'
 
 const AMBIENT_IMAGES = [ambientImg1, ambientImg2, ambientImg3, ambientImg4]
 
